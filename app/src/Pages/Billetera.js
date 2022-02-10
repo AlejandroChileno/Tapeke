@@ -16,7 +16,7 @@ class Kolping extends Component {
 
 
                 <SView col={"xs-8"} >
-                    <SText font={"Manrope"} color={STheme.color.text} fontSize={10} style={{ paddingLeft: 10 }} >{fecha}</SText>
+                    <SText font={"Manrope"} color={STheme.color.lightGray} fontSize={10} style={{ paddingLeft: 10 }} >{fecha}</SText>
                     <SText font={"Manrope"} color={STheme.color.text} fontSize={12} style={{ paddingLeft: 10 }} >{descripcion}</SText>
                 </SView>
 
@@ -37,19 +37,30 @@ class Kolping extends Component {
                 <SView col={"xs-12"} center>
 
                     <SHr height={15} />
-                    <SHr height={15} />
-                    <SHr height={15} />
 
+                    <SView col={"xs-12"}>
+                        <SView col={"xs-12"} row center>
+                            <SIcon name={'Chip'} width={190} height={181} />
+
+                        </SView>
+                    </SView>
+
+                    <SHr height={18} />
+                    <SView col={"xs-12"} backgroundColor={'red'}>
+                        <SButtom primary >CARGAR CRÉDITO</SButtom>
+                    </SView>
+
+                    <SHr height={18} />
 
 
                     <SView col={"xs-11"}>
 
-                        {this.getDetalleBilletera('Enero, 06 - 16:45', 'Recarga de crédito', 'Girl', 'Bs. 100.00')}
-                        {this.getDetalleBilletera('Enero, 06 - 16:45', 'Compra de producto', 'Card', 'Bs. -80.00')}
-                        {this.getDetalleBilletera('Enero, 06 - 16:45', 'Recarga de crédito', 'Girl', 'Bs. 100.00')}
-                        {this.getDetalleBilletera('Enero, 06 - 16:45', 'Recarga de crédito', 'Girl', 'Bs. 100.00')}
-                        {this.getDetalleBilletera('Enero, 06 - 16:45', 'Compra de producto', 'Card', 'Bs. -80.00')}
-                        {this.getDetalleBilletera('Enero, 06 - 16:45', 'Recarga de crédito', 'Girl', 'Bs. 100.00')}
+                        {this.getDetalleBilletera('Enero, 06 - 16:45', 'Recarga de crédito', 'Ingreso', 'Bs. 100.00')}
+                        {this.getDetalleBilletera('Enero, 06 - 16:45', 'Compra de producto', 'Egreso', 'Bs. -80.00')}
+                        {this.getDetalleBilletera('Enero, 06 - 16:45', 'Recarga de crédito', 'Ingreso', 'Bs. 100.00')}
+                        {this.getDetalleBilletera('Enero, 06 - 16:45', 'Recarga de crédito', 'Ingreso', 'Bs. 100.00')}
+                        {this.getDetalleBilletera('Enero, 06 - 16:45', 'Compra de producto', 'Egreso', 'Bs. -80.00')}
+                        {this.getDetalleBilletera('Enero, 06 - 16:45', 'Recarga de crédito', 'Ingreso', 'Bs. 100.00')}
 
                     </SView>
                 </SView>
