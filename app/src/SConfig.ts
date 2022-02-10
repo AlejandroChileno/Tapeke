@@ -2,9 +2,9 @@ import { SThemeThemes } from 'servisofts-component'
 const SThemeProps: SThemeThemes = {
     default: {
         barStyle: "light-content",
-        barColor: "#018992",
+        barColor: "#FD790F",
         text:"#000000",
-        primary: "#018992",
+        primary: "#FD790F",
         secondary: "#ffffff",
         info: "#DE5738",
         background: "#ffffff",
@@ -13,9 +13,9 @@ const SThemeProps: SThemeThemes = {
     },
     dark: {
         barStyle: "light-content",
-        barColor: "#018992",
+        barColor: "#FD790F",
         text:"#ffffff",
-        primary: "#018992",
+        primary: "#FD790F",
         secondary: "#000000",
         info: "#DE5738",
         background: "#000000",

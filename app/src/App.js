@@ -36,7 +36,7 @@ const App = (props) => {
                 <SNavigation props={{
                     prefixes: ["https://component.servisofts.com", "component.servisofts://"],
                     pages: Pages,
-                    title:"App Kolping",
+                    title:"App Tapeke",
                     navBar: BarraSuperior,
                 }} />
                 <SSocket identificarse={(props) => {

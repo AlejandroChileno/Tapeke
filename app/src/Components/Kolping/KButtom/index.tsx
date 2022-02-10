@@ -42,7 +42,7 @@ export default class KButtom extends Component<KButtom_props> {
                     this.props.onPress();
                 }
             }} >
-            {this.props.loading ? <SLoad /> : <SText color={this.props.outline ? bgColor : STheme.color.white} font={"Roboto-Bold"} >{this.props.children}</SText>}
+            {this.props.loading ? <SLoad /> : <SText {...this.props} color={this.props.outline ? bgColor : STheme.color.white} font={"Roboto-Bold"} >{this.props.children}</SText>}
         </SView>);
     }
 }
