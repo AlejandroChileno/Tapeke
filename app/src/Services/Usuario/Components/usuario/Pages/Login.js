@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { SButtom, SForm, SHr, SIcon, SLoad, SNavigation, SPage, SPopup, SText, STheme, SView } from 'servisofts-component';
 import Parent from '../index'
 import Usuario from '..';
-import Kolping from '../../../../../Components/Kolping';
+import PButtom from '../../../../../Components/PButtom';
+import PButtom2 from '../../../../../Components/PButtom2';
 import LoginGoogle from '../../../../../LoginApis/LoginGoogle';
 import LoginFacebook from '../../../../../LoginApis/LoginFacebook';
-import KButtom from '../../../../../Components/Kolping/KButtom';
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -68,10 +68,10 @@ class Login extends Component {
     getFilter() {
         return <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} height={50} row>
             <SView col={"xs-6"} height card>
-                <KButtom outline={this.state.filter != "Pendiente"} onPress={() => { this.setState({ filter: "Pendiente" }) }}>Inicio Sesión</KButtom>
+                <PButtom2 outline={this.state.filter != "Pendiente"} onPress={() => { this.setState({ filter: "Pendiente" }) }}>Inicio Sesión</PButtom2>
             </SView>
             <SView col={"xs-6"} height card>
-                <KButtom outline={this.state.filter != "Historial"} onPress={() => { this.setState({ filter: "Historial" }) }}>Registro</KButtom>
+                <PButtom2 outline={this.state.filter != "Historial"} onPress={() => { this.setState({ filter: "Historial" }) }}>Registro</PButtom2>
             </SView>
         </SView>
     }
@@ -166,9 +166,9 @@ class Login extends Component {
                             </SView>
                             <SView height={10} />
                             <SView col={"xs-11"} row center>
-                                <Kolping.KButtom fontSize={20} onPress={() => {
+                                <PButtom fontSize={20} onPress={() => {
                                     this.form.submit();
-                                }}>Login</Kolping.KButtom>
+                                }}>Login</PButtom>
                                 {/* <SButtom style={{ backgroundColor: STheme.color.primary, width: '100%', fontSize: 14, borderRadius: 8, }} onPress={() => {
                                 this.form.submit();
                             }} ></SButtom> */}
