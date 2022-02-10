@@ -26,13 +26,14 @@ export default class KButtom extends Component<KButtom_props> {
         }
         if (this.props.small) {
             size.width = 100;
-            size.height = 30;
+            size.height = 35;
         }
         return (<SView height={size.height} style={{
             // borderRadius: 8,
+            backgroundColor: STheme.color.white,
             width: "100%",
             maxWidth: size.width,
-            ...(this.props.outline ? {  } : { borderBottomWidth: 1, borderColor: bgColor }),
+            ...(this.props.outline ? {  } : { borderBottomWidth: 3, borderColor: bgColor }),
         }} center
             activeOpacity={this.props.loading ? 1 : 0.5}
             {...this.props}
