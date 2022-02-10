@@ -61,11 +61,11 @@ class Registro extends Component {
             }}
             inputs={{
                 // foto_p: { type: "image", isRequired: false, defaultValue: `${SSocket.api.root}${Parent.component}/${this.key}`, col: "xs-4 sm-3.5 md-3 lg-2.5 xl-2" },
-                Nombres: {  placeholder: "Nombres", isRequired: true, defaultValue: this.usr.Nombres  },
+                Nombres: { placeholder: "Nombres", isRequired: true, defaultValue: this.usr.Nombres },
                 Apellidos: { placeholder: "Apellidos", isRequired: true, defaultValue: this.usr.Apellidos },
                 // CI: { label: "Documento de identidad", defaultValue: this.usr.CI, icon: <SIcon name={"InputUser"} width={40} height={30} /> },
                 // "Fecha de nacimiento": { label: "Fecha de nacimiento", defaultValue: this.usr["Fecha de nacimiento"], icon: <SIcon name={"Calendar"} width={40} height={30} />, type: "date" },
-                "Telefono": { placeholder: "Teléfono", defaultValue: this.usr["Telefono"], type: "phone" },
+                "Telefono": { placeholder: "Teléfono", isRequired: true, defaultValue: this.usr["Telefono"], type: "phone" },
                 Correo: { placeholder: "Correo", type: "email", isRequired: true, defaultValue: this.usr.Correo },
                 ...(!this.type ? {
                     Password: { placeholder: "Password", isRequired: true, type: "password", defaultValue: this.usr.Password },
