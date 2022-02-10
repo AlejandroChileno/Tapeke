@@ -30,7 +30,6 @@ class RecuperarPass extends Component {
             }}
             inputProps={{
                 col: "xs-12",
-                customStyle: "kolping",
             }}
             inputs={{
                 Correo: { placeholder: "Ingrese su correo electrónico", type: "email", isRequired: true },

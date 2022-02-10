@@ -25,7 +25,6 @@ class CodigoRecuperarPass extends Component {
             }}
             inputProps={{
                 col: "xs-12",
-                customStyle: "kolping",
             }}
             inputs={{
                 Codigo: { placeholder: "Ingrese el código recibido", type: "text", isRequired: true },

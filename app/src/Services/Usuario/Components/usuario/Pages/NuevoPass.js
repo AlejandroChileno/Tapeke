@@ -27,7 +27,6 @@ class NuevoPass extends Component {
             }}
             inputProps={{
                 col: "xs-12",
-                customStyle: "kolping",
             }}
             inputs={{
                 Password: { placeholder: "Introduce tu nueva contraseña", isRequired: true, type: "password" },

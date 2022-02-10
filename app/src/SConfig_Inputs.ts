@@ -14,18 +14,25 @@ const SConfig_Inputs: SInputsCofig = {
 
         },
         "View": {
-            borderWidth: 1,
-            borderColor: "#ff0",
-            height: 50,
-            borderRadius: 10,
-            marginTop: 32,
+            borderWidth: 2,
+             borderColor: "#E0E0E0" + "40",
+             height: 55,
+             borderRadius: 16,
+             marginTop: 50,
+             
         },
         "InputText": {
-            fontSize: 14,
-            paddingStart: 8,
+            fontSize: 16,
+            paddingStart: 20,
             color: STheme.color.text,
+            backgroundColor: "#E0E0E0" + "55",
+            height: 55,
+            borderRadius: 16,
+
+
         },
         "error": {
+            borderRadius: 16,
             borderColor: STheme.color.danger,
         },
     }

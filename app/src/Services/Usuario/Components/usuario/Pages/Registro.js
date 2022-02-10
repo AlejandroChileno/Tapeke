@@ -54,7 +54,6 @@ class Registro extends Component {
             col={"xs-11 sm-9 md-7 lg-5 xl-4"}
             inputProps={{
                 col: "xs-12",
-                customStyle: "kolping",
                 separation: 16
             }}
             style={{
@@ -66,7 +65,7 @@ class Registro extends Component {
                 Apellidos: { placeholder: "Apellidos", isRequired: true, defaultValue: this.usr.Apellidos },
                 // CI: { label: "Documento de identidad", defaultValue: this.usr.CI, icon: <SIcon name={"InputUser"} width={40} height={30} /> },
                 // "Fecha de nacimiento": { label: "Fecha de nacimiento", defaultValue: this.usr["Fecha de nacimiento"], icon: <SIcon name={"Calendar"} width={40} height={30} />, type: "date" },
-                "Telefono": { placeholder: "Telefono", defaultValue: this.usr["Telefono"], type: "phone" },
+                "Telefono": { placeholder: "Teléfono", defaultValue: this.usr["Telefono"], type: "phone" },
                 Correo: { placeholder: "Correo", type: "email", isRequired: true, defaultValue: this.usr.Correo },
                 ...(!this.type ? {
                     Password: { placeholder: "Password", isRequired: true, type: "password", defaultValue: this.usr.Password },

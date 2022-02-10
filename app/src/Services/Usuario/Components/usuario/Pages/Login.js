@@ -22,7 +22,6 @@ class Login extends Component {
                 col: "xs-12",
             }}
             inputProps={{
-                customStyle: "kolping",
                 separation: 16,
             }}
             inputs={{
@@ -71,8 +70,6 @@ class Login extends Component {
                 <PButtom2 outline={this.state.filter != "Pendiente"} onPress={() => { this.setState({ filter: "Pendiente" }) }}>Inicio Sesión</PButtom2>
             </SView>
             <SView col={"xs-6"} height card>
-            
-
                 <PButtom2 outline={this.state.filter != "Historial"} onPress={() => { SNavigation.navigate("usuario/registro") }}>Registro</PButtom2>
             </SView>
 
