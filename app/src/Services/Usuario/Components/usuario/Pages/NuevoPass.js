@@ -8,7 +8,7 @@ import Usuario from '..';
 // import FotoPerfilComponent from '../../../Components/FotoPerfilComponent';
 // import LogoAnimado from '../../CargaPage/LogoAnimado';
 // import RolDeUsuario from './RolDeUsuario';
-import Kolping from '../../../../../Components/Kolping';
+import PButtom from '../../../../../Components/PButtom';
 
 class NuevoPass extends Component {
     constructor(props) {
@@ -30,8 +30,8 @@ class NuevoPass extends Component {
                 customStyle: "kolping",
             }}
             inputs={{
-                Password: { label: "Introduce tu nueva contraseña", isRequired: true, type: "password",  icon: <SIcon name={"InputPassword"} width={40} height={30} /> },
-                RepPassword: { label: "Confirma tu nueva contraseña", type: "password", isRequired: true,  icon: <SIcon name={"InputRePassword"} width={40} height={30} /> },
+                Password: { placeholder: "Introduce tu nueva contraseña", isRequired: true, type: "password" },
+                RepPassword: { placeholder: "Confirma tu nueva contraseña", type: "password", isRequired: true },
             }}
             onSubmit={(values) => {
                 // if (this.key) {
@@ -73,13 +73,13 @@ class NuevoPass extends Component {
                         {this.getForm()}
                         <SView height={30} />
                         <SView col={"xs-11"} row center>
-                            <Kolping.KButtom primary props={{
+                            <PButtom primary props={{
                                 // type: STheme.color.primary
                             }}
                                 onPress={() => {
                                     this.form.submit();
                                 }}
-                            >RESTABLECER CONTRASEÑA</Kolping.KButtom>
+                            >RESTABLECER CONTRASEÑA</PButtom>
                         </SView>
                         <SView height={36} />
                     </SView>

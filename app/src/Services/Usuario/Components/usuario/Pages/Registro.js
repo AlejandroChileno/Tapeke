@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { SButtom, SForm, SHr, SPage, SText, SNavigation, SLoad, SView, SIcon, SPopup, STheme } from 'servisofts-component';
 import SSocket from 'servisofts-socket';
 import Parent from '../index'
-import Kolping from '../../../../../Components/Kolping';
+import PButtom from '../../../../../Components/PButtom';
 class Registro extends Component {
     constructor(props) {
         super(props);
@@ -55,22 +55,22 @@ class Registro extends Component {
             inputProps={{
                 col: "xs-12",
                 customStyle: "kolping",
+                separation: 16
             }}
             style={{
                 alignItems: "center",
             }}
-
             inputs={{
                 // foto_p: { type: "image", isRequired: false, defaultValue: `${SSocket.api.root}${Parent.component}/${this.key}`, col: "xs-4 sm-3.5 md-3 lg-2.5 xl-2" },
-                Nombres: { label: "Nombres", isRequired: true, defaultValue: this.usr.Nombres, icon: <SIcon name={"InputUser"} width={40} height={30} /> },
-                Apellidos: { label: "Apellidos", isRequired: true, defaultValue: this.usr.Apellidos, icon: <SIcon name={"InputUser"} width={40} height={30} /> },
+                Nombres: {  placeholder: "Nombres", isRequired: true, defaultValue: this.usr.Nombres  },
+                Apellidos: { placeholder: "Apellidos", isRequired: true, defaultValue: this.usr.Apellidos },
                 // CI: { label: "Documento de identidad", defaultValue: this.usr.CI, icon: <SIcon name={"InputUser"} width={40} height={30} /> },
                 // "Fecha de nacimiento": { label: "Fecha de nacimiento", defaultValue: this.usr["Fecha de nacimiento"], icon: <SIcon name={"Calendar"} width={40} height={30} />, type: "date" },
-                "Telefono": { label: "Telefono", defaultValue: this.usr["Telefono"], type: "phone" },
-                Correo: { label: "Correo", type: "email", isRequired: true, defaultValue: this.usr.Correo, icon: <SIcon name={"InputEmail"} width={40} height={30} /> },
+                "Telefono": { placeholder: "Telefono", defaultValue: this.usr["Telefono"], type: "phone" },
+                Correo: { placeholder: "Correo", type: "email", isRequired: true, defaultValue: this.usr.Correo },
                 ...(!this.type ? {
-                    Password: { label: "Password", isRequired: true, type: "password", defaultValue: this.usr.Password, icon: <SIcon name={"InputPassword"} width={40} height={30} /> },
-                    RepPassword: { label: "Repetir password", type: "password", isRequired: true, defaultValue: this.usr.Password, icon: <SIcon name={"InputRePassword"} width={40} height={30} /> },
+                    Password: { placeholder: "Password", isRequired: true, type: "password", defaultValue: this.usr.Password },
+                    RepPassword: { placeholder: "Repetir password", type: "password", isRequired: true, defaultValue: this.usr.Password },
                 } : {})
             }}
             onSubmit={(values) => {
@@ -184,12 +184,12 @@ class Registro extends Component {
                     </SView>
                 </SView>
                 <SHr height={25} />
-                <Kolping.KButtom
+                <PButtom
                     props={{
                         type: "outline"
                     }}
                     onPress={() => { this.form.submit() }}
-                >{(this.key ? "Editar" : "Registrar")}</Kolping.KButtom>
+                >{(this.key ? "Editar" : "Registrar")}</PButtom>
                 <SView height={40}></SView>
             </SPage>
         );

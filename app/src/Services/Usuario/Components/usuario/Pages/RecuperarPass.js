@@ -8,7 +8,7 @@ import Usuario from '..';
 // import FotoPerfilComponent from '../../../Components/FotoPerfilComponent';
 // import LogoAnimado from '../../CargaPage/LogoAnimado';
 // import RolDeUsuario from './RolDeUsuario';
-import Kolping from '../../../../../Components/Kolping';
+import PButtom from '../../../../../Components/PButtom';
 
 class RecuperarPass extends Component {
     constructor(props) {
@@ -33,7 +33,7 @@ class RecuperarPass extends Component {
                 customStyle: "kolping",
             }}
             inputs={{
-                Correo: { label: "Ingrese su correo electrónico", type: "email", isRequired: true, icon: <SIcon name={"InputEmail"} width={40} height={30} /> },
+                Correo: { placeholder: "Ingrese su correo electrónico", type: "email", isRequired: true },
             }}
             onSubmit={(values) => {
                 // if (this.key) {
@@ -68,13 +68,13 @@ class RecuperarPass extends Component {
                         {this.getForm()}
                         <SView height={16} />
                         <SView col={"xs-11"} row center>
-                            <Kolping.KButtom primary props={{
+                            <PButtom primary props={{
                                 // type: STheme.color.primary
                             }}
                                 onPress={() => {
                                     this.form.submit();
                                 }}
-                            >ENVIAR CÓDIGO</Kolping.KButtom>
+                            >ENVIAR CÓDIGO</PButtom>
                         </SView>
                         <SHr />
                         <SHr />
@@ -84,7 +84,7 @@ class RecuperarPass extends Component {
                         }}>
                             <SText fontSize={14} style={{
                                 textDecorationLine: "underline",
-                            }}>Ya tengo un codigo!</SText>
+                            }}>Ya tengo un código!</SText>
                         </SView>
                         <SView height={36} />
                     </SView>
