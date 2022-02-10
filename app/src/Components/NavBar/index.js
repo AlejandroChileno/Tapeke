@@ -46,8 +46,6 @@ class NavBar extends Component {
         });
     }
 
-
-
     getNav() {
         var usuario = this.props.state.usuarioReducer.usuarioLog;
         if (!usuario) {
@@ -142,18 +140,21 @@ class NavBar extends Component {
                     this.fadeOut();
                 }}  >
                     <SView row col={"xs-10"}>
-                        <SIcon fill="#666666" name={"Compras"} height={20} width={20} />
-                        <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Mis COmpras</SText>
+                        <SIcon fill="#666666" name={"KNotify"} height={20} width={20} />
+                        <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Mis Compras</SText>
                     </SView>
                     <SView style={{ right: 0, position: "absolute", top: 2 }} row >
                         <SIcon style={{ textAlign: "right" }} fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
                     </SView>
                     <SView col={"xs-12"} height={30}></SView>
                 </SView>
-                <SView col={"xs-11"} row onPress={() => { }}  >
+                <SView col={"xs-11"} row onPress={() => {
+                    SNavigation.navigate("billetera")
+                    this.fadeOut();
+                }}  >
                     <SView row col={"xs-10"}>
-                        <SIcon fill="#666666" name={"KNotify"} height={20} width={20} />
-                        <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Mis Compras</SText>
+                        <SIcon fill="#666666" name={"Compras"} height={20} width={20} />
+                        <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Billetera</SText>
                     </SView>
                     <SView style={{ right: 0, position: "absolute", top: 2 }} row >
                         <SIcon style={{ textAlign: "right" }} fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
@@ -163,7 +164,7 @@ class NavBar extends Component {
                 <SView col={"xs-11"} row onPress={() => { }}  >
                     <SView row col={"xs-10"}>
                         <SIcon fill="#666666" name={"cotizacion"} height={22} width={20} />
-                        <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Mis Cotizaciones</SText>
+                        <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Novedaddes</SText>
                     </SView>
                     <SView style={{ right: 0, position: "absolute", top: 2 }} row >
                         <SIcon style={{ textAlign: "right" }} fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
@@ -187,6 +188,16 @@ class NavBar extends Component {
                 <SView col={"xs-11"} row onPress={() => { }}  >
                     <SView row col={"xs-10"}>
                         <SIcon fill="#666666" name={"Ayuda"} height={20} width={20} />
+                        <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Contáctanos</SText>
+                    </SView>
+                    <SView style={{ right: 0, position: "absolute", top: 2 }} row >
+                        <SIcon style={{ textAlign: "right" }} fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
+                    </SView>
+                    <SView col={"xs-12"} height={30}></SView>
+                </SView>
+                <SView col={"xs-11"} row onPress={() => { }}  >
+                    <SView row col={"xs-10"}>
+                        <SIcon fill="#666666" name={"Ayuda"} height={20} width={20} />
                         <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Ayuda</SText>
                     </SView>
                     <SView style={{ right: 0, position: "absolute", top: 2 }} row >
@@ -194,7 +205,7 @@ class NavBar extends Component {
                     </SView>
                     <SView col={"xs-12"} height={30}></SView>
                 </SView>
-                <SView col={"xs-11"} row onPress={() => {
+                {/* <SView col={"xs-11"} row onPress={() => {
                     this.props.dispatch({ type: "USUARIO_LOGOUT" });
                     SNavigation.replace("login");
                     this.fadeOut();
@@ -207,7 +218,7 @@ class NavBar extends Component {
                         <SIcon style={{ textAlign: "right" }} fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
                     </SView>
                     <SView col={"xs-12"} height={30}></SView>
-                </SView>
+                </SView> */}
 
                 <SView col={"xs-9.5 md-5.8 xl-3.8"} center style={{ bottom: 0, }}>
                     <SIcon name={"Logo"} height={70} />
@@ -220,6 +231,7 @@ class NavBar extends Component {
             {/* <CerrarSession /> */}
         </SView>
     }
+
     render() {
         NavBar.INSTACE = this;
         if (!this.state.isOpen) return null;
