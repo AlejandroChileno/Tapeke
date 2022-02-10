@@ -22,14 +22,14 @@ export default class KButtom extends Component<KButtom_props> {
         var bgColor = this.props.primary ? STheme.color.primary : this.props.secondary ? STheme.color.info : STheme.color.primary;
         var size = {
             width: 350,
-            height: 50
+            height: 55
         }
         if (this.props.small) {
             size.width = 100;
             size.height = 30;
         }
         return (<SView height={size.height} style={{
-            borderRadius: 8,
+            borderRadius: 12,
             width: "100%",
             maxWidth: size.width,
             ...(this.props.outline ? { borderWidth: 1, borderColor: bgColor } : { backgroundColor: bgColor }),
