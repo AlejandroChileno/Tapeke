@@ -120,7 +120,7 @@ class NavBar extends Component {
                 <SView col={"xs-11"} row onPress={() => { SNavigation.navigate("kolping"); this.fadeOut(); }}  >
                     <SView row col={"xs-10"}>
                         <SIcon fill="#666666" name={"Kolping"} height={20} width={20} />
-                        <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Sobre Kolping</SText>
+                        <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Mis Direcciones</SText>
                     </SView>
                     <SView style={{ right: 0, position: "absolute", top: 2 }} row >
                         <SIcon style={{ textAlign: "right" }} fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
@@ -142,8 +142,8 @@ class NavBar extends Component {
                     this.fadeOut();
                 }}  >
                     <SView row col={"xs-10"}>
-                        <SIcon fill="#666666" name={"KNotify"} height={20} width={20} />
-                        <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Mis Notificaciones</SText>
+                        <SIcon fill="#666666" name={"Compras"} height={20} width={20} />
+                        <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Mis COmpras</SText>
                     </SView>
                     <SView style={{ right: 0, position: "absolute", top: 2 }} row >
                         <SIcon style={{ textAlign: "right" }} fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
@@ -152,7 +152,7 @@ class NavBar extends Component {
                 </SView>
                 <SView col={"xs-11"} row onPress={() => { }}  >
                     <SView row col={"xs-10"}>
-                        <SIcon fill="#666666" name={"Compras"} height={20} width={20} />
+                        <SIcon fill="#666666" name={"KNotify"} height={20} width={20} />
                         <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Mis Compras</SText>
                     </SView>
                     <SView style={{ right: 0, position: "absolute", top: 2 }} row >
