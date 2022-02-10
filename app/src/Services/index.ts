@@ -1,21 +1,17 @@
 
 import Usuario from './Usuario';
-import Kolping from './Kolping';
-import Inventario from './Inventario';
-
 import Roles_permisos from './Roles_permisos';
+import Tapeke from './Tapeke';
 const Pages = {
     ...Usuario.Pages,
-    ...Kolping.Pages,
     ...Roles_permisos.Pages,
-    ...Inventario.Pages,
+    ...Tapeke.Pages,
 }
 
 const Reducers = {
     ...Usuario.Reducers,
-    ...Kolping.Reducers,
     ...Roles_permisos.Reducers,
-    ...Inventario.Reducers,
+    ...Tapeke.Reducers,
 }
 
 export default {

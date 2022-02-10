@@ -31,12 +31,13 @@ const App = (props) => {
                 debug
                 socket={SSocket}
                 assets={Assets}
+                inputs={SConfig.SConfig_Inputs}
                 // background={<BackgroundImage />}
                 theme={{ initialTheme: "default", themes: SConfig.SThemeProps }}>
                 <SNavigation props={{
                     prefixes: ["https://component.servisofts.com", "component.servisofts://"],
                     pages: Pages,
-                    title:"App Tapeke",
+                    title: "App Tapeke",
                     navBar: BarraSuperior,
                 }} />
                 <SSocket identificarse={(props) => {
