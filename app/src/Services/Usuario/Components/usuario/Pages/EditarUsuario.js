@@ -31,15 +31,15 @@ class EditarUsuario extends Component {
                 foto_p: { type: "image", isRequired: false, defaultValue: `${SSocket.api.root}usuario/${this.key}?time=${new Date().getTime()}`, col: "xs-4 sm-3.5 md-3 lg-2.5 xl-2.5", style: { borderRadius: 100, overflow: 'hidden', width: 130, height: 130, borderWidth: 0 } },
                 Nombres: { label: "Nombres", isRequired: true, defaultValue: this.usr.Nombres, icon: <SIcon name={"InputUser"} width={40} height={30} /> },
                 Apellidos: { label: "Apellidos", isRequired: true, defaultValue: this.usr.Apellidos, icon: <SIcon name={"InputUser"} width={40} height={30} /> },
-                CI: { label: "Documento de identidad", defaultValue: this.usr.CI, icon: <SIcon name={"InputUser"} width={40} height={30} /> },
-                "Fecha de nacimiento": { label: "Fecha de nacimiento", type: "date", defaultValue: this.usr["Fecha de nacimiento"], icon: <SIcon name={"Calendar"} width={40} height={30} /> },
+                // CI: { label: "Documento de identidad", defaultValue: this.usr.CI, icon: <SIcon name={"InputUser"} width={40} height={30} /> },
+                // "Fecha de nacimiento": { label: "Fecha de nacimiento", type: "date", defaultValue: this.usr["Fecha de nacimiento"], icon: <SIcon name={"Calendar"} width={40} height={30} /> },
                 "Telefono": { label: "Telefono", defaultValue: this.usr["Telefono"], type: "phone" },
                 Correo: { label: "Correo", type: "email", isRequired: true, defaultValue: this.usr.Correo, icon: <SIcon name={"InputEmail"} width={40} height={30} /> },
                 ...(isApi ? {} : {
                     Password: { label: "Contraseña", type: "password", isRequired: true, defaultValue: this.usr.Password, icon: <SIcon name={"InputPassword"} width={40} height={30} /> },
                     RepPassword: { label: "Repetir contraseña", type: "password", isRequired: true, defaultValue: this.usr.Password, icon: <SIcon name={"InputRePassword"} width={40} height={30} /> }
                 }),
-                "Direccion": { label: "Dirección", defaultValue: this.usr["Direccion"], type: "direccion", icon: <SIcon name={"map"} width={40} height={30} /> },
+                // "Direccion": { label: "Dirección", defaultValue: this.usr["Direccion"], type: "direccion", icon: <SIcon name={"map"} width={40} height={30} /> },
 
             }}
             onSubmit={(values) => {
