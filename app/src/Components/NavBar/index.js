@@ -205,7 +205,7 @@ class NavBar extends Component {
                     </SView>
                     <SView col={"xs-12"} height={30}></SView>
                 </SView>
-                {/* <SView col={"xs-11"} row onPress={() => {
+                <SView col={"xs-11"} row onPress={() => {
                     this.props.dispatch({ type: "USUARIO_LOGOUT" });
                     SNavigation.replace("login");
                     this.fadeOut();
@@ -218,7 +218,7 @@ class NavBar extends Component {
                         <SIcon style={{ textAlign: "right" }} fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
                     </SView>
                     <SView col={"xs-12"} height={30}></SView>
-                </SView> */}
+                </SView>
 
                 <SView col={"xs-9.5 md-5.8 xl-3.8"} center style={{ bottom: 0, }}>
                     <SIcon name={"Logo"} height={70} />
