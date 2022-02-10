@@ -1,20 +1,21 @@
 import { SThemeThemes } from 'servisofts-component'
+import SConfig_Inputs from './SConfig_Inputs'
 const SThemeProps: SThemeThemes = {
     default: {
         barStyle: "light-content",
         barColor: "#FA790E",
-        text:"#000000",
+        text: "#000000",
         primary: "#FA790E",
         secondary: "#ffffff",
         info: "#DE5738",
         background: "#ffffff",
         card: "#eeeeee99",
-        
+
     },
     dark: {
         barStyle: "light-content",
         barColor: "#FA790E",
-        text:"#ffffff",
+        text: "#ffffff",
         primary: "#FA790E",
         secondary: "#000000",
         info: "#DE5738",
@@ -31,7 +32,7 @@ const SocketProps = {
 
     // host: '192.168.3.2',
     // ssl:false,
-    
+
     // host: 'alvaro.ss.lo',
 
     port: {
@@ -49,5 +50,6 @@ const SocketProps = {
 }
 export default {
     SocketProps,
-    SThemeProps
+    SThemeProps,
+    SConfig_Inputs
 }
