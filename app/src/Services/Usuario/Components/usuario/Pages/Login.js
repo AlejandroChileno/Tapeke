@@ -6,10 +6,12 @@ import Usuario from '..';
 import Kolping from '../../../../../Components/Kolping';
 import LoginGoogle from '../../../../../LoginApis/LoginGoogle';
 import LoginFacebook from '../../../../../LoginApis/LoginFacebook';
+import KButtom from '../../../../../Components/Kolping/KButtom';
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            filter: "Pendiente" // Pendiente, Historial
         };
     }
 
@@ -31,7 +33,7 @@ class Login extends Component {
                             this.form.focus("password");
                         }
                     },
-                    icon: <SIcon name={"InputEmail"} width={40} height={30} />
+                    // icon: <SIcon name={"InputEmail"} width={40} height={30} />
                 },
                 password: {
                     placeholder: "Contraseña",
@@ -40,7 +42,7 @@ class Login extends Component {
                             this.form.submit();
                         }
                     },
-                    icon: <SIcon name={"InputPassword"} width={40} height={30} />
+                    // icon: <SIcon name={"InputPassword"} width={40} height={30} />
                 },
             }}
             onSubmit={(data) => {
@@ -60,6 +62,17 @@ class Login extends Component {
             center
         >
             <SLoad />
+        </SView>
+    }
+
+    getFilter() {
+        return <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} height={50} row>
+            <SView col={"xs-6"} height card>
+                <KButtom outline={this.state.filter != "Pendiente"} onPress={() => { this.setState({ filter: "Pendiente" }) }}>Inicio Sesión</KButtom>
+            </SView>
+            <SView col={"xs-6"} height card>
+                <KButtom outline={this.state.filter != "Historial"} onPress={() => { this.setState({ filter: "Historial" }) }}>Registro</KButtom>
+            </SView>
         </SView>
     }
     render() {
@@ -96,27 +109,17 @@ class Login extends Component {
             <>
                 <SPage title={'Login ' + Parent.component} center hidden>
                     <SView center col={"xs-12"}>
+                        <SHr height={50} />
                         <SView col={"xs-11 md-6 xl-4"} center  >
-                            <SView col={"xs-11"} height={140}>
+                            <SView col={"xs-11"} height={180}>
                                 <SIcon name={"Logo"} />
                             </SView>
-                            <SView height={32} />
-                            {this.getForm()}
-                            <SView height={16} />
+                            <SView height={30} />
 
-                            <SView col={"xs-12"} flex height style={{ alignItems: "flex-end" }}>
-                                <SText fontSize={14} color={STheme.color.lightBlack} font={"LondonMM"} onPress={() => { SNavigation.navigate(Parent.component + '/recuperarContrasena'); }}>¿Olvidaste tu correo o contraseña?</SText>
-                            </SView>
-                            <SView height={30} />
-                            <SView col={"xs-11"} row center>
-                                <Kolping.KButtom onPress={() => {
-                                    this.form.submit();
-                                }}>INICIAR</Kolping.KButtom>
-                                {/* <SButtom style={{ backgroundColor: STheme.color.primary, width: '100%', fontSize: 14, borderRadius: 8, }} onPress={() => {
-                                this.form.submit();
-                            }} ></SButtom> */}
-                            </SView>
-                            <SView height={30} />
+                            {this.getFilter()}
+
+                            {this.getForm()}
+                            <SView height={20} />
                             <SView col={"xs-11"} height={40} row center  >
                                 <SView col={"xs-3"} height center>
                                     <SHr color={STheme.color.lightGray} height={1.5} ></SHr>
@@ -161,13 +164,21 @@ class Login extends Component {
                                 <SView col={"xs-2"} height center>
                                 </SView>
                             </SView>
+                            <SView height={10} />
+                            <SView col={"xs-11"} row center>
+                                <Kolping.KButtom fontSize={20} onPress={() => {
+                                    this.form.submit();
+                                }}>Login</Kolping.KButtom>
+                                {/* <SButtom style={{ backgroundColor: STheme.color.primary, width: '100%', fontSize: 14, borderRadius: 8, }} onPress={() => {
+                                this.form.submit();
+                            }} ></SButtom> */}
+                            </SView>
                             <SView col={"xs-11"} height={50} row center  >
-                                <SView flex center height={20} row>
-                                    <SText fontSize={14} color={STheme.color.lightBlack} font={"LondonMM"} >¿No tienes una cuenta?  </SText>
-                                    <SText fontSize={14} color={STheme.color.primary} font={"LondonMM"} onPress={() => { SNavigation.navigate(Parent.component + '/registro'); }}>REGISTRAR</SText>
+                                <SView col={"xs-12"} flex height center>
+                                    <SText fontSize={14} color={STheme.color.lightBlack} style={{ textDecorationLine: 'underline' }} font={"LondonMM"} onPress={() => { SNavigation.navigate(Parent.component + '/recuperarContrasena'); }}>¿Olvidaste tu correo o contraseña?</SText>
                                 </SView>
                             </SView>
-                            <SView height={30} />
+                            <SView height={40} />
                         </SView>
                     </SView>
                 </SPage>
