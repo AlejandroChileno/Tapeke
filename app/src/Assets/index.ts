@@ -100,6 +100,13 @@ import InputPhone, { ReactComponent as InputPhoneW } from './svg/imputs/phone.sv
 import InputLocation, { ReactComponent as InputLocationW } from './svg/imputs/location.svg';
 import Camera, { ReactComponent as CameraW } from './svg/camera.svg';
 import BackArrow, { ReactComponent as BackArrowW } from './svg/backArrow.svg';
+
+
+// alvaro
+import Billetera, { ReactComponent as BilleteraW } from './svg/tapeke/billetera.svg';
+import Chip, { ReactComponent as ChipW } from './svg/tapeke/chip.svg';
+
+
 const Assets: SAssets = {
     svg: {
         "IconFaceb": { Native: IconFaceb, Web: IconFacebW },
@@ -178,6 +185,10 @@ const Assets: SAssets = {
         "Calendar": { Native: Calendar, Web: CalendarW },
         "Camera": { Native: Camera, Web: CameraW },
         "BackArrow": { Native: BackArrow, Web: BackArrowW },
+
+        // alvaro
+        "Billetera": { Native: Billetera, Web: BilleteraW },
+        "Chip": { Native: Chip, Web: ChipW },
     }
 }
 
