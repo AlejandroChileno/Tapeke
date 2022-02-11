@@ -15,7 +15,7 @@ import SSocket, { setProps } from 'servisofts-socket'
 import NavBar from './Components/NavBar';
 import SConfig from './SConfig';
 import BackgroundImage from './Components/BackgroundImage';
-import BarraSuperior from './Components/Kolping/BarraSuperior';
+import BarraSuperior from './Components/BarraSuperior';
 setProps(SConfig.SocketProps);
 
 const store = createStore(
