@@ -75,8 +75,6 @@ import Fhora, { ReactComponent as FhoraW } from './svg/fhora.svg';
 import Fcentro, { ReactComponent as FcentroW } from './svg/fcentro.svg';
 import Aspa, { ReactComponent as AspaW } from './svg/aspa.svg';
 
-
-
 import Facebook, { ReactComponent as FacebookW } from './svg/facebook.svg';
 import Instagram, { ReactComponent as InstagramW } from './svg/instagram.svg';
 import TikTok, { ReactComponent as TikTokW } from './svg/tiktok.svg';
@@ -99,12 +97,6 @@ import InputPhone, { ReactComponent as InputPhoneW } from './svg/imputs/phone.sv
 import InputLocation, { ReactComponent as InputLocationW } from './svg/imputs/location.svg';
 import Camera, { ReactComponent as CameraW } from './svg/camera.svg';
 import BackArrow, { ReactComponent as BackArrowW } from './svg/backArrow.svg';
-
-
-// alvaro
-import Billetera, { ReactComponent as BilleteraW } from './svg/tapeke/billetera.svg';
-import Chip, { ReactComponent as ChipW } from './svg/tapeke/chip.svg';
-
 
 const Assets: SAssets = {
     svg: {
@@ -184,10 +176,6 @@ const Assets: SAssets = {
         "Calendar": { Native: Calendar, Web: CalendarW },
         "Camera": { Native: Camera, Web: CameraW },
         "BackArrow": { Native: BackArrow, Web: BackArrowW },
-
-        // alvaro
-        "Billetera": { Native: Billetera, Web: BilleteraW },
-        "Chip": { Native: Chip, Web: ChipW },
         ...Tapeke
     }
 }
