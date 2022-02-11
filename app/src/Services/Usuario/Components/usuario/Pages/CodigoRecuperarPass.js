@@ -8,7 +8,7 @@ import Usuario from '..';
 // import FotoPerfilComponent from '../../../Components/FotoPerfilComponent';
 // import LogoAnimado from '../../CargaPage/LogoAnimado';
 // import RolDeUsuario from './RolDeUsuario';
-import Kolping from '../../../../../Components/Kolping';
+import PButtom from '../../../../../Components/PButtom';
 
 class CodigoRecuperarPass extends Component {
     constructor(props) {
@@ -25,10 +25,9 @@ class CodigoRecuperarPass extends Component {
             }}
             inputProps={{
                 col: "xs-12",
-                customStyle: "kolping",
             }}
             inputs={{
-                Codigo: { label: "Ingrese el código recibido", type: "text", isRequired: true, icon: <SIcon name={"InputPassword"} width={40} height={30} /> },
+                Codigo: { placeholder: "Ingrese el código recibido", type: "text", isRequired: true },
             }}
             onSubmit={(values) => {
                 // if (this.key) {
@@ -70,16 +69,17 @@ class CodigoRecuperarPass extends Component {
                             <SIcon name={"Message"} width={110} height={110} />
                         </SView>
                         {/* {this.key ? <SView col={"xs-6"} height={150}> <FotoPerfilComponent data={this.usr} component={"usuario"} /> </SView> : null} */}
+                        <SView height={26} />
                         {this.getForm()}
                         <SView height={16} />
                         <SView col={"xs-11"} row center>
-                            <Kolping.KButtom primary props={{
+                            <PButtom primary props={{
                                 // type: STheme.color.primary
                             }}
                                 onPress={() => {
                                     this.form.submit();
                                 }}
-                            >VALIDAR</Kolping.KButtom>
+                            >VALIDAR</PButtom>
                         </SView>
                         <SView height={36} />
                     </SView>
