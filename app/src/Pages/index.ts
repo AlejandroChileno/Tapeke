@@ -11,13 +11,11 @@ import LA from './LA';
 import TerminosCondiciones from '../Pages/TerminosCondiciones';
 import inDevelop from './inDevelop';
 import Billetera from './Billetera';
+import Menu from './Menu';
 
 
 const Pages: SPageListProps = {
     "/": Inicio,
-
-
-
 
     "carga": Carga,
     "home": Home,
@@ -30,7 +28,7 @@ const Pages: SPageListProps = {
     "inDevelop": inDevelop,
     ...Services.Pages,
     "billetera": Billetera,
-
+    "menu": Menu,
 }
 
 export default Pages;
