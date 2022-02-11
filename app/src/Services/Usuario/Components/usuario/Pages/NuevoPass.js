@@ -27,6 +27,7 @@ class NuevoPass extends Component {
             }}
             inputProps={{
                 col: "xs-12",
+                separation: 16
             }}
             inputs={{
                 Password: { placeholder: "Introduce tu nueva contraseña", isRequired: true, type: "password" },

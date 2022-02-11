@@ -65,7 +65,7 @@ class Login extends Component {
     }
 
     getFilter() {
-        return <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} height={50} row>
+        return <SView col={"xs-11 sm-10 md-8 lg-6 xl-6"} height={50} row>
             <SView col={"xs-6"} height card>
                 <PButtom2 outline={this.state.filter != "Pendiente"} onPress={() => { this.setState({ filter: "Pendiente" }) }}>Inicio Sesión</PButtom2>
             </SView>
