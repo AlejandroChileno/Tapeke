@@ -17,8 +17,7 @@
 
 import { SAssets } from 'servisofts-component'
 
-
-
+import Tapeke from "./svg/tapeke"
 
 import ArrowRight, { ReactComponent as ArrowRightW } from './svg/sucursales/arrowRight.svg';
 import Map, { ReactComponent as MapW } from './svg/sucursales/map.svg';
@@ -189,6 +188,7 @@ const Assets: SAssets = {
         // alvaro
         "Billetera": { Native: Billetera, Web: BilleteraW },
         "Chip": { Native: Chip, Web: ChipW },
+        ...Tapeke
     }
 }
 
