@@ -23,7 +23,7 @@ import ArrowRight, { ReactComponent as ArrowRightW } from './svg/sucursales/arro
 import Map, { ReactComponent as MapW } from './svg/sucursales/map.svg';
 import Cellphone, { ReactComponent as CellphoneW } from './svg/sucursales/cellphone.svg';
 
-import Logo, { ReactComponent as LogoW } from './svg/logo.svg';
+// import Logo, { ReactComponent as LogoW } from './svg/logo.svg';
 import Bg1, { ReactComponent as Bg1W } from './svg/Bg1.svg';
 import Ver, { ReactComponent as VerW } from './svg/ver.svg';
 import Inicio, { ReactComponent as InicioW } from './svg/inicio.svg';
@@ -121,7 +121,7 @@ const Assets: SAssets = {
         "IconBtnShare": { Native: IconBtnShare, Web: IconBtnShareW },
         "IconCarritoVacio": { Native: IconCarritoVacio, Web: IconCarritoVacioW },
 
-        "Logo": { Native: Logo, Web: LogoW },
+        // "Logo": { Native: Logo, Web: LogoW },
         "Bg1": { Native: Bg1, Web: Bg1W },
         "setup": { Native: setup, Web: setupW },
         "homeBox": { Native: homeBox, Web: homeBoxW },
