@@ -40,13 +40,14 @@ const App = (props) => {
                     title: "App Tapeke",
                     navBar: BarraSuperior,
                 }} />
-                <SSocket identificarse={(props) => {
+                {/* NO HAY BD */}
+                {/* <SSocket identificarse={(props) => {
                     var usuario = props.state.usuarioReducer.usuarioLog;
                     return {
                         data: usuario ? usuario : {},
                         deviceKey: "as-asa-as",
                     }
-                }} />
+                }} /> */}
                 <NavBar />
             </SComponentContainer>
         </Provider>
