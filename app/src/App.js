@@ -41,13 +41,13 @@ const App = (props) => {
                     navBar: BarraSuperior,
                 }} />
                 {/* NO HAY BD */}
-                {/* <SSocket identificarse={(props) => {
+                <SSocket identificarse={(props) => {
                     var usuario = props.state.usuarioReducer.usuarioLog;
                     return {
                         data: usuario ? usuario : {},
                         deviceKey: "as-asa-as",
                     }
-                }} /> */}
+                }} />
                 <NavBar />
             </SComponentContainer>
         </Provider>
