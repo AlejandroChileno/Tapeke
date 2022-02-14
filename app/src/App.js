@@ -15,7 +15,7 @@ import SSocket, { setProps } from 'servisofts-socket'
 import NavBar from './Components/NavBar';
 import SConfig from './SConfig';
 import BackgroundImage from './Components/BackgroundImage';
-import BarraSuperior from './Components/Kolping/BarraSuperior';
+import BarraSuperior from './Components/BarraSuperior';
 setProps(SConfig.SocketProps);
 
 const store = createStore(
@@ -40,13 +40,14 @@ const App = (props) => {
                     title: "App Tapeke",
                     navBar: BarraSuperior,
                 }} />
-                <SSocket identificarse={(props) => {
+                {/* NO HAY BD */}
+                {/* <SSocket identificarse={(props) => {
                     var usuario = props.state.usuarioReducer.usuarioLog;
                     return {
                         data: usuario ? usuario : {},
                         deviceKey: "as-asa-as",
                     }
-                }} />
+                }} /> */}
                 <NavBar />
             </SComponentContainer>
         </Provider>

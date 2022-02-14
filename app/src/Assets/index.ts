@@ -17,14 +17,13 @@
 
 import { SAssets } from 'servisofts-component'
 
-
-
+import Tapeke from "./svg/tapeke"
 
 import ArrowRight, { ReactComponent as ArrowRightW } from './svg/sucursales/arrowRight.svg';
 import Map, { ReactComponent as MapW } from './svg/sucursales/map.svg';
 import Cellphone, { ReactComponent as CellphoneW } from './svg/sucursales/cellphone.svg';
 
-import Logo, { ReactComponent as LogoW } from './svg/logo.svg';
+// import Logo, { ReactComponent as LogoW } from './svg/logo.svg';
 import Bg1, { ReactComponent as Bg1W } from './svg/Bg1.svg';
 import Ver, { ReactComponent as VerW } from './svg/ver.svg';
 import Inicio, { ReactComponent as InicioW } from './svg/inicio.svg';
@@ -76,8 +75,6 @@ import Fhora, { ReactComponent as FhoraW } from './svg/fhora.svg';
 import Fcentro, { ReactComponent as FcentroW } from './svg/fcentro.svg';
 import Aspa, { ReactComponent as AspaW } from './svg/aspa.svg';
 
-
-
 import Facebook, { ReactComponent as FacebookW } from './svg/facebook.svg';
 import Instagram, { ReactComponent as InstagramW } from './svg/instagram.svg';
 import TikTok, { ReactComponent as TikTokW } from './svg/tiktok.svg';
@@ -100,12 +97,6 @@ import InputPhone, { ReactComponent as InputPhoneW } from './svg/imputs/phone.sv
 import InputLocation, { ReactComponent as InputLocationW } from './svg/imputs/location.svg';
 import Camera, { ReactComponent as CameraW } from './svg/camera.svg';
 import BackArrow, { ReactComponent as BackArrowW } from './svg/backArrow.svg';
-
-
-// alvaro
-import Billetera, { ReactComponent as BilleteraW } from './svg/tapeke/billetera.svg';
-import Chip, { ReactComponent as ChipW } from './svg/tapeke/chip.svg';
-
 
 const Assets: SAssets = {
     svg: {
@@ -130,7 +121,7 @@ const Assets: SAssets = {
         "IconBtnShare": { Native: IconBtnShare, Web: IconBtnShareW },
         "IconCarritoVacio": { Native: IconCarritoVacio, Web: IconCarritoVacioW },
 
-        "Logo": { Native: Logo, Web: LogoW },
+        // "Logo": { Native: Logo, Web: LogoW },
         "Bg1": { Native: Bg1, Web: Bg1W },
         "setup": { Native: setup, Web: setupW },
         "homeBox": { Native: homeBox, Web: homeBoxW },
@@ -185,10 +176,7 @@ const Assets: SAssets = {
         "Calendar": { Native: Calendar, Web: CalendarW },
         "Camera": { Native: Camera, Web: CameraW },
         "BackArrow": { Native: BackArrow, Web: BackArrowW },
-
-        // alvaro
-        "Billetera": { Native: Billetera, Web: BilleteraW },
-        "Chip": { Native: Chip, Web: ChipW },
+        ...Tapeke
     }
 }
 
