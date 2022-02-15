@@ -47,7 +47,7 @@ class BarraSuperior extends Component {
         //     return <View />
         // }
         return <SView col={"xs-12"} height center >
-            <SView  onPress={() => {
+            <SView onPress={() => {
                 SNavigation.goBack();
             }} col={"xs-12"} style={{
                 paddingBottom: 4,
@@ -88,8 +88,8 @@ class BarraSuperior extends Component {
                         flex: 1,
 
                         justifyContent: "center",
-                        // alignItems: "center"
-                    }}>
+                        alignItems: "center"
+                    }} center>
                         {this.getTitle()}
 
                     </View>

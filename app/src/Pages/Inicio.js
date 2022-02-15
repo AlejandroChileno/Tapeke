@@ -23,7 +23,8 @@ class Inicio extends Component {
 
     categoria(title) {
         return (<>
-            <SView col={"xs-11 md-8 lg-8 xl-6"} height={30} row center>
+
+            <SView col={"xs-11 xl-6 "} height={30} row center  >
                 <SView col={"xs-6"} row style={{ justifyContent: 'flex-start', }}>
                     <SText fontSize={18} font={"LondonMM"} bold >{title}</SText>
                 </SView>
@@ -35,11 +36,17 @@ class Inicio extends Component {
                     <SView width={6} />
                     <SIcon name={"Back"} width={12} height={12} fill={STheme.color.primary} style={{ transform: [{ rotate: "180deg" }] }} />
                 </SView>
+
+
             </SView>
-            <SView col={"xs-12"} center  >
-                <SView col={"xs-11 md-8 lg-8 xl-6"} height={180} row center >
+            <SView col={"xs-12 xl-12"} center  >
+                <SView col={"xs-12"} height={180} row center >
+                    {/* recordar a ricardo que debe solucionar el ScrollView2 */}
+                    {/* observacion que no funciona el maxWidth and minWidth */}
+                    {/* observacion el de crear 2 barra superior  */}
                     <ScrollView horizontal={true} >
-                        <Item></Item>
+                        <SView style={{ width: 18, maxWidth: '80%', minWidth: '90%', }} />
+                        <Item ></Item>
                     </ScrollView>
                     <SHr height={200} />
 
@@ -81,7 +88,6 @@ class Inicio extends Component {
                             {this.categoria('Favoritos')}
                         </SView>
                     </SScrollView2>
-                    <PBarraFooter />
                 </SView>
                 <PBarraFooter />
             </SPage >
