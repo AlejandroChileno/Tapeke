@@ -26,13 +26,13 @@ export default class PBarraFooter extends Component {
 	}
 	render() {
 		return (
-			<SView col={"xs-12"} height={50} border={'blue'}
+			<SView col={"xs-12"} height={50}
 				style={{ position: 'absolute', bottom: 0, backgroundColor: STheme.color.primary, overflow: 'hidden' }}
 			>
 				<SView col={'xs-12'} row height >
-					{this.getItem({ key: "100", title: 'Descrubir', icon: 'Girl', url: 'home' })}
-					{this.getItem({ key: "200", title: 'Explorar', icon: 'Girl', url: 'home' })}
-					{this.getItem({ key: "300", title: 'Favoritos', icon: 'Girl', url: 'home' })}
+					{this.getItem({ key: "100", title: 'Descrubir', icon: 'MenuLocation', url: 'home' })}
+					{this.getItem({ key: "200", title: 'Explorar', icon: 'MenuExplorar', url: 'home' })}
+					{this.getItem({ key: "300", title: 'Favoritos', icon: 'MenuFavoritos', url: 'home' })}
 				</SView>
 			</SView >
 		);
