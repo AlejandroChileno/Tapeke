@@ -12,6 +12,12 @@ import Reloj, { ReactComponent as RelojW } from './reloj.svg';
 import MenuExplorar, { ReactComponent as MenuExplorarW } from './menuExplorar.svg';
 import MenuFavoritos, { ReactComponent as MenuFavoritosW } from './menuFavoritos.svg';
 import MenuLocation, { ReactComponent as MenuLocationW } from './menuLocation.svg';
+import CalGusto, { ReactComponent as CalGustoW } from './calGusto.svg';
+import CalServicio, { ReactComponent as CalServicioW } from './calServicio.svg';
+import CalCalidad, { ReactComponent as CalCalidadW } from './calCalidad.svg';
+import Detalle, { ReactComponent as DetalleW } from './detalle.svg';
+import ComoLlegar, { ReactComponent as ComoLlegarW } from './comoLlegar.svg';
+import Bicicleta, { ReactComponent as BicicletaW } from './bicicleta.svg';
 
 
 import AppBaterry, { ReactComponent as AppBaterryW } from './appBaterry.svg';
@@ -38,6 +44,12 @@ const Assets = {
 	"AppWifi": { Native: AppWifi, Web: AppWifiW },
 	"AppAlert": { Native: AppAlert, Web: AppAlertW },
 
+	"CalGusto": { Native: CalGusto, Web: CalGustoW },
+	"CalServicio": { Native: CalServicio, Web: CalServicioW },
+	"CalCalidad": { Native: CalCalidad, Web: CalCalidadW },
+	"Detalle": { Native: Detalle, Web: DetalleW },
+	"ComoLlegar": { Native: ComoLlegar, Web: ComoLlegarW },
+	"Bicicleta": { Native: Bicicleta, Web: BicicletaW },
 }
 
 export default Assets;
