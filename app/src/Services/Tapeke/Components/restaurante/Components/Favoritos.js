@@ -5,7 +5,7 @@ import { ScrollView } from 'react-native';
 import {
 	SGradient, SHr, SIcon, SImage, SLoad, SPage, SScrollView2, SText, STheme, SView, SNavigation, SInput,
 } from 'servisofts-component';
-import Item from './Item';
+import Item2 from './Item2';
 import PBarraFooter from '../../../../../Components/PBarraFooter';
 
 
@@ -18,6 +18,9 @@ class Favoritos extends Component {
 		this.key = SNavigation.getParam("keyUsuario");
 
 	}
+
+
+
 
 	getItems() {
 		return <>
@@ -102,8 +105,18 @@ class Favoritos extends Component {
 				<ScrollView>
 					<SView col={"xs-12"} row center height border={'transparent'} >
 						<SView col={"xs-11 md-5 lg-4 xl-2.5"}    >
-							<SHr height={10} />
-							{this.getItems()}
+							<SHr height={30} />
+							<Item2></Item2>
+							<SHr height={30} />
+							<Item2></Item2>
+							<SHr height={30} />
+							<Item2></Item2>
+							<SHr height={30} />
+							<Item2></Item2>
+							<SHr height={30} />
+							<Item2></Item2>
+							<SHr height={30} />
+							<Item2></Item2>
 							<SHr height={30} />
 						</SView>
 
