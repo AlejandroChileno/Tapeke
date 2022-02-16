@@ -26,8 +26,9 @@ class Inicio extends Component {
 
     categoria(title) {
         return (<>
+            <SHr height={20} />
 
-            <SView col={"xs-11 xl-6 "} height={30} row center  >
+            <SView col={"xs-11 lg-11 xl-11.5"} height={30} row center  >
                 <SView col={"xs-6"} row style={{ justifyContent: 'flex-start', }}>
                     <SText fontSize={18} font={"LondonMM"} bold >{title}</SText>
                 </SView>
@@ -42,12 +43,13 @@ class Inicio extends Component {
 
 
             </SView>
-            <SView col={"xs-12 xl-12"} center  >
+            <SView col={"xs-12  "} center  >
                 <SView col={"xs-12"} height={180} row center >
                     {/* recordar a ricardo que debe solucionar el ScrollView2 */}
                     {/* observacion que no funciona el maxWidth and minWidth */}
                     {/* observacion el de crear 2 barra superior  */}
-                    <ScrollView horizontal={true} >
+                    <ScrollView horizontal={true}
+                        showsHorizontalScrollIndicator={false} >
                         <SView style={{ width: 18, maxWidth: '80%', minWidth: '90%', }} />
                         <Item ></Item>
                     </ScrollView>
@@ -60,9 +62,15 @@ class Inicio extends Component {
         );
     }
 
-
-
-
+    publicidad() {
+        return (<>
+            <SHr height={20} />
+            <SView col={'xs-11'} height={160} >
+                <SImage src={require('./fotos/publicidad.png')} />
+            </SView>
+        </>
+        );
+    }
 
     render() {
         if (!usuario.Actions.validateSession(this.props)) {
@@ -71,7 +79,7 @@ class Inicio extends Component {
         // var UsuaioPage = Pages["usuarioPage/lista"];
 
         return (
-            <SPage title={'Inicio'} hidden disableScroll>
+            <SPage title={'Inicio'} hidden disableScroll   >
                 {/* <Kolping.KBarraUsuario /> */}
                 <BarraSuperiorTapeke >
                     <SView row >
@@ -93,27 +101,34 @@ class Inicio extends Component {
                         </SView>
                     </SView>
                 </BarraSuperiorTapeke>
+                {/* <SView col={"xs-12"} center height> */}
 
+                <SView col={"xs-12"} height row center   >
+                    <SView col={"xs-0 md-0 lg-2 xl-3"} height style={{ overflow: 'hidden', }} >
 
-                {/* <SHr height={100} /> */}
-                <SView col={"xs-12"} center height>
-                    <SScrollView2 disableHorizontal={true}>
-                        <SView col={"xs-12"} center >
-                            <SView height={15}></SView>
-                            {this.categoria('Recomendado Para Ti')}
-                            <SHr height={20} />
-                            {this.categoria('Cerca')}
-                            <SHr height={10} />
-                            <SView col={'xs-11'} height={160} >
-                                <SImage src={require('./fotos/publicidad.png')} />
+                        <SText>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere, sequi quibusdam. Reprehenderit culpa iure error quos fugit, doloremque, accusamus vero recusandae beatae dolores, dolorum alias! Doloribus velit blanditiis quibusdam aspernatur!
+                        </SText>
+
+                    </SView>
+                    <SView col={"xs-12 md-12 lg-8 xl-6"} center height >
+                        <SScrollView2 disableHorizontal={true}>
+                            <SView col={"xs-12  "} center  >
+                                {this.categoria('Recomendado Para Ti')}
+                                {this.categoria('Cerca')}
+                                {this.publicidad()}
+                                {this.categoria('Alimentación')}
+                                {this.categoria('Favoritos')}
                             </SView>
-                            <SHr height={10} />
-                            {this.categoria('Alimentación')}
-                            <SHr height={20} />
-                            {this.categoria('Favoritos')}
-                        </SView>
-                    </SScrollView2>
+                        </SScrollView2>
+                    </SView>
+                    <SView col={"xs-0 md-0 lg-2 xl-3"} height style={{ overflow: 'hidden', }} >
+                        <SText>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere, sequi quibusdam. Reprehenderit culpa iure error quos fugit, doloremque, accusamus vero recusandae beatae dolores, dolorum alias! Doloribus velit blanditiis quibusdam aspernatur!
+                        </SText>
+                    </SView>
                 </SView>
+
                 <PBarraFooter />
             </SPage >
         );
