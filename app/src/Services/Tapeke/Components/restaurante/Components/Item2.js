@@ -7,7 +7,6 @@ export default class Item extends Component {
 		this.state = {
 		};
 	}
-
 	HeaderItemFoto() {
 		return <>
 			<SView col={"xs-12"} row center height={110} border={'transparent'} style={{ position: 'absolute', top: -10 }}  >
@@ -34,10 +33,8 @@ export default class Item extends Component {
 		</>
 
 	}
-
 	HeaderItemTitle() {
 		return <>
-
 			<SView col={"xs-11"} height={50} row center border={'transparent'} style={{ position: 'absolute', top: 75, justifyContent: 'flex-start', }} >
 				<SView width={210} height={21} center style={{
 					borderRadius: 8, overflow: 'hidden', backgroundColor: STheme.color.primary, left: 30
@@ -55,13 +52,8 @@ export default class Item extends Component {
 		</>
 
 	}
-
-
-
-
 	getItems() {
 		return <>
-
 			<SView col={"xs-12 "} height={180} center >
 
 				<SView col={"xs-11.9"} height row center border={STheme.color.card} style={{
@@ -86,12 +78,8 @@ export default class Item extends Component {
 				{this.HeaderItemDisponible()}
 				{this.HeaderItemTitle()}
 			</SView>
-			<SView width={10} />
-
-
-
+			<SView width={200} />
 		</>
-
 	}
 
 
