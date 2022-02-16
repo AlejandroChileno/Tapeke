@@ -14,6 +14,12 @@ import MenuFavoritos, { ReactComponent as MenuFavoritosW } from './menuFavoritos
 import MenuLocation, { ReactComponent as MenuLocationW } from './menuLocation.svg';
 
 
+import AppBaterry, { ReactComponent as AppBaterryW } from './appBaterry.svg';
+import AppSignal, { ReactComponent as AppSignalW } from './appSignal.svg';
+import AppWifi, { ReactComponent as AppWifiW } from './appWifi.svg';
+import AppAlert, { ReactComponent as AppAlertW } from './appAlert.svg';
+
+
 const Assets = {
 	// alvaro
 	"Billetera": { Native: Billetera, Web: BilleteraW },
@@ -27,6 +33,11 @@ const Assets = {
 	"MenuExplorar": { Native: MenuExplorar, Web: MenuExplorarW },
 	"MenuFavoritos": { Native: MenuFavoritos, Web: MenuFavoritosW },
 	"MenuLocation": { Native: MenuLocation, Web: MenuLocationW },
+	"AppBaterry": { Native: AppBaterry, Web: AppBaterryW },
+	"AppSignal": { Native: AppSignal, Web: AppSignalW },
+	"AppWifi": { Native: AppWifi, Web: AppWifiW },
+	"AppAlert": { Native: AppAlert, Web: AppAlertW },
+
 }
 
 export default Assets;

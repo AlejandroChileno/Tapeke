@@ -1,5 +1,5 @@
 import React from 'react';
-import { SComponentContainer, SIcon, SNavigation, SView } from 'servisofts-component';
+import { SComponentContainer, SIcon, SNavigation, SText, STheme, SView } from 'servisofts-component';
 
 import Pages from './Pages';
 import Assets from './Assets';
@@ -28,12 +28,34 @@ const App = (props) => {
     return (
         <Provider store={store}>
             <SComponentContainer
-                debug
+                // debug
                 socket={SSocket}
                 assets={Assets}
                 inputs={SConfig.SConfig_Inputs}
                 // background={<BackgroundImage />}
                 theme={{ initialTheme: "default", themes: SConfig.SThemeProps }}>
+
+
+                <SView col={"xs-12"} height={30} backgroundColor={'#FA790E'} >
+                    <SView col={"xs-12"} row flex style={{
+                        paddingLeft: 16, paddingRight: 16,
+                    }}>
+                        <SView width={30} center flex >
+                            <SText font={"Roboto-Bold"} fontSize={14} color={"#fff"}>9:27</SText>
+                        </SView>
+                        <SView row >
+                            <SView width={25} center  >
+                                <SIcon name={"AppSignal"} width={18} fill="#fff" />
+                            </SView>
+                            <SView width={30} center  >
+                                <SIcon name={"AppWifi"} width={19} fill="#fff" />
+                            </SView>
+                            <SView width={30} center  >
+                                <SIcon name={"AppBaterry"} width={25} fill="#fff" />
+                            </SView>
+                        </SView>
+                    </SView>
+                </SView>
                 <SNavigation props={{
                     prefixes: ["https://component.servisofts.com", "component.servisofts://"],
                     pages: Pages,
@@ -49,8 +71,9 @@ const App = (props) => {
                     }
                 }} />
                 <NavBar />
+
             </SComponentContainer>
-        </Provider>
+        </Provider >
     )
 }
 export default App;

@@ -7,6 +7,9 @@ import usuario from '../Services/Usuario/Components/usuario';
 import PBarraFooter from '../Components/PBarraFooter';
 import Item from '../Services/Tapeke/Components/restaurante/Components/Item';
 
+import BarraSuperiorTapeke from '../Components/BarraSuperiorTapeke';
+
+
 class Inicio extends Component {
     constructor(props) {
         super(props);
@@ -69,8 +72,30 @@ class Inicio extends Component {
 
         return (
             <SPage title={'Inicio'} hidden disableScroll>
-                <Kolping.KBarraUsuario />
-                <SHr height={100} />
+                {/* <Kolping.KBarraUsuario /> */}
+                <BarraSuperiorTapeke >
+                    <SView row >
+                        <SView height={50} width={15} backgroundColor={'transparent'}    >
+                            <SView style={{ top: 6 }} center >
+                                <SIcon name={"Location"} width={12} height={17} fill="#fff" />
+                            </SView>
+                        </SView>
+
+                        <SView height={50} flex center style={{ justifyContent: 'center', paddingLeft: 8, paddingRight: 8, }}  >
+                            <SText font={"Roboto-Bold"} fontSize={10} center color={"#fff"}>Las palmas, Santa cruz de la sierra</SText>
+                            <SText font={"Roboto-Bold"} fontSize={12} center color={"#fff"}>A menos de 30 km</SText>
+                        </SView>
+
+                        <SView height={50} width={20} backgroundColor={'transparent'} >
+                            <SView style={{ top: 12 }} center >
+                                <SIcon name={"Back"} height={12} fill="#fff" style={{ transform: [{ rotate: "-90deg" }], }} />
+                            </SView>
+                        </SView>
+                    </SView>
+                </BarraSuperiorTapeke>
+
+
+                {/* <SHr height={100} /> */}
                 <SView col={"xs-12"} center height>
                     <SScrollView2 disableHorizontal={true}>
                         <SView col={"xs-12"} center >

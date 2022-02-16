@@ -7,6 +7,7 @@ import {
 } from 'servisofts-component';
 import Item2 from './Item2';
 import PBarraFooter from '../../../../../Components/PBarraFooter';
+import BarraSuperiorTapeke from '../../../../../Components/BarraSuperiorTapeke';
 
 
 
@@ -101,7 +102,12 @@ class Favoritos extends Component {
 
 	render() {
 		return (
-			<SPage title={'Mis Favoritos'} height disableScroll  >
+
+			<SPage title={'Mis Favoritos'} hidden disableScroll>
+				<BarraSuperiorTapeke  >
+					<SText font={"Roboto-Bold"} fontSize={25} color={"#fff"}>Mis Favoritos</SText>
+				</BarraSuperiorTapeke>
+
 				<ScrollView>
 					<SView col={"xs-12"} row center height border={'transparent'} >
 						<SView col={"xs-11 md-5 lg-4 xl-2.5"}    >
@@ -124,6 +130,7 @@ class Favoritos extends Component {
 				</ScrollView>
 				<SHr height={50} />
 				<PBarraFooter />
+
 			</ SPage >
 		);
 	}
