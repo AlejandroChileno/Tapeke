@@ -5,7 +5,7 @@ import { ScrollView } from 'react-native';
 import {
 	SGradient, SHr, SIcon, SImage, SLoad, SPage, SScrollView2, SText, STheme, SView, SNavigation, SInput,
 } from 'servisofts-component';
-import Item from './Item';
+import Item from '../Components/Item';
 
 class Categoria extends Component {
 	constructor(props) {

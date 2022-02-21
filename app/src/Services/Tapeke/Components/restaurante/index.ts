@@ -9,12 +9,11 @@ import Perfil from "./Pages/Perfil";
 
 import Item from "./Components/Item";
 import Item2 from "./Components/Item2";
-
-import Favoritos from "./Components/Favoritos";
-import Categoria from "./Components/Categoria";
 import Filtros from "./Components/Filtros";
 
-import Explorador from "./Components/Explorador";
+import Favoritos from "./Pages/Favoritos";
+import Categoria from "./Pages/Categoria";
+import Explorador from "./Pages/Explorador";
 
 export default {
     component,
