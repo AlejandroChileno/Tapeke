@@ -16,6 +16,7 @@ import NavBar from './Components/NavBar';
 import SConfig from './SConfig';
 import BackgroundImage from './Components/BackgroundImage';
 import BarraSuperior from './Components/BarraSuperior';
+import StatusBar from './Components/StatusBar';
 setProps(SConfig.SocketProps);
 
 const store = createStore(
@@ -36,26 +37,7 @@ const App = (props) => {
                 theme={{ initialTheme: "default", themes: SConfig.SThemeProps }}>
 
 
-                <SView col={"xs-12"} height={30} backgroundColor={'#FA790E'} >
-                    <SView col={"xs-12"} row flex style={{
-                        paddingLeft: 16, paddingRight: 16,
-                    }}>
-                        <SView width={30} center flex >
-                            <SText font={"Roboto-Bold"} fontSize={14} color={"#fff"}>9:27</SText>
-                        </SView>
-                        <SView row >
-                            <SView width={25} center  >
-                                <SIcon name={"AppSignal"} width={18} fill="#fff" />
-                            </SView>
-                            <SView width={30} center  >
-                                <SIcon name={"AppWifi"} width={19} fill="#fff" />
-                            </SView>
-                            <SView width={30} center  >
-                                <SIcon name={"AppBaterry"} width={25} fill="#fff" />
-                            </SView>
-                        </SView>
-                    </SView>
-                </SView>
+                <StatusBar />
                 <SNavigation props={{
                     prefixes: ["https://component.servisofts.com", "component.servisofts://"],
                     pages: Pages,

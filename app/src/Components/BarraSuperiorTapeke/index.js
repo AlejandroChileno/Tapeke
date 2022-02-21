@@ -36,7 +36,9 @@ class BarraSuperiorTapeke extends Component {
                 }}>
 
 
-                    <SView height width={35} center backgroundColor={'transparent'} >
+                    <SView height width={35} center backgroundColor={'transparent'} onPress={()=>{
+                        NavBar.open();
+                    }} >
                         <SIcon name={"KMenu"} width={32} />
                     </SView>
 

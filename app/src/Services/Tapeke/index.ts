@@ -10,6 +10,7 @@ const Pages: SPageListProps = {
 }
 
 const Reducers = {
+    ...restaurante.Reducers,
 }
 
 export default {

@@ -9,10 +9,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import Server.SSSAbstract.SSSessionAbstract;
 
-public class FarmaciaCategoriaFarmacia {
-
-    public static final String COMPONENT = "farmacia_categoria_farmacia";
-
+public class Restaurante {
+    public static final String COMPONENT = "restaurante";
     public static void onMessage(JSONObject obj, SSSessionAbstract session) {
         switch (obj.getString("type")) {
             case "getAll":
@@ -29,16 +27,7 @@ public class FarmaciaCategoriaFarmacia {
 
     public static void getAll(JSONObject obj, SSSessionAbstract session) {
         try {
-            String consulta = "";
-            if (obj.has("key_farmacia")) {
-                consulta = "select get_all('" + COMPONENT + "','key_farmacia','" + obj.getString("key_farmacia")
-                        + "') as json";
-            } else if (obj.has("key_categoria_farmacia")) {
-                consulta = "select get_all('" + COMPONENT + "','key_categoria_farmacia','"
-                        + obj.getString("key_categoria_farmacia") + "') as json";
-            } else {
-                consulta = "select get_all('" + COMPONENT + "') as json";
-            }
+            String consulta = "select get_all('" + COMPONENT + "') as json";
             JSONObject data = SPGConect.ejecutarConsultaObject(consulta);
             obj.put("data", data);
             obj.put("estado", "exito");
@@ -52,7 +41,6 @@ public class FarmaciaCategoriaFarmacia {
         try {
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS");
             String fecha_on = formatter.format(new Date());
-
             JSONObject data = obj.getJSONObject("data");
             data.put("key", UUID.randomUUID().toString());
             data.put("estado", 1);
