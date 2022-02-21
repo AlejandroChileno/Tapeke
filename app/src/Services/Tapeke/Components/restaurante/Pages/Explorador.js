@@ -5,7 +5,7 @@ import { ScrollView } from 'react-native';
 import {
 	SGradient, SHr, SIcon, SImage, SLoad, SPage, SScrollView2, SText, STheme, SView, SNavigation, SInput,
 } from 'servisofts-component';
-import Item2 from './Item2';
+import Item2 from '../Components/Item2';
 import PBarraFooter from '../../../../../Components/PBarraFooter';
 import BarraSuperiorTapeke from '../../../../../Components/BarraSuperiorTapeke';
 
