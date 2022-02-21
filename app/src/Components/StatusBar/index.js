@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SDate, SIcon, SPage, SText, SThread, SView } from 'servisofts-component';
-
+import { Platform } from 'react-native';
+import { SDate, SIcon, SPage, SText, STheme, SThread, SView } from 'servisofts-component';
+import SSocket from 'servisofts-socket'
 class StatusBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
             hora: new SDate().toString("hh:mm"),
+            isConected: false
         };
     }
     hilo() {
-        new SThread(1000, "seg", false).start(() => {
+        new SThread(1000, "seg", true).start(() => {
             if (this.state.hora !== new SDate().toString("hh:mm")) {
                 this.setState({ hora: new SDate().toString("hh:mm") });
+            }
+            if (SSocket.getSession().isOpen()) {
+                if (!this.state.isConected) {
+                    this.setState({ isConected: true });
+                }
+            } else {
+                if (this.state.isConected) {
+                    this.setState({ isConected: false });
+                }
             }
             this.hilo();
 
@@ -20,6 +31,7 @@ class StatusBar extends Component {
     }
 
     render() {
+        if (Platform.OS != "web") return null;
         this.hilo();
         return (
             <SView col={"xs-12"} height={30} backgroundColor={'#FA790E'} >
@@ -31,10 +43,10 @@ class StatusBar extends Component {
                     </SView>
                     <SView row >
                         <SView width={25} center  >
-                            <SIcon name={"AppSignal"} width={18} fill="#fff" />
+                            <SIcon name={"AppSignal"} width={18} fill={this.state.isConected ? "#fff" : STheme.color.lightGray} />
                         </SView>
                         <SView width={30} center  >
-                            <SIcon name={"AppWifi"} width={19} fill="#fff" />
+                            <SIcon name={"AppWifi"} width={19} fill={this.state.isConected ? "#fff" : STheme.color.lightGray} />
                         </SView>
                         <SView width={30} center  >
                             <SIcon name={"AppBaterry"} width={25} fill="#fff" />
