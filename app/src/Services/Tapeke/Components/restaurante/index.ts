@@ -14,7 +14,8 @@ import Filtros from "./Components/Filtros";
 import Favoritos from "./Pages/Favoritos";
 import Categoria from "./Pages/Categoria";
 import Explorador from "./Pages/Explorador";
-
+import lista from "./Pages/lista";
+import registro from "./Pages/registro";
 export default {
     component,
     version,
@@ -28,6 +29,8 @@ export default {
         [component + "/categoria"]: Categoria,
         [component + "/filtros"]: Filtros,
         [component + "/explorador"]: Explorador,
+        ["admin/" + component]: lista,
+        ["admin/" + component+"/registro"]: registro,
 
     },
     Components: {
