@@ -92,9 +92,10 @@ class Inicio extends Component {
   }
 
   publicidad() {
-    return (<SView col={"xs-11 md-11 lg-11 xl-11"} style={{ overflow: "hidden", }} >
+    return (
+    <SView col={"xs-11 md-11 lg-11 xl-11"} style={{ overflow: "hidden", }} >
       <SHr height={20} />
-      <SView  height={160} backgroundColor={"red"} style={{  resizeMode: "cover", maxWidth: "100%", minWidth: "100%",overflow: "hidden", }}>
+      <SView  height={160} backgroundColor={"transparent"} style={{  resizeMode: "cover", maxWidth: "100%", minWidth: "100%",overflow: "hidden", }}>
         <SImage src={require("./fotos/publicidad.png")} />
       </SView>
     </SView>);

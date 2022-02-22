@@ -24,6 +24,7 @@ import AppBaterry, { ReactComponent as AppBaterryW } from './appBaterry.svg';
 import AppSignal, { ReactComponent as AppSignalW } from './appSignal.svg';
 import AppWifi, { ReactComponent as AppWifiW } from './appWifi.svg';
 import AppAlert, { ReactComponent as AppAlertW } from './appAlert.svg';
+import Direccion, { ReactComponent as DireccionW } from './direccion.svg';
 
 
 const Assets = {
@@ -50,6 +51,7 @@ const Assets = {
 	"Detalle": { Native: Detalle, Web: DetalleW },
 	"ComoLlegar": { Native: ComoLlegar, Web: ComoLlegarW },
 	"Bicicleta": { Native: Bicicleta, Web: BicicletaW },
+	"Direccion": { Native: Direccion, Web: DireccionW },
 }
 
 export default Assets;
