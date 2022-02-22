@@ -73,12 +73,12 @@ class Inicio extends Component {
           </SView>
         </SView>
 
-        <SView col={"xs-12 md-8 lg-8 xl-6"} height={170} border={'red'} >
+        <SView col={"xs-12 md-8 lg-8 xl-6"} height={170} border={'transparent'} >
           <SScrollView2  >
-            <SView center row  border={'yellow'}>
+            <SView center row   >
                <SView  style={{ width: 10, maxWidth: "80%", minWidth: "100%" }} />
 
-              <Item border={'green'}></Item>
+              <Item ></Item>
 
  
             </SView>
