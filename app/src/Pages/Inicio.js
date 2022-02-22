@@ -77,15 +77,11 @@ class Inicio extends Component {
           <SScrollView2  >
             <SView center row   >
               <SView style={{ width: 10, maxWidth: "80%", minWidth: "100%" }} />
-
               <Item ></Item>
-
-
             </SView>
             <SHr />
           </SScrollView2>
         </SView>
-
 
         {/* <SView col={"xs-12"} center>
           <SView col={"xs-12"} height={180} row center>
@@ -152,7 +148,7 @@ class Inicio extends Component {
           </SView>
         </SPage>
 
-        
+
         <PBarraFooter />
       </>
     );

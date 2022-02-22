@@ -103,9 +103,9 @@ class Favoritos extends Component {
 	render() {
 		return (
 
-			<SPage title={'Mis Favoritos'} hidden disableScroll>
+			<SPage title={''} hidden disableScroll center>
 				<BarraSuperiorTapeke  >
-					<SText font={"Roboto-Bold"} fontSize={25} color={"#fff"}>Mis Favoritos</SText>
+					<SText font={"Roboto"} fontSize={25} color={STheme.color.secondary}>Mis Favoritos</SText>
 				</BarraSuperiorTapeke>
 
 				<ScrollView>
@@ -113,22 +113,10 @@ class Favoritos extends Component {
 						<SView col={"xs-11 md-5 lg-4 xl-2.5"}    >
 							<SHr height={30} />
 							<Item2></Item2>
-							<SHr height={30} />
-							<Item2></Item2>
-							<SHr height={30} />
-							<Item2></Item2>
-							<SHr height={30} />
-							<Item2></Item2>
-							<SHr height={30} />
-							<Item2></Item2>
-							<SHr height={30} />
-							<Item2></Item2>
-							<SHr height={30} />
+							<SHr height={40} />
 						</SView>
-
 					</SView >
 				</ScrollView>
-				<SHr height={50} />
 				<PBarraFooter />
 
 			</ SPage >

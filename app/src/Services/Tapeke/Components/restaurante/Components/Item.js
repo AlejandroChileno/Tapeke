@@ -175,6 +175,7 @@ export default class Item extends Component {
 
 	items10000() {
 		return <>
+			<SView width={20} />
 			<SView width={290} height={160} row center  >
 				<SView col={"xs-11.9"} height={160} row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2, }}>
 					<SView col={"xs-12"} height={130} border={'transparent'} />
@@ -196,8 +197,8 @@ export default class Item extends Component {
 				{this.HeaderItemDisponible()}
 				{this.HeaderItemTitle()}
 			</SView>
-			<SView width={10} />
 
+			<SView width={20} />
 			<SView width={290} height={170} row center  >
 				<SView col={"xs-11.9"} height={163} row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2, }}>
 					<SView col={"xs-12"} height={130} border={'transparent'} />
@@ -219,8 +220,8 @@ export default class Item extends Component {
 				{this.HeaderItemDisponible()}
 				{this.HeaderItemTitle()}
 			</SView>
-			<SView width={10} />
 
+			<SView width={10} />
 			<SView width={290} height={170} row center  >
 				<SView col={"xs-11.9"} height={163} row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2, }}>
 					<SView col={"xs-12"} height={130} border={'transparent'} />
@@ -242,8 +243,8 @@ export default class Item extends Component {
 				{this.HeaderItemDisponible()}
 				{this.HeaderItemTitle()}
 			</SView>
-			<SView width={10} />
 
+			<SView width={10} />
 			<SView width={290} height={170} row center  >
 				<SView col={"xs-11.9"} height={163} row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2, }}>
 					<SView col={"xs-12"} height={130} border={'transparent'} />
@@ -265,7 +266,6 @@ export default class Item extends Component {
 				{this.HeaderItemDisponible()}
 				{this.HeaderItemTitle()}
 			</SView>
-			<SView width={10} />
 		</>
 	}
 
