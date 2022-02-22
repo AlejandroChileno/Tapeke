@@ -72,7 +72,7 @@ class Inicio extends Component {
             />
           </SView>
         </SView>
-        <SView col={"xs-12  "} center>
+        <SView col={"xs-12"} center>
           <SView col={"xs-12"} height={180} row center>
             {/* recordar a ricardo que debe solucionar el ScrollView2 */}
             {/* observacion que no funciona el maxWidth and minWidth */}
@@ -81,7 +81,7 @@ class Inicio extends Component {
               horizontal={true}
               showsHorizontalScrollIndicator={false}
             >
-              <SView style={{ width: 18, maxWidth: "80%", minWidth: "90%" }} />
+              <SView  style={{ width: 18, maxWidth: "80%", minWidth: "90%" }} />
               <Item></Item>
             </ScrollView>
             <SHr height={200} />
@@ -93,12 +93,12 @@ class Inicio extends Component {
 
   publicidad() {
     return (
-    <SView col={"xs-11 md-11 lg-11 xl-11"} style={{ overflow: "hidden", }} >
-      <SHr height={20} />
-      <SView  height={160} backgroundColor={"transparent"} style={{  resizeMode: "cover", maxWidth: "100%", minWidth: "100%",overflow: "hidden", }}>
-        <SImage src={require("./fotos/publicidad.png")} />
-      </SView>
-    </SView>);
+      <SView col={"xs-11 md-11 lg-11 xl-11"} style={{ overflow: "hidden", }} >
+        <SHr height={20} />
+        <SView height={160} backgroundColor={"transparent"} style={{ resizeMode: "cover", maxWidth: "100%", minWidth: "100%", overflow: "hidden", }}>
+          <SImage src={require("./fotos/publicidad.png")} />
+        </SView>
+      </SView>);
   }
 
   render() {
@@ -119,9 +119,9 @@ class Inicio extends Component {
             </SView>
 
             <SView
+            border={'transparent'}
               height={50}
-              flex
-              center
+          
               style={{
                 justifyContent: "center",
                 paddingLeft: 8,

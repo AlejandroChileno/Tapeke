@@ -26,6 +26,7 @@ import AppWifi, { ReactComponent as AppWifiW } from './appWifi.svg';
 import AppAlert, { ReactComponent as AppAlertW } from './appAlert.svg';
 import Direccion, { ReactComponent as DireccionW } from './direccion.svg';
 
+import Exit, { ReactComponent as ExitW } from './exit.svg';
 
 const Assets = {
 	// alvaro
@@ -52,6 +53,8 @@ const Assets = {
 	"ComoLlegar": { Native: ComoLlegar, Web: ComoLlegarW },
 	"Bicicleta": { Native: Bicicleta, Web: BicicletaW },
 	"Direccion": { Native: Direccion, Web: DireccionW },
+	"Exit": { Native: Exit, Web: ExitW },
+
 }
 
 export default Assets;

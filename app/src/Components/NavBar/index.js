@@ -101,168 +101,104 @@ class NavBar extends Component {
             </SView>
 
             <SView col={"xs-12"} center>
-                <SView height={20}></SView>
-                <SView col={"xs-11"} row onPress={() => {
-                    // SNavigation.navigate("inicio");
-                    // this.fadeOut();
-                }}  >
-                    <SView row col={"xs-10"} >
-                        <SIcon fill="#666666" name={"Inicio"} height={20} width={20} />
-                        <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Inicio</SText>
-                    </SView>
-                    <SView style={{ right: 0, position: "absolute", top: 2 }} row >
-                        <SIcon style={{ textAlign: "right" }} fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
-                    </SView>
-                    <SView col={"xs-12"} height={30}></SView>
-                </SView>
-                <SView col={"xs-11"} row onPress={() => { SNavigation.navigate("kolping"); this.fadeOut(); }}  >
-                    <SView row col={"xs-10"}>
-                        <SIcon fill="#666666" name={"Direccion"} height={20} width={20} />
-                        <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Mis Direcciones</SText>
-                    </SView>
-                    <SView style={{ right: 0, position: "absolute", top: 2 }} row >
-                        <SIcon style={{ textAlign: "right" }} fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
-                    </SView>
-                    <SView col={"xs-12"} height={30}></SView>
-                </SView>
-                {/* <SView col={"xs-11"} row onPress={() => { }}  >
-                    <SView row >
-                        <SIcon fill="#666666" name={"Consultas"} height={20} width={20} />
-                        <SText center style={{ paddingLeft: 5, paddingTop:2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Mis consultas</SText>
-                    </SView>
-                    <SView style={{ right: 0, position: "absolute", top: 2 }} row >
-                        <SIcon style={{ textAlign: "right" }} fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
-                    </SView>
-                    <SView col={"xs-12"} height={30}></SView>
-                </SView> */}
-                <SView col={"xs-11"} row onPress={() => {
-                    SNavigation.navigate("notificaciones")
-                    this.fadeOut();
-                }}  >
-                    <SView row col={"xs-10"}>
-                        <SIcon fill="#666666" name={"Compras"} height={20} width={20} />
-                        <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Mis Compras</SText>
-                    </SView>
-                    <SView style={{ right: 0, position: "absolute", top: 2 }} row >
-                        <SIcon style={{ textAlign: "right" }} fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
-                    </SView>
-                    <SView col={"xs-12"} height={30}></SView>
-                </SView>
-                <SView col={"xs-11"} row onPress={() => {
-                    SNavigation.navigate("billetera")
-                    this.fadeOut();
-                }}  >
-                    <SView row col={"xs-10"}>
-                        <SIcon fill="#666666" name={"Billetera"} height={20} width={20} />
-                        <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Billetera</SText>
-                    </SView>
-                    <SView style={{ right: 0, position: "absolute", top: 2 }} row >
-                        <SIcon style={{ textAlign: "right" }} fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
-                    </SView>
-                    <SView col={"xs-12"} height={30}></SView>
-                </SView>
-                <SView col={"xs-11"} row onPress={() => { }}  >
-                    <SView row col={"xs-10"}>
-                        <SIcon fill="#666666" name={"KNotify"} height={22} width={20} />
-                        <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Novedaddes</SText>
-                    </SView>
-                    <SView style={{ right: 0, position: "absolute", top: 2 }} row >
-                        <SIcon style={{ textAlign: "right" }} fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
-                    </SView>
-                    <SView col={"xs-12"} height={30}></SView>
-                </SView>
+                <SView height={25}/>
 
-                {/* <SView col={"xs-11"} row onPress={() => {
-                    SNavigation.navigate("ajustes")
-                    this.fadeOut();
-                }}  >
-                    <SView row col={"xs-10"}>
-                        <SIcon fill="#666666" name={"Configuracion"} height={20} width={20} />
-                        <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Configuración</SText>
+                <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("/"); this.fadeOut(); }}  >
+                    <SView col={"xs-10"} height style={{justifyContent: 'flex-start',}} row center>
+                        <SIcon fill="#666666" name={"Inicio"} width={28} height={27}/>
+                        <SText font={"Roboto"} style={{ paddingLeft: 5,color: "#666666", fontSize: 18 }} >Inicio</SText>
                     </SView>
-                    <SView style={{ right: 0, position: "absolute", top: 2 }} row >
-                        <SIcon style={{ textAlign: "right" }} fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
-                    </SView>
-                    <SView col={"xs-12"} height={30}></SView>
-                </SView> */}
-
-
-                <SView col={"xs-11"} height={350} row onPress={() => { }}  >
-                    <SView col={"xs-10"} style={{justifyContent: 'flex-start',}} row center>
-                        <SIcon fill="#666666" name={"Configuracion"} width={20} height={20}/>
-                        <SText font={"Roboto"} style={{ paddingLeft: 5,color: "#666666", fontSize: 18 }} >Configuración</SText>
-                    </SView>
-
-                    <SView col={"xs-2"} style={{justifyContent: 'flex-end',}} row center>
+                    <SView col={"xs-2"} height style={{justifyContent: 'flex-end',}} row center>
                          <SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
                     </SView>
-                    <SView col={"xs-12"} height={30}></SView>
-                </SView>
-
-
-                {/* <SView col={"xs-11"} height={350} row onPress={() => { }}  >
-                    <SView col={"xs-10"} style={{justifyContent: 'flex-start',}} row center>
-                        <SIcon fill="#666666" name={"Configuracion"} width={20} height={20}/>
-                        <SText font={"Roboto"} style={{ paddingLeft: 5,color: "#666666", fontSize: 18 }} >Configuración</SText>
+                 </SView>
+             
+                <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("kolping"); this.fadeOut(); }}  >
+                    <SView col={"xs-10"} height style={{justifyContent: 'flex-start',}} row center>
+                        <SIcon fill="#666666" name={"Direccion"} width={28} height={27}/>
+                        <SText font={"Roboto"} style={{ paddingLeft: 5,color: "#666666", fontSize: 18 }} >Mis Direcciones</SText>
                     </SView>
-                    <SView style={{ right: 0, position: "absolute"}} row center>
-                        <SIcon style={{ textAlign: "right" }} fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
+                    <SView col={"xs-2"} height style={{justifyContent: 'flex-end',}} row center>
+                         <SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
                     </SView>
-                    <SView col={"xs-12"} height={30}></SView>
-                </SView> */}
+                 </SView>
 
-
-
-
-                
-                <SView col={"xs-11"} row onPress={() => { }}  >
-                    <SView col={"xs-10"} style={{justifyContent: 'flex-start',}} row center>
-                        <SIcon fill="#666666" name={"Contacto"} width={20} height={20}/>
-                        <SText font={"Roboto"} style={{ paddingLeft: 5,color: "#666666", fontSize: 14 }} >Contáctanos</SText>
+                <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("/"); this.fadeOut(); }}  >
+                    <SView col={"xs-10"} height style={{justifyContent: 'flex-start',}} row center>
+                        <SIcon fill="#666666" name={"Compras"} width={28} height={27}/>
+                        <SText font={"Roboto"} style={{ paddingLeft: 5,color: "#666666", fontSize: 18 }} >Mis Compras</SText>
                     </SView>
-                    <SView style={{ right: 0, position: "absolute"}} row center>
-                        <SIcon style={{ textAlign: "right" }} fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
+                    <SView col={"xs-2"} height style={{justifyContent: 'flex-end',}} row center>
+                         <SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
                     </SView>
-                    <SView col={"xs-12"} height={30}></SView>
-                </SView>
+                 </SView>
 
-
-
-
-
-
-
-
-
-
-
-
-                {/* <SView col={"xs-11"} row onPress={() => { }}  >
-                    <SView row col={"xs-10"}>
-                        <SIcon fill="#666666" name={"Ayuda"}   width={28} />
-                        <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Ayuda</SText>
+                <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("/"); this.fadeOut(); }}  >
+                    <SView col={"xs-10"} height style={{justifyContent: 'flex-start',}} row center>
+                        <SIcon fill="#666666" name={"Billetera"} width={28} height={27}/>
+                        <SText font={"Roboto"} style={{ paddingLeft: 5,color: "#666666", fontSize: 18 }} >Billetera</SText>
                     </SView>
-                    <SView style={{ right: 0, position: "absolute", top: 2 }} row >
-                        <SIcon style={{ textAlign: "right" }} fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
+                    <SView col={"xs-2"} height style={{justifyContent: 'flex-end',}} row center>
+                         <SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
                     </SView>
-                    <SView col={"xs-12"} height={30}></SView>
-                </SView> */}
+                 </SView>
 
-                {/* <SView col={"xs-11"} row onPress={() => {
-                    this.props.dispatch({ type: "USUARIO_LOGOUT" });
-                    SNavigation.replace("login");
-                    this.fadeOut();
-                }}  >
-                    <SView row col={"xs-10"}>
-                        <SIcon fill="#666666" name={"Back"} height={20} width={20} />
-                        <SText center style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonBetween"}>Salir</SText>
+                <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { }}  >
+                    <SView col={"xs-10"} height style={{justifyContent: 'flex-start',}} row center>
+                        <SIcon fill="#666666" name={"KNotify"} width={28} height={27}/>
+                        <SText font={"Roboto"} style={{ paddingLeft: 5,color: "#666666", fontSize: 18 }} >Novedades</SText>
                     </SView>
-                    <SView style={{ right: 0, position: "absolute", top: 2 }} row >
-                        <SIcon style={{ textAlign: "right" }} fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
-                    </SView>
-                    <SView col={"xs-12"} height={30}></SView>
-                </SView> */}
 
+                    <SView col={"xs-2"} height style={{justifyContent: 'flex-end',}} row center>
+                         <SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
+                    </SView>
+                 </SView>
+
+                <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { }}  >
+                    <SView col={"xs-10"} height style={{justifyContent: 'flex-start',}} row center>
+                        <SIcon fill="#666666" name={"Configuracion"} width={28} height={27}/>
+                        <SText font={"Roboto"} style={{ paddingLeft: 5,color: "#666666", fontSize: 18 }} >Configuracion</SText>
+                    </SView>
+
+                    <SView col={"xs-2"} height style={{justifyContent: 'flex-end',}} row center>
+                         <SIcon stroke={"#405394"} name={"Icon1"} width={20} height={20} />
+                    </SView>
+                 </SView>
+
+                 <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { }}  >
+                    <SView col={"xs-10"} height style={{justifyContent: 'flex-start',}} row center>
+                        <SIcon fill="#666666" name={"Contacto"} width={28} height={27}/>
+                        <SText font={"Roboto"} style={{ paddingLeft: 5,color: "#666666", fontSize: 18 }} >Contacto</SText>
+                    </SView>
+                    <SView col={"xs-2"} height style={{justifyContent: 'flex-end',}} row center>
+                         <SIcon stroke={"#405394"} name={"Icon1"} width={20} height={20} />
+                    </SView>
+                 </SView>
+
+                 <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { }}  >
+                    <SView col={"xs-10"} height style={{justifyContent: 'flex-start',}} row center>
+                        <SIcon fill="#666666" name={"AppAlert"} width={28} height={27}/>
+                        <SText font={"Roboto"} style={{ paddingLeft: 5,color: "#666666", fontSize: 18 }} >Ayuda</SText>
+                    </SView>
+                    <SView col={"xs-2"} height style={{justifyContent: 'flex-end',}} row center>
+                         <SIcon stroke={"#405394"} name={"Icon1"} width={20} height={20} />
+                    </SView>
+                 </SView>
+
+                 <SView col={"xs-11"} height={60} border={'transparent'} row 
+                    onPress={() => { this.props.dispatch({ type: "USUARIO_LOGOUT" }); SNavigation.replace("login"); this.fadeOut();}}>
+                    <SView col={"xs-10"} height style={{justifyContent: 'flex-start',}} row center>
+                        <SIcon fill="#666666" name={"Exit"} width={28} height={27}/>
+                        <SText font={"Roboto"} style={{ paddingLeft: 5,color: "#666666", fontSize: 18 }} >Salir</SText>
+                    </SView>
+                    <SView col={"xs-2"} height style={{justifyContent: 'flex-end',}} row center>
+                         <SIcon stroke={"#405394"} name={"Icon1"} width={20} height={20} />
+                    </SView>
+                 </SView>
+
+                 <SView height={20}/>
+
+               
                 <SView col={"xs-9.5 md-5.8 xl-3.8"} center style={{ bottom: 0, }}>
                     <SIcon name={"Logo"} height={70} />
                 </SView>
