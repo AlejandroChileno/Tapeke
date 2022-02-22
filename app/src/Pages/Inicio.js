@@ -76,11 +76,11 @@ class Inicio extends Component {
         <SView col={"xs-12 md-8 lg-8 xl-6"} height={170} border={'transparent'} >
           <SScrollView2  >
             <SView center row   >
-               <SView  style={{ width: 10, maxWidth: "80%", minWidth: "100%" }} />
+              <SView style={{ width: 10, maxWidth: "80%", minWidth: "100%" }} />
 
               <Item ></Item>
 
- 
+
             </SView>
             <SHr />
           </SScrollView2>
@@ -146,11 +146,14 @@ class Inicio extends Component {
                 {this.categoria("Alimentación")}
                 {this.categoria("Favoritos")}
               </SView>
+              <SHr height={100} />
             </SView>
             <SView col={"xs-0 md-0 lg-2 xl-3"} height style={{ overflow: 'hidden', }} />
           </SView>
-          <PBarraFooter />
         </SPage>
+
+        
+        <PBarraFooter />
       </>
     );
   }
