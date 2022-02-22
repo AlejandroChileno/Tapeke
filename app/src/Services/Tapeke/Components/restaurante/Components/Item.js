@@ -1,11 +1,139 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SIcon, SImage, SText, STheme, SView } from 'servisofts-component';
+import { SIcon, SImage, SNavigation, SText, STheme, SView } from 'servisofts-component';
 export default class Item extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 		};
+	}
+
+	itemFarmacia() {
+
+		return (
+			<>
+				<SView width={160} height={152} backgroundColor={STheme.color.background} style={{ borderRadius: 8, overflow: 'hidden', borderColor: STheme.color.card, borderWidth: 1, overflow: 'hidden', }}>
+					<SView col={"xs-12"} row center >
+
+						<SView col={"xs-12"} height={100} center  >
+							<SImage src={require('../../../../../Pages/fotos/bg002.png')} style={{ borderRadius: 8, backgroundColor: STheme.color.card, }} />
+						</SView>
+
+						<SView col={"xs-10.5"}   >
+
+
+							<SView col={"xs-12"} height={58} row center>
+								<SText col={"xs-12"} fontSize={12} font={"LondonMM"}  > alvaro</SText>
+							</SView>
+
+
+							<SView center height={32} onPress={() => {
+								SNavigation.navigate("farmacia/agregarCarrito");
+							}}>
+								<SView col={"xs-12"} height={28} row center>
+									<SView col={"xs-6"} row style={{ justifyContent: 'flex-start', }}>
+										<SText fontSize={14} font={"LondonMM"} bold >Bs. 222</SText>
+									</SView>
+									<SView col={"xs-6"} row style={{ justifyContent: 'flex-end', }} >
+										<SIcon name={'IconCartTrue'} fill={STheme.color.primary} height={24} width={24} />
+									</SView>
+								</SView>
+							</SView>
+						</SView>
+					</SView >
+				</SView >
+				<SView width={160} height={196} backgroundColor={STheme.color.background} style={{ borderRadius: 8, overflow: 'hidden', borderColor: STheme.color.card, borderWidth: 1, overflow: 'hidden', }}>
+					<SView col={"xs-12"} row center >
+
+						<SView col={"xs-12"} height={100} center  >
+							<SImage src={require('../../../../../Pages/fotos/bg002.png')} style={{ borderRadius: 8, backgroundColor: STheme.color.card, }} enablePreview />
+						</SView>
+
+						<SView col={"xs-10.5"}   >
+
+
+							<SView col={"xs-12"} height={58} row center>
+								<SText col={"xs-12"} fontSize={12} font={"LondonMM"}  > alvaro</SText>
+							</SView>
+
+
+							<SView center height={32} onPress={() => {
+								SNavigation.navigate("farmacia/agregarCarrito");
+							}}>
+								<SView col={"xs-12"} height={28} row center>
+									<SView col={"xs-6"} row style={{ justifyContent: 'flex-start', }}>
+										<SText fontSize={14} font={"LondonMM"} bold >Bs. 222</SText>
+									</SView>
+									<SView col={"xs-6"} row style={{ justifyContent: 'flex-end', }} >
+										<SIcon name={'IconCartTrue'} fill={STheme.color.primary} height={24} width={24} />
+									</SView>
+								</SView>
+							</SView>
+						</SView>
+					</SView >
+				</SView >
+				<SView width={160} height={196} backgroundColor={STheme.color.background} style={{ borderRadius: 8, overflow: 'hidden', borderColor: STheme.color.card, borderWidth: 1, overflow: 'hidden', }}>
+					<SView col={"xs-12"} row center >
+
+						<SView col={"xs-12"} height={100} center  >
+							<SImage src={require('../../../../../Pages/fotos/bg002.png')} style={{ borderRadius: 8, backgroundColor: STheme.color.card, }} enablePreview />
+						</SView>
+
+						<SView col={"xs-10.5"}   >
+
+
+							<SView col={"xs-12"} height={58} row center>
+								<SText col={"xs-12"} fontSize={12} font={"LondonMM"}  > alvaro</SText>
+							</SView>
+
+
+							<SView center height={32} onPress={() => {
+								SNavigation.navigate("farmacia/agregarCarrito");
+							}}>
+								<SView col={"xs-12"} height={28} row center>
+									<SView col={"xs-6"} row style={{ justifyContent: 'flex-start', }}>
+										<SText fontSize={14} font={"LondonMM"} bold >Bs. 222</SText>
+									</SView>
+									<SView col={"xs-6"} row style={{ justifyContent: 'flex-end', }} >
+										<SIcon name={'IconCartTrue'} fill={STheme.color.primary} height={24} width={24} />
+									</SView>
+								</SView>
+							</SView>
+						</SView>
+					</SView >
+				</SView >
+				<SView width={160} height={196} backgroundColor={STheme.color.background} style={{ borderRadius: 8, overflow: 'hidden', borderColor: STheme.color.card, borderWidth: 1, overflow: 'hidden', }}>
+					<SView col={"xs-12"} row center >
+
+						<SView col={"xs-12"} height={100} center  >
+							<SImage src={require('../../../../../Pages/fotos/bg002.png')} style={{ borderRadius: 8, backgroundColor: STheme.color.card, }} enablePreview />
+						</SView>
+
+						<SView col={"xs-10.5"}   >
+
+
+							<SView col={"xs-12"} height={58} row center>
+								<SText col={"xs-12"} fontSize={12} font={"LondonMM"}  > alvaro</SText>
+							</SView>
+
+
+							<SView center height={32} onPress={() => {
+								SNavigation.navigate("farmacia/agregarCarrito");
+							}}>
+								<SView col={"xs-12"} height={28} row center>
+									<SView col={"xs-6"} row style={{ justifyContent: 'flex-start', }}>
+										<SText fontSize={14} font={"LondonMM"} bold >Bs. 222</SText>
+									</SView>
+									<SView col={"xs-6"} row style={{ justifyContent: 'flex-end', }} >
+										<SIcon name={'IconCartTrue'} fill={STheme.color.primary} height={24} width={24} />
+									</SView>
+								</SView>
+							</SView>
+						</SView>
+					</SView >
+				</SView >
+			</>
+		);
 	}
 
 	items() {
@@ -349,7 +477,10 @@ export default class Item extends Component {
 
 	render() {
 		return (
+			// this.itemFarmacia()
+
 			this.items()
+
 		);
 	}
 }
