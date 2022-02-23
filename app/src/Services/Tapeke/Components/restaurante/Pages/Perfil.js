@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { SButtom, SForm, SMapView, SMarker, SHr, SPage, SText, SNavigation, SLoad, SView, SIcon, STheme, SImage, SGradient } from 'servisofts-component';
+import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient } from 'servisofts-component';
 import PButtom from '../../../../../Components/PButtom';
-class Paso1 extends Component {
+class Paso1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

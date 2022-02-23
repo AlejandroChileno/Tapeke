@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { SButtom, SForm, SHr, SPage, SText, SNavigation, SLoad, SView, SIcon, STheme, SImage } from 'servisofts-component';
-class Paso2 extends Component {
+import { SHr, SPage, SText, SNavigation, SView, SIcon, STheme, SImage } from 'servisofts-component';
+class Paso2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
