@@ -18,7 +18,7 @@ class Paso1 extends Component {
                             <SImage src={require('../../../../../Assets/img/paso1.png')} style={{
                                 borderRadius: 8,
                                 // width: 300,
-                                height: 450,
+                                height: 380,
                                 // size: 'contain'
                             }} />
                         </SView>
@@ -32,7 +32,9 @@ class Paso1 extends Component {
                     </SView>
                     <SHr height={60} />
                     <SView col={"xs-12"} row>
-                        <SView col={"xs-4"} >
+                        <SView col={"xs-4"} onPress={() => {
+                            SNavigation.navigate("login");
+                        }}>
                             <SText fontSize={16} color={STheme.color.gray}>Saltar</SText>
                         </SView>
                         <SView col={"xs-4"} center row>

@@ -74,15 +74,17 @@ class Paso1 extends Component {
                         <SMarker lat={-17.808690397665742} lng={-63.16250034566757} />
                     </SMapView>
                 </SView>
-                <SView col={"xs-12"} row style={{ borderBottomWidth: 1, borderTopWidth: 1, borderColor: STheme.color.lightGray }}>
-                    <SView col={"xs-6"} row height={60} center style={{ borderRightWidth: 1, borderColor: STheme.color.lightGray }}
+                <SView center col={"xs-12"} row style={{ borderBottomWidth: 1, borderTopWidth: 1, borderColor: STheme.color.lightGray }}>
+                    <SView col={"xs-6"} row center style={{ borderRightWidth: 1, borderColor: STheme.color.lightGray }}
                         onPress={() => {
                             //SNavigation.navigate(Parent.component + "/registro")
                         }}>
+                        <SHr height={20} />
                         <SIcon name={'Detalle'} height={17} width={22} />
-                        <SText color={STheme.color.primary} fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>Detalles {">"}</SText>
+                        <SText center color={STheme.color.primary} fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>Detalles {">"}</SText>
+                        <SHr height={20} />
                     </SView>
-                    <SView col={"xs-6"} height={60} center row
+                    <SView col={"xs-6"} center row
                         onPress={() => {
                             //SNavigation.navigate(Parent.component + "/registro")
                         }}>
@@ -172,7 +174,7 @@ class Paso1 extends Component {
                 <SHr height={40} />
                 <PButtom fontSize={20} onPress={() => {
                 }}>RESERVAR</PButtom>
-                <SHr height={50} />
+                <SHr height={40} />
             </SPage>
         );
     }
