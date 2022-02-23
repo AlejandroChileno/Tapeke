@@ -99,7 +99,7 @@ class NavBar extends React.Component {
 					</SView>
 				</SView>
 			</SView>
-			<SView height={20} border={'red'}/>
+			<SView height={20} border={'transparent'}/>
 
 			<SScrollView2 disableHorizontal >
 
@@ -207,7 +207,7 @@ class NavBar extends React.Component {
 						</SView>
 					</SView> */}
 
-					<SView height={20} border={'red'} />
+					{/* <SView height={10} border={'transparent'} /> */}
 
 
 					<SView col={"xs-9.5 md-5.8 xl-3.8"} center style={{ bottom: 0, }}>
@@ -218,7 +218,7 @@ class NavBar extends React.Component {
 						<SText style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonMM"}>Version 1.0.6</SText>
 					</SView>
 
-					<SView height={20} border={'green'}/>
+					<SView height={20} border={'transparent'}/>
 
 				</SView>
 			</SScrollView2>
