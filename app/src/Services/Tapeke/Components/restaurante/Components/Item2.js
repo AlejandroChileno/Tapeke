@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { SIcon, SImage, SText, STheme, SView } from 'servisofts-component';
 export default class Item extends Component {
 	constructor(props) {
@@ -35,41 +34,33 @@ export default class Item extends Component {
 	}
 	HeaderItemTitle() {
 		return <>
-			<SView col={"xs-11"} height={50} row center border={'transparent'} style={{ position: 'absolute', top: 75, justifyContent: 'flex-start', }} >
-				<SView width={210} height={21} center style={{
-					borderRadius: 8, overflow: 'hidden', backgroundColor: STheme.color.primary, left: 30
-				}}>
-					<SText fontSize={14} font={"Roboto"} color={STheme.color.secondary} >Veggie Garden - Gran Via</SText>
+			<SView col={"xs-11"} height={50} row center style={{ position: 'absolute', top: 75, justifyContent: 'flex-start', }} >
+				<SView width={250} height={21} row center style={{ borderRadius: 8, overflow: 'hidden', backgroundColor: STheme.color.primary, left: 20, position: 'absolute' }}>
+					<SText fontSize={12} font={"Roboto"} color={STheme.color.secondary} center style={{ position: 'absolute' }} >Veggie Garden - Gran Via</SText>
 				</SView>
-				<SView height={50} width={50} style={{
-					borderRadius: 50, overflow: 'hidden', backgroundColor: 'white', position: 'absolute',
-				}}>
+				<SView height={50} width={50} style={{ borderRadius: 50, overflow: 'hidden', backgroundColor: 'white', position: 'absolute' }}>
 					<SImage src={require('../../../../../Pages/fotos/perfil001.png')} />
 				</SView>
 			</SView>
-
-
 		</>
 
 	}
 	getItems() {
 		return <>
-			<SView col={"xs-12 "} height={180} center >
-
-				<SView col={"xs-11.9"} height row center border={STheme.color.card} style={{
-					borderTopLeftRadius: 0, borderTopRightRadius: 0, borderBottomLeftRadius: 8, borderBottomRightRadius: 8, borderWidth: 2.5,
-				}}  >
-					<SView col={"xs-12"} height={90} border={'transparent'} />
-					<SView col={"xs-11"} row border={'transparent'} >
-						<SView col={"xs-6"} row center style={{ justifyContent: 'flex-start', }}>
+			<SView height={30} />
+			<SView col={"xs-12"} height={170} center >
+				<SView col={"xs-11.9"} height row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2 }}>
+					<SView col={"xs-12"} height={125} />
+					<SView col={"xs-11"} row center border={'transparent'} >
+						<SView col={"xs-5.5"} row center border={'transparent'} style={{ justifyContent: 'flex-start', }}>
 							<SIcon name={'Reloj'} width={13} colSquare center />
-							<SText fontSize={10} font={"Roboto"} style={{ left: 5 }}>Hoy 22:00 - 22:30</SText>
+							<SText fontSize={10} font={"Roboto"} style={{ left: 2 }} bold>Hoy 22:00 - 22:30</SText>
 						</SView>
-						<SView col={"xs-3"} row center style={{ justifyContent: 'flex-start', }}>
+						<SView col={"xs-2.5"} row center style={{ justifyContent: 'flex-start', }}>
 							<SIcon name={'Location'} height={13} width={9} center />
-							<SText fontSize={10} font={"Roboto"} style={{ left: 5 }}>1,0 Km</SText>
+							<SText fontSize={10} font={"Roboto"} style={{ left: 2 }} bold>1,0 Km</SText>
 						</SView>
-						<SView col={"xs-3"} row center style={{ justifyContent: 'flex-end', }}>
+						<SView col={"xs-4"} row center border={'transparent'} style={{ justifyContent: 'flex-end', }}>
 							<SText fontSize={20} font={"Roboto"}>Bs. 5,16</SText>
 						</SView>
 					</SView>
@@ -78,11 +69,77 @@ export default class Item extends Component {
 				{this.HeaderItemDisponible()}
 				{this.HeaderItemTitle()}
 			</SView>
-			<SView width={200} />
+
+			<SView height={30} />
+			<SView col={"xs-12"} height={170} center >
+				<SView col={"xs-11.9"} height row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2 }}>
+					<SView col={"xs-12"} height={125} />
+					<SView col={"xs-11"} row center border={'transparent'} >
+						<SView col={"xs-5.5"} row center border={'transparent'} style={{ justifyContent: 'flex-start', }}>
+							<SIcon name={'Reloj'} width={13} colSquare center />
+							<SText fontSize={10} font={"Roboto"} style={{ left: 2 }} bold>Hoy 22:00 - 22:30</SText>
+						</SView>
+						<SView col={"xs-2.5"} row center style={{ justifyContent: 'flex-start', }}>
+							<SIcon name={'Location'} height={13} width={9} center />
+							<SText fontSize={10} font={"Roboto"} style={{ left: 2 }} bold>1,0 Km</SText>
+						</SView>
+						<SView col={"xs-4"} row center border={'transparent'} style={{ justifyContent: 'flex-end', }}>
+							<SText fontSize={20} font={"Roboto"}>Bs. 5,16</SText>
+						</SView>
+					</SView>
+				</SView>
+				{this.HeaderItemFoto()}
+				{this.HeaderItemDisponible()}
+				{this.HeaderItemTitle()}
+			</SView>
+
+			<SView height={30} />
+			<SView col={"xs-12"} height={170} center >
+				<SView col={"xs-11.9"} height row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2 }}>
+					<SView col={"xs-12"} height={125} />
+					<SView col={"xs-11"} row center border={'transparent'} >
+						<SView col={"xs-5.5"} row center border={'transparent'} style={{ justifyContent: 'flex-start', }}>
+							<SIcon name={'Reloj'} width={13} colSquare center />
+							<SText fontSize={10} font={"Roboto"} style={{ left: 2 }} bold>Hoy 22:00 - 22:30</SText>
+						</SView>
+						<SView col={"xs-2.5"} row center style={{ justifyContent: 'flex-start', }}>
+							<SIcon name={'Location'} height={13} width={9} center />
+							<SText fontSize={10} font={"Roboto"} style={{ left: 2 }} bold>1,0 Km</SText>
+						</SView>
+						<SView col={"xs-4"} row center border={'transparent'} style={{ justifyContent: 'flex-end', }}>
+							<SText fontSize={20} font={"Roboto"}>Bs. 5,16</SText>
+						</SView>
+					</SView>
+				</SView>
+				{this.HeaderItemFoto()}
+				{this.HeaderItemDisponible()}
+				{this.HeaderItemTitle()}
+			</SView>
+
+			<SView height={30} />
+			<SView col={"xs-12"} height={170} center >
+				<SView col={"xs-11.9"} height row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2 }}>
+					<SView col={"xs-12"} height={125} />
+					<SView col={"xs-11"} row center border={'transparent'} >
+						<SView col={"xs-5.5"} row center border={'transparent'} style={{ justifyContent: 'flex-start', }}>
+							<SIcon name={'Reloj'} width={13} colSquare center />
+							<SText fontSize={10} font={"Roboto"} style={{ left: 2 }} bold>Hoy 22:00 - 22:30</SText>
+						</SView>
+						<SView col={"xs-2.5"} row center style={{ justifyContent: 'flex-start', }}>
+							<SIcon name={'Location'} height={13} width={9} center />
+							<SText fontSize={10} font={"Roboto"} style={{ left: 2 }} bold>1,0 Km</SText>
+						</SView>
+						<SView col={"xs-4"} row center border={'transparent'} style={{ justifyContent: 'flex-end', }}>
+							<SText fontSize={20} font={"Roboto"}>Bs. 5,16</SText>
+						</SView>
+					</SView>
+				</SView>
+				{this.HeaderItemFoto()}
+				{this.HeaderItemDisponible()}
+				{this.HeaderItemTitle()}
+			</SView>
 		</>
 	}
-
-
 	render() {
 		return (
 			this.getItems()
