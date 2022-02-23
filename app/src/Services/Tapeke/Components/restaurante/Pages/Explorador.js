@@ -39,7 +39,7 @@ class Explorador extends Component {
     getCategoriasList() {
         // var categorias = categoria_farmacia.Actions.getAll(this.props);
         // if (!categorias) return <SLoad />
-        return <SView col={"xs-10"} height={60} row center  >
+        return <SView col={"xs-10"} height={60} row center backgroundColor={'yellow'} >
             <SScrollView2 >
                 <SHr />
                 <SView center row>
@@ -56,7 +56,7 @@ class Explorador extends Component {
         return <>
             <SView height={15} />
 
-            <SView col={"xs-10.5 md-6 lg-5 xl-4"} row center height={40} border={'red'}>
+            <SView col={"xs-10 md-5 lg-4 xl-3"} row center height={40} backgroundColor={'red'}>
                 <SView col={"xs-6"} center height={40} backgroundColor={STheme.color.primary}>
                     <SText fontSize={20} font={"Roboto"} bold color={STheme.color.secondary}>Lista</SText>
                 </SView>
@@ -99,7 +99,6 @@ class Explorador extends Component {
 
 
                     {this.getBotonos()}
-                    {/* <SHr height={20} /> */}
                     {this.getCategoriasList()}
 
 
