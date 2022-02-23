@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SIcon, SImage, SText, STheme, SView } from 'servisofts-component';
+import { SIcon, SImage, SText, STheme, SView , SNavigation} from 'servisofts-component';
 export default class Item extends Component {
     constructor(props) {
         super(props);
@@ -47,7 +47,10 @@ export default class Item extends Component {
     items() {
         return <>
 
-            <SView width={290} height={160} row center style={{ overflow: 'hidden', }} >
+            <SView width={290} height={160} row center style={{ overflow: 'hidden', }}
+                onPress={() => {
+                    SNavigation.navigate("restaurante/perfil");
+                }}>
                 <SView col={"xs-11.9"} height={160} row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2, }}>
                     <SView col={"xs-12"} height={130} border={'transparent'} />
                     <SView col={"xs-11"} row border={'transparent'} >
@@ -70,7 +73,10 @@ export default class Item extends Component {
             </SView>
             <SView width={10} />
 
-            <SView width={290} height={160} row center style={{ overflow: 'hidden', }} >
+            <SView width={290} height={160} row center style={{ overflow: 'hidden', }} 
+            onPress={() => {
+                SNavigation.navigate("restaurante/perfil");
+            }}>
                 <SView col={"xs-11.9"} height={160} row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2, }}>
                     <SView col={"xs-12"} height={130} border={'transparent'} />
                     <SView col={"xs-11"} row border={'transparent'} >
@@ -93,7 +99,10 @@ export default class Item extends Component {
             </SView>
             <SView width={10} />
 
-            <SView width={290} height={160} row center style={{ overflow: 'hidden', }} >
+            <SView width={290} height={160} row center style={{ overflow: 'hidden', }} 
+            onPress={() => {
+                SNavigation.navigate("restaurante/perfil");
+            }}>
                 <SView col={"xs-11.9"} height={160} row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2, }}>
                     <SView col={"xs-12"} height={130} border={'transparent'} />
                     <SView col={"xs-11"} row border={'transparent'} >
