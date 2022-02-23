@@ -18,7 +18,9 @@ import CalCalidad, { ReactComponent as CalCalidadW } from './calCalidad.svg';
 import Detalle, { ReactComponent as DetalleW } from './detalle.svg';
 import ComoLlegar, { ReactComponent as ComoLlegarW } from './comoLlegar.svg';
 import Bicicleta, { ReactComponent as BicicletaW } from './bicicleta.svg';
-
+import Ubicacion, { ReactComponent as UbicacionW } from './ubicacion.svg';
+import ModoPie, { ReactComponent as ModoPieW } from './modoPie.svg';
+import ModoCoche, { ReactComponent as ModoCocheW } from './modoCoche.svg';
 
 import AppBaterry, { ReactComponent as AppBaterryW } from './appBaterry.svg';
 import AppSignal, { ReactComponent as AppSignalW } from './appSignal.svg';
@@ -54,6 +56,11 @@ const Assets = {
 	"Detalle": { Native: Detalle, Web: DetalleW },
 	"ComoLlegar": { Native: ComoLlegar, Web: ComoLlegarW },
 	"Bicicleta": { Native: Bicicleta, Web: BicicletaW },
+	"Ubicacion": { Native: Ubicacion, Web: UbicacionW },
+	"ModoPie": { Native: ModoPie, Web: ModoPieW },
+	"ModoCoche": { Native: ModoCoche, Web: ModoCocheW },
+
+
 	"Direccion": { Native: Direccion, Web: DireccionW },
 	"Exit": { Native: Exit, Web: ExitW },
 	"BtnPie": { Native: BtnPie, Web: BtnPieW },

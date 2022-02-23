@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SHr, SIcon, SImage, SLoad, SNavigation, SPage, SScrollView2, SText, STheme, SView } from "servisofts-component";
+import { SHr, SIcon, SImage, SLoad, SNavigation, SPage, SScrollView2, SText, STheme, SView, SPopup, SForm } from "servisofts-component";
 import BarraSuperiorTapeke from "../Components/BarraSuperiorTapeke";
 import PBarraFooter from "../Components/PBarraFooter";
 import Item from "../Services/Tapeke/Components/restaurante/Components/Item";
@@ -43,10 +43,71 @@ class Inicio extends Component {
       </>
     );
   }
+  getForm() {
+    return <SForm
+      ref={(ref) => { this.form = ref; }}
+      row
+      style={{
+        justifyContent: "center",
+        //paddingRight: 20,
+      }}
+      inputProps={{
+        col: "xs-12",
+      }}
+      inputs={{
+        Correo: { placeholder: "Las Palmas, Santa Cruz de la Sierra", type: "text", isRequired: true, },
+       // Correo: { placeholder: "Las Palmas, Santa Cruz de la Sierra", type: "text", isRequired: true, icon: <SIcon name={"Ubicacion"} width={12} height={17} />, },
+      }}
+      onSubmit={(values) => {
+        // if (this.key) {
+        //     Usuario.Actions.recuperarPass({
+        //         ...this.usr,
+        //         ...values
+        //     }, this.props);
+        // } else {
+        // }
+      }}
+    />
+  }
+
+  popupOpcionDistancia() {
+    return <>
+      <SView col={"xs-11 md-8 xl-6"} center row style={{ borderRadius: 8, }} backgroundColor={STheme.color.background}>
+        <SView col={"xs-9 md-6 xl-6"} style={{
+        }} center>
+          <SHr height={30} />
+          <SText color={STheme.color.darkGray} style={{ fontSize: 20 }}>Usar otra ubicación</SText>
+          <SView height={8} />
+          {this.getForm()}
+          <SView height={8} />
+          <SText color={STheme.color.darkGray} style={{ fontSize: 20 }}>Seleccione un modo:</SText>
+          <SHr height={20} />
+          <SView col={"xs-12"} row center>
+            <SView col={"xs-6"} center>
+              <SIcon name={"ModoPie"} width={90} height={90} fill={STheme.color.primary} />
+              <SHr height={10} />
+              <SText font={"Roboto"} color={STheme.color.text} style={{ fontSize: 18, fontWeight: "bold" }}>A pie</SText>
+              <SText font={"Roboto"} color={STheme.color.text} style={{ fontSize: 14, fontWeight: "bold" }}>menos 1 km</SText>
+            </SView>
+            <SView col={"xs-6"} center>
+              <SIcon name={"ModoCoche"} width={90} height={90} fill={STheme.color.primary} />
+              <SHr height={10} />
+              <SText font={"Roboto"} color={STheme.color.text} style={{ fontSize: 18, fontWeight: "bold" }}>En coche</SText>
+              <SText font={"Roboto"} color={STheme.color.text} style={{ fontSize: 14, fontWeight: "bold" }}>menos 30 km</SText>
+            </SView>
+          </SView>
+          <SView height={30}></SView>
+        </SView>
+      </SView>
+    </>
+  }
 
   publicidad() {
     return (
-      <SView col={"xs-11 md-11 lg-11 xl-11"} style={{ overflow: "hidden" }}>
+      <SView col={"xs-11 md-11 lg-11 xl-11"} style={{ overflow: "hidden" }}
+        onPress={() => {
+          SPopup.open({ content: this.popupOpcionDistancia() });
+        }}>
         <SHr height={15} />
         <SView height={160} backgroundColor={"transparent"} style={{ resizeMode: "cover", maxWidth: "100%", minWidth: "100%", overflow: "hidden", }}>
           <SImage src={require("./fotos/publicidad.png")} />
