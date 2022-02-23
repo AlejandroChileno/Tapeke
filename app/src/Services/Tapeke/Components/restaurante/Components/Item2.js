@@ -35,8 +35,8 @@ export default class Item extends Component {
 	HeaderItemTitle() {
 		return <>
 			<SView col={"xs-11"} height={50} row center style={{ position: 'absolute', top: 75, justifyContent: 'flex-start', }} >
-				<SView width={250} height={21} row center style={{ borderRadius: 8, overflow: 'hidden', backgroundColor: STheme.color.primary, left: 20, position: 'absolute' }}>
-					<SText fontSize={12} font={"Roboto"} color={STheme.color.secondary} center style={{ position: 'absolute' }} >Veggie Garden - Gran Via</SText>
+				<SView width={250} height={21} row center style={{ borderRadius: 8, overflow: 'hidden', backgroundColor: STheme.color.primary, left: 1, position: 'absolute' }}>
+					<SText col={"xs-12"} fontSize={12} font={"Roboto"} color={STheme.color.secondary} center style={{ position: 'absolute' }} >Veggie Garden - Gran Via</SText>
 				</SView>
 				<SView height={50} width={50} style={{ borderRadius: 50, overflow: 'hidden', backgroundColor: 'white', position: 'absolute' }}>
 					<SImage src={require('../../../../../Pages/fotos/perfil001.png')} />

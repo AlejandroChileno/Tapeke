@@ -39,16 +39,13 @@ class Explorador extends Component {
     getCategoriasList() {
         // var categorias = categoria_farmacia.Actions.getAll(this.props);
         // if (!categorias) return <SLoad />
-        return <SView col={"xs-10"} height={60} row center >
+        return <SView col={"xs-10"} height={60} row center  >
             <SScrollView2 >
                 <SHr />
                 <SView center row>
-
                     {this.getCategorias({ icon: 'IconFilter', description: 'Filtros', url: 'jajaj' })}
-
                     {this.getCategorias({ icon: 'Girl', description: 'Filtro', url: 'jajaj' })}
                     {this.getCategorias({ icon: 'Back', description: 'Filtro', url: 'jajaj' })}
-
                 </SView>
                 <SHr />
             </SScrollView2>
@@ -59,14 +56,12 @@ class Explorador extends Component {
         return <>
             <SView height={15} />
 
-            <SView col={"xs-10"} row center height={40} border={'red'}>
+            <SView col={"xs-10.5 md-6 lg-5 xl-4"} row center height={40} border={'red'}>
                 <SView col={"xs-6"} center height={40} backgroundColor={STheme.color.primary}>
                     <SText fontSize={20} font={"Roboto"} bold color={STheme.color.secondary}>Lista</SText>
-
                 </SView>
                 <SView col={"xs-6"} center height={40} border={STheme.color.primary}>
                     <SText fontSize={20} font={"Roboto"} bold color={STheme.color.primary}>Mapa</SText>
-
                 </SView>
 
             </SView>
@@ -100,17 +95,17 @@ class Explorador extends Component {
                         </SView>
                     </BarraSuperiorTapeke>
 
-                    {/* {this.getCategoriasList()} */}
 
 
 
                     {this.getBotonos()}
-                    <SHr height={20} />
+                    {/* <SHr height={20} /> */}
+                    {this.getCategoriasList()}
 
 
                     <SScrollView2 disableHorizontal={true}>
                         <SView col={"xs-12"} row center height border={'transparent'} >
-                            <SView col={"xs-11 md-5 lg-4 xl-2.5"}    >
+                            <SView col={"xs-10 md-5 lg-4 xl-3"}    >
                                 <Item2></Item2>
                             </SView>
                         </SView >

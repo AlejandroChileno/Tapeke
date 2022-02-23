@@ -32,15 +32,14 @@ class Favoritos extends Component {
 					<SText font={"Roboto"} fontSize={25} color={STheme.color.secondary}>Mis Favoritos</SText>
 				</BarraSuperiorTapeke>
 
-				<ScrollView>
-					<SView col={"xs-12"} row center height border={'transparent'} >
-						<SView col={"xs-11 md-5 lg-4 xl-2.5"}    >
-							<Item2></Item2>
-						</SView>
-					</SView >
-					<SHr height={80} />
-
-				</ScrollView>
+				<SScrollView2 disableHorizontal={true}>
+                        <SView col={"xs-12"} row center height border={'transparent'} >
+                            <SView col={"xs-10 md-5 lg-4 xl-3"}    >
+                                <Item2></Item2>
+                            </SView>
+                        </SView >
+                        <SHr height={80} />
+                    </SScrollView2>
 
 				<PBarraFooter />
 
