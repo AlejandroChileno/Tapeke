@@ -18,7 +18,7 @@ class Paso3 extends Component {
                             <SImage src={require('../../../../../Assets/img/paso3.png')} style={{
                                 borderRadius: 8,
                                 // width: 300,
-                                height: 450,
+                                height: 380,
                                 // size: 'contain'
                             }} />
                         </SView>
@@ -44,7 +44,7 @@ class Paso3 extends Component {
                             <SView width={10} height={10} backgroundColor={STheme.color.primary} style={{ borderRadius: 15 }}></SView>
                         </SView>
                         <SView col={"xs-4"} style={{ alignItems: "flex-end" }} onPress={() => {
-                            SNavigation.navigate("/");
+                            SNavigation.navigate("login");
                         }}>
                             <SIcon name="Flecha1" width={15} height={15} fill={STheme.color.primary}></SIcon>
                         </SView>

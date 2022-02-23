@@ -18,7 +18,7 @@ class Paso2 extends Component {
                             <SImage src={require('../../../../../Assets/img/paso2.png')} style={{
                                 borderRadius: 8,
                                 // width: 300,
-                                height: 450,
+                                height: 380,
                                 // size: 'contain'
                             }} />
                         </SView>
