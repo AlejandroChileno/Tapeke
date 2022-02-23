@@ -21,7 +21,7 @@ class Inicio extends Component {
       <>
         <SHr height={15} />
 
-        <SView col={"xs-11"} height={35} row center border={'transparent'}  >
+        <SView col={"xs-11 md-11.3 lg-11.5 xl-11.7"} height={35} row center border={'transparent'}  >
           <SView col={"xs-8"} row style={{ justifyContent: "flex-start" }}>
             <SText fontSize={18} font={"LondonMM"} bold>{title}</SText>
           </SView>
@@ -34,7 +34,7 @@ class Inicio extends Component {
         <SView col={"xs-12"} height={170} border={"transparent"} >
           <SScrollView2>
             <SView center row>
-              <SView width={16} style={{ maxWidth: "100%", minWidth: "100%" }} />
+              <SView width={16} />
               <Item></Item>
             </SView>
             <SHr />
@@ -83,20 +83,14 @@ class Inicio extends Component {
           </SView>
         </BarraSuperiorTapeke>
 
-        <SPage title={""} hidden disableHorizontal={true}>
-          {/* <SView col={"xs-12"} height row center> */}
-          {/* <SView col={"xs-0 md-0 lg-0 xl-0"} height style={{ overflow: "hidden" }} /> */}
+        <SPage title={""} hidden disableHorizontal={true} center>
           <SView col={"xs-12 md-12 lg-10 xl-8"} center height>
-            {/* <SView col={"xs-12"} center> */}
             {this.categoria("Recomendado Para Ti")}
             {this.categoria("Cerca")}
             {this.publicidad()}
             {this.categoria("Alimentación")}
             {this.categoria("Favoritos")}
-            {/* </SView> */}
             <SHr height={80} />
-            {/* </SView> */}
-            {/* <SView col={"xs-0 md-0 lg-0 xl-0"} height style={{ overflow: "hidden" }} /> */}
           </SView>
         </SPage>
 

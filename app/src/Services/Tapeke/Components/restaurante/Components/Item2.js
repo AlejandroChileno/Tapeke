@@ -138,7 +138,6 @@ export default class Item extends Component {
 				{this.HeaderItemDisponible()}
 				{this.HeaderItemTitle()}
 			</SView>
-
 		</>
 	}
 	render() {
