@@ -30,7 +30,7 @@ const App = (props) => {
         <Provider store={store}>
             <SComponentContainer
                 // debug
-                socket={SSocket}
+                // socket={SSocket}
                 assets={Assets}
                 inputs={SConfig.SConfig_Inputs}
                 // background={<BackgroundImage />}
