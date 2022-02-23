@@ -27,6 +27,8 @@ import AppAlert, { ReactComponent as AppAlertW } from './appAlert.svg';
 import Direccion, { ReactComponent as DireccionW } from './direccion.svg';
 
 import Exit, { ReactComponent as ExitW } from './exit.svg';
+import BtnPie, { ReactComponent as BtnPieW } from './btnPie.svg';
+import BtnCoche, { ReactComponent as BtnCocheW } from './btnCoche.svg';
 
 const Assets = {
 	// alvaro
@@ -54,6 +56,8 @@ const Assets = {
 	"Bicicleta": { Native: Bicicleta, Web: BicicletaW },
 	"Direccion": { Native: Direccion, Web: DireccionW },
 	"Exit": { Native: Exit, Web: ExitW },
+	"BtnPie": { Native: BtnPie, Web: BtnPieW },
+	"BtnCoche": { Native: BtnCoche, Web: BtnCocheW },
 
 }
 
