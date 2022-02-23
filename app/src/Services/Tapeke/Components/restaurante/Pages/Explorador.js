@@ -13,6 +13,36 @@ class Explorador extends Component {
   this.key = SNavigation.getParam("keyUsuario");
  }
 
+
+ getFiltros() {
+  return <>
+   <SView height={15} />
+
+   <SView col={"xs-12"} row center height={30} border={'blue'}    >
+
+   </SView>
+  </>
+ }
+
+ getBotonos() {
+  return <>
+   <SView height={15} />
+
+   <SView col={"xs-10"} row center height={40} border={'red'}>
+    <SView col={"xs-6"} center height={40} backgroundColor={STheme.color.primary}>
+     <SText fontSize={20} font={"Roboto"} bold color={STheme.color.secondary}>Lista</SText>
+
+    </SView>
+    <SView col={"xs-6"} center height={40} border={STheme.color.primary}>
+     <SText fontSize={20} font={"Roboto"} bold color={STheme.color.primary}>Mapa</SText>
+
+    </SView>
+
+   </SView>
+  </>
+ }
+
+
  render() {
   return (
    <SPage title={''} hidden disableScroll center>
@@ -34,6 +64,10 @@ class Explorador extends Component {
       </SView>
      </SView>
     </BarraSuperiorTapeke>
+
+    {this.getFiltros()}
+    {this.getBotonos()}
+
     <ScrollView>
      <SView col={"xs-12"} row center height border={'transparent'} >
       <SView col={"xs-11 md-5 lg-4 xl-2.5"}    >
@@ -42,6 +76,7 @@ class Explorador extends Component {
      </SView >
      <SHr height={80} />
     </ScrollView>
+
     <PBarraFooter />
    </ SPage >
   );
