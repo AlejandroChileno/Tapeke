@@ -13,49 +13,48 @@ class CategoriaFiltro extends Component {
         this.key_e = SNavigation.getParam("key"); //key por navegador
         this.onSelect = SNavigation.getParam("onSelect");
     }
-    getCardCategoria({ url, nombre, key, obj }) {
-        return <SView col={"xs-12"} row height={52} style={{ borderBottomWidth: 1, borderColor: STheme.color.primary }} onPress={() => {
-            //alert(title + '\n' + texto + '\n' + numero);
-            this.onSelect(obj);
-            SNavigation.goBack();
-            // this.props.navigation.navigate(url, { key: key });
-        }}>
-            <SView col={"xs-11"} height >
-                <SHr height={5} />
-                <SView col={"xs-12"} row center>
-                    <SHr height={10} />
-                    <SView col={"xs-12"} >
-                        <SText font={"Roboto"} fontSize={15} >{nombre}</SText>
+
+    getCategorias({ icon, description, url }) {
+        return <>
+            <SView height={30} />
+            <SView height={28} style={{ maxWidth: '80%', paddingTop: 4, paddingLeft: 12, paddingRight: 12, paddingBottom: 4, backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }} center >
+                <SView col={"xs-12 md-12 lg-12"} row center  >
+                    {!icon ? null : <SView center height  >
+                        <SIcon name={icon} height={20} width={22} />
+                    </SView>}
+                    <SView flex center height style={{
+                        paddingTop: 2
+                    }}>
+                        <SText fontSize={14} color={'#999999'} font={"LondonMM"} bold > {description}</SText>
                     </SView>
                 </SView>
-            </SView>
-            <SView col={"xs-1"} center height>
-                <SIcon name={"arrowRight"} width={30} fill={"transparent"} />
-            </SView>
-        </SView>
-    }
-    getCategorias() {
-        var data = Parent.Actions.getAll(this.props);
 
-        if (!data) return <SLoad />;
-        //alert(this.key_e)
-        return Object.keys(data).map((key) => {
-            var obj = data[key];
-            if (!SBuscador.validate(obj, this.state.find)) {
-                return null;
-            }
-            return <SView col={"xs-12"} center >
-                <SView col={"xs-12"} >
-                    {this.getCardCategoria({
-                        url: "farmacia",
-                        nombre: data[key].descripcion,
-                        key: key,
-                        obj: obj
-                    })}
-                    <SHr height={10} />
-                </SView>
             </SView>
-        })
+            <SView width={14} />
+
+
+        </>
+    }
+
+    getCategoriasList() {
+        // var categorias = categoria_farmacia.Actions.getAll(this.props);
+        // if (!categorias) return <SLoad />
+        return <SView col={"xs-11 md-8 lg-8 xl-6"} height={60} row  >
+            <SScrollView2>
+                <SHr />
+                <SView center row>
+                    {this.getCategorias({ icon: 'IconFilter', description: 'Filtros', url: 'jajaj' })}
+                    {this.getCategorias({ icon: '', description: 'Filtros', url: 'jajaj' })}
+                    {this.getCategorias({ icon: '', description: 'Filtros', url: 'jajaj' })}
+
+                    {/* {Object.keys(categorias).map((key, index) => {
+                        var obj = categorias[key];
+                        return this.getCategorias({ icon: '', url: 'jajaj', description: 'jajaj' })
+                    })} */}
+                </SView>
+                <SHr />
+            </SScrollView2>
+        </SView>
     }
 
     render() {
