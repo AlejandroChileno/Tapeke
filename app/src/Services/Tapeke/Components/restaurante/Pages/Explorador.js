@@ -13,16 +13,19 @@ class Explorador extends Component {
         this.key = SNavigation.getParam("keyUsuario");
     }
 
-    getCategorias({ icon, description, url }) {
+
+    getCategoria(icon, description, url, activo) {
         return <>
             <SView height={30} />
-            <SView height={28} style={{ maxWidth: '80%', paddingTop: 4, paddingLeft: 12, paddingRight: 12, paddingBottom: 4, backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }} center >
+            <SView height={28} style={{ maxWidth: '80%', paddingTop: 4, paddingLeft: 10, paddingRight: 10, paddingBottom: 4, backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }} center >
                 <SView col={"xs-12 md-12 lg-12"} row center  >
-                    <SView center height >
-                        <SIcon name={icon} height={20} width={22} />
-                    </SView>
-                    <SView flex center height={20} style={{ paddingTop: 2 }} backgroundColor={'blue'}>
-                        <SText fontSize={14} color={'red'} font={"LondonMM"} bold backgroundColor={'blue'}> {description}</SText>
+                    {!icon ? null : <SView center height  >
+                        <SIcon name={icon} height={20} width={22} stroke={activo == '' ? '#999999' : STheme.color.primary} />
+                    </SView>}
+                    <SView flex center height style={{
+                        paddingTop: 2
+                    }}>
+                        <SText fontSize={14} color={activo == '' ? '#999999' : STheme.color.primary} font={"LondonMM"} bold > {description}</SText>
                     </SView>
                 </SView>
 
@@ -33,30 +36,34 @@ class Explorador extends Component {
         </>
     }
 
-
-
-
     getCategoriasList() {
         // var categorias = categoria_farmacia.Actions.getAll(this.props);
         // if (!categorias) return <SLoad />
-        return <SView col={"xs-10"} height={60} row center backgroundColor={'yellow'} >
-            <SScrollView2 >
-                <SHr />
+        return <SView col={"xs-11 md-6 lg-5 xl-4"} height={40} row>
+            <SScrollView2>
                 <SView center row>
-                    {this.getCategorias({ icon: 'IconFilter', description: 'Filtros', url: 'jajaj' })}
-                    {this.getCategorias({ icon: 'Girl', description: 'Filtro', url: 'jajaj' })}
-                    {this.getCategorias({ icon: 'Back', description: 'Filtro', url: 'jajaj' })}
+                    {this.getCategoria('IconFilter', 'Filtros', '0000102', 'Activo')}
+                    {this.getCategoria('', 'Filtro: Ocultar sin packs', '000010', '')}
+                    {this.getCategoria('', 'Filtro: Preparacion', '0000102', '')}
+                    {this.getCategoria('', 'Filtro: Preparacion', '0000102', '')}
+                    {this.getCategoria('', 'Filtro: Preparacion', '0000102', '')}
+                    {this.getCategoria('', 'Filtro: Preparacion', '0000102', '')}
+                    {this.getCategoria('', 'Filtro: Preparacion', '0000102', '')}
+
+                    {/* {this.getCategorias({ icon: 'IconFilter', description: 'Filtros', url: 'jajaj' })} */}
+                    {/* {Object.keys(categorias).map((key, index) => {
+                        var obj = categorias[key];
+                        return this.getCategorias({ icon: '', url: 'jajaj', description: obj.descripcion })
+                    })} */}
                 </SView>
-                <SHr />
             </SScrollView2>
         </SView>
     }
-
     getBotonos() {
         return <>
             <SView height={15} />
 
-            <SView col={"xs-10 md-5 lg-4 xl-3"} row center height={40} backgroundColor={'red'}>
+            <SView col={"xs-10 md-5 lg-4 xl-3"} row center height={40}  >
                 <SView col={"xs-6"} center height={40} backgroundColor={STheme.color.primary}>
                     <SText fontSize={20} font={"Roboto"} bold color={STheme.color.secondary}>Lista</SText>
                 </SView>
@@ -94,13 +101,11 @@ class Explorador extends Component {
                             </SView>
                         </SView>
                     </BarraSuperiorTapeke>
+                    <SView height={15} />
 
-
-
-
-                    {this.getBotonos()}
                     {this.getCategoriasList()}
-
+                    {this.getBotonos()}
+                    <SView height={15} />
 
                     <SScrollView2 disableHorizontal={true}>
                         <SView col={"xs-12"} row center height border={'transparent'} >
@@ -108,7 +113,7 @@ class Explorador extends Component {
                                 <Item2></Item2>
                             </SView>
                         </SView >
-                        <SHr height={80} />
+                        {/* <SHr height={80} /> */}
                     </SScrollView2>
 
                     <PBarraFooter />
