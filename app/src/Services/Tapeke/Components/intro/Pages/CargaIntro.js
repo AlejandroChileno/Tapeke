@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { SButtom, SForm, SHr, SPage, SText, SNavigation, SThread,SLoad, SView, SIcon , STheme} from 'servisofts-component';
+import { SHr, SPage, SText, SNavigation, SThread,SView, SIcon} from 'servisofts-component';
 // import Parent from '../index'
 // import Kolping from '../../../../../Components/Kolping';
-class CargaIntro extends Component {
+class CargaIntro extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
