@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
-import { SHr, SIcon, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
+import { SHr, SIcon, SNavigation, SPage, SScrollView2, SText, STheme, SView } from 'servisofts-component';
 import BarraSuperiorTapeke from '../../../../../Components/BarraSuperiorTapeke';
 import PBarraFooter from '../../../../../Components/PBarraFooter';
 import Item2 from '../Components/Item2';
@@ -13,15 +13,46 @@ class Explorador extends Component {
   this.key = SNavigation.getParam("keyUsuario");
  }
 
-
- getFiltros() {
+ getCategorias({ icon, description, url }) {
   return <>
-   <SView height={15} />
-
-   <SView col={"xs-12"} row center height={30} border={'blue'}    >
+   <SView height={30} />
+   <SView height={28} style={{ maxWidth: '80%', paddingTop: 4, paddingLeft: 12, paddingRight: 12, paddingBottom: 4, backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }} center >
+    <SView col={"xs-12 md-12 lg-12"} row center  >
+     <SView center height >
+      <SIcon name={icon} height={20} width={22} />
+     </SView>
+     <SView flex center height={20} style={{ paddingTop: 2 }} backgroundColor={'blue'}>
+      <SText fontSize={14} color={'red'} font={"LondonMM"} bold backgroundColor={'blue'}> {description}</SText>
+     </SView>
+    </SView>
 
    </SView>
+   <SView width={14} />
+
+
   </>
+ }
+
+
+
+
+ getCategoriasList() {
+  // var categorias = categoria_farmacia.Actions.getAll(this.props);
+  // if (!categorias) return <SLoad />
+  return <SView col={"xs-10"} height={60} row center >
+   <SScrollView2 >
+    <SHr />
+    <SView center row>
+
+     {this.getCategorias({ icon: 'IconFilter', description: 'Filtros', url: 'jajaj' })}
+
+     {this.getCategorias({ icon: 'Girl', description: 'Filtro', url: 'jajaj' })}
+     {this.getCategorias({ icon: 'Back', description: 'Filtro', url: 'jajaj' })}
+
+    </SView>
+    <SHr />
+   </SScrollView2>
+  </SView>
  }
 
  getBotonos() {
@@ -45,7 +76,7 @@ class Explorador extends Component {
 
  render() {
   return (
-   <SPage title={''} hidden disableScroll center>
+   <>
     <BarraSuperiorTapeke>
      <SView row border={'transparent'} >
       <SView height={50} width={15}>
@@ -65,20 +96,29 @@ class Explorador extends Component {
      </SView>
     </BarraSuperiorTapeke>
 
-    {this.getFiltros()}
-    {this.getBotonos()}
 
-    <ScrollView>
-     <SView col={"xs-12"} row center height border={'transparent'} >
-      <SView col={"xs-11 md-5 lg-4 xl-2.5"}    >
-       <Item2></Item2>
-      </SView>
-     </SView >
-     <SHr height={80} />
-    </ScrollView>
 
-    <PBarraFooter />
-   </ SPage >
+    < SPage title={''} hidden disableScroll center>
+
+     {this.getCategoriasList()}
+
+
+
+     {this.getBotonos()}
+
+
+     <SScrollView2 disableHorizontal={true}>
+      <SView col={"xs-12"} row center height border={'transparent'} >
+       <SView col={"xs-11 md-5 lg-4 xl-2.5"}    >
+        <Item2></Item2>
+       </SView>
+      </SView >
+      <SHr height={80} />
+     </SScrollView2>
+
+     <PBarraFooter />
+    </ SPage >
+   </>
   );
  }
 }
