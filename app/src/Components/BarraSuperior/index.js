@@ -76,8 +76,8 @@ class BarraSuperior extends Component {
                     flex: 1,
                     flexDirection: "row",
                     backgroundColor: STheme.color.barColor,
-                    borderBottomEndRadius: 16,
-                    borderBottomStartRadius: 16,
+                    //borderBottomEndRadius: 16,
+                    //borderBottomStartRadius: 16,
                     borderColor: "#000",
                     // overflow: "hidden",
                 }}>
