@@ -72,7 +72,7 @@ class Inicio extends Component {
 
   popupOpcionDistancia() {
     return <>
-      <SView col={"xs-11 md-8 xl-6"} center row style={{ borderRadius: 8, }} backgroundColor={STheme.color.background}>
+      <SView col={"xs-11 md-8 xl-6"} center row style={{ borderRadius: 8}} withoutFeedback  backgroundColor={STheme.color.background}>
         <SView col={"xs-9 md-6 xl-6"} style={{
         }} center>
           <SHr height={30} />

@@ -17,7 +17,10 @@ class Explorador extends Component {
     getCategoria(icon, description, url, activo) {
         return <>
             <SView height={30} />
-            <SView height={28} border={'transparent'} style={{ maxWidth: '80%', width: 100, paddingLeft: 10, paddingRight: 10, backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }} center >
+            <SView height={28} border={'transparent'} style={{ maxWidth: '80%', width: 100, paddingLeft: 10, paddingRight: 10, backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }} center 
+            onPress={() => {
+                SNavigation.navigate(url);
+            }}>
                 <SView col={"xs-12 md-12 lg-12"} row center  >
                     {!icon ? null : <SView center height  >
                         <SIcon name={icon} height={20} width={22} stroke={activo == '' ? '#999999' : STheme.color.primary} />
@@ -40,7 +43,7 @@ class Explorador extends Component {
         return <SView col={"xs-11 md-6 lg-5 xl-4"} height={40} row>
             <SScrollView2 >
                 <SView center row>
-                    {this.getCategoria('IconFilter', 'Filtros', 'url', 'Activo')}
+                    {this.getCategoria('IconFilter', 'Filtros', 'restaurante/filtros', 'Activo')}
                     {this.getCategoria('', 'Filtro: Ocultar sin packs', '000010', '')}
                     {this.getCategoria('', 'Filtro: Preparacion', '0000102', '')}
                     {this.getCategoria('', 'Filtro: Preparacion', '0000102', '')}
