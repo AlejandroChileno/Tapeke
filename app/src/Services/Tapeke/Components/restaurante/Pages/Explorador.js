@@ -59,7 +59,7 @@ class Explorador extends Component {
         </SView>
     }
 
- 
+
 
     getBotonos() {
         return <>
