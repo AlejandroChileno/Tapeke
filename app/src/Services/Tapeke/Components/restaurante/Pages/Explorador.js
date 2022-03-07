@@ -17,18 +17,16 @@ class Explorador extends Component {
     getCategoria(icon, description, url, activo) {
         return <>
             <SView height={30} />
-            <SView height={28} style={{ maxWidth: '80%', paddingTop: 4, paddingLeft: 10, paddingRight: 10, paddingBottom: 4, backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }} center >
+            <SView height={28} border={'transparent'} style={{ maxWidth: '80%', width: 100, paddingLeft: 10, paddingRight: 10, backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }} center >
                 <SView col={"xs-12 md-12 lg-12"} row center  >
                     {!icon ? null : <SView center height  >
                         <SIcon name={icon} height={20} width={22} stroke={activo == '' ? '#999999' : STheme.color.primary} />
                     </SView>}
-                    <SView flex center height style={{
-                        paddingTop: 2
-                    }}>
-                        <SText fontSize={14} color={activo == '' ? '#999999' : STheme.color.primary} font={"LondonMM"} bold > {description}</SText>
+                    <SView flex center height={28}  >
+                        <SText col={"xs-12"} border={'transparent'} fontSize={16} color={STheme.color.primary} font={"LondonMM"} >{description}  </SText>
+                        {/* <SText fontSize={14} color={activo == 'red' ? '#999999' : STheme.color.primary} font={"LondonMM"} bold > {description}</SText> */}
                     </SView>
                 </SView>
-
             </SView>
             <SView width={14} />
 
@@ -40,9 +38,10 @@ class Explorador extends Component {
         // var categorias = categoria_farmacia.Actions.getAll(this.props);
         // if (!categorias) return <SLoad />
         return <SView col={"xs-11 md-6 lg-5 xl-4"} height={40} row>
-            <SScrollView2>
+            <SScrollView2 >
                 <SView center row>
-                    {this.getCategoria('IconFilter', 'Filtros', '0000102', 'Activo')}
+                    {/* {this.getCategoria({icon:'IconFilter', description: 'Filtros', url:'0000102',activo: 'Activo'})} */}
+                    {this.getCategoria('', 'ab', '000010', '')}
                     {this.getCategoria('', 'Filtro: Ocultar sin packs', '000010', '')}
                     {this.getCategoria('', 'Filtro: Preparacion', '0000102', '')}
                     {this.getCategoria('', 'Filtro: Preparacion', '0000102', '')}
@@ -59,6 +58,9 @@ class Explorador extends Component {
             </SScrollView2>
         </SView>
     }
+
+ 
+
     getBotonos() {
         return <>
             <SView height={15} />
@@ -103,9 +105,11 @@ class Explorador extends Component {
                     </BarraSuperiorTapeke>
                     <SView height={15} />
 
+
                     {this.getCategoriasList()}
                     {this.getBotonos()}
                     <SView height={15} />
+
 
                     <SScrollView2 disableHorizontal={true}>
                         <SView col={"xs-12"} row center height border={'transparent'} >
@@ -113,8 +117,10 @@ class Explorador extends Component {
                                 <Item2></Item2>
                             </SView>
                         </SView >
-                        {/* <SHr height={80} /> */}
+                        <SHr height={80} />
                     </SScrollView2>
+
+
 
                     <PBarraFooter />
                 </ SPage >
