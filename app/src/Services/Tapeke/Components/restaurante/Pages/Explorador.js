@@ -40,8 +40,7 @@ class Explorador extends Component {
         return <SView col={"xs-11 md-6 lg-5 xl-4"} height={40} row>
             <SScrollView2 >
                 <SView center row>
-                    {/* {this.getCategoria({icon:'IconFilter', description: 'Filtros', url:'0000102',activo: 'Activo'})} */}
-                    {this.getCategoria('', 'ab', '000010', '')}
+                    {this.getCategoria('IconFilter', 'Filtros', 'url', 'Activo')}
                     {this.getCategoria('', 'Filtro: Ocultar sin packs', '000010', '')}
                     {this.getCategoria('', 'Filtro: Preparacion', '0000102', '')}
                     {this.getCategoria('', 'Filtro: Preparacion', '0000102', '')}
