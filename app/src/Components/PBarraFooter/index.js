@@ -26,10 +26,9 @@ export default class PBarraFooter extends Component {
 	}
 	render() {
 		return (
-			<SView col={"xs-12"} height={50}
-				style={{ position: 'absolute', bottom: 0, backgroundColor: STheme.color.primary, overflow: 'hidden' }}
+			<SView col={"xs-12"} height={50} border={'transparent'} style={{ backgroundColor: STheme.color.primary }}
+				// style={{ position: 'absolute', bottom: 0, backgroundColor: STheme.color.primary, overflow: 'hidden' }}	
 			>
-
 				<SView col={'xs-12'} row height >
 					{this.getItem({ key: "100", title: 'Descrubir', icon: 'MenuLocation', url: '/' })}
 					{this.getItem({ key: "200", title: 'Explorar', icon: 'MenuExplorar', url: 'restaurante/explorador' })}
