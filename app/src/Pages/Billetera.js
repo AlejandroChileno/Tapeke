@@ -13,7 +13,7 @@ class Kolping extends Component {
     }
 
     getHeaderBilletera(montoTotal, key_usuario) {
-        return <> <SHr height={10} />
+        return <><SHr height={10} />
             <SView col={"xs-12"} height={201} center>
                 <SIcon name={'Chip'} width={290} height={181} style={{ position: "absolute" }} />
                 <SView width={250} height={140}>
@@ -30,16 +30,14 @@ class Kolping extends Component {
     }
 
     getDetalleBilletera(fecha, descripcion, tipoIcon, monto) {
-        return <> <SHr height={10} />
+        return <><SHr height={10} />
             <SView col={"xs-12"} center >
                 <SView col={"xs-12"} row backgroundColor={STheme.color.card} height={52} center style={{ borderRadius: 8 }}>
                     <SView col={"xs-8"} >
                         <SText font={"Manrope"} color={STheme.color.lightGray} fontSize={10} style={{ paddingLeft: 10 }} >{fecha}</SText>
                         <SText font={"Manrope"} color={STheme.color.text} fontSize={12} style={{ paddingLeft: 10 }} >{descripcion}</SText>
                     </SView>
-                    <SView col={"xs-4"} style={{ textAlign: "right" }} row center>
-                        <SIcon name={tipoIcon} width={20} height={15} fill={"#8DBF3B"} />
-                        <SView col={"xs-1"} />
+                    <SView col={"xs-4"} style={{ textAlign: "right" }} row center><SIcon name={tipoIcon} width={20} height={15} fill={"#8DBF3B"} /><SView col={"xs-1"} />
                         <SText font={"Manrope"} color={STheme.color.text} fontSize={10}>{monto}</SText>
                     </SView>
                 </SView>
@@ -61,7 +59,6 @@ class Kolping extends Component {
                             <SHr height={10} />
                         </SView>
                         <SHr height={18} color={STheme.color.card} />
-
                         <SView col={"xs-11 md-8 lg-6 xl-4"}>
                             {this.getDetalleBilletera('Enero, 06 - 16:45', 'Recarga de crédito', 'Ingreso', 'Bs. 100.00')}
                             {this.getDetalleBilletera('Enero, 06 - 16:45', 'Compra de producto', 'Egreso', 'Bs. -80.00')}

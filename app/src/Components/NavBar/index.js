@@ -145,7 +145,7 @@ class NavBar extends React.Component {
 						</SView>
 					</SView>
 
-					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("/"); this.fadeOut(); }}  >
+					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("billetera"); this.fadeOut(); }}  >
 						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
 							<SIcon fill="#666666" name={"Billetera"} width={28} height={27} />
 							<SText font={"Roboto"} style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Billetera</SText>
@@ -166,7 +166,7 @@ class NavBar extends React.Component {
 						</SView>
 					</SView>
 
-					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { }}  >
+					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("admin"); this.fadeOut(); }}  >
 						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
 							<SIcon fill="#666666" name={"Configuracion"} width={28} height={27} />
 							<SText font={"Roboto"} style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Configuracion</SText>
@@ -196,7 +196,7 @@ class NavBar extends React.Component {
 						</SView>
 					</SView>
 
-					{/* <SView col={"xs-11"} height={60} border={'transparent'} row
+					<SView col={"xs-11"} height={60} border={'transparent'} row
 						onPress={() => { this.props.dispatch({ type: "USUARIO_LOGOUT" }); SNavigation.replace("login"); this.fadeOut(); }}>
 						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
 							<SIcon fill="#666666" name={"Exit"} width={28} height={27} />
@@ -205,7 +205,7 @@ class NavBar extends React.Component {
 						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
 							<SIcon stroke={"#405394"} name={"Icon1"} width={20} height={20} />
 						</SView>
-					</SView> */}
+					</SView>
 
 					{/* <SView height={10} border={'transparent'} /> */}
 
@@ -223,7 +223,6 @@ class NavBar extends React.Component {
 				</SView>
 			</SScrollView2>
 
-			{/* <CerrarSession /> */}
 		</SView>
 	}
 
