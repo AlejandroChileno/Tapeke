@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { SIcon, SImage, SText, STheme, SView } from 'servisofts-component';
-export default class Item extends Component {
+export default class Item2 extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -47,7 +47,6 @@ export default class Item extends Component {
 	}
 	getItems() {
 		return <>
-			<SView height={30} />
 			<SView col={"xs-12"} height={170} center >
 				<SView col={"xs-11.9"} height row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2 }}>
 					<SView col={"xs-12"} height={125} />
@@ -69,8 +68,8 @@ export default class Item extends Component {
 				{this.HeaderItemDisponible()}
 				{this.HeaderItemTitle()}
 			</SView>
+			<SView height={30} />
 
-			<SView height={30} />
 			<SView col={"xs-12"} height={170} center >
 				<SView col={"xs-11.9"} height row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2 }}>
 					<SView col={"xs-12"} height={125} />
@@ -92,8 +91,8 @@ export default class Item extends Component {
 				{this.HeaderItemDisponible()}
 				{this.HeaderItemTitle()}
 			</SView>
+			<SView height={30} />
 
-			<SView height={30} />
 			<SView col={"xs-12"} height={170} center >
 				<SView col={"xs-11.9"} height row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2 }}>
 					<SView col={"xs-12"} height={125} />
@@ -115,8 +114,8 @@ export default class Item extends Component {
 				{this.HeaderItemDisponible()}
 				{this.HeaderItemTitle()}
 			</SView>
+			<SView height={30} />
 
-			<SView height={30} />
 			<SView col={"xs-12"} height={170} center >
 				<SView col={"xs-11.9"} height row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2 }}>
 					<SView col={"xs-12"} height={125} />
@@ -138,6 +137,8 @@ export default class Item extends Component {
 				{this.HeaderItemDisponible()}
 				{this.HeaderItemTitle()}
 			</SView>
+			<SView height={30} />
+
 		</>
 	}
 	render() {

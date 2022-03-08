@@ -222,7 +222,6 @@ class NavBar extends React.Component {
 
 				</SView>
 			</SScrollView2>
-
 		</SView>
 	}
 

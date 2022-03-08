@@ -43,7 +43,9 @@ class index extends Component {
                         {this.props.children}
                     </SView>
 
-                    <SView height width={80} center backgroundColor={'transparent'}>
+                    <SView height width={80} center backgroundColor={'transparent'} onPress={() => {
+                        SNavigation.goBack();
+                    }}>
 
                         <SText font={"Arial"} fontSize={24} color={"#fff"} bold>X</SText>
 
