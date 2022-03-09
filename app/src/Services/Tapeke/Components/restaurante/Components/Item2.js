@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SIcon, SImage, SText, STheme, SView } from 'servisofts-component';
+import { SIcon, SImage, SNavigation, SText, STheme, SView } from 'servisofts-component';
 import SSocket from 'servisofts-socket'
 
 export default class Item2 extends Component {
@@ -46,7 +46,7 @@ export default class Item2 extends Component {
 					<SText col={"xs-12"} fontSize={12} font={"Roboto"} color={STheme.color.secondary} center style={{ position: 'absolute' }} >{this.props.data.nombre}</SText>
 				</SView>
 				<SView height={50} width={50} style={{ borderRadius: 50, overflow: 'hidden', backgroundColor: 'white', position: 'absolute' }}>
-				<SImage src={`${SSocket.api.root}restaurante/${this.props.data.key}`}  />
+					<SImage src={`${SSocket.api.root}restaurante/${this.props.data.key}`} />
 					{/* <SImage src={require('../../../../../Pages/fotos/perfil001.png')} /> */}
 				</SView>
 			</SView>
@@ -54,8 +54,10 @@ export default class Item2 extends Component {
 
 	}
 	getItems() {
+
+
 		return <>
-			<SView col={"xs-12"} height={170} center >
+			<SView col={"xs-12"} height={170} center onPress={() => { SNavigation.navigate("restaurante/perfil",   { key: this.props.data.key }  ); }} >
 				<SView col={"xs-11.9"} height row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2 }}>
 					<SView col={"xs-12"} height={125} />
 					<SView col={"xs-11"} row center border={'transparent'} >

@@ -18,9 +18,7 @@ class Home extends Component {
             card
             col={"xs-11 md-6"}
             height={40}
-            style={{
-                padding: 8,
-            }}
+            style={{ padding: 8,}}
             onPress={() => { SNavigation.navigate(url) }}
         >
             <SText secondary style={{

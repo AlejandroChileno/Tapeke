@@ -74,28 +74,22 @@ class Explorador extends React.Component {
         var listaKeys = Object.keys(data);
         return listaKeys.map((key, index) => {
             var obj = data[key];
-            return <SView col={"xs-10 md-5 lg-4 xl-3"} border={'transparent'} >
+            return <SView col={"xs-10 md-5 lg-4 xl-3"} border={'cyan'} >
                 <Item2 data={obj} ></Item2>
             </SView>
         })
     }
 
     showLista() {
-
-
         return <>
             <SView height={8} border={'transparent'} />
             {this.getCategoriasList()}
             <SView height={8} border={'transparent'} />
             {this.getBotonos()}
             <SView height={20} border={'transparent'} />
-
             <SScrollView2 disableHorizontal={true} border={'transparent'}>
-                <SView col={"xs-12"} row center border={'transparent'} >
+                <SView col={"xs-12 "} center border={'blue'} >
                     {this.getRestaurante()}
-
-
-
                 </SView >
             </SScrollView2>
         </>
