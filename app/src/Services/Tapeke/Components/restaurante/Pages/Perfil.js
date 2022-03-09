@@ -4,6 +4,7 @@ import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGr
 import restaurante from '..';
 import PButtom from '../../../../../Components/PButtom';
 import SSocket from 'servisofts-socket'
+import Parent from '../index';
 
 class Paso1 extends React.Component {
     constructor(props) {
@@ -133,7 +134,7 @@ class Paso1 extends React.Component {
 
 
 
-                    <SView center   style={{ overflow: 'hidden', position: "absolute", zIndex: 9999, borderRadius: 30, left: 20, bottom: 20 }}
+                    <SView center style={{ overflow: 'hidden', position: "absolute", zIndex: 9999, borderRadius: 30, left: 20, bottom: 20 }}
                         width={50} height={50} backgroundColor={STheme.color.white}>
 
                         <SImage src={`${SSocket.api.root}restaurante/${auxRestaurante.key}`} style={{ resizeMode: 'cover', }} />
@@ -185,6 +186,7 @@ class Paso1 extends React.Component {
             <SView height={18} col={"xs-12"} backgroundColor={STheme.color.card} />
             <SHr height={40} />
             <PButtom fontSize={20} onPress={() => {
+                SNavigation.navigate("pedido/detalle")
             }}>RESERVAR</PButtom>
             <SHr height={40} />
         </SPage>
