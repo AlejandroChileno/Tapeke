@@ -130,14 +130,15 @@ class Paso1 extends React.Component {
                             <SText fontSize={12} font={"Roboto"} color={STheme.color.secondary} >4 disponible(s)</SText>
                         </SView>
                     </SView>
-                    <SView center style={{ position: "absolute", zIndex: 9999, borderRadius: 30, left: 20, bottom: 20 }} width={50} height={50} backgroundColor={'yellow'}>
-                        {/* <SView height={35} width={35} style={{
-                            borderRadius: 8, overflow: 'hidden', backgroundColor: 'red', position: 'absolute',
-                        }}> */}
-                            {/* style={{ borderRadius: 8, resizeMode: 'cover' }}  */}
-                            <SImage src={`${SSocket.api.root}restaurante/${auxRestaurante.key}`} />
-                            {/* <SImage src={require('../../../../../Pages/fotos/perfil001.png')} /> */}
-                        {/* </SView> */}
+
+
+
+                    <SView center   style={{ overflow: 'hidden', position: "absolute", zIndex: 9999, borderRadius: 30, left: 20, bottom: 20 }}
+                        width={50} height={50} backgroundColor={STheme.color.white}>
+
+                        <SImage src={`${SSocket.api.root}restaurante/${auxRestaurante.key}`} style={{ resizeMode: 'cover', }} />
+                        {/* <SImage src={require('../../../../../Pages/fotos/perfil001.png')} /> */}
+
                     </SView>
                     <SGradient colors={["#00000045", "#00000045",]} />
                 </SView>
@@ -155,7 +156,7 @@ class Paso1 extends React.Component {
                 <SView col={"xs-12"} row >
                     <SView col={"xs-12"} >
 
-                        <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >{auxRestaurante.descripcion} </SText>
+                        <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >{auxRestaurante.nombre} </SText>
                         {/* <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >Veggie Garden - Gran Via</SText> */}
                     </SView>
                     <SHr height={15} />
@@ -174,7 +175,7 @@ class Paso1 extends React.Component {
                 <SHr height={15} />
                 <SText fontSize={24} font={"Roboto"} style={{ fontWeight: "bold" }}>Sobre Nosotros</SText>
                 <SHr height={10} />
-                <SText style={{ textAlign: "justify" }} fontSize={14} font={"Roboto"} >En Veggie Gardern podras comer los mejores platos vegetarianos en todo Santa Cruz, en Veggie Garden estamos comprometidos con el bienestar de los animales es por eso que por cada compra en Veggie Garden un animalito tendrá felicidad, también no enorgullece decir que todos nuestros productos no deja una huella de carbono irreversible, y con ello esperamos que te unas a nuestra comunidad alimenticia para poder seguir cuidando nuestro ubicó hogar la tierra.</SText>
+                <SText style={{ textAlign: "justify" }} fontSize={14} font={"Roboto"} >{auxRestaurante.descripcion}.</SText>
                 <SHr height={15} />
             </SView>
             <SView height={18} col={"xs-12"} backgroundColor={STheme.color.card} />
