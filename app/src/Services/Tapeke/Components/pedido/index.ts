@@ -6,6 +6,7 @@ import Actions from "./Actions";
 import Reducer from "./Reducer";
 
 import Detalle from "./Pages/Detalle";
+import Confirmar from "./Pages/Confirmar";
 
 export default {
     component,
@@ -16,6 +17,7 @@ export default {
     },
     Pages: {
         [component + "/detalle"]: Detalle,
+        [component + "/confirmar"]: Confirmar,
 
     },
 }
