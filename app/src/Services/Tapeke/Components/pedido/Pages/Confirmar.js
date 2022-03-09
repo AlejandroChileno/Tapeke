@@ -16,9 +16,9 @@ class Confirmar extends React.Component {
                 <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Tipo de pago</SText>
                 <SHr height={20} />
                 <SView col={"xs-12"} row center style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }}>
-                  
+
                     <SView col={"xs-11"} row >
-                        <SView col={"xs-12"} row  center>
+                        <SView col={"xs-12"} row center>
                             <SHr height={15} />
                             <SView col={"xs-2"} >
                                 <SView center style={{
@@ -35,7 +35,8 @@ class Confirmar extends React.Component {
                             <SView col={"xs-8"} >
                                 <SText fontSize={16} font={"Roboto"} style={{ fontWeight: "bold" }}>Efectivo</SText>
                             </SView>
-                            <SView col={"xs-2"} >
+                            <SView col={"xs-2"} center>
+                                <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}></SView>
                             </SView>
                             <SHr height={15} />
                             <SView col={"xs-2"} >
@@ -53,7 +54,8 @@ class Confirmar extends React.Component {
                             <SView col={"xs-8"} >
                                 <SText fontSize={16} font={"Roboto"} style={{ fontWeight: "bold" }}>Billetera Tapeke</SText>
                             </SView>
-                            <SView col={"xs-2"} >
+                            <SView col={"xs-2"} center>
+                                <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}></SView>
                             </SView>
                             <SHr height={15} />
                             <SView col={"xs-2"} >
@@ -71,7 +73,8 @@ class Confirmar extends React.Component {
                             <SView col={"xs-8"} >
                                 <SText fontSize={16} font={"Roboto"} style={{ fontWeight: "bold" }}>Tarjeta de Debito / Crédito</SText>
                             </SView>
-                            <SView col={"xs-2"} >
+                            <SView col={"xs-2"} center>
+                                <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}></SView>
                             </SView>
                             <SHr height={15} />
                             <SView col={"xs-2"} >
@@ -89,7 +92,8 @@ class Confirmar extends React.Component {
                             <SView col={"xs-8"} >
                                 <SText fontSize={16} font={"Roboto"} style={{ fontWeight: "bold" }}>Banco FASSIL</SText>
                             </SView>
-                            <SView col={"xs-2"} >
+                            <SView col={"xs-2"} center>
+                                <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}></SView>
                             </SView>
                             <SHr height={15} />
                             <SView col={"xs-2"} >
@@ -107,7 +111,8 @@ class Confirmar extends React.Component {
                             <SView col={"xs-8"} >
                                 <SText fontSize={16} font={"Roboto"} style={{ fontWeight: "bold" }}>Transferencia QR</SText>
                             </SView>
-                            <SView col={"xs-2"} >
+                            <SView col={"xs-2"} center>
+                                <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}></SView>
                             </SView>
                             <SHr height={15} />
                             <SView col={"xs-2"} >
@@ -125,11 +130,12 @@ class Confirmar extends React.Component {
                             <SView col={"xs-8"} >
                                 <SText fontSize={16} font={"Roboto"} style={{ fontWeight: "bold" }}>Tigo Money</SText>
                             </SView>
-                            <SView col={"xs-2"} >
+                            <SView col={"xs-2"} center>
+                                <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}></SView>
                             </SView>
                         </SView>
                     </SView>
-                    <SHr height={10} />
+                    <SHr height={20} />
                 </SView>
                 <SHr height={15} />
             </SView>

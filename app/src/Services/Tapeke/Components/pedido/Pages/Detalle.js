@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient, SForm,SNavigation } from 'servisofts-component';
+import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient, SForm, SNavigation } from 'servisofts-component';
 import PButtom from '../../../../../Components/PButtom';
 import Parent from '../index';
 class Detalle extends React.Component {
@@ -18,6 +18,7 @@ class Detalle extends React.Component {
                 <SHr height={20} />
                 <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }}>
                     <SView col={"xs-2"} center >
+                        <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}></SView>
                     </SView>
                     <SView col={"xs-10"} row >
                         <SHr height={15} />
@@ -39,6 +40,7 @@ class Detalle extends React.Component {
                 <SHr height={15} />
                 <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }}>
                     <SView col={"xs-2"} center >
+                        <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}></SView>
                     </SView>
                     <SView col={"xs-10"}  >
                         <SHr height={15} />
@@ -185,7 +187,7 @@ class Detalle extends React.Component {
                     <SHr height={18} />
                     <SHr height={40} />
                     <PButtom fontSize={20} onPress={() => {
-                         SNavigation.navigate(Parent.component + "/confirmar")
+                        SNavigation.navigate(Parent.component + "/confirmar")
                     }}>REALIZAR PEDIDO</PButtom>
                     <SHr height={40} />
                 </SView>
