@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SIcon, SImage, SLoad, SNavigation, SPage, STable2, SText, SView } from 'servisofts-component';
+import { SIcon, SImage, SLoad, SNavigation, SPage, SPopup, STable2, SText, SView } from 'servisofts-component';
 import Parent from '..'
 import SSocket from 'servisofts-socket'
 import FloatButtom from '../../../../../Components/FloatButtom';
@@ -28,8 +28,8 @@ class lista extends Component {
                     }
                 },
                 { key: "nombre", label: "Nombre", width: 130 },
-                { key: "descripcion", label: "Descripcion", width: 130 },
-                { key: "direccion", label: "Direccion", width: 130 },
+                { key: "descripcion", label: "Descripcion", width: 280 },
+                { key: "direccion", label: "Direccion", width: 200 },
                 { key: "lat", label: "Lat", width: 130 },
                 { key: "lng", label: "Lng", width: 130 },
                 {
@@ -40,8 +40,20 @@ class lista extends Component {
                         </SView>
                     }
                 },
+                {
+                    key: "key-eliminar", label: "Eliminar", width: 70, center: true,
+                    component: (key) => {
+                        return <SView width={35} height={35} onPress={() => { SPopup.confirm({ title: "Eliminar", message: "¿Esta seguro de eliminar?", onPress: () => { Parent.Actions.eliminar(data[key], this.props) } }) }}>
+                            <SIcon name={'Delete'} />
+                        </SView>
+                    }
+                },
             ]}
             data={data}
+            filter={(dta)=>{
+                if(dta.estado != 1) return false;
+                return true;
+            }}
         />
     }
     render() {
