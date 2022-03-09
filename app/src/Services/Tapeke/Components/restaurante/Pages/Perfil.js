@@ -1,12 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient } from 'servisofts-component';
+import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient, SNavigation } from 'servisofts-component';
+import restaurante from '..';
 import PButtom from '../../../../../Components/PButtom';
+import SSocket from 'servisofts-socket'
+
 class Paso1 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
         };
+
+        this.key_restaurante = SNavigation.getParam('key');
+        // this.key_servicio = SNavigation.getParam('key_servicio');
+
+
     }
 
     calificacion() {
@@ -107,76 +115,78 @@ class Paso1 extends React.Component {
     }
 
     render() {
-        return (
-            <SPage center  >
-                <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center >
-                    <SView center col={"xs-12"} backgroundColor={"#9B060C"} height={216}>
-                        <SImage src={require('../../../../../Assets/img/restPerfil.jpg')} style={{
-                            width: "100%",
-                            // height: 216,
-                            position: "relative",
-                            resizeMode: "cover"
 
-                        }} />
-                        <SView style={{ position: "absolute", zIndex: 9999, top: 20, left: 20 }} >
-                            <SView width={114} height={26} center style={{ borderRadius: 8, overflow: 'hidden', backgroundColor: STheme.color.primary }}>
-                                <SText fontSize={12} font={"Roboto"} color={STheme.color.secondary} >4 disponible(s)</SText>
-                            </SView>
-                        </SView>
-                        <SView center style={{ position: "absolute", zIndex: 9999, borderRadius: 30, left: 20, bottom: 20 }} width={50} height={50} backgroundColor={STheme.color.white}>
-                            <SView height={35} width={35} style={{
-                                borderRadius: 50, overflow: 'hidden', backgroundColor: 'white', position: 'absolute',
-                            }}>
-                                <SImage src={require('../../../../../Pages/fotos/perfil001.png')} />
-                            </SView>
-                        </SView>
-                        <SGradient colors={["#00000045", "#00000045",]} />
-                    </SView>
-                    <SView flex col={"xs-12"} style={{ justifyContent: "flex-end" }} >
-                        <SView center style={{ position: 'absolute', zIndex: 9999999, borderRadius: 30, right: 20, top: -20 }} width={50} height={50} backgroundColor={STheme.color.white}>
-                            <SView height={35} width={35} style={{
-                                borderRadius: 50, overflow: 'hidden', backgroundColor: 'white', position: 'absolute',
-                            }} center>
-                                <SIcon name={'Favorite'} height={30} width={30} fill={'#FA4A0C'} />
-                            </SView>
+        var auxRestaurante = restaurante.Actions.getByKey(this.key_restaurante, this.props)
+        if (!auxRestaurante) return <SLoad />
+        return <SPage center  >
+            <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center >
+                <SView center col={"xs-12"} backgroundColor={"#9B060C"} height={216}>
+
+                    <SImage src={`${SSocket.api.root}restaurante/${auxRestaurante.key}`} style={{ width: "100%", position: "relative", resizeMode: "cover" }} />
+
+                    {/* <SImage src={require('../../../../../Assets/img/restPerfil.jpg')} style={{ width: "100%", position: "relative", resizeMode: "cover" }} /> */}
+                    <SView style={{ position: "absolute", zIndex: 9999, top: 20, left: 20 }} >
+                        <SView width={114} height={26} center style={{ borderRadius: 8, overflow: 'hidden', backgroundColor: STheme.color.primary }}>
+                            <SText fontSize={12} font={"Roboto"} color={STheme.color.secondary} >4 disponible(s)</SText>
                         </SView>
                     </SView>
-                </SView><SHr height={18} />
-                <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"}>
-                    <SView col={"xs-12"} row >
-                        <SView col={"xs-12"} >
-                            <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >Veggie Garden - Gran Via</SText>
+                    <SView center style={{ position: "absolute", zIndex: 9999, borderRadius: 30, left: 20, bottom: 20 }} width={50} height={50} backgroundColor={'yellow'}>
+                        {/* <SView height={35} width={35} style={{
+                            borderRadius: 8, overflow: 'hidden', backgroundColor: 'red', position: 'absolute',
+                        }}> */}
+                            {/* style={{ borderRadius: 8, resizeMode: 'cover' }}  */}
+                            <SImage src={`${SSocket.api.root}restaurante/${auxRestaurante.key}`} />
+                            {/* <SImage src={require('../../../../../Pages/fotos/perfil001.png')} /> */}
+                        {/* </SView> */}
+                    </SView>
+                    <SGradient colors={["#00000045", "#00000045",]} />
+                </SView>
+                <SView flex col={"xs-12"} style={{ justifyContent: "flex-end" }} >
+                    <SView center style={{ position: 'absolute', zIndex: 9999999, borderRadius: 30, right: 20, top: -20 }} width={50} height={50} backgroundColor={STheme.color.white}>
+                        <SView height={35} width={35} style={{
+                            borderRadius: 50, overflow: 'hidden', backgroundColor: 'white', position: 'absolute',
+                        }} center>
+                            <SIcon name={'Favorite'} height={30} width={30} fill={'#FA4A0C'} />
                         </SView>
-                        <SHr height={15} />
-                        <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-start', }}>
-                            <SIcon name={'Reloj'} height={13} width={13} />
-                            <SText fontSize={12} font={"Roboto"} > Hoy 22:00 - 22:30</SText>
-                        </SView>
-                        <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-end', }}>
-                            <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>15 Bs.</SText>
-                        </SView>
-                        <SHr height={10} />
                     </SView>
                 </SView>
-                <SView height={18} col={"xs-12"} backgroundColor={STheme.color.card} />
-                <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"}>
+            </SView><SHr height={18} />
+            <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"}>
+                <SView col={"xs-12"} row >
+                    <SView col={"xs-12"} >
+
+                        <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >{auxRestaurante.descripcion} </SText>
+                        {/* <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >Veggie Garden - Gran Via</SText> */}
+                    </SView>
                     <SHr height={15} />
-                    <SText fontSize={24} font={"Roboto"} style={{ fontWeight: "bold" }}>Sobre Nosotros</SText>
+                    <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-start', }}>
+                        <SIcon name={'Reloj'} height={13} width={13} />
+                        <SText fontSize={12} font={"Roboto"} > Hoy 22:00 - 22:30</SText>
+                    </SView>
+                    <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-end', }}>
+                        <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>15 Bs.</SText>
+                    </SView>
                     <SHr height={10} />
-                    <SText style={{ textAlign: "justify" }} fontSize={14} font={"Roboto"} >En Veggie Gardern podras comer los mejores platos vegetarianos en todo Santa Cruz, en Veggie Garden estamos comprometidos con el bienestar de los animales es por eso que por cada compra en Veggie Garden un animalito tendrá felicidad, también no enorgullece decir que todos nuestros productos no deja una huella de carbono irreversible, y con ello esperamos que te unas a nuestra comunidad alimenticia para poder seguir cuidando nuestro ubicó hogar la tierra.</SText>
-                    <SHr height={15} />
                 </SView>
-                <SView height={18} col={"xs-12"} backgroundColor={STheme.color.card} />
-                {this.calificacion()}
-                <SView height={18} col={"xs-12"} backgroundColor={STheme.color.card} />
-                {this.recoger()}
-                <SView height={18} col={"xs-12"} backgroundColor={STheme.color.card} />
-                <SHr height={40} />
-                <PButtom fontSize={20} onPress={() => {
-                }}>RESERVAR</PButtom>
-                <SHr height={40} />
-            </SPage>
-        );
+            </SView>
+            <SView height={18} col={"xs-12"} backgroundColor={STheme.color.card} />
+            <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"}>
+                <SHr height={15} />
+                <SText fontSize={24} font={"Roboto"} style={{ fontWeight: "bold" }}>Sobre Nosotros</SText>
+                <SHr height={10} />
+                <SText style={{ textAlign: "justify" }} fontSize={14} font={"Roboto"} >En Veggie Gardern podras comer los mejores platos vegetarianos en todo Santa Cruz, en Veggie Garden estamos comprometidos con el bienestar de los animales es por eso que por cada compra en Veggie Garden un animalito tendrá felicidad, también no enorgullece decir que todos nuestros productos no deja una huella de carbono irreversible, y con ello esperamos que te unas a nuestra comunidad alimenticia para poder seguir cuidando nuestro ubicó hogar la tierra.</SText>
+                <SHr height={15} />
+            </SView>
+            <SView height={18} col={"xs-12"} backgroundColor={STheme.color.card} />
+            {this.calificacion()}
+            <SView height={18} col={"xs-12"} backgroundColor={STheme.color.card} />
+            {this.recoger()}
+            <SView height={18} col={"xs-12"} backgroundColor={STheme.color.card} />
+            <SHr height={40} />
+            <PButtom fontSize={20} onPress={() => {
+            }}>RESERVAR</PButtom>
+            <SHr height={40} />
+        </SPage>
     }
 }
 const initStates = (state) => {

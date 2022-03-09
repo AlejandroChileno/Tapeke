@@ -8,6 +8,7 @@ import {
 import Item2 from '../Components/Item2';
 import PBarraFooter from '../../../../../Components/PBarraFooter';
 import BarraSuperiorTapeke from '../../../../../Components/BarraSuperiorTapeke';
+import Parent from '../index'
 
 
 
@@ -23,6 +24,18 @@ class Favoritos extends Component {
 
 
 
+	getRestaurante() {
+		var data = Parent.Actions.getAll(this.props);
+		if (!data) return <SLoad />;
+		var listaKeys = Object.keys(data);
+		return listaKeys.map((key, index) => {
+			var obj = data[key];
+			return <SView col={"xs-10 md-5 lg-4 xl-3"} border={'cyan'} >
+				<Item2 data={obj} ></Item2>
+			</SView>
+		})
+	}
+
 
 	render() {
 		return (
@@ -33,13 +46,11 @@ class Favoritos extends Component {
 				</BarraSuperiorTapeke>
 
 				<SScrollView2 disableHorizontal={true}>
-                        <SView col={"xs-12"} row center height border={'transparent'} >
-                            <SView col={"xs-10 md-5 lg-4 xl-3"}    >
-                                <Item2></Item2>
-                            </SView>
-                        </SView >
-                        <SHr height={80} />
-                    </SScrollView2>
+					<SView col={"xs-12"} center height border={'transparent'} >
+						{this.getRestaurante()}
+					</SView >
+					<SHr height={80} />
+				</SScrollView2>
 
 				<PBarraFooter />
 
