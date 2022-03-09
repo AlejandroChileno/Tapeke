@@ -61,6 +61,8 @@ class Paso1 extends React.Component {
     }
 
     recoger() {
+        var auxRestaurante = restaurante.Actions.getByKey(this.key_restaurante, this.props)
+        if (!auxRestaurante) return <SLoad />
         return <>
             <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center>
                 <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} row>
@@ -73,13 +75,13 @@ class Paso1 extends React.Component {
                         {
                             // latitude: data.lat,
                             // longitude: data.lng,
-                            latitude: -17.808690397665742,
-                            longitude: -63.16250034566757,
+                            latitude:auxRestaurante.lat,
+                            longitude:auxRestaurante.lng,
                             latitudeDelta: 0.0922,
                             longitudeDelta: 0.0421,
                         }}
                         preventCenter>
-                        <SMarker lat={-17.808690397665742} lng={-63.16250034566757} />
+                        <SMarker lat={auxRestaurante.lat} lng={auxRestaurante.lng} />
                     </SMapView>
                 </SView>
                 <SView center col={"xs-12"} row style={{ borderBottomWidth: 1, borderTopWidth: 1, borderColor: STheme.color.lightGray }}>
