@@ -25,6 +25,8 @@ class registro extends Component {
                 nombre: { label: "Nombres", type: "text", isRequired: true, defaultValue: data["nombre"] },
                 descripcion: { label: "Descripcion", type: "textArea", isRequired: true, defaultValue: data["descripcion"] },
                 direccion: { label: "Direccion", type: "text", isRequired: false, defaultValue: data["direccion"] },
+                lat: { label: "Lat", type: "text", isRequired: false, defaultValue: data["lat"] },
+                lng: { label: "Lng", type: "text", isRequired: false, defaultValue: data["lng"] },
             }}
             onSubmitName={"Registrar"}
             onSubmit={(values) => {
