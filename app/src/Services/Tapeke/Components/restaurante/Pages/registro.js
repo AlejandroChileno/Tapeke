@@ -55,13 +55,13 @@ class registro extends Component {
 
             }}
             // onSubmitName={"Registrar"}
-            // onSubmit={(values) => {
-            //     if (this.key) {
-            //         Parent.Actions.editar({ ...data, ...values }, this.props);
-            //     } else {
-            //         Parent.Actions.registro(values, this.props);
-            //     }
-            // }}
+            onSubmit={(values) => {
+                // if (this.key) {
+                //     Parent.Actions.editar({ ...data, ...values }, this.props);
+                // } else {
+                //     Parent.Actions.registro(values, this.props);
+                // }
+            }}
         />
     }
 
@@ -81,11 +81,12 @@ class registro extends Component {
             }}
             // onSubmitName={"Registrar"}
             onSubmit={(values) => {
-                if (this.key) {
-                    Parent.Actions.editar({ ...data, ...values }, this.props);
-                } else {
-                    Parent.Actions.registro(values, this.props);
-                }
+                // if (this.key) {
+                //     Parent.Actions.editar({ ...data, ...values }, this.props);
+                // } else {
+                //     Parent.Actions.registro(values, this.props);
+                // }
+               // alert("holaa")
             }}
         />
     }
@@ -154,7 +155,7 @@ class registro extends Component {
                     <PButtom fontSize={20} onPress={() => {
                         this.form.submit();
                         // this.form2.submit();
-                        // this.form3.submit();
+                         this.form3.submit();
                     }}>CONFIRMAR</PButtom>
                     <SHr />
                 </SView>
