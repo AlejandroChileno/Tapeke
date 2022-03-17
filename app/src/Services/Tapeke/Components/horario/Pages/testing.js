@@ -1,12 +1,50 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SIcon, SNavigation, SPage, SScrollView2, SText, STheme, SView,SLoad } from 'servisofts-component';
+import { SIcon, SNavigation, SPage, SScrollView2, SText, STheme, SView, SLoad, SHr } from 'servisofts-component';
 import BarraSuperiorTapeke from '../../../../../Components/BarraSuperiorTapeke';
 import PBarraFooter from '../../../../../Components/PBarraFooter';
 import Parent from '../index'
 import SSocket from 'servisofts-socket';
 import Horario from '../Components/Horario';
+import restaurante from '../../restaurante';
 
+
+
+const auxData = {
+    "1": {
+        key: '1',
+        key_usuario: 'dfsdfsd',
+        fecha_on: 'dfsdfsd',
+        key_restaurante: 'tajibo',
+        dia: '2',
+        hora_inicio: 'dfsdfsd',
+        hora_fin: 'dfsdfsd',
+        estado: '1',
+
+    },
+    "2": {
+        key: '2',
+        key_usuario: 'dfsdfsd',
+        fecha_on: 'dfsdfsd',
+        key_restaurante: 'burger king',
+        dia: '2',
+        hora_inicio: 'dfsdfsd',
+        hora_fin: 'dfsdfsd',
+        estado: '1',
+
+    },
+    "3": {
+        key: '3',
+        key_usuario: 'dfsdfsd',
+        fecha_on: 'dfsdfsd',
+        key_restaurante: 'toby',
+        dia: '2',
+        hora_inicio: 'dfsdfsd',
+        hora_fin: 'dfsdfsd',
+        estado: '1',
+
+    }
+}
 class testing extends React.Component {
     constructor(props) {
         super(props);
@@ -14,17 +52,32 @@ class testing extends React.Component {
         this.key = SNavigation.getParam("keyUsuario");
     }
 
+    // getprueba() {
+    //      var data = auxData;
+    //     if (!data) return <SLoad />;
+    //     var listaKeys = Object.keys(data);
+    //     return listaKeys.map((key, index) => {
+    //         var obj = data[key];
+    //         return <SView col={"xs-10 md-5 lg-4 xl-3"} border={'transparent'} >
+    //             <Horario data={obj} ></Horario>
+    //             <Horario data={obj} ></Horario>
+    //             <SText > {JSON.stringify(obj)} </SText>
+    //         </SView>
+    //     })
+    // }
 
-
-  
     getHorarios() {
+
+
         var data = Parent.Actions.getAll(this.props);
+        // var data = auxData;
         if (!data) return <SLoad />;
         var listaKeys = Object.keys(data);
         return listaKeys.map((key, index) => {
             var obj = data[key];
             return <SView col={"xs-10 md-5 lg-4 xl-3"} border={'transparent'} >
                 <Horario data={obj} ></Horario>
+                {/* <Horario data={obj} ></Horario> */}
                 {/* <SText > {JSON.stringify(obj)} </SText> */}
             </SView>
         })
@@ -34,7 +87,7 @@ class testing extends React.Component {
         return (
             <>
                 < SPage title={''} hidden disableScroll center >
-                    {/* <BarraSuperiorTapeke>
+                    <BarraSuperiorTapeke>
                         <SView row border={'transparent'} >
                             <SView height={50} width={15}>
                                 <SView style={{ top: 6 }} center>
@@ -51,11 +104,17 @@ class testing extends React.Component {
                                 </SView>
                             </SView>
                         </SView>
-                    </BarraSuperiorTapeke> */}
+                    </BarraSuperiorTapeke>
 
-                                       {this.getHorarios()}
+                    <SScrollView2 disableHorizontal={true}>
+                        <SView col={"xs-12"} center height border={'transparent'} >
+                            {this.getHorarios()}
+                        </SView >
+                        <SHr height={80} />
+                    </SScrollView2>
 
-                    {/* <PBarraFooter /> */}
+ 
+                    <PBarraFooter />
                 </ SPage >
             </>
         );

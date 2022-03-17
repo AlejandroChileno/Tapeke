@@ -49,7 +49,7 @@ export default class Item extends Component {
 
             <SView width={290} height={160} row center style={{ overflow: 'hidden', }}
                 onPress={() => {
-                    SNavigation.navigate("restaurante/perfil");
+                    // SNavigation.navigate("restaurante/perfil");
                 }}>
                 <SView col={"xs-11.9"} height={160} row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2, }}>
                     <SView col={"xs-12"} height={130} border={'transparent'} />
@@ -75,7 +75,7 @@ export default class Item extends Component {
 
             <SView width={290} height={160} row center style={{ overflow: 'hidden', }} 
             onPress={() => {
-                SNavigation.navigate("restaurante/perfil");
+                // SNavigation.navigate("restaurante/perfil");
             }}>
                 <SView col={"xs-11.9"} height={160} row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2, }}>
                     <SView col={"xs-12"} height={130} border={'transparent'} />
@@ -101,7 +101,7 @@ export default class Item extends Component {
 
             <SView width={290} height={160} row center style={{ overflow: 'hidden', }} 
             onPress={() => {
-                SNavigation.navigate("restaurante/perfil");
+                // SNavigation.navigate("restaurante/perfil");
             }}>
                 <SView col={"xs-11.9"} height={160} row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2, }}>
                     <SView col={"xs-12"} height={130} border={'transparent'} />
