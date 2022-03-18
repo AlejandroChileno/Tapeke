@@ -1,0 +1,6 @@
+module Pods_glup {
+  umbrella header "Pods-glup-umbrella.h"
+
+  export *
+  module * { export * }
+}
