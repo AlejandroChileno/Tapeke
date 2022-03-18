@@ -12,11 +12,8 @@ class Paso1 extends React.Component {
         super(props);
         this.state = {
         };
-
         this.key_restaurante = SNavigation.getParam('key');
         // this.key_servicio = SNavigation.getParam('key_servicio');
-
-
     }
 
 
@@ -227,7 +224,8 @@ class Paso1 extends React.Component {
                 <SHr height={18} />
                 <SHr height={40} />
                 <PButtom fontSize={20} onPress={() => {
-                    SNavigation.navigate("pedido/detalle")
+                    SNavigation.navigate("pedido/detalle", { key: this.key_restaurante });
+              
                 }}>RESERVAR</PButtom>
                 <SHr height={40} />
             </SView>
