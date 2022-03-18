@@ -135,6 +135,8 @@ class NavBar extends React.Component {
 						</SView>
 					</SView>
 
+				 
+					{/* <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("pedido/confirmar"); this.fadeOut(); }}  > */}
 					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("/"); this.fadeOut(); }}  >
 						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
 							<SIcon fill="#666666" name={"Compras"} width={28} height={27} />
