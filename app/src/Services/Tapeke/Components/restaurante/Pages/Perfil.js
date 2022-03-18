@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient, SNavigation } from 'servisofts-component';
+import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient, SNavigation, SLoad, SDate } from 'servisofts-component';
 import restaurante from '..';
 import PButtom from '../../../../../Components/PButtom';
 import SSocket from 'servisofts-socket'
 import Parent from '../index';
+import horario from '../../horario';
 
 class Paso1 extends React.Component {
     constructor(props) {
@@ -16,6 +17,22 @@ class Paso1 extends React.Component {
         // this.key_servicio = SNavigation.getParam('key_servicio');
 
 
+    }
+
+
+    getHorarioText() {
+        var NroDia = new SDate().getDayOfWeek();
+        var data_horario = horario.Actions.getAll(this.props);
+        if (!data_horario) return <SLoad />;
+        // filtro tabla {horario} y tabla {restaurante} por key_restaurante
+        var misDatas = Object.values(data_horario).filter(itm => itm.key_restaurante == this.key_restaurante)
+        if (misDatas.length <= 0) return " Sin atención";
+        return misDatas.map((obj) => {
+            // filtro tabla {horario.dia} y el numero del dia
+            if (obj.dia == NroDia) {
+                return " Hoy " + obj.hora_inicio + " - " + obj.hora_fin;
+            }
+        })
     }
 
     calificacion() {
@@ -162,7 +179,7 @@ class Paso1 extends React.Component {
                 </SView>
                 {/* <SView height={18} style={{ backgroundColor: STheme.color.white }} ></SView> */}
                 <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} style={{ backgroundColor: STheme.color.white }} center>
-                <SHr height={10} />
+                    <SHr height={10} />
                     <SView col={"xs-11"} row >
                         <SView col={"xs-12"} >
 
@@ -172,7 +189,12 @@ class Paso1 extends React.Component {
                         <SHr height={15} />
                         <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-start', }}>
                             <SIcon name={'Reloj'} height={13} width={13} />
-                            <SText fontSize={12} font={"Roboto"} > Hoy 22:00 - 22:30</SText>
+                            {/* <SText fontSize={12} font={"Roboto"} > Hoy 22:00 - 22:30</SText> */}
+                            <SText fontSize={12} font={"Roboto"} >{this.getHorarioText()}</SText>
+
+
+
+
                         </SView>
                         <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-end', }}>
                             <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>15 Bs.</SText>
