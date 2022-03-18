@@ -209,7 +209,7 @@ class Detalle extends React.Component {
                                 <SText style={{ textAlign: "justify" }} fontSize={15} font={"Roboto"} >Total</SText>
                             </SView>
                             <SView col={"xs-6"} style={{ alignItems: "flex-end" }}>
-                                <SText fontSize={15} font={"Roboto"} >Bs. {(this.state.cantidad * 15) + this.state.envio}</SText>
+                                <SText fontSize={15} font={"Roboto"} >Bs. {(this.state.cantidad * 15) }</SText>
                             </SView>
                             <SHr height={10} />
                             <SView col={"xs-6"} >
