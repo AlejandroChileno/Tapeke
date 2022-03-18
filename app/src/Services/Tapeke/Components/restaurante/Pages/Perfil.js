@@ -144,8 +144,8 @@ class Paso1 extends React.Component {
         if (!auxRestaurante) return <SLoad />
         return <SPage   >
             <SView col={"xs-12"} row backgroundColor={STheme.color.card} center>
-                <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center >
-                    <SView center col={"xs-12"} backgroundColor={"#9B060C"} height={216} >
+                <SView col={"xs-12  "} center >
+                    <SView center col={"xs-12 sm-10 md-8 lg-6 xl-4  "} backgroundColor={"#9B060C"} height={216} >
 
                         <SImage src={`${SSocket.api.root}restaurante/${auxRestaurante.key}`} style={{ width: "100%", position: "relative", resizeMode: "cover" }} />
 
@@ -167,41 +167,49 @@ class Paso1 extends React.Component {
                         </SView>
                         <SGradient colors={["#00000045", "#00000045",]} />
                     </SView>
-                    <SView flex col={"xs-12"} style={{ justifyContent: "flex-end" }} >
-                        <SView center style={{ position: 'absolute', zIndex: 9999999, borderRadius: 30, right: 20, top: -20 }} width={50} height={50} backgroundColor={STheme.color.white}>
+
+
+
+
+                    {/* <SHr height={20} /> */}
+                </SView>
+                {/* <SView height={18} style={{ backgroundColor: STheme.color.white }} ></SView> */}
+
+
+                <SView col={"xs-12 "} center>
+                    <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} style={{ backgroundColor: STheme.color.white, }} center>
+                        <SHr height={10} />
+                        <SView col={"xs-11"} row >
+                            <SView col={"xs-12"} >
+                                <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >{auxRestaurante.nombre} </SText>
+                                {/* <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >Veggie Garden - Gran Via</SText> */}
+                            </SView>
+                            <SHr height={15} />
+                            <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-start', }}>
+                                <SIcon name={'Reloj'} height={13} width={13} />
+                                {/* <SText fontSize={12} font={"Roboto"} > Hoy 22:00 - 22:30</SText> */}
+                                <SText fontSize={12} font={"Roboto"} >{this.getHorarioText()}</SText>
+                            </SView>
+                            <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-end', }}>
+                                <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>15 Bs.</SText>
+                            </SView>
+                            <SHr height={10} />
+                        </SView>
+                    </SView>
+                </SView>
+
+                <SView col={"xs-12  "} center >
+                    <SView flex col={"xs-12 sm-10 md-8 lg-6 xl-4"} style={{ justifyContent: "flex-end" }} >
+                        <SView center style={{ position: 'absolute', zIndex: 9999999, borderRadius: 30, right: 20, top: -100 }} width={50} height={50} backgroundColor={STheme.color.white}>
                             <SView height={35} width={35} style={{
                                 borderRadius: 50, overflow: 'hidden', backgroundColor: 'white', position: 'absolute',
                             }} center>
                                 <SIcon name={'Favorite'} height={30} width={30} fill={'#FA4A0C'} />
                             </SView>
                         </SView>
-                    </SView><SHr height={20} />
-                </SView>
-                {/* <SView height={18} style={{ backgroundColor: STheme.color.white }} ></SView> */}
-                <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} style={{ backgroundColor: STheme.color.white }} center>
-                    <SHr height={10} />
-                    <SView col={"xs-11"} row >
-                        <SView col={"xs-12"} >
-
-                            <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >{auxRestaurante.nombre} </SText>
-                            {/* <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >Veggie Garden - Gran Via</SText> */}
-                        </SView>
-                        <SHr height={15} />
-                        <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-start', }}>
-                            <SIcon name={'Reloj'} height={13} width={13} />
-                            {/* <SText fontSize={12} font={"Roboto"} > Hoy 22:00 - 22:30</SText> */}
-                            <SText fontSize={12} font={"Roboto"} >{this.getHorarioText()}</SText>
-
-
-
-
-                        </SView>
-                        <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-end', }}>
-                            <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>15 Bs.</SText>
-                        </SView>
-                        <SHr height={10} />
                     </SView>
                 </SView>
+
                 <SHr height={18} />
                 <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} style={{ backgroundColor: STheme.color.white }} center>
                     <SView col={"xs-11"}>

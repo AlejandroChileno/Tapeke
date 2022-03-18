@@ -124,9 +124,7 @@ class Item2 extends Component {
     }
 
     render() {
-        return (
-            this.getItems()
-        );
+        return (this.getItems());
     }
 }
 
