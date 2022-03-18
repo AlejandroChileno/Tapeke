@@ -41,58 +41,9 @@ class registro extends Component {
             }}
         />
     }
-    getInputInicio() {
-        // let data = {};
-        // if (this.key) {
-        //     data = Parent.Actions.getByKey(this.key, this.props);
-        //     if (!data) return <SLoad />
-        // }
-        return <SForm
-            center
-            ref={(form2) => { this.form2 = form2; }}
-            inputs={{
+ 
 
-                hora_inicio: { label: "Hora Inicio", type: "text", },
-
-            }}
-            // onSubmitName={"Registrar"}
-            onSubmit={(values) => {
-                // if (this.key) {
-                //     Parent.Actions.editar({ ...data, ...values }, this.props);
-                // } else {
-                //     Parent.Actions.registro(values, this.props);
-                // }
-                //alert(JSON.stringify(values));
-                //console.log(JSON.stringify(values));
-            }}
-        />
-    }
-
-    getInputFin() {
-        // let data = {};
-        // if (this.key) {
-        //     data = Parent.Actions.getByKey(this.key, this.props);
-        //     if (!data) return <SLoad />
-        // }
-        return <SForm
-            center
-            ref={(form3) => { this.form3 = form3; }}
-            inputs={{
-
-                hora_fin: { label: "Hora Fin", type: "text", },
-
-            }}
-            // onSubmitName={"Registrar"}
-            onSubmit={(values) => {
-                // if (this.key) {
-                //     Parent.Actions.editar({ ...data, ...values }, this.props);
-                // } else {
-                //     Parent.Actions.registro(values, this.props);
-                // }
-                // alert("holaa")
-            }}
-        />
-    }
+   
 
     getDias() {
         var dias = new SDate.getDaysOfWeek();
@@ -163,14 +114,12 @@ class registro extends Component {
                     {this.getregistro()}
                     <SHr />
                     <PButtom fontSize={20} onPress={() => {
-                        var hora_inicio = document.getElementsByName('inicio');
+                        var hora_inicio = document.getElementsByName('hora_ini_2');
                         console.log(hora_inicio.length);
                         alert(JSON.stringify(hora_inicio));
 
                         this.form.submit();
-                        this.form2.submit();
-                        this.form3.submit();
-
+                       
                     }}>CONFIRMAR</PButtom>
                     <SHr />
                 </SView>
