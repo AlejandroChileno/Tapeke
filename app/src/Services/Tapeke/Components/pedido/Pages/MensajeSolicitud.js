@@ -23,7 +23,7 @@ class MensajeSolicitud extends React.Component {
                         </SView>
 
                         <SView col={"xs-11"} row center>
-                            <SIcon name={"Girl"} fill={STheme.color.white} height={290} />
+                            <SIcon name={"MensajeSolicitud"}   height={290} />
 
                         </SView>
 

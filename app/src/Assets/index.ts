@@ -97,6 +97,10 @@ import InputPhone, { ReactComponent as InputPhoneW } from './svg/imputs/phone.sv
 import InputLocation, { ReactComponent as InputLocationW } from './svg/imputs/location.svg';
 import Camera, { ReactComponent as CameraW } from './svg/camera.svg';
 import BackArrow, { ReactComponent as BackArrowW } from './svg/backArrow.svg';
+import MensajeSolicitud, { ReactComponent as MensajeSolicitudW } from './svg/mensajeSolicitud.svg';
+
+
+
 
 const Assets: SAssets = {
     svg: {
@@ -176,6 +180,8 @@ const Assets: SAssets = {
         "Calendar": { Native: Calendar, Web: CalendarW },
         "Camera": { Native: Camera, Web: CameraW },
         "BackArrow": { Native: BackArrow, Web: BackArrowW },
+        "MensajeSolicitud": { Native: MensajeSolicitud, Web: MensajeSolicitudW },
+
         ...Tapeke
     }
 }
