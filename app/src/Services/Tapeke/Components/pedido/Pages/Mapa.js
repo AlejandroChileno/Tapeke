@@ -12,7 +12,26 @@ class Mapa extends React.Component {
     }
 
 
- 
+    showMapa() {
+        return <>
+         <SView col={"xs-12"} flex>
+          <SMapView initialRegion={
+           {
+            latitude: -17.808690397665742,
+            longitude: -63.16250034566757,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+           }}
+           preventCenter>
+           <SMarker lat={-17.808690397665742} lng={-63.16250034566757} />
+          </SMapView>
+         </SView>
+         <SView col={"xs-12"} height={50} border={'transparent'} style={{ position: 'absolute', top: 90, }} center   >
+          {this.getBotonos()}
+         </SView>
+        </>
+       }
+
     render() {
 
 
@@ -22,7 +41,7 @@ class Mapa extends React.Component {
                     <SHr height={18} />
                     <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center row style={{ backgroundColor: STheme.color.white }}>
                         <SView col={"xs-11"} row center>
-                            <SText> Mapa en blanco</SText>
+                            {this.showMapa()}
                          </SView>
                     </SView>
                     <SHr height={18} />
