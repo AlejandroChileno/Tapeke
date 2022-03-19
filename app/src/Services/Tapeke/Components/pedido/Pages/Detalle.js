@@ -30,14 +30,14 @@ class Detalle extends React.Component {
                 >
                     <SView col={"xs-2"} center >
                         <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}
-                        backgroundColor={this.state.envio != 0 ? "transparent" : "red"}
+                            backgroundColor={this.state.envio != 0 ? "transparent" : "red"}
 
                         ></SView>
                     </SView>
                     <SView col={"xs-10"} row
                         onPress={() => {
-                            if (this.state.envio <= 0) return;
-                            this.setState({ envio: this.state.envio - 5 });
+                            // if (this.state.envio <= 0) return;
+                            this.setState({ envio: 0});
                         }}
 
 
@@ -67,14 +67,14 @@ class Detalle extends React.Component {
                 >
                     <SView col={"xs-2"} center >
                         <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}
-                        backgroundColor={this.state.envio != 0 ? "red" : "transparent"}
+                            backgroundColor={this.state.envio != 0 ? "red" : "transparent"}
                         ></SView>
                     </SView>
                     <SView col={"xs-10"}
 
                         onPress={() => {
-                            if (this.state.envio >= 5) return;
-                            this.setState({ envio: this.state.envio + 5 });
+                            // if (this.state.envio >= 5) return;
+                            this.setState({ envio: 1});
                         }}
 
 
@@ -209,7 +209,7 @@ class Detalle extends React.Component {
                                 <SText style={{ textAlign: "justify" }} fontSize={15} font={"Roboto"} >Total</SText>
                             </SView>
                             <SView col={"xs-6"} style={{ alignItems: "flex-end" }}>
-                                <SText fontSize={15} font={"Roboto"} >Bs. {(this.state.cantidad * 15) }</SText>
+                                <SText fontSize={15} font={"Roboto"} >Bs. {(this.state.cantidad * 15)}</SText>
                             </SView>
                             <SHr height={10} />
                             <SView col={"xs-6"} >
@@ -237,7 +237,7 @@ class Detalle extends React.Component {
                     <SHr height={18} />
                     <SHr height={40} />
                     <PButtom fontSize={20} onPress={() => {
-                        SNavigation.navigate(Parent.component + "/confirmar")
+                        SNavigation.navigate(Parent.component + "/confirmar", { key: this.key_restaurante, precio: this.state.precio, cantidad: this.state.cantidad, envio: this.state.envio, })
                     }}>REALIZAR PEDIDO</PButtom>
                     <SHr height={40} />
                 </SView>

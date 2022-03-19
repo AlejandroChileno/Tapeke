@@ -7,6 +7,8 @@ import Reducer from "./Reducer";
 
 import Detalle from "./Pages/Detalle";
 import Confirmar from "./Pages/Confirmar";
+import Mapa from "./Pages/Mapa";
+import MensajeSolicitud from "./Pages/MensajeSolicitud";
 
 export default {
     component,
@@ -18,6 +20,8 @@ export default {
     Pages: {
         [component + "/detalle"]: Detalle,
         [component + "/confirmar"]: Confirmar,
-
+        [component + "/mapa"]: Mapa,
+        [component + "/mensajeSolicitud"]: MensajeSolicitud,
+        
     },
 }
