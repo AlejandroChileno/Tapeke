@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate } from 'servisofts-component';
+import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput } from 'servisofts-component';
 import Parent from '..'
 import SSocket from 'servisofts-socket';
 import PButtom from '../../../../../Components/PButtom';
@@ -31,65 +31,19 @@ class registro extends Component {
                 lng: { label: "Lng", type: "text", isRequired: false, defaultValue: data["lng"] },
             }}
             // onSubmitName={"Registrar"}
-            // onSubmit={(values) => {
-            //     if (this.key) {
-            //         Parent.Actions.editar({ ...data, ...values }, this.props);
-            //     } else {
-            //         Parent.Actions.registro(values, this.props);
-            //     }
-            // }}
-        />
-    }
-    getInputInicio() {
-        // let data = {};
-        // if (this.key) {
-        //     data = Parent.Actions.getByKey(this.key, this.props);
-        //     if (!data) return <SLoad />
-        // }
-        return <SForm
-            center
-            ref={(form2) => { this.form2 = form2; }}
-            inputs={{
-
-                hora_inicio: { label: "Hora Inicio", type: "text",  },
-
-            }}
-            // onSubmitName={"Registrar"}
             onSubmit={(values) => {
                 // if (this.key) {
                 //     Parent.Actions.editar({ ...data, ...values }, this.props);
                 // } else {
                 //     Parent.Actions.registro(values, this.props);
                 // }
+                //console.log(JSON.stringify(values));
             }}
         />
     }
+ 
 
-    getInputFin() {
-        // let data = {};
-        // if (this.key) {
-        //     data = Parent.Actions.getByKey(this.key, this.props);
-        //     if (!data) return <SLoad />
-        // }
-        return <SForm
-            center
-            ref={(form3) => { this.form3 = form3; }}
-            inputs={{
-
-                hora_fin: { label: "Hora Fin", type: "text", },
-
-            }}
-            // onSubmitName={"Registrar"}
-            onSubmit={(values) => {
-                // if (this.key) {
-                //     Parent.Actions.editar({ ...data, ...values }, this.props);
-                // } else {
-                //     Parent.Actions.registro(values, this.props);
-                // }
-               // alert("holaa")
-            }}
-        />
-    }
+   
 
     getDias() {
         var dias = new SDate.getDaysOfWeek();
@@ -97,22 +51,29 @@ class registro extends Component {
         console.log(dias);
         //alert(JSON.stringify(dias[0].text));
         dias[-1] = { text: "Feriado", value: "Fer" };
-       
-        
-         return Object.keys(dias).map((key, index) => {
+
+
+        return Object.keys(dias).map((key, index) => {
             return <>
-                <SView col={"xs-4"}>
-                    <SText fontSize={15}>{dias[key].text}</SText>
-                </SView>
-                <SView col={"xs-4"}>
-                    {this.getInputInicio()}
-                </SView>
-                <SView col={"xs-4"}>
-                    {this.getInputFin()}
+                <SView col={"xs-12"} row>
+                    <SView col={"xs-4"}>
+                        <SText fontSize={15}>{dias[key].text}</SText>
+                    </SView>
+                    <SView col={"xs-4"}>
+                        {/* {this.getInputInicio()} */}
+                        <SInput type="text" placeholder="Hora Inicio" name={"hora_ini_"+key}  />
+                    </SView>
+                    <SView col={"xs-4"}>
+                        {/* {this.getInputFin()} */}
+                        <SInput type="text" placeholder="Hora Fin" name={"hora_fin_"+key}  />
+                    </SView>
+                    <SHr height={10} />
                 </SView>
             </>
         })
     }
+
+
     getHorario() {
 
         return <>
@@ -153,9 +114,12 @@ class registro extends Component {
                     {this.getregistro()}
                     <SHr />
                     <PButtom fontSize={20} onPress={() => {
+                        var hora_inicio = document.getElementsByName('hora_ini_2');
+                        console.log(hora_inicio.length);
+                        alert(JSON.stringify(hora_inicio));
+
                         this.form.submit();
-                        // this.form2.submit();
-                         this.form3.submit();
+                       
                     }}>CONFIRMAR</PButtom>
                     <SHr />
                 </SView>
