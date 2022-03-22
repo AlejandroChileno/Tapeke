@@ -62,4 +62,15 @@ export default class Actions {
             }
         })
     }
+
+    static registroHorario = (data, props) => {
+        SSocket.send({
+            component: Parent.component,
+            version: Parent.version,
+            type: "registroHorario",
+            estado: "cargando",
+            key_usuario: props.state.usuarioReducer.usuarioLog.key,
+            data: data
+        })
+    }
 }
