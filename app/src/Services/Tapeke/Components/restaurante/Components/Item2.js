@@ -30,17 +30,20 @@ class Item2 extends Component {
                 return "sabado";
             case 7:
                 return "domingo";
-            default:
+            case -1:
                 return "feriado";
+            default:
+                return "sin dia";
         }
     }
 
     getHorarioText() {
+
         var NroDia = new SDate().getDayOfWeek();
         var data_horario = horario.Actions.getAll(this.props);
         if (!data_horario) return <SLoad />;
         // filtro tabla {horario} y tabla {restaurante} por key_restaurante
-        var misDatas = Object.values(data_horario).filter(itm => itm.key_restaurante == this.props.data.key)
+        var misDatas = Object.values(data_horario).filter(itm => itm.key_restaurante == this.props.data.key && itm.dia == NroDia)
         if (misDatas.length <= 0) return " Sin atención";
         return misDatas.map((obj) => {
             // filtro tabla {horario.dia} y el numero del dia
@@ -48,6 +51,8 @@ class Item2 extends Component {
                 return " Hoy " + obj.hora_inicio + " - " + obj.hora_fin;
             }
         })
+
+
     }
 
     HeaderItemFoto() {
@@ -104,7 +109,7 @@ class Item2 extends Component {
                         <SView col={"xs-5.5"} row center border={'transparent'} style={{ justifyContent: 'flex-start', }} >
                             <SIcon name={'Reloj'} width={13} colSquare center />
                             {/* <SText fontSize={10} font={"Roboto"}> Hoy {this.props.data.horario}</SText> */}
-                            <SText fontSize={10} font={"Roboto"}>{this.getHorarioText()}</SText>
+                            <SText fontSize={10} font={"Roboto"} color={'red'} >{this.getHorarioText()}</SText>
                         </SView>
                         <SView col={"xs-2.5"} row center style={{ justifyContent: 'flex-start', }} border={'transparent'}>
                             <SIcon name={'Location'} height={13} width={9} center />
