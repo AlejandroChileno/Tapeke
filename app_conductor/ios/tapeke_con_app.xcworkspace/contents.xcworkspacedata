@@ -2,6 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:05.gpx">
+   </FileRef>
+   <FileRef
+      location = "group:PruebaGPX.gpx">
+   </FileRef>
+   <FileRef
+      location = "group:1237987d-22ff-4085-8f2b-a3360c375f10.gpx">
+   </FileRef>
+   <FileRef
       location = "group:tapeke_con_app.xcodeproj">
    </FileRef>
    <FileRef
