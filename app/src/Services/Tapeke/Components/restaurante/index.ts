@@ -15,6 +15,8 @@ import lista from "./Pages/lista";
 import registro from "./Pages/registro";
 import ExploradorMapa from "./Pages/ExploradorMapa";
 
+
+
 //Horarios
 import horario from "./Pages/registroHorario";
 

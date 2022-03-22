@@ -4,6 +4,7 @@ import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput } fr
 import Parent from '..'
 import SSocket from 'servisofts-socket';
 import PButtom from '../../../../../Components/PButtom';
+import Horario from '../Components/Horario';
 
 const  defaultState = {
     nombre: "",
@@ -133,7 +134,7 @@ class registroHorario extends Component {
                     <SHr />
                     <SHr />
                     <SView col={"xs-12"} row>
-                        
+                        {/* <Horario/> */}
                     </SView>
                 </SView>
             </SPage>
