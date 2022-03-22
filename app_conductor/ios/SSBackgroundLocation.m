@@ -73,7 +73,7 @@ RCT_EXPORT_METHOD(start:(NSString *)data
     locationManager = [[CLLocationManager alloc] init];
   }
   
-  
+    
   locationManager.delegate = self;
   locationManager.allowsBackgroundLocationUpdates = true;
   locationManager.pausesLocationUpdatesAutomatically = false;

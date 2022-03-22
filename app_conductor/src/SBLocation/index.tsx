@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { NativeModules, NativeEventEmitter, AppRegistry, Platform } from 'react-native';
+import Data from "./Data";
 const SSBackgroundLocation = NativeModules.SSBackgroundLocation;
 
-type _Props = {
+export type _Props = {
     nombre?: string,
     label?: string,
     minTime?: number,
     minDistance?: number,
 }
+
 const PROPS = {
     nombre: "Mi Nombre",
     label: "algo111",
@@ -21,12 +23,12 @@ class SBLocation {
             ...PROPS,
             ...props
         })).then(resp => {
-            console.log("start",resp);
+            console.log("start", resp);
         });
     }
     static stop() {
         SSBackgroundLocation.stop().then(resp => {
-            console.log("stop",resp);
+            console.log("stop", resp);
         });
     }
 
@@ -39,8 +41,9 @@ class SBLocation {
         }
     }
 
-    static Listener = async (data) => {
-        console.log(data);
+    static Listener = async (props) => {
+        Data.onLocationChange(props.data);
     }
 }
+export { Data };
 export default SBLocation;
