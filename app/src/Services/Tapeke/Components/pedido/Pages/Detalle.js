@@ -25,23 +25,12 @@ class Detalle extends React.Component {
                 <SHr height={15} />
                 <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Tipo de entrega</SText>
                 <SHr height={20} />
-                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }}
-                // onPress={() => { SNavigation.navigate(this.setState({ envio: 0 })) }}
-                >
+                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }} onPress={() => { this.setState({ envio: 0 }); }}>
                     <SView col={"xs-2"} center >
                         <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}
-                            backgroundColor={this.state.envio != 0 ? "transparent" : "red"}
-
-                        ></SView>
+                            backgroundColor={this.state.envio != 0 ? "transparent" : "red"} ></SView>
                     </SView>
-                    <SView col={"xs-10"} row
-                        onPress={() => {
-                            // if (this.state.envio <= 0) return;
-                            this.setState({ envio: 0});
-                        }}
-
-
-                    >
+                    <SView col={"xs-10"} row >
                         <SHr height={15} />
                         <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Recoger del lugar</SText>
                         <SText fontSize={14} font={"Roboto"} >¡Se encuentra a 400m de tu ubicación!</SText>
@@ -60,25 +49,12 @@ class Detalle extends React.Component {
                 </SView>
                 <SHr height={15} />
                 <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }}
-
-                // onPress={() => { SNavigation.navigate(this.setState({ envio: this.state.envio - 5 })) }}
-
-                // onPress={() => { SNavigation.navigate(this.setState({ envio: this.state.envio + 5 })) }}
-                >
+                    onPress={() => { this.setState({ envio: 1 }); }} >
                     <SView col={"xs-2"} center >
                         <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}
-                            backgroundColor={this.state.envio != 0 ? "red" : "transparent"}
-                        ></SView>
+                            backgroundColor={this.state.envio != 0 ? "red" : "transparent"} ></SView>
                     </SView>
-                    <SView col={"xs-10"}
-
-                        onPress={() => {
-                            // if (this.state.envio >= 5) return;
-                            this.setState({ envio: 1});
-                        }}
-
-
-                    >
+                    <SView col={"xs-10"} >
                         <SHr height={15} />
                         <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Envío a domicilio</SText>
                         <SText fontSize={14} font={"Roboto"} >Costo del envío:</SText>
