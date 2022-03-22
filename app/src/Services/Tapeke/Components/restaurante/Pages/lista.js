@@ -48,6 +48,14 @@ class lista extends Component {
                         </SView>
                     }
                 },
+                {
+                    key: "key-horario", label: "Horarios", width: 60, center: true,
+                    component: (item) => {
+                        return <SView onPress={() => { SNavigation.navigate("admin/" + Parent.component + "/horario", { key: item }) }}>
+                            <SIcon name={"Horario"} width={35} />
+                        </SView>
+                    }
+                },
             ]}
             data={data}
             filter={(dta)=>{

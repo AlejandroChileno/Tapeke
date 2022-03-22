@@ -32,6 +32,9 @@ import Exit, { ReactComponent as ExitW } from './exit.svg';
 import BtnPie, { ReactComponent as BtnPieW } from './btnPie.svg';
 import BtnCoche, { ReactComponent as BtnCocheW } from './btnCoche.svg';
 
+import Horario, { ReactComponent as HorarioW } from './horario.svg';
+
+
 const Assets = {
 	// alvaro
 	"Billetera": { Native: Billetera, Web: BilleteraW },
@@ -65,6 +68,8 @@ const Assets = {
 	"Exit": { Native: Exit, Web: ExitW },
 	"BtnPie": { Native: BtnPie, Web: BtnPieW },
 	"BtnCoche": { Native: BtnCoche, Web: BtnCocheW },
+
+	"Horario": { Native: Horario, Web: HorarioW },
 
 }
 

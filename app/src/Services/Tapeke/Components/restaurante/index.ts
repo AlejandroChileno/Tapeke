@@ -14,6 +14,10 @@ import Explorador from "./Pages/Explorador";
 import lista from "./Pages/lista";
 import registro from "./Pages/registro";
 import ExploradorMapa from "./Pages/ExploradorMapa";
+
+//Horarios
+import horario from "./Pages/registroHorario";
+
 export default {
     component,
     version,
@@ -30,6 +34,8 @@ export default {
         [component + "/exploradorMapa"]: ExploradorMapa,
         ["admin/" + component]: lista,
         ["admin/" + component + "/registro"]: registro,
+        ["admin/" + component + "/horario"]: horario,
+
 
     },
     Components: {
