@@ -57,7 +57,7 @@ class Inicio extends Component {
       }}
       inputs={{
         Correo: { placeholder: "Las Palmas, Santa Cruz de la Sierra", type: "text", isRequired: true, },
-       // Correo: { placeholder: "Las Palmas, Santa Cruz de la Sierra", type: "text", isRequired: true, icon: <SIcon name={"Ubicacion"} width={12} height={17} />, },
+        // Correo: { placeholder: "Las Palmas, Santa Cruz de la Sierra", type: "text", isRequired: true, icon: <SIcon name={"Ubicacion"} width={12} height={17} />, },
       }}
       onSubmit={(values) => {
         // if (this.key) {
@@ -73,7 +73,7 @@ class Inicio extends Component {
 
   popupOpcionDistancia() {
     return <>
-      <SView col={"xs-11 md-8 xl-6"} center row style={{ borderRadius: 8}} withoutFeedback  backgroundColor={STheme.color.background}>
+      <SView col={"xs-11 md-8 xl-6"} center row style={{ borderRadius: 8 }} withoutFeedback backgroundColor={STheme.color.background}>
         <SView col={"xs-9 md-6 xl-6"} style={{
         }} center>
           <SHr height={30} />
@@ -84,13 +84,13 @@ class Inicio extends Component {
           <SText color={STheme.color.darkGray} style={{ fontSize: 20 }}>Seleccione un modo:</SText>
           <SHr height={20} />
           <SView col={"xs-12"} row center>
-            <SView col={"xs-6"} center>
+            <SView col={"xs-6"} center onPress={() => { SNavigation.navigate("restaurante/mapaTest") }}>
               <SIcon name={"ModoPie"} width={90} height={90} fill={STheme.color.primary} />
               <SHr height={10} />
               <SText font={"Roboto"} color={STheme.color.text} style={{ fontSize: 18, fontWeight: "bold" }}>A pie</SText>
               <SText font={"Roboto"} color={STheme.color.text} style={{ fontSize: 14, fontWeight: "bold" }}>menos 1 km</SText>
             </SView>
-            <SView col={"xs-6"} center>
+            <SView col={"xs-6"} center onPress={() => { SNavigation.navigate("restaurante/mapaTest") }}>
               <SIcon name={"ModoCoche"} width={90} height={90} fill={STheme.color.primary} />
               <SHr height={10} />
               <SText font={"Roboto"} color={STheme.color.text} style={{ fontSize: 18, fontWeight: "bold" }}>En coche</SText>
@@ -105,10 +105,7 @@ class Inicio extends Component {
 
   publicidad() {
     return (
-      <SView col={"xs-11 md-11 lg-11 xl-11"} style={{ overflow: "hidden" }}
-        onPress={() => {
-          SPopup.open({ content: this.popupOpcionDistancia() });
-        }}>
+      <SView col={"xs-11 md-11 lg-11 xl-11"} style={{ overflow: "hidden" }}>
         <SHr height={15} />
         <SView height={160} backgroundColor={"transparent"} style={{ resizeMode: "cover", maxWidth: "100%", minWidth: "100%", overflow: "hidden", }}>
           <SImage src={require("./fotos/publicidad.png")} />
@@ -128,8 +125,8 @@ class Inicio extends Component {
       <>
         <BarraSuperiorTapeke>
           <SView row border={'transparent'} onPress={() => {
-          SPopup.open({ content: this.popupOpcionDistancia() });
-        }}>
+            SPopup.open({ content: this.popupOpcionDistancia() });
+          }}>
             <SView height={50} width={15}>
               <SView style={{ top: 6 }} center>
                 <SIcon name={"Location"} height={18} fill={STheme.color.secondary} />

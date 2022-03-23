@@ -74,7 +74,7 @@ class MapaTest extends Component {
 			<SView style={{ position: 'absolute', }} center   >
 				{/* {onRegionChange(region) } */}
 
-				<SIcon name="Marker" width={20} height={20} fill="red" />
+				<SIcon name="MarcadorMapa" width={20} height={20} />
 			</SView>
 		</>
 	}
@@ -82,28 +82,16 @@ class MapaTest extends Component {
 
 	render() {
 		return (
-
 			<SPage title={''} hidden disableScroll center>
 				<BarraSuperiorTapeke  >
 					<SText font={"Roboto"} fontSize={25} color={STheme.color.secondary}>Mis Favoritos</SText>
 				</BarraSuperiorTapeke>
-
 				<SScrollView2 disableHorizontal={true}>
-					<SView col={"xs-12"} center height border={'blue'} >
+					<SView col={"xs-12"} center height  >
 						{this.showMapa()}
 					</SView >
-
-					{/* <SView backgroundColor={'red'} width={180} height={50} style={{ position: 'absolute', top: 150,   }}row  center >
-					<SText font={"Roboto"} fontSize={18} color={STheme.color.secondary}>Mis Favoritos</SText>
-					<SText font={"Roboto"} fontSize={18} color={STheme.color.secondary}>Mis Favoritos</SText>
-
-					</SView> */}
-
-					<SHr height={80} />
 				</SScrollView2>
-
 				<PBarraFooter />
-
 			</ SPage >
 		);
 	}

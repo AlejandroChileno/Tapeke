@@ -22,7 +22,7 @@ class Paso1 extends React.Component {
         var data_horario = horario.Actions.getAll(this.props);
         if (!data_horario) return <SLoad />;
         // filtro tabla {horario} y tabla {restaurante} por key_restaurante
- 
+
         var misDatas = Object.values(data_horario).filter(itm => itm.key_restaurante == this.key_restaurante && itm.dia == NroDia)
         if (misDatas.length <= 0) return " Sin atención";
         return misDatas.map((obj) => {
@@ -182,16 +182,16 @@ class Paso1 extends React.Component {
                                 <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >{auxRestaurante.nombre} </SText>
                                 {/* <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >Veggie Garden - Gran Via</SText> */}
                             </SView>
-                            <SHr height={15} border={'blue'}/>
-                            
-                            <SView col={"xs-6"} height={20} row center border={'red'} style={{ justifyContent: 'flex-start', }}>
+                            <SHr height={15} border={'blue'} />
+
+                            <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-start', }}>
                                 <SIcon name={'Reloj'} width={13} colSquare center />
                                 <SText fontSize={12} font={"Roboto"} >{this.getHorarioText()}</SText>
                             </SView>
                             <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-end', }}>
                                 <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>15 Bs.</SText>
                             </SView>
-                            <SHr height={10} border={'blue'}/>
+                            <SHr height={10} border={'blue'} />
                         </SView>
                     </SView>
                 </SView>

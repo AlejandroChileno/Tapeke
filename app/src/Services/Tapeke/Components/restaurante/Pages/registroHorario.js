@@ -1,4 +1,4 @@
-import React, { Component, useState , Row} from 'react';
+import React, { Component, useState, Row } from 'react';
 import { connect } from 'react-redux';
 import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput } from 'servisofts-component';
 import Parent from '..'
@@ -6,7 +6,7 @@ import SSocket from 'servisofts-socket';
 import PButtom from '../../../../../Components/PButtom';
 import Horario from '../Components/Horario';
 
-const  defaultState = {
+const defaultState = {
     nombre: "",
     email: "",
     telefono: "",
@@ -29,7 +29,7 @@ class registroHorario extends Component {
 
     }
 
- 
+
 
     getDias() {
         var dias = new SDate.getDaysOfWeek();
@@ -92,7 +92,11 @@ class registroHorario extends Component {
             <SPage title={'Registro de Horario - ' + data.nombre} center>
                 <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center>
                     <SHr />
-                    {this.getHorario()}
+                    <SView col={"xs-12"} row center>
+                        <Horario />
+                    </SView>
+                    <SHr />
+                    {/* {this.getHorario()} */}
                     <SHr />
                     <PButtom fontSize={20} onPress={() => {
                         //this.form.submit();
@@ -133,9 +137,7 @@ class registroHorario extends Component {
                     }}>CONFIRMAR</PButtom>
                     <SHr />
                     <SHr />
-                    <SView col={"xs-12"} row>
-                        {/* <Horario/> */}
-                    </SView>
+
                 </SView>
             </SPage>
         );
