@@ -48,10 +48,10 @@ class MapaTest extends Component {
 					</SMarker>
 				</SMapView>
 			</SView>
-			<SView  style={{ position: 'absolute', }} center   >
+			<SView style={{ position: 'absolute', }} center>
 				{/* {onRegionChange(region) } */}
 
-				<SIcon name="MarcadorMapa" width={47} height={87}  />
+				<SIcon name="MarcadorMapa" width={20} height={20} />
 			</SView>
 		</>
 	}
@@ -67,7 +67,7 @@ class MapaTest extends Component {
 					<SView col={"xs-12"} center height  >
 						{this.showMapa()}
 					</SView >
- 				</SScrollView2>
+				</SScrollView2>
 				<PBarraFooter />
 			</ SPage >
 		);
