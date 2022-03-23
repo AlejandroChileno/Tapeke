@@ -91,13 +91,13 @@ class registroHorario extends Component {
         return (
             <SPage title={'Registro de Horario - ' + data.nombre} center>
                 <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center>
-                    <SHr />
+                    <SHr height={40}/>
                     <SView col={"xs-12"} row center>
-                        <Horario />
+                        <Horario key={this.key} />
                     </SView>
                     <SHr />
                     {/* {this.getHorario()} */}
-                    <SHr />
+                    <SHr height={40}/>
                     <PButtom fontSize={20} onPress={() => {
                         //this.form.submit();
                         var dataHorario = {};
@@ -135,7 +135,7 @@ class registroHorario extends Component {
                         // }
                         reducer.estado = "";
                     }}>CONFIRMAR</PButtom>
-                    <SHr />
+                    <SHr height={40} />
                     <SHr />
 
                 </SView>

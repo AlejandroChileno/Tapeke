@@ -1,18 +1,18 @@
 import React, { Component, TouchableOpacity, useState, Button } from 'react';
 import { SDate, SIcon, SImage, SLoad, SNavigation, SText, STheme, SView, SInput, SButtom } from 'servisofts-component';
-// import SSocket from 'servisofts-socket';
-
-import horario from '../../horario';
-import PButtom from '../../../../../Components/PButtom';
+import SSocket from 'servisofts-socket';
 
 import { connect } from 'react-redux';
 
+const Horario = (props) => {
 
-const Horario = () => {
+    const key_restaurante = SNavigation.getParam("key");
 
-    const key_restaurante = "464DFGD5FG4D5F4G5D4FG5D4F"
+    //const key_restaurante = "464DFGD5FG4D5F4G5D4FG5D4F"
     const [inputs, setInputs] = useState([{ key: '', value: '' }]);
     const [inputs2, setInputs2] = useState([{ key: '', value: '' }]);
+
+    const [dataFinal, setDataFinal] = useState([{ dia: null, horario_inicio: '', horario_fin: '', key_restaurante: key_restaurante }]);
 
 
     const [input_0, setInput_0] = useState([{ dia: null, horario_inicio: '', horario_fin: '', key_restaurante: key_restaurante }]);
@@ -23,11 +23,6 @@ const Horario = () => {
     const [input_5, setInput_5] = useState([{ dia: null, horario_inicio: '', horario_fin: '', key_restaurante: key_restaurante }]);
     const [input_6, setInput_6] = useState([{ dia: null, horario_inicio: '', horario_fin: '', key_restaurante: key_restaurante }]);
     const [input_00, setInput_00] = useState([{ dia: null, horario_inicio: '', horario_fin: '', key_restaurante: key_restaurante }]);
-
-
-
-
-
 
     const addHandler = (key2) => {
 
@@ -89,6 +84,7 @@ const Horario = () => {
         _inputs[key].horario_inicio = text;
         _inputs[key].dia = key2;
         setting(_inputs);
+        //setDataFinal(_inputs);
     }
 
     const inputHandler2 = (text, key2, key) => {
@@ -143,9 +139,12 @@ const Horario = () => {
                         </SView>
                     </SView>
                 ))}
+
+
             </SView>
         </>
     })
+    
 }
 
 
