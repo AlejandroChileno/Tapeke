@@ -127,7 +127,9 @@ class Inicio extends Component {
     return (
       <>
         <BarraSuperiorTapeke>
-          <SView row border={'transparent'} >
+          <SView row border={'transparent'} onPress={() => {
+          SPopup.open({ content: this.popupOpcionDistancia() });
+        }}>
             <SView height={50} width={15}>
               <SView style={{ top: 6 }} center>
                 <SIcon name={"Location"} height={18} fill={STheme.color.secondary} />
