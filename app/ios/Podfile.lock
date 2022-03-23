@@ -255,7 +255,7 @@ PODS:
     - React-jsi (= 0.64.3)
     - React-perflogger (= 0.64.3)
   - React-jsinspector (0.64.3)
-  - react-native-document-picker (7.1.2):
+  - react-native-document-picker (7.1.3):
     - React-Core
   - react-native-fbsdk (3.0.0):
     - React
@@ -277,7 +277,7 @@ PODS:
     - Google-Maps-iOS-Utils (= 2.1.0)
     - GoogleMaps (= 3.5.0)
     - React
-  - react-native-image-picker (4.6.0):
+  - react-native-image-picker (4.7.3):
     - React-Core
   - react-native-image-resizer (1.4.5):
     - React-Core
@@ -357,10 +357,10 @@ PODS:
     - React
   - RNGestureHandler (1.10.3):
     - React-Core
-  - RNGoogleSignin (7.0.1):
+  - RNGoogleSignin (7.0.4):
     - GoogleSignIn (~> 6.0.0)
     - React-Core
-  - RNReanimated (2.3.1):
+  - RNReanimated (2.4.1):
     - DoubleConversion
     - FBLazyVector
     - FBReactNativeSpec
@@ -388,7 +388,7 @@ PODS:
     - React-RCTText
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNScreens (3.10.1):
+  - RNScreens (3.11.0):
     - React-Core
     - React-RCTImage
   - RNSVG (12.1.1):
@@ -567,7 +567,7 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: c71c5917ec0ad2de41d5d06a5855f6d5eda06971
-  FBReactNativeSpec: e44ba1db050d292697ab19acb1a30fb5448d4248
+  FBReactNativeSpec: fb16363b418471836ac65a2eef5660794742b304
   FBSDKCoreKit: 4afd6ff53d8133a433dbcda44451c9498f8c6ce4
   FBSDKLoginKit: 7181765f2524d7ebf82d9629066c8e6caafc99d0
   FBSDKShareKit: 0c0d51b3af47075a85ed9bea0e28b2fc70e3594b
@@ -589,11 +589,11 @@ SPEC CHECKSUMS:
   React-jsi: a8b09c29521c798f1783348b37b511ba7b3dbeb3
   React-jsiexecutor: df6abc9fafbecb8e5b7a5fbc5e6d4bd017d594d5
   React-jsinspector: 34e23860273a23695342f58eed3ffd3ba10c31e0
-  react-native-document-picker: 6cab727e729b108a23705e1d22ca4246b9f33a41
+  react-native-document-picker: 644b4c5658f9d781a2ac4c4625ef414c8f797083
   react-native-fbsdk: 8e92c7a334fd8d9c2b5d8b8fcd7ae2c314161099
   react-native-geolocation: cbd9d6bd06bac411eed2671810f454d4908484a8
   react-native-google-maps: 0a989abda71059db2caa98b9dacca7a8f38a47d0
-  react-native-image-picker: 66c0f718c18edab67b6c7b2c63c6566060066127
+  react-native-image-picker: ae1202414bd5c37c00b2a701daa5b6194a06b7d9
   react-native-image-resizer: 506412a2bdd70dde64a61e13505ce10f61a04369
   react-native-maps: f4b89da81626ad7f151a8bfcb79733295d31ce5c
   react-native-safe-area-context: 5cf05f49df9d17261e40e518481f2e334c6cd4b5
@@ -613,13 +613,13 @@ SPEC CHECKSUMS:
   RNFileViewer: ce7ca3ac370e18554d35d6355cffd7c30437c592
   RNFS: 3ab21fa6c56d65566d1fb26c2228e2b6132e5e32
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
-  RNGoogleSignin: 2a6f56a378c89e7b23f2aa7ca21ab598f832b91b
-  RNReanimated: 7f143675d94978c3555345d5bfa8ed6ae800c5d3
-  RNScreens: 522705f2e5c9d27efb17f24aceb2bf8335bc7b8e
+  RNGoogleSignin: aeb29e549e6748da3e5847516fdd1327c85894c5
+  RNReanimated: 58e7b950e0172235ff8296dd39ec145f9577e301
+  RNScreens: fd535547baa4ef8aeaee1a8b1e3ffd17b8df44a4
   RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
   servisofts-socket: 876f760c76a29f1735263d0b0ee811b933f16b83
   Yoga: e6ecf3fa25af9d4c87e94ad7d5d292eedef49749
 
-PODFILE CHECKSUM: 7a7d5f7ad5ff2bb878137d53a051324f46590594
+PODFILE CHECKSUM: a7fec4b18f2eb958f0c6b4f0d562144ae3033a1c
 
 COCOAPODS: 1.10.1

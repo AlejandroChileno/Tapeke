@@ -17,6 +17,9 @@ class Inicio extends Component {
           minTime: 5000,
           minDistance: 1
         });
+        SBLocation.addListener((data) => {
+          this.setState({ ...this.state })
+        })
       }} type="danger">BL Iniciar
       </SButtom>
       <SButtom onPress={() => {
@@ -50,6 +53,7 @@ class Inicio extends Component {
   getLocationInfo() {
     return <SView style={{
       position: "absolute",
+      top:55,
       width: 300,
       height: 600,
       backgroundColor: "#00000066",
@@ -59,7 +63,8 @@ class Inicio extends Component {
         {Data.history.map((obj, i) => {
           return <SView row>
             <SText color={"#fff"}>( {i} )</SText>
-            {/* <SText color={"#fff"}>{obj.latitude}</SText>
+            <SText color={"#fff"}>( {obj.distanceMoved} )</SText>
+            {/* <SText color={"#fff"}>{obj.la titude}</SText>
             <SText color={"#fff"}> | </SText>
             <SText color={"#fff"}>{obj.longitude}</SText> */}
             <SHr />
@@ -74,6 +79,7 @@ class Inicio extends Component {
 
         <SView col={"xs-12"} flex>
           <SMapView
+            showsUserLocation
             ref={(ref) => { this.mapa = ref }}
           >
             {/* {this.getMarkers()} */}

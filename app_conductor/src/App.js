@@ -29,7 +29,7 @@ const App = (props) => {
         <Provider store={store}>
             <SComponentContainer
                 // debug
-                // socket={SSocket}
+                socket={SSocket}
                 assets={Assets}
                 inputs={SConfig.SConfig_Inputs}
                 // background={<BackgroundImage />}
@@ -39,14 +39,15 @@ const App = (props) => {
                     pages: Pages,
                     title: "App Tapeke",
                 }} />
-                {/* <SSocket identificarse={(props) => {
-                    var usuario = props.state.usuarioReducer.usuarioLog;
+                <SSocket identificarse={(props) => {
+                    // var usuario = props.state.usuarioReducer.usuarioLog;
+                    var usuario = {}
                     return {
                         data: usuario ? usuario : {},
                         deviceKey: "as-asa-as",
                     }
                 }} />
-                <NavBar /> */}
+                {/* <NavBar /> */}
 
             </SComponentContainer>
         </Provider >

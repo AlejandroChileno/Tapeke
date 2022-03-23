@@ -14,7 +14,7 @@ export type LocationType = {
 export default class Data {
 
     static props = {
-        historyLimit: 100,
+        historyLimit: 10,
     }
     static history = [];
     static lastLocation: LocationType = null;
@@ -37,7 +37,7 @@ export default class Data {
             // location.speed = speed;
             location.rotation = rotation;
         }
-        console.log(Data.lastLocation);
+        console.log("onLocationChange");
     }
 
     static getLastLocation() {

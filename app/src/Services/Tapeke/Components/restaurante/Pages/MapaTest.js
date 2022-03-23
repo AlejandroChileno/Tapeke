@@ -48,6 +48,11 @@ class MapaTest extends Component {
 					// 	}
 
 					// }}
+					onPress={(e) => {
+						console.log(e)
+
+						this.setState({ regionClick: e })
+					}}
 
 					onRegionChangeComplete={(region) => {
 						console.log(region);
@@ -56,11 +61,17 @@ class MapaTest extends Component {
 
 					preventCenter>
 					<SMarker lat={this.state.region?.latitude} lng={this.state.region?.longitude}  >
-						<SIcon name="Marker" width={20} height={20} />
+						<SIcon name="Marker" width={20} height={30} />
 					</SMarker>
+					{/* <SMarker lat={this.state.regionClick?.latitude} lng={this.state.regionClick?.longitude}  >
+						<SView col={"xs-12"} height center>
+							<SIcon name="Marker" width={20} height={20} fill={"blue"}/>
+							<SHr/>
+						</SView>
+					</SMarker> */}
 				</SMapView>
 			</SView>
-			<SView  style={{ position: 'absolute', }} center   >
+			<SView style={{ position: 'absolute', }} center   >
 				{/* {onRegionChange(region) } */}
 
 				<SIcon name="Marker" width={20} height={20} fill="red" />

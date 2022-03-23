@@ -11,7 +11,6 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1EF2D9E25B044E3889F82DF1 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F437B8965BDC4A4683DC2338 /* Roboto-Regular.ttf */; };
-		49AE5F9A27977F7A004AB3CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49AE5F9927977F7A004AB3CD /* GoogleService-Info.plist */; };
 		49DC7FE027AC04AC00B93FC3 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DC7FDF27AC04AC00B93FC3 /* File.swift */; };
 		7E5D5F9597524594931580CB /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D28B82D4C3D45AD80AC4A49 /* Roboto-Bold.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -35,8 +34,7 @@
 		2223D95E77744A9CA06FC85B /* Roboto-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Light.ttf"; path = "../node_modules/servisofts-component/font/Roboto-Light.ttf"; sourceTree = "<group>"; };
 		2AEEC81AC1334751914023F0 /* LondonMM.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = LondonMM.ttf; path = "../node_modules/servisofts-component/font/LondonMM.ttf"; sourceTree = "<group>"; };
 		46F0D055081F029C2FCAD5D1 /* libPods-tapeke_app.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tapeke_app.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		49AE5F9927977F7A004AB3CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		49DC7FDE27AC04AB00B93FC3 /* tapeke_app-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "tapeke_app-Bridging-Header.h"; sourceTree = "<group>"; };
+		49BA4B2427EAAB3100142030 /* kolping_app-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "kolping_app-Bridging-Header.h"; sourceTree = "<group>"; };
 		49DC7FDF27AC04AC00B93FC3 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		50AE628FD6660FE7B65A258E /* Pods-tapeke_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tapeke_app.release.xcconfig"; path = "Target Support Files/Pods-tapeke_app/Pods-tapeke_app.release.xcconfig"; sourceTree = "<group>"; };
 		7C6F04CF755A47D0A0253172 /* LondonTwo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = LondonTwo.ttf; path = "../node_modules/servisofts-component/font/LondonTwo.ttf"; sourceTree = "<group>"; };
@@ -65,7 +63,6 @@
 		13B07FAE1A68108700A75B9A /* tapeke_app */ = {
 			isa = PBXGroup;
 			children = (
-				49AE5F9927977F7A004AB3CD /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -74,7 +71,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				49DC7FDF27AC04AC00B93FC3 /* File.swift */,
-				49DC7FDE27AC04AB00B93FC3 /* tapeke_app-Bridging-Header.h */,
+				49BA4B2427EAAB3100142030 /* kolping_app-Bridging-Header.h */,
 			);
 			name = tapeke_app;
 			sourceTree = "<group>";
@@ -188,6 +185,47 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				he,
+				en_AU,
+				ar,
+				el,
+				ja,
+				uk,
+				es_419,
+				es_MX,
+				zh_CN,
+				nb,
+				es,
+				pt_BR,
+				da,
+				it,
+				sk,
+				pt_PT,
+				ms,
+				sv,
+				cs,
+				en_IN,
+				ko,
+				hu,
+				zh_HK,
+				tr,
+				pl,
+				zh_TW,
+				en_GB,
+				vi,
+				ru,
+				fr_CA,
+				fr,
+				fi,
+				id,
+				nl,
+				th,
+				pt,
+				ro,
+				hr,
+				hi,
+				ca,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -206,7 +244,6 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				49AE5F9A27977F7A004AB3CD /* GoogleService-Info.plist in Resources */,
 				9E01A789D21340EB956E3057 /* Athelas.ttf in Resources */,
 				D3143BFF59CB45A7BE55224F /* hello_baby.ttf in Resources */,
 				98CDE9C9044740C5BCAE555F /* LondonBetween.ttf in Resources */,
@@ -329,6 +366,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NLM2M5749F;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/GooglePlaces/Frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleMaps/Maps/Frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleMaps/Base/Frameworks",
+				);
 				INFOPLIST_FILE = tapeke_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -336,7 +379,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.servisofts.kolping;
+				PRODUCT_BUNDLE_IDENTIFIER = org.servisofts.tapekeapp;
 				PRODUCT_NAME = tapeke_app;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "tapeke_app-Bridging-Header.h";
@@ -357,6 +400,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = NLM2M5749F;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/GooglePlaces/Frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleMaps/Maps/Frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleMaps/Base/Frameworks",
+				);
 				INFOPLIST_FILE = tapeke_app/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -364,7 +413,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.servisofts.kolping;
+				PRODUCT_BUNDLE_IDENTIFIER = org.servisofts.tapekeapp;
 				PRODUCT_NAME = tapeke_app;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "tapeke_app-Bridging-Header.h";

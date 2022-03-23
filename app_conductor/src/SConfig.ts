@@ -27,10 +27,10 @@ const SThemeProps: SThemeThemes = {
 const SocketProps = {
     name: 'tapeke',
 
-    host: '192.168.3.2',
+    // host: '192.168.3.2',
+    // ssl: false,
+    host: 'tapeke.servisofts.com',
     ssl: false,
-
-    // host: 'alvaro.ss.lo',
     port: {
         native: 10031,
         web: 20031,
@@ -41,7 +41,8 @@ const SocketProps = {
         // servicio:"https://servicio.ss.lo/http/",
         roles_permisos: "https://rolespermisos.servisofts.com/http/"
         // rp: "http://192.168.0.21:30016/"
-    }
+    },
+    timeReconnect: 100000,
 }
 export default {
     SocketProps,
