@@ -25,6 +25,61 @@ const Horario = () => {
         setInputsDia(_inputsDia)
         console.log(JSON.stringify(_inputsDia));
       
+         // switch (key2) {
+        //     case "0":
+        //         const _input_0 = [...input_0];
+        //         _input_0.push({ dia: null, horario_inicio: '', horario_fin: '', key_restaurante: key_restaurante });
+        //         setInput_0(_input_0);
+        //         console.log(JSON.stringify(_input_0));
+        //         break;
+        //     case "1":
+        //         const _input_1 = [...input_1];
+        //         _input_1.push({ dia: null, horario_inicio: '', horario_fin: '' });
+        //         setInput_1(_input_1);
+        //         console.log(JSON.stringify(_input_1));
+
+        //         break;
+        //     case "2":
+        //         const _input_2 = [...input_2];
+        //         _input_2.push({ dia: null, horario_inicio: '', horario_fin: '' });
+        //         setInput_2(_input_2);
+        //         console.log(JSON.stringify(_input_2));
+        //         break;
+        //     case "3":
+        //         const _input_3 = [...input_3];
+        //         _input_3.push({ dia: null, horario_inicio: '', horario_fin: '' });
+        //         setInput_3(_input_3);
+        //         console.log(JSON.stringify(_input_3));
+        //         break;
+        //     case "4":
+        //         const _input_4 = [...input_4];
+        //         _input_4.push({ dia: null, horario_inicio: '', horario_fin: '' });
+        //         setInput_4(_input_4);
+        //         console.log(JSON.stringify(_input_4));
+        //         break;
+        //     case "5":
+        //         const _input_5 = [...input_5];
+        //         _input_5.push({ dia: null, horario_inicio: '', horario_fin: '' });
+        //         setInput_5(_input_5);
+        //         console.log(JSON.stringify(_input_5));
+        //         break;
+        //     case "6":
+        //         const _input_6 = [...input_6];
+        //         _input_6.push({ dia: null, horario_inicio: '', horario_fin: '' });
+        //         setInput_6(_input_6);
+        //         console.log(JSON.stringify(_input_6));
+        //         break;
+        //     case "-1":
+        //         const _input_00 = [...input_00];
+        //         _input_00.push({ dia: null, horario_inicio: '', horario_fin: '' });
+        //         setInput_00(_input_00);
+        //         console.log(JSON.stringify(_input_00));
+        //         break;
+
+        //     default:
+        //         console.log("no hay")
+
+        // }
     }
 
     const deleteHandler = (key) => {
