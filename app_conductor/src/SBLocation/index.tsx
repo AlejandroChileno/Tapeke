@@ -39,6 +39,7 @@ class SBLocation {
             var em = new NativeEventEmitter(SSBackgroundLocation);
             em.addListener('onLocationChange', this.Listener);
         }
+        console.log("initEmitter");
     }
 
     static Listener = async (props) => {
