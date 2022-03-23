@@ -19,6 +19,8 @@ import ExploradorMapa from "./Pages/ExploradorMapa";
 
 //Horarios
 import horario from "./Pages/registroHorario";
+import alvaro from "./Pages/alvaro";
+import MapaTest from "./Pages/MapaTest";
 
 export default {
     component,
@@ -37,7 +39,8 @@ export default {
         ["admin/" + component]: lista,
         ["admin/" + component + "/registro"]: registro,
         ["admin/" + component + "/horario"]: horario,
-
+        [component + "/mapaTest"]: MapaTest,
+        // [component + "/alvaro"]: alvaro,
 
     },
     Components: {
