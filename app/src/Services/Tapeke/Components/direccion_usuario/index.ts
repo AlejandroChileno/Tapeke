@@ -5,6 +5,7 @@ const version = "2.0";
 import Actions from "./Actions";
 import Reducer from "./Reducer";
 import MapaBolivia from "./Pages/MapaBolivia";
+import Direccion from "./Pages/Direccion";
 
 export default {
     component,
@@ -16,6 +17,7 @@ export default {
     Pages: {
         [component + "/"]: MapaBolivia,
         [component + "/mapaBolivia"]: MapaBolivia,
+        [component + "/direccion"]: Direccion,
     },
     Components: {
         // Item,
