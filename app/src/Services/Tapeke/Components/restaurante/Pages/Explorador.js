@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SIcon, SLoad, SNavigation, SPage, SScrollView2, SText, STheme, SView } from 'servisofts-component';
+import { SIcon, SLoad, SNavigation, SPage, SPopup, SScrollView2, SText, STheme, SView } from 'servisofts-component';
 import BarraSuperiorTapeke from '../../../../../Components/BarraSuperiorTapeke';
 import PBarraFooter from '../../../../../Components/PBarraFooter';
 import Item2 from '../Components/Item2';
@@ -102,7 +102,8 @@ class Explorador extends React.Component {
         return (
             < SPage title={''} hidden disableScroll center >
                 <BarraSuperiorTapeke>
-                    <SView row border={'transparent'} >
+                    <SView row border={'transparent'}
+                        onPress={() => { }} >
                         <SView height={50} width={15}>
                             <SView style={{ top: 6 }} center>
                                 <SIcon name={"Location"} height={18} fill={STheme.color.secondary} />

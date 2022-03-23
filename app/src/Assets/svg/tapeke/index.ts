@@ -33,6 +33,7 @@ import BtnPie, { ReactComponent as BtnPieW } from './btnPie.svg';
 import BtnCoche, { ReactComponent as BtnCocheW } from './btnCoche.svg';
 
 import Horario, { ReactComponent as HorarioW } from './horario.svg';
+import MarcadorMapa, { ReactComponent as MarcadorMapaW } from './marcadorMapa.svg';
 
 
 const Assets = {
@@ -70,7 +71,7 @@ const Assets = {
 	"BtnCoche": { Native: BtnCoche, Web: BtnCocheW },
 
 	"Horario": { Native: Horario, Web: HorarioW },
-
+	"MarcadorMapa": { Native: MarcadorMapa, Web: MarcadorMapaW },
 }
 
 export default Assets;
