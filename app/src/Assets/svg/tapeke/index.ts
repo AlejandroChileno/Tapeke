@@ -34,7 +34,8 @@ import BtnCoche, { ReactComponent as BtnCocheW } from './btnCoche.svg';
 
 import Horario, { ReactComponent as HorarioW } from './horario.svg';
 import MarcadorMapa, { ReactComponent as MarcadorMapaW } from './marcadorMapa.svg';
-
+import SearchTapeke, { ReactComponent as SearchTapekeW } from './searchTapeke.svg';
+import LocationTapeke, { ReactComponent as LocationTapekeW } from './locationTapeke.svg';
 
 const Assets = {
 	// alvaro
@@ -72,6 +73,9 @@ const Assets = {
 
 	"Horario": { Native: Horario, Web: HorarioW },
 	"MarcadorMapa": { Native: MarcadorMapa, Web: MarcadorMapaW },
+	"SearchTapeke": { Native: SearchTapeke, Web: SearchTapekeW },
+	"LocationTapeke": { Native: LocationTapeke, Web: LocationTapekeW },
+	
 }
 
 export default Assets;

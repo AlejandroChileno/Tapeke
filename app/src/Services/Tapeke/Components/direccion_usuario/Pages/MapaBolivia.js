@@ -47,6 +47,10 @@ class MapaTest extends React.Component {
 
 			<SView col={"xs-12"} height={50} style={{ position: 'absolute',backgroundColor:'cyan', top:50 }} center   >
 				{/* <SIcon name="MarcadorMapa" width={20} height={20} /> */}
+
+				<SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>latitude: {this.state.region?.latitude}</SText>
+				<SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>longitude: {this.state.region?.longitude}</SText>
+
 			</SView>
 		</>
 	}
