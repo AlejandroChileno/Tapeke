@@ -35,12 +35,12 @@ const Horario = (props) => {
             inputAdd = eval("input_" + key2)
             setting = eval("setInput_" + key2)
         }
-
         const _inputAdd = [...inputAdd];
         _inputAdd.push({ dia: null, horario_inicio: '', horario_fin: '', key_restaurante: key_restaurante });
         setting(_inputAdd);
         console.log(JSON.stringify(_inputAdd));
     }
+
 
     const deleteHandler = (key2, key) => {
 
@@ -53,20 +53,11 @@ const Horario = (props) => {
             inputDelete = eval("input_" + key2)
             setting = eval("setInput_" + key2)
         }
-        // const _inputs = [...inputDelete];
         console.log(JSON.stringify(inputDelete) + " " + key2 + " " + key);
         const _inputs = inputDelete.filter((input, index) => index != key);
-        //const _inputs = inputDelete.splice(key, 1);
         setting(_inputs);
 
     }
-
-    // const inputHandler = (text, key) => {
-    //     const _inputs = [...inputs];
-    //     _inputs[key].value = text;
-    //     _inputs[key].key = key;
-    //     setInputs(_inputs);
-    // }
 
     const inputHandler = (text, key2, key) => {
 
@@ -105,6 +96,39 @@ const Horario = (props) => {
         setting(_inputs);
     }
 
+    const saveData = () => {
+        var dias = new SDate.getDaysOfWeek();
+        dias[-1] = { text: "Feriado", value: "Fer" };
+        return Object.keys(dias).map((key2, index) => {
+            var inputArray
+            if (key2 == -1) {
+                inputArray = eval("input_00")
+            } else {
+                inputArray = eval("input_" + key2)
+            }
+            inputArray.map((input, index) => {
+                if ((input.dia != null) && (input.horario_inicio != "") && (input.horario_fin != "")) {
+                    //setDataFinal(inputArray[key]);
+
+                    alert("ok guardar")
+
+                }
+            })
+        })
+
+
+        //   inputArray.map((input, key) => {
+        //     if((input.dia != null) && (input.horario_inicio != "") && (input.horario_fin != "")){
+        //         //setDataFinal(inputArray[key]);
+
+        //         alert("ok")
+
+        //     }
+        // })
+    }
+
+
+
     var dias = new SDate.getDaysOfWeek();
     dias[-1] = { text: "Feriado", value: "Fer" };
     return Object.keys(dias).map((key2, index) => {
@@ -115,6 +139,10 @@ const Horario = (props) => {
             inputArray = eval("input_" + key2)
         }
         console.log(inputArray)
+        //console.log(JSON.stringify(inputArray)+"---" + dias[key2].text);
+
+
+
         return <>
             <SView center  >
                 <SView col={"xs-12"} >
@@ -140,11 +168,12 @@ const Horario = (props) => {
                     </SView>
                 ))}
 
-
             </SView>
         </>
     })
-    
+
+
+
 }
 
 

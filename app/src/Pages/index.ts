@@ -12,7 +12,6 @@ import TerminosCondiciones from '../Pages/TerminosCondiciones';
 import inDevelop from './inDevelop';
 import Billetera from './Billetera';
 
-import TestHorario from './TestHorario';
 
 
 
@@ -32,7 +31,6 @@ const Pages: SPageListProps = {
     ...Services.Pages,
     "billetera": Billetera,
 
-    "testHorario": TestHorario,
 
 
 
