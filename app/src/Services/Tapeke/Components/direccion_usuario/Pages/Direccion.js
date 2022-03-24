@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SIcon, SPage, SScrollView2, SText, STheme, SView, SMapView, SMarker, SInput, SNavigation, SHr, } from 'servisofts-component';
-import PBarraFooter from '../../../../../Components/PBarraFooter';
+import { SIcon, SPage, SScrollView2, SText, STheme, SView, SMapView, SMarker, SInput, SNavigation, SHr, SLoad, } from 'servisofts-component';
 import BarraSuperiorTapeke from '../../../../../Components/BarraSuperiorTapeke';
 import PButtom from '../../../../../Components/PButtom';
+import Parent from '../index'
+import locationGoogleReducer from '../locationGoogleReducer';
 
 class Direccion extends React.Component {
 	constructor(props) {
@@ -27,18 +28,23 @@ class Direccion extends React.Component {
 						longitudeDelta: 0.0421,
 					}}
 
-					// ref={(ref) => { this.form = ref; }}
-					ref={ (map)=> this.map = map}
-					// initialRegion={this.state.init} 
+					// nos permite guardar temporal
+					// explicar
+					ref={(map) => this.map = map}
 
 					onPress={(e) => {
 						console.log(e)
 						this.setState({ regionClick: e })
+						// alert(e);
 					}}
 
 					onRegionChangeComplete={(region) => {
-						console.log(region);
+
+						// console.log(region);
 						this.setState({ region: region })
+						var auxData = Parent.Actions.geolo(region, this.props);
+						if (!auxData) return <SLoad />
+						alert(JSON.stringify("ricky aqui esta " + auxData))
 					}}
 
 					preventCenter>
@@ -47,16 +53,14 @@ class Direccion extends React.Component {
 					</SMarker>
 				</SMapView>
 			</SView>
+
 			<SView style={{ position: 'absolute', }} center   >
 				<SIcon name="MarcadorMapa" width={20} height={20} />
 			</SView>
 
 			<SView col={"xs-12"} height={50} style={{ position: 'absolute', backgroundColor: 'cyan', top: 50 }} center   >
-				{/* <SIcon name="MarcadorMapa" width={20} height={20} /> */}
-
 				<SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>latitude: {this.state.region?.latitude}</SText>
 				<SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>longitude: {this.state.region?.longitude}</SText>
-
 			</SView>
 		</>
 	}
@@ -72,7 +76,7 @@ class Direccion extends React.Component {
 					{this.showMapa()}
 				</SView >
 
-				<SView col={"xs-12 md-10 lg-8 xl-6"} height={280}  row center>
+				<SView col={"xs-12 md-10 lg-8 xl-6"} height={280} row center>
 					<SHr height={20} />
 
 					<SView col={"xs-12"} center row border={'transparent'}>

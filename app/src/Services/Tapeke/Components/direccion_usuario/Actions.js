@@ -1,5 +1,6 @@
 import SSocket from 'servisofts-socket';
 import Parent from './index';
+import locationGoogleReducer from './locationGoogleReducer';
 
 export default class Actions {
     static _getReducer = (props) => {
@@ -19,6 +20,18 @@ export default class Actions {
             })
             return null;
         }
+        return data;
+    }
+    static geolo = (data,props) => {
+        SSocket.send({
+            service: "geolocation",
+            component: 'locationGoogle',
+            // version: Parent.version,
+            type: "geocode",
+            estado: "cargando",
+            data: data
+
+        })
         return data;
     }
 
