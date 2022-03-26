@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput,SPopup } from 'servisofts-component';
+import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput, SPopup } from 'servisofts-component';
 import Parent from '..'
 import Horario from '../../horario';
 import SSocket from 'servisofts-socket';
@@ -16,7 +16,7 @@ class registroHorario extends Component {
         this.key_restaurante = SNavigation.getParam("key_restaurante");
     }
 
-    getregistro() {
+    getHorarioForm() {
         let data = {};
         if (this.key) {
             data = Horario.Actions.getByKey(this.key, this.props);
@@ -48,8 +48,33 @@ class registroHorario extends Component {
                     //     SPopup.alert("Hora no valida")
                     //     return;
                     // } else {
-                        Horario.Actions.registro({ ...values, key_restaurante: this.key_restaurante, dia: parseInt(values.dia) }, this.props);
+                    Horario.Actions.registro({ ...values, key_restaurante: this.key_restaurante, dia: parseInt(values.dia) }, this.props);
                     // }
+                }
+            }}
+        />
+    }
+
+    getPackForm() {
+        let data = {};
+        if (this.key) {
+            data = Horario.Actions.getByKey(this.key, this.props);
+            if (!data) return <SLoad />
+
+        }
+        return <SForm
+            center
+            ref={(form) => { this.form2 = form; }}
+            inputs={{
+                cantidad: { label: "Cantidad de Pack", type: "text", isRequired: true, defaultValue: data["cantidad"] },
+            }}
+            // onSubmitName={"Registrar"}
+            onSubmit={(values) => {
+
+                if (this.key) {
+                    Horario.Actions.editar({ ...data, ...values, dia: parseInt(values.dia) }, this.props);
+                } else {
+                    Horario.Actions.registro({ ...values, key_restaurante: this.key_restaurante, dia: parseInt(values.dia) }, this.props);
                 }
             }}
         />
@@ -68,7 +93,8 @@ class registroHorario extends Component {
             <SPage title={'Registro Horario'} center>
                 <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center>
                     <SHr />
-                    {this.getregistro()}
+                    {this.getHorarioForm()}
+                    {/* {this.getPackForm()} */}
                     <SHr />
                     <PButtom fontSize={20} onPress={() => {
                         this.form.submit();
