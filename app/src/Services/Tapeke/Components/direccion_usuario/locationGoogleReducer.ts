@@ -1,5 +1,6 @@
 const initialState = {
     estado: "Not Found",
+    geocode: {}
 }
 
 export default (state, action) => {
@@ -15,21 +16,18 @@ export default (state, action) => {
                 break;
 
         }
-        state.type = action.type
+        state.type = action.type;
+        state.estado = action.estado;
+        state.error = action.error;
         state = { ...state };
     }
     return state;
 }
 const geocode = (state, action) => {
-    console.log(action)
-    state.estado = action.estado;
     if (action.estado === "exito") {
-        state.data = action.data
+        var data = action.data;
+        state.geocode[data.latitude +","+ data.longitude] = action.data;
     }
-    // if (!data) return null;
-    // return state.data;
-    // if (action.estado != "exito") return;
-    // state.data[action.data.key] = action.data;
 }
 
 

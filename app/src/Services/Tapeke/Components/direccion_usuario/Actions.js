@@ -22,7 +22,15 @@ export default class Actions {
         }
         return data;
     }
-    static geolo = (data,props) => {
+    //data:{latitude:Number, longitude:Number, direccion?:String}
+    static geocode = (data,props) => {
+        var reducer = props.state.locationGoogleReducer;
+        if(reducer.geocode[data.latitude+","+data.longitude]){
+            return reducer.geocode[data.latitude+","+data.longitude]; 
+        }
+        if(reducer.estado == "cargando" && reducer.type == "geocode"){
+            return null;
+        }
         SSocket.send({
             service: "geolocation",
             component: 'locationGoogle',
@@ -32,7 +40,7 @@ export default class Actions {
             data: data
 
         })
-        return data;
+        return null;
     }
 
     static getByKey = (key, props) => {

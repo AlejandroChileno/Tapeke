@@ -33,7 +33,7 @@ class Direccion extends React.Component {
 					ref={(map) => this.map = map}
 
 					onPress={(e) => {
-						console.log(e)
+						// console.log(e)
 						this.setState({ regionClick: e })
 						// alert(e);
 					}}
@@ -42,9 +42,11 @@ class Direccion extends React.Component {
 
 						// console.log(region);
 						this.setState({ region: region })
-						var auxData = Parent.Actions.geolo(region, this.props);
-						if (!auxData) return <SLoad />
-						alert(JSON.stringify("ricky aqui esta " + auxData))
+					
+						
+ 
+
+
 					}}
 
 					preventCenter>
@@ -65,6 +67,11 @@ class Direccion extends React.Component {
 		</>
 	}
 
+	getGeocode(){
+		var geocode = Parent.Actions.geocode(this.state.region, this.props);
+		if (!geocode) return <SLoad />
+		 return <SText>{geocode.direccion}</SText>
+	}
 
 	render() {
 		return (
@@ -86,6 +93,7 @@ class Direccion extends React.Component {
 						<SHr height={10} />
 						<SView col={"xs-10"}>
 							<SInput fontSize={16} placeholder={"Busca una direccion!"} height={55} iconR={<SIcon name={"SearchTapeke"} width={40} height={14} fill={STheme.color.primary} />} />
+							{this.getGeocode()}
 						</SView>
 					</SView>
 
