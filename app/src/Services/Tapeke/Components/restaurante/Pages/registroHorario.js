@@ -1,143 +1,105 @@
-import React, { Component, useState, Row } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput } from 'servisofts-component';
+import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput, SPopup } from 'servisofts-component';
 import Parent from '..'
+import Horario from '../../horario';
 import SSocket from 'servisofts-socket';
 import PButtom from '../../../../../Components/PButtom';
-import Horario from '../Components/Horario';
-
-const defaultState = {
-    nombre: "",
-    email: "",
-    telefono: "",
-    area: "",
-};
-
-
-
 
 class registroHorario extends Component {
-    _ref
-    _ref2
+
     constructor(props) {
         super(props);
         this.state = {
         };
         this.key = SNavigation.getParam("key");
-        this._ref = {};
-        this._ref2 = {};
-
+        this.key_restaurante = SNavigation.getParam("key_restaurante");
     }
 
-
-
-    getDias() {
-        var dias = new SDate.getDaysOfWeek();
-        console.log(dias);
-        //alert(JSON.stringify(dias[0].text));
-        dias[-1] = { text: "Feriado", value: "Fer" };
-
-        return Object.keys(dias).map((key, index) => {
-            return <>
-                <SView col={"xs-12"} row>
-                    <SView col={"xs-4"}>
-                        <SText fontSize={15}>{dias[key].text}</SText>
-                    </SView>
-                    <SView col={"xs-4"}>
-                        <SInput type="text" placeholder="Hora Inicio" name={"ini_" + key} ref={ref => { this._ref[key] = ref }} />
-                    </SView>
-                    <SView col={"xs-4"}>
-                        <SInput type="text" placeholder="Hora Fin" name={"fin_" + key} ref={ref => { this._ref2[key] = ref }} />
-                    </SView>
-                    <SHr height={10} />
-                </SView>
-            </>
-        })
+    getHorarioForm() {
+        let data = {};
+        if (this.key) {
+            data = Horario.Actions.getByKey(this.key, this.props);
+            if (!data) return <SLoad />
+            var dia = data["dia"].toString();
+        }
+        return <SForm
+            center
+            ref={(form) => { this.form = form; }}
+            inputs={{
+                dia: { label: "Dia", type: "select", isRequired: true, defaultValue: dia, options: [{ key: "", content: "Vacío" }, { key: "0", content: "Lunes" }, { key: "1", content: "Martes" }, { key: "2", content: "Miércoles" }, { key: "3", content: "Jueves" }, { key: "4", content: "Viernes" }, { key: "5", content: "Sábado" }, { key: "6", content: "Domingo" }, { key: "-1", content: "Feriado" }] },
+                hora_inicio: { label: "Hora Inicio", type: "text", isRequired: true, defaultValue: data["hora_inicio"] },
+                hora_fin: { label: "Hora Fin", type: "text", isRequired: true, defaultValue: data["hora_fin"] },
+            }}
+            // onSubmitName={"Registrar"}
+            onSubmit={(values) => {
+                //validar hora
+                var date_regex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+                if (!date_regex.test(values.hora_inicio) || !date_regex.test(values.hora_fin)) {
+                    SPopup.alert("Hora no valida")
+                    return;
+                }
+                if (this.key) {
+                    Horario.Actions.editar({ ...data, ...values, dia: parseInt(values.dia) }, this.props);
+                } else {
+                    // //validar hora
+                    // var date_regex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
+                    // if (!date_regex.test(values.hora_inicio) || !date_regex.test(values.hora_fin)) {
+                    //     SPopup.alert("Hora no valida")
+                    //     return;
+                    // } else {
+                    Horario.Actions.registro({ ...values, key_restaurante: this.key_restaurante, dia: parseInt(values.dia) }, this.props);
+                    // }
+                }
+            }}
+        />
     }
 
+    getPackForm() {
+        let data = {};
+        if (this.key) {
+            data = Horario.Actions.getByKey(this.key, this.props);
+            if (!data) return <SLoad />
 
-    getHorario() {
-        return <>
-            <SView col={"xs-12"} row>
-                <SHr />
-                <SHr />
-                <SView col={"xs-12"} row center>
-                    {this.getDias()}
-                </SView>
+        }
+        return <SForm
+            center
+            ref={(form) => { this.form2 = form; }}
+            inputs={{
+                cantidad: { label: "Cantidad de Pack", type: "text", isRequired: true, defaultValue: data["cantidad"] },
+            }}
+            // onSubmitName={"Registrar"}
+            onSubmit={(values) => {
 
-            </SView>
-        </>
+                if (this.key) {
+                    Horario.Actions.editar({ ...data, ...values, dia: parseInt(values.dia) }, this.props);
+                } else {
+                    Horario.Actions.registro({ ...values, key_restaurante: this.key_restaurante, dia: parseInt(values.dia) }, this.props);
+                }
+            }}
+        />
     }
+
     render() {
-        var reducer = this.props.state[Parent.component + "Reducer"];
+        var reducer = this.props.state[Horario.component + "Reducer"];
         if (reducer.type == "registro" || reducer.type == "editar") {
             if (reducer.estado == "exito") {
-                if (reducer.type == "registro") this.key = reducer.lastRegister?.key;
-                // if (this.form) {
-                //     this.form.uploadFiles(SSocket.api.root + "upload/" + Parent.component + "/" + this.key);
-                // }
-                // if (reducer.lastRegister) {
-
-                // SNavigation.goBack();
+                reducer.estado = "";
+                SNavigation.goBack();
             }
         }
 
-        let data = {};
-        if (this.key) {
-            data = Parent.Actions.getByKey(this.key, this.props);
-            if (!data) return <SLoad />
-        }
-
         return (
-            <SPage title={'Registro de Horario - ' + data.nombre} center>
+            <SPage title={'Registro Horario'} center>
                 <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center>
-                    <SHr height={40}/>
-                    <SView col={"xs-12"} row center>
-                        <Horario key={this.key} />
-                    </SView>
                     <SHr />
-                    {/* {this.getHorario()} */}
-                    <SHr height={40}/>
+                    {this.getHorarioForm()}
+                    {/* {this.getPackForm()} */}
+                    <SHr />
                     <PButtom fontSize={20} onPress={() => {
-                        //this.form.submit();
-                        var dataHorario = {};
-                        Object.keys(this._ref).map((key, index) => {
-                            if (!this._ref[key].getValue()) return <SView />
-                            //validar hora
-                            var date_regex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
-                            if (!date_regex.test(this._ref[key].getValue()) || !date_regex.test(this._ref2[key].getValue())) {
-                                if (!date_regex.test(this._ref[key].getValue())) this._ref[key].setValue("");
-                                if (!date_regex.test(this._ref2[key].getValue())) this._ref2[key].setValue("");
-                                return <SView />
-                            } else {
-
-                                // dataHorario[key] = {
-                                //     [this.key]: {
-                                //         dia: key,
-                                //         horario_inicio: this._ref[key].getValue(),
-                                //         horario_fin: this._ref2[key].getValue(),
-                                //         key_restaurante: this.key
-                                //     }
-                                // }
-
-                                dataHorario[key] = {
-                                    dia: key,
-                                    horario_inicio: this._ref[key].getValue(),
-                                    horario_fin: this._ref2[key].getValue(),
-                                    key_restaurante: this.key
-                                }
-
-                            }
-                        });
-                        Parent.Actions.registroHorario(dataHorario, this.props);
-                        //alert("Inserto horario");
-                        console.log("Inserto horario: " + JSON.stringify(dataHorario));
-                        // }
-                        reducer.estado = "";
+                        this.form.submit();
                     }}>CONFIRMAR</PButtom>
-                    <SHr height={40} />
                     <SHr />
-
                 </SView>
             </SPage>
         );
