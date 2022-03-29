@@ -4,6 +4,8 @@ import restaurante from "./Components/restaurante"
 import pedido from "./Components/pedido"
 import horario from './Components/horario';
 import direccion_usuario from './Components/direccion_usuario';
+import pack from './Components/pack';
+
 
 const ServiceName = "tapeke";
 
@@ -13,6 +15,9 @@ const Pages: SPageListProps = {
     ...horario.Pages,
     ...pedido.Pages,
     ...direccion_usuario.Pages,
+    ...pack.Pages,
+
+    
 }
 
 const Reducers = {
@@ -20,6 +25,7 @@ const Reducers = {
     ...pedido.Reducers,
     ...horario.Reducers,
     ...direccion_usuario.Reducers,
+    ...pack.Reducers,
 }
 
 export default {

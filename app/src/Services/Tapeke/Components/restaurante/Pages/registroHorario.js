@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput, SPopup } from 'servisofts-component';
 import Parent from '..'
 import Horario from '../../horario';
+import Pack from '../../pack';
 import SSocket from 'servisofts-socket';
 import PButtom from '../../../../../Components/PButtom';
 
@@ -56,25 +57,27 @@ class registroHorario extends Component {
     }
 
     getPackForm() {
-        let data = {};
-        if (this.key) {
-            data = Horario.Actions.getByKey(this.key, this.props);
-            if (!data) return <SLoad />
+        let data2 = {};
+        if (this.key ) {
+            data2 = Pack.Actions.getByKey(this.key, this.props);
+            if (!data2) return <SLoad />
 
         }
         return <SForm
             center
-            ref={(form) => { this.form2 = form; }}
+            ref={(form2) => { this.form2 = form2; }}
             inputs={{
-                cantidad: { label: "Cantidad de Pack", type: "text", isRequired: true, defaultValue: data["cantidad"] },
+                cantidad: { label: "Cantidad de Pack", type: "text", isRequired: true, defaultValue: data2["cantidad"] },
             }}
             // onSubmitName={"Registrar"}
             onSubmit={(values) => {
 
                 if (this.key) {
-                    Horario.Actions.editar({ ...data, ...values, dia: parseInt(values.dia) }, this.props);
+                    Pack.Actions.editar({ ...data2, ...values }, this.props);
                 } else {
-                    Horario.Actions.registro({ ...values, key_restaurante: this.key_restaurante, dia: parseInt(values.dia) }, this.props);
+                    // this.key_h = reducer.lastRegister?.key;
+                    // Pack.Actions.registro({ ...values, key_horario: this.key_h }, this.props);
+                    Pack.Actions.registro({ ...values, key_horario: this.key_restaurante }, this.props);
                 }
             }}
         />
@@ -94,10 +97,11 @@ class registroHorario extends Component {
                 <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center>
                     <SHr />
                     {this.getHorarioForm()}
-                    {/* {this.getPackForm()} */}
+                    {this.getPackForm()}
                     <SHr />
                     <PButtom fontSize={20} onPress={() => {
                         this.form.submit();
+                        this.form2.submit();
                     }}>CONFIRMAR</PButtom>
                     <SHr />
                 </SView>
