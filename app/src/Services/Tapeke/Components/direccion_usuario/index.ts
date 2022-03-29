@@ -7,6 +7,7 @@ import Reducer from "./Reducer";
 import locationGoogleReducer from "./locationGoogleReducer";
 import MapaBolivia from "./Pages/MapaBolivia";
 import Direccion from "./Pages/Direccion";
+import ListaDireccion from "./Pages/ListaDireccion";
 
 export default {
     component,
@@ -20,6 +21,9 @@ export default {
         [component + "/"]: MapaBolivia,
         [component + "/mapaBolivia"]: MapaBolivia,
         [component + "/direccion"]: Direccion,
+        [component + "/listaDireccion"]: ListaDireccion,
+
+        
     },
     Components: {
         // Item,
