@@ -13,13 +13,14 @@ class PopUpDirecciones extends React.Component {
         };
     }
 
-   
+
 
     getDetail() {
-        if(!this.state.place_id) return null
+
+        if (!this.state.place_id) return null
         var detail = Parent.Actions.detail(this.state.place_id, this.props);
         if (!detail) return null;
-        //con estoy devuelve el objeto json
+        //con estoy devuelve el objeto json data {region, direccion, longitud, latitud}
         return detail;
     }
 
@@ -28,35 +29,30 @@ class PopUpDirecciones extends React.Component {
         if (this.state.find.length < 3) return null;
         var geocodeList = Parent.Actions.autoComplete({ direccion: this.state.find, ...this.props.region }, this.props);
         if (!geocodeList) return <SLoad />
-        console.log('ricardo no hay', geocodeList.direccion)
+
         var detail = this.getDetail();
-        if(detail){
-            if(this.props.callback) this.props.callback({
+        if (detail) {
+            if (this.props.callback) this.props.callback({
                 ...detail,
-                direccion:this.state.direccion
+                direccion: this.state.direccion
             })
-            this.setState({ place_id:null});
+            this.setState({ place_id: null });
         }
         return geocodeList.map((obj) => {
             console.log(obj)
             return <>
                 <SHr height={10} />
-                <SView col={"xs-12"} height={64} row center border={"transparent"} >
-                    <SView col={"xs-2"} height={64} center   >
-                        <SView height={36} width={36} style={{ backgroundColor: '#E9EAEE', borderRadius: 50, }} center   >
+                <SView col={"xs-12"} height={64} row center border={"transparent"}>
+                    <SView col={"xs-2"} height={64} center>
+                        <SView height={36} width={36} style={{ backgroundColor: '#E9EAEE', borderRadius: 50, }} center>
                             <SIcon name={'Marker'} height={24} width={40} fill={'#484848'} />
                         </SView>
                     </SView>
-                    <SView col={"xs-10"} height={64} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray, justifyContent: 'center', }}
-
-                        onPress={() => {
-                            var aux = this.setState({place_id:obj.place_id, direccion:obj.direccion } );
-                        }}
-                    >
+                    <SView col={"xs-10"} height={64} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray, justifyContent: 'center',}}
+                        onPress={() => { var aux = this.setState({ place_id: obj.place_id, direccion: obj.direccion }); }} >
                         <SText fontSize={12} font={"Roboto"} color={STheme.color.gray} > {obj.direccion} </SText>
-                        {/* <SText fontSize={12} font={"Roboto"} color={STheme.color.gray}>Santa Cruz de la Sierra, Bolivia.</SText> */}
                     </SView>
-                    
+
                 </SView></>
         });
     }
