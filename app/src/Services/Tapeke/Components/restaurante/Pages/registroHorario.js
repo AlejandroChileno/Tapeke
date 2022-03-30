@@ -15,14 +15,17 @@ class registroHorario extends Component {
         };
         this.key = SNavigation.getParam("key");
         this.key_restaurante = SNavigation.getParam("key_restaurante");
+      
     }
 
     getHorarioForm() {
         let data = {};
+      
         if (this.key) {
             data = Horario.Actions.getByKey(this.key, this.props);
             if (!data) return <SLoad />
             var dia = data["dia"].toString();
+           
         }
         return <SForm
             center
@@ -97,11 +100,11 @@ class registroHorario extends Component {
                 <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center>
                     <SHr />
                     {this.getHorarioForm()}
-                    {this.getPackForm()}
+                    {/* {this.getPackForm()} */}
                     <SHr />
                     <PButtom fontSize={20} onPress={() => {
                         this.form.submit();
-                        this.form2.submit();
+                        // this.form2.submit();
                     }}>CONFIRMAR</PButtom>
                     <SHr />
                 </SView>

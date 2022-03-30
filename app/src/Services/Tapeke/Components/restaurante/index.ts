@@ -23,6 +23,9 @@ import listaHorario from "./Pages/listaHorario";
 import alvaro from "./Pages/alvaro";
 import MapaTest from "./Pages/MapaTest";
 
+//Packs
+import pack from "./Pages/registroPack";
+
 export default {
     component,
     version,
@@ -42,6 +45,9 @@ export default {
         ["admin/" + component + "/horario"]: horario,
         ["admin/" + component + "/horario/registro"]: horario,
         ["admin/" + component + "/horario/lista"]: listaHorario,
+
+        ["admin/" + component + "/pack/registro"]: pack,
+
 
         [component + "/mapaTest"]: MapaTest,
         // [component + "/alvaro"]: alvaro,
