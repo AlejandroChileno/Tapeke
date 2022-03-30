@@ -23,12 +23,12 @@ export default class Actions {
         return data;
     }
     //data:{latitude:Number, longitude:Number, direccion?:String}
-    static geocode = (data,props) => {
+    static geocode = (data, props) => {
         var reducer = props.state.locationGoogleReducer;
-        if(reducer.geocode[data.latitude+","+data.longitude]){
-            return reducer.geocode[data.latitude+","+data.longitude]; 
+        if (reducer.geocode[data.latitude + "," + data.longitude]) {
+            return reducer.geocode[data.latitude + "," + data.longitude];
         }
-        if(reducer.estado == "cargando" && reducer.type == "geocode"){
+        if (reducer.estado == "cargando" && reducer.type == "geocode") {
             return null;
         }
         SSocket.send({
@@ -39,6 +39,46 @@ export default class Actions {
             estado: "cargando",
             data: data
 
+        })
+        return null;
+    }
+
+    static autoComplete = (data, props) => {
+        var reducer = props.state.locationGoogleReducer;
+        if (reducer.autoComplete[data.direccion]) {
+            return reducer.autoComplete[data.direccion];
+        }
+        if (reducer.estado == "cargando" && reducer.type == "autoComplete") {
+            return null;
+        }
+        SSocket.send({
+            service: "geolocation",
+            component: 'locationGoogle',
+            // version: Parent.version,
+            type: "autoComplete",
+            estado: "cargando",
+            direccion: data.direccion,
+            data: data
+
+        })
+        return null;
+    }
+
+    static detail = (place_id, props) => {
+        var reducer = props.state.locationGoogleReducer;
+        if (reducer.detail[place_id]) {
+            return reducer.detail[place_id];
+        }
+        if (reducer.estado == "cargando" && reducer.type == "detail") {
+            return null;
+        }
+        SSocket.send({
+            service: "geolocation",
+            component: 'locationGoogle',
+            // version: Parent.version,
+            type: "detail",
+            estado: "cargando",
+            place_id: place_id
         })
         return null;
     }

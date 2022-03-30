@@ -1,6 +1,9 @@
 const initialState = {
     estado: "Not Found",
-    geocode: {}
+    geocode: {},
+    autoComplete: {},
+    detail: {}
+ 
 }
 
 export default (state, action) => {
@@ -14,6 +17,9 @@ export default (state, action) => {
             case "autoComplete":
                 autoComplete(state, action);
                 break;
+            case "detail":
+                detail(state, action);
+                break;
 
         }
         state.type = action.type;
@@ -26,14 +32,22 @@ export default (state, action) => {
 const geocode = (state, action) => {
     if (action.estado === "exito") {
         var data = action.data;
-        state.geocode[data.latitude +","+ data.longitude] = action.data;
+        state.geocode[data.latitude + "," + data.longitude] = action.data;
     }
 }
 
 
 const autoComplete = (state, action) => {
-    state.estado = action.estado;
     if (action.estado === "exito") {
-        state.listaBusqueda = action.data
+        var data = action.data;
+        state.autoComplete[action.direccion] = action.data;
     }
 }
+
+const detail = (state, action) => {
+    if (action.estado === "exito") {
+        state.detail[action.place_id] = action.data;
+     }
+}
+ 
+
