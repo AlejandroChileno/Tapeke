@@ -46,7 +46,6 @@ class Direccion extends React.Component {
                         // cuando cambio de posicion (mouse)
                         this.setState({ region: region, dirType: "moveMap" });
                         // this.getGeocode();
-
                     }}
 
                     preventCenter>
@@ -96,9 +95,9 @@ class Direccion extends React.Component {
                     <SView col={"xs-12"} center row border={'transparent'}>
                         <SView col={"xs-10"}>
                             <SInput fontSize={16} placeholder={"Nombre de la Ubicación"}
-                            isRequired={true}
-                            height={55}
-                            ref={(ref)=>{this.inpNombreUbicacion= ref}} 
+                                isRequired={true}
+                                height={55}
+                                ref={(ref) => { this.inpNombreUbicacion = ref }}
                             />
                         </SView>
                         <SHr height={10} />
@@ -120,9 +119,6 @@ class Direccion extends React.Component {
                                         key: "autocomplete", content:
                                             <PopUpDirecciones region={this.state.region} callback={(resp) => {
                                                 SPopup.close("autocomplete");
-                                                // ...
-                                                // initialRegion={region}
-                                                // this.setState({ nombre: resp.direccion });
                                                 this.state.region = resp;
                                                 this.state.dirType = "autoComplete"
                                                 this.state.nombre = resp.direccion;
@@ -147,9 +143,9 @@ class Direccion extends React.Component {
                     <SView col={"xs-8.8"} row center border={'transparent'}  >
                         <PButtom fontSize={16} onPress={() => {
 
-                        if(this.inpNombreUbicacion.verify()){
-                            alert("registro la ubicacion")
-                        }
+                            if (this.inpNombreUbicacion.verify()) {
+                                alert("registro la ubicacion")
+                            }
 
                         }}>ELEGIR ESTA UBICACIÓN</PButtom>
                     </SView>
