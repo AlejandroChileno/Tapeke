@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput } from 'servisofts-component';
+import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput, SPopup} from 'servisofts-component';
 import Parent from '..'
 import SSocket from 'servisofts-socket';
 import PButtom from '../../../../../Components/PButtom';
+
+const inputHandler = (text, nro)=>{
+    console.log(text.nativeEvent.text);
+    var value = text.nativeEvent.text;
+    if(value.length >= nro){
+        SPopup.alert("Usted no puede ingresar más de "+nro+" caracteres");
+    }
+  }
+
 
 class registro extends Component {
     _ref
@@ -17,6 +26,8 @@ class registro extends Component {
         this._ref2 = {};
     }
 
+    
+
     getregistro() {
         let data = {};
         if (this.key) {
@@ -29,10 +40,11 @@ class registro extends Component {
             inputs={{
                 foto_p: { type: "image", isRequired: false, defaultValue: `${SSocket.api.root}${Parent.component}/${this.key}?time=${new Date().getTime()}`, col: "xs-4 sm-3.5 md-3 lg-2.5 xl-2.5", style: { borderRadius: 8, overflow: 'hidden', width: 130, height: 130, borderWidth: 0 } },
                 nombre: { label: "Nombres", type: "text", isRequired: true, defaultValue: data["nombre"] },
-                descripcion: { label: "Descripcion", type: "textArea", isRequired: true, defaultValue: data["descripcion"] },
+                descripcion: { label: "Descripcion", type: "textArea", isRequired: true, defaultValue: data["descripcion"], onChange: (text) => { inputHandler(text, 350) }, maxLength: 350},
                 direccion: { label: "Direccion", type: "text", isRequired: false, defaultValue: data["direccion"] },
                 lat: { label: "Lat", type: "text", isRequired: false, defaultValue: data["lat"] },
                 lng: { label: "Lng", type: "text", isRequired: false, defaultValue: data["lng"] },
+               
             }}
             // onSubmitName={"Registrar"}
             onSubmit={(values) => {
@@ -41,7 +53,6 @@ class registro extends Component {
                 } else {
                     Parent.Actions.registro(values, this.props);
                 }
-                //console.log(JSON.stringify(values));
             }}
         />
     }
