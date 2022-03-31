@@ -38,6 +38,9 @@ import MarcadorMapa, { ReactComponent as MarcadorMapaW } from './marcadorMapa.sv
 import SearchTapeke, { ReactComponent as SearchTapekeW } from './searchTapeke.svg';
 import LocationTapeke, { ReactComponent as LocationTapekeW } from './locationTapeke.svg';
 
+import IconChecked, { ReactComponent as IconCheckedw } from './iconChecked.svg';
+import IconCheckedOk, { ReactComponent as IconCheckedOkw } from './iconCheckedOk.svg';
+
 const Assets = {
 	// alvaro
 	"Billetera": { Native: Billetera, Web: BilleteraW },
@@ -77,7 +80,8 @@ const Assets = {
 	"MarcadorMapa": { Native: MarcadorMapa, Web: MarcadorMapaW },
 	"SearchTapeke": { Native: SearchTapeke, Web: SearchTapekeW },
 	"LocationTapeke": { Native: LocationTapeke, Web: LocationTapekeW },
-	
+	"IconChecked": { Native: IconChecked, Web: IconCheckedw },
+	"IconCheckedOk": { Native: IconCheckedOk, Web: IconCheckedOkw },
 }
 
 export default Assets;
