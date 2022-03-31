@@ -15,6 +15,10 @@ class Direccion extends React.Component {
                 latitude: -17.808690397665742,
                 longitude: -63.16250034566757,
             },
+            dirType: "moveMap",
+            nombre: " "
+
+
         };
     }
 
@@ -29,19 +33,20 @@ class Direccion extends React.Component {
                         longitudeDelta: 0.0421,
                     }}
 
-                    // nos permite guardar temporal, explicar
+
+
+                    // para ejecutar centar mapa
                     ref={(map) => this.map = map}
 
-                    onPress={(e) => {
-                        // cuando cambio de posicion (mouse)
-                        alert('paso 1');
-                        this.setState({ regionClick: e });
-                    }}
+                    // onPress={(e) => {
+                    //      this.setState({ regionClick: e });
+                    // }}
 
                     onRegionChangeComplete={(region) => {
                         // cuando cambio de posicion (mouse)
-                        alert('paso 2');
-                        this.setState({ region: region });
+                        this.setState({ region: region, dirType: "moveMap" });
+                        // this.getGeocode();
+
                     }}
 
                     preventCenter>
@@ -58,19 +63,30 @@ class Direccion extends React.Component {
     }
 
     getGeocode() {
+        if (this.state.dirType != "moveMap") return null;
         var geocode = Parent.Actions.geocode(this.state.region, this.props);
         if (!geocode) return 'cargando...';
-        return geocode.direccion;
+        var aux = geocode.direccion;
+        // alert('getGeocode');
+
+        if (this.state.nombre != aux) {
+            this.state.nombre = aux;
+            this.setState({ ...this.state });
+
+        }
+
+        return aux;
     }
 
     render() {
+        this.getGeocode()
         return (
             <SPage title={''} hidden disableScroll center>
                 <BarraSuperiorTapeke  >
                     <SText font={"Roboto"} fontSize={25} color={STheme.color.secondary}>Mis Favoritos</SText>
                 </BarraSuperiorTapeke>
 
-                <SView col={"xs-12 md-10 lg-8 xl-6"} center flex    >
+                <SView col={"xs-12 md-10 lg-8 xl-6"} center flex>
                     {this.showMapa()}
                 </SView >
 
@@ -79,21 +95,42 @@ class Direccion extends React.Component {
 
                     <SView col={"xs-12"} center row border={'transparent'}>
                         <SView col={"xs-10"}>
-                            <SInput fontSize={16} placeholder={"Nombre de la Ubicación"} height={55} />
+                            <SInput fontSize={16} placeholder={"Nombre de la Ubicación"}
+                            isRequired={true}
+                            height={55}
+                            ref={(ref)=>{this.inpNombreUbicacion= ref}} 
+                            />
                         </SView>
                         <SHr height={10} />
+
                         <SView col={"xs-10"}>
-                            <SInput fontSize={16} placeholder={"Busca una direccion!"} height={55} value={this.getGeocode()} iconR={<SIcon name={"SearchTapeke"} width={40} height={14} fill={STheme.color.primary} />}
+                            <SInput
+                                style={{
+                                    backgroundColor: STheme.color.card + 1,
+                                    height: 55,
+                                    borderRadius: 16,
+                                    color: STheme.color.text,
+                                    fontSize: 16
+                                }}
+                                placeholder={"Busca una direccion!"}
+                                // value={this.getGeocode()}
+                                value={this.state.nombre}
                                 onPress={() => {
                                     SPopup.open({
                                         key: "autocomplete", content:
                                             <PopUpDirecciones region={this.state.region} callback={(resp) => {
                                                 SPopup.close("autocomplete");
-                                                alert(JSON.stringify(resp));
-                                                this.setState({ region: resp });
+                                                // ...
+                                                // initialRegion={region}
+                                                // this.setState({ nombre: resp.direccion });
+                                                this.state.region = resp;
+                                                this.state.dirType = "autoComplete"
+                                                this.state.nombre = resp.direccion;
+                                                this.setState({ ...this.state });
                                             }} />
                                     });
                                 }}
+                                iconR={<SIcon name={"SearchTapeke"} width={40} height={18} fill={STheme.color.primary} />}
                             />
                         </SView>
                     </SView>
@@ -108,15 +145,22 @@ class Direccion extends React.Component {
                     </SView>
 
                     <SView col={"xs-8.8"} row center border={'transparent'}  >
-                        <PButtom fontSize={16} onPress={() => { }}>ELEGIR ESTA UBICACIÓN</PButtom>
+                        <PButtom fontSize={16} onPress={() => {
+
+                        if(this.inpNombreUbicacion.verify()){
+                            alert("registro la ubicacion")
+                        }
+
+                        }}>ELEGIR ESTA UBICACIÓN</PButtom>
                     </SView>
                     <SHr height={10} />
                 </SView>
 
                 <SView col={"xs-2.5"} height={80} style={{ position: 'absolute', right: 30 }} border={'blue'}>
                     <SHr height={10} />
-                    <SText font={"Roboto"} fontSize={16} >Mis Favoritos</SText>
-                    <SText font={"Roboto"} fontSize={12} >Direccion: {this.getGeocode()}</SText>
+                    <SText font={"Roboto"} fontSize={16} >Mi información</SText>
+                    {/* <SText font={"Roboto"} fontSize={12} >Direccion: {this.getGeocode()}</SText> */}
+                    <SText font={"Roboto"} fontSize={12} >Dirección: {this.state.nombre}</SText>
                     <SText font={"Roboto"} fontSize={12} >latitude: {this.state.region?.latitude}</SText>
                     <SText font={"Roboto"} fontSize={12} >Longitude: {this.state.region?.longitude}</SText>
                 </SView >
