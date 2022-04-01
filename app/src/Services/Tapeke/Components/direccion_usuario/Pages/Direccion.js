@@ -89,6 +89,12 @@ class Direccion extends React.Component {
                 type:"editarMiDireccion",
                 data:reducer.lastRegister
             })
+
+     
+
+            _direcion=this.state?.nombre,
+            _latitude=this.state?.latitude,
+            _longitude=this.state?.longitude,
             SNavigation.goBack()
         }
         this.getGeocode()

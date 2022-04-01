@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SIcon, SMapView, SMarker, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
+import { SHr, SIcon, SMapView, SMarker, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
 import BarraSuperiorTapeke from '../../../../../Components/BarraSuperiorTapeke';
 import Direccion from '../../../../../Components/BarraSuperiorTapeke/Direccion';
 import PBarraFooter from '../../../../../Components/PBarraFooter';
@@ -59,6 +59,16 @@ class exploradorMapa extends React.Component {
                         <Direccion />
                     </BarraSuperiorTapeke>
                     {this.showMapa()}
+
+                    <SView col={"xs-2.5"} height={80} style={{ position: 'absolute', right: 30 }} border={'blue'}>
+                        <SHr height={10} />
+                        <SText font={"Roboto"} fontSize={16} >Mi información</SText>
+                        {/* <SText font={"Roboto"} fontSize={12} >Direccion: {this.getGeocode()}</SText> */}
+                        <SText font={"Roboto"} fontSize={12} >Dirección: {this.state.nombre}</SText>
+                        <SText font={"Roboto"} fontSize={12} >latitude: {this.state.region?.latitude}</SText>
+                        <SText font={"Roboto"} fontSize={12} >Longitude: {this.state.region?.longitude}</SText>
+                    </SView >
+
                     <PBarraFooter />
                 </ SPage >
             </>
