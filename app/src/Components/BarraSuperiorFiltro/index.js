@@ -35,7 +35,10 @@ class index extends Component {
 
 
                     <SView height width={80} center backgroundColor={'transparent'} onPress={() => {
-                        SNavigation.navigate("restaurante/explorador");
+                        if(this.props.clearAlvaro){
+                            this.props.clearAlvaro()
+                        }
+
                     }} >
                         <SText font={"Roboto"} fontSize={14} color={"#fff"}>Limpiar todo</SText>
                         <SHr color='#fff' height={0.3}></SHr>
@@ -46,7 +49,8 @@ class index extends Component {
                     </SView>
 
                     <SView height width={80} center backgroundColor={'transparent'} onPress={() => {
-                        SNavigation.navigate("restaurante/explorador");
+                        // SNavigation.navigate("restaurante/explorador");
+                        SNavigation.goBack();
                     }}>
 
                         <SText font={"Arial"} fontSize={24} color={"#fff"} bold>X</SText>

@@ -35,10 +35,12 @@ export default {
     },
     Pages: {
         [component + "/perfil"]: Perfil,
-        ["favoritos"]: Favoritos,
+        // ["favoritos"]: Favoritos,
         [component + "/categoria"]: Categoria,
-        [component + "/filtros"]: Filtros,
         ["explorar"]: Explorador,
+        ["explorar/filtros"]: Filtros,
+        // [component + "/filtros"]: Filtros,
+
         ["mapa"]: ExploradorMapa,
         ["admin/" + component]: lista,
         ["admin/" + component + "/registro"]: registro,
