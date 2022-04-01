@@ -4,6 +4,8 @@ import SSocket from 'servisofts-socket';
 // import restaurante from '..';
 import horario from '../../horario';
 import { connect } from 'react-redux';
+import FavoritoButtom from '../../favorito/Components/FavoritoButtom';
+import restaurante from '..';
 
 
 class Item2 extends Component {
@@ -63,6 +65,8 @@ class Item2 extends Component {
 
     }
     HeaderItemDisponible() {
+        var auxRestaurante = restaurante.Actions.getByKey(this.props.data.key, this.props)
+        if (!auxRestaurante) return <SLoad />
         return <>
             <SView col={"xs-11"} height={30} row style={{ position: 'absolute', top: 15 }} border={'transparent'}>
                 <SView col={"xs-10"} row center style={{ justifyContent: 'flex-start', }}>
@@ -71,9 +75,11 @@ class Item2 extends Component {
                     </SView>
                 </SView>
                 <SView col={"xs-2"} row center style={{ justifyContent: 'flex-end', }}>
-                    <SView width={24} height={24} center style={{ borderRadius: 50, overflow: 'hidden', backgroundColor: '#FFFDFC' }}>
+                    <FavoritoButtom data={auxRestaurante} size={20}/>
+
+                    {/* <SView width={24} height={24} center style={{ borderRadius: 50, overflow: 'hidden', backgroundColor: '#FFFDFC' }}>
                         <SIcon name={'Favorite'} width={14} height={13} fill={'#FA4A0C'} />
-                    </SView>
+                    </SView> */}
                 </SView>
             </SView>
 

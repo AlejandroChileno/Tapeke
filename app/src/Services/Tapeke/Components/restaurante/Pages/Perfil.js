@@ -6,6 +6,7 @@ import PButtom from '../../../../../Components/PButtom';
 import SSocket from 'servisofts-socket'
 import Parent from '../index';
 import horario from '../../horario';
+import FavoritoButtom from '../../favorito/Components/FavoritoButtom';
 
 class Paso1 extends React.Component {
     constructor(props) {
@@ -199,11 +200,7 @@ class Paso1 extends React.Component {
                 <SView col={"xs-12  "} center >
                     <SView flex col={"xs-12 sm-10 md-8 lg-6 xl-4"} style={{ justifyContent: "flex-end" }} >
                         <SView center style={{ position: 'absolute', zIndex: 9999999, borderRadius: 30, right: 20, top: -100 }} width={50} height={50} backgroundColor={STheme.color.white}>
-                            <SView height={35} width={35} style={{
-                                borderRadius: 50, overflow: 'hidden', backgroundColor: 'white', position: 'absolute',
-                            }} center>
-                                <SIcon name={'Favorite'} height={30} width={30} fill={'#FA4A0C'} />
-                            </SView>
+                           <FavoritoButtom data={auxRestaurante}/>
                         </SView>
                     </SView>
                 </SView>
