@@ -29,6 +29,9 @@ public class Manejador {
             case Pack.COMPONENT:
                 Pack.onMessage(obj, session);
                 break;
+            case Favorito.COMPONENT:
+                Favorito.onMessage(obj, session);
+                break;
             case BackgroundLocation.COMPONENT:
                 BackgroundLocation.onMessage(obj, session);
                 break;
