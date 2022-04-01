@@ -1,3 +1,4 @@
+import { SStorage } from 'servisofts-component'
 import Parent from './index'
 
 type DataProps = {
@@ -10,10 +11,24 @@ type DataProps = {
 }
 
 const initialState = () => {
-    return {
+
+    // return {
+    //     component: Parent.component,
+    //     version: Parent.version,
+    // };
+    var initialState: any = {
         component: Parent.component,
         version: Parent.version,
-    };
+        miDistancia: 30,
+    }
+    SStorage.getItem("miDireccion_log", (resp: any) => {
+        initialState.miDireccion = JSON.parse(resp);
+    })
+    SStorage.getItem("miDistancia_log", (resp: any) => {
+        if(!resp) return;
+        initialState.miDistancia = resp;
+    })
+    return initialState;
 }
 export default (state: any, action: DataProps) => {
     if (!state) return initialState();
@@ -34,6 +49,8 @@ const TypesSwitch = (state: any, action: DataProps) => {
         case "registro": return registro(state, action);
         case "editar": return editar(state, action);
         case "getById": return getById(state, action);
+        case "editarMiDireccion": return editarMiDireccion(state, action);
+        case "editarMiDistancia": return editarMiDistancia(state, action);
     }
 }
 
@@ -55,4 +72,12 @@ const editar = (state: any, action: DataProps) => {
 const getById = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
     state.data[action.data.key] = action.data;
+}
+const editarMiDireccion = (state: any, action: DataProps) => {
+    state.miDireccion= action.data;
+    SStorage.setItem("miDireccion_log", JSON.stringify(action.data));
+}
+const editarMiDistancia = (state: any, action: DataProps) => {
+    state.miDistancia= action.data;
+    SStorage.setItem("miDistancia_log", action.data);
 }

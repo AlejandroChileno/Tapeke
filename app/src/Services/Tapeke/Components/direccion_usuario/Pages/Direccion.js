@@ -70,10 +70,30 @@ class Direccion extends React.Component {
         return aux;
     }
 
+    getAlgo() {
+      //  if (!this.props.state.direccion_usuarioReducer.miDireccion) return null;
+        return <SView col={"xs-10"} >
+            <SInput fontSize={16} placeholder={"Nombre de la Ubicación"}
+                isRequired={true}
+                height={55}
+                ref={(ref) => { this.inpNombreUbicacion = ref }}
+            />
+        </SView>
+    }
     render() {
+        let reducer = this.props.state.direccion_usuarioReducer
+        if(reducer.type == "registro" && reducer.estado == "exito") {
+            reducer.estado ="";
+            this.props.dispatch({
+                component:"direccion_usuario",
+                type:"editarMiDireccion",
+                data:reducer.lastRegister
+            })
+            SNavigation.goBack()
+        }
         this.getGeocode()
         return (
-            <SPage title={'Mis Direcciones'} disableScroll center>
+            <SPage title={'Elegir mi dirección'} disableScroll center>
                 {/* <BarraSuperiorTapeke  >
                     <SText font={"Roboto"} fontSize={25} color={STheme.color.secondary}>Mis Direcciones</SText>
                 </BarraSuperiorTapeke> */}
@@ -86,13 +106,7 @@ class Direccion extends React.Component {
                     <SHr height={20} />
 
                     <SView col={"xs-12"} center row border={'transparent'}>
-                        <SView col={"xs-10"}>
-                            <SInput fontSize={16} placeholder={"Nombre de la Ubicación"}
-                                isRequired={true}
-                                height={55}
-                                ref={(ref) => { this.inpNombreUbicacion = ref }}
-                            />
-                        </SView>
+                        {this.getAlgo()}
                         <SHr height={10} />
 
                         <SView col={"xs-10"}>
@@ -137,10 +151,10 @@ class Direccion extends React.Component {
                     <SView col={"xs-8.8"} row center border={'transparent'}  >
                         <PButtom fontSize={16} onPress={() => {
                             if (this.inpNombreUbicacion.verify()) {
-                               // alert("registro la ubicacion")
+                                // alert("registro la ubicacion")
                             }
 
-                            var data ={
+                            var data = {
                                 descripcion: this.inpNombreUbicacion.getValue(),
                                 latitude: this.state.region?.latitude,
                                 longitude: this.state.region?.longitude,
@@ -149,7 +163,7 @@ class Direccion extends React.Component {
                             //console.log(JSON.stringify(data)+"  aquii")
 
                             Parent.Actions.registro(data, this.props);
-                            SNavigation.goBack();
+                            //SNavigation.goBack();
                         }}>ELEGIR ESTA UBICACIÓN</PButtom>
                     </SView>
                     <SHr height={10} />
