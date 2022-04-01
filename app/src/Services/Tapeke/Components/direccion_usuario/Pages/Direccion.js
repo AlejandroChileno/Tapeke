@@ -73,7 +73,7 @@ class Direccion extends React.Component {
     render() {
         this.getGeocode()
         return (
-            <SPage title={'Mis Direcciones'}  disableScroll center>
+            <SPage title={'Mis Direcciones'} disableScroll center>
                 {/* <BarraSuperiorTapeke  >
                     <SText font={"Roboto"} fontSize={25} color={STheme.color.secondary}>Mis Direcciones</SText>
                 </BarraSuperiorTapeke> */}
@@ -113,7 +113,7 @@ class Direccion extends React.Component {
                                             <PopUpDirecciones region={this.state.region} callback={(resp) => {
                                                 SPopup.close("autocomplete");
                                                 this.state.region = resp;
-                                                this.map.animateToRegion(resp,1000);
+                                                this.map.animateToRegion(resp, 1000);
                                                 this.state.dirType = "autoComplete"
                                                 this.state.nombre = resp.direccion;
                                                 this.setState({ ...this.state });
@@ -137,9 +137,19 @@ class Direccion extends React.Component {
                     <SView col={"xs-8.8"} row center border={'transparent'}  >
                         <PButtom fontSize={16} onPress={() => {
                             if (this.inpNombreUbicacion.verify()) {
-                                alert("registro la ubicacion")
+                               // alert("registro la ubicacion")
                             }
 
+                            var data ={
+                                descripcion: this.inpNombreUbicacion.getValue(),
+                                latitude: this.state.region?.latitude,
+                                longitude: this.state.region?.longitude,
+                                direccion: this.state.nombre,
+                            }
+                            //console.log(JSON.stringify(data)+"  aquii")
+
+                            Parent.Actions.registro(data, this.props);
+                            SNavigation.goBack();
                         }}>ELEGIR ESTA UBICACIÓN</PButtom>
                     </SView>
                     <SHr height={10} />

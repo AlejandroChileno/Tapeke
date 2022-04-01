@@ -23,6 +23,7 @@ export default {
         // [component + "/mapaBolivia"]: MapaBolivia,
         [component + ""]: Direccion,
         [component + "/lista"]: ListaDireccion,
+        ["direcciones"]: ListaDireccion,
         // [component + "/popupdirecciones"]: PopUpDirecciones,
         
         

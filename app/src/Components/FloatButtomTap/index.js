@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, View, Text } from "react-native";
 import { SIcon } from 'servisofts-component';
-const FloatButtom = (props) => {
+const FloatButtomTap = (props) => {
     if (props.esconder) {
         return <View />
     }
@@ -22,7 +22,7 @@ const FloatButtom = (props) => {
                 // margin: 4,
                 ...props.style
             }}>
-            <SIcon name={"Add"} fill="#fff"/>
+            <SIcon name={"AgregarTap"} fill="#fff"/>
             {/* <Svg name={"Add"} style={{
                 width: "100%",
                 height: "100%",
@@ -31,4 +31,4 @@ const FloatButtom = (props) => {
         </TouchableOpacity >
     )
 }
-export default FloatButtom;
+export default FloatButtomTap;
