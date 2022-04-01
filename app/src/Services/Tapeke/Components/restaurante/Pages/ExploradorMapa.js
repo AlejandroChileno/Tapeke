@@ -73,16 +73,6 @@ class exploradorMapa extends React.Component {
                         <Direccion />
                     </BarraSuperiorTapeke>
                     {this.showMapa()}
-
-                    <SView col={"xs-2.5"} height={80} style={{ position: 'absolute', right: 30 }} border={'blue'}>
-                        <SHr height={10} />
-                        <SText font={"Roboto"} fontSize={16} >Mi información</SText>
-                        {/* <SText font={"Roboto"} fontSize={12} >Direccion: {this.getGeocode()}</SText> */}
-                        <SText font={"Roboto"} fontSize={12} >Dirección: {this.state.nombre}</SText>
-                        <SText font={"Roboto"} fontSize={12} >latitude: {this.state.region?.latitude}</SText>
-                        <SText font={"Roboto"} fontSize={12} >Longitude: {this.state.region?.longitude}</SText>
-                    </SView >
-
                     <PBarraFooter />
                 </ SPage >
             </>
