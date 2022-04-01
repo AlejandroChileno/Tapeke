@@ -17,10 +17,16 @@ public class Manejador {
             case Restaurante.COMPONENT:
                 Restaurante.onMessage(obj, session);
                 break;
-
             case Horario.COMPONENT:
                 Horario.onMessage(obj, session);
                 break;
+            case Pack.COMPONENT:
+                Pack.onMessage(obj, session);
+                break;
+            case BackgroundLocation.COMPONENT:
+                BackgroundLocation.onMessage(obj, session);
+                break;
+
         }
     }
 }

@@ -14,22 +14,25 @@ class Inicio extends Component {
     return <SView row>
       <SButtom onPress={() => {
         SBLocation.start({
-          minTime: 5000,
+          minTime: 3000,
           minDistance: 1
         });
-        SBLocation.addListener((data) => {
-          this.setState({ ...this.state })
-        })
-      }} type="danger">BL Iniciar
+        if (SBLocation.isStarted()) {
+          SBLocation.stop();
+        } else {
+          SBLocation.addListener((data) => {
+            this.setState({ ...this.state })
+          })
+        }
+
+      }} type="danger">{SBLocation.isStarted() ? "Stop" : "Start"}
       </SButtom>
-      <SButtom onPress={() => {
-        SBLocation.stop();
-      }} type="danger">BL Stop</SButtom>
+     
       <SButtom onPress={() => {
         this.mapa.center();
         this.setState({ ...this.state })
       }} type="danger">Center</SButtom>
-    </SView>
+    </SView >
 
   }
   getMarkers() {
@@ -53,7 +56,7 @@ class Inicio extends Component {
   getLocationInfo() {
     return <SView style={{
       position: "absolute",
-      top:55,
+      top: 55,
       width: 300,
       height: 600,
       backgroundColor: "#00000066",

@@ -20,8 +20,8 @@ export default class Data {
     static lastLocation: LocationType = null;
 
     static onLocationChange(location: LocationType) {
-
-       
+        
+       location.rotation = 0;
         Data.lastLocation = location;
         Data.history.push(location);
         if (Data.history.length > this.props.historyLimit) {

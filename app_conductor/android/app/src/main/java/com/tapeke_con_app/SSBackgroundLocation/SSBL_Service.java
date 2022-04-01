@@ -54,7 +54,6 @@ public class SSBL_Service extends Service implements LocationListener {
             locationManager.removeUpdates(this);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, this.minTime, this.minDistance, this);
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, this.minTime, this.minDistance, this);
-
     }
 
     @Override
@@ -105,16 +104,16 @@ public class SSBL_Service extends Service implements LocationListener {
             data.put("accuracy",location.getAccuracy());
             data.put("speed",location.getSpeed());
             data.put("time",location.getTime());
-
-        } catch (JSONException e) {
+            Log.i("LocationChange",data.toString());
+            Context context = getApplicationContext();
+            Intent myIntent = new Intent(context, SSBL_event.class);
+            myIntent.putExtra("data",data.toString());
+            context.startService(myIntent);
+            HeadlessJsTaskService.acquireWakeLockNow(context);
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        Log.i("LocationChange",data.toString());
-        Context context = getApplicationContext();
-        Intent myIntent = new Intent(context, SSBL_event.class);
-        myIntent.putExtra("data",data.toString());
-        context.startService(myIntent);
-        HeadlessJsTaskService.acquireWakeLockNow(context);
+
     }
 
     @Override
@@ -141,6 +140,7 @@ public class SSBL_Service extends Service implements LocationListener {
             locationManager.removeUpdates(this);
         }
         stopForeground(true);
+
     }
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
