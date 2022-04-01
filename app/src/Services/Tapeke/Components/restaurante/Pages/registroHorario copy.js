@@ -1,9 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, useState, Row } from 'react';
 import { connect } from 'react-redux';
 import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput } from 'servisofts-component';
 import Parent from '..'
 import SSocket from 'servisofts-socket';
 import PButtom from '../../../../../Components/PButtom';
+import Horario from '../Components/Horario';
+
+const defaultState = {
+    nombre: "",
+    email: "",
+    telefono: "",
+    area: "",
+};
+
+
+
 
 class registroHorario extends Component {
     _ref
@@ -15,14 +26,16 @@ class registroHorario extends Component {
         this.key = SNavigation.getParam("key");
         this._ref = {};
         this._ref2 = {};
+
     }
+
+
 
     getDias() {
         var dias = new SDate.getDaysOfWeek();
         console.log(dias);
         //alert(JSON.stringify(dias[0].text));
         dias[-1] = { text: "Feriado", value: "Fer" };
-
 
         return Object.keys(dias).map((key, index) => {
             return <>
@@ -44,7 +57,6 @@ class registroHorario extends Component {
 
 
     getHorario() {
-
         return <>
             <SView col={"xs-12"} row>
                 <SHr />
@@ -79,9 +91,13 @@ class registroHorario extends Component {
         return (
             <SPage title={'Registro de Horario - ' + data.nombre} center>
                 <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center>
+                    <SHr height={40}/>
+                    <SView col={"xs-12"} row center>
+                        <Horario key={this.key} />
+                    </SView>
                     <SHr />
-                    {this.getHorario()}
-                    <SHr />
+                    {/* {this.getHorario()} */}
+                    <SHr height={40}/>
                     <PButtom fontSize={20} onPress={() => {
                         //this.form.submit();
                         var dataHorario = {};
@@ -114,12 +130,13 @@ class registroHorario extends Component {
                             }
                         });
                         Parent.Actions.registroHorario(dataHorario, this.props);
-                        //alert("Inserto horario");
                         console.log("Inserto horario: " + JSON.stringify(dataHorario));
                         // }
                         reducer.estado = "";
                     }}>CONFIRMAR</PButtom>
+                    <SHr height={40} />
                     <SHr />
+
                 </SView>
             </SPage>
         );

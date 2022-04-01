@@ -8,6 +8,7 @@ class Registro extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            envio: 0,
         };
         this.key = SNavigation.getParam("key");
         this.type = SNavigation.getParam("type");
@@ -90,7 +91,11 @@ class Registro extends Component {
                                 break;
                         }
                     }
-                    Parent.Actions.registro(values, this.props);
+                    if (this.state.envio == 0) {
+                        SPopup.alert("Debes aceptar los términos y condiciones")
+                    } else {
+                        Parent.Actions.registro(values, this.props);
+                    }
                 }
             }}
         />
@@ -170,8 +175,8 @@ class Registro extends Component {
                 <SHr height={25} />
                 <SView col={"xs-11 sm-9 md-7 lg-5 xl-4"} height={30}>
                     <SView col={"xs-10"} row center>
-                        <SView col={"xs-1"} >
-                            <SIcon name='IconChecked' fill={STheme.color.primary} width={18} height={18}></SIcon>
+                        <SView col={"xs-1"} onPress={() => { this.setState(this.state.envio == 0 ? { envio: 1 } : { envio: 0 }); }}>
+                            <SIcon name={this.state.envio != 0 ? 'IconCheckedOk' : "IconChecked"} fill={STheme.color.primary} width={30} height={30}></SIcon>
                         </SView>
                         <SView col={"xs-9"} center style={{ alignItems: "center" }} onPress={() => {
                             SNavigation.navigate('terminos');
@@ -187,7 +192,9 @@ class Registro extends Component {
                     props={{
                         type: "outline"
                     }}
-                    onPress={() => { this.form.submit() }}
+                    onPress={() => {
+                        this.form.submit()
+                    }}
                 >{(this.key ? "Editar" : "Registrar")}</PButtom>
                 <SView height={40}></SView>
             </SPage>

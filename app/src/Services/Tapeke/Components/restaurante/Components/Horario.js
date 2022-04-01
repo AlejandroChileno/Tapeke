@@ -1,18 +1,18 @@
 import React, { Component, TouchableOpacity, useState, Button } from 'react';
 import { SDate, SIcon, SImage, SLoad, SNavigation, SText, STheme, SView, SInput, SButtom } from 'servisofts-component';
-// import SSocket from 'servisofts-socket';
-
-import horario from '../../horario';
-import PButtom from '../../../../../Components/PButtom';
+import SSocket from 'servisofts-socket';
 
 import { connect } from 'react-redux';
 
+const Horario = (props) => {
 
-const Horario = () => {
+    const key_restaurante = SNavigation.getParam("key");
 
-    const key_restaurante = "464DFGD5FG4D5F4G5D4FG5D4F"
+    //const key_restaurante = "464DFGD5FG4D5F4G5D4FG5D4F"
     const [inputs, setInputs] = useState([{ key: '', value: '' }]);
     const [inputs2, setInputs2] = useState([{ key: '', value: '' }]);
+
+    const [dataFinal, setDataFinal] = useState([{ dia: null, horario_inicio: '', horario_fin: '', key_restaurante: key_restaurante }]);
 
 
     const [input_0, setInput_0] = useState([{ dia: null, horario_inicio: '', horario_fin: '', key_restaurante: key_restaurante }]);
@@ -23,11 +23,6 @@ const Horario = () => {
     const [input_5, setInput_5] = useState([{ dia: null, horario_inicio: '', horario_fin: '', key_restaurante: key_restaurante }]);
     const [input_6, setInput_6] = useState([{ dia: null, horario_inicio: '', horario_fin: '', key_restaurante: key_restaurante }]);
     const [input_00, setInput_00] = useState([{ dia: null, horario_inicio: '', horario_fin: '', key_restaurante: key_restaurante }]);
-
-
-
-
-
 
     const addHandler = (key2) => {
 
@@ -40,12 +35,12 @@ const Horario = () => {
             inputAdd = eval("input_" + key2)
             setting = eval("setInput_" + key2)
         }
-
         const _inputAdd = [...inputAdd];
         _inputAdd.push({ dia: null, horario_inicio: '', horario_fin: '', key_restaurante: key_restaurante });
         setting(_inputAdd);
         console.log(JSON.stringify(_inputAdd));
     }
+
 
     const deleteHandler = (key2, key) => {
 
@@ -58,20 +53,11 @@ const Horario = () => {
             inputDelete = eval("input_" + key2)
             setting = eval("setInput_" + key2)
         }
-        // const _inputs = [...inputDelete];
         console.log(JSON.stringify(inputDelete) + " " + key2 + " " + key);
         const _inputs = inputDelete.filter((input, index) => index != key);
-        //const _inputs = inputDelete.splice(key, 1);
         setting(_inputs);
 
     }
-
-    // const inputHandler = (text, key) => {
-    //     const _inputs = [...inputs];
-    //     _inputs[key].value = text;
-    //     _inputs[key].key = key;
-    //     setInputs(_inputs);
-    // }
 
     const inputHandler = (text, key2, key) => {
 
@@ -89,6 +75,7 @@ const Horario = () => {
         _inputs[key].horario_inicio = text;
         _inputs[key].dia = key2;
         setting(_inputs);
+        //setDataFinal(_inputs);
     }
 
     const inputHandler2 = (text, key2, key) => {
@@ -109,6 +96,39 @@ const Horario = () => {
         setting(_inputs);
     }
 
+    const saveData = () => {
+        var dias = new SDate.getDaysOfWeek();
+        dias[-1] = { text: "Feriado", value: "Fer" };
+        return Object.keys(dias).map((key2, index) => {
+            var inputArray
+            if (key2 == -1) {
+                inputArray = eval("input_00")
+            } else {
+                inputArray = eval("input_" + key2)
+            }
+            inputArray.map((input, index) => {
+                if ((input.dia != null) && (input.horario_inicio != "") && (input.horario_fin != "")) {
+                    //setDataFinal(inputArray[key]);
+
+                    alert("ok guardar")
+
+                }
+            })
+        })
+
+
+        //   inputArray.map((input, key) => {
+        //     if((input.dia != null) && (input.horario_inicio != "") && (input.horario_fin != "")){
+        //         //setDataFinal(inputArray[key]);
+
+        //         alert("ok")
+
+        //     }
+        // })
+    }
+
+
+
     var dias = new SDate.getDaysOfWeek();
     dias[-1] = { text: "Feriado", value: "Fer" };
     return Object.keys(dias).map((key2, index) => {
@@ -119,6 +139,10 @@ const Horario = () => {
             inputArray = eval("input_" + key2)
         }
         console.log(inputArray)
+        //console.log(JSON.stringify(inputArray)+"---" + dias[key2].text);
+
+
+
         return <>
             <SView center  >
                 <SView col={"xs-12"} >
@@ -143,9 +167,13 @@ const Horario = () => {
                         </SView>
                     </SView>
                 ))}
+
             </SView>
         </>
     })
+
+
+
 }
 
 

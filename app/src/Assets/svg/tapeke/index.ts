@@ -33,8 +33,13 @@ import BtnPie, { ReactComponent as BtnPieW } from './btnPie.svg';
 import BtnCoche, { ReactComponent as BtnCocheW } from './btnCoche.svg';
 
 import Horario, { ReactComponent as HorarioW } from './horario.svg';
+import Pack, { ReactComponent as PackW } from './pack.svg';
 import MarcadorMapa, { ReactComponent as MarcadorMapaW } from './marcadorMapa.svg';
+import SearchTapeke, { ReactComponent as SearchTapekeW } from './searchTapeke.svg';
+import LocationTapeke, { ReactComponent as LocationTapekeW } from './locationTapeke.svg';
 
+import IconChecked, { ReactComponent as IconCheckedw } from './iconChecked.svg';
+import IconCheckedOk, { ReactComponent as IconCheckedOkw } from './iconCheckedOk.svg';
 
 const Assets = {
 	// alvaro
@@ -71,7 +76,12 @@ const Assets = {
 	"BtnCoche": { Native: BtnCoche, Web: BtnCocheW },
 
 	"Horario": { Native: Horario, Web: HorarioW },
+	"Pack": { Native: Pack, Web: PackW },
 	"MarcadorMapa": { Native: MarcadorMapa, Web: MarcadorMapaW },
+	"SearchTapeke": { Native: SearchTapeke, Web: SearchTapekeW },
+	"LocationTapeke": { Native: LocationTapeke, Web: LocationTapekeW },
+	"IconChecked": { Native: IconChecked, Web: IconCheckedw },
+	"IconCheckedOk": { Native: IconCheckedOk, Web: IconCheckedOkw },
 }
 
 export default Assets;

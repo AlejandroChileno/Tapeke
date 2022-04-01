@@ -51,7 +51,11 @@ class lista extends Component {
                 {
                     key: "key-horario", label: "Horarios", width: 60, center: true,
                     component: (item) => {
-                        return <SView onPress={() => { SNavigation.navigate("admin/" + Parent.component + "/horario", { key: item }) }}>
+                        // return <SView onPress={() => { SNavigation.navigate("admin/" + Parent.component + "/horario", { key: item }) }}>
+                        //     <SIcon name={"Horario"} width={35} />
+                        // </SView>
+
+                        return <SView onPress={() => { SNavigation.navigate("admin/" + Parent.component + "/horario/lista", { key: item }) }}>
                             <SIcon name={"Horario"} width={35} />
                         </SView>
                     }

@@ -28,16 +28,17 @@ class Detalle extends React.Component {
                 <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }} onPress={() => { this.setState({ envio: 0 }); }}>
                     <SView col={"xs-2"} center >
                         <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}
-                            backgroundColor={this.state.envio != 0 ? "transparent" : "red"} ></SView>
+                            backgroundColor={this.state.envio != 0 ? "transparent" : STheme.color.primary} ></SView>
                     </SView>
                     <SView col={"xs-10"} row >
                         <SHr height={15} />
                         <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Recoger del lugar</SText>
+                        <SHr height={10} />
                         <SText fontSize={14} font={"Roboto"} >¡Se encuentra a 400m de tu ubicación!</SText>
                         <SHr height={15} />
                         <SView col={"xs-6"} >
                         </SView>
-                        <SView col={"xs-6"} style={{ alignItems: "flex-end" }} row
+                        <SView col={"xs-6"} style={{ alignItems: "flex-end", }} row
                             onPress={() => {
                                 //SNavigation.navigate(Parent.component + "/registro")
                             }}>
@@ -52,11 +53,12 @@ class Detalle extends React.Component {
                     onPress={() => { this.setState({ envio: 1 }); }} >
                     <SView col={"xs-2"} center >
                         <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}
-                            backgroundColor={this.state.envio != 0 ? "red" : "transparent"} ></SView>
+                            backgroundColor={this.state.envio != 0 ? STheme.color.primary : "transparent"} ></SView>
                     </SView>
                     <SView col={"xs-10"} >
                         <SHr height={15} />
                         <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Envío a domicilio</SText>
+                        <SHr height={30} />
                         <SText fontSize={14} font={"Roboto"} >Costo del envío:</SText>
                         <SHr height={15} />
                     </SView>
@@ -149,22 +151,22 @@ class Detalle extends React.Component {
                                                     this.setState({ cantidad: this.state.cantidad - 1 });
                                                 }}
                                             >
-                                                <SText fontSize={35} color={STheme.color.primary}>-</SText>
+                                                <SText height={50} fontSize={32} color={STheme.color.primary}>-</SText>
                                             </SView>
                                         </SView>
                                         <SView col={"xs-6"} center >
                                             {/* {this.getForm()} */}
-                                            <SText fontSize={35} color='red' > {this.state.cantidad} </SText>
+                                            <SText fontSize={35} color={STheme.color.text} > {this.state.cantidad} </SText>
                                         </SView>
                                         <SView col={"xs-3"} center onPress={() => {
                                         }}>
-                                            <SView width={50} height={50} center style={{ borderRadius: 8, backgroundColor: STheme.color.primary, borderRadius: 45 }}
+                                            <SView width={50} height={50} center row style={{ borderRadius: 8, backgroundColor: STheme.color.primary, borderRadius: 45 }}
                                                 onPress={() => {
                                                     if (this.state.cantidad >= this.state.disponible) return;
                                                     this.setState({ cantidad: this.state.cantidad + 1 });
                                                 }}
                                             >
-                                                <SText fontSize={35} color={STheme.color.white} center>+</SText>
+                                                <SText height={50} fontSize={32} color={STheme.color.white} >+</SText>
                                             </SView>
                                         </SView>
                                     </SView>
