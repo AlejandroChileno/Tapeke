@@ -29,7 +29,8 @@ class Direccion extends React.Component {
 			if (data[key]['key_usuario'] != this.props.state.usuarioReducer.usuarioLog.key) return null;
 			return <>
 				<SView col={"xs-12"} height={64} row center border={"transparent"} onPress={() => {
-					SNavigation.navigate()
+					this.props.dispatch({ component: "direccion_usuario", type: "editarMiDireccion", data:  data[key] });	
+					SNavigation.goBack()
 				}} >
 					<SView col={"xs-2"} height={64} center   >
 						<SView height={36} width={36} style={{ backgroundColor: '#E9EAEE', borderRadius: 50, }} center   >
@@ -51,10 +52,10 @@ class Direccion extends React.Component {
 
 	render() {
 		return (
-			<SPage title={''} hidden disableScroll center>
-				<BarraSuperiorTapeke  >
+			<SPage title={'Mis Direcciones'} disableScroll center>
+				{/* <BarraSuperiorTapeke  >
 					<SText font={"Roboto"} fontSize={25} color={STheme.color.secondary}>Mis Favoritos</SText>
-				</BarraSuperiorTapeke>
+				</BarraSuperiorTapeke> */}
 				<SView col={"xs-11 md-10 lg-4 xl-4"} flex >
 					<SHr height={20} />
 					<SView col={"xs-12"} center>
