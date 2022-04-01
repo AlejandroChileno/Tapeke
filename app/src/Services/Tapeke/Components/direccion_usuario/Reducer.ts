@@ -25,8 +25,8 @@ const initialState = () => {
         initialState.miDireccion = JSON.parse(resp);
     })
     SStorage.getItem("miDistancia_log", (resp: any) => {
-        if(!resp) return;
-        initialState.miDistancia = resp;
+        if (!resp) return;
+        initialState.miDistancia = parseInt(resp);
     })
     return initialState;
 }
@@ -74,10 +74,10 @@ const getById = (state: any, action: DataProps) => {
     state.data[action.data.key] = action.data;
 }
 const editarMiDireccion = (state: any, action: DataProps) => {
-    state.miDireccion= action.data;
+    state.miDireccion = action.data;
     SStorage.setItem("miDireccion_log", JSON.stringify(action.data));
 }
 const editarMiDistancia = (state: any, action: DataProps) => {
-    state.miDistancia= action.data;
+    state.miDistancia = action.data;
     SStorage.setItem("miDistancia_log", action.data);
 }

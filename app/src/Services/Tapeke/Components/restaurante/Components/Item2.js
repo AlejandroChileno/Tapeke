@@ -92,7 +92,27 @@ class Item2 extends Component {
             </SView>
         </>
     }
+    static getDistance(lat1, lon1, lat2, lon2) {
+        var rad = function (x) { return x * Math.PI / 180; }
+        var R = 6378.137; //Radio de la tierra en km 
+        var dLat = rad(lat2 - lat1);
+        var dLong = rad(lon2 - lon1);
+        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(rad(lat1)) *
+            Math.cos(rad(lat2)) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        //aquí obtienes la distancia en metros por la conversion 1Km =1000m
+        var d = R * c * 1000;
+        return d;
+    }
+    getDistancia() {
+        var miDireccion = this.props.state.direccion_usuarioReducer.miDireccion;
+        var distancia = Item2.getDistance(miDireccion.latitude, miDireccion.longitude, this.props.data.latitude, this.props.data.longitude);
+        return parseFloat(distancia / 1000).toFixed(1);
+    }
     getItems() {
+        var distancia = this.getDistancia();
+        var miDistancia = this.props.state.direccion_usuarioReducer.miDistancia;
+        if (miDistancia < distancia) return null;
         return <>
             <SView col={"xs-12"} height={170} center onPress={() => { SNavigation.navigate("restaurante/perfil", { key: this.props.data.key }); }} >
                 <SView col={"xs-11.9"} height row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2 }}>
@@ -106,7 +126,7 @@ class Item2 extends Component {
                         </SView>
                         <SView col={"xs-2.5"} row center style={{ justifyContent: 'flex-start', }} border={'transparent'}>
                             <SIcon name={'Location'} height={13} width={9} center />
-                            <SText fontSize={10} font={"Roboto"}> 1,0 Km</SText>
+                            <SText fontSize={10} font={"Roboto"}> {this.getDistancia()} Km</SText>
                         </SView>
                         <SView col={"xs-4"} row center border={'transparent'} style={{ justifyContent: 'flex-end', }}>
                             <SText fontSize={18} font={"Roboto"}>Bs.{this.props.data.precio}</SText>

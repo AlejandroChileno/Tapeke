@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { SIcon, SLoad, SNavigation, SPage, SPopup, SScrollView2, SText, STheme, SView } from 'servisofts-component';
 import BarraSuperiorTapeke from '../../../../../Components/BarraSuperiorTapeke';
+import Direccion from '../../../../../Components/BarraSuperiorTapeke/Direccion';
 import PBarraFooter from '../../../../../Components/PBarraFooter';
 import Item2 from '../Components/Item2';
 import Parent from '../index'
@@ -19,10 +20,10 @@ class Explorador extends React.Component {
             {/* <SView width={30} /> */}
             <SView height={28} flex border={'transparent'}
                 style={{ paddingLeft: 10, paddingRight: 10, backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }}
-                onPress={() => { 
+                onPress={() => {
                     SNavigation.navigate(url);
                     // alert(description);
-                     }} center>
+                }} center>
                 <SView row>
                     {!icon ? null : <SView center height  >
                         <SIcon name={icon} height={20} width={22} fill={!icon ? '#999999' : STheme.color.primary} />
@@ -107,23 +108,7 @@ class Explorador extends React.Component {
         return (
             < SPage title={''} hidden disableScroll center >
                 <BarraSuperiorTapeke>
-                    <SView row border={'transparent'}
-                        onPress={() => { }} >
-                        <SView height={50} width={15}>
-                            <SView style={{ top: 6 }} center>
-                                <SIcon name={"Location"} height={18} fill={STheme.color.secondary} />
-                            </SView>
-                        </SView>
-                        <SView height={50} style={{ justifyContent: 'center', paddingLeft: 8, paddingRight: 8, }}>
-                            <SText font={"Roboto"} fontSize={10} center bold color={STheme.color.secondary}>{" "}Las palmas, Santa cruz de la sierra</SText>
-                            <SText font={"Roboto"} fontSize={12} center bold color={STheme.color.secondary}>{" "}A menos de 30 km</SText>
-                        </SView>
-                        <SView height={50} width={25}>
-                            <SView style={{ top: 6 }} center>
-                                <SIcon name={"Back"} height={18} fill={STheme.color.secondary} style={{ transform: [{ rotate: "-90deg" }] }} />
-                            </SView>
-                        </SView>
-                    </SView>
+                    <Direccion />
                 </BarraSuperiorTapeke>
                 <SView flex center col={"xs-12"}>
                     {this.showLista()}
