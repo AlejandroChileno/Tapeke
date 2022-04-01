@@ -20,6 +20,9 @@ public class Manejador {
             case Billetera.COMPONENT:
                 Billetera.onMessage(obj, session);
                 break;
+            case direccion_usuario.COMPONENT:
+                direccion_usuario.onMessage(obj, session);
+                break;
             case Horario.COMPONENT:
                 Horario.onMessage(obj, session);
                 break;
