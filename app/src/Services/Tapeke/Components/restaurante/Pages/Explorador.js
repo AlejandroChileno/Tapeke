@@ -61,7 +61,7 @@ class Explorador extends React.Component {
                     <SText fontSize={20} font={"Roboto"} bold color={STheme.color.white}>Lista</SText>
                 </SView>
                 <SView col={"xs-6"} center height={40} border={STheme.color.primary} backgroundColor={STheme.color.white}
-                    onPress={() => { SNavigation.navigate("restaurante/exploradorMapa"); }}>
+                    onPress={() => { SNavigation.navigate("mapa"); }}>
                     <SText fontSize={20} font={"Roboto"} bold color={STheme.color.primary}>Mapa</SText>
                 </SView>
             </SView>

@@ -20,7 +20,7 @@ class listaHorario extends Component {
         var dataHorario = Object.values(data).filter(item => item.key_restaurante == this.key)
 
         var datas = {};
-         datas = Pack.Actions.getAll(this.props);
+        datas = Pack.Actions.getAll(this.props);
         if (!datas) return <SLoad />
 
         return <STable2
@@ -30,30 +30,35 @@ class listaHorario extends Component {
                 { key: "hora_fin", label: "Hora Fin", width: 100 },
                 // { key: "dia", label: "Dia", width: 200 },
                 {
-                    key: "dia", label: "Dia", width: 100, center: true,
-                    component: (item) => {
+                    key: "dia-a", label: "Dia", width: 100, order: "asc", center: true, render: (itm) => { return itm + 2 }, component: (item) => {
                         var dias = new SDate.getDaysOfWeek();
                         dias[-1] = { text: "Feriado", value: "Fer" };
-                        return dias[item].text;
+                        return dias[item - 2].text;
                     }
                 },
+
                 {
                     key: "key-cantidad", label: "Cantidad Pack", width: 100, center: true,
                     component: (item) => {
-                        var dataPack ={};
-                          dataPack = Object.values(datas).filter(items => items.key_horario == item);
-                          //TODO:  ordenar por fecha on el ultimo ya sea en server o en front end //SORT
-                         if (!dataPack) return <SLoad />
+                        var dataPack = {};
+                        dataPack = Object.values(datas).filter(items => items.key_horario == item);
+                        dataPack.sort((a, b) => {
+                            return new SDate(a.fecha_on).getTime() < new SDate(b.fecha_on).getTime() ? 1 : -1;
+                        })
+                        //TODO:  ordenar por fecha on el ultimo ya sea en server o en front end //SORT
+                        if (!dataPack) return <SLoad />
                         return dataPack[0]?.cantidad
                     }
                 },
                 {
                     key: "key-precio", label: "Precio Pack", width: 100, center: true,
                     component: (item) => {
-                        var dataPack ={};
-                          dataPack = Object.values(datas).filter(items => items.key_horario == item);
-                          //TODO:  ordenar por fecha on el ultimo ya sea en server o en front end //SORT
-                         if (!dataPack) return <SLoad />
+                        var dataPack = {};
+                        dataPack = Object.values(datas).filter(items => items.key_horario == item);
+                        dataPack.sort((a, b) => {
+                            return new SDate(a.fecha_on).getTime() < new SDate(b.fecha_on).getTime() ? 1 : -1;
+                        })
+                        if (!dataPack) return <SLoad />
                         return dataPack[0]?.precio
                     }
                 },

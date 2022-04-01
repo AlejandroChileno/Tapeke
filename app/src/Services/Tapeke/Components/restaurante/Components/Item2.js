@@ -38,20 +38,14 @@ class Item2 extends Component {
     }
 
     getHorarioText() {
-
-        var NroDia = new SDate().getDayOfWeek();
-        var data_horario = horario.Actions.getAll(this.props);
-        if (!data_horario) return <SLoad />;
-        // filtro tabla {horario} y tabla {restaurante} por key_restaurante
-        var misDatas = Object.values(data_horario).filter(itm => itm.key_restaurante == this.props.data.key && itm.dia == NroDia)
-        if (misDatas.length <= 0) return " Sin atención";
-        return misDatas.map((obj) => {
-            // filtro tabla {horario.dia} y el numero del dia
-            if (obj.dia == NroDia) {
-                return " Hoy " + obj.hora_inicio + " - " + obj.hora_fin;
-            }
-        })
-
+        var data = horario.Actions.getByKeyRestauranteProximo(this.props.data.key, this.props);
+        if (!data) return <SLoad />;
+        if (data == "void") return "Sin horarios";
+        var dia = SDate.getDayOfWeek(data.dia).text;
+        if (data.dia == new SDate().getDayOfWeek()) {
+            dia = "hoy"
+        }
+        return dia + " " + data.hora_inicio + " - " + data.hora_fin;
 
     }
 

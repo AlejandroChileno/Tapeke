@@ -12,7 +12,8 @@
         "reconectTime": 5000
     },
     "files": {
-        "url": "/u01/servisoftsFiles/tapeke/"
+        "url": "/u01/servisoftsFiles/tapeke/",
+        "url_gpx":"/u01/servisoftsFiles/tapeke/gpx/"
     },
     "data_base": {
         "puerto": 5432,

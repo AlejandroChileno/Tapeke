@@ -22,7 +22,7 @@ const FloatButtom = (props) => {
                 // margin: 4,
                 ...props.style
             }}>
-            <SIcon name={"Add"} />
+            <SIcon name={"Add"} fill="#fff"/>
             {/* <Svg name={"Add"} style={{
                 width: "100%",
                 height: "100%",

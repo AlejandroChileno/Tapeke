@@ -1,6 +1,5 @@
 import SSocket from 'servisofts-socket';
 import Parent from './index';
-import locationGoogleReducer from './locationGoogleReducer';
 
 export default class Actions {
     static _getReducer = (props) => {

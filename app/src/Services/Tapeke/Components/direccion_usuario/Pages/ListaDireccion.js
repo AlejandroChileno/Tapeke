@@ -4,6 +4,8 @@ import { SIcon, SPage, SScrollView2, SText, STheme, SView, SMapView, SMarker, SI
 import BarraSuperiorTapeke from '../../../../../Components/BarraSuperiorTapeke';
 import PButtom from '../../../../../Components/PButtom';
 import Parent from '../index'
+import FloatButtomTap from '../../../../../Components/FloatButtomTap';
+
 import locationGoogleReducer from '../locationGoogleReducer';
 
 class Direccion extends React.Component {
@@ -17,6 +19,34 @@ class Direccion extends React.Component {
 		};
 	}
 
+	getDirecciones() {
+		var data = Parent.Actions.getAll(this.props);
+		if (!data) return <SLoad />
+		return Object.keys(data).map((key) => {
+			// if (!SBuscador.validate(data[key], this.state.find)) {
+			//     return null;
+			// }
+			if (data[key]['key_usuario'] != this.props.state.usuarioReducer.usuarioLog.key) return null;
+			return <>
+				<SView col={"xs-12"} height={64} row center border={"transparent"} onPress={() => {
+					SNavigation.navigate()
+				}} >
+					<SView col={"xs-2"} height={64} center   >
+						<SView height={36} width={36} style={{ backgroundColor: '#E9EAEE', borderRadius: 50, }} center   >
+							<SIcon name={'Marker'} height={24} width={40} fill={'#484848'} />
+						</SView>
+					</SView>
+					<SView col={"xs-10"} height={64} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray, justifyContent: 'center', }}  >
+						<SText fontSize={15} font={"Roboto"} color={STheme.color.text} >{data[key]['descripcion']}</SText>
+						<SHr height={5} />
+						<SText fontSize={12} font={"Roboto"} color={STheme.color.gray} >{data[key]['direccion']}</SText>
+					</SView>
+				</SView>
+				<SHr height={10} />
+			</>
+
+		})
+	}
 
 
 	render() {
@@ -32,30 +62,10 @@ class Direccion extends React.Component {
 							color={STheme.color.text} placeholderTextColor={STheme.color.gray} height={40} fontSize={12} />
 					</SView>
 					<SHr height={10} />
-					<SView col={"xs-12"} height={64} row center border={"transparent"} >
-						<SView col={"xs-2"} height={64} center   >
-							<SView height={36} width={36} style={{ backgroundColor: '#E9EAEE', borderRadius: 50, }} center   >
-								<SIcon name={'Marker'} height={24} width={40} fill={'#484848'} />
-							</SView>
-						</SView>
-						<SView col={"xs-10"} height={64} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray, justifyContent: 'center', }}  >
-							<SText fontSize={12} font={"Roboto"} color={STheme.color.gray} >Calle La Paz # 766 entre Moldes y, Saavedra,</SText>
-							<SText fontSize={12} font={"Roboto"} color={STheme.color.gray}>Santa Cruz de la Sierra, Bolivia.</SText>
-						</SView>
-					</SView>
-					<SHr height={10} />
-					<SView col={"xs-12"} height={64} row center border={"transparent"} >
-						<SView col={"xs-2"} height={64} center   >
-							<SView height={36} width={36} style={{ backgroundColor: '#E9EAEE', borderRadius: 50, }} center   >
-								<SIcon name={'Marker'} height={24} width={40} fill={'#484848'} />
-							</SView>
-						</SView>
-						<SView col={"xs-10"} height={64} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray, justifyContent: 'center', }}  >
-							<SText fontSize={12} font={"Roboto"} color={STheme.color.gray} >Calle La Paz # 766 entre Moldes y, Saavedra,</SText>
-							<SText fontSize={12} font={"Roboto"} color={STheme.color.gray}>Santa Cruz de la Sierra, Bolivia.</SText>
-						</SView>
-					</SView>
-					<SHr height={10} />
+					{this.getDirecciones()}
+					<FloatButtomTap  onPress={() => {
+						SNavigation.navigate("direccion_usuario");
+					}} />
 				</SView >
 
 			</ SPage >
