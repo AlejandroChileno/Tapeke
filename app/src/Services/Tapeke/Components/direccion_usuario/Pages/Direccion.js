@@ -32,22 +32,15 @@ class Direccion extends React.Component {
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421,
                     }}
-
-
-
                     // para ejecutar centar mapa
                     ref={(map) => this.map = map}
-
                     // onPress={(e) => {
                     //      this.setState({ regionClick: e });
                     // }}
-
                     onRegionChangeComplete={(region) => {
                         // cuando cambio de posicion (mouse)
                         this.setState({ region: region, dirType: "moveMap" });
-                        // this.getGeocode();
                     }}
-
                     preventCenter>
                     <SMarker lat={this.state.region?.latitude} lng={this.state.region?.longitude}  >
                         <SIcon name="Marker" width={20} height={30} />
@@ -80,12 +73,12 @@ class Direccion extends React.Component {
     render() {
         this.getGeocode()
         return (
-            <SPage title={''} hidden disableScroll center>
-                <BarraSuperiorTapeke  >
-                    <SText font={"Roboto"} fontSize={25} color={STheme.color.secondary}>Mis Favoritos</SText>
-                </BarraSuperiorTapeke>
+            <SPage title={'Mis Direcciones'}  disableScroll center>
+                {/* <BarraSuperiorTapeke  >
+                    <SText font={"Roboto"} fontSize={25} color={STheme.color.secondary}>Mis Direcciones</SText>
+                </BarraSuperiorTapeke> */}
 
-                <SView col={"xs-12 md-10 lg-8 xl-6"} center flex>
+                <SView col={"xs-12"} center flex>
                     {this.showMapa()}
                 </SView >
 
@@ -120,6 +113,7 @@ class Direccion extends React.Component {
                                             <PopUpDirecciones region={this.state.region} callback={(resp) => {
                                                 SPopup.close("autocomplete");
                                                 this.state.region = resp;
+                                                this.map.animateToRegion(resp,1000);
                                                 this.state.dirType = "autoComplete"
                                                 this.state.nombre = resp.direccion;
                                                 this.setState({ ...this.state });
@@ -142,7 +136,6 @@ class Direccion extends React.Component {
 
                     <SView col={"xs-8.8"} row center border={'transparent'}  >
                         <PButtom fontSize={16} onPress={() => {
-
                             if (this.inpNombreUbicacion.verify()) {
                                 alert("registro la ubicacion")
                             }

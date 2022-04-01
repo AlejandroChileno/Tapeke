@@ -39,7 +39,8 @@ class Item2 extends Component {
 
     getHorarioText() {
 
-        var NroDia = new SDate().getDayOfWeek();
+        var NroDia = new SDate().getDayOfWeek()-1;
+        console.log(NroDia);
         var data_horario = horario.Actions.getAll(this.props);
         if (!data_horario) return <SLoad />;
         // filtro tabla {horario} y tabla {restaurante} por key_restaurante

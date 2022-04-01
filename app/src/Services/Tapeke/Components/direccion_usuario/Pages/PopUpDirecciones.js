@@ -27,7 +27,7 @@ class PopUpDirecciones extends React.Component {
     getAutoComplete() {
         if (!this.state.find) return null;
         if (this.state.find.length < 3) return null;
-        var geocodeList = Parent.Actions.autoComplete({ direccion: this.state.find, ...this.props.region }, this.props);
+        var geocodeList = Parent.Actions.autoComplete({ ...this.props.region, direccion: this.state.find, }, this.props);
         if (!geocodeList) return <SLoad />
 
         var detail = this.getDetail();
@@ -48,7 +48,7 @@ class PopUpDirecciones extends React.Component {
                             <SIcon name={'Marker'} height={24} width={40} fill={'#484848'} />
                         </SView>
                     </SView>
-                    <SView col={"xs-10"} height={64} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray, justifyContent: 'center',}}
+                    <SView col={"xs-10"} height={64} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray, justifyContent: 'center', }}
                         onPress={() => { var aux = this.setState({ place_id: obj.place_id, direccion: obj.direccion }); }} >
                         <SText fontSize={12} font={"Roboto"} color={STheme.color.gray} > {obj.direccion} </SText>
                     </SView>

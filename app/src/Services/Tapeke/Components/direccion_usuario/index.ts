@@ -1,6 +1,6 @@
 //  COMPONENT CONFIG
 const component = "direccion_usuario"; // COMPONENT NAME
-const version = "2.0";
+const version = "1.0";
 // ---------------------------------------
 import Actions from "./Actions";
 import Reducer from "./Reducer";
@@ -19,11 +19,11 @@ export default {
         locationGoogleReducer,
     },
     Pages: {
-        [component + "/"]: MapaBolivia,
-        [component + "/mapaBolivia"]: MapaBolivia,
-        [component + "/direccion"]: Direccion,
-        [component + "/listaDireccion"]: ListaDireccion,
-        [component + "/popupdirecciones"]: PopUpDirecciones,
+        // [component + "/"]: MapaBolivia,
+        // [component + "/mapaBolivia"]: MapaBolivia,
+        [component + ""]: Direccion,
+        [component + "/lista"]: ListaDireccion,
+        // [component + "/popupdirecciones"]: PopUpDirecciones,
         
         
     },
