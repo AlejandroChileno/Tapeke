@@ -17,7 +17,12 @@ class Explorador extends React.Component {
     getCategoria(icon, description, url) {
         return <>
             {/* <SView width={30} /> */}
-            <SView height={28} flex border={'transparent'} style={{ paddingLeft: 10, paddingRight: 10, backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }} center onPress={() => { alert(description); }}>
+            <SView height={28} flex border={'transparent'}
+                style={{ paddingLeft: 10, paddingRight: 10, backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }}
+                onPress={() => { 
+                    SNavigation.navigate(url);
+                    // alert(description);
+                     }} center>
                 <SView row>
                     {!icon ? null : <SView center height  >
                         <SIcon name={icon} height={20} width={22} fill={!icon ? '#999999' : STheme.color.primary} />
@@ -39,7 +44,7 @@ class Explorador extends React.Component {
                 <SView center row>
                     <SView width={30} />
 
-                    {this.getCategoria('IconFilter', 'Filtros', 'restaurante/filtros')}
+                    {this.getCategoria('IconFilter', 'Filtros', 'explorar/filtros')}
                     {this.getCategoria('', 'Filtro: Ocultar sin packs', '000010')}
                     {this.getCategoria('', 'Filtro: Preparacion', '0000102')}
                     {this.getCategoria('', 'prueba a', '0000102')}
@@ -61,7 +66,7 @@ class Explorador extends React.Component {
                     <SText fontSize={20} font={"Roboto"} bold color={STheme.color.white}>Lista</SText>
                 </SView>
                 <SView col={"xs-6"} center height={40} border={STheme.color.primary} backgroundColor={STheme.color.white}
-                    onPress={() => { SNavigation.navigate("restaurante/exploradorMapa"); }}>
+                    onPress={() => { SNavigation.navigate("mapa"); }}>
                     <SText fontSize={20} font={"Roboto"} bold color={STheme.color.primary}>Mapa</SText>
                 </SView>
             </SView>

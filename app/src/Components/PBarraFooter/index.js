@@ -31,8 +31,8 @@ export default class PBarraFooter extends Component {
 			>
 				<SView col={'xs-12'} row height >
 					{this.getItem({ key: "100", title: 'Descrubir', icon: 'MenuLocation', url: '/' })}
-					{this.getItem({ key: "200", title: 'Explorar', icon: 'MenuExplorar', url: 'restaurante/explorador' })}
-					{this.getItem({ key: "300", title: 'Favoritos', icon: 'MenuFavoritos', url: 'restaurante/favoritos', params: { keyUsuario: 55 } })}
+					{this.getItem({ key: "200", title: 'Explorar', icon: 'MenuExplorar', url: 'explorar' })}
+					{this.getItem({ key: "300", title: 'Favoritos', icon: 'MenuFavoritos', url: 'favorito' })}
 				</SView>
 			</SView >
 		);

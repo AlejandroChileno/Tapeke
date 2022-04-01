@@ -34,7 +34,12 @@ class index extends Component {
                 <SView col={"xs-12"} height row center flex style={{ paddingLeft: 16, paddingRight: 16 }}>
 
 
-                    <SView height width={80} center backgroundColor={'transparent'} >
+                    <SView height width={80} center backgroundColor={'transparent'} onPress={() => {
+                        if(this.props.clearAlvaro){
+                            this.props.clearAlvaro()
+                        }
+
+                    }} >
                         <SText font={"Roboto"} fontSize={14} color={"#fff"}>Limpiar todo</SText>
                         <SHr color='#fff' height={0.3}></SHr>
                     </SView>
@@ -44,6 +49,7 @@ class index extends Component {
                     </SView>
 
                     <SView height width={80} center backgroundColor={'transparent'} onPress={() => {
+                        // SNavigation.navigate("restaurante/explorador");
                         SNavigation.goBack();
                     }}>
 

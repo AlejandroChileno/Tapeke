@@ -4,6 +4,8 @@ import SSocket from 'servisofts-socket';
 // import restaurante from '..';
 import horario from '../../horario';
 import { connect } from 'react-redux';
+import FavoritoButtom from '../../favorito/Components/FavoritoButtom';
+import restaurante from '..';
 
 
 class Item2 extends Component {
@@ -38,21 +40,14 @@ class Item2 extends Component {
     }
 
     getHorarioText() {
-
-        var NroDia = new SDate().getDayOfWeek()-1;
-        console.log(NroDia);
-        var data_horario = horario.Actions.getAll(this.props);
-        if (!data_horario) return <SLoad />;
-        // filtro tabla {horario} y tabla {restaurante} por key_restaurante
-        var misDatas = Object.values(data_horario).filter(itm => itm.key_restaurante == this.props.data.key && itm.dia == NroDia)
-        if (misDatas.length <= 0) return " Sin atención";
-        return misDatas.map((obj) => {
-            // filtro tabla {horario.dia} y el numero del dia
-            if (obj.dia == NroDia) {
-                return " Hoy " + obj.hora_inicio + " - " + obj.hora_fin;
-            }
-        })
-
+        var data = horario.Actions.getByKeyRestauranteProximo(this.props.data.key, this.props);
+        if (!data) return <SLoad />;
+        if (data == "void") return "Sin horarios";
+        var dia = SDate.getDayOfWeek(data.dia).text;
+        if (data.dia == new SDate().getDayOfWeek()) {
+            dia = "hoy"
+        }
+        return dia + " " + data.hora_inicio + " - " + data.hora_fin;
 
     }
 
@@ -70,6 +65,8 @@ class Item2 extends Component {
 
     }
     HeaderItemDisponible() {
+        var auxRestaurante = restaurante.Actions.getByKey(this.props.data.key, this.props)
+        if (!auxRestaurante) return <SLoad />
         return <>
             <SView col={"xs-11"} height={30} row style={{ position: 'absolute', top: 15 }} border={'transparent'}>
                 <SView col={"xs-10"} row center style={{ justifyContent: 'flex-start', }}>
@@ -78,9 +75,11 @@ class Item2 extends Component {
                     </SView>
                 </SView>
                 <SView col={"xs-2"} row center style={{ justifyContent: 'flex-end', }}>
-                    <SView width={24} height={24} center style={{ borderRadius: 50, overflow: 'hidden', backgroundColor: '#FFFDFC' }}>
+                    <FavoritoButtom data={auxRestaurante} size={20}/>
+
+                    {/* <SView width={24} height={24} center style={{ borderRadius: 50, overflow: 'hidden', backgroundColor: '#FFFDFC' }}>
                         <SIcon name={'Favorite'} width={14} height={13} fill={'#FA4A0C'} />
-                    </SView>
+                    </SView> */}
                 </SView>
             </SView>
 

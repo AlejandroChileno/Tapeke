@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ScrollView } from 'react-native';
 import {
-	SGradient, SHr, SIcon, SImage, SLoad, SPage, SScrollView2, SText, STheme, SView, SNavigation, SInput, SForm
+	SGradient, SHr, SIcon, SImage, SLoad, SPage, SScrollView2, SText, STheme, SView, SNavigation, SInput, SForm, SButtom
 } from 'servisofts-component';
 import Item2 from './Item2';
 import PBarraFooter from '../../../../../Components/PBarraFooter';
@@ -38,18 +38,20 @@ class Filtros extends Component {
 				separation: 16
 			}}
 			inputs={{
-				nombre: { label: "Nombre del establecimiento", placeholder: "Buscar", isRequired: true, },
-				categoria: { label: "Categoría", placeholder: "Todas", isRequired: true, },
-				preferencias: { label: "Preferencias alimenticias", placeholder: "Ninguna", isRequired: true, },
-				horario: { label: "Horario de recogida", placeholder: "Todo el día", isRequired: true, },
-				pack: { label: "Ocultar sin packs", placeholder: "No", isRequired: true, },
+				nombre: { label: "Nombre del establecimiento", placeholder: "Buscar" },
+				categoria: { label: "Categoría", placeholder: "Todas" },
+				preferencias: { label: "Preferencias alimenticias", placeholder: "Ninguna" },
+				horario: { label: "Horario de recogida", placeholder: "Todo el día" },
+				pack: { label: "Ocultar sin packs", placeholder: "No" },
 			}}
 			// onSubmitName={"APLICAR"}
 			onSubmit={(values) => {
 				if (this.key) {
 					Parent.Actions.editar({ ...this.data, ...values }, this.data, this.props);
 				} else {
+
 					Parent.Actions.registro(values, this.props);
+					// nombre
 				}
 			}}
 		/>
@@ -59,10 +61,17 @@ class Filtros extends Component {
 		return (
 
 			<SPage title={'Mis Favoritos'} hidden disableScroll>
-				<BarraSuperiorFiltro  >
+
+				<BarraSuperiorFiltro clearAlvaro={() => { this.form.clear() }}  >
 					<SText font={"Roboto"} fontSize={20} color={"#fff"}>Filtros</SText>
 				</BarraSuperiorFiltro>
-				<SScrollView2  disableHorizontal={true}>
+
+
+
+				{/* <PButtom onPress={() => { this.form.clear() }} >{("Limpiar")}</PButtom> */}
+
+
+				<SScrollView2 disableHorizontal={true}>
 					<SView center col={"xs-12"} row>
 						<SHr height={10} />
 						{this.getContent()}
