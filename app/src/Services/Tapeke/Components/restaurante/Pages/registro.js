@@ -36,14 +36,15 @@ class registro extends Component {
         }
         return <SForm
             center
+            row
             ref={(form) => { this.form = form; }}
             inputs={{
                 foto_p: { type: "image", isRequired: false, defaultValue: `${SSocket.api.root}${Parent.component}/${this.key}?time=${new Date().getTime()}`, col: "xs-4 sm-3.5 md-3 lg-2.5 xl-2.5", style: { borderRadius: 8, overflow: 'hidden', width: 130, height: 130, borderWidth: 0 } },
                 nombre: { label: "Nombres", type: "text", isRequired: true, defaultValue: data["nombre"] },
                 descripcion: { label: "Descripcion", type: "textArea", isRequired: true, defaultValue: data["descripcion"], onChange: (text) => { inputHandler(text, 350) }, maxLength: 350 },
                 direccion: { label: "Direccion", type: "text", isRequired: false, defaultValue: data["direccion"] },
-                latitude: { label: "Lat", type: "text", isRequired: false, defaultValue: data["latitude"] },
-                longitude: { label: "Lng", type: "text", isRequired: false, defaultValue: data["longitude"] },
+                latitude: { label: "Latitude", type: "text", isRequired: false, defaultValue: data["latitude"], col: "xs-6" },
+                longitude: { label: "Longitude", type: "text", isRequired: false, defaultValue: data["longitude"], col: "xs-6" },
 
             }}
             // onSubmitName={"Registrar"}
