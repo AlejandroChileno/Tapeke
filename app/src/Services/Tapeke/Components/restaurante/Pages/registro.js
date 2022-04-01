@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput, SPopup} from 'servisofts-component';
+import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput, SPopup } from 'servisofts-component';
 import Parent from '..'
 import SSocket from 'servisofts-socket';
 import PButtom from '../../../../../Components/PButtom';
 
-const inputHandler = (text, nro)=>{
+const inputHandler = (text, nro) => {
     console.log(text.nativeEvent.text);
     var value = text.nativeEvent.text;
-    if(value.length >= nro){
-        SPopup.alert("Usted no puede ingresar más de "+nro+" caracteres");
+    if (value.length >= nro) {
+        SPopup.alert("Usted no puede ingresar más de " + nro + " caracteres");
     }
-  }
+}
 
 
 class registro extends Component {
@@ -26,7 +26,7 @@ class registro extends Component {
         this._ref2 = {};
     }
 
-    
+
 
     getregistro() {
         let data = {};
@@ -36,15 +36,16 @@ class registro extends Component {
         }
         return <SForm
             center
+            row
             ref={(form) => { this.form = form; }}
             inputs={{
                 foto_p: { type: "image", isRequired: false, defaultValue: `${SSocket.api.root}${Parent.component}/${this.key}?time=${new Date().getTime()}`, col: "xs-4 sm-3.5 md-3 lg-2.5 xl-2.5", style: { borderRadius: 8, overflow: 'hidden', width: 130, height: 130, borderWidth: 0 } },
                 nombre: { label: "Nombres", type: "text", isRequired: true, defaultValue: data["nombre"] },
-                descripcion: { label: "Descripcion", type: "textArea", isRequired: true, defaultValue: data["descripcion"], onChange: (text) => { inputHandler(text, 350) }, maxLength: 350},
+                descripcion: { label: "Descripcion", type: "textArea", isRequired: true, defaultValue: data["descripcion"], onChange: (text) => { inputHandler(text, 350) }, maxLength: 350 },
                 direccion: { label: "Direccion", type: "text", isRequired: false, defaultValue: data["direccion"] },
-                latitude: { label: "Lat", type: "text", isRequired: false, defaultValue: data["latitude"] },
-                longitude: { label: "Lng", type: "text", isRequired: false, defaultValue: data["longitude"] },
-               
+                latitude: { label: "Latitude", type: "text", isRequired: false, defaultValue: data["latitude"], col: "xs-6" },
+                longitude: { label: "Longitude", type: "text", isRequired: false, defaultValue: data["longitude"], col: "xs-6" },
+
             }}
             // onSubmitName={"Registrar"}
             onSubmit={(values) => {
@@ -66,7 +67,7 @@ class registro extends Component {
                     this.form.uploadFiles(SSocket.api.root + "upload/" + Parent.component + "/" + this.key);
                 }
                 reducer.estado = "";
-                 SNavigation.goBack();
+                SNavigation.goBack();
             }
         }
 

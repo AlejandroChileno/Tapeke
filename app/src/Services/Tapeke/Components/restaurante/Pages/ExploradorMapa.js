@@ -4,7 +4,7 @@ import { SIcon, SMapView, SMarker, SNavigation, SPage, SText, STheme, SView } fr
 import BarraSuperiorTapeke from '../../../../../Components/BarraSuperiorTapeke';
 import Direccion from '../../../../../Components/BarraSuperiorTapeke/Direccion';
 import PBarraFooter from '../../../../../Components/PBarraFooter';
-
+import Parent from ".."
 class exploradorMapa extends React.Component {
     constructor(props) {
         super(props);
@@ -25,6 +25,17 @@ class exploradorMapa extends React.Component {
         </>
     }
 
+    getRestaurante() {
+        var data = Parent.Actions.getAll(this.props);
+        if (!data) return null;
+        var listaKeys = Object.keys(data);
+        return listaKeys.map((key, index) => {
+            var obj = data[key];
+            return <SMarker lat={obj.latitude} lng={obj.longitude} >
+                <SIcon name={"MarcadorMapa"} width={100} height={100} />
+            </SMarker>
+        })
+    }
 
 
     showMapa() {
@@ -40,7 +51,10 @@ class exploradorMapa extends React.Component {
                         longitudeDelta: 0.0421,
                     }}
                     preventCenter>
-                    <SMarker lat={miDireccion.latitude} lng={miDireccion.longitude} />
+                    <SMarker lat={miDireccion.latitude} lng={miDireccion.longitude} >
+                        <SIcon name={"Marker"} width={20} height={20} />
+                    </SMarker>
+                    {this.getRestaurante()}
                 </SMapView>
             </SView>
             <SView col={"xs-12"} height={50} border={'transparent'} style={{ position: 'absolute', top: 90, }} center   >

@@ -6,6 +6,7 @@ import horario from '../../horario';
 import { connect } from 'react-redux';
 import FavoritoButtom from '../../favorito/Components/FavoritoButtom';
 import restaurante from '..';
+import { SHr } from 'servisofts-component';
 
 
 class Item2 extends Component {
@@ -65,7 +66,7 @@ class Item2 extends Component {
         var auxRestaurante = restaurante.Actions.getByKey(this.props.data.key, this.props)
         if (!auxRestaurante) return <SLoad />
         return <>
-            <SView col={"xs-11"} height={30} row style={{ position: 'absolute', top: 15 }} border={'transparent'}>
+            <SView col={"xs-11"} height={30} row style={{ position: 'absolute', top: 0 }} border={'transparent'}>
                 <SView col={"xs-10"} row center style={{ justifyContent: 'flex-start', }}>
                     <SView width={112} height={24} center style={{ borderRadius: 4, overflow: 'hidden', backgroundColor: '#FFBB3E' }}>
                         <SText fontSize={10} font={"Roboto"} color={STheme.color.secondary} >{this.props.data.stock} disponible(s)</SText>
@@ -86,7 +87,9 @@ class Item2 extends Component {
                     <SText col={"xs-12"} fontSize={12} font={"Roboto"} color={STheme.color.secondary} center style={{ position: 'absolute' }} >{this.props.data.nombre}</SText>
                 </SView>
                 <SView height={50} width={50} style={{ borderRadius: 50, overflow: 'hidden', backgroundColor: 'white', position: 'absolute' }}>
-                    <SImage src={`${SSocket.api.root}restaurante/${this.props.data.key}`} />
+                    <SImage src={`${SSocket.api.root}restaurante/${this.props.data.key}`} style={{
+                        resizeMode: 'cover',
+                    }}/>
                     {/* <SImage src={require('../../../../../Pages/fotos/perfil001.png')} /> */}
                 </SView>
             </SView>
@@ -114,22 +117,24 @@ class Item2 extends Component {
         var miDistancia = this.props.state.direccion_usuarioReducer.miDistancia;
         if (miDistancia < distancia) return null;
         return <>
-            <SView col={"xs-12"} height={170} center onPress={() => { SNavigation.navigate("restaurante/perfil", { key: this.props.data.key }); }} >
+            <SView col={"xs-12"} height={200} center onPress={() => { SNavigation.navigate("restaurante/perfil", { key: this.props.data.key }); }} >
                 <SView col={"xs-11.9"} height row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2 }}>
                     <SView col={"xs-12"} height={125} border={'transparent'} />
 
                     <SView col={"xs-11"} row center border={'transparent'}   >
                         <SView col={"xs-5.5"} row center border={'transparent'} style={{ justifyContent: 'flex-start', }} >
                             <SIcon name={'Reloj'} width={13} colSquare center />
+                            <SView width={4} />
                             {/* <SText fontSize={10} font={"Roboto"}> Hoy {this.props.data.horario}</SText> */}
-                            <SText fontSize={10} font={"Roboto"}   >{this.getHorarioText()}</SText>
+                            <SText fontSize={10} font={"Roboto"} >{this.getHorarioText()}</SText>
                         </SView>
                         <SView col={"xs-2.5"} row center style={{ justifyContent: 'flex-start', }} border={'transparent'}>
                             <SIcon name={'Location'} height={13} width={9} center />
-                            <SText fontSize={10} font={"Roboto"}> {this.getDistancia()} Km</SText>
+                            <SView width={4} />
+                            <SText fontSize={10} font={"Roboto"}>{this.getDistancia()} Km</SText>
                         </SView>
                         <SView col={"xs-4"} row center border={'transparent'} style={{ justifyContent: 'flex-end', }}>
-                            <SText fontSize={18} font={"Roboto"}>Bs.{this.props.data.precio}</SText>
+                            <SText fontSize={16} font={"Roboto"}>Bs. 15.00</SText>
                         </SView>
                     </SView>
                 </SView>
