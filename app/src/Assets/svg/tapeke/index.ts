@@ -40,6 +40,7 @@ import LocationTapeke, { ReactComponent as LocationTapekeW } from './locationTap
 
 import IconChecked, { ReactComponent as IconCheckedw } from './iconChecked.svg';
 import IconCheckedOk, { ReactComponent as IconCheckedOkw } from './iconCheckedOk.svg';
+import AgregarTap, { ReactComponent as AgregarTapw } from './agregarTap.svg';
 
 const Assets = {
 	// alvaro
@@ -82,6 +83,7 @@ const Assets = {
 	"LocationTapeke": { Native: LocationTapeke, Web: LocationTapekeW },
 	"IconChecked": { Native: IconChecked, Web: IconCheckedw },
 	"IconCheckedOk": { Native: IconCheckedOk, Web: IconCheckedOkw },
+	"AgregarTap": { Native: AgregarTap, Web: AgregarTapw },
 }
 
 export default Assets;
