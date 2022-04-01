@@ -22,7 +22,7 @@ class Filtros extends Component {
             <SPage title={'Categoria: ' + this.key} center>
 
                 <ScrollView>
-                    <SView col={"xs-12"} row center height border={'transparent'} >
+                    <SView col={"xs-12"} row center height backgroundColor={'red'} >
                         <SView col={"xs-11 md-5 lg-4 xl-2.5"}    >
                             <Item2></Item2>
                         </SView>

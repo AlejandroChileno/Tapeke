@@ -50,6 +50,7 @@ class Filtros extends Component {
 					Parent.Actions.editar({ ...this.data, ...values }, this.data, this.props);
 				} else {
 					Parent.Actions.registro(values, this.props);
+					// nombre
 				}
 			}}
 		/>
@@ -67,7 +68,7 @@ class Filtros extends Component {
 						<SHr height={10} />
 						{this.getContent()}
 						<SHr height={20} />
-						<PButtom
+						<PButtom 
 							props={{
 								type: "outline"
 							}}
