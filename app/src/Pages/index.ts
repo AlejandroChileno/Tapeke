@@ -12,7 +12,7 @@ import TerminosCondiciones from '../Pages/TerminosCondiciones';
 import inDevelop from './inDevelop';
 import Billetera from './Billetera';
 
-
+import SelectDireccion from './SelectDireccion';
 
 
 
@@ -29,6 +29,7 @@ const Pages: SPageListProps = {
     "terminos": TerminosCondiciones,
     "inDevelop": inDevelop,
     ...Services.Pages,
+    "direccion": SelectDireccion,
     "billetera": Billetera,
 
 

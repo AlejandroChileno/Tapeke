@@ -20,6 +20,7 @@ class registro extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            direccion: null
         };
         this.key = SNavigation.getParam("key");
         this._ref = {};
@@ -34,6 +35,11 @@ class registro extends Component {
             data = Parent.Actions.getByKey(this.key, this.props);
             if (!data) return <SLoad />
         }
+        // if (this.state.direccion) {
+        //     data.direccion = this.state.direccion.direccion;
+        //     data.latitude = this.state.direccion.latitude;
+        //     data.longitude = this.state.direccion.longitude;
+        // }
         return <SForm
             center
             row
@@ -80,7 +86,19 @@ class registro extends Component {
 
                     <PButtom fontSize={20} onPress={() => {
                         // this.form.submit();
-                        SNavigation.navigate('direccion_usuario');
+                        var vals = this.form.getValues();
+                        SNavigation.navigate('direccion', {
+                            longitude: vals.longitude??null,
+                            latitude: vals.latitude??null,
+                            callback: (resp) => {
+                                this.form.setValues({
+                                    direccion: resp.direccion,
+                                    latitude: resp.latitude,
+                                    longitude: resp.longitude
+                                })
+                                // this.setState({ direccion: resp })
+                            }
+                        });
                     }}>marcar mapa</PButtom>
                     <SHr />
                     <PButtom fontSize={20} onPress={() => {
