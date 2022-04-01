@@ -25,12 +25,12 @@ class Favoritos extends Component {
 
 	getRestaurante() {
 		var data = restaurante.Actions.getAll(this.props);
-		var favUsuario = Parent.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key,this.props)
+		var favUsuario = Parent.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props)
 		if (!data) return <SLoad />;
 		if (!favUsuario) return <SLoad />;
-		var arr = Object.values(data).filter((itm)=>favUsuario.find((elm)=>elm.key_restaurante == itm.key))
+		var arr = Object.values(data).filter((itm) => favUsuario.find((elm) => elm.key_restaurante == itm.key))
 		return arr.map((obj, index) => {
-			return <SView col={"xs-10 md-5 lg-4 xl-3"} border={'transparent'} >
+			return <SView row col={"xs-10 md-5 lg-4 xl-3"} border={'transparent'} >
 				<Item2 data={obj} ></Item2>
 			</SView>
 		})
@@ -46,7 +46,9 @@ class Favoritos extends Component {
 				</BarraSuperiorTapeke>
 
 				<SScrollView2 disableHorizontal={true}>
-					<SView col={"xs-12"} center height border={'transparent'} >
+					<SHr height={20} />
+
+					<SView col={"xs-12"} height border={'transparent'} style={{ alignItems: 'center', }} >
 						{this.getRestaurante()}
 					</SView >
 					<SHr height={80} />

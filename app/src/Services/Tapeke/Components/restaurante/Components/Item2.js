@@ -75,7 +75,7 @@ class Item2 extends Component {
                     </SView>
                 </SView>
                 <SView col={"xs-2"} row center style={{ justifyContent: 'flex-end', }}>
-                    <FavoritoButtom data={auxRestaurante} />
+                    <FavoritoButtom data={auxRestaurante} size={20}/>
 
                     {/* <SView width={24} height={24} center style={{ borderRadius: 50, overflow: 'hidden', backgroundColor: '#FFFDFC' }}>
                         <SIcon name={'Favorite'} width={14} height={13} fill={'#FA4A0C'} />

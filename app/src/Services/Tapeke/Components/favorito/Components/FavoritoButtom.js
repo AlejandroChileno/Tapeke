@@ -13,10 +13,13 @@ class FavoritoButtom extends Component {
         var isFavorito = favorito.Actions.getByKeyRestauranteAndKeyUsuario(this.props.data.key,this.props.state.usuarioReducer.usuarioLog.key,this.props);
         if(!isFavorito) return <SLoad/>
         this.favData = isFavorito;
-
+        let size = 30;
+        if(this.props.size){
+            size = this.props.size;
+        }
         return  <SIcon 
         name={'Favorite'} 
-        height={30} width={30} 
+        height={size} width={size} 
         fill={isFavorito == "void"?"#000":'#FA4A0C'} 
            
         />
@@ -26,6 +29,7 @@ class FavoritoButtom extends Component {
         return (
             <SView height={35} width={35} style={{
                 borderRadius: 50, overflow: 'hidden', backgroundColor: 'white', position: 'absolute',
+                padding:'10%' ,
             }} center  onPress={()=>{
                 if(this.favData== "void"){
                     favorito.Actions.registro({ key_restaurante: this.props.data.key},this.props);
