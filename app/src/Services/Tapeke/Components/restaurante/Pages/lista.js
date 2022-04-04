@@ -61,6 +61,7 @@ class lista extends Component {
                     }
                 },
             ]}
+            
             data={data}
             filter={(dta)=>{
                 if(dta.estado != 1) return false;
@@ -71,7 +72,6 @@ class lista extends Component {
     render() {
         return (
             <SPage title={'lista'} disableScroll>
-
                 <SView col={"xs-12"} center height>
                     {this.getLista()}
                 </SView>
