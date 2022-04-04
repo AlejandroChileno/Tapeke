@@ -25,6 +25,7 @@ import MapaTest from "./Pages/MapaTest";
 
 //Packs
 import pack from "./Pages/registroPack";
+import ComoLLegar from "./Pages/ComoLLegar";
 
 export default {
     component,
@@ -35,6 +36,8 @@ export default {
     },
     Pages: {
         [component + "/perfil"]: Perfil,
+        [component + "/comollegar"]: ComoLLegar,
+
         // ["favoritos"]: Favoritos,
         [component + "/categoria"]: Categoria,
         ["explorar"]: Explorador,
@@ -53,7 +56,6 @@ export default {
 
         [component + "/mapaTest"]: MapaTest,
         // [component + "/alvaro"]: alvaro,
-
     },
     Components: {
         Item,

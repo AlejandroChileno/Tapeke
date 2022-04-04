@@ -42,6 +42,10 @@ import IconChecked, { ReactComponent as IconCheckedw } from './iconChecked.svg';
 import IconCheckedOk, { ReactComponent as IconCheckedOkw } from './iconCheckedOk.svg';
 import AgregarTap, { ReactComponent as AgregarTapw } from './agregarTap.svg';
 
+import IconShare1, { ReactComponent as IconShare1w } from './iconShare1.svg';
+import IconShare2, { ReactComponent as IconShare2w } from './iconShare2.svg';
+import IconShare3, { ReactComponent as IconShare3w } from './iconShare3.svg';
+
 const Assets = {
 	// alvaro
 	"Billetera": { Native: Billetera, Web: BilleteraW },
@@ -84,6 +88,10 @@ const Assets = {
 	"IconChecked": { Native: IconChecked, Web: IconCheckedw },
 	"IconCheckedOk": { Native: IconCheckedOk, Web: IconCheckedOkw },
 	"AgregarTap": { Native: AgregarTap, Web: AgregarTapw },
+	
+	"IconShare1": { Native: IconShare1, Web: IconShare1w },
+	"IconShare2": { Native: IconShare2, Web: IconShare2w },
+	"IconShare3": { Native: IconShare3, Web: IconShare3w },
 }
 
 export default Assets;
