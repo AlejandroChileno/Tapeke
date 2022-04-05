@@ -5,7 +5,7 @@ import SSocket from 'servisofts-socket';
 import restaurante from '../../restaurante';
 
 
-class Horario extends Component {
+class TipoPago extends Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -41,4 +41,4 @@ class Horario extends Component {
 const initStates = (state) => {
 	return { state }
 };
-export default connect(initStates)(Horario);
+export default connect(initStates)(TipoPago);

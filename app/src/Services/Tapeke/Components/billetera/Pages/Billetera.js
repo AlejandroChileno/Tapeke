@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SHr, SNavigation, SPage, SText, SView, STheme, SLoad, SButtom, SIcon, SWebView } from 'servisofts-component';
 import { WebView } from 'react-native';
-import PButtom from '../Components/PButtom';
+import PButtom from '../../../../../Components/PButtom';
 
 
-class Kolping extends Component {
+class Billetera extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -46,6 +46,10 @@ class Kolping extends Component {
     }
 
     render() {
+        // var data = Parent.Actions.getAll(this.props);
+        // var usuarios = usuario.Actions.getAll(this.props);
+        // if (!data) return <SLoad />;
+        // if (!usuarios) return <SLoad />;
         return (
             <>
                 <SPage title={'Billetera'}>
@@ -68,6 +72,14 @@ class Kolping extends Component {
                             {this.getDetalleBilletera('Enero, 06 - 16:45', 'Recarga de crédito', 'Ingreso', 'Bs. 100.00')}
                             <SHr height={50} />
                         </SView>
+
+                        <SView col={"xs-8"} row center style={{position:'absolute'}} border={'red'}>
+                            <SHr height={10} />
+                            <PButtom fontSize={20} onPress={() => { alert('alvaro'); }}>CARGAR CRÉDITO</PButtom>
+                            <SHr height={10} />
+                        </SView>
+
+
                     </SView>
                 </SPage>
             </>
@@ -77,4 +89,4 @@ class Kolping extends Component {
 const initStates = (state) => {
     return { state }
 };
-export default connect(initStates)(Kolping);
+export default connect(initStates)(Billetera);

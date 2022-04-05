@@ -10,7 +10,7 @@ import Administracion from './Administracion';
 import LA from './LA';
 import TerminosCondiciones from '../Pages/TerminosCondiciones';
 import inDevelop from './inDevelop';
-import Billetera from './Billetera';
+// import Billetera from '../Services/Tapeke/Components/billetera/Pages/Billetera';
 
 import SelectDireccion from './SelectDireccion';
 import Ayuda from './Ayuda';
@@ -31,7 +31,7 @@ const Pages: SPageListProps = {
     "inDevelop": inDevelop,
     ...Services.Pages,
     "direccion": SelectDireccion,
-    "billetera": Billetera,
+    // "billetera": Billetera,
     "ayuda": Ayuda,
 
 
