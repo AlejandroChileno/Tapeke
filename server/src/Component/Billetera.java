@@ -19,6 +19,9 @@ public class Billetera {
             case "getAll":
                 getAll(obj, session);
                 break;
+            case "getAllByKeyUsuario":
+                getAllByKeyUsuario(obj, session);
+                break;
             case "registro":
                 registro(obj, session);
                 break;
@@ -29,6 +32,18 @@ public class Billetera {
     }
 
     public static void getAll(JSONObject obj, SSSessionAbstract session) {
+        try {
+            String consulta = "select get_all('" + COMPONENT + "') as json";
+            JSONObject data = SPGConect.ejecutarConsultaObject(consulta);
+            obj.put("data", data);
+            obj.put("estado", "exito");
+        } catch (Exception e) {
+            obj.put("estado", "error");
+            e.printStackTrace();
+        }
+    }
+
+    public static void getAllByKeyUsuario(JSONObject obj, SSSessionAbstract session) {
         try {
             String consulta = "select get_all('" + COMPONENT + "') as json";
             JSONObject data = SPGConect.ejecutarConsultaObject(consulta);
