@@ -3,25 +3,28 @@ import { connect } from 'react-redux';
 import { SDate, SIcon, SImage, SLoad, SMapView, SMarker, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
 import SSocket from 'servisofts-socket';
 import restaurante from '..';
-import direccion_usuario from '../../direccion_usuario';
 import horario from '../../horario';
 
 
 class ComoLLegar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            region: {
-                latitude: -17.808690397665742,
-                longitude: -63.16250034566757,
-            },
-            dirType: "moveMap",
-            nombre: " "
-
-
-        };
+        this.state = {};
         this.key_restaurante = SNavigation.getParam('key');
+    }
 
+
+    getHorarioText() {
+        var NroDia = new SDate().getDayOfWeek();
+        var data_horario = horario.Actions.getAll(this.props);
+        if (!data_horario) return <SLoad />;
+        var misDatas = Object.values(data_horario).filter(itm => itm.key_restaurante == this.key_restaurante && itm.dia == NroDia)
+        if (misDatas.length <= 0) return " Sin atención";
+        return misDatas.map((obj) => {
+            if (obj.dia == NroDia) {
+                return " Hoy " + obj.hora_inicio + " - " + obj.hora_fin;
+            }
+        })
     }
 
     showMapa() {
@@ -32,39 +35,19 @@ class ComoLLegar extends React.Component {
             <SView col={"xs-12"} flex>
                 <SMapView
                     initialRegion={{
-
-                        latitude: -17.808690397665742,
-                        longitude: -63.16250034566757,
+                        latitude: auxRestaurante.latitude,
+                        longitude: auxRestaurante.longitude,
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421,
-                    }}
-                    ref={(map) => this.map = map}
-                    onRegionChangeComplete={(region) => {
-                        this.setState({ region: region, dirType: "moveMap" });
-                    }}
-                    preventCenter>
-                    <SMarker lat={this.state.region?.latitude} lng={this.state.region?.longitude}  >
-                        {/* <SIcon name="Marker" width={20} height={30} /> */}
+                    }} >
+                    <SMarker lat={auxRestaurante.latitude} lng={auxRestaurante.longitude}  >
+                        <SIcon name="MarcadorMapa" width={20} height={30} />
                     </SMarker>
                 </SMapView>
             </SView>
 
-            <SView style={{ position: 'absolute', }} center   >
-                <SIcon name="MarcadorMapa" width={20} height={20} />
-            </SView>
-        </>
-    }
 
-    getGeocode() {
-        if (this.state.dirType != "moveMap") return null;
-        var geocode = direccion_usuario.Actions.geocode(this.state.region, this.props);
-        if (!geocode) return 'cargando...';
-        var aux = geocode.direccion;
-        if (this.state.nombre != aux) {
-            this.state.nombre = aux;
-            this.setState({ ...this.state });
-        }
-        return aux;
+        </>
     }
 
 
@@ -79,21 +62,7 @@ class ComoLLegar extends React.Component {
 
     }
 
-    getHorarioText() {
-        var NroDia = new SDate().getDayOfWeek();
-        var data_horario = horario.Actions.getAll(this.props);
-        if (!data_horario) return <SLoad />;
-        // filtro tabla {horario} y tabla {restaurante} por key_restaurante
 
-        var misDatas = Object.values(data_horario).filter(itm => itm.key_restaurante == this.key_restaurante && itm.dia == NroDia)
-        if (misDatas.length <= 0) return " Sin atención";
-        return misDatas.map((obj) => {
-            // filtro tabla {horario.dia} y el numero del dia
-            if (obj.dia == NroDia) {
-                return " Hoy " + obj.hora_inicio + " - " + obj.hora_fin;
-            }
-        })
-    }
 
     getInfo() {
         var auxRestaurante = restaurante.Actions.getByKey(this.key_restaurante, this.props)
@@ -113,38 +82,16 @@ class ComoLLegar extends React.Component {
             </SView>
             <SView width={15} />
         </SView>
-
     }
 
 
     render() {
 
-        let reducer = this.props.state.direccion_usuarioReducer
-        if (reducer.type == "registro" && reducer.estado == "exito") {
-            reducer.estado = "";
-            this.props.dispatch({
-                component: "direccion_usuario",
-                type: "editarMiDireccion",
-                data: reducer.lastRegister
-            })
-            _direcion = this.state?.nombre,
-                _latitude = this.state?.latitude,
-                _longitude = this.state?.longitude,
-                SNavigation.goBack()
-        }
-        this.getGeocode()
         return (
-
             <SPage title={'Elegir mi dirección'} disableScroll center  >
-
-                <SView col={"xs-12"} flex center  >
-                    {this.showMapa()}
-                </SView >
-
+                {this.showMapa()}
                 {this.getBotonShare()}
                 {this.getInfo()}
-
-
             </ SPage >
         );
     }

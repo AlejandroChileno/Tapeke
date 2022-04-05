@@ -23,7 +23,6 @@ class Paso1 extends React.Component {
         var data_horario = horario.Actions.getAll(this.props);
         if (!data_horario) return <SLoad />;
         // filtro tabla {horario} y tabla {restaurante} por key_restaurante
-
         var misDatas = Object.values(data_horario).filter(itm => itm.key_restaurante == this.key_restaurante && itm.dia == NroDia)
         if (misDatas.length <= 0) return " Sin atención";
         return misDatas.map((obj) => {
@@ -93,15 +92,15 @@ class Paso1 extends React.Component {
                     <SView col={"xs-12"} height={200}>
                         <SMapView initialRegion={
                             {
-                                // latitude: data.lat,
-                                // longitude: data.lng,
-                                latitude: auxRestaurante.lat,
-                                longitude: auxRestaurante.lng,
+                                latitude: auxRestaurante.latitude,
+                                longitude: auxRestaurante.longitude,
                                 latitudeDelta: 0.0922,
                                 longitudeDelta: 0.0421,
                             }}
                             preventCenter>
-                            <SMarker lat={auxRestaurante.lat} lng={auxRestaurante.lng} />
+                            <SMarker lat={auxRestaurante.latitude} lng={auxRestaurante.longitude}  >
+                                <SIcon name="MarcadorMapa" width={20} height={30} />
+                            </SMarker>
                         </SMapView>
                     </SView>
                     <SView center col={"xs-12"} row style={{ borderBottomWidth: 1, borderTopWidth: 1, borderColor: STheme.color.lightGray }}>
@@ -115,7 +114,7 @@ class Paso1 extends React.Component {
                             <SHr height={20} />
                         </SView>
                         <SView col={"xs-6"} center row
-                            onPress={() => { SNavigation.navigate("restaurante/comollegar", { key: this.key_restaurante });}}>
+                            onPress={() => { SNavigation.navigate("restaurante/comollegar", { key: this.key_restaurante }); }}>
                             <SIcon name={'ComoLlegar'} height={26} width={26} />
                             <SText color={STheme.color.primary} fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>Cómo llegar {">"}</SText>
                         </SView>

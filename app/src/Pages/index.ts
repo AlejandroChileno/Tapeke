@@ -13,6 +13,7 @@ import inDevelop from './inDevelop';
 import Billetera from './Billetera';
 
 import SelectDireccion from './SelectDireccion';
+import Ayuda from './Ayuda';
 
 
 
@@ -31,6 +32,7 @@ const Pages: SPageListProps = {
     ...Services.Pages,
     "direccion": SelectDireccion,
     "billetera": Billetera,
+    "ayuda": Ayuda,
 
 
 
