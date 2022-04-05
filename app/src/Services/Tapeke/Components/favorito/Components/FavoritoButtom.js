@@ -20,7 +20,7 @@ class FavoritoButtom extends Component {
         return  <SIcon 
         name={'Favorite'} 
         height={size} width={size} 
-        fill={isFavorito == "void"?"#000":'#FA4A0C'} 
+        fill={isFavorito == "void"?"#ADB5BD":'#FA4A0C'} 
            
         />
     }
