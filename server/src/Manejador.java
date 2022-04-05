@@ -32,6 +32,9 @@ public class Manejador {
             case Favorito.COMPONENT:
                 Favorito.onMessage(obj, session);
                 break;
+            case costo_envio.COMPONENT:
+                costo_envio.onMessage(obj, session);
+                break;
             case BackgroundLocation.COMPONENT:
                 BackgroundLocation.onMessage(obj, session);
                 break;
