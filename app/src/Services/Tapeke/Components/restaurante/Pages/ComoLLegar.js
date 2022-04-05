@@ -1,15 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SIcon, SPage, SScrollView2, SText, STheme, SView, SMapView, SMarker, SInput, SNavigation, SHr, SLoad, SPopup, SDate, SImage, } from 'servisofts-component';
-// import BarraSuperiorTapeke from '../../../../../Components/BarraSuperiorTapeke';
-import PButtom from '../../../../../Components/PButtom';
-// ismport Parent from '../index'
-import locationGoogleReducer from '../../direccion_usuario/locationGoogleReducer';
-import PopUpDirecciones from '../../direccion_usuario/Pages/PopUpDirecciones';
+import { SDate, SIcon, SImage, SLoad, SMapView, SMarker, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
+import SSocket from 'servisofts-socket';
+import restaurante from '..';
 import direccion_usuario from '../../direccion_usuario';
 import horario from '../../horario';
-import SSocket from 'servisofts-socket'
-import restaurante from '..';
 
 
 class ComoLLegar extends React.Component {
@@ -49,7 +44,7 @@ class ComoLLegar extends React.Component {
                     }}
                     preventCenter>
                     <SMarker lat={this.state.region?.latitude} lng={this.state.region?.longitude}  >
-                        <SIcon name="Marker" width={20} height={30} />
+                        {/* <SIcon name="Marker" width={20} height={30} /> */}
                     </SMarker>
                 </SMapView>
             </SView>
