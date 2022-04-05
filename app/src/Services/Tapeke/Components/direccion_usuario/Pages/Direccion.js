@@ -42,9 +42,9 @@ class Direccion extends React.Component {
                         this.setState({ region: region, dirType: "moveMap" });
                     }}
                     preventCenter>
-                    <SMarker lat={this.state.region?.latitude} lng={this.state.region?.longitude}  >
+                    {/* <SMarker lat={this.state.region?.latitude} lng={this.state.region?.longitude}  >
                         <SIcon name="Marker" width={20} height={30} />
-                    </SMarker>
+                    </SMarker> */}
                 </SMapView>
             </SView>
 
@@ -81,6 +81,10 @@ class Direccion extends React.Component {
         </SView>
     }
     render() {
+        var _direcion;
+        var _latitude;
+        var _longitude;
+
         let reducer = this.props.state.direccion_usuarioReducer
         if(reducer.type == "registro" && reducer.estado == "exito") {
             reducer.estado ="";
@@ -156,9 +160,7 @@ class Direccion extends React.Component {
 
                     <SView col={"xs-8.8"} row center border={'transparent'}  >
                         <PButtom fontSize={16} onPress={() => {
-                            if (this.inpNombreUbicacion.verify()) {
-                                // alert("registro la ubicacion")
-                            }
+                            if (!this.inpNombreUbicacion.verify()) return null;
 
                             var data = {
                                 descripcion: this.inpNombreUbicacion.getValue(),

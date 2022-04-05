@@ -42,9 +42,9 @@ class SelectDireccion extends Component {
                         this.setState({ region: region, dirType: "moveMap" });
                     }}
                     preventCenter>
-                    <SMarker lat={this.state.region?.latitude} lng={this.state.region?.longitude}  >
+                    {/* <SMarker lat={this.state.region?.latitude} lng={this.state.region?.longitude}  >
                         <SIcon name="Marker" width={20} height={30} />
-                    </SMarker>
+                    </SMarker> */}
                 </SMapView>
             </SView>
 

@@ -46,6 +46,8 @@ import IconShare1, { ReactComponent as IconShare1W } from './iconShare1.svg';
 import IconShare2, { ReactComponent as IconShare2W } from './iconShare2.svg';
 import IconShare3, { ReactComponent as IconShare3W } from './iconShare3.svg';
 
+import DeleteDir, { ReactComponent as DeleteDirW } from './deleteDir.svg';
+
 const Assets = {
 	// alvaro
 	"Billetera": { Native: Billetera, Web: BilleteraW },
@@ -92,6 +94,7 @@ const Assets = {
 	"IconShare1": { Native: IconShare1, Web: IconShare1W },
 	"IconShare2": { Native: IconShare2, Web: IconShare2W },
 	"IconShare3": { Native: IconShare3, Web: IconShare3W },
+	"DeleteDir": { Native: DeleteDir, Web: DeleteDirW },
 }
 
 export default Assets;
