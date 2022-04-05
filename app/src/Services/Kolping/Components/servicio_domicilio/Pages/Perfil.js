@@ -55,7 +55,7 @@ class Perfil extends Component {
                     <SView center>
                         <SText style={{
                             fontSize: 16,
-                        }} font={"LondonBetween"} color={STheme.color.gray} font={"LondonMM"}>{usuario["CI"] ?? "--"} </SText>
+                        }} font={"LondonBetween"} color={STheme.color.gray}   >{usuario["CI"] ?? "--"} </SText>
                     </SView>
                     <SView center row>
                         <SView>
@@ -64,7 +64,7 @@ class Perfil extends Component {
                         <SView>
                             <SText style={{
                                 fontSize: 16,
-                            }} font={"LondonBetween"} color={STheme.color.gray} font={"LondonMM"}>
+                            }} font={"LondonBetween"} color={STheme.color.gray}  >
                             </SText>
                         </SView>
                         <SText>

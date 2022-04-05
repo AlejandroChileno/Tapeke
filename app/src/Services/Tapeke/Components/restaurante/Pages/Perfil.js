@@ -115,9 +115,7 @@ class Paso1 extends React.Component {
                             <SHr height={20} />
                         </SView>
                         <SView col={"xs-6"} center row
-                            onPress={() => {
-                                //SNavigation.navigate(Parent.component + "/registro")
-                            }}>
+                            onPress={() => { SNavigation.navigate("restaurante/comollegar", { key: this.key_restaurante });}}>
                             <SIcon name={'ComoLlegar'} height={26} width={26} />
                             <SText color={STheme.color.primary} fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>Cómo llegar {">"}</SText>
                         </SView>
@@ -200,7 +198,7 @@ class Paso1 extends React.Component {
                 <SView col={"xs-12  "} center >
                     <SView flex col={"xs-12 sm-10 md-8 lg-6 xl-4"} style={{ justifyContent: "flex-end" }} >
                         <SView center style={{ position: 'absolute', zIndex: 9999999, borderRadius: 30, right: 20, top: -100 }} width={50} height={50} backgroundColor={STheme.color.white}>
-                           <FavoritoButtom data={auxRestaurante}/>
+                            <FavoritoButtom data={auxRestaurante} />
                         </SView>
                     </SView>
                 </SView>

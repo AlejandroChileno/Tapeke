@@ -7,6 +7,7 @@ import direccion_usuario from './Components/direccion_usuario';
 import pack from './Components/pack';
 import billetera from './Components/billetera';
 import favorito from './Components/favorito';
+import costo_envio from './Components/costo_envio';
 
 const ServiceName = "tapeke";
 
@@ -18,7 +19,8 @@ const Pages: SPageListProps = {
     ...direccion_usuario.Pages,
     ...pack.Pages,
     ...billetera.Pages,
-    ...favorito.Pages
+    ...favorito.Pages,
+    ...costo_envio.Pages
 
     
 }
@@ -30,7 +32,8 @@ const Reducers = {
     ...direccion_usuario.Reducers,
     ...pack.Reducers,
     ...billetera.Reducers,
-    ...favorito.Reducers
+    ...favorito.Reducers,
+    ...costo_envio.Reducers
 }
 
 export default {
