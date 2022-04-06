@@ -45,9 +45,8 @@ class registro extends Component {
             row
             ref={(form) => { this.form = form; }}
             inputs={{
-                monto_fijo: { label: "Monto Fijo", type: "money", isRequired: true, defaultValue: data["monto_fijo"] },
-                metro: { label: "Monto por distancia", type: "money", isRequired: false, defaultValue: data["metro"]},
-                minuto: { label: "Monto por tiempo", type: "money", isRequired: false, defaultValue: data["minuto"] },
+                monto: { label: "Monto", type: "money", isRequired: true, defaultValue: data["monto"] },
+                metro: { label: "Metros", type: "number", isRequired: false, defaultValue: data["metro"]},
             }}
             // onSubmitName={"Registrar"}
             onSubmit={(values) => {

@@ -17,9 +17,8 @@ class lista extends Component {
         return <STable2
             header={[
                 { key: "index", label: "#", width: 50 },
-                { key: "monto_fijo", label: "Monto fijo", width: 130 },
-                { key: "metro", label: "Monto por distancia", width: 280 },
-                { key: "minuto", label: "Monto por tiempo", width: 200 },
+                { key: "monto", label: "Monto", width: 130 },
+                { key: "metro", label: "Metros", width: 280 },
                 {
                     key: "key-editar", label: "Editar", width: 50, center: true,
                     component: (item) => {
