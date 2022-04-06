@@ -26,14 +26,11 @@ class exploradorMapa extends React.Component {
     }
 
     getRestaurante() {
-        var data = Parent.Actions.getAll(this.props);
+        var data = Parent.Actions.getAllFilter({ soloHoy: false }, this.props);
         if (!data) return null;
-        var listaKeys = Object.keys(data);
-        return listaKeys.map((key, index) => {
-            var obj = data[key];
-            if(!obj.latitude || !obj.longitude) return null;
+        return data.map((obj, index) => {
             return <SMarker lat={obj.latitude} lng={obj.longitude} onPress={() => {
-                SNavigation.navigate("restaurante/perfil", { key: key });
+                SNavigation.navigate("restaurante/perfil", { key: obj.key });
             }} >
                 <SIcon name={"MarcadorMapa"} width={40} height={40} />
             </SMarker>

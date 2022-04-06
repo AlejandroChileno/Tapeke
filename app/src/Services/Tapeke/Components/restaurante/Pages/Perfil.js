@@ -79,8 +79,8 @@ class Paso1 extends React.Component {
     }
 
     recoger() {
-        var auxRestaurante = restaurante.Actions.getByKey(this.key_restaurante, this.props)
-        if (!auxRestaurante) return <SLoad />
+        // var this.dataRestaurante = restaurante.Actions.getByKey(this.key_restaurante, this.props)
+        if (!this.dataRestaurante) return <SLoad />
         return <>
             <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center style={{ backgroundColor: STheme.color.white }}>
                 <SView col={"xs-11"} style={{ backgroundColor: STheme.color.white }}>
@@ -92,13 +92,13 @@ class Paso1 extends React.Component {
                     <SView col={"xs-12"} height={200}>
                         <SMapView initialRegion={
                             {
-                                latitude: auxRestaurante.latitude,
-                                longitude: auxRestaurante.longitude,
+                                latitude: this.dataRestaurante.latitude,
+                                longitude: this.dataRestaurante.longitude,
                                 latitudeDelta: 0.0922,
                                 longitudeDelta: 0.0421,
                             }}
                             preventCenter>
-                            <SMarker lat={auxRestaurante.latitude} lng={auxRestaurante.longitude}  >
+                            <SMarker lat={this.dataRestaurante.latitude} lng={this.dataRestaurante.longitude}  >
                                 <SIcon name="MarcadorMapa" width={20} height={30} />
                             </SMarker>
                         </SMapView>
@@ -136,55 +136,41 @@ class Paso1 extends React.Component {
 
     render() {
 
-        var auxRestaurante = restaurante.Actions.getByKey(this.key_restaurante, this.props)
-        if (!auxRestaurante) return <SLoad />
+        this.dataRestaurante = restaurante.Actions.getByKeyDetalle(this.key_restaurante, this.props)
+        if (!this.dataRestaurante) return <SLoad />
         return <SPage   >
             <SView col={"xs-12"} row backgroundColor={STheme.color.card} center>
                 <SView col={"xs-12  "} center >
                     <SView center col={"xs-12 sm-10 md-8 lg-6 xl-4  "} backgroundColor={"#9B060C"} height={216} >
-
-                        <SImage src={`${SSocket.api.root}restaurante/${auxRestaurante.key}`} style={{ width: "100%", position: "relative", resizeMode: "cover" }} />
-
+                        <SImage src={`${SSocket.api.root}restaurante/${this.dataRestaurante.key}`} style={{ width: "100%", position: "relative", resizeMode: "cover" }} />
                         {/* <SImage src={require('../../../../../Assets/img/restPerfil.jpg')} style={{ width: "100%", position: "relative", resizeMode: "cover" }} /> */}
                         <SView style={{ position: "absolute", zIndex: 9999, top: 20, left: 20 }} >
                             <SView width={114} height={26} center style={{ borderRadius: 8, overflow: 'hidden', backgroundColor: STheme.color.primary }}>
                                 <SText fontSize={12} font={"Roboto"} color={STheme.color.secondary} >4 disponible(s)</SText>
                             </SView>
                         </SView>
-
-
-
                         <SView center style={{ overflow: 'hidden', position: "absolute", zIndex: 9999, borderRadius: 30, left: 20, bottom: 20 }}
                             width={50} height={50} backgroundColor={STheme.color.white}>
-
-                            <SImage src={`${SSocket.api.root}restaurante/${auxRestaurante.key}`} style={{ resizeMode: 'cover', }} />
+                            <SImage src={`${SSocket.api.root}restaurante/${this.dataRestaurante.key}`} style={{ resizeMode: 'cover', }} />
                             {/* <SImage src={require('../../../../../Pages/fotos/perfil001.png')} /> */}
 
                         </SView>
                         <SGradient colors={["#00000045", "#00000045",]} />
                     </SView>
-
-
-
-
-                    {/* <SHr height={20} /> */}
                 </SView>
-                {/* <SView height={18} style={{ backgroundColor: STheme.color.white }} ></SView> */}
-
-
                 <SView col={"xs-12 "} center>
                     <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} style={{ backgroundColor: STheme.color.white, }} center>
                         <SHr height={10} />
                         <SView col={"xs-11"} row >
                             <SView col={"xs-12"} >
-                                <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >{auxRestaurante.nombre} </SText>
+                                <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >{this.dataRestaurante.nombre} </SText>
                                 {/* <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >Veggie Garden - Gran Via</SText> */}
                             </SView>
                             <SHr height={15} border={'blue'} />
 
                             <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-start', }}>
                                 <SIcon name={'Reloj'} width={13} colSquare center />
-                                <SText fontSize={12} font={"Roboto"} >{this.getHorarioText()}</SText>
+                                <SText fontSize={12} font={"Roboto"} >{this.dataRestaurante.horario.text}</SText>
                             </SView>
                             <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-end', }}>
                                 <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>15 Bs.</SText>
@@ -197,7 +183,7 @@ class Paso1 extends React.Component {
                 <SView col={"xs-12  "} center >
                     <SView flex col={"xs-12 sm-10 md-8 lg-6 xl-4"} style={{ justifyContent: "flex-end" }} >
                         <SView center style={{ position: 'absolute', zIndex: 9999999, borderRadius: 30, right: 20, top: -100 }} width={50} height={50} backgroundColor={STheme.color.white}>
-                            <FavoritoButtom data={auxRestaurante} />
+                            <FavoritoButtom data={this.dataRestaurante} />
                         </SView>
                     </SView>
                 </SView>
@@ -208,7 +194,7 @@ class Paso1 extends React.Component {
                         <SHr height={15} />
                         <SText fontSize={24} font={"Roboto"} style={{ fontWeight: "bold" }}>Sobre Nosotros</SText>
                         <SHr height={10} />
-                        <SText style={{ textAlign: "justify" }} fontSize={14} font={"Roboto"} >{auxRestaurante.descripcion}.</SText>
+                        <SText style={{ textAlign: "justify" }} fontSize={14} font={"Roboto"} >{this.dataRestaurante.descripcion}</SText>
                         <SHr height={15} />
                     </SView>
                 </SView>

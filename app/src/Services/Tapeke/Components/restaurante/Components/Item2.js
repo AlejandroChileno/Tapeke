@@ -16,35 +16,13 @@ class Item2 extends Component {
         this.state = {};
     }
 
-    getDiaText() {
-        var NroDia = new SDate().getDayOfWeek();
-        switch (NroDia) {
-            case 1:
-                return "lunes";
-            case 2:
-                return "martes";
-            case 3:
-                return "miercoles";
-            case 4:
-                return "jueves";
-            case 5:
-                return "viernes";
-            case 6:
-                return "sabado";
-            case 7:
-                return "domingo";
-            case -1:
-                return "feriado";
-            default:
-                return "sin dia";
-        }
-    }
 
     getHorarioText() {
         var data = horario.Actions.getByKeyRestauranteProximo(this.props.data.key, this.props);
         if (!data) return <SLoad />;
         if (data == "void") return "Sin horarios";
         var dia = SDate.getDayOfWeek(data.dia).text;
+
         if (data.dia == new SDate().getDayOfWeek()) {
             dia = "hoy"
         }
@@ -89,33 +67,13 @@ class Item2 extends Component {
                 <SView height={50} width={50} style={{ borderRadius: 50, overflow: 'hidden', backgroundColor: 'white', position: 'absolute' }}>
                     <SImage src={`${SSocket.api.root}restaurante/${this.props.data.key}`} style={{
                         resizeMode: 'cover',
-                    }}/>
+                    }} />
                     {/* <SImage src={require('../../../../../Pages/fotos/perfil001.png')} /> */}
                 </SView>
             </SView>
         </>
     }
-    static getDistance(lat1, lon1, lat2, lon2) {
-        var rad = function (x) { return x * Math.PI / 180; }
-        var R = 6378.137; //Radio de la tierra en km 
-        var dLat = rad(lat2 - lat1);
-        var dLong = rad(lon2 - lon1);
-        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(rad(lat1)) *
-            Math.cos(rad(lat2)) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        //aquí obtienes la distancia en metros por la conversion 1Km =1000m
-        var d = R * c * 1000;
-        return d;
-    }
-    getDistancia() {
-        var miDireccion = this.props.state.direccion_usuarioReducer.miDireccion;
-        var distancia = Item2.getDistance(miDireccion.latitude, miDireccion.longitude, this.props.data.latitude, this.props.data.longitude);
-        return parseFloat(distancia / 1000).toFixed(1);
-    }
     getItems() {
-        var distancia = this.getDistancia();
-        var miDistancia = this.props.state.direccion_usuarioReducer.miDistancia;
-        if (miDistancia < distancia) return null;
         return <>
             <SView col={"xs-12"} height={200} center onPress={() => { SNavigation.navigate("restaurante/perfil", { key: this.props.data.key }); }} >
                 <SView col={"xs-11.9"} height row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2 }}>
@@ -126,12 +84,12 @@ class Item2 extends Component {
                             <SIcon name={'Reloj'} width={13} colSquare center />
                             <SView width={4} />
                             {/* <SText fontSize={10} font={"Roboto"}> Hoy {this.props.data.horario}</SText> */}
-                            <SText fontSize={10} font={"Roboto"} >{this.getHorarioText()}</SText>
+                            <SText fontSize={10} font={"Roboto"} >{this.props.data.horario?.text}</SText>
                         </SView>
                         <SView col={"xs-2.5"} row center style={{ justifyContent: 'flex-start', }} border={'transparent'}>
                             <SIcon name={'Location'} height={13} width={9} center />
                             <SView width={4} />
-                            <SText fontSize={10} font={"Roboto"}>{this.getDistancia()} Km</SText>
+                            <SText fontSize={10} font={"Roboto"}>{this.props.data.distancia} Km</SText>
                         </SView>
                         <SView col={"xs-4"} row center border={'transparent'} style={{ justifyContent: 'flex-end', }}>
                             <SText fontSize={16} font={"Roboto"}>Bs. 15.00</SText>
