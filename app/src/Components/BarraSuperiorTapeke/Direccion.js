@@ -72,7 +72,7 @@ class Direccion extends Component {
                         <SIcon name={"Location"} height={18} fill={STheme.color.secondary} />
                     </SView>
                 </SView>
-                <SView height={50} style={{ justifyContent: 'center', paddingLeft: 4, paddingRight: 4, maxWidth: 280, }} flex>
+                <SView height={50} style={{flex:1, justifyContent: 'center', paddingLeft: 4, paddingRight: 4, maxWidth: 280, }}>
                     <SText font={"Roboto-Bold"} fontSize={12} center color={STheme.color.secondary}>{miDireccion ? miDireccion?.direccion : "Elegir mi ubicación..."}</SText>
                     <SHr height={4} />
                     <SText font={"Roboto-Bold"} fontSize={13} center color={STheme.color.secondary}> A menos de {miDistancia == 1 ? "1" : "30"} km</SText>

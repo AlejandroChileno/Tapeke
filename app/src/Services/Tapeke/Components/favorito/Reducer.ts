@@ -1,3 +1,4 @@
+import { SUuid } from 'servisofts-component';
 import Parent from './index'
 
 type DataProps = {
@@ -48,7 +49,7 @@ const registro = (state: any, action: DataProps) => {
     state.data[action.data.key] = action.data;
 }
 const editar = (state: any, action: DataProps) => {
-    if (action.estado != "exito") return;
+    //if (action.estado != "exito") return;
     if (!state.data) return;
     state.data[action.data.key] = action.data;
 }

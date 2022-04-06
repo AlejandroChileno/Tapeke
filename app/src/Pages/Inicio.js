@@ -70,8 +70,7 @@ class Inicio extends Component {
         <BarraSuperiorTapeke>
           <Direccion />
         </BarraSuperiorTapeke>
-
-        <SPage title={""} hidden disableHorizontal={true} center>
+        <SPage title={"as"} hidden disableHorizontal={true} center>
           <SView col={"xs-12 md-12 lg-10 xl-8"} center height>
             {this.categoria("Recomendado Para Ti")}
             {this.categoria("Cerca")}
@@ -81,7 +80,6 @@ class Inicio extends Component {
             <SHr height={80} />
           </SView>
         </SPage>
-
         <PBarraFooter />
       </>
     );
