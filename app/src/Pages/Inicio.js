@@ -36,7 +36,7 @@ class Inicio extends Component {
           <SScrollView2>
             <SView center row>
               <SView width={16} />
-              <Item></Item>
+              {/* <Item></Item> */}
             </SView>
             <SHr />
           </SScrollView2>

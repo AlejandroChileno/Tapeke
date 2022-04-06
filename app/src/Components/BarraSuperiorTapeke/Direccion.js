@@ -58,7 +58,7 @@ class Direccion extends Component {
         var miDistancia = this.props.state.direccion_usuarioReducer.miDistancia;
 
         if (!this.props.state.direccion_usuarioReducer.miDireccion) {
-            SNavigation.navigate("direccion_usuario")
+            SNavigation.replace("direcciones")
 
             return null;
         }
