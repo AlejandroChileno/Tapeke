@@ -1,5 +1,6 @@
 import { SThemeThemes } from 'servisofts-component'
 import SConfig_Inputs from './SConfig_Inputs'
+import MapStyle from './mapStyle'
 const SThemeProps: SThemeThemes = {
     default: {
         barStyle: "light-content",
@@ -10,6 +11,7 @@ const SThemeProps: SThemeThemes = {
         info: "#DE5738",
         background: "#ffffff",
         card: "#eeeeee99",
+        mapStyle:MapStyle
 
     },
     dark: {
@@ -20,7 +22,8 @@ const SThemeProps: SThemeThemes = {
         secondary: "#000000",
         info: "#DE5738",
         background: "#000000",
-        card: "#44444499"
+        card: "#44444499",
+        mapStyle:MapStyle
     }
 }
 

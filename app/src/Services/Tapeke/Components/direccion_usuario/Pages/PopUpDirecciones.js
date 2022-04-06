@@ -50,9 +50,8 @@ class PopUpDirecciones extends React.Component {
                     </SView>
                     <SView col={"xs-10"} height={64} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray, justifyContent: 'center', }}
                         onPress={() => { var aux = this.setState({ place_id: obj.place_id, direccion: obj.direccion }); }} >
-                        <SText fontSize={12} font={"Roboto"} color={STheme.color.gray} > {obj.direccion} </SText>
+                        <SText fontSize={12} font={"Roboto"} color={STheme.color.gray} >{obj.direccion}</SText>
                     </SView>
-
                 </SView></>
         });
     }
@@ -69,11 +68,14 @@ class PopUpDirecciones extends React.Component {
                         />
                     </SView>
                     <SHr height={10} />
-                    <SScrollView2 disableHorizontal={true}>
-                        <SView col={"xs-11.6"}>
-                            {this.getAutoComplete()}
-                        </SView>
-                    </SScrollView2>
+                    <SView col={"xs-12"} flex>
+                        <SScrollView2 disableHorizontal={true}>
+                            <SView col={"xs-11.6"}>
+                                {this.getAutoComplete()}
+                            </SView>
+                        </SScrollView2>
+                    </SView>
+
                     <SHr height={30} />
                     <SText fontSize={12} font={"Roboto"} color={STheme.color.lightGray} center >sin resultados.</SText>
                     <SHr height={30} />
@@ -83,7 +85,7 @@ class PopUpDirecciones extends React.Component {
     }
 
     render() {
-        return <> {this.popupAutoComplete()} </>
+        return <>{this.popupAutoComplete()}</>
     }
 }
 const initStates = (state) => {

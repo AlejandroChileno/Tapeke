@@ -31,8 +31,10 @@ class exploradorMapa extends React.Component {
         var listaKeys = Object.keys(data);
         return listaKeys.map((key, index) => {
             var obj = data[key];
-            return <SMarker lat={obj.latitude} lng={obj.longitude} >
-                <SIcon name={"MarcadorMapa"} width={100} height={100} />
+            return <SMarker lat={obj.latitude} lng={obj.longitude} onPress={() => {
+                SNavigation.navigate("restaurante/perfil", { key: key });
+            }} >
+                <SIcon name={"MarcadorMapa"} width={40} height={40} />
             </SMarker>
         })
     }

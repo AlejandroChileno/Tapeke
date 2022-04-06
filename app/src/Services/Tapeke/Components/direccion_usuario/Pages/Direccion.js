@@ -12,8 +12,8 @@ class Direccion extends React.Component {
         super(props);
         this.state = {
             region: {
-                latitude: -17.808690397665742,
-                longitude: -63.16250034566757,
+                latitude: -17.808690,
+                longitude: -63.162500,
             },
             dirType: "moveMap",
             nombre: " "
@@ -27,8 +27,8 @@ class Direccion extends React.Component {
             <SView col={"xs-12"} flex>
                 <SMapView
                     initialRegion={{
-                        latitude: -17.808690397665742,
-                        longitude: -63.16250034566757,
+                        latitude: -17.808690,
+                        longitude: -63.162500,
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421,
                     }}
@@ -39,6 +39,8 @@ class Direccion extends React.Component {
                     // }}
                     onRegionChangeComplete={(region) => {
                         // cuando cambio de posicion (mouse)
+                        region.latitude = region.latitude.toFixed(6);
+                        region.longitude = region.longitude.toFixed(6);
                         this.setState({ region: region, dirType: "moveMap" });
                     }}
                     preventCenter>
@@ -71,7 +73,7 @@ class Direccion extends React.Component {
     }
 
     getAlgo() {
-      //  if (!this.props.state.direccion_usuarioReducer.miDireccion) return null;
+        //  if (!this.props.state.direccion_usuarioReducer.miDireccion) return null;
         return <SView col={"xs-10"} >
             <SInput fontSize={16} placeholder={"Nombre de la Ubicación"}
                 isRequired={true}
@@ -86,20 +88,20 @@ class Direccion extends React.Component {
         var _longitude;
 
         let reducer = this.props.state.direccion_usuarioReducer
-        if(reducer.type == "registro" && reducer.estado == "exito") {
-            reducer.estado ="";
+        if (reducer.type == "registro" && reducer.estado == "exito") {
+            reducer.estado = "";
             this.props.dispatch({
-                component:"direccion_usuario",
-                type:"editarMiDireccion",
-                data:reducer.lastRegister
+                component: "direccion_usuario",
+                type: "editarMiDireccion",
+                data: reducer.lastRegister
             })
 
-     
 
-            _direcion=this.state?.nombre,
-            _latitude=this.state?.latitude,
-            _longitude=this.state?.longitude,
-            SNavigation.goBack()
+
+            _direcion = this.state?.nombre,
+                _latitude = this.state?.latitude,
+                _longitude = this.state?.longitude,
+                SNavigation.goBack()
         }
         this.getGeocode()
         return (
@@ -133,15 +135,14 @@ class Direccion extends React.Component {
                                 value={this.state.nombre}
                                 onPress={() => {
                                     SPopup.open({
-                                        key: "autocomplete", content:
-                                            <PopUpDirecciones region={this.state.region} callback={(resp) => {
-                                                SPopup.close("autocomplete");
-                                                this.state.region = resp;
-                                                this.map.animateToRegion(resp, 1000);
-                                                this.state.dirType = "autoComplete"
-                                                this.state.nombre = resp.direccion;
-                                                this.setState({ ...this.state });
-                                            }} />
+                                        key: "autocomplete", content: <PopUpDirecciones region={this.state.region} callback={(resp) => {
+                                            SPopup.close("autocomplete");
+                                            this.state.region = resp;
+                                            this.map.animateToRegion(resp, 1000);
+                                            this.state.dirType = "autoComplete"
+                                            this.state.nombre = resp.direccion;
+                                            this.setState({ ...this.state });
+                                        }} />
                                     });
                                 }}
                                 iconR={<SIcon name={"SearchTapeke"} width={40} height={18} fill={STheme.color.primary} />}
@@ -177,14 +178,13 @@ class Direccion extends React.Component {
                     <SHr height={10} />
                 </SView>
 
-                <SView col={"xs-2.5"} height={80} style={{ position: 'absolute', right: 30 }} border={'blue'}>
+                {/* <SView col={"xs-2.5"} height={80} style={{ position: 'absolute', right: 30 }} border={'blue'}>
                     <SHr height={10} />
                     <SText font={"Roboto"} fontSize={16} >Mi información</SText>
-                    {/* <SText font={"Roboto"} fontSize={12} >Direccion: {this.getGeocode()}</SText> */}
                     <SText font={"Roboto"} fontSize={12} >Dirección: {this.state.nombre}</SText>
                     <SText font={"Roboto"} fontSize={12} >latitude: {this.state.region?.latitude}</SText>
                     <SText font={"Roboto"} fontSize={12} >Longitude: {this.state.region?.longitude}</SText>
-                </SView >
+                </SView > */}
             </ SPage >
         );
     }

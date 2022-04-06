@@ -30,6 +30,7 @@ export default class Actions {
         if (reducer.estado == "cargando" && reducer.type == "geocode") {
             return null;
         }
+        console.log("PIDIENDO====", data.latitude + "," + data.longitude)
         SSocket.send({
             service: "geolocation",
             component: 'locationGoogle',
