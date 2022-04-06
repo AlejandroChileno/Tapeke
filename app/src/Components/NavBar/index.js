@@ -171,7 +171,7 @@ class NavBar extends React.Component {
 					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("admin"); this.fadeOut(); }}  >
 						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
 							<SIcon fill="#666666" name={"Configuracion"} width={28} height={27} />
-							<SText font={"Roboto"} style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Configuracion</SText>
+							<SText font={"Roboto"} style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Configuración</SText>
 						</SView>
 						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
 							<SIcon stroke={"#405394"} name={"Icon1"} width={20} height={20} />
