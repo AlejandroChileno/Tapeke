@@ -12,8 +12,8 @@ class Direccion extends React.Component {
         super(props);
         this.state = {
             region: {
-                latitude: -17.808690,
-                longitude: -63.162500,
+                latitude: -17.7833276,
+                longitude: -63.1821408,
             },
             dirType: "moveMap",
             nombre: " "
@@ -27,8 +27,8 @@ class Direccion extends React.Component {
             <SView col={"xs-12"} flex>
                 <SMapView
                     initialRegion={{
-                        latitude: -17.808690,
-                        longitude: -63.162500,
+                        latitude: -17.7833276,
+                        longitude: -63.1821408,
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421,
                     }}
@@ -39,8 +39,7 @@ class Direccion extends React.Component {
                     // }}
                     onRegionChangeComplete={(region) => {
                         // cuando cambio de posicion (mouse)
-                        region.latitude = region.latitude.toFixed(6);
-                        region.longitude = region.longitude.toFixed(6);
+
                         this.setState({ region: region, dirType: "moveMap" });
                     }}
                     preventCenter>
@@ -74,8 +73,8 @@ class Direccion extends React.Component {
 
     getAlgo() {
         //  if (!this.props.state.direccion_usuarioReducer.miDireccion) return null;
-        return <SView col={"xs-10"} >
-            <SInput fontSize={16} placeholder={"Nombre de la Ubicación"}
+        return <SView col={"xs-11"} >
+            <SInput fontSize={12} placeholder={"Nombre de la Ubicación"}
                 isRequired={true}
                 height={55}
                 ref={(ref) => { this.inpNombreUbicacion = ref }}
@@ -121,18 +120,19 @@ class Direccion extends React.Component {
                         {this.getAlgo()}
                         <SHr height={10} />
 
-                        <SView col={"xs-10"}>
+                        <SView col={"xs-11"}>
                             <SInput
                                 style={{
                                     backgroundColor: STheme.color.card + 1,
                                     height: 55,
                                     borderRadius: 16,
                                     color: STheme.color.text,
-                                    fontSize: 16
+                                    fontSize: 12
                                 }}
                                 placeholder={"Busca una direccion!"}
                                 // value={this.getGeocode()}
-                                value={this.state.nombre}
+                                editable={false}
+                                value={`${this.state.nombre.substring(0, 40)}${this.state.nombre.length > 40 ? "..." : ""}`}
                                 onPress={() => {
                                     SPopup.open({
                                         key: "autocomplete", content: <PopUpDirecciones region={this.state.region} callback={(resp) => {
@@ -150,12 +150,12 @@ class Direccion extends React.Component {
                         </SView>
                     </SView>
 
-                    <SView col={"xs-12"} row center border={'transparent'}>
+                    <SView col={"xs-12"} row center height={40} border={'transparent'}>
                         <SView width={40} center>
                             <SIcon name={'LocationTapeke'} height={14} width={14} />
                         </SView>
-                        <SView width={200} onPress={() => { this.map.center(); }}>
-                            <SText fontSize={15} font={"Roboto"} bold>Utilizar mi ubicación actual</SText>
+                        <SView onPress={() => { this.map.center(); }}>
+                            <SText fontSize={14} font={"Roboto"} bold>Utilizar mi ubicación actual</SText>
                         </SView>
                     </SView>
 

@@ -10,6 +10,8 @@ export default (state, action) => {
     switch (action.type) {
         case 'USUARIO_LOGOUT':
             SStorage.removeItem("usr_log");
+            SStorage.removeItem("miDireccion_log");
+            SStorage.removeItem("miDistancia_log");
             state = undefined;
             break;
         default:
