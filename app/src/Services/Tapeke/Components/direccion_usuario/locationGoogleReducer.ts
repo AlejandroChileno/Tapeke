@@ -32,8 +32,8 @@ export default (state, action) => {
 const geocode = (state, action) => {
     if (action.estado === "exito") {
         var data = action.data;
-        data.latitude = data.latitude.toFixed(6);
-        data.longitude = data.longitude.toFixed(6);
+        data.latitude = data.latitude.toFixed(4);
+        data.longitude = data.longitude.toFixed(4);
         console.log("REDUCER======",data.latitude + "," + data.longitude)
         state.geocode[data.latitude + "," + data.longitude] = action.data;
     }

@@ -6,7 +6,7 @@ import Direccion from '../../../../../Components/BarraSuperiorTapeke/Direccion';
 import PBarraFooter from '../../../../../Components/PBarraFooter';
 import Item2 from '../Components/Item2';
 import Parent from '../index'
-
+import favorito from '../../favorito';
 class Explorador extends React.Component {
     constructor(props) {
         super(props);
@@ -76,7 +76,9 @@ class Explorador extends React.Component {
 
     getRestaurante() {
         var data = Parent.Actions.getAll(this.props);
+        var data_favoritos = favorito.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key,this.props);
         if (!data) return <SLoad />;
+        if (!data_favoritos) return <SLoad />;
         var listaKeys = Object.keys(data);
         return listaKeys.map((key, index) => {
             var obj = data[key];
