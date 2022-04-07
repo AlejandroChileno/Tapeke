@@ -191,16 +191,16 @@ class Confirmar extends React.Component {
                 </SView> */}
                 <SHr col={"xs-12"} height={20} />
                 <SView col={"xs-11"} row center>
-                    <SView col={"xs-6"} center>
+                    {/* <SView col={"xs-6"} center>
                         <SView width={140} height={44} center border={STheme.color.primary} style={{ borderRadius: 8 }} onPress={() => { SPopup.close("confirmar"); }}  >
                             <SText fontSize={14} color={STheme.color.primary} style={{ fontWeight: 600 }} >No, cancelar</SText>
                         </SView>
-                    </SView>
-                    <SView col={"xs-6"} center>
+                    </SView> */}
+                    {/* <SView col={"xs-6"} center>
                         <SView width={140} height={44} center backgroundColor={STheme.color.primary} style={{ borderRadius: 8 }} onPress={() => { SPopup.close("confirmar"); SNavigation.navigate("pedido/mensajeSolicitud") }}>
                             <SText fontSize={14} color={STheme.color.white} style={{ fontWeight: 600 }} >Sí, Confirmar</SText>
                         </SView>
-                    </SView>
+                    </SView> */}
                 </SView>
                 <SHr col={"xs-12"} height={50} />
             </SView>
@@ -230,20 +230,23 @@ class Confirmar extends React.Component {
                                     position: "relative",
                                     resizeMode: "cover"
                                 }} />
-                                <SGradient colors={["#00000045", "#00000045",]} />
+                                <SGradient colors={["#00000045", "#00000045"]} />
                             </SView>
                             <SView col={"xs-10"} row >
                                 <SView col={"xs-1"}  >
                                 </SView>
                                 <SView col={"xs-11"} row >
                                     <SView col={"xs-12"} >
-                                        <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >{auxRestaurante.nombre}</SText>
+                                        <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >{auxRestaurante?.nombre}</SText>
                                     </SView>
                                     <SHr height={15} />
                                     <SView col={"xs-6"} style={{ justifyContent: 'flex-start', }}>
                                         <SText fontSize={14} font={"Roboto"} color={STheme.color.primary} fontWeight> Precio</SText>
                                         <SHr height={5} />
-                                        <SText fontSize={20} font={"Roboto"} style={{ fontWeight: "bold" }}> {this.precio} Bs.</SText>
+                                        <SView height={35} >
+                                            <SHr height={3} />
+                                            <SText fontSize={20} height={35} font={"Roboto"} style={{ fontWeight: "bold" }}> {this.precio} Bs.</SText>
+                                        </SView>
                                     </SView>
                                     <SView col={"xs-6"} center row>
                                         <SView col={"xs-12"} center>
@@ -251,7 +254,11 @@ class Confirmar extends React.Component {
                                         </SView>
                                         <SHr height={5} />
                                         <SView col={"xs-6"} center >
-                                            <SView col={"xs-12"} style={{ height: 40, backgroundColor: STheme.color.card, borderRadius: 6 }} center> {this.cantidad}</SView>
+                                            <SView col={"xs-12"} style={{ height: 35, backgroundColor: STheme.color.card, borderRadius: 6 }} center>
+                                                <SText fontSize={16} style={{ fontWeight: "bold" }}>
+                                                    {this.cantidad}
+                                                </SText>
+                                            </SView>
                                         </SView>
                                     </SView>
                                 </SView>
