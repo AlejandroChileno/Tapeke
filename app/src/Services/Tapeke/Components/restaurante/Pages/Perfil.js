@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient, SNavigation, SLoad, SDate } from 'servisofts-component';
+import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient, SNavigation, SLoad, SDate, SMath } from 'servisofts-component';
 import restaurante from '..';
 import PButtom from '../../../../../Components/PButtom';
 import SSocket from 'servisofts-socket'
@@ -142,10 +142,22 @@ class Paso1 extends React.Component {
         </>
     }
 
+    getReservar() {
+        if (!this.dataRestaurante.pack) return null;
+        if (!this.dataRestaurante.pack.cantidad) return null;
+        if (this.dataRestaurante.pack.cantidad <= 0) return null;
+        return <PButtom fontSize={20} onPress={() => {
+            SNavigation.navigate("pedido/detalle", { key: this.key_restaurante });
+        }}>RESERVAR</PButtom>
+    }
     render() {
 
         this.dataRestaurante = restaurante.Actions.getByKeyDetalle(this.key_restaurante, this.props)
         if (!this.dataRestaurante) return <SLoad />
+        var cantidad = 0;
+        if (this.dataRestaurante.pack) {
+            cantidad = this.dataRestaurante.pack.cantidad;
+        }
         return <SPage   >
             <SView col={"xs-12"} row backgroundColor={STheme.color.card} center>
                 <SView col={"xs-12  "} center >
@@ -154,7 +166,7 @@ class Paso1 extends React.Component {
                         {/* <SImage src={require('../../../../../Assets/img/restPerfil.jpg')} style={{ width: "100%", position: "relative", resizeMode: "cover" }} /> */}
                         <SView style={{ position: "absolute", zIndex: 9999, top: 20, left: 20 }} >
                             <SView width={114} height={26} center style={{ borderRadius: 8, overflow: 'hidden', backgroundColor: STheme.color.primary }}>
-                                <SText fontSize={12} font={"Roboto"} color={STheme.color.secondary} >4 disponible(s)</SText>
+                                <SText fontSize={12} font={"Roboto"} color={STheme.color.secondary} >{cantidad} disponible(s)</SText>
                             </SView>
                         </SView>
                         <SView center style={{ overflow: 'hidden', position: "absolute", zIndex: 9999, borderRadius: 30, left: 20, bottom: 20 }}
@@ -181,7 +193,7 @@ class Paso1 extends React.Component {
                                 <SText fontSize={12} font={"Roboto"} >{this.dataRestaurante.horario.text}</SText>
                             </SView>
                             <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-end', }}>
-                                <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>15 Bs.</SText>
+                                <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>Bs. {SMath.formatMoney(this.dataRestaurante.pack?.precio ?? 0)}</SText>
                             </SView>
                             <SHr height={10} border={'blue'} />
                         </SView>
@@ -212,10 +224,7 @@ class Paso1 extends React.Component {
                 {this.recoger()}
                 <SHr height={18} />
                 <SHr height={40} />
-                <PButtom fontSize={20} onPress={() => {
-                    SNavigation.navigate("pedido/detalle", { key: this.key_restaurante });
-
-                }}>RESERVAR</PButtom>
+                {this.getReservar()}
                 <SHr height={40} />
             </SView>
         </SPage>

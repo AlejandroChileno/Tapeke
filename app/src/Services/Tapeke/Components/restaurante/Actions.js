@@ -36,7 +36,7 @@ export default class Actions {
         var d = R * c * 1000;
         return d;
     }
-    //filter:{ soloHoy:bool }
+    //filter:{ soloHoy:bool, soloDisponible:bool }
     static getAllFilter = (filter, props) => {
         var data = Actions.getAll(props);
         var horarios_restaurantes = horario.Actions.getAll(props);
@@ -58,9 +58,13 @@ export default class Actions {
             if (!obj.horario) return null;
             //Cargamos el pack
             obj.pack = pack.Actions.getByKeyHorario(obj.horario.key, props);
-            // var dia = SDate.getDayOfWeek(obj.horario.dia).text;
+            if (filter.soloDisponible) {
+                if (!obj.pack) return null;
+            }
             if (obj.horario.dia != new SDate().getDayOfWeek()) {
                 if (filter.soloHoy) {
+                    //SI no queremos que aparesca los del proximo miercoles
+                    // if (obj.horario.sdate.toString("yyyy-MM-dd") != new SDate().toString("yyyy-MM-dd")) return null; 
                     return;
                 }
             }
