@@ -35,14 +35,14 @@ class lista extends Component {
                 {
                     key: "delivery", label: "Delivery", width: 130, center: true,
                     component: (item) => {
-                       // alert(item)
-                       //console.log(item+" aquii")
-                        if(item== true) {
+                        // alert(item)
+                        //console.log(item+" aquii")
+                        if (item == true) {
                             return <SText color={"green"}>Si</SText>
-                        }else {
+                        } else {
                             return <SText color={"red"}>No</SText>
                         }
-                      
+
                     }
                 },
                 {
@@ -68,7 +68,7 @@ class lista extends Component {
                         //     <SIcon name={"Horario"} width={35} />
                         // </SView>
 
-                        return <SView onPress={() => { SNavigation.navigate("admin/" + Parent.component + "/horario/lista", { key: item }) }}>
+                        return <SView onPress={() => { SNavigation.navigate("admin/horario", { key: item }) }}>
                             <SIcon name={"Horario"} width={35} />
                         </SView>
                     }

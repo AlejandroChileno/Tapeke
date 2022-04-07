@@ -25,7 +25,7 @@ class Detalle extends React.Component {
                 <SHr height={15} />
                 <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Tipo de entrega</SText>
                 <SHr height={20} />
-                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6, }}  {...(delivery ? onPress : () => { this.setState({ envio: 0 }) })} >
+                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6, }}  {...(delivery ? { onPress: () => { this.setState({ envio: 0 }) } } : {})} >
                     <SView col={"xs-2"} center flex>
                         <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}
                             backgroundColor={this.state.envio != 0 ? "transparent" : STheme.color.primary} ></SView>
@@ -49,8 +49,7 @@ class Detalle extends React.Component {
                     <SHr height={10} />
                 </SView>
                 <SHr height={15} />
-                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }}
-                    {...(delivery ? onPress : () => { this.setState({ envio: 1 }) })}>
+                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }}  {...(delivery ? { onPress: () => { this.setState({ envio: 1 }) } } : {})}>
                     <SView col={"xs-2"} center flex>
                         <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}
                             backgroundColor={this.state.envio != 0 ? STheme.color.primary : "transparent"} ></SView>

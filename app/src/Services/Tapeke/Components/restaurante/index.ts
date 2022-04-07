@@ -18,13 +18,10 @@ import ExploradorMapa from "./Pages/ExploradorMapa";
 
 
 //Horarios
-import horario from "./Pages/registroHorario";
-import listaHorario from "./Pages/listaHorario";
 import alvaro from "./Pages/alvaro";
 import MapaTest from "./Pages/MapaTest";
 
 //Packs
-import pack from "./Pages/registroPack";
 import ComoLLegar from "./Pages/ComoLLegar";
 
 export default {
@@ -47,11 +44,8 @@ export default {
         ["mapa"]: ExploradorMapa,
         ["admin/" + component]: lista,
         ["admin/" + component + "/registro"]: registro,
-        ["admin/" + component + "/horario"]: horario,
-        ["admin/" + component + "/horario/registro"]: horario,
-        ["admin/" + component + "/horario/lista"]: listaHorario,
+        // ["admin/" + component + "/horario/lista"]: listaHorario,
 
-        ["admin/" + component + "/pack/registro"]: pack,
 
 
         [component + "/mapaTest"]: MapaTest,
