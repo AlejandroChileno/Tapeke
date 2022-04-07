@@ -18,7 +18,7 @@ export default {
     },
     Pages: {
         ["admin/"+component]: listaHorario,
-        [component + "/registro"]: registroHorario,
+        ["admin/"+component + "/registro"]: registroHorario,
     },
     Components: {
         Horario,

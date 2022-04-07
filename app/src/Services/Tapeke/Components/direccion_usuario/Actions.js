@@ -24,13 +24,13 @@ export default class Actions {
     //data:{latitude:Number, longitude:Number, direccion?:String}
     static geocode = (data, props) => {
         var reducer = props.state.locationGoogleReducer;
-        if (reducer.geocode[data.latitude.toFixed(4) + "," + data.longitude.toFixed(4)]) {
-            return reducer.geocode[data.latitude.toFixed(4) + "," + data.longitude.toFixed(4)];
+        if (reducer.geocode[data.latitude.toFixed(6) + "," + data.longitude.toFixed(6)]) {
+            return reducer.geocode[data.latitude.toFixed(6) + "," + data.longitude.toFixed(6)];
         }
         if (reducer.estado == "cargando" && reducer.type == "geocode") {
             return null;
         }
-        console.log("PIDIENDO====", data.latitude.toFixed(4) + "," + data.longitude.toFixed(4))
+        console.log("PIDIENDO====", data.latitude.toFixed(6) + "," + data.longitude.toFixed(6))
         SSocket.send({
             service: "geolocation",
             component: 'locationGoogle',
