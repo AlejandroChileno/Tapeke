@@ -40,15 +40,29 @@ public class Pack {
 
     public static void registro(JSONObject obj, SSSessionAbstract session) {
         try {
+
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS");
             String fecha_on = formatter.format(new Date());
             JSONObject data = obj.getJSONObject("data");
-            data.put("key", UUID.randomUUID().toString());
-            data.put("estado", 1);
-            data.put("fecha_on", fecha_on);
-            data.put("key_usuario", obj.getString("key_usuario"));
-            SPGConect.insertArray(COMPONENT, new JSONArray().put(data));
-            obj.put("data", data);
+            JSONObject last = SPGConect.ejecutarConsultaObject(
+                    "select get_by('pack','key_horario','" + data.getString("key_horario") + "') as json");
+
+            if (last.has("key")) {
+                last.put("precio", data.getDouble("precio"));
+                last.put("cantidad", data.getInt("cantidad"));
+                last.put("fecha_on", fecha_on);
+                last.put("key_usuario", obj.getString("key_usuario"));
+                SPGConect.editObject(COMPONENT, last);
+            } else {
+                last = data;
+                last.put("key", UUID.randomUUID().toString());
+                last.put("estado", 1);
+                last.put("fecha_on", fecha_on);
+                last.put("key_usuario", obj.getString("key_usuario"));
+                SPGConect.insertArray(COMPONENT, new JSONArray().put(last));
+            }
+
+            obj.put("data", last);
             obj.put("estado", "exito");
         } catch (Exception e) {
             obj.put("estado", "error");

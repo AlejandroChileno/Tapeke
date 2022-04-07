@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SDate, SIcon, SImage, SLoad, SNavigation, SText, STheme, SView } from 'servisofts-component';
+import { SDate, SIcon, SImage, SLoad, SMath, SNavigation, SText, STheme, SView } from 'servisofts-component';
 import SSocket from 'servisofts-socket';
 // import restaurante from '..';
 import horario from '../../horario';
@@ -16,42 +16,29 @@ class Item2 extends Component {
         this.state = {};
     }
 
-
-    getHorarioText() {
-        var data = horario.Actions.getByKeyRestauranteProximo(this.props.data.key, this.props);
-        if (!data) return <SLoad />;
-        if (data == "void") return "Sin horarios";
-        var dia = SDate.getDayOfWeek(data.dia).text;
-
-        if (data.dia == new SDate().getDayOfWeek()) {
-            dia = "hoy"
-        }
-        return dia + " " + data.hora_inicio + " - " + data.hora_fin;
-
-    }
-
     HeaderItemFoto() {
         return <>
             <SView col={"xs-12"} row center height={110} border={'transparent'} style={{ position: 'absolute', top: -10 }}  >
-                {/* `${SSocket.api.root}medico/${this.key}?time=${new Date().getTime()}` */}
                 <SImage src={`${SSocket.api.root}restaurante/${this.props.data.key}`} style={{ borderRadius: 8, resizeMode: 'cover' }} />
-                {/* <SImage src={require('../../../../../Pages/fotos/bg003.png')} style={{ borderRadius: 8, resizeMode: 'cover' }} /> */}
             </SView>
         </>
 
     }
     HeaderItemDisponible() {
-        var auxRestaurante = restaurante.Actions.getByKey(this.props.data.key, this.props)
-        if (!auxRestaurante) return <SLoad />
+        var cantidad = 0;
+        if (this.props.data.pack) {
+            cantidad = this.props.data.pack.cantidad;
+        }
+
         return <>
             <SView col={"xs-11"} height={30} row style={{ position: 'absolute', top: 0 }} border={'transparent'}>
                 <SView col={"xs-10"} row center style={{ justifyContent: 'flex-start', }}>
                     <SView width={112} height={24} center style={{ borderRadius: 4, overflow: 'hidden', backgroundColor: '#FFBB3E' }}>
-                        <SText fontSize={10} font={"Roboto"} color={STheme.color.secondary} >{this.props.data.stock} disponible(s)</SText>
+                        <SText fontSize={10} font={"Roboto"} color={STheme.color.secondary} >{cantidad} disponible(s)</SText>
                     </SView>
                 </SView>
                 <SView col={"xs-2"} row center style={{ justifyContent: 'flex-end', }}>
-                    <FavoritoButtom data={auxRestaurante} size={20} />
+                    <FavoritoButtom data={this.props.data} size={20} />
                 </SView>
             </SView>
 
@@ -74,6 +61,12 @@ class Item2 extends Component {
         </>
     }
     getItems() {
+        var cantidad = 0;
+        var precio = 0;
+        if (this.props.data.pack) {
+            cantidad = this.props.data.pack.cantidad;
+            precio = this.props.data.pack.precio;
+        }
         return <>
             <SView col={"xs-12"} height={200} center onPress={() => { SNavigation.navigate("restaurante/perfil", { key: this.props.data.key }); }} >
                 <SView col={"xs-11.9"} height row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2 }}>
@@ -92,7 +85,7 @@ class Item2 extends Component {
                             <SText fontSize={10} font={"Roboto"}>{this.props.data.distancia} Km</SText>
                         </SView>
                         <SView col={"xs-4"} row center border={'transparent'} style={{ justifyContent: 'flex-end', }}>
-                            <SText fontSize={16} font={"Roboto"}>Bs. 15.00</SText>
+                            <SText fontSize={16} font={"Roboto"}>Bs. {SMath.formatMoney(precio)}</SText>
                         </SView>
                     </SView>
                 </SView>

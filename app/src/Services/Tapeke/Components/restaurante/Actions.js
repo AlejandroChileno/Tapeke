@@ -1,6 +1,7 @@
 import SSocket from 'servisofts-socket';
 import Parent from './index';
 import horario from '../horario';
+import pack from '../pack';
 import { SDate } from 'servisofts-component';
 export default class Actions {
     static _getReducer = (props) => {
@@ -55,7 +56,8 @@ export default class Actions {
             if (arr_horarios.length <= 0) return null;
             obj.horario = horario.Actions.getByKeyRestauranteProximo(obj.key, props);
             if (!obj.horario) return null;
-
+            //Cargamos el pack
+            obj.pack = pack.Actions.getByKeyHorario(obj.horario.key, props);
             // var dia = SDate.getDayOfWeek(obj.horario.dia).text;
             if (obj.horario.dia != new SDate().getDayOfWeek()) {
                 if (filter.soloHoy) {
@@ -82,11 +84,15 @@ export default class Actions {
     static getByKeyDetalle = (key, props) => {
         var data = Actions.getAll(props);
         var horarios_restaurantes = horario.Actions.getAll(props);
+        var data_pack = pack.Actions.getAll(props);
         if (!data) return null;
+        if (!data_pack) return null;
         if (!horarios_restaurantes) return null;
         var obj = data[key];
         if (!obj) return null;
         obj.horario = horario.Actions.getByKeyRestauranteProximo(obj.key, props);
+        if (!obj.horario) return null;
+        obj.pack = pack.Actions.getByKeyHorario(obj.horario.key, props);
         return obj;
     }
 
