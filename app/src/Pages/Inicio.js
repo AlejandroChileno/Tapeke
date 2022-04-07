@@ -64,13 +64,13 @@ class Inicio extends Component {
     // }
     // var UsuaioPage = Pages["usuarioPage/lista"];
 
-   
+
     return (
       <>
         <BarraSuperiorTapeke>
           <Direccion />
         </BarraSuperiorTapeke>
-        <SPage title={"as"} hidden disableHorizontal={true} center>
+        <SPage title={"as"} hidden center>
           <SView col={"xs-12 md-12 lg-10 xl-8"} center height>
             {this.categoria("Recomendado Para Ti")}
             {this.categoria("Cerca")}

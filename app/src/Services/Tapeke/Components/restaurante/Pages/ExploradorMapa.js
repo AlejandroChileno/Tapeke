@@ -15,10 +15,14 @@ class exploradorMapa extends React.Component {
     getBotonos() {
         return <>
             <SView col={"xs-10 md-5 lg-4 xl-3"} row center height={40}  >
-                <SView col={"xs-6"} center height={40} backgroundColor={STheme.color.white} border={STheme.color.primary} onPress={() => { SNavigation.navigate("explorar"); }}>
+                <SView col={"xs-6"} center height={40} backgroundColor={STheme.color.white} border={STheme.color.primary} onPress={() => { SNavigation.navigate("explorar"); }} style={{
+                    borderRadius: 4,
+                }}>
                     <SText fontSize={20} font={"Roboto"} bold color={STheme.color.primary}>Lista</SText>
                 </SView>
-                <SView col={"xs-6"} center height={40} backgroundColor={STheme.color.primary}>
+                <SView col={"xs-6"} center height={40} backgroundColor={STheme.color.primary} style={{
+                    borderRadius: 4,
+                }}>
                     <SText fontSize={20} font={"Roboto"} bold color={STheme.color.white}>Mapa</SText>
                 </SView>
             </SView>

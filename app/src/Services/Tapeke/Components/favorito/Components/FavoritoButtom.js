@@ -9,36 +9,36 @@ class FavoritoButtom extends Component {
         super(props);
         this.state = {}
     }
-    getContent(){
-        var isFavorito = favorito.Actions.getByKeyRestauranteAndKeyUsuario(this.props.data.key,this.props.state.usuarioReducer.usuarioLog.key,this.props);
-        if(!isFavorito) return <SLoad/>
+    getContent() {
+        var isFavorito = favorito.Actions.getByKeyRestauranteAndKeyUsuario(this.props.data.key, this.props.state.usuarioReducer.usuarioLog.key, this.props);
+        if (!isFavorito) return <SLoad />
         this.favData = isFavorito;
         let size = 30;
-        if(this.props.size){
+        if (this.props.size) {
             size = this.props.size;
         }
-        return  <SIcon 
-        name={'Favorite'} 
-        height={size} width={size} 
-        fill={isFavorito == "void"?"#ADB5BD":'#FA4A0C'} 
-           
+        return <SIcon
+            name={'Favorite'}
+            height={size} width={size}
+            fill={isFavorito == "void" ? "#ADB5BD" : '#FA4A0C'}
+
         />
     }
     render() {
-        
+
         return (
             <SView height={35} width={35} style={{
-                borderRadius: 50, overflow: 'hidden', backgroundColor: 'white', position: 'absolute',
-                padding:'10%' ,
-            }} center  onPress={()=>{
-                if(this.favData== "void"){
-                    favorito.Actions.registro({ key_restaurante: this.props.data.key},this.props);
-                }else{
+                borderRadius: 50, overflow: 'hidden', backgroundColor: 'white',
+                // padding:'10%' ,
+            }} center onPress={() => {
+                if (this.favData == "void") {
+                    favorito.Actions.registro({ key_restaurante: this.props.data.key }, this.props);
+                } else {
                     console.log(this.favData)
-                    favorito.Actions.eliminar(this.favData,this.props);
+                    favorito.Actions.eliminar(this.favData, this.props);
                 }
             }}>
-               {this.getContent()}
+                {this.getContent()}
             </SView>
         )
     }

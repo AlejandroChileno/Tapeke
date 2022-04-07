@@ -49,7 +49,7 @@ class registro extends Component {
                 nombre: { label: "Nombres", type: "text", isRequired: true, defaultValue: data["nombre"] },
                 descripcion: { label: "Descripcion", type: "textArea", isRequired: true, defaultValue: data["descripcion"], onChange: (text) => { inputHandler(text, 350) }, maxLength: 350 },
                 direccion: { label: "Direccion", type: "text", isRequired: false, defaultValue: data["direccion"] },
-                delivery: { label: "Delivery", type: "select", isRequired: true, defaultValue: data["delivery"], options: [{ key: "0", content: "Vacío" }, { key: true, content: "Sí" }, { key: false, content: "No" }] },
+                delivery: { label: "Delivery", type: "select", isRequired: false, defaultValue: data["delivery"], options: [{ key: "0", content: "Vacío" }, { key: true, content: "Sí" }, { key: false, content: "No" }] },
                 latitude: { label: "Latitude", type: "text", isRequired: false, defaultValue: data["latitude"], col: "xs-6" },
                 longitude: { label: "Longitude", type: "text", isRequired: false, defaultValue: data["longitude"], col: "xs-6" },
 

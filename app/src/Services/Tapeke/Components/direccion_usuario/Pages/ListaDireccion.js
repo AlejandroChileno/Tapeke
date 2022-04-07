@@ -72,12 +72,12 @@ class Direccion extends React.Component {
 
 	render() {
 
-		return (
+		return (<>
 			<SPage title={'Mis Direcciones'} disableScroll center>
 				{/* <BarraSuperiorTapeke  >
 					<SText font={"Roboto"} fontSize={25} color={STheme.color.secondary}>Mis Favoritos</SText>
 				</BarraSuperiorTapeke> */}
-				<SView col={"xs-11 md-10 lg-4 xl-4"} flex >
+				<SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} flex >
 					<SHr height={20} />
 					<SView col={"xs-12"} center>
 						<SInput col={"xs-12"} placeholder={"Escribir el nombre de la direccion..."} style={{ borderWidth: 0, height: "100%" }}
@@ -85,13 +85,15 @@ class Direccion extends React.Component {
 					</SView>
 					<SHr height={10} />
 					{this.getDirecciones()}
-					<FloatButtomTap onPress={() => {
-						SNavigation.navigate("direccion_usuario");
-						this.props.state.direccion_usuarioReducer.estado = 0;
-					}} />
+
 				</SView >
 
 			</ SPage >
+			<FloatButtomTap onPress={() => {
+				SNavigation.navigate("direccion_usuario");
+				this.props.state.direccion_usuarioReducer.estado = 0;
+			}} />
+		</>
 		);
 	}
 }

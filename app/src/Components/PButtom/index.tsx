@@ -8,7 +8,9 @@ type KButtom_props = {
     onPress?: () => void,
     loading?: boolean,
     small?: boolean,
-    style?: any
+    style?: any,
+    width?: number,
+    height?: number,
 }
 
 export default class KButtom extends Component<KButtom_props> {
@@ -21,8 +23,8 @@ export default class KButtom extends Component<KButtom_props> {
     render() {
         var bgColor = this.props.primary ? STheme.color.primary : this.props.secondary ? STheme.color.info : STheme.color.primary;
         var size = {
-            width: 350,
-            height: 55
+            width: this.props.width ?? 350,
+            height: this.props.height ?? 55,
         }
         if (this.props.small) {
             size.width = 100;

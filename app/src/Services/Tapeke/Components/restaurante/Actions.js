@@ -36,7 +36,7 @@ export default class Actions {
         var d = R * c * 1000;
         return d;
     }
-    //filter:{ soloHoy:bool, soloDisponible:bool }
+    //filter:{ soloHoy:bool, soloDisponible:bool, entregaDomicilio:bool }
     static getAllFilter = (filter, props) => {
         var data = Actions.getAll(props);
         var horarios_restaurantes = horario.Actions.getAll(props);
@@ -47,6 +47,7 @@ export default class Actions {
         var list = [];
         Object.values(data).map((obj) => {
             if (obj.estado != 1) return;
+            if (filter.entregaDomicilio && !obj.delivery) return;
             //Distancias
             if (!obj.latitude || !obj.longitude) return;
             obj.distancia = parseFloat(Actions.getDistance(miDireccion.latitude, miDireccion.longitude, obj.latitude, obj.longitude) / 1000).toFixed(1);

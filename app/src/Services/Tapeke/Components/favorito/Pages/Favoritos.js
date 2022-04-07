@@ -24,7 +24,7 @@ class Favoritos extends Component {
 
 
 	getRestaurante() {
-		var data = restaurante.Actions.getAll(this.props);
+		var data = restaurante.Actions.getAllFilter({},this.props);
 		var favUsuario = Parent.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props)
 		if (!data) return <SLoad />;
 		if (!favUsuario) return <SLoad />;
@@ -32,6 +32,8 @@ class Favoritos extends Component {
 		return arr.map((obj, index) => {
 			return <SView row col={"xs-10 md-5 lg-4 xl-3"} border={'transparent'} >
 				<Item2 data={obj} ></Item2>
+				<SHr/>
+				<SHr/>
 			</SView>
 		})
 	}

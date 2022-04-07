@@ -18,7 +18,7 @@ class Item2 extends Component {
 
     HeaderItemFoto() {
         return <>
-            <SView col={"xs-12"} row center height={110} border={'transparent'} style={{ position: 'absolute', top: -10 }}  >
+            <SView col={"xs-12"} center height={110} border={'transparent'} style={{ position: 'absolute', top: 0 }}  >
                 <SImage src={`${SSocket.api.root}restaurante/${this.props.data.key}`} style={{ borderRadius: 8, resizeMode: 'cover' }} />
             </SView>
         </>
@@ -31,16 +31,18 @@ class Item2 extends Component {
         }
 
         return <>
-            <SView col={"xs-11"} height={30} row style={{ position: 'absolute', top: 0 }} border={'transparent'}>
-                <SView col={"xs-10"} row center style={{ justifyContent: 'flex-start', }}>
-                    <SView width={112} height={24} center style={{ borderRadius: 4, overflow: 'hidden', backgroundColor: '#FFBB3E' }}>
-                        <SText fontSize={10} font={"Roboto"} color={STheme.color.secondary} >{cantidad} disponible(s)</SText>
-                    </SView>
-                </SView>
-                <SView col={"xs-2"} row center style={{ justifyContent: 'flex-end', }}>
-                    <FavoritoButtom data={this.props.data} size={20} />
-                </SView>
+            {/* <SView col={"xs-12"} row height={30} style={{ position: 'absolute', top: 0 }} border={'transparent'}> */}
+            {/* <SView col={"xs-10"} row center style={{ justifyContent: 'flex-start', }}> */}
+            <SView width={112} height={24} center style={{ borderRadius: 4, overflow: 'hidden', backgroundColor: '#FFBB3E', position: 'absolute', top: 8, left: 8 }}>
+                <SText fontSize={10} font={"Roboto"} color={STheme.color.secondary} >{cantidad} disponible(s)</SText>
             </SView>
+            {/* <SView flex /> */}
+            <SView width={40} center style={{
+                position: 'absolute', top: 4, right: 4,
+            }} >
+                <FavoritoButtom data={this.props.data} size={20} />
+            </SView>
+            {/* </SView> */}
 
         </>
 
@@ -68,11 +70,10 @@ class Item2 extends Component {
             precio = this.props.data.pack.precio;
         }
         return <>
-            <SView col={"xs-12"} height={200} center onPress={() => { SNavigation.navigate("restaurante/perfil", { key: this.props.data.key }); }} >
-                <SView col={"xs-11.9"} height row center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2 }}>
+            <SView col={"xs-12"} height={180} center onPress={() => { SNavigation.navigate("restaurante/perfil", { key: this.props.data.key }); }} >
+                <SView col={"xs-11.9"} height center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2 }}>
                     <SView col={"xs-12"} height={125} border={'transparent'} />
-
-                    <SView col={"xs-11"} row center border={'transparent'}   >
+                    <SView col={"xs-11"} row center border={'transparent'}  >
                         <SView col={"xs-5.5"} row center border={'transparent'} style={{ justifyContent: 'flex-start', }} >
                             <SIcon name={'Reloj'} width={13} colSquare center />
                             <SView width={4} />

@@ -97,7 +97,7 @@ const Assets = {
 	"IconChecked": { Native: IconChecked, Web: IconCheckedw },
 	"IconCheckedOk": { Native: IconCheckedOk, Web: IconCheckedOkw },
 	"AgregarTap": { Native: AgregarTap, Web: AgregarTapw },
-	
+
 	"IconShare1": { Native: IconShare1, Web: IconShare1W },
 	"IconShare2": { Native: IconShare2, Web: IconShare2W },
 	"IconShare3": { Native: IconShare3, Web: IconShare3W },

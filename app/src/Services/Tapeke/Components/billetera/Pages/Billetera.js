@@ -18,7 +18,7 @@ class Billetera extends Component {
         var data = Parent.Actions.getByKeyCliente(this.props.state.usuarioReducer.usuarioLog.key, this.props);
         if (!data) return <SLoad />;
         var montoTotal = 0;
-        data.map((obj) => {montoTotal += obj.monto;})
+        data.map((obj) => { montoTotal += obj.monto; })
         return <>
             <SHr height={10} />
             <SView col={"xs-10 sm-5 lg-3.5"} height={201} center>
@@ -34,9 +34,9 @@ class Billetera extends Component {
                 </SView>
             </SView>
             <SHr height={18} color={STheme.color.card} />
-            <SView col={"xs-10 sm-5 lg-3.5"} row center>
+            <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} row center>
                 <SHr height={10} />
-                <PButtom fontSize={20} onPress={() => { SNavigation.navigate('billetera/cargarcredito', { monto: SMath.formatMoney(montoTotal) }) }}>CARGAR CRÉDITO</PButtom>
+                <PButtom fontSize={20} width={"100%"} onPress={() => { SNavigation.navigate('billetera/cargarcredito', { monto: SMath.formatMoney(montoTotal) }) }}>CARGAR CRÉDITO</PButtom>
                 <SHr height={10} />
             </SView>
             <SHr height={18} color={STheme.color.card} />
@@ -46,14 +46,16 @@ class Billetera extends Component {
 
     getDetalleBilletera(fecha, descripcion, monto) {
         return <><SHr height={10} />
-            <SView col={"xs-10 sm-5 lg-3.5"} center >
+            <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center >
                 <SView col={"xs-12"} row backgroundColor={STheme.color.card} height={52} center style={{ borderRadius: 8 }}>
-                    <SView col={"xs-8"} >
-                        <SText font={"Manrope"} color={STheme.color.lightGray} fontSize={10} style={{ paddingLeft: 10 }} >{fecha}</SText>
-                        <SText font={"Manrope"} color={STheme.color.text} fontSize={12} style={{ paddingLeft: 10 }} >{descripcion}</SText>
+                    <SView col={"xs-8"} height style={{
+                        justifyContent: "center",
+                    }}>
+                        <SText font={"Roboto"} color={STheme.color.lightGray} fontSize={12} style={{ paddingLeft: 10 }} >{fecha}</SText>
+                        <SText font={"Roboto"} color={STheme.color.text} fontSize={14} style={{ paddingLeft: 10 }} >{descripcion}</SText>
                     </SView>
                     <SView col={"xs-4"} style={{ textAlign: "right" }} row center><SIcon name={monto > 0 ? 'Ingreso' : 'Egreso'} width={20} height={15} fill={"#8DBF3B"} /><SView col={"xs-1"} />
-                        <SText font={"Manrope"} color={STheme.color.text} fontSize={10}>{monto}</SText>
+                        <SText font={"Roboto"} color={STheme.color.text} fontSize={12}>{monto}</SText>
                     </SView>
                 </SView>
             </SView>

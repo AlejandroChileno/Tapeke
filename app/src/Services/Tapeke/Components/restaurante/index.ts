@@ -8,7 +8,6 @@ import Perfil from "./Pages/Perfil";
 import Item from "./Components/Item";
 import Item2 from "./Components/Item2";
 import Filtros from "./Components/Filtros";
-import Favoritos from "./Pages/Favoritos";
 import Categoria from "./Pages/Categoria";
 import Explorador from "./Pages/Explorador";
 import lista from "./Pages/lista";

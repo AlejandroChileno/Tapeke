@@ -7,6 +7,8 @@ import PBarraFooter from '../../../../../Components/PBarraFooter';
 import Item2 from '../Components/Item2';
 import Parent from '../index'
 import favorito from '../../favorito';
+import BarraFiltros from '../../filtros/Components/BarraFiltros';
+import filtros from '../../filtros';
 class Explorador extends React.Component {
     constructor(props) {
         super(props);
@@ -15,57 +17,21 @@ class Explorador extends React.Component {
     }
 
 
-    getCategoria(icon, description, url) {
-        return <>
-            {/* <SView width={30} /> */}
-            <SView height={28} border={'transparent'}
-                style={{ paddingLeft: 10, paddingRight: 10, backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }}
-                onPress={() => {
-                    SNavigation.navigate(url);
-                    // alert(description);
-                }} center>
-                <SView row center>
-                    {!icon ? null : <SView center height  >
-                        <SIcon name={icon} height={20} width={22} fill={!icon ? '#999999' : STheme.color.primary} />
-                    </SView>}
-                    {/* <SView center height={28}  > */}
-                    <SText border={'transparent'} fontSize={14} color={!icon ? '#999999' : STheme.color.primary} font={"LondonMM"} bold >{description}</SText>
-                    {/* </SView> */}
-                </SView>
-            </SView>
-            <SView width={14} />
-        </>
-    }
-
-    getCategoriasList() {
-        // var categorias = categoria_farmacia.Actions.getAll(this.props);
-        // if (!categorias) return <SLoad />
-        return <SView col={"xs-12 md-6 lg-5 xl-4"} height={40} row>
-            <SScrollView2 >
-                <SView center row>
-                    <SView width={30} />
-                    {this.getCategoria('IconFilter', 'Filtros', 'explorar/filtros')}
-                    {this.getCategoria('', 'Ocultar sin packs', '000010')}
-                    {this.getCategoria('', 'Solo Hoy', '0000102')}
-                    {this.getCategoria('', 'NaNadjasajsha sma sam sa', '0000102')}
-                    {this.getCategoria('', 'NaN', '0000102')}
-                    {this.getCategoria('', 'NaN', '0000102')}
-                    {this.getCategoria('', 'NaN', '0000102')}
-                </SView>
-            </SScrollView2>
-        </SView>
-    }
 
 
 
     getBotonos() {
         return <>
             <SView col={"xs-10 md-5 lg-4 xl-3"} row center height={40}  >
-                <SView col={"xs-6"} center height={40} backgroundColor={STheme.color.primary}>
+                <SView col={"xs-6"} center height={40} backgroundColor={STheme.color.primary} style={{
+                    borderRadius: 4,
+                }}>
                     <SText fontSize={20} font={"Roboto"} bold color={STheme.color.white}>Lista</SText>
                 </SView>
                 <SView col={"xs-6"} center height={40} border={STheme.color.primary} backgroundColor={STheme.color.white}
-                    onPress={() => { SNavigation.navigate("mapa"); }}>
+                    onPress={() => { SNavigation.navigate("mapa"); }} style={{
+                        borderRadius: 4,
+                    }}>
                     <SText fontSize={20} font={"Roboto"} bold color={STheme.color.primary}>Mapa</SText>
                 </SView>
             </SView>
@@ -73,7 +39,8 @@ class Explorador extends React.Component {
     }
 
     getRestaurante() {
-        var data = Parent.Actions.getAllFilter({ soloHoy: false, soloDisponible: false }, this.props);
+        var filtro = filtros.Actions.getFiltrosActivos(this.props);
+        var data = Parent.Actions.getAllFilter(filtro, this.props);
         var data_favoritos = favorito.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props);
         if (!data) return <SLoad />;
         if (!data_favoritos) return <SLoad />;
@@ -87,11 +54,12 @@ class Explorador extends React.Component {
 
     showLista() {
         return <>
-            <SView height={8} border={'transparent'} />
-            {this.getCategoriasList()}
-            <SView height={8} border={'transparent'} />
+            {/* <SView height={8} border={'transparent'} /> */}
+            {/* {this.getCategoriasList()} */}
+            <BarraFiltros />
+            <SView height={8} />
             {this.getBotonos()}
-            <SView height={20} border={'transparent'} />
+            <SView height={20} />
             <SScrollView2 disableHorizontal={true} border={'transparent'}>
                 <SView col={"xs-12 "} center border={'transparent'} >
                     {this.getRestaurante()}
@@ -105,7 +73,7 @@ class Explorador extends React.Component {
 
     render() {
         return (
-            < SPage title={''} hidden disableScroll center >
+            <SPage title={''} hidden disableScroll center >
                 <BarraSuperiorTapeke>
                     <Direccion />
                 </BarraSuperiorTapeke>
@@ -113,7 +81,7 @@ class Explorador extends React.Component {
                     {this.showLista()}
                 </SView>
                 <PBarraFooter />
-            </ SPage >
+            </SPage>
         );
     }
 }

@@ -14,10 +14,10 @@ class registroPack extends Component {
         this.state = {
         };
         this.key = SNavigation.getParam("key");
-        this.key_horario= SNavigation.getParam("key_horario");
+        this.key_horario = SNavigation.getParam("key_horario");
 
-          
-      
+
+
     }
 
     getHorarioForm() {
@@ -25,7 +25,13 @@ class registroPack extends Component {
         if (this.key) {
             data = Pack.Actions.getByKey(this.key, this.props);
             if (!data) return <SLoad />
+        } else {
+            data = {
+                precio: "15.00",
+                cantidad: 10
+            }
         }
+
         return <SForm
             center
             ref={(form) => { this.form = form; }}
@@ -35,18 +41,18 @@ class registroPack extends Component {
             }}
             // onSubmitName={"Registrar"}
             onSubmit={(values) => {
-               
+
                 if (this.key) {
-                    Pack.Actions.editar({ ...data, ...values}, this.props);
+                    Pack.Actions.editar({ ...data, ...values }, this.props);
                 } else {
                     Pack.Actions.registro({ ...values, key_horario: this.key_horario }, this.props);
-                   //alert(JSON.stringify(values))
+                    //alert(JSON.stringify(values))
                 }
             }}
         />
     }
 
- 
+
 
     render() {
         var reducer = this.props.state[Pack.component + "Reducer"];
@@ -56,7 +62,7 @@ class registroPack extends Component {
                 SNavigation.goBack();
             }
         }
-        
+
         let datas = {};
         datas = Pack.Actions.getAll(this.props);
         if (!datas) return <SLoad />
@@ -66,7 +72,7 @@ class registroPack extends Component {
                 <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center>
                     <SHr />
                     {this.getHorarioForm()}
-                  
+
                     <SHr />
                     <PButtom fontSize={20} onPress={() => {
                         this.form.submit();
