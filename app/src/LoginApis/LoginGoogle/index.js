@@ -21,7 +21,7 @@ class LoginGoogle extends Component {
         }
         return (
             <GoogleLogin
-                clientId="261961935928-vumvmp2u1oakag0bh6jts9cc3rf24l7j.apps.googleusercontent.com"
+                clientId="885912798330-2o9o5nmpdi2nf275ng201krcbsdi945s.apps.googleusercontent.com"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
                 cookiePolicy={'single_host_origin'}

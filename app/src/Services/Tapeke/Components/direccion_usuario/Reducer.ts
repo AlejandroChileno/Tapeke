@@ -78,6 +78,6 @@ const editarMiDireccion = (state: any, action: DataProps) => {
     SStorage.setItem("miDireccion_log", JSON.stringify(action.data));
 }
 const editarMiDistancia = (state: any, action: DataProps) => {
-    state.miDistancia = action.data;
-    SStorage.setItem("miDistancia_log", action.data);
+    state.miDistancia = parseInt(action.data);
+    SStorage.setItem("miDistancia_log", parseInt(action.data) + "");
 }
