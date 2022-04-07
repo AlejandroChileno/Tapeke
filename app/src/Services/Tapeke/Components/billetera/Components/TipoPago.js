@@ -1,26 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SHr, SIcon, SImage, SNavigation, SText, STheme, SView, SLoad } from 'servisofts-component';
-import SSocket from 'servisofts-socket';
-import restaurante from '../../restaurante';
-
 
 class TipoPago extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
-            tipoPago: "",
-            foco: false,
+            KeytipoPago: 'p0001',
+            tipoPago: 'Efectivo',
         };
     }
 
 
-    item(descripcion, imagen) {
+    componentDidMount() {
+        this.props.callback({ tipopago: this.state.tipoPago })
+    }
+
+    item(key, descripcion, imagen) {
+
         return <>
             <SHr height={15} />
-            <SView col={"xs-12"} row center onPress={() => { this.setState({ tipoPago: descripcion }); }}>
-                <SView col={"xs-2"} center border={'red'} >
+            <SView col={"xs-12"} row center onPress={() => {
+                // start document
+                this.state.KeytipoPago = key;
+                this.state.tipoPago = descripcion;
+                if (this.props.callback) this.props.callback({ tipopago: this.state.tipoPago })
+                this.setState({ ...this.state });
+                // end document
+            }}>
+                <SView col={"xs-2"} center>
                     <SView center style={{ width: 40, height: 40, borderRadius: 8, borderWidth: 1, borderColor: STheme.color.lightGray }}>
                         <SImage src={imagen} style={{ borderRadius: 8, width: 30 }} />
                     </SView>
@@ -28,36 +36,35 @@ class TipoPago extends Component {
                 <SView col={"xs-8"} >
                     <SText fontSize={16} font={"Roboto"} style={{ fontWeight: "bold" }}>{descripcion} </SText>
                 </SView>
-                <SView col={"xs-2"} center border={'red'}> 
+                <SView col={"xs-2"} center>
                     <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}
-                    // backgroundColor={foco=true?STheme.color.primary:"transparent"}
+                        backgroundColor={this.state.tipoPago == descripcion ? STheme.color.primary : 'transparent'}
                     ></SView>
                 </SView>
             </SView>
         </>
     }
 
-
-
-
     getTipoPago() {
+
         return <>
-            <SView col={"xs-12"} border={'transparent'} center >
+            <SView col={"xs-12"} center >
                 <SView col={"xs-10 sm-5 lg-3"} row center style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }}>
                     <SView col={"xs-11"} row >
-                        {this.item("Efectivo", require('../../../../../Assets/img/efectivo.png'))}
-                        {this.item("Billetera Tapeke", require('../../../../../Assets/img/tapeke.png'))}
-                        {this.item("Tarjeta de Debito / Crédito", require('../../../../../Assets/img/Ptarjeta.png'))}
-                        {this.item("Banco FASSIL", require('../../../../../Assets/img/Pfassil.png'))}
-                        {this.item("Transferencia QR", require('../../../../../Assets/img/Ptransferencia.png'))}
-                        {this.item("Tigo Money", require('../../../../../Assets/img/Ptigo.png'))}
+                        {this.item("p0001", "Efectivo", require('../../../../../Assets/img/efectivo.png'))}
+                        {this.item("p0002", "Billetera Tapeke", require('../../../../../Assets/img/tapeke.png'))}
+                        {this.item("p0003", "Tarjeta de Debito / Crédito", require('../../../../../Assets/img/Ptarjeta.png'))}
+                        {this.item("p0004", "Banco FASSIL", require('../../../../../Assets/img/Pfassil.png'))}
+                        {this.item("p0005", "Transferencia QR", require('../../../../../Assets/img/Ptransferencia.png'))}
+                        {this.item("p0006", "Tigo Money", require('../../../../../Assets/img/Ptigo.png'))}
                     </SView>
                     <SHr height={15} />
                 </SView>
             </SView>
-            <SView col={"xs-10 sm-5 lg-3"} border={'transparent'} style={{ position: 'absolute' }}  >
+            {/* <SView col={"xs-10 sm-5 lg-3"} border={'transparent'} style={{ position: 'absolute' }}  >
+                <SText>  {this.state.KeytipoPago} </SText>
                 <SText>  {this.state.tipoPago} </SText>
-            </SView>
+            </SView> */}
         </>
     }
 
@@ -65,6 +72,7 @@ class TipoPago extends Component {
 
 
     render() {
+
         return (
             this.getTipoPago()
         );

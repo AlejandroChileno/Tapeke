@@ -11,22 +11,17 @@ import billetera from '..';
 class Billetera extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-        };
-
+        this.state = {};
     }
 
     getHeaderBilletera() {
         var data = Parent.Actions.getByKeyCliente(this.props.state.usuarioReducer.usuarioLog.key, this.props);
         if (!data) return <SLoad />;
         var montoTotal = 0;
-        data.map((obj) => {
-            montoTotal += obj.monto;
-        })
+        data.map((obj) => {montoTotal += obj.monto;})
         return <>
             <SHr height={10} />
-
-            <SView col={"xs-12"} height={201} center>
+            <SView col={"xs-10 sm-5 lg-3.5"} height={201} center>
                 <SIcon name={'Chip'} width={290} height={181} style={{ position: "absolute" }} />
                 <SView width={250} height={140}>
                     <SView style={{ top: 20, left: 0, position: "absolute" }}>
@@ -39,8 +34,7 @@ class Billetera extends Component {
                 </SView>
             </SView>
             <SHr height={18} color={STheme.color.card} />
-
-            <SView col={"xs-8"} row center>
+            <SView col={"xs-10 sm-5 lg-3.5"} row center>
                 <SHr height={10} />
                 <PButtom fontSize={20} onPress={() => { SNavigation.navigate('billetera/cargarcredito', { monto: SMath.formatMoney(montoTotal) }) }}>CARGAR CRÉDITO</PButtom>
                 <SHr height={10} />
@@ -52,7 +46,7 @@ class Billetera extends Component {
 
     getDetalleBilletera(fecha, descripcion, monto) {
         return <><SHr height={10} />
-            <SView col={"xs-12"} center >
+            <SView col={"xs-10 sm-5 lg-3.5"} center >
                 <SView col={"xs-12"} row backgroundColor={STheme.color.card} height={52} center style={{ borderRadius: 8 }}>
                     <SView col={"xs-8"} >
                         <SText font={"Manrope"} color={STheme.color.lightGray} fontSize={10} style={{ paddingLeft: 10 }} >{fecha}</SText>
@@ -82,7 +76,6 @@ class Billetera extends Component {
         // { this.getDetalleBilletera(new SDate(data.fecha_on).toString("yyyy-MM-dd hh:mm:ss"),data.fecha_on, 'Ingreso', SMath.formatMoney(data.monto)) }
 
         return data.map((obj) => {
-
             return this.getDetalleBilletera(new SDate(obj.fecha_on).toString("yyyy-MM-dd hh:mm:ss"), obj.tipo_pago, SMath.formatMoney(obj.monto))
         })
 
@@ -97,19 +90,7 @@ class Billetera extends Component {
                 <SPage title={'Billetera'}>
                     <SView col={"xs-12"} center>
                         {this.getHeaderBilletera()}
-
-
-
-
-                        <SView col={"xs-11 md-8 lg-6 xl-4"}>
-                   
-                                           {this.getLista()}
-
-                            <SHr height={50} />
-                        </SView>
-
-
-
+                        {this.getLista()}
                     </SView>
                 </SPage>
             </>
