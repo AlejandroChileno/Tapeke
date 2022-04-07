@@ -55,6 +55,11 @@ import C_tiktok, { ReactComponent as C_tiktokW } from './c_tiktok.svg';
 import C_whatsapp, { ReactComponent as C_whatsappW } from './c_whatsapp.svg';
 import C_ayuda_flecha, { ReactComponent as C_ayuda_flechaW } from './ayuda_flecha.svg';
 
+import Estrella, { ReactComponent as EstrellaW } from './estrella.svg';
+import Medalla1, { ReactComponent as Medalla1W } from './medalla1.svg';
+import Medalla2, { ReactComponent as Medalla2W } from './medalla2.svg';
+import Medalla3, { ReactComponent as Medalla3W } from './medalla3.svg';
+
 const Assets = {
 	// alvaro
 	"Billetera": { Native: Billetera, Web: BilleteraW },
@@ -109,6 +114,12 @@ const Assets = {
 	"Cinstagram": { Native: C_instagram, Web: C_instagramW },
 	"Cwhatsapp": { Native: C_whatsapp, Web: C_whatsappW },
 	"Cayudaflecha": { Native: C_ayuda_flecha, Web: C_ayuda_flechaW },
+	
+	
+	"Estrella": { Native: Estrella, Web: EstrellaW },
+	"Medalla1": { Native: Medalla1, Web: Medalla1W },
+	"Medalla2": { Native: Medalla2, Web: Medalla2W },
+	"Medalla3": { Native: Medalla3, Web: Medalla3W },
 
 }
 

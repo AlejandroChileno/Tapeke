@@ -26,12 +26,12 @@ export default class ComoTeParecio extends Component {
 						<SText fontSize={24} font={"Roboto"} color={STheme.color.secondary} >Califica tu experiencia</SText>
 						<SHr height={20} />
 						<SView width={200} center>
-							<SView col={"xs-12"} row>
-								<SIcon name={"Girl"} width={36} height={36} fill="white" />
-								<SIcon name={"Girl"} width={36} height={36} fill="white" />
-								<SIcon name={"Girl"} width={36} height={36} fill="white" />
-								<SIcon name={"Girl"} width={36} height={36} fill="white" />
-								<SIcon name={"Girl"} width={36} height={36} fill="white" />
+							<SView col={"xs-12"} row center>
+								<SIcon name={"Estrella"} width={36} height={36} fill="white" />
+								<SIcon name={"Estrella"} width={36} height={36} fill="white" />
+								<SIcon name={"Estrella"} width={36} height={36} fill="white" />
+								<SIcon name={"Estrella"} width={36} height={36} fill="white" />
+								<SIcon name={"Estrella"} width={36} height={36} fill="white" />
 							</SView>
 						</SView>
 						<SHr height={20} />
@@ -40,7 +40,7 @@ export default class ComoTeParecio extends Component {
 							<SView col={"xs-4"}>
 								<SView col={"xs-12"} center>
 									<SView width={70} height={70} border={STheme.color.card} backgroundColor={'#F39773'} style={{ borderRadius: 35 }} center >
-										<SIcon name={"Girl"} width={40} height={40} fill="white" />
+										<SIcon name={"Medalla1"} width={40} height={40} fill="transparent" />
 									</SView>
 								</SView>
 								<SText col={"xs-12 "} fontSize={12} font={"Roboto"} color={STheme.color.secondary} center  >Buena calidad</SText>
@@ -48,7 +48,7 @@ export default class ComoTeParecio extends Component {
 							<SView col={"xs-4"}  >
 								<SView col={"xs-12"} center>
 									<SView width={70} height={70} border={STheme.color.card} backgroundColor={'#F39773'} style={{ borderRadius: 35 }} center >
-										<SIcon name={"Girl"} width={40} height={40} fill="white" />
+										<SIcon name={"Medalla2"} width={40} height={40} fill="white" />
 									</SView>
 								</SView>
 								<SText col={"xs-12 "} fontSize={12} font={"Roboto"} color={STheme.color.secondary} center  >Buena calidad</SText>
@@ -56,7 +56,7 @@ export default class ComoTeParecio extends Component {
 							<SView col={"xs-4"}   >
 								<SView col={"xs-12"} center>
 									<SView width={70} height={70} border={STheme.color.card} backgroundColor={'#F39773'} style={{ borderRadius: 35 }} center >
-										<SIcon name={"Girl"} width={40} height={40} fill="white" />
+										<SIcon name={"Medalla3"} width={40} height={40} fill="white" />
 									</SView>
 								</SView>
 								<SText col={"xs-12 "} fontSize={12} font={"Roboto"} color={STheme.color.secondary} center  >Buena calidad</SText>
