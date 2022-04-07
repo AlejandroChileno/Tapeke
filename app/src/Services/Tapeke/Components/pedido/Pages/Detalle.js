@@ -11,7 +11,7 @@ class Detalle extends React.Component {
             precio: 15,
             cantidad: 1,
             disponible: 5,
-            envio: 0,
+            envio: false,
         };
         this.key_restaurante = SNavigation.getParam('key');
 
@@ -25,10 +25,10 @@ class Detalle extends React.Component {
                 <SHr height={15} />
                 <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Tipo de entrega</SText>
                 <SHr height={20} />
-                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6, }}  {...(delivery ? { onPress: () => { this.setState({ envio: 0 }) } } : {})} >
+                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6, }}  {...(delivery ? { onPress: () => { this.setState({ envio: false }) } } : {})} >
                     <SView col={"xs-2"} center flex>
                         <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}
-                            backgroundColor={this.state.envio != 0 ? "transparent" : STheme.color.primary} ></SView>
+                            backgroundColor={this.state.envio != false ? "transparent" : STheme.color.primary} ></SView>
                     </SView>
                     <SView col={"xs-10"} row >
                         <SHr height={15} />
@@ -49,10 +49,10 @@ class Detalle extends React.Component {
                     <SHr height={10} />
                 </SView>
                 <SHr height={15} />
-                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }}  {...(delivery ? { onPress: () => { this.setState({ envio: 1 }) } } : {})}>
+                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }}  {...(delivery ? { onPress: () => { this.setState({ envio: true }) } } : {})}>
                     <SView col={"xs-2"} center flex>
                         <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}
-                            backgroundColor={this.state.envio != 0 ? STheme.color.primary : "transparent"} ></SView>
+                            backgroundColor={this.state.envio != false ? STheme.color.primary : "transparent"} ></SView>
                     </SView>
                     <SView col={"xs-10"} >
                         <SHr height={15} />

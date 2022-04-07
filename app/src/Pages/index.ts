@@ -1,13 +1,9 @@
-import { SPageListProps } from 'servisofts-component'
 import Services from '../Services';
 import Home from './Home';
 import Carga from './Carga';
 import Ajustes from './Ajustes';
-import Kolping from './Kolping';
 import Inicio from './Inicio';
-import Test from './Test';
 import Administracion from './Administracion';
-import LA from './LA';
 import TerminosCondiciones from '../Pages/TerminosCondiciones';
 import inDevelop from './inDevelop';
 // import Billetera from '../Services/Tapeke/Components/billetera/Pages/Billetera';
@@ -15,22 +11,20 @@ import inDevelop from './inDevelop';
 import SelectDireccion from './SelectDireccion';
 import Ayuda from './Ayuda';
 
+import MisCompras from './MisCompras';
 
-
-const Pages: SPageListProps = {
+const Pages = {
     "/": Inicio,
 
     "carga": Carga,
     "home": Home,
     "ajustes": Ajustes,
-    "kolping": Kolping,
-    "test": Test,
     "admin": Administracion,
-    "la": LA,
     "terminos": TerminosCondiciones,
     "inDevelop": inDevelop,
     ...Services.Pages,
     "direccion": SelectDireccion,
+    "compras": MisCompras,
     // "billetera": Billetera,
     "ayuda": Ayuda,
 

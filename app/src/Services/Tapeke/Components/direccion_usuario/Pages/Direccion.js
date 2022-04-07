@@ -103,8 +103,7 @@ class Direccion extends React.Component {
                 SNavigation.goBack()
         }
         this.getGeocode()
-        return (
-            <SPage title={'Elegir mi dirección'} disableScroll center>
+        return (<SPage title={'Elegir mi dirección'} disableScroll center>
                 {/* <BarraSuperiorTapeke  >
                     <SText font={"Roboto"} fontSize={25} color={STheme.color.secondary}>Mis Direcciones</SText>
                 </BarraSuperiorTapeke> */}
@@ -112,14 +111,11 @@ class Direccion extends React.Component {
                 <SView col={"xs-12"} center flex>
                     {this.showMapa()}
                 </SView >
-
                 <SView col={"xs-12 md-10 lg-8 xl-6"} height={280} row center>
                     <SHr height={20} />
-
                     <SView col={"xs-12"} center row border={'transparent'}>
                         {this.getAlgo()}
                         <SHr height={10} />
-
                         <SView col={"xs-11"}>
                             <SInput
                                 style={{
@@ -135,7 +131,7 @@ class Direccion extends React.Component {
                                 value={`${this.state.nombre.substring(0, 40)}${this.state.nombre.length > 40 ? "..." : ""}`}
                                 onPress={() => {
                                     SPopup.open({
-                                        key: "autocomplete", content: <PopUpDirecciones region={this.state.region} callback={(resp) => {
+                                        key: "autocomplete", content:<PopUpDirecciones region={this.state.region} callback={(resp) => {
                                             SPopup.close("autocomplete");
                                             this.state.region = resp;
                                             this.map.animateToRegion(resp, 1000);
