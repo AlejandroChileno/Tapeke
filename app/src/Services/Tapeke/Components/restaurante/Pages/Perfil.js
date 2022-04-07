@@ -78,6 +78,23 @@ class Paso1 extends React.Component {
         </>
     }
 
+    hayDelivery(delivery) {
+        if (delivery == true) {
+            return <>
+                <SView col={"xs-12"} center row  >
+                    <SHr height={30} />
+                    <SView col={"xs-4"} center >
+                        <SIcon name={'Bicicleta'} height={37} width={52} />
+                    </SView>
+                    <SView col={"xs-8"} center >
+                        <SText color={STheme.color.gray} fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>Este establecimiento te proporcionará todo lo necesario para llevarte tu pack a casa.</SText>
+                    </SView>
+                    <SHr height={30} />
+                </SView>
+            </>
+        }
+    }
+
     recoger() {
         // var this.dataRestaurante = restaurante.Actions.getByKey(this.key_restaurante, this.props)
         if (!this.dataRestaurante) return <SLoad />
@@ -119,16 +136,7 @@ class Paso1 extends React.Component {
                             <SText color={STheme.color.primary} fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>Cómo llegar {">"}</SText>
                         </SView>
                     </SView>
-                    <SView col={"xs-12"} center row >
-                        <SHr height={30} />
-                        <SView col={"xs-4"} center >
-                            <SIcon name={'Bicicleta'} height={37} width={52} />
-                        </SView>
-                        <SView col={"xs-8"} center >
-                            <SText color={STheme.color.gray} fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>Este establecimiento te proporcionará todo lo necesario para llevarte tu pack a casa.</SText>
-                        </SView>
-                        <SHr height={30} />
-                    </SView>
+                    {this.hayDelivery(this.dataRestaurante.delivery)}
                 </SView>
             </SView>
         </>

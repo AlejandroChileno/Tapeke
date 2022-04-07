@@ -33,6 +33,19 @@ class lista extends Component {
                 { key: "latitude", label: "Lat", width: 130 },
                 { key: "longitude", label: "Lng", width: 130 },
                 {
+                    key: "delivery", label: "Delivery", width: 130, center: true,
+                    component: (item) => {
+                       // alert(item)
+                       //console.log(item+" aquii")
+                        if(item== true) {
+                            return <SText color={"green"}>Si</SText>
+                        }else {
+                            return <SText color={"red"}>No</SText>
+                        }
+                      
+                    }
+                },
+                {
                     key: "key-editar", label: "Editar", width: 50, center: true,
                     component: (item) => {
                         return <SView onPress={() => { SNavigation.navigate("admin/" + Parent.component + "/registro", { key: item }) }}>
@@ -61,10 +74,10 @@ class lista extends Component {
                     }
                 },
             ]}
-            
+
             data={data}
-            filter={(dta)=>{
-                if(dta.estado != 1) return false;
+            filter={(dta) => {
+                if (dta.estado != 1) return false;
                 return true;
             }}
         />

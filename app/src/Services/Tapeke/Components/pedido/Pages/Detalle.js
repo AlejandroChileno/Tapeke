@@ -19,13 +19,13 @@ class Detalle extends React.Component {
 
 
 
-    tipoEntrega() {
+    tipoEntrega(delivery) {
         return <>
-            <SView col={"xs-11"}>
+            <SView col={"xs-11"} style={{ opacity: delivery == true ? 1 : 0.3}}>
                 <SHr height={15} />
                 <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Tipo de entrega</SText>
                 <SHr height={20} />
-                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }} onPress={() => { this.setState({ envio: 0 }); }}>
+                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6, }}  ...(delivery?{ onPress:() => { this.setState({ envio: 0 }); }}:{})  >
                     <SView col={"xs-2"} center >
                         <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}
                             backgroundColor={this.state.envio != 0 ? "transparent" : STheme.color.primary} ></SView>
@@ -210,7 +210,7 @@ class Detalle extends React.Component {
                     </SView>
                     <SHr height={18} />
                     <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center style={{ backgroundColor: STheme.color.white }}>
-                        {this.tipoEntrega()}
+                        {this.tipoEntrega(auxRestaurante.delivery)}
                     </SView>
                     <SHr height={18} />
                     <SHr height={40} />
