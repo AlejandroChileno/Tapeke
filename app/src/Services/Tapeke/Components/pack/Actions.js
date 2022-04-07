@@ -29,6 +29,12 @@ export default class Actions {
         return data[key];
     }
 
+    static getByKeyHorario = (key_horario, props) => {
+        var data = Actions.getAll(props);
+        if (!data) return null;
+        return Object.values(data).filter(item => item.key_horario == key_horario)[0];
+    }
+
     static registro = (data, props) => {
         SSocket.send({
             component: Parent.component,
