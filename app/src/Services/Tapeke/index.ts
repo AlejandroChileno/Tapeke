@@ -8,6 +8,7 @@ import pack from './Components/pack';
 import billetera from './Components/billetera';
 import favorito from './Components/favorito';
 import costo_envio from './Components/costo_envio';
+import otros from './Components/otros';
 
 const ServiceName = "tapeke";
 
@@ -20,7 +21,8 @@ const Pages: SPageListProps = {
     ...pack.Pages,
     ...billetera.Pages,
     ...favorito.Pages,
-    ...costo_envio.Pages
+    ...costo_envio.Pages,
+    ...otros.Pages
 
     
 }

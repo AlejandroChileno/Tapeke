@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient, SForm, SNavigation, SPopup, SLoad } from 'servisofts-component';
 import PButtom from '../../../../../Components/PButtom';
 import restaurante from '../../restaurante';
+import Parent from '../index';
 class Confirmar extends React.Component {
     constructor(props) {
         super(props);
@@ -197,21 +198,25 @@ class Confirmar extends React.Component {
                         </SView>
                     </SView>
                     <SView col={"xs-6"} center>
-                        <SView width={140} height={44} center backgroundColor={STheme.color.primary} style={{ borderRadius: 8 }} 
-                        onPress={() => { 
-                            var dataOk = {}
-                            dataOk = { 
-                                key_pack: this.auxRestaurante.pack.key,
-                                cantidad: this.cantidad,
-                                tipo_pago: "Efectivo",
-                                delivery: this.auxRestaurante.pack.key,
-                                fecha: this.auxRestaurante.horario.fecha,
-                                key_direccion_usuario: this.auxRestaurante.pack.key,
-                            }
-                            console.log(this.auxRestaurante)
-                            console.log(this.auxRestaurante.pack.key)
-                            //SPopup.close("confirmar"); SNavigation.navigate("pedido/mensajeSolicitud") 
-                            
+                        <SView width={140} height={44} center backgroundColor={STheme.color.primary} style={{ borderRadius: 8 }}
+                            onPress={() => {
+                                var dataOk = {}
+                                dataOk = {
+                                    key_pack: this.auxRestaurante.pack.key,
+                                    cantidad: this.cantidad,
+                                    tipo_pago: "Efectivo",
+                                    delivery: this.envioN,
+                                    fecha: this.auxRestaurante.horario.fecha,
+                                    key_direccion_usuario: this.props.state.direccion_usuarioReducer.miDireccion.key,
+                                }
+
+                                // console.log(this.auxRestaurante)
+                                console.log(JSON.stringify(dataOk)+" aquiii")
+                                Parent.Actions.registro(dataOk, this.props);
+                                // console.log(this.props.state.direccion_usuarioReducer.miDireccion)
+
+                                //SPopup.close("confirmar"); SNavigation.navigate("pedido/mensajeSolicitud") 
+
                             }}>
                             <SText fontSize={14} color={STheme.color.white} style={{ fontWeight: 600 }} >Sí, Confirmar</SText>
                         </SView>
@@ -226,7 +231,15 @@ class Confirmar extends React.Component {
     render() {
         this.auxRestaurante = restaurante.Actions.getByKeyDetalle(this.key_restaurante, this.props)
         if (!this.auxRestaurante) return <SLoad />
+        var reducer = this.props.state[Parent.component + "Reducer"];
+        if (reducer.type == "registro") {
+            if (reducer.estado == "exito") {
+                this.key = reducer.lastRegister?.key;
+                SPopup.close("confirmar");
+                SNavigation.navigate("pedido/mensajeSolicitud", { key: this.key })
 
+            }
+        }
         return (
             <SPage center>
                 <SView col={"xs-12"} row backgroundColor={STheme.color.card} center>
