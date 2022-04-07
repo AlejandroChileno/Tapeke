@@ -7,7 +7,8 @@ import Reducer from "./Reducer";
 import testing from "./Pages/testing";
 import Horario from "./Components/Horario";
 
-
+import registroHorario from "./Pages/registroHorario";
+import listaHorario from "./Pages/listaHorario";
 export default {
     component,
     version,
@@ -16,8 +17,8 @@ export default {
         [component + 'Reducer']: Reducer
     },
     Pages: {
-        [component]: testing,
-        [component + "/testing"]: testing,
+        ["admin/"+component]: listaHorario,
+        ["admin/"+component + "/registro"]: registroHorario,
     },
     Components: {
         Horario,

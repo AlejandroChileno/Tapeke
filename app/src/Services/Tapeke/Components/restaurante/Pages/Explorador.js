@@ -18,19 +18,19 @@ class Explorador extends React.Component {
     getCategoria(icon, description, url) {
         return <>
             {/* <SView width={30} /> */}
-            <SView height={28} flex border={'transparent'}
+            <SView height={28} border={'transparent'}
                 style={{ paddingLeft: 10, paddingRight: 10, backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }}
                 onPress={() => {
                     SNavigation.navigate(url);
                     // alert(description);
                 }} center>
-                <SView row>
+                <SView row center>
                     {!icon ? null : <SView center height  >
                         <SIcon name={icon} height={20} width={22} fill={!icon ? '#999999' : STheme.color.primary} />
                     </SView>}
-                    <SView center height={28}  >
-                        <SText border={'transparent'} fontSize={14} color={!icon ? '#999999' : STheme.color.primary} font={"LondonMM"} bold >{description}</SText>
-                    </SView>
+                    {/* <SView center height={28}  > */}
+                    <SText border={'transparent'} fontSize={14} color={!icon ? '#999999' : STheme.color.primary} font={"LondonMM"} bold >{description}</SText>
+                    {/* </SView> */}
                 </SView>
             </SView>
             <SView width={14} />
@@ -44,14 +44,13 @@ class Explorador extends React.Component {
             <SScrollView2 >
                 <SView center row>
                     <SView width={30} />
-
                     {this.getCategoria('IconFilter', 'Filtros', 'explorar/filtros')}
-                    {this.getCategoria('', 'Filtro: Ocultar sin packs', '000010')}
-                    {this.getCategoria('', 'Filtro: Preparacion', '0000102')}
-                    {this.getCategoria('', 'prueba a', '0000102')}
-                    {this.getCategoria('', 'abc', '0000102')}
-                    {this.getCategoria('', 'xyz', '0000102')}
-                    {this.getCategoria('', 'Filtro: Preparacion', '0000102')}
+                    {this.getCategoria('', 'Ocultar sin packs', '000010')}
+                    {this.getCategoria('', 'Solo Hoy', '0000102')}
+                    {this.getCategoria('', 'NaNadjasajsha sma sam sa', '0000102')}
+                    {this.getCategoria('', 'NaN', '0000102')}
+                    {this.getCategoria('', 'NaN', '0000102')}
+                    {this.getCategoria('', 'NaN', '0000102')}
                 </SView>
             </SScrollView2>
         </SView>
@@ -61,7 +60,6 @@ class Explorador extends React.Component {
 
     getBotonos() {
         return <>
-
             <SView col={"xs-10 md-5 lg-4 xl-3"} row center height={40}  >
                 <SView col={"xs-6"} center height={40} backgroundColor={STheme.color.primary}>
                     <SText fontSize={20} font={"Roboto"} bold color={STheme.color.white}>Lista</SText>
@@ -75,7 +73,7 @@ class Explorador extends React.Component {
     }
 
     getRestaurante() {
-        var data = Parent.Actions.getAllFilter({ soloHoy: false }, this.props);
+        var data = Parent.Actions.getAllFilter({ soloHoy: false, soloDisponible: false }, this.props);
         var data_favoritos = favorito.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props);
         if (!data) return <SLoad />;
         if (!data_favoritos) return <SLoad />;

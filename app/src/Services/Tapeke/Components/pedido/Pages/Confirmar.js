@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient, SForm, SNavigation, SPopup, } from 'servisofts-component';
+import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient, SForm, SNavigation, SPopup, SLoad } from 'servisofts-component';
 import PButtom from '../../../../../Components/PButtom';
 import restaurante from '../../restaurante';
 class Confirmar extends React.Component {
@@ -197,7 +197,22 @@ class Confirmar extends React.Component {
                         </SView>
                     </SView>
                     <SView col={"xs-6"} center>
-                        <SView width={140} height={44} center backgroundColor={STheme.color.primary} style={{ borderRadius: 8 }} onPress={() => { SPopup.close("confirmar"); SNavigation.navigate("pedido/mensajeSolicitud") }}>
+                        <SView width={140} height={44} center backgroundColor={STheme.color.primary} style={{ borderRadius: 8 }} 
+                        onPress={() => { 
+                            var dataOk = {}
+                            dataOk = { 
+                                key_pack: this.auxRestaurante.pack.key,
+                                cantidad: this.cantidad,
+                                tipo_pago: "Efectivo",
+                                delivery: this.auxRestaurante.pack.key,
+                                fecha: this.auxRestaurante.horario.fecha,
+                                key_direccion_usuario: this.auxRestaurante.pack.key,
+                            }
+                            console.log(this.auxRestaurante)
+                            console.log(this.auxRestaurante.pack.key)
+                            //SPopup.close("confirmar"); SNavigation.navigate("pedido/mensajeSolicitud") 
+                            
+                            }}>
                             <SText fontSize={14} color={STheme.color.white} style={{ fontWeight: 600 }} >Sí, Confirmar</SText>
                         </SView>
                     </SView>
@@ -209,8 +224,8 @@ class Confirmar extends React.Component {
 
 
     render() {
-        var auxRestaurante = restaurante.Actions.getByKey(this.key_restaurante, this.props)
-        if (!auxRestaurante) return <SLoad />
+        this.auxRestaurante = restaurante.Actions.getByKeyDetalle(this.key_restaurante, this.props)
+        if (!this.auxRestaurante) return <SLoad />
 
         return (
             <SPage center>
@@ -237,13 +252,13 @@ class Confirmar extends React.Component {
                                 </SView>
                                 <SView col={"xs-11"} row >
                                     <SView col={"xs-12"} >
-                                        <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >{auxRestaurante.nombre}</SText>
+                                        <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >{this.auxRestaurante.nombre}</SText>
                                     </SView>
                                     <SHr height={15} />
                                     <SView col={"xs-6"} style={{ justifyContent: 'flex-start', }}>
                                         <SText fontSize={14} font={"Roboto"} color={STheme.color.primary} fontWeight> Precio</SText>
                                         <SHr height={5} />
-                                        <SText fontSize={20} font={"Roboto"} style={{ fontWeight: "bold" }}> {this.precio} Bs.</SText>
+                                        <SText fontSize={20} font={"Roboto"} style={{ fontWeight: "bold" }}>Bs. {this.auxRestaurante.pack?.precio ?? 0} </SText>
                                     </SView>
                                     <SView col={"xs-6"} center row>
                                         <SView col={"xs-12"} center>
@@ -275,7 +290,7 @@ class Confirmar extends React.Component {
                                 <SText style={{ textAlign: "justify" }} fontSize={15} font={"Roboto"} >Total</SText>
                             </SView>
                             <SView col={"xs-6"} style={{ alignItems: "flex-end" }}>
-                                <SText fontSize={15} font={"Roboto"} >Bs.  {this.precio * this.cantidad}</SText>
+                                <SText fontSize={15} font={"Roboto"} >Bs. {(this.auxRestaurante.pack?.precio ?? 0) * this.cantidad}</SText>
                             </SView>
                             <SHr height={10} />
                             <SView col={"xs-6"} >
@@ -288,10 +303,10 @@ class Confirmar extends React.Component {
                             <SView col={"xs-12"} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray }}></SView>
                             <SHr height={10} />
                             <SView col={"xs-6"} >
-                                <SText style={{ textAlign: "justify", fontWeight: "bold" }} fontSize={15} font={"Roboto"} >Total</SText>
+                                <SText style={{ textAlign: "justify", fontWeight: "bold" }} fontSize={15} font={"Roboto"} >Total:</SText>
                             </SView>
                             <SView col={"xs-6"} style={{ alignItems: "flex-end" }}>
-                                <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }} >Bs. {(this.precio * this.cantidad) + (this.envioN ?? 0)}</SText>
+                                <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }} >Bs. {((this.auxRestaurante.pack?.precio ?? 0) * this.cantidad)}</SText>
                             </SView>
                             <SHr height={15} />
                         </SView>

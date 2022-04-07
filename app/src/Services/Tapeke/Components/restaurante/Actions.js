@@ -1,6 +1,7 @@
 import SSocket from 'servisofts-socket';
 import Parent from './index';
 import horario from '../horario';
+import pack from '../pack';
 import { SDate } from 'servisofts-component';
 export default class Actions {
     static _getReducer = (props) => {
@@ -35,7 +36,7 @@ export default class Actions {
         var d = R * c * 1000;
         return d;
     }
-    //filter:{ soloHoy:bool }
+    //filter:{ soloHoy:bool, soloDisponible:bool }
     static getAllFilter = (filter, props) => {
         var data = Actions.getAll(props);
         var horarios_restaurantes = horario.Actions.getAll(props);
@@ -55,10 +56,15 @@ export default class Actions {
             if (arr_horarios.length <= 0) return null;
             obj.horario = horario.Actions.getByKeyRestauranteProximo(obj.key, props);
             if (!obj.horario) return null;
-
-            // var dia = SDate.getDayOfWeek(obj.horario.dia).text;
+            //Cargamos el pack
+            obj.pack = pack.Actions.getByKeyHorario(obj.horario.key, props);
+            if (filter.soloDisponible) {
+                if (!obj.pack) return null;
+            }
             if (obj.horario.dia != new SDate().getDayOfWeek()) {
                 if (filter.soloHoy) {
+                    //SI no queremos que aparesca los del proximo miercoles
+                    // if (obj.horario.sdate.toString("yyyy-MM-dd") != new SDate().toString("yyyy-MM-dd")) return null; 
                     return;
                 }
             }
@@ -82,11 +88,15 @@ export default class Actions {
     static getByKeyDetalle = (key, props) => {
         var data = Actions.getAll(props);
         var horarios_restaurantes = horario.Actions.getAll(props);
+        var data_pack = pack.Actions.getAll(props);
         if (!data) return null;
+        if (!data_pack) return null;
         if (!horarios_restaurantes) return null;
         var obj = data[key];
         if (!obj) return null;
         obj.horario = horario.Actions.getByKeyRestauranteProximo(obj.key, props);
+        if (!obj.horario) return null;
+        obj.pack = pack.Actions.getByKeyHorario(obj.horario.key, props);
         return obj;
     }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient, SForm, SNavigation, SLoad } from 'servisofts-component';
+import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient, SForm, SNavigation, SLoad, SMath } from 'servisofts-component';
 import PButtom from '../../../../../Components/PButtom';
 import restaurante from '../../restaurante';
 import Parent from '../index';
@@ -25,8 +25,8 @@ class Detalle extends React.Component {
                 <SHr height={15} />
                 <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Tipo de entrega</SText>
                 <SHr height={20} />
-                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6, }}  {...(delivery ? onPress : () => { this.setState({ envio: 0 }) })} >
-                    <SView col={"xs-2"} center >
+                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6, }}  {...(delivery ? { onPress: () => { this.setState({ envio: 0 }) } } : {})} >
+                    <SView col={"xs-2"} center flex>
                         <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}
                             backgroundColor={this.state.envio != 0 ? "transparent" : STheme.color.primary} ></SView>
                     </SView>
@@ -49,9 +49,8 @@ class Detalle extends React.Component {
                     <SHr height={10} />
                 </SView>
                 <SHr height={15} />
-                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }}
-                    {...(delivery ? onPress : () => { this.setState({ envio: 1 }) })}>
-                    <SView col={"xs-2"} center >
+                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }}  {...(delivery ? { onPress: () => { this.setState({ envio: 1 }) } } : {})}>
+                    <SView col={"xs-2"} center flex>
                         <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}
                             backgroundColor={this.state.envio != 0 ? STheme.color.primary : "transparent"} ></SView>
                     </SView>
@@ -100,8 +99,8 @@ class Detalle extends React.Component {
         />
     }
     render() {
-        var auxRestaurante = restaurante.Actions.getByKey(this.key_restaurante, this.props)
-        if (!auxRestaurante) return <SLoad />
+        this.auxRestaurante = restaurante.Actions.getByKeyDetalle(this.key_restaurante, this.props)
+        if (!this.auxRestaurante) return <SLoad />
 
         return (
             <SPage center>
@@ -128,18 +127,18 @@ class Detalle extends React.Component {
                                 </SView>
                                 <SView col={"xs-11"} row >
                                     <SView col={"xs-12"} >
-                                        <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >{auxRestaurante.nombre}</SText>
+                                        <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >{this.auxRestaurante?.nombre}</SText>
                                     </SView>
                                     <SHr height={15} />
                                     <SView col={"xs-6"} style={{ justifyContent: 'flex-start', }}>
                                         <SText fontSize={14} font={"Roboto"} color={STheme.color.primary} fontWeight> Precio</SText>
                                         <SHr height={5} />
-                                        <SText fontSize={20} font={"Roboto"} style={{ fontWeight: "bold" }}>{this.state.precio}Bs.</SText>
+                                        <SText fontSize={20} font={"Roboto"} style={{ fontWeight: "bold" }}>Bs. {SMath.formatMoney(this.auxRestaurante.pack?.precio ?? 0)}</SText>
                                     </SView>
                                     <SView col={"xs-6"} center row>
                                         <SView col={"xs-12"} center>
                                             <SView width={114} height={26} center style={{ borderRadius: 8, backgroundColor: STheme.color.primary }}>
-                                                <SText fontSize={12} font={"Roboto"} color={STheme.color.secondary} >  {this.state.disponible} disponible(s)</SText>
+                                                <SText fontSize={12} font={"Roboto"} color={STheme.color.secondary} >  {this.auxRestaurante.pack?.cantidad ?? 0} disponible(s)</SText>
                                             </SView>
                                         </SView>
                                         <SHr height={10} />
@@ -156,13 +155,13 @@ class Detalle extends React.Component {
                                         </SView>
                                         <SView col={"xs-6"} center >
                                             {/* {this.getForm()} */}
-                                            <SText fontSize={35} color={STheme.color.text} > {this.state.cantidad} </SText>
+                                            <SText fontSize={35} color={STheme.color.text} > {this.state.cantidad}</SText>
                                         </SView>
                                         <SView col={"xs-3"} center onPress={() => {
                                         }}>
                                             <SView width={50} height={50} center row style={{ borderRadius: 8, backgroundColor: STheme.color.primary, borderRadius: 45 }}
                                                 onPress={() => {
-                                                    if (this.state.cantidad >= this.state.disponible) return;
+                                                    if (this.state.cantidad >= this.auxRestaurante.pack?.cantidad) return;
                                                     this.setState({ cantidad: this.state.cantidad + 1 });
                                                 }}
                                             >
@@ -187,7 +186,7 @@ class Detalle extends React.Component {
                                 <SText style={{ textAlign: "justify" }} fontSize={15} font={"Roboto"} >Total</SText>
                             </SView>
                             <SView col={"xs-6"} style={{ alignItems: "flex-end" }}>
-                                <SText fontSize={15} font={"Roboto"} >Bs. {(this.state.cantidad * 15)}</SText>
+                                <SText fontSize={15} font={"Roboto"} >Bs. {(this.state.cantidad * (this.auxRestaurante.pack?.precio ?? 0))}</SText>
                             </SView>
                             <SHr height={10} />
                             <SView col={"xs-6"} >
@@ -203,19 +202,19 @@ class Detalle extends React.Component {
                                 <SText style={{ textAlign: "justify", fontWeight: "bold" }} fontSize={15} font={"Roboto"} >Total</SText>
                             </SView>
                             <SView col={"xs-6"} style={{ alignItems: "flex-end" }}>
-                                <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }} >Bs. {(this.state.cantidad * 15) + this.state.envio}</SText>
+                                <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }} >Bs. {(this.state.cantidad * (this.auxRestaurante.pack?.precio ?? 0)) + this.state.envio}</SText>
                             </SView>
                             <SHr height={15} />
                         </SView>
                     </SView>
                     <SHr height={18} />
                     <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center style={{ backgroundColor: STheme.color.white }}>
-                        {this.tipoEntrega(auxRestaurante.delivery)}
+                        {this.tipoEntrega(this.auxRestaurante?.delivery)}
                     </SView>
                     <SHr height={18} />
                     <SHr height={40} />
                     <PButtom fontSize={20} onPress={() => {
-                        SNavigation.navigate(Parent.component + "/confirmar", { key: this.key_restaurante, precio: this.state.precio, cantidad: this.state.cantidad, envio: this.state.envio, })
+                        SNavigation.navigate(Parent.component + "/confirmar", { key: this.key_restaurante, cantidad: this.state.cantidad, envio: this.state.envio, })
                     }}>REALIZAR PEDIDO</PButtom>
                     <SHr height={40} />
                 </SView>
