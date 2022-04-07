@@ -1,10 +1,11 @@
 //  COMPONENT CONFIG
-const component = "pack"; // COMPONENT NAME
+const component = "consulta"; // COMPONENT NAME
 const version = "2.0";
 // ---------------------------------------
 import Actions from "./Actions";
 // import Horario from "./Components/Horario";
 import Contacto from "./Pages/Contacto";
+import Ayuda from "./Pages/Ayuda";
 
 export default {
     component,
@@ -12,7 +13,8 @@ export default {
     Actions,
 
     Pages: {
-        [component + "/contactanos"]: Contacto,
+        [component + "/contacto"]: Contacto,
+        [component + "/ayuda"]: Ayuda,
     },
     // Components: {
     //     Horario,
