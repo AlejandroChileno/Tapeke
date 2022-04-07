@@ -197,7 +197,22 @@ class Confirmar extends React.Component {
                         </SView>
                     </SView>
                     <SView col={"xs-6"} center>
-                        <SView width={140} height={44} center backgroundColor={STheme.color.primary} style={{ borderRadius: 8 }} onPress={() => { SPopup.close("confirmar"); SNavigation.navigate("pedido/mensajeSolicitud") }}>
+                        <SView width={140} height={44} center backgroundColor={STheme.color.primary} style={{ borderRadius: 8 }} 
+                        onPress={() => { 
+                            var dataOk = {}
+                            dataOk = { 
+                                key_pack: this.auxRestaurante.pack.key,
+                                cantidad: this.cantidad,
+                                tipo_pago: "Efectivo",
+                                delivery: this.auxRestaurante.pack.key,
+                                fecha: this.auxRestaurante.horario.fecha,
+                                key_direccion_usuario: this.auxRestaurante.pack.key,
+                            }
+                            console.log(this.auxRestaurante)
+                            console.log(this.auxRestaurante.pack.key)
+                            //SPopup.close("confirmar"); SNavigation.navigate("pedido/mensajeSolicitud") 
+                            
+                            }}>
                             <SText fontSize={14} color={STheme.color.white} style={{ fontWeight: 600 }} >Sí, Confirmar</SText>
                         </SView>
                     </SView>
@@ -288,7 +303,7 @@ class Confirmar extends React.Component {
                             <SView col={"xs-12"} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray }}></SView>
                             <SHr height={10} />
                             <SView col={"xs-6"} >
-                                <SText style={{ textAlign: "justify", fontWeight: "bold" }} fontSize={15} font={"Roboto"} >Total:{this.auxRestaurante.horario.fecha}</SText>
+                                <SText style={{ textAlign: "justify", fontWeight: "bold" }} fontSize={15} font={"Roboto"} >Total:</SText>
                             </SView>
                             <SView col={"xs-6"} style={{ alignItems: "flex-end" }}>
                                 <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }} >Bs. {((this.auxRestaurante.pack?.precio ?? 0) * this.cantidad)}</SText>
