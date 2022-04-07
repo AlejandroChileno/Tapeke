@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SHr, SIcon, SImage, SLoad, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
+import { SButtom, SDate, SHr, SIcon, SImage, SLoad, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
 import pedido from '../../Services/Tapeke/Components/pedido';
 import SSocket from 'servisofts-socket';
 import restaurante from '../../Services/Tapeke/Components/restaurante';
@@ -24,9 +24,9 @@ class index extends Component {
 	getCompras() {
 		var data = pedido.Actions.getAll(this.props);
 		if (!data) return <SLoad />
-		alert(keyRestaurante);
+		// alert(keyRestaurante);
 
-		var dataRestaurante = restaurante.Actions.getByKey(this.state.keyRestaurante,this.props);
+		var dataRestaurante = restaurante.Actions.getByKey(this.state.keyRestaurante, this.props);
 		if (!dataRestaurante) return <SLoad />
 
 		const key_usuario = this.props.state.usuarioReducer.usuarioLog.key;
@@ -38,38 +38,41 @@ class index extends Component {
 		}
 		return arr.map((obj) => {
 			return <>
-				<SView col={"xs-12"} height={64} row center border={"transparent"} onPress={() => {
-					// this.props.dispatch({ component: "direccion_usuario", type: "editarMiDireccion", data: obj });
-					SNavigation.goBack()
-				}} >
-					<SView col={"xs-2"} height={64} center   >
-						<SView height={36} width={36} style={{ backgroundColor: '#E9EAEE', borderRadius: 50, }} center   >
-							{/* <SIcon name={'Marker'} height={24} width={40} fill={'#484848'} /> */}
+
+				<SView col={"xs-12 "} height={90} row border={STheme.color.card} style={{ borderRadius: 8, }}   >
+
+
+					<SView col={"xs-2"} center   >
+						<SView height={40} width={40} style={{ backgroundColor: '#E9EAEE', borderRadius: 50, }} center   >
 							<SImage src={`${SSocket.api.root}restaurante/${this.state.keyRestaurante}`} style={{ borderRadius: 8, resizeMode: 'cover' }} />
 						</SView>
 					</SView>
-					<SView col={"xs-10"} row height={64} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray, justifyContent: 'center', }}  >
-						<SView col={"xs-10"} height={64} style={{ justifyContent: 'center', }}  >
+					<SView col={"xs-10"} row center  >
+						<SView col={"xs-10"} height={40} style={{ justifyContent: 'center', }}  >
 							{/* <SText fontSize={15} font={"Roboto"} color={STheme.color.text} >{obj['descripcion']}</SText> */}
-							<SText fontSize={15} font={"Roboto"} color={STheme.color.text} >{obj['descripcion']}</SText>
+							<SText fontSize={16} font={"Roboto"} color={STheme.color.text} >{dataRestaurante['nombre']}</SText>
 							<SHr height={5} />
 							{/* <SText fontSize={12} font={"Roboto"} color={STheme.color.gray} >{obj['direccion']}</SText> */}
-							<SText fontSize={12} font={"Roboto"} color={STheme.color.gray} >{obj['fecha_on']} - {obj['tipo_pago']} </SText>
+							<SText fontSize={12} font={"Roboto"} color={STheme.color.gray} >{new SDate(obj['fecha_on']).toString("dd-MM-yyyy hh:mm")} - {obj['tipo_pago']} </SText>
 						</SView>
-						<SView col={"xs-2"} height={64} center onPress={() => {
-							// SNavigation.goBack();
-							// Parent.Actions.eliminar(obj, this.props)
-							// Parent.Actions.eliminar(obj, this.props)
-							//alert(key);
-							//console.log(key);
-						}} >
+						<SView col={"xs-2"} height={40} style={{ alignContent: 'center', }}>
 							<SView height={36} width={36} center   >
-								<SText fontSize={12} font={"Roboto"} color={STheme.color.gray} >x{obj['cantidad']} </SText>
-
-								{/* <SIcon name={'DeleteDir'} height={24} width={40} fill={'#484848'} /> */}
+								<SText fontSize={18} font={"Roboto"} color={STheme.color.gray} >x{obj['cantidad']}</SText>
 							</SView>
 						</SView>
 					</SView>
+
+
+					<SView col={"xs-12"} row   >
+
+						<SView col={"xs-6"} center>
+							<SView width={120} height={20} style={{ backgroundColor: '#EEEEEE', borderRadius: 4, fontSize: 14, alignItems: 'center', }} center  >opinar </SView>
+						</SView>
+						<SView col={"xs-6"} center>
+							<SView width={120} height={20} style={{ backgroundColor: '#EEEEEE', borderRadius: 4, fontSize: 14, alignItems: 'center', }} center>Repetir </SView>
+						</SView>
+					</SView>
+
 
 				</SView>
 				<SHr height={10} />
@@ -82,9 +85,19 @@ class index extends Component {
 		return (
 
 			<SPage title={'MisCompras'}>
-				{this.getLista()}
-				{this.getCompras()}
+				<SView col={"xs-12  "} row center >
 
+					<SView col={"xs-10 sm-6 lg-3 "}  >
+						<SHr height={20} />
+
+						{/* {this.getLista()} */}
+						{this.getCompras()}
+
+						<SHr height={20} />
+
+					</SView>
+
+				</SView>
 
 			</SPage>
 		);
