@@ -235,7 +235,6 @@ class Confirmar extends React.Component {
         if (reducer.type == "registro") {
             if (reducer.estado == "exito") {
                 this.key = reducer.lastRegister?.key;
-                alert("okok"+ this.key)
                 SPopup.close("confirmar");
                 SNavigation.navigate("pedido/mensajeSolicitud", { key: this.key })
 
