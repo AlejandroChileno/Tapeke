@@ -75,7 +75,6 @@ class PopUpDirecciones extends React.Component {
                             </SView>
                         </SScrollView2>
                     </SView>
-
                     <SHr height={30} />
                     <SText fontSize={12} font={"Roboto"} color={STheme.color.lightGray} center >sin resultados.</SText>
                     <SHr height={30} />
