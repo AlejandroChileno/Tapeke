@@ -288,7 +288,7 @@ class Confirmar extends React.Component {
                             <SView col={"xs-12"} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray }}></SView>
                             <SHr height={10} />
                             <SView col={"xs-6"} >
-                                <SText style={{ textAlign: "justify", fontWeight: "bold" }} fontSize={15} font={"Roboto"} >Total:{this.auxRestaurante.horario.fecha}</SText>
+                                <SText style={{ textAlign: "justify", fontWeight: "bold" }} fontSize={15} font={"Roboto"} >Total: {this.auxRestaurante.horario.fecha}</SText>
                             </SView>
                             <SView col={"xs-6"} style={{ alignItems: "flex-end" }}>
                                 <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }} >Bs. {((this.auxRestaurante.pack?.precio ?? 0) * this.cantidad)}</SText>

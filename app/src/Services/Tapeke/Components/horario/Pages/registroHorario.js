@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput, SPopup } from 'servisofts-component';
-import Parent from '..'
-import Horario from '../../horario';
+import Parent from '../../restaurante'
+import Horario from '..';
 import Pack from '../../pack';
 import SSocket from 'servisofts-socket';
 import PButtom from '../../../../../Components/PButtom';

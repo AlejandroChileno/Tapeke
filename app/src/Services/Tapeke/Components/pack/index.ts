@@ -6,7 +6,7 @@ import Actions from "./Actions";
 import Reducer from "./Reducer";
 import testing from "./Pages/testing";
 // import Horario from "./Components/Horario";
-
+import registroPack from "./Pages/registroPack";
 
 export default {
     component,
@@ -17,6 +17,7 @@ export default {
     },
     Pages: {
         [component]: testing,
+        ["admin/" + component + "/registro"]: registroPack,
         [component + "/testing"]: testing,
     },
     // Components: {

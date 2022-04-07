@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SIcon, SImage, SLoad, SNavigation, SPage, SPopup, STable2, SText, SView, SDate } from 'servisofts-component';
-import Parent from '..'
-import Horario from '../../horario';
+import Parent from '../../restaurante'
+import Horario from '..';
 import Pack from '../../pack';
 import SSocket from 'servisofts-socket'
 import FloatButtom from '../../../../../Components/FloatButtom';
@@ -81,7 +81,7 @@ class listaHorario extends Component {
                 {
                     key: "key-pack", label: "Packs", width: 60, center: true,
                     component: (item) => {
-                        return <SView onPress={() => { SNavigation.navigate("admin/" + Parent.component + "/pack/registro", { key_horario: item }) }}>
+                        return <SView onPress={() => { SNavigation.navigate("admin/pack/registro", { key_horario: item }) }}>
                             <SIcon name={"Pack"} width={35} />
                         </SView>
                     }
@@ -103,7 +103,7 @@ class listaHorario extends Component {
                     {this.getLista()}
                 </SView>
                 <FloatButtom onPress={() => {
-                    SNavigation.navigate("admin/restaurante/horario/registro", { key_restaurante: this.key });
+                    SNavigation.navigate("admin/horario/registro", { key_restaurante: this.key });
                 }} />
             </SPage>
         );
