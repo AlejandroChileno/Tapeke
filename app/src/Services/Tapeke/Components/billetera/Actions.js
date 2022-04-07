@@ -22,6 +22,19 @@ export default class Actions {
         }
         return data;
     }
+    
+    static getByKeyUsuario = ( key_usuario, props) => {
+        var data = Actions.getAll(props);
+        if (!data) return null;
+        var arr = Object.values(data).filter((itm)=>itm.key_usuario == key_usuario)
+        return arr;
+    }
+    static getByKeyCliente = ( key_usuario, props) => {
+        var data = Actions.getAll(props);
+        if (!data) return null;
+        var arr = Object.values(data).filter((itm)=>itm.key_cliente == key_usuario)
+        return arr;
+    }
 
     static getByKey = (key, props) => {
         var data = Actions.getAll(props);

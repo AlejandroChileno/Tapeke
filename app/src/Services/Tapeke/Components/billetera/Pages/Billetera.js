@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SHr, SNavigation, SPage, SText, SView, STheme, SLoad, SButtom, SIcon, SWebView } from 'servisofts-component';
+import { SHr, SNavigation, SPage, SText, SView, STheme, SLoad, SButtom, SIcon, SWebView, STable2, SMath, SDate, SList, } from 'servisofts-component';
 import { WebView } from 'react-native';
 import PButtom from '../../../../../Components/PButtom';
+import usuario from '../../../../Usuario/Components/usuario';
+import Parent from '..'
+import billetera from '..';
 
 
 class Billetera extends Component {
@@ -30,6 +33,8 @@ class Billetera extends Component {
     }
 
     getDetalleBilletera(fecha, descripcion, tipoIcon, monto) {
+
+ 
         return <><SHr height={10} />
             <SView col={"xs-12"} center >
                 <SView col={"xs-12"} row backgroundColor={STheme.color.card} height={52} center style={{ borderRadius: 8 }}>
@@ -45,11 +50,30 @@ class Billetera extends Component {
         </>
     }
 
-    render() {
-        // var data = Parent.Actions.getAll(this.props);
+
+
+
+    getLista() {
+
+        var data = Parent.Actions.getByKeyCliente(this.props.state.usuarioReducer.usuarioLog.key, this.props);
+        if (!data) return <SLoad />;
         // var usuarios = usuario.Actions.getAll(this.props);
-        // if (!data) return <SLoad />;
         // if (!usuarios) return <SLoad />;
+
+        console.log("mi key usuario " + JSON.stringify(this.props.state.usuarioReducer.usuarioLog.key));
+        console.log("la informacion del cliente " + JSON.stringify(data));
+
+        // { this.getDetalleBilletera(new SDate(data.fecha_on).toString("yyyy-MM-dd hh:mm:ss"),data.fecha_on, 'Ingreso', SMath.formatMoney(data.monto)) }
+            return data.map((obj)=>{
+                return  this.getDetalleBilletera(new SDate(obj.fecha_on).toString("yyyy-MM-dd hh:mm:ss"),obj.tipo_pago, 'Ingreso', SMath.formatMoney(obj.monto)) 
+            })
+
+
+
+    }
+
+    render() {
+
         return (
             <>
                 <SPage title={'Billetera'}>
@@ -64,20 +88,16 @@ class Billetera extends Component {
                         </SView>
                         <SHr height={18} color={STheme.color.card} />
                         <SView col={"xs-11 md-8 lg-6 xl-4"}>
-                            {this.getDetalleBilletera('Enero, 06 - 16:45', 'Recarga de crédito', 'Ingreso', 'Bs. 100.00')}
+                            {/* {this.getDetalleBilletera('Enero, 06 - 16:45', 'Recarga de crédito', 'Ingreso', 'Bs. 100.00')}
                             {this.getDetalleBilletera('Enero, 06 - 16:45', 'Compra de producto', 'Egreso', 'Bs. -80.00')}
                             {this.getDetalleBilletera('Enero, 06 - 16:45', 'Recarga de crédito', 'Ingreso', 'Bs. 100.00')}
                             {this.getDetalleBilletera('Enero, 06 - 16:45', 'Recarga de crédito', 'Ingreso', 'Bs. 100.00')}
                             {this.getDetalleBilletera('Enero, 06 - 16:45', 'Compra de producto', 'Egreso', 'Bs. -80.00')}
-                            {this.getDetalleBilletera('Enero, 06 - 16:45', 'Recarga de crédito', 'Ingreso', 'Bs. 100.00')}
+                            {this.getDetalleBilletera('Enero, 06 - 16:45', 'Recarga de crédito', 'Ingreso', 'Bs. 100.00')} */}
                             <SHr height={50} />
                         </SView>
+                        {this.getLista()}
 
-                        <SView col={"xs-8"} row center style={{position:'absolute'}} border={'red'}>
-                            <SHr height={10} />
-                            <PButtom fontSize={20} onPress={() => { alert('alvaro'); }}>CARGAR CRÉDITO</PButtom>
-                            <SHr height={10} />
-                        </SView>
 
 
                     </SView>
