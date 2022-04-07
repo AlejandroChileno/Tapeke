@@ -4,6 +4,7 @@ import { SLoad, SText, STheme, SView } from 'servisofts-component';
 type KButtom_props = {
     primary?: boolean,
     secondary?: boolean,
+    withe?: boolean,
     outline?: boolean,
     onPress?: () => void,
     loading?: boolean,
@@ -20,6 +21,11 @@ export default class KButtom extends Component<KButtom_props> {
 
     render() {
         var bgColor = this.props.primary ? STheme.color.primary : this.props.secondary ? STheme.color.info : STheme.color.primary;
+        var colorText = STheme.color.white;
+        if (this.props.withe) {
+            bgColor = "#fff"
+            colorText = STheme.color.primary;
+        }
         var size = {
             width: 350,
             height: 55
@@ -42,7 +48,7 @@ export default class KButtom extends Component<KButtom_props> {
                     this.props.onPress();
                 }
             }} >
-            {this.props.loading ? <SLoad /> : <SText {...this.props} color={this.props.outline ? bgColor : STheme.color.white} font={"Roboto-Bold"} >{this.props.children}</SText>}
+            {this.props.loading ? <SLoad /> : <SText {...this.props} color={this.props.outline ? bgColor : colorText} font={"Roboto-Bold"} >{this.props.children}</SText>}
         </SView>);
     }
 }

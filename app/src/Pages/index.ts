@@ -12,6 +12,7 @@ import SelectDireccion from './SelectDireccion';
 import Ayuda from './Ayuda';
 
 import MisCompras from './MisCompras';
+import ComoTeParecio from './MisCompras/ComoTeParecio';
 
 const Pages = {
     "/": Inicio,
@@ -27,6 +28,7 @@ const Pages = {
     "compras": MisCompras,
     // "billetera": Billetera,
     "ayuda": Ayuda,
+    "comoteparecio": ComoTeParecio,
 
 
 

@@ -65,8 +65,8 @@ class index extends Component {
 
 					<SView col={"xs-12"} row   >
 
-						<SView col={"xs-6"} center>
-							<SView width={120} height={20} style={{ backgroundColor: '#EEEEEE', borderRadius: 4, fontSize: 14, alignItems: 'center', }} center  >opinar </SView>
+						<SView col={"xs-6"} center onPress={() => { SNavigation.navigate('comoteparecio') }}   >
+							<SView width={120} height={20} style={{ backgroundColor: '#EEEEEE', borderRadius: 4, fontSize: 14, alignItems: 'center', }} center  >Opinar</SView>
 						</SView>
 						<SView col={"xs-6"} center>
 							<SView width={120} height={20} style={{ backgroundColor: '#EEEEEE', borderRadius: 4, fontSize: 14, alignItems: 'center', }} center>Repetir </SView>
