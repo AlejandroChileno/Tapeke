@@ -48,6 +48,13 @@ import IconShare3, { ReactComponent as IconShare3W } from './iconShare3.svg';
 
 import DeleteDir, { ReactComponent as DeleteDirW } from './deleteDir.svg';
 
+import C_call, { ReactComponent as C_callW } from './c_call.svg';
+import C_facebook, { ReactComponent as C_facebookW } from './c_facebook.svg';
+import C_instagram, { ReactComponent as C_instagramW } from './c_instagram.svg';
+import C_tiktok, { ReactComponent as C_tiktokW } from './c_tiktok.svg';
+import C_whatsapp, { ReactComponent as C_whatsappW } from './c_whatsapp.svg';
+import C_ayuda_flecha, { ReactComponent as C_ayuda_flechaW } from './ayuda_flecha.svg';
+
 const Assets = {
 	// alvaro
 	"Billetera": { Native: Billetera, Web: BilleteraW },
@@ -95,6 +102,14 @@ const Assets = {
 	"IconShare2": { Native: IconShare2, Web: IconShare2W },
 	"IconShare3": { Native: IconShare3, Web: IconShare3W },
 	"DeleteDir": { Native: DeleteDir, Web: DeleteDirW },
+
+	"Ccall": { Native: C_call, Web: C_callW },
+	"Cfacebook": { Native: C_facebook, Web: C_facebookW },
+	"Ctiktok": { Native: C_tiktok, Web: C_tiktokW },
+	"Cinstagram": { Native: C_instagram, Web: C_instagramW },
+	"Cwhatsapp": { Native: C_whatsapp, Web: C_whatsappW },
+	"Cayudaflecha": { Native: C_ayuda_flecha, Web: C_ayuda_flechaW },
+
 }
 
 export default Assets;
