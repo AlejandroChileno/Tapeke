@@ -12,8 +12,8 @@ class Direccion extends React.Component {
         super(props);
         this.state = {
             region: {
-                latitude: -17.808690,
-                longitude: -63.162500,
+                latitude: -17.7833276,
+                longitude: -63.1821408,
             },
             dirType: "moveMap",
             nombre: " "
@@ -27,8 +27,8 @@ class Direccion extends React.Component {
             <SView col={"xs-12"} flex>
                 <SMapView
                     initialRegion={{
-                        latitude: -17.808690,
-                        longitude: -63.162500,
+                        latitude: -17.7833276,
+                        longitude: -63.1821408,
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421,
                     }}
@@ -39,7 +39,7 @@ class Direccion extends React.Component {
                     // }}
                     onRegionChangeComplete={(region) => {
                         // cuando cambio de posicion (mouse)
-                     
+
                         this.setState({ region: region, dirType: "moveMap" });
                     }}
                     preventCenter>
@@ -132,7 +132,7 @@ class Direccion extends React.Component {
                                 placeholder={"Busca una direccion!"}
                                 // value={this.getGeocode()}
                                 editable={false}
-                                value={`${this.state.nombre.substring(0,40)}${this.state.nombre.length>40?"...":""}`}
+                                value={`${this.state.nombre.substring(0, 40)}${this.state.nombre.length > 40 ? "..." : ""}`}
                                 onPress={() => {
                                     SPopup.open({
                                         key: "autocomplete", content: <PopUpDirecciones region={this.state.region} callback={(resp) => {

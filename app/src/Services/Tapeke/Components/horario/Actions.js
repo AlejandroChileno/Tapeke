@@ -42,22 +42,36 @@ export default class Actions {
         if (arr.length == 0) return "void";
         var date = new SDate();
         var arr2 = arr.filter(itm => itm.dia >= date.getDayOfWeek());
+
         if (arr2.length > 0) {
             arr2.sort((a, b) => { return a.dia > b.dia ? 1 : -1 });
         } else {
             arr2 = arr;
             arr2.sort((a, b) => { return a.dia > b.dia ? 1 : -1 });
         }
-        var dow = arr2[0];
-        var dia = dow.dia;
-        if (dia == date.getDayOfWeek()) {
-            dow.fecha = date.toString("yyyy-MM-dd");
-        } else if (dia > date.getDayOfWeek()) {
-            dow.fecha = date.addDay(dow.dia - date.getDayOfWeek()).toString("yyyy-MM-dd");
-        } else if (dia < date.getDayOfWeek()) {
-            dow.fecha = date.addDay(7 - date.getDayOfWeek() + dow.dia).toString("yyyy-MM-dd");
-        }
-        return dow;
+        var list = [];
+        arr2.map((dow) => {
+            var date = new SDate();
+            var dia = dow.dia;
+            var text = SDate.getDayOfWeek(dia).text;
+            if (dia == date.getDayOfWeek()) {
+                text = "hoy";
+                dow.fecha = date.toString("yyyy-MM-dd");
+            } else if (dia > date.getDayOfWeek()) {
+                dow.fecha = date.addDay(dow.dia - date.getDayOfWeek()).toString("yyyy-MM-dd");
+            } else if (dia < date.getDayOfWeek()) {
+                dow.fecha = date.addDay(7 - date.getDayOfWeek() + dow.dia).toString("yyyy-MM-dd");
+            }
+            var dia = new SDate(dow.fecha + " " + dow.hora_inicio, "yyyy-MM-dd hh:mm");
+            if (dia.getTime() < new SDate().getTime()) {
+                return;
+            }
+            dow.sdate = dia;
+            dow.text = text + " " + dow.hora_inicio + " - " + dow.hora_fin;
+            list.push(dow);
+        })
+        list.sort((a, b) => { return a.sdate.getTime() > b.sdate.getTime() ? 1 : -1 });
+        return list[0];
     }
     static registro = (data, props) => {
         SSocket.send({

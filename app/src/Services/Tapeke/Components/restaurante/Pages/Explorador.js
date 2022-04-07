@@ -75,13 +75,12 @@ class Explorador extends React.Component {
     }
 
     getRestaurante() {
-        var data = Parent.Actions.getAll(this.props);
-        var data_favoritos = favorito.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key,this.props);
+        var data = Parent.Actions.getAllFilter({ soloHoy: false }, this.props);
+        var data_favoritos = favorito.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props);
         if (!data) return <SLoad />;
         if (!data_favoritos) return <SLoad />;
-        var listaKeys = Object.keys(data);
-        return listaKeys.map((key, index) => {
-            var obj = data[key];
+        // var listaKeys = Object.keys(data);
+        return data.map((obj) => {
             return <SView col={"xs-10 md-5 lg-4 xl-3"} border={'transparent'} >
                 <Item2 data={obj} ></Item2>
             </SView>

@@ -1,6 +1,7 @@
 import SSocket from 'servisofts-socket';
 import Parent from './index';
-
+import horario from '../horario';
+import { SDate } from 'servisofts-component';
 export default class Actions {
     static _getReducer = (props) => {
         return props.state[Parent.component + "Reducer"];
@@ -22,10 +23,71 @@ export default class Actions {
         return data;
     }
 
+    static getDistance(lat1, lon1, lat2, lon2) {
+        var rad = function (x) { return x * Math.PI / 180; }
+        var R = 6378.137; //Radio de la tierra en km 
+        var dLat = rad(lat2 - lat1);
+        var dLong = rad(lon2 - lon1);
+        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(rad(lat1)) *
+            Math.cos(rad(lat2)) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        //aquí obtienes la distancia en metros por la conversion 1Km =1000m
+        var d = R * c * 1000;
+        return d;
+    }
+    //filter:{ soloHoy:bool }
+    static getAllFilter = (filter, props) => {
+        var data = Actions.getAll(props);
+        var horarios_restaurantes = horario.Actions.getAll(props);
+        if (!data) return null;
+        if (!horarios_restaurantes) return null;
+        var miDireccion = props.state.direccion_usuarioReducer.miDireccion;
+        var miDistancia = props.state.direccion_usuarioReducer.miDistancia;
+        var list = [];
+        Object.values(data).map((obj) => {
+            if (obj.estado != 1) return;
+            //Distancias
+            if (!obj.latitude || !obj.longitude) return;
+            obj.distancia = parseFloat(Actions.getDistance(miDireccion.latitude, miDireccion.longitude, obj.latitude, obj.longitude) / 1000).toFixed(1);
+            if (miDistancia < obj.distancia) return null;
+            //Horarios
+            var arr_horarios = Object.values(horarios_restaurantes).filter(itm => itm.key_restaurante == obj.key);
+            if (arr_horarios.length <= 0) return null;
+            obj.horario = horario.Actions.getByKeyRestauranteProximo(obj.key, props);
+            if (!obj.horario) return null;
+
+            // var dia = SDate.getDayOfWeek(obj.horario.dia).text;
+            if (obj.horario.dia != new SDate().getDayOfWeek()) {
+                if (filter.soloHoy) {
+                    return;
+                }
+            }
+            //INSERTAMOS
+            list.push(obj);
+        })
+
+        list = list.sort((a, b) => {
+            return a.distancia > b.distancia ? 1 : -1;
+        });
+        list = list.sort((a, b) => {
+            return a.horario.sdate.getTime() > b.horario.sdate.getTime() ? 1 : -1;
+        });
+        return list;
+    }
     static getByKey = (key, props) => {
         var data = Actions.getAll(props);
         if (!data) return null;
         return data[key];
+    }
+    static getByKeyDetalle = (key, props) => {
+        var data = Actions.getAll(props);
+        var horarios_restaurantes = horario.Actions.getAll(props);
+        if (!data) return null;
+        if (!horarios_restaurantes) return null;
+        var obj = data[key];
+        if (!obj) return null;
+        obj.horario = horario.Actions.getByKeyRestauranteProximo(obj.key, props);
+        return obj;
     }
 
     static registro = (data, props) => {

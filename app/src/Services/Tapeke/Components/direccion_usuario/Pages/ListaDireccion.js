@@ -22,15 +22,21 @@ class Direccion extends React.Component {
 	getDirecciones() {
 		var data = Parent.Actions.getAll(this.props);
 		if (!data) return <SLoad />
-		return Object.keys(data).map((key) => {
-			if (data[key].estado == 0) return 
+
+		const key_usuario = this.props.state.usuarioReducer.usuarioLog.key;
+		var arr = Object.values(data).filter(x => x.key_usuario == key_usuario && x.estado == 1);
+		if (arr.length <= 0) {
+			SNavigation.navigate("direccion_usuario")
+			return <SText>No hay direcciones</SText>
+		}
+		return arr.map((obj) => {
 			// if (!SBuscador.validate(data[key], this.state.find)) {
 			//     return null;
 			// }
-			if (data[key]['key_usuario'] != this.props.state.usuarioReducer.usuarioLog.key) return null;
+			// if (data[key]['key_usuario'] != this.props.state.usuarioReducer.usuarioLog.key) return null;
 			return <>
 				<SView col={"xs-12"} height={64} row center border={"transparent"} onPress={() => {
-					this.props.dispatch({ component: "direccion_usuario", type: "editarMiDireccion", data: data[key] });
+					this.props.dispatch({ component: "direccion_usuario", type: "editarMiDireccion", data: obj });
 					SNavigation.goBack()
 				}} >
 					<SView col={"xs-2"} height={64} center   >
@@ -40,13 +46,13 @@ class Direccion extends React.Component {
 					</SView>
 					<SView col={"xs-10"} row height={64} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray, justifyContent: 'center', }}  >
 						<SView col={"xs-10"} height={64} style={{ justifyContent: 'center', }}  >
-							<SText fontSize={15} font={"Roboto"} color={STheme.color.text} >{data[key]['descripcion']}</SText>
+							<SText fontSize={15} font={"Roboto"} color={STheme.color.text} >{obj['descripcion']}</SText>
 							<SHr height={5} />
-							<SText fontSize={12} font={"Roboto"} color={STheme.color.gray} >{data[key]['direccion']}</SText>
+							<SText fontSize={12} font={"Roboto"} color={STheme.color.gray} >{obj['direccion']}</SText>
 						</SView>
 						<SView col={"xs-2"} height={64} center onPress={() => {
 							// SNavigation.goBack();
-							Parent.Actions.eliminar(data[key], this.props)
+							Parent.Actions.eliminar(obj, this.props)
 							//alert(key);
 							//console.log(key);
 						}} >
@@ -65,7 +71,7 @@ class Direccion extends React.Component {
 
 
 	render() {
-		
+
 		return (
 			<SPage title={'Mis Direcciones'} disableScroll center>
 				{/* <BarraSuperiorTapeke  >
