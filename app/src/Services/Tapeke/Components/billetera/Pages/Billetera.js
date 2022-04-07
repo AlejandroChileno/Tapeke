@@ -32,9 +32,19 @@ class Billetera extends Component {
         </>
     }
 
-    getDetalleBilletera(fecha, descripcion, tipoIcon, monto) {
 
- 
+    // getEstadoColor(obj) {
+    //     switch (obj) {
+    //         case "Rechazado":
+    //             return STheme.color.info;
+    //         case "Aprobado":
+    //             return STheme.color.primary;
+    //         default:
+    //             return STheme.color.card;
+    //     }
+    // }
+
+    getDetalleBilletera(fecha, descripcion, tipoIcon, monto) {
         return <><SHr height={10} />
             <SView col={"xs-12"} center >
                 <SView col={"xs-12"} row backgroundColor={STheme.color.card} height={52} center style={{ borderRadius: 8 }}>
@@ -42,7 +52,7 @@ class Billetera extends Component {
                         <SText font={"Manrope"} color={STheme.color.lightGray} fontSize={10} style={{ paddingLeft: 10 }} >{fecha}</SText>
                         <SText font={"Manrope"} color={STheme.color.text} fontSize={12} style={{ paddingLeft: 10 }} >{descripcion}</SText>
                     </SView>
-                    <SView col={"xs-4"} style={{ textAlign: "right" }} row center><SIcon name={tipoIcon} width={20} height={15} fill={"#8DBF3B"} /><SView col={"xs-1"} />
+                    <SView col={"xs-4"} style={{ textAlign: "right" }} row center><SIcon name={monto>0?'Ingreso':'Egreso'} width={20} height={15} fill={"#8DBF3B"} /><SView col={"xs-1"} />
                         <SText font={"Manrope"} color={STheme.color.text} fontSize={10}>{monto}</SText>
                     </SView>
                 </SView>
