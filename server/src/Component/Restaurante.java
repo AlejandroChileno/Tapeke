@@ -11,6 +11,7 @@ import Server.SSSAbstract.SSSessionAbstract;
 
 public class Restaurante {
     public static final String COMPONENT = "restaurante";
+
     public static void onMessage(JSONObject obj, SSSessionAbstract session) {
         switch (obj.getString("type")) {
             case "getAll":

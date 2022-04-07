@@ -11,7 +11,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import Server.SSSAbstract.SSSessionAbstract;
 
-public class Pedido {
+public class pedido {
     public static final String COMPONENT = "pedido";
 
     public static void onMessage(JSONObject obj, SSSessionAbstract session) {

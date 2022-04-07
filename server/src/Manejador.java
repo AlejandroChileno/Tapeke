@@ -35,6 +35,9 @@ public class Manejador {
             case costo_envio.COMPONENT:
                 costo_envio.onMessage(obj, session);
                 break;
+            case pedido.COMPONENT:
+                pedido.onMessage(obj, session);
+                break;
             case BackgroundLocation.COMPONENT:
                 BackgroundLocation.onMessage(obj, session);
                 break;
