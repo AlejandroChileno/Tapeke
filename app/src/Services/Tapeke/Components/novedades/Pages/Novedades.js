@@ -51,8 +51,6 @@ class Novedades extends Component {
                         <SHr height={25} />
                     </SView>
                     <SHr height={50} />
-                    
-                    
                     <SHr height={40} />
                 </SView>
             </SPage>
