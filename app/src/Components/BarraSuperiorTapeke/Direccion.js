@@ -10,6 +10,9 @@ class Direccion extends Component {
     }
 
     popupOpcionDistancia() {
+        var miDistancia = this.props.state.direccion_usuarioReducer.miDistancia;
+
+
         var miDireccion = this.props.state.direccion_usuarioReducer.miDireccion;
         return <><SView col={"xs-11 md-8 xl-6"} center row style={{ borderRadius: 8 }} withoutFeedback backgroundColor={STheme.color.background}>
             <SView col={"xs-9 md-6 xl-6"} center>
@@ -30,7 +33,7 @@ class Direccion extends Component {
                         this.props.dispatch({ component: "direccion_usuario", type: "editarMiDistancia", data: 1 });
                         SPopup.close("ubicacion");
                     }}>
-                        <SIcon name={"ModoPie"} width={90} height={90} fill={STheme.color.primary} />
+                        <SIcon name={miDistancia==1?"ModoPieOn":"ModoPieOff"} width={90} height={90} fill={STheme.color.primary} />
                         <SHr height={10} />
                         <SText font={"Roboto"} color={STheme.color.text} style={{ fontSize: 18, fontWeight: "bold" }}>A pie</SText>
                         <SText font={"Roboto"} color={STheme.color.text} style={{ fontSize: 14, fontWeight: "bold" }}>menos 1 km</SText>
@@ -39,7 +42,7 @@ class Direccion extends Component {
                         this.props.dispatch({ component: "direccion_usuario", type: "editarMiDistancia", data: 30 });
                         SPopup.close("ubicacion");
                     }}>
-                        <SIcon name={"ModoCoche"} width={90} height={90} fill={STheme.color.primary} />
+                        <SIcon name={miDistancia==30?"ModoCocheOn":"ModoCocheOff"} width={90} height={90} fill={STheme.color.primary} />
                         <SHr height={10} />
                         <SText font={"Roboto"} color={STheme.color.text} style={{ fontSize: 18, fontWeight: "bold" }}>En coche</SText>
                         <SText font={"Roboto"} color={STheme.color.text} style={{ fontSize: 14, fontWeight: "bold" }}>menos 30 km</SText>
@@ -54,7 +57,7 @@ class Direccion extends Component {
     render() {
         var miDireccion = this.props.state.direccion_usuarioReducer.miDireccion;
         var miDistancia = this.props.state.direccion_usuarioReducer.miDistancia;
-
+        // alert(miDistancia);
         if (!this.props.state.direccion_usuarioReducer.miDireccion) {
             SNavigation.replace("direcciones")
 

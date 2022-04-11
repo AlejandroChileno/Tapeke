@@ -19,8 +19,11 @@ import Detalle, { ReactComponent as DetalleW } from './detalle.svg';
 import ComoLlegar, { ReactComponent as ComoLlegarW } from './comoLlegar.svg';
 import Bicicleta, { ReactComponent as BicicletaW } from './bicicleta.svg';
 import Ubicacion, { ReactComponent as UbicacionW } from './ubicacion.svg';
-import ModoPie, { ReactComponent as ModoPieW } from './modoPie.svg';
-import ModoCoche, { ReactComponent as ModoCocheW } from './modoCoche.svg';
+
+import ModoPieOn, { ReactComponent as ModoPieOnW } from './modoPieOn.svg';
+import ModoCocheOn, { ReactComponent as ModoCocheOnW } from './modoCocheOn.svg';
+import ModoPieOff, { ReactComponent as ModoPieOffW } from './modoPieOff.svg';
+import ModoCocheOff, { ReactComponent as ModoCocheOffW } from './modoCocheOff.svg';
 
 import AppBaterry, { ReactComponent as AppBaterryW } from './appBaterry.svg';
 import AppSignal, { ReactComponent as AppSignalW } from './appSignal.svg';
@@ -86,8 +89,11 @@ const Assets = {
 	"ComoLlegar": { Native: ComoLlegar, Web: ComoLlegarW },
 	"Bicicleta": { Native: Bicicleta, Web: BicicletaW },
 	"Ubicacion": { Native: Ubicacion, Web: UbicacionW },
-	"ModoPie": { Native: ModoPie, Web: ModoPieW },
-	"ModoCoche": { Native: ModoCoche, Web: ModoCocheW },
+
+	"ModoPieOn": { Native: ModoPieOn, Web: ModoPieOnW },
+	"ModoCocheOn": { Native: ModoCocheOn, Web: ModoCocheOnW },
+	"ModoPieOff": { Native: ModoPieOff, Web: ModoPieOffW },
+	"ModoCocheOff": { Native: ModoCocheOff, Web: ModoCocheOffW },
 
 
 	"Direccion": { Native: Direccion, Web: DireccionW },

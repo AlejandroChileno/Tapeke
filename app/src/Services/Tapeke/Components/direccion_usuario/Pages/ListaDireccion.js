@@ -85,10 +85,20 @@ class Direccion extends React.Component {
 					</SView>
 					<SHr height={10} />
 					{this.getDirecciones()}
+					<SHr height={10} />
+
+					<SView col={"xs-12"} row center height={40} border={'transparent'} onPress={() => { alert('alvaro') }}>
+						<SView width={40} center>
+							<SIcon name={'LocationTapeke'} height={14} width={14} fill={STheme.color.primary} />
+						</SView>
+						<SView onPress={() => { this.map.center(); }}>
+							<SText fontSize={14} font={"Roboto"} color={STheme.color.primary} bold>Utilizar mi ubicación actual</SText>
+						</SView>
+					</SView>
 
 				</SView >
-
 			</ SPage >
+
 			<FloatButtomTap onPress={() => {
 				SNavigation.navigate("direccion_usuario");
 				this.props.state.direccion_usuarioReducer.estado = 0;
