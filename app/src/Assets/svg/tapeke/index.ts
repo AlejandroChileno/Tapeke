@@ -54,6 +54,7 @@ import C_instagram, { ReactComponent as C_instagramW } from './c_instagram.svg';
 import C_tiktok, { ReactComponent as C_tiktokW } from './c_tiktok.svg';
 import C_whatsapp, { ReactComponent as C_whatsappW } from './c_whatsapp.svg';
 import C_ayuda_flecha, { ReactComponent as C_ayuda_flechaW } from './ayuda_flecha.svg';
+import UserAlert, { ReactComponent as UserAlertW } from './userAlert.svg';
 
 import Estrella, { ReactComponent as EstrellaW } from './estrella.svg';
 import Medalla1, { ReactComponent as Medalla1W } from './medalla1.svg';
@@ -114,6 +115,7 @@ const Assets = {
 	"Cinstagram": { Native: C_instagram, Web: C_instagramW },
 	"Cwhatsapp": { Native: C_whatsapp, Web: C_whatsappW },
 	"Cayudaflecha": { Native: C_ayuda_flecha, Web: C_ayuda_flechaW },
+	"UserAlert": { Native: UserAlert, Web: UserAlertW },
 	
 	
 	"Estrella": { Native: Estrella, Web: EstrellaW },
