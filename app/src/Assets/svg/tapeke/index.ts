@@ -59,7 +59,9 @@ import C_whatsapp, { ReactComponent as C_whatsappW } from './c_whatsapp.svg';
 import C_ayuda_flecha, { ReactComponent as C_ayuda_flechaW } from './ayuda_flecha.svg';
 import UserAlert, { ReactComponent as UserAlertW } from './userAlert.svg';
 
-import Estrella, { ReactComponent as EstrellaW } from './estrella.svg';
+import EstrellaOn, { ReactComponent as EstrellaOnW } from './estrellaOn.svg';
+import EstrellaOff, { ReactComponent as EstrellaOffW } from './estrellaOff.svg';
+
 import Medalla1, { ReactComponent as Medalla1W } from './medalla1.svg';
 import Medalla2, { ReactComponent as Medalla2W } from './medalla2.svg';
 import Medalla3, { ReactComponent as Medalla3W } from './medalla3.svg';
@@ -124,7 +126,10 @@ const Assets = {
 	"UserAlert": { Native: UserAlert, Web: UserAlertW },
 	
 	
-	"Estrella": { Native: Estrella, Web: EstrellaW },
+	"EstrellaOn": { Native: EstrellaOn, Web: EstrellaOnW },
+	"EstrellaOff": { Native: EstrellaOff, Web: EstrellaOffW },
+
+	
 	"Medalla1": { Native: Medalla1, Web: Medalla1W },
 	"Medalla2": { Native: Medalla2, Web: Medalla2W },
 	"Medalla3": { Native: Medalla3, Web: Medalla3W },

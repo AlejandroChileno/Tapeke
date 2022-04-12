@@ -27,11 +27,11 @@ export default class ComoTeParecio extends Component {
 						<SHr height={20} />
 						<SView width={200} center>
 							<SView col={"xs-12"} row center>
-								<SIcon name={"Estrella"} width={36} height={36} fill="white" />
-								<SIcon name={"Estrella"} width={36} height={36} fill="white" />
-								<SIcon name={"Estrella"} width={36} height={36} fill="white" />
-								<SIcon name={"Estrella"} width={36} height={36} fill="white" />
-								<SIcon name={"Estrella"} width={36} height={36} fill="white" />
+								<SIcon name={"EstrellaOn"} width={36} height={36} fill="white" />
+								<SIcon name={"EstrellaOn"} width={36} height={36} fill="white" />
+								<SIcon name={"EstrellaOn"} width={36} height={36} fill="white" />
+								<SIcon name={"EstrellaOn"} width={36} height={36} fill="white" />
+								<SIcon name={"EstrellaOff"} width={36} height={36} fill="white" />
 							</SView>
 						</SView>
 						<SHr height={20} />
