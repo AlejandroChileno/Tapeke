@@ -332,7 +332,7 @@ class Confirmar extends React.Component {
                     <SHr height={40} />
                     <PButtom fontSize={20} onPress={() => {
 
-                        // SNavigation.navigate("pedido/mapa")
+                        //SNavigation.navigate("pedido/mapa")
                         SPopup.open({ content: this.popupConfirmacion(), key: "confirmar" });
 
 
