@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SHr, SPage, SText, SView, STheme, SIcon, } from 'servisofts-component';
+import { SHr, SPage, SText, SView, STheme, SIcon, SNavigation} from 'servisofts-component';
+import PButtom from '../../../../../Components/PButtom2';
+
 class MensajeSolicitud extends React.Component {
     constructor(props) {
         super(props);
@@ -23,7 +25,7 @@ class MensajeSolicitud extends React.Component {
                         </SView>
 
                         <SView col={"xs-11"} row center>
-                            <SIcon name={"MensajeSolicitud"}   height={290} />
+                            <SIcon name={"MensajeSolicitud"} height={290} />
 
                         </SView>
 
@@ -31,9 +33,20 @@ class MensajeSolicitud extends React.Component {
                             <SView col={"xs-10"} border={'transparent'}  >
                                 <SText fontSize={18} color='white' bold center>¡Recuerda usar tapaboca para recoger tu pedido!</SText>
                             </SView>
+                            <SHr height={20} />
+                            <SView col={"xs-12"} border={'transparent'}  center>
+                                <PButtom 
+                                    props={{
+                                        type: "outline"
+                                    }}
+                                    onPress={() => {
+                                        SNavigation.navigate("/")
+                                    }}
+                                >Ir a Inicio</PButtom>
+                            </SView>
                         </SView>
 
-                         
+
                     </SView>
                     <SHr height={50} />
                 </SView>

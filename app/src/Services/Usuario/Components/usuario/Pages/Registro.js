@@ -93,6 +93,8 @@ class Registro extends Component {
                     }
                     if (this.state.envio == 0) {
                         SPopup.alert("Debes aceptar los términos y condiciones")
+                        // var error = "Debes aceptar los términos y condiciones"
+                        // SPopup.open({ key: "errorRegistro", content: this.alertError(error) });
                     } else {
                         Parent.Actions.registro(values, this.props);
                     }
@@ -101,10 +103,11 @@ class Registro extends Component {
         />
     }
 
+    //TODO LICETH: Falta que ricky me devuelva detalle de error de usuario para mostrar error en popup
     alertError(error) {
-        return <SView col={"xs-12 md-8 xl-6"} row style={{ height: 250, borderRadius: 8, }} backgroundColor={STheme.color.background}>
+        return <SView col={"xs-12 md-8 xl-6"} row style={{ height: 250, borderRadius: 8, }} backgroundColor={STheme.color.background} center>
             {/* <BackgroundImage /> */}
-            <SView style={{
+            {/* <SView style={{
                 width: "100%",
                 top: 0,
                 left: 0,
@@ -112,16 +115,22 @@ class Registro extends Component {
                 ...this.props.style,
             }}>
                 <SIcon name={"Enfermera10"} height={500} />
+            </SView> */}
+            <SView col={"xs-11"}  >
+                <SView height={30}></SView>
+                <SIcon name={"UserAlert"} height={100} />
             </SView>
-            <SView col={"xs-3"}  ></SView>
-            <SView col={"xs-9"} style={{
+            <SView col={"xs-11"} center style={{
                 // width: "100%",
                 // height: "100%",
-            }} center>
-                <SText style={{ fontSize: 16, }}>El usuario ya existe</SText>
-                <SView height={8} />
+            }} >
+                {/* <SText style={{ fontSize: 16, }}>El usuario ya existe</SText> */}
+                <SText color={STheme.color.darkGray} style={{ fontSize: 20, fontWeight: "bold" }}>Número activo</SText>
+                <SText color={STheme.color.darkGray} style={{ fontSize: 15 }}>El número que ingreso ya está asociado a una cuenta activa.</SText>
                 {/* <SText secondary style={{ fontSize: 12, }}>{`Nombre: ${error["Nombres"] + " " + error["Apellidos"]}`}</SText> */}
-                <SText secondary style={{ fontSize: 12, }}>{`Correo: ${error["Correo"]}`}</SText>
+
+                {/* <SText secondary style={{ fontSize: 12, }}>{`Correo: ${error["Correo"]}`}</SText> */}
+
                 <SView height={30}></SView>
                 {/* <SText style={{ fontSize: 12, }}>{`Fecha nacimiento: ${error["Fecha nacimiento"]}`}</SText> */}
                 {/* <SText secondary style={{ fontSize: 12, }}>{`CI: ${error["CI"]}`}</SText>
