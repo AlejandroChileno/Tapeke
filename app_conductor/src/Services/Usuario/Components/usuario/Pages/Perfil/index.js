@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
-import { SDate, SImage, SNavigation, SPage, SView, SButtom, SText, SIcon, SHr,STheme } from 'servisofts-component';
+import { SDate, SImage, SNavigation, SPage, SView, SButtom, SText, SIcon, SHr, STheme } from 'servisofts-component';
 import SSocket from 'servisofts-socket';
 // import CerrarSession from './CerrarSession';
 import Kolping from '../../../../../../Components/Kolping';
+import PButtom from '../../../../../../Components/PButtom';
 
 // import AppParams from '../../Params';
 // import FilePreview from '../CarpetasPage/FilePreview';
@@ -99,7 +100,7 @@ class Perfil extends Component {
             {/* {this.getDato("Nombres", "InputUser")} */}
             {/* {this.getDato("Apellidos", "InputUser")} */}
             {/* {this.getDato("CI", "InputUser")} */}
-            {this.getDato("Fecha de nacimiento", "Calendar")}
+            {this.getDato("Fecha de nacimiento", "InputCalendar")}
             {this.getDato("Telefono", "InputPhone")}
             {this.getDato("Correo", "InputEmail")}
             {this.getDato("Password", "InputPassword")}
@@ -123,11 +124,12 @@ class Perfil extends Component {
                     {this.getDatos()}
                     <SView height={50}></SView>
 
-                    <Kolping.KButtom primary onPress={() => {
+
+                    <PButtom primary onPress={() => {
                         SNavigation.navigate("editar", {
                             key: usuario.key,
                         })
-                    }}>EDITAR</Kolping.KButtom>
+                    }}>EDITAR</PButtom>
                     <SView height={30}></SView>
 
                 </SView>

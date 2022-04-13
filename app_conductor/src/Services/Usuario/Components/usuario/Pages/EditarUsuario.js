@@ -5,6 +5,10 @@ import { SButtom, SDate, SForm, SNavigation, SPage, SPopup, SText, STheme, SView
 import Usuario from '..';
 import BackgroundImage from '../../../../../Components/BackgroundImage';
 import Kolping from '../../../../../Components/Kolping';
+import PButtom from '../../../../../Components/PButtom';
+
+
+
 import SSocket from 'servisofts-socket'
 class EditarUsuario extends Component {
     constructor(props) {
@@ -87,14 +91,14 @@ class EditarUsuario extends Component {
                         {this.getForm()}
                         <SView height={16} />
                         <SView col={"xs-11"} row center>
-                            <Kolping.KButtom primary props={{
+                            <PButtom primary props={{
                                 type: "outline"
                             }}
                                 onPress={() => {
                                     this.form.submit();
                                 }}>
                                 {"CONFIRMAR"}
-                            </Kolping.KButtom>
+                            </PButtom>
                         </SView>
                         <SView height={36} />
                     </SView>

@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
 //------------------------
 import SSocket, { setProps } from 'servisofts-socket'
+import NavBar from './Components/NavBar';
 
 import SConfig from './SConfig';
 import SBLocation from './SBLocation';
@@ -38,6 +39,7 @@ const App = (props) => {
                     prefixes: ["https://component.servisofts.com", "component.servisofts://"],
                     pages: Pages,
                     title: "App Tapeke",
+ 
                 }} />
                 <SSocket identificarse={(props) => {
                     // var usuario = props.state.usuarioReducer.usuarioLog;
@@ -47,7 +49,7 @@ const App = (props) => {
                         deviceKey: "as-asa-as",
                     }
                 }} />
-                {/* <NavBar /> */}
+                <NavBar />
 
             </SComponentContainer>
         </Provider >

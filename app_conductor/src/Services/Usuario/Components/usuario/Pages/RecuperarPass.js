@@ -32,7 +32,7 @@ class RecuperarPass extends Component {
                 col: "xs-12",
             }}
             inputs={{
-                Correo: { placeholder: "Ingrese su correo electrónico", type: "email", isRequired: true },
+                Correo: { placeholder: "Ingrese su correo electrónico", type: "email", icon: <SIcon name={"InputEmail"} width={40} height={30} />,isRequired: true },
             }}
             onSubmit={(values) => {
                 // if (this.key) {
