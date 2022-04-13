@@ -192,7 +192,7 @@ class Detalle extends React.Component {
                                         }}>
                                             <SView width={50} height={50} center row style={{ borderRadius: 8, backgroundColor: STheme.color.primary, borderRadius: 45 }}
                                                 onPress={() => {
-                                                    if (this.state.cantidad >= this.auxRestaurante.pack?.cantidad) return;
+                                                    if (this.state.cantidad >= this.auxRestaurante.pack?.disponibles) return;
                                                     this.setState({ cantidad: this.state.cantidad + 1 });
                                                 }}
                                             >
