@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient, SForm, SNavigation, SPopup, SLoad } from 'servisofts-component';
+import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient, SForm, SNavigation, SPopup, SLoad, SMath } from 'servisofts-component';
 import PButtom from '../../../../../Components/PButtom';
 import restaurante from '../../restaurante';
 import Parent from '../index';
@@ -211,7 +211,7 @@ class Confirmar extends React.Component {
                                 }
 
                                 // console.log(this.auxRestaurante)
-                                console.log(JSON.stringify(dataOk)+" aquiii")
+                                console.log(JSON.stringify(dataOk) + " aquiii")
                                 Parent.Actions.registro(dataOk, this.props);
                                 // console.log(this.props.state.direccion_usuarioReducer.miDireccion)
 
@@ -234,10 +234,15 @@ class Confirmar extends React.Component {
         var reducer = this.props.state[Parent.component + "Reducer"];
         if (reducer.type == "registro") {
             if (reducer.estado == "exito") {
+                reducer.estado = "";
                 this.key = reducer.lastRegister?.key;
                 SPopup.close("confirmar");
                 SNavigation.navigate("pedido/mensajeSolicitud", { key: this.key })
 
+            } else if (reducer.estado == "error") {
+                reducer.estado = ""
+                SPopup.close("confirmar");
+                SPopup.alert(reducer.error)
             }
         }
         return (
@@ -303,14 +308,14 @@ class Confirmar extends React.Component {
                                 <SText style={{ textAlign: "justify" }} fontSize={15} font={"Roboto"} >Total</SText>
                             </SView>
                             <SView col={"xs-6"} style={{ alignItems: "flex-end" }}>
-                                <SText fontSize={15} font={"Roboto"} >Bs. {(this.auxRestaurante.pack?.precio ?? 0) * this.cantidad}</SText>
+                                <SText fontSize={15} font={"Roboto"} >Bs. {SMath.formatMoney((this.auxRestaurante.pack?.precio ?? 0) * this.cantidad)}</SText>
                             </SView>
                             <SHr height={10} />
                             <SView col={"xs-6"} >
                                 <SText style={{ textAlign: "justify" }} fontSize={15} font={"Roboto"} >Envío</SText>
                             </SView>
                             <SView col={"xs-6"} style={{ alignItems: "flex-end" }}>
-                                <SText fontSize={15} font={"Roboto"} > {this.envioN ?? 0} </SText>
+                                <SText fontSize={15} font={"Roboto"} >{this.envioN ? "Bs. " + SMath.formatMoney(this.envioN) : 0}</SText>
                             </SView>
                             <SHr height={10} />
                             <SView col={"xs-12"} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray }}></SView>
@@ -319,7 +324,7 @@ class Confirmar extends React.Component {
                                 <SText style={{ textAlign: "justify", fontWeight: "bold" }} fontSize={15} font={"Roboto"} >Total:</SText>
                             </SView>
                             <SView col={"xs-6"} style={{ alignItems: "flex-end" }}>
-                                <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }} >Bs. {((this.auxRestaurante.pack?.precio ?? 0) * this.cantidad)}</SText>
+                                <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }} >Bs. {SMath.formatMoney(((this.auxRestaurante.pack?.precio ?? 0) * this.cantidad) + parseFloat(this.envioN ?? 0))}</SText>
                             </SView>
                             <SHr height={15} />
                         </SView>

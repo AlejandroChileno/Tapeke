@@ -27,7 +27,7 @@ class Item2 extends Component {
     HeaderItemDisponible() {
         var cantidad = 0;
         if (this.props.data.pack) {
-            cantidad = this.props.data.pack.cantidad;
+            cantidad = this.props.data.pack.disponibles;
         }
 
         return <>

@@ -26,7 +26,9 @@ class Inicio extends Component {
           <SView col={"xs-8"} row style={{ justifyContent: "flex-start" }}>
             <SText fontSize={18} font={"LondonMM"} bold>{title}</SText>
           </SView>
-          <SView col={"xs-4"} row center style={{ justifyContent: "flex-end" }} onPress={() => { SNavigation.navigate("restaurante/categoria", { keyCategoria: title, }); }}>
+          <SView col={"xs-4"} row center style={{ justifyContent: "flex-end" }} onPress={() => {
+            
+          }}>
             <SText fontSize={12} font={"LondonMM"} bold center style={{ right: 2 }}>Ver todos</SText>
             <SIcon name={"Back"} width={12} height={12} fill={STheme.color.primary} style={{ transform: [{ rotate: "180deg" }] }} />
           </SView>

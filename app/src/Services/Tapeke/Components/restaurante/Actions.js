@@ -3,6 +3,7 @@ import Parent from './index';
 import horario from '../horario';
 import pack from '../pack';
 import { SDate } from 'servisofts-component';
+import pedido from '../pedido';
 export default class Actions {
     static _getReducer = (props) => {
         return props.state[Parent.component + "Reducer"];
@@ -40,8 +41,10 @@ export default class Actions {
     static getAllFilter = (filter, props) => {
         var data = Actions.getAll(props);
         var horarios_restaurantes = horario.Actions.getAll(props);
+        var data_pedidos = pedido.Actions.getAll(props);
         if (!data) return null;
         if (!horarios_restaurantes) return null;
+        if (!data_pedidos) return null;
         var miDireccion = props.state.direccion_usuarioReducer.miDireccion;
         var miDistancia = props.state.direccion_usuarioReducer.miDistancia;
         var list = [];
@@ -69,6 +72,18 @@ export default class Actions {
                     return;
                 }
             }
+
+            if (obj.pack) {
+                var cantidad = pedido.Actions.getVendidos({ key_pack: obj.pack.key, fecha: obj.horario.fecha }, props);
+                obj.pack.disponibles = obj.pack.cantidad - cantidad;
+                if (obj.pack.disponibles <= 0) {
+                    obj.pack.disponibles = 0;
+                    if (filter.soloDisponible) {
+                        return null;
+                    }
+                }
+            }
+
             //INSERTAMOS
             list.push(obj);
         })
@@ -90,17 +105,28 @@ export default class Actions {
         var data = Actions.getAll(props);
         var horarios_restaurantes = horario.Actions.getAll(props);
         var data_pack = pack.Actions.getAll(props);
+        var data_pedidos = pedido.Actions.getAll(props);
         if (!data) return null;
         if (!data_pack) return null;
         if (!horarios_restaurantes) return null;
+        if (!data_pedidos) return null;
         var obj = data[key];
         if (!obj) return null;
         obj.horario = horario.Actions.getByKeyRestauranteProximo(obj.key, props);
         if (!obj.horario) return null;
         obj.pack = pack.Actions.getByKeyHorario(obj.horario.key, props);
+
         if (!obj.latitude || !obj.longitude) return null;
         var miDireccion = props.state.direccion_usuarioReducer.miDireccion;
         obj.distancia = parseFloat(Actions.getDistance(miDireccion.latitude, miDireccion.longitude, obj.latitude, obj.longitude) / 1000).toFixed(1);
+
+        if (obj.pack) {
+            var cantidad = pedido.Actions.getVendidos({ key_pack: obj.pack.key, fecha: obj.horario.fecha }, props);
+            obj.pack.disponibles = obj.pack.cantidad - cantidad;
+            if (obj.pack.disponibles <= 0) {
+                obj.pack.disponibles = 0;
+            }
+        }
         return obj;
     }
 
