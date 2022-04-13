@@ -144,8 +144,8 @@ class Paso1 extends React.Component {
 
     getReservar() {
         if (!this.dataRestaurante.pack) return null;
-        if (!this.dataRestaurante.pack.cantidad) return null;
-        if (this.dataRestaurante.pack.cantidad <= 0) return null;
+        if (!this.dataRestaurante.pack.disponibles) return null;
+        if (this.dataRestaurante.pack.disponibles <= 0) return null;
         return <PButtom fontSize={20} onPress={() => {
             SNavigation.navigate("pedido/detalle", { key: this.key_restaurante });
         }}>RESERVAR</PButtom>
@@ -156,7 +156,7 @@ class Paso1 extends React.Component {
         if (!this.dataRestaurante) return <SLoad />
         var cantidad = 0;
         if (this.dataRestaurante.pack) {
-            cantidad = this.dataRestaurante.pack.cantidad;
+            cantidad = this.dataRestaurante.pack.disponibles;
         }
         return <SPage   >
             <SView col={"xs-12"} row backgroundColor={STheme.color.card} center>

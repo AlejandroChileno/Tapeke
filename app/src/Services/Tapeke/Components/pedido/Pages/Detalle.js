@@ -169,7 +169,7 @@ class Detalle extends React.Component {
                                     <SView col={"xs-6"} center row>
                                         <SView col={"xs-12"} center>
                                             <SView width={114} height={26} center style={{ borderRadius: 8, backgroundColor: STheme.color.primary }}>
-                                                <SText fontSize={12} font={"Roboto"} color={STheme.color.secondary} >  {this.auxRestaurante.pack?.cantidad ?? 0} disponible(s)</SText>
+                                                <SText fontSize={12} font={"Roboto"} color={STheme.color.secondary} >  {this.auxRestaurante.pack?.disponibles ?? 0} disponible(s)</SText>
                                             </SView>
                                         </SView>
                                         <SHr height={10} />

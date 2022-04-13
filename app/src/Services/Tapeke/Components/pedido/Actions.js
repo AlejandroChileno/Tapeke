@@ -23,10 +23,19 @@ export default class Actions {
         return data;
     }
 
+
     static getByKey = (key, props) => {
         var data = Actions.getAll(props);
         if (!data) return null;
         return data[key];
+    }
+    static getVendidos = ({ key_pack, fecha }, props) => {
+        var data = Actions.getAll(props);
+        if (!data) return null;
+        var arr = Object.values(data).filter(item => item.key_pack == key_pack && item.fecha == fecha);
+        var cantidad = 0;
+        arr.map(item => cantidad += item.cantidad);
+        return cantidad;
     }
 
     static registro = (data, props) => {
