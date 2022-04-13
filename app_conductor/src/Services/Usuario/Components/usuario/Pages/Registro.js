@@ -55,22 +55,25 @@ class Registro extends Component {
             col={"xs-11 sm-9 md-7 lg-5 xl-4"}
             inputProps={{
                 col: "xs-12",
-                separation: 16
+                separation: 16,
+                customStyle: "kolping",
+
             }}
             style={{
                 alignItems: "center",
+
             }}
             inputs={{
                 // foto_p: { type: "image", isRequired: false, defaultValue: `${SSocket.api.root}${Parent.component}/${this.key}`, col: "xs-4 sm-3.5 md-3 lg-2.5 xl-2" },
-                Nombres: { placeholder: "Nombres", isRequired: true, defaultValue: this.usr.Nombres },
-                Apellidos: { placeholder: "Apellidos", isRequired: true, defaultValue: this.usr.Apellidos },
+                Nombres: { placeholder: "Nombres", isRequired: true, defaultValue: this.usr.Nombres, icon: <SIcon name={"InputUser"} width={40} height={30} /> },
+                Apellidos: { placeholder: "Apellidos", isRequired: true, defaultValue: this.usr.Apellidos, icon: <SIcon name={"InputUser"} width={40} height={30} /> },
                 // CI: { label: "Documento de identidad", defaultValue: this.usr.CI, icon: <SIcon name={"InputUser"} width={40} height={30} /> },
                 // "Fecha de nacimiento": { label: "Fecha de nacimiento", defaultValue: this.usr["Fecha de nacimiento"], icon: <SIcon name={"Calendar"} width={40} height={30} />, type: "date" },
-                "Telefono": { placeholder: "Teléfono", isRequired: true, defaultValue: this.usr["Telefono"], type: "phone" },
-                Correo: { placeholder: "Correo", type: "email", isRequired: true, defaultValue: this.usr.Correo },
+                "Telefono": { placeholder: "Teléfono", isRequired: true, defaultValue: this.usr["Telefono"], type: "phone", icon: <SIcon name={"InputPhone"} width={40} height={30} /> },
+                Correo: { placeholder: "Correo", type: "email", isRequired: true, defaultValue: this.usr.Correo, icon: <SIcon name={"InputEmail"} width={40} height={30} /> },
                 ...(!this.type ? {
-                    Password: { placeholder: "Password", isRequired: true, type: "password", defaultValue: this.usr.Password },
-                    RepPassword: { placeholder: "Repetir password", type: "password", isRequired: true, defaultValue: this.usr.Password },
+                    Password: { placeholder: "Password", isRequired: true, type: "password", defaultValue: this.usr.Password, icon: <SIcon name={"InputPassword"} width={40} height={30} /> },
+                    RepPassword: { placeholder: "Repetir password", type: "password", isRequired: true, defaultValue: this.usr.Password, icon: <SIcon name={"InputRePassword"} width={40} height={30} /> },
                 } : {})
             }}
             onSubmit={(values) => {

@@ -51,8 +51,7 @@ class NavBar extends React.Component {
 			SNavigation.navigate('login');
 			return <SView />
 		}
-		var destacado = require("../../Assets/svg/perfil.jpg");
-		return <SView col={"xs-9 md-6 xl-4"} height backgroundColor={STheme.color.background}
+ 		return <SView col={"xs-9 md-6 xl-4"} height backgroundColor={STheme.color.background}
 			style={{
 				position: "absolute",
 				left: this.animSize.interpolate({
