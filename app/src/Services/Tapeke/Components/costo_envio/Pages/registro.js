@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput, SPopup } from 'servisofts-component';
+import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput, SPopup, SMath } from 'servisofts-component';
 import Parent from '..'
 import SSocket from 'servisofts-socket';
 import PButtom from '../../../../../Components/PButtom';
@@ -45,7 +45,7 @@ class registro extends Component {
             row
             ref={(form) => { this.form = form; }}
             inputs={{
-                monto: { label: "Monto", type: "money", isRequired: true, defaultValue: data["monto"] },
+                monto: { label: "Monto", type: "money", isRequired: true, defaultValue: data["monto"]?SMath.formatMoney(data["monto"]):0 },
                 metro: { label: "Metros", type: "number", isRequired: false, defaultValue: data["metro"]},
             }}
             // onSubmitName={"Registrar"}
