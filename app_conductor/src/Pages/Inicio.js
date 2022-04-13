@@ -23,13 +23,12 @@ class Inicio extends Component {
     if (!usuario.Actions.validateSession(this.props)) {
     	return <SLoad />;
     }
-    var UsuaioPage = Pages["usuarioPage/lista"];
+    //var UsuaioPage = Pages["usuarioPage/lista"];
 
 
     return (
       <>
         <BarraSuperiorTapeke>
-          <Direccion />
         </BarraSuperiorTapeke>
         <SPage title={"as"} hidden center>
           <SView col={"xs-12 md-12 lg-10 xl-8"} center height>
