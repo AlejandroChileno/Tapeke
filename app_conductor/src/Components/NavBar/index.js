@@ -3,8 +3,7 @@ import { Animated } from 'react-native';
 import { SView, SImage, SNavigation, STheme, SIcon, SText, SScrollView2 } from 'servisofts-component';
 import { connect } from 'react-redux';
 import SSocket from 'servisofts-socket';
-// import CerrarSession from '../../Pages/Usuario/Page/Perfil/CerrarSession';
-
+ 
 
 class NavBar extends React.Component {
 	static INSTACE = null;
@@ -52,8 +51,7 @@ class NavBar extends React.Component {
 			SNavigation.navigate('login');
 			return <SView />
 		}
-		var destacado = require("../../Assets/svg/perfil.jpg");
-		return <SView col={"xs-9 md-6 xl-4"} height backgroundColor={STheme.color.background}
+ 		return <SView col={"xs-9 md-6 xl-4"} height backgroundColor={STheme.color.background}
 			style={{
 				position: "absolute",
 				left: this.animSize.interpolate({
@@ -104,20 +102,11 @@ class NavBar extends React.Component {
 			<SScrollView2 disableHorizontal >
 
 				<SView col={"xs-12"} center  >
-
-					{/* <SView col={"xs-11"} height={60} border={'blue'} row onPress={() => { SNavigation.navigate("/"); this.fadeOut(); }} center >
-						<SView col={"xs-10"} height center border={'red'} style={{ justifyContent: 'flex-start' }} >
-							<SIcon fill={STheme.color.primary} name={"Inicio"} width={32} height={31} center border={'cyan'} />
-							<SText font={"Roboto"} style={{ paddingLeft: 5, color: STheme.color.primary, fontSize: 16 }} center border={'yellow'}>Inicio</SText>
-						</SView>
-						<SView col={"xs-2"} height center border={'green'}>
-							<SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
-						</SView>
-					</SView> */}
+ 
 
 					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("/"); this.fadeOut(); }}  >
 						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
-							<SIcon fill="#666666" name={"Inicio"} width={32} height={31} />
+							<SIcon fill="#666666" name={"AppAlert"} width={32} height={31} />
 							<SText font={"Roboto"} style={{ paddingLeft: 5, color: "#666666", fontSize: 16 }} >Inicio</SText>
 						</SView>
 						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
@@ -127,7 +116,7 @@ class NavBar extends React.Component {
 
 					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("direcciones"); this.fadeOut(); }}  >
 						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
-							<SIcon fill="#666666" name={"Direccion"} width={28} height={27} />
+							<SIcon fill="#666666" name={"AppAlert"} width={28} height={27} />
 							<SText font={"Roboto"} style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Mis Direcciones</SText>
 						</SView>
 						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
@@ -136,57 +125,8 @@ class NavBar extends React.Component {
 					</SView>
 
 				 
-					{/* <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("pedido/confirmar"); this.fadeOut(); }}  > */}
-					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("compras"); this.fadeOut(); }}  >
-						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
-							<SIcon fill="#666666" name={"Compras"} width={28} height={27} />
-							<SText font={"Roboto"} style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Mis Compras</SText>
-						</SView>
-						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
-							<SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
-						</SView>
-					</SView>
-
-					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("billetera"); this.fadeOut(); }}  >
-						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
-							<SIcon fill="#666666" name={"Billetera"} width={28} height={27} />
-							<SText font={"Roboto"} style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Billetera</SText>
-						</SView>
-						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
-							<SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
-						</SView>
-					</SView>
-
-					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => {SNavigation.navigate("novedades"); this.fadeOut();  }}  >
-						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
-							<SIcon fill="#666666" name={"KNotify"} width={28} height={27} />
-							<SText font={"Roboto"} style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Novedades</SText>
-						</SView>
-
-						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
-							<SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
-						</SView>
-					</SView>
-
-					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("admin"); this.fadeOut(); }}  >
-						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
-							<SIcon fill="#666666" name={"Configuracion"} width={28} height={27} />
-							<SText font={"Roboto"} style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Configuración</SText>
-						</SView>
-						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
-							<SIcon stroke={"#405394"} name={"Icon1"} width={20} height={20} />
-						</SView>
-					</SView>
-
-					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("consulta/contacto"),this.fadeOut();}}  >
-						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
-							<SIcon fill="#666666" name={"Contacto"} width={28} height={27} />
-							<SText font={"Roboto"} style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Contacto</SText>
-						</SView>
-						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
-							<SIcon stroke={"#405394"} name={"Icon1"} width={20} height={20} />
-						</SView>
-					</SView>
+			
+				
 
 					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("consulta/ayuda"); this.fadeOut(); }}  >
 						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
@@ -235,7 +175,6 @@ class NavBar extends React.Component {
 				position: "absolute",
 				width: "100%",
 				height: "100%",
-				//backgroundColor: "#66000066",
 				backgroundColor: STheme.color.card,
 			}}
 				activeOpacity={1}
