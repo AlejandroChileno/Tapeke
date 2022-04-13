@@ -4,6 +4,7 @@ import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGr
 import PButtom from '../../../../../Components/PButtom';
 import restaurante from '../../restaurante';
 import Parent from '../index';
+import costo_envio from '../../costo_envio';
 class Detalle extends React.Component {
     constructor(props) {
         super(props);
@@ -18,14 +19,36 @@ class Detalle extends React.Component {
     }
 
 
-
+    getCostoEnvio() {
+        var data_costos = costo_envio.Actions.getAll(this.props);
+        if (!data_costos) return <SLoad />;
+        var distancia = this.auxRestaurante.distancia * 1000;
+        var costo = { metro: 0, };
+        Object.values(data_costos).map(obj => {
+            if (distancia <= obj.metro && (costo.metro > obj.metro || costo.metro == 0)) {
+                costo = obj;
+                return;
+            }
+        })
+        // return costo.monto ? SMath.formatMoney(costo.monto) : "No ";
+        if (costo.monto) {
+            this.costo_envio = costo;
+            return <SText fontSize={14} font={"Roboto"} >Costo del envío: Bs. {SMath.formatMoney(costo.monto)} </SText>
+        } else {
+            return <SText fontSize={14} font={"Roboto"} >No hay costos de envio</SText>
+        }
+    }
     tipoEntrega(delivery) {
         return <>
             <SView col={"xs-11"} style={{ opacity: delivery == true ? 1 : 0.3 }}>
                 <SHr height={15} />
                 <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Tipo de entrega</SText>
                 <SHr height={20} />
-                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6, }}  {...(delivery ? { onPress: () => { this.setState({ envio: false }) } } : {})} >
+                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6, }}  {...(delivery ? {
+                    onPress: () => {
+                        this.setState({ envio: false })
+                    }
+                } : {})} >
                     <SView col={"xs-2"} center flex>
                         <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}
                             backgroundColor={this.state.envio != false ? "transparent" : STheme.color.primary} ></SView>
@@ -34,7 +57,7 @@ class Detalle extends React.Component {
                         <SHr height={15} />
                         <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Recoger del lugar</SText>
                         <SHr height={10} />
-                        <SText fontSize={14} font={"Roboto"} >¡Se encuentra a 400m de tu ubicación!</SText>
+                        <SText fontSize={14} font={"Roboto"} >¡Se encuentra a {this.auxRestaurante.distancia} Km de tu ubicación!</SText>
                         <SHr height={15} />
                         <SView col={"xs-6"} >
                         </SView>
@@ -49,7 +72,15 @@ class Detalle extends React.Component {
                     <SHr height={10} />
                 </SView>
                 <SHr height={15} />
-                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }}  {...(delivery ? { onPress: () => { this.setState({ envio: true }) } } : {})}>
+                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }}  {...(delivery ? {
+                    onPress: () => {
+                        if (this.costo_envio) {
+                            if (this.costo_envio.monto) {
+                                this.setState({ envio: this.costo_envio.monto })
+                            }
+                        }
+                    }
+                } : {})}>
                     <SView col={"xs-2"} center flex>
                         <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}
                             backgroundColor={this.state.envio != false ? STheme.color.primary : "transparent"} ></SView>
@@ -58,7 +89,7 @@ class Detalle extends React.Component {
                         <SHr height={15} />
                         <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Envío a domicilio</SText>
                         <SHr height={30} />
-                        <SText fontSize={14} font={"Roboto"} >Costo del envío:</SText>
+                        {this.getCostoEnvio()}
                         <SHr height={15} />
                     </SView>
                     <SHr height={10} />
@@ -186,14 +217,14 @@ class Detalle extends React.Component {
                                 <SText style={{ textAlign: "justify" }} fontSize={15} font={"Roboto"} >Total</SText>
                             </SView>
                             <SView col={"xs-6"} style={{ alignItems: "flex-end" }}>
-                                <SText fontSize={15} font={"Roboto"} >Bs. {(this.state.cantidad * (this.auxRestaurante.pack?.precio ?? 0))}</SText>
+                                <SText fontSize={15} font={"Roboto"} >Bs. {SMath.formatMoney((this.state.cantidad * (this.auxRestaurante.pack?.precio ?? 0)))}</SText>
                             </SView>
                             <SHr height={10} />
                             <SView col={"xs-6"} >
                                 <SText style={{ textAlign: "justify" }} fontSize={15} font={"Roboto"} >Envío</SText>
                             </SView>
                             <SView col={"xs-6"} style={{ alignItems: "flex-end" }}>
-                                <SText fontSize={15} font={"Roboto"} >{this.state.envio}</SText>
+                                <SText fontSize={15} font={"Roboto"} >{this.state.envio ? "Bs. " + SMath.formatMoney(this.state.envio) : null}</SText>
                             </SView>
                             <SHr height={10} />
                             <SView col={"xs-12"} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray }}></SView>

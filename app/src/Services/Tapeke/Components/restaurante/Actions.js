@@ -98,6 +98,9 @@ export default class Actions {
         obj.horario = horario.Actions.getByKeyRestauranteProximo(obj.key, props);
         if (!obj.horario) return null;
         obj.pack = pack.Actions.getByKeyHorario(obj.horario.key, props);
+        if (!obj.latitude || !obj.longitude) return null;
+        var miDireccion = props.state.direccion_usuarioReducer.miDireccion;
+        obj.distancia = parseFloat(Actions.getDistance(miDireccion.latitude, miDireccion.longitude, obj.latitude, obj.longitude) / 1000).toFixed(1);
         return obj;
     }
 
