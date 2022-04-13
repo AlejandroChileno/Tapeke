@@ -24,14 +24,14 @@ class ComoTeParecio extends Component {
 		let arr = Array(5).fill(0);
 		return arr.map((x, i) => {
 			return <>
-				<SView col={"xs-1.5"} row center onPress={() => {
+				<SView col={"xs-2"} height={36} row center onPress={() => {
 					if (this.state.selectValue == i) {
 						// this.setState({ selectValue: 1 });
 						// alert("igual")
 					}
 					this.setState({ selectValue: i });
 				}}>
-					<SIcon name={i > this.state.selectValue ? "EstrellaOff" : "EstrellaOn"} width={36} height={36} fill="white" />
+					<SIcon name={i > this.state.selectValue ? "EstrellaOff" : "EstrellaOn"} width={i > this.state.selectValue ? 33 : 36} fill="white" />
 				</SView>
 			</>
 		})
@@ -100,7 +100,7 @@ class ComoTeParecio extends Component {
 					<SHr height={20} />
 
 
-	 
+
 				</SPage>
 			</>
 		);
