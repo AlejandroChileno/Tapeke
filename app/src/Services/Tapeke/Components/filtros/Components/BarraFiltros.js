@@ -45,25 +45,18 @@ class BarraFiltros extends Component {
             var obj = data[key];
             return this.getCategoria(obj);
         })
-        //     <>
-        //     {/* { this.getCategoria('IconFilter', 'Filtros', 'explorar/filtros') } */ }
-        // { this.getCategoria('', 'Ocultar sin packs', '000010') }
-        // { this.getCategoria('', 'Solo Hoy', '0000102') }
-        // { this.getCategoria('', 'NaNadjasajsha sma sam sa', '0000102') }
-        // { this.getCategoria('', 'NaN', '0000102') }
-        // { this.getCategoria('', 'NaN', '0000102') }
-        // { this.getCategoria('', 'NaN', '0000102') }
-        // </>
     }
     getBtn() {
         return (< SView height={28} flex border={'transparent'} style={{ paddingLeft: 10, paddingRight: 10, backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }
-        } center onPress={() => { }}>
+        } center onPress={() => { 
+            SNavigation.navigate('explorar/filtros');
+        }}>
             <SView row>
-                <SView center height  >
-                    <SIcon name={"IconFilter"} height={20} width={22} fill={!icon ? '#999999' : STheme.color.primary} />
+                <SView center height={26}  >
+                    <SIcon name={"IconFilter"} height={20} width={20} fill={STheme.color.primary} />
                 </SView>
                 <SView center height={28}  >
-                    <SText border={'transparent'} fontSize={14} color={!icon ? '#999999' : STheme.color.primary} font={"LondonMM"} bold >{"Filtros"}</SText>
+                    <SText border={'transparent'} fontSize={14} color={STheme.color.primary} font={"LondonMM"} bold >{"Filtros"}</SText>
                 </SView>
             </SView>
         </SView >)
@@ -75,7 +68,8 @@ class BarraFiltros extends Component {
                 <SScroll horizontal center>
                     <SView center row>
                         <SView width={8} />
-
+                        {this.getBtn()}
+                        <SView width={14} />
                         {this.getCategoriasList()}
                         <SView width={8} />
                     </SView>
