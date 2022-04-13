@@ -51,8 +51,8 @@ class TipoPago extends Component {
             <SView col={"xs-12"} center >
                 <SView col={"xs-10 sm-5 lg-3"} row center style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }}>
                     <SView col={"xs-11"} row >
-                        {this.item("p0001", "Efectivo", require('../../../../../Assets/img/efectivo.png'))}
-                        {this.item("p0002", "Billetera Tapeke", require('../../../../../Assets/img/tapeke.png'))}
+                        {/* {this.item("p0001", "Efectivo", require('../../../../../Assets/img/efectivo.png'))} */}
+                        {/* {this.item("p0002", "Billetera Tapeke", require('../../../../../Assets/img/tapeke.png'))} */}
                         {this.item("p0003", "Tarjeta de Debito / Crédito", require('../../../../../Assets/img/Ptarjeta.png'))}
                         {this.item("p0004", "Banco FASSIL", require('../../../../../Assets/img/Pfassil.png'))}
                         {this.item("p0005", "Transferencia QR", require('../../../../../Assets/img/Ptransferencia.png'))}

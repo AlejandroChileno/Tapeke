@@ -1,15 +1,12 @@
 package Component;
 
-import java.sql.SQLException;
-import java.util.UUID;
-
 import org.json.JSONObject;
 
 import Server.SSSAbstract.SSSessionAbstract;
 import Servisofts.SConsole;
 import Servisofts.SPGConect;
-import util.GPX;
 import Servisofts.SUtil;
+import util.GPX;
 
 public class BackgroundLocation {
     public static final String COMPONENT = "backgroundLocation";

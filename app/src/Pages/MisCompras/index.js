@@ -8,6 +8,7 @@ import restaurante from '../../Services/Tapeke/Components/restaurante';
 class index extends Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			keyRestaurante: '9b8f27e9-696d-446f-ae9b-5d6d5bf1ab24',
 		};
@@ -33,8 +34,8 @@ class index extends Component {
 		var arr = Object.values(data).filter(itm => itm.key_usuario == this.props.state.usuarioReducer.usuarioLog.key);
 
 		if (arr.length <= 0) {
-			SNavigation.navigate("/")
-			return <SText>No hay compras</SText>
+			//SNavigation.navigate("/")
+			return <SText style={{fontSize:15}}>No hay compras.</SText>
 		}
 		return arr.map((obj) => {
 			return <>
@@ -87,7 +88,8 @@ class index extends Component {
 			<SPage title={'MisCompras'}>
 				<SView col={"xs-12  "} row center >
 
-					<SView col={"xs-10 sm-6 lg-3 "}  >
+					{/* <SView col={"xs-10 sm-6 lg-3 "}  > */}
+					<SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} >
 						<SHr height={20} />
 
 						{/* {this.getLista()} */}

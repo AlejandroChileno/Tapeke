@@ -4,6 +4,8 @@ import { SHr, SNavigation, SPage, SText, SView, STheme, SLoad, SButtom, SIcon, S
 import { WebView } from 'react-native';
 import PButtom from '../../../../../Components/PButtom';
 import TipoPago from '../Components/TipoPago';
+import Parent from '..'
+import billetera from '..';
 
 // backgroundColor={this.state.envio != 0 ? STheme.color.primary : "transparent"}
 class CargarCredito extends Component {
@@ -32,7 +34,11 @@ class CargarCredito extends Component {
 
                 <SHr height={25} />
 
-                <SInput type={'money'} defaultValue={this.state.cantidad} />
+                <SInput type={'money'}
+                    placeholder={"0"}
+                    placeholderTextColor={STheme.color.gray}
+                    onChangeText={(text) => { this.setState({ cantidad: text }) }}
+                />
                 {/* <SText fontSize={40} color={'#979797'} font={"Roboto"} center>{this.state.tipoPagoSeleccionado} </SText> */}
                 <SHr height={20} />
 
@@ -47,7 +53,18 @@ class CargarCredito extends Component {
         return <>
             <SView col={"xs-10 sm-5 lg-3"} row center   >
                 <SHr height={30} />
-                <PButtom fontSize={20} onPress={() => { }}>CARGAR CRÉDITO</PButtom>
+                <PButtom fontSize={20} onPress={() => {
+                    if (this.state.cantidad <= 0)
+                        return alert("cantidad esta vacio");
+                    var dataOk = {}
+                    dataOk = {
+                        monto: this.state.cantidad,
+                        tipo_pago: this.state.tipoPagoSeleccionado,
+                        key_cliente: this.props.state.usuarioReducer.usuarioLog.key,
+                    }
+                    Parent.Actions.registro(dataOk, this.props);
+                    alert("registro exitoso");
+                }}>CARGAR CRÉDITO</PButtom>
                 <SHr height={30} />
             </SView>
         </>
@@ -57,7 +74,7 @@ class CargarCredito extends Component {
         return (
             <>
                 <SPage title={'Cargar crédito'}>
-                    <SView col={"xs-12"} row center >
+                    <SView col={"xs-12"} row center border={'red'} >
                         {this.getHeaderCredito()}
                         <TipoPago callback={(resp) => {
                             this.setState({ tipoPagoSeleccionado: resp.tipopago });
