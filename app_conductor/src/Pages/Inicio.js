@@ -32,7 +32,7 @@ class Inicio extends Component {
         <BarraSuperiorTapeke>
 
 
-          <SwitchRastreo>   </SwitchRastreo>
+          <SwitchRastreo width={200}/> 
 
 
         </BarraSuperiorTapeke>
