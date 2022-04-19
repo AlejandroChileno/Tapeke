@@ -73,7 +73,7 @@ class Inicio extends Component {
         <BarraSuperiorTapeke>
         </BarraSuperiorTapeke>
         <SPage title={"Pedidos de Hoy"} hidden center>
-          <SView col={"xs-12 md-12 lg-10 xl-8"} center height>
+          <SView col={"xs-12 sm-11 md-10 lg-8 xl-6"} center height>
             <SHr height={20} />
             <SView col={"xs-11"} center>
               <SText font={"Roboto"} fontSize={32}>20:00 Hrs.</SText>
