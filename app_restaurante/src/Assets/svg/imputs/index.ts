@@ -7,6 +7,9 @@ import InputRePassword, { ReactComponent as InputRePasswordW } from './repPasswo
 import InputPhone, { ReactComponent as InputPhoneW } from './phone.svg';
 import InputLocation, { ReactComponent as InputLocationW } from './location.svg';
 import InputCalendar, { ReactComponent as InputCalendarW } from './calendar.svg';
+import Mpedidos, { ReactComponent as MpedidosW } from './Mpedidos.svg';
+import Mcalendario, { ReactComponent as McalendarioW } from './Mcalendario.svg';
+import Mcalificacion, { ReactComponent as McalificacionW } from './Mcalificacion.svg';
 
 
 const Assets = {
@@ -18,6 +21,9 @@ const Assets = {
 	"InputPhone": { Native: InputPhone, Web: InputPhoneW },
 	"InputLocation": { Native: InputLocation, Web: InputLocationW },
 	"InputCalendar": { Native: InputCalendar, Web: InputCalendarW },
+	"Mpedidos": { Native: Mpedidos, Web: MpedidosW },
+	"Mcalendario": { Native: Mcalendario, Web: McalendarioW },
+	"Mcalificacion": { Native: Mcalificacion, Web: McalificacionW },
 
 
 }

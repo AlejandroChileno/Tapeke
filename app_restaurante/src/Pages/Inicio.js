@@ -5,6 +5,8 @@ import BarraSuperiorTapeke from "../Components/BarraSuperiorTapeke";
 import Direccion from "../Components/BarraSuperiorTapeke/Direccion";
 import PBarraFooter from "../Components/PBarraFooter";
 import usuario from "../Services/Usuario/Components/usuario";
+import FloatButtomQR from '../Components/FloatButtomQR';
+
 
 class Inicio extends Component {
   constructor(props) {
@@ -88,9 +90,14 @@ class Inicio extends Component {
               {this.getContent()}
 
             </SView>
-            <SHr height={80} />
+            
           </SView>
+
         </SPage>
+        <FloatButtomQR onPress={() => {
+          SNavigation.navigate("admin/registro");
+        }} />
+        <SHr height={20} />
         <PBarraFooter />
       </>
     );
