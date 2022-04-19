@@ -18,6 +18,40 @@ class Inicio extends Component {
   }
 
 
+  getBotones() {
+
+
+    return (
+      <>
+
+        <SView col={"xs-12"} height={90} row>
+          <SView col={"xs-3.5"} style={{ borderBottomWidth: 3, }} border={'transparent'} center  >
+            <SIcon name="PedConfirmacion" width={48} fill={"none"}> </SIcon>
+            <SView col={"xs-12"} height={10} backgroundColor={STheme.color.primary} style={{ borderRadius: 16, }}></SView>
+            <SText color={STheme.color.primary} style={{ fontSize: 12 }} bold>Confirmación</SText>
+          </SView>
+
+          <SView width={5} />
+          <SView flex border={'transparent'} center>
+            <SIcon name="PedPreparacion" width={48}> </SIcon>
+            <SView col={"xs-12"} height={10} backgroundColor={STheme.color.primary} />
+            <SText color={STheme.color.primary} style={{ fontSize: 12 }} bold>Preparacion</SText>
+          </SView>
+          <SView width={5} />
+
+          <SView col={"xs-3.5"} style={{ borderBottomWidth: 3, }} border={'transparent'} center>
+            <SIcon name="PedDelivery" width={48}> </SIcon>
+            <SView col={"xs-12"} height={10} backgroundColor={STheme.color.primary} style={{ borderRadius: 16, }} />
+            <SText color={STheme.color.primary} style={{ fontSize: 12 }} bold>Delivery</SText>
+          </SView>
+        </SView>
+
+      </>
+    );
+  }
+
+
+
 
   render() {
     if (!usuario.Actions.validateSession(this.props)) {
@@ -31,24 +65,28 @@ class Inicio extends Component {
         <BarraSuperiorTapeke>
         </BarraSuperiorTapeke>
         <SPage title={"as"} hidden center>
-          <SView col={"xs-12 md-12 lg-10 xl-8"} center height>
-            <SIcon name="PedConfirmacion" fill="none"  width={48} > </SIcon>
-            <SHr height={80} />
-            <SIcon name="PedPreparacion"  width={48} > </SIcon>
-            <SHr height={80} />
-              <SIcon name="PedDelivery"  width={48} > </SIcon>
-            <SHr height={80} />
-
-            <SIcon name="SwitchOn"  width={48} > </SIcon>
-            <SHr height={80} />
+          {/* <SView col={"xs-12 md-12 lg-10 xl-8"} center height>
+          </SView> */}
 
 
-            <SIcon name="SwitchOff"  width={48} > </SIcon>
-            <SHr height={80} />
+          <SView col={"xs-10"} height={230} border={'cyan'} row center >
+            <SView col={"xs-3"} height={7} backgroundColor={STheme.color.card} style={{ borderRadius: 16, }} ></SView>
+            <SView col={"xs-12"} height={20} border={'transparent'} center >
+              <SText color={STheme.color.darkGray} style={{ fontSize: 12 }} bold>Llegada estimada</SText>
+            </SView>
+            <SView col={"xs-12"} height={48} border={'transparent'} center >
+              <SText color={STheme.color.darkGray} style={{ fontSize: 38 }} bold>16:48 - 17:03</SText>
+            </SView>
+            <SView col={"xs-12"} height={22} border={'transparent'} center >
+              <SText color={STheme.color.darkGray} style={{ fontSize: 15 }} bold>Estamos procesando tu pedido</SText>
+            </SView>
 
-            <SIcon name="SwitchOff2"  width={48} > </SIcon>
-            <SHr height={80} />
+            {this.getBotones()}
           </SView>
+
+
+
+
         </SPage>
         <PBarraFooter />
       </>
