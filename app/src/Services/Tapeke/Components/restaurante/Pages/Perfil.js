@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient, SNavigation, SLoad, SDate, SMath } from 'servisofts-component';
 import restaurante from '..';
 import PButtom from '../../../../../Components/PButtom';
-import SSocket from 'servisofts-socket'
+import SSocket from 'servisofts-socket';
 import Parent from '../index';
 import horario from '../../horario';
 import FavoritoButtom from '../../favorito/Components/FavoritoButtom';

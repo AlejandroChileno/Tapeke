@@ -4,7 +4,8 @@ import { SHr, SIcon, SImage, SLoad, SNavigation, SPage, SScrollView2, SText, STh
 import BarraSuperiorTapeke from "../Components/BarraSuperiorTapeke";
 import Direccion from "../Components/BarraSuperiorTapeke/Direccion";
 import PBarraFooter from "../Components/PBarraFooter";
- import usuario from "../Services/Usuario/Components/usuario";
+import SwitchRastreo from "../Components/SwitchRastreo";
+import usuario from "../Services/Usuario/Components/usuario";
 
 class Inicio extends Component {
   constructor(props) {
@@ -17,11 +18,11 @@ class Inicio extends Component {
     if (!usuario.Actions.validateSession(this.props)) { return <SLoad />; }
   }
 
- 
+
 
   render() {
     if (!usuario.Actions.validateSession(this.props)) {
-    	return <SLoad />;
+      return <SLoad />;
     }
     //var UsuaioPage = Pages["usuarioPage/lista"];
 
@@ -29,14 +30,21 @@ class Inicio extends Component {
     return (
       <>
         <BarraSuperiorTapeke>
+
+
+          <SwitchRastreo>   </SwitchRastreo>
+
+
         </BarraSuperiorTapeke>
         <SPage title={"as"} hidden center>
           <SView col={"xs-12 md-12 lg-10 xl-8"} center height>
-            
+
+
+
             <SHr height={80} />
           </SView>
         </SPage>
-        <PBarraFooter />
+        {/* <PBarraFooter /> */}
       </>
     );
   }

@@ -1,13 +1,14 @@
 import { SAssets } from 'servisofts-component';
 import Tapeke from "./svg/tapeke";
-import Imputs from "./svg/imputs";
+import Inputs from "./svg/inputs";
 import Login from "./svg/login";
+import Pedido from "./svg/pedido";
+import Switch from "./svg/switch";
 
 //Logo
 import Logo, { ReactComponent as LogoW } from './svg/logo.svg';
 import Logosolo, { ReactComponent as LogosoloW } from './svg/logosolo.svg';
 
- 
 const Assets: SAssets = {
     svg: {
  
@@ -15,7 +16,10 @@ const Assets: SAssets = {
         "Logosolo": { Native: Logosolo, Web: LogosoloW },
         ...Login,
         ...Tapeke,
-        ...Imputs,
+        ...Inputs,
+        ...Pedido,
+        ...Switch,
+        
     }
 }
 

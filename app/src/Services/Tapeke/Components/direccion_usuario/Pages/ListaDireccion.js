@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SIcon, SPage, SScrollView2, SText, STheme, SView, SMapView, SMarker, SInput, SNavigation, SHr, SLoad, SPopup, } from 'servisofts-component';
+import { SIcon, SPage, SScrollView2, SText, STheme, SView, SMapView, SMarker, SInput, SNavigation, SHr, SLoad, SPopup, SLocation, } from 'servisofts-component';
 import BarraSuperiorTapeke from '../../../../../Components/BarraSuperiorTapeke';
 import PButtom from '../../../../../Components/PButtom';
 import Parent from '../index'
@@ -12,9 +12,14 @@ class Direccion extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+
+			latitudeQuemado: -17.808690397665742,
+			longitudeQuemado: -63.16250034566757,
+
 			region: {
 				latitude: -17.808690397665742,
 				longitude: -63.16250034566757,
+
 			}
 		};
 	}
@@ -91,8 +96,34 @@ class Direccion extends React.Component {
 						<SView width={40} center>
 							<SIcon name={'LocationTapeke'} height={14} width={14} fill={STheme.color.primary} />
 						</SView>
-						<SView onPress={() => { this.map.center(); }}>
-							<SText fontSize={14} font={"Roboto"} color={STheme.color.primary} bold>Utilizar mi ubicación actual</SText>
+
+
+						<SView onPress={() => {
+
+							SLocation.getCurrentPosition().then((position) => {
+								alert(JSON.stringify(position))
+
+									//ricky dijo que lo iva a pensar como hacerlo
+							}).catch((error) => {
+								console.log(error);
+							})
+
+
+							alert("datos quemado " + this.state.latitudeQuemado + " long " + this.state.longitudeQuemado); ç
+
+							var data = {
+								// descripcion: this.inpNombreUbicacion.getValue(),
+								latitude: this.state.region?.latitudeQuemado,
+								longitude: this.state.region?.longitudeQuemado,
+								// direccion: this.state.nombre,
+							}
+
+							// Parent.Actions.registro(data, this.props)
+
+
+							// this.map.center();
+						}}>
+							<SText fontSize={14} font={"Roboto"} color={STheme.color.primary} bold>Utilizaraaaaaaa mi ubicación actual</SText>
 						</SView>
 					</SView>
 
