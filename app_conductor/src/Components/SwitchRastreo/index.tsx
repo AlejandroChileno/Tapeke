@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { SLoad, SText, STheme, SView } from 'servisofts-component';
 
 import { Animated } from 'react-native';
+
 type _SwitchRastreoProps = {
     colors: {
         active?: string,
@@ -22,6 +23,7 @@ export default class SwitchRastreo extends Component<_SwitchRastreoProps> {
             colors: {
                 active: this.props.colors?.active ?? "#2FC25F",
                 inactive: this.props.colors?.inactive ?? "#B7B7B7",
+
                 acent: this.props.colors?.acent ?? "#fff"
             },
         };
@@ -35,9 +37,9 @@ export default class SwitchRastreo extends Component<_SwitchRastreoProps> {
             useNativeDriver: true
         }).start(() => {
             this.state.active = !this.state.active;
-            // this.setState({
-            //     active: !this.state.active
-            // });
+            this.setState({
+                active: this.state.active
+            });
         });
     }
 
@@ -50,12 +52,23 @@ export default class SwitchRastreo extends Component<_SwitchRastreoProps> {
             backgroundColor: this.animValue.interpolate({
                 inputRange: [0, 1],
                 outputRange: [this.state.colors["inactive"], this.state.colors["active"]]
-            }),
-        }}
-            onPress={() => {
-                this.fadeIn()
-            }}
-        >
+            }),}}
+            onPress={() => { this.fadeIn() }}>
+
+
+
+
+
+            <SView animated center style={{
+                width: 50,
+                height: 33,
+                position: "absolute",
+                right: this.animValue.interpolate({ inputRange: [0, 1], outputRange: [16, (this.props.width ?? 100) - 50 - 16] }),}}
+            >
+                <SText>{this.state.active ? "Online" : "OffLine"}</SText>
+            </SView>
+
+
             <SView animated style={{
                 width: 33,
                 height: 33,
@@ -63,7 +76,7 @@ export default class SwitchRastreo extends Component<_SwitchRastreoProps> {
                 position: "absolute",
                 left: this.animValue.interpolate({
                     inputRange: [0, 1],
-                    outputRange: [4, ( this.props.width ?? 100) - 33 - 4]
+                    outputRange: [4, (this.props.width ?? 100) - 33 - 4]
                 }),
             }}
                 backgroundColor={this.state.colors["acent"]}

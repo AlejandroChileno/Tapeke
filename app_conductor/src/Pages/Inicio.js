@@ -10,7 +10,10 @@ import usuario from "../Services/Usuario/Components/usuario";
 class Inicio extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      active: true,
+
+    };
     this.key = SNavigation.getParam("keyUsuario");
   }
 
@@ -30,18 +33,32 @@ class Inicio extends Component {
     return (
       <>
         <BarraSuperiorTapeke>
-
-
-          <SwitchRastreo width={200}/> 
-
-
+          <SwitchRastreo width={110} />
         </BarraSuperiorTapeke>
+
         <SPage title={"as"} hidden center>
-          <SView col={"xs-12 md-12 lg-10 xl-8"} center height>
+          <SView col={"xs-12 md-12 lg-10 xl-8"} height={60} backgroundColor={this.state.active ? "red" : "green"} center row >
 
+            <SView width={42} height={42} center >
+              <SIcon name="Girl" fill="blue" width={42} height={42} border={'cyan'} ></SIcon>
+            </SView>
+            <SView flex style={{ justifyContent: 'flex-start', }} center  >
+              <SView col={"xs-12 "}>
+                <SText color={'white'} style={{ fontSize: 16 }} bold>¡Estas desconectado!</SText>
+              </SView>
 
+              <SView col={"xs-12 "}>
+                <SText color={'white'} style={{ fontSize: 11 }} bold>Conéctese en línea para comenzar a aceptar viajes.
+                </SText>
+              </SView>
+            </SView>
 
-            <SHr height={80} />
+            {/* <SView flex style={{ justifyContent: 'flex-start', }} center  >
+              <SView col={"xs-12 "}>
+                <SText color={'white'} style={{ fontSize: 16 }} bold>¡Estas conectado!</SText>
+              </SView>
+            </SView> */}
+
           </SView>
         </SPage>
         {/* <PBarraFooter /> */}
