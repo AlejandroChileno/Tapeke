@@ -31,8 +31,8 @@ export default class PBarraFooter extends Component {
 			>
 				<SView col={'xs-12'} row height >
 					{this.getItem({ key: "100", title: 'Pedidos de hoy', icon: 'Mpedidos', url: '/' })}
-					{this.getItem({ key: "200", title: 'Calendario', icon: 'Mcalendario', url: 'explorar' })}
-					{this.getItem({ key: "300", title: 'Mi calificación', icon: 'Mcalificacion', url: 'favorito' })}
+					{this.getItem({ key: "200", title: 'Calendario', icon: 'Mcalendario', url: 'pedido/calendario' })}
+					{this.getItem({ key: "300", title: 'Mi calificación', icon: 'Mcalificacion', url: 'calificacion' })}
 				</SView>
 			</SView >
 		);
