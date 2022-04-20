@@ -21,7 +21,8 @@ class Inicio extends Component {
 
   getContent() {
     return <>
-      <SView col={"xs-12"} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 8 }} row center backgroundColor={STheme.color.card}>
+      <SView col={"xs-12"} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 8 }} row center backgroundColor={STheme.color.card}
+        onPress={() => { SNavigation.navigate("pedido/detalle"); }}>
         <SHr height={10} />
         <SView col={"xs-11"} row center>
           <SView col={"xs-3"} center>
@@ -60,7 +61,8 @@ class Inicio extends Component {
 
       <SHr height={10} />
 
-      <SView col={"xs-12"} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 8 }} row center backgroundColor={STheme.color.card}>
+      <SView col={"xs-12"} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 8 }} row center backgroundColor={STheme.color.card}
+        onPress={() => { SNavigation.navigate("pedido/detalle"); }}>
         <SHr height={10} />
         <SView col={"xs-11"} row center>
           <SView col={"xs-3"} center>
