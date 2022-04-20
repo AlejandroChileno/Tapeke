@@ -5,6 +5,8 @@ import BarraSuperiorTapeke from "../Components/BarraSuperiorTapeke";
 import Direccion from "../Components/BarraSuperiorTapeke/Direccion";
 import PBarraFooter from "../Components/PBarraFooter";
 import usuario from "../Services/Usuario/Components/usuario";
+import FloatButtomQR from '../Components/FloatButtomQR';
+
 
 class Inicio extends Component {
   constructor(props) {
@@ -19,7 +21,8 @@ class Inicio extends Component {
 
   getContent() {
     return <>
-      <SView col={"xs-12"} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 8 }} row center backgroundColor={STheme.color.card}>
+      <SView col={"xs-12"} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 8 }} row center backgroundColor={STheme.color.card}
+        onPress={() => { SNavigation.navigate("pedido/detalle"); }}>
         <SHr height={10} />
         <SView col={"xs-11"} row center>
           <SView col={"xs-3"} center>
@@ -47,6 +50,46 @@ class Inicio extends Component {
               </SView>
               <SView col={"xs-12"} flex style={{ alignItems: "flex-end", bottom: -5 }}>
                 <SView width={35} height={35} style={{ borderRadius: 100, }} backgroundColor={STheme.color.lightGray} center>
+                  <SIcon name="Aspa" width={20} height={20}></SIcon>
+                </SView>
+              </SView>
+            </SView>
+          </SView>
+          <SHr height={10} />
+        </SView>
+      </SView>
+
+      <SHr height={10} />
+
+      <SView col={"xs-12"} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 8 }} row center backgroundColor={STheme.color.card}
+        onPress={() => { SNavigation.navigate("pedido/detalle"); }}>
+        <SHr height={10} />
+        <SView col={"xs-11"} row center>
+          <SView col={"xs-3"} center>
+            <SView width={60} height={60} style={{ borderRadius: 8, overflow: "hidden" }}>
+              <SImage src={require("../Assets/img/perfil.jpg")} style={{
+                resizeMode: "cover", width: "100%",
+                height: "100%",
+              }} />
+            </SView>
+          </SView>
+          <SView col={"xs-3"} center style={{ borderRightWidth: 1, borderColor: STheme.color.lightGray }}>
+            <SText font={"Roboto"} fontSize={13} color={STheme.color.primary}>CANTIDAD</SText>
+            <SText font={"Roboto"} fontSize={24} color={STheme.color.text}>x 2</SText>
+          </SView>
+          <SView col={"xs-6"} row >
+            <SView col={"xs-1"} ></SView>
+            <SView row col={"xs-11"} >
+              <SView row col={"xs-12"} >
+                <SText font={"Roboto"} fontSize={12} color={STheme.color.primary}>Nombre: </SText>
+                <SText font={"Roboto"} fontSize={12} color={STheme.color.text}>Dani Ramos</SText>
+              </SView>
+              <SView row col={"xs-12"}>
+                <SText font={"Roboto"} fontSize={12} color={STheme.color.primary}>Total: </SText>
+                <SText font={"Roboto"} fontSize={12} color={STheme.color.text}>Bs. 75</SText>
+              </SView>
+              <SView col={"xs-12"} flex style={{ alignItems: "flex-end", bottom: -5 }}>
+                <SView width={35} height={35} style={{ borderRadius: 100, }} backgroundColor={"#32B768"} center>
                   <SIcon name="Aspa" width={20} height={20}></SIcon>
                 </SView>
               </SView>
@@ -86,11 +129,13 @@ class Inicio extends Component {
             <SHr height={20} />
             <SView col={"xs-11"} center>
               {this.getContent()}
-
             </SView>
-            <SHr height={80} />
           </SView>
         </SPage>
+        <FloatButtomQR onPress={() => {
+          SNavigation.navigate("admin/registro");
+        }} />
+        <SHr height={20} />
         <PBarraFooter />
       </>
     );
