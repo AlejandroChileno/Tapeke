@@ -5,6 +5,7 @@ const version = "2.0";
 import Actions from "./Actions";
 import Reducer from "./Reducer";
 import Calendario from "./Pages/Calendario";
+import Detalle from "./Pages/Detalle";
 
 export default {
     component,
@@ -17,6 +18,7 @@ export default {
         // [component]: testing,
         // ["admin/" + component + "/registro"]: registroPack,
         [component + "/calendario"]: Calendario,
+        [component + "/detalle"]: Detalle,
     },
     // Components: {
     //     Horario,
