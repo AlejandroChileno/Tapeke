@@ -2,7 +2,7 @@ import React from "react";
 import { Animated, PermissionsAndroid, StyleSheet, Text, View } from "react-native";
 import { RNCamera } from "react-native-camera";
 import ImageResizer from 'react-native-image-resizer';
-import { SIcon, SImage, SNavigation, STheme, SView } from "servisofts-component";
+import { SIcon, SImage, SNavigation, SText, STheme, SView } from "servisofts-component";
 
 
 
@@ -43,8 +43,8 @@ class CameraComponent extends React.Component {
 
       </View>
 
-      <SView col={"xs-12"} style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)', }} row center>
-        <Text style={{ marginTop: 10, width: 300, color: '#fff' }} > Coloque el código QR en el cuadro y se escaneará automáticamente </ Text>
+      <SView col={"xs-12"} style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)' }} row center>
+        <SText center style={{ marginTop: 14, width: 300, color: '#fff' }} > Coloque el código QR en el cuadro y se escaneará automáticamente </SText>
       </SView>
     </RNCamera>
 
@@ -119,13 +119,11 @@ class CameraComponent extends React.Component {
 
   onBarCodeRead = (result) => {
     const { navigate } = this.props.navigation;
-    const dataa = result; // Solo obtén dato
-
-
-    this.setState({ existeText: dataa.data });
-
+    const auxData = result; // Solo obtén dato
+    this.setState({ existeText: auxData.data });
     if (!this.state.existeText) {
-      alert(JSON.stringify(dataa.data));
+      SNavigation.navigate("informacion", { orale: auxData.data })
+      // alert(JSON.stringify(dataa.data));
     }
   };
 
@@ -134,14 +132,14 @@ class CameraComponent extends React.Component {
       return (
         <SView flex>
           {this.showFoto()}
-          {this.showBoton()}
+          {/* {this.showBoton()} */}
         </SView>
       );
     }
     return (
       <SView flex>
         {this.showCamara()}
-        {this.showBoton()}
+        {/* {this.showBoton()} */}
       </SView>
     );
   }

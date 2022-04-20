@@ -8,7 +8,7 @@ class Registro extends Component {
         super(props);
         this.state = {
         };
-        this.key = SNavigation.getParam("key");
+        this.orale = SNavigation.getParam("orale");
     }
     getContent() {
         this.data = {};

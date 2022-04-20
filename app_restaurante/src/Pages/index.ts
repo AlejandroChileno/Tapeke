@@ -6,15 +6,17 @@ import Inicio from './Inicio';
 import CameraComponent from '../Components/CameraComponent';
 import LeerQr from './LeerQr';
 
+import Informacion from './Informacion';
 
 
 const Pages: SPageListProps = {
-     "/": LeerQr,
+    "/": LeerQr,
     // "/": Inicio,
     "carga": Carga,
     "camara": CameraComponent,
     "leerqr": LeerQr,
-    
+    "informacion": Informacion,
+
     ...Services.Pages,
 
 }
