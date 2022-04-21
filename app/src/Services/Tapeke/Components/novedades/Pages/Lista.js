@@ -17,8 +17,18 @@ class Lista extends Component {
         return <STable2
             header={[
                 { key: "index", label: "#", width: 50 },
-                { key: "monto", label: "Monto", width: 130 },
-                { key: "metro", label: "Metros", width: 280 },
+                {
+                    key: "key-foto", label: "foto", width: 100,
+                    render: (item) => {
+                        // SSocket.api.root+'medico/key'
+                        return SSocket.api.root + Parent.component + "/" + item
+                    },
+                    component: (url) => {
+                        return <SImage enablePreview src={url + "?time=" + new Date().getTime()} width={"100%"} height={"100%"} />
+                    }
+                },
+                { key: "titulo", label: "titulo", width: 180 },
+                { key: "descripcion", label: "descripcion", width: 350 },
                 {
                     key: "key-editar", label: "Editar", width: 50, center: true,
                     component: (item) => {
@@ -27,19 +37,19 @@ class Lista extends Component {
                         </SView>
                     }
                 },
-                // {
-                //     key: "key-eliminar", label: "Eliminar", width: 70, center: true,
-                //     component: (key) => {
-                //         return <SView width={35} height={35} onPress={() => { SPopup.confirm({ title: "Eliminar", message: "¿Esta seguro de eliminar?", onPress: () => { Parent.Actions.eliminar(data[key], this.props) } }) }}>
-                //             <SIcon name={'Delete'} />
-                //         </SView>
-                //     }
-                // },
+                {
+                    key: "key-eliminar", label: "Eliminar", width: 70, center: true,
+                    component: (key) => {
+                        return <SView width={35} height={35} onPress={() => { SPopup.confirm({ title: "Eliminar", message: "¿Esta seguro de eliminar?", onPress: () => { Parent.Actions.eliminar(data[key], this.props) } }) }}>
+                            <SIcon name={'Delete'} />
+                        </SView>
+                    }
+                },
             ]}
-            
+
             data={data}
-            filter={(dta)=>{
-                if(dta.estado != 1) return false;
+            filter={(dta) => {
+                if (dta.estado != 1) return false;
                 return true;
             }}
         />
@@ -51,7 +61,7 @@ class Lista extends Component {
                     {this.getLista()}
                 </SView>
                 <FloatButtom onPress={() => {
-                    SNavigation.navigate("admin/costo_envio/registro");
+                    SNavigation.navigate("admin/novedades/registro");
                 }} />
             </SPage>
         );

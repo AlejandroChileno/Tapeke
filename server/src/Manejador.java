@@ -38,6 +38,9 @@ public class Manejador {
             case pedido.COMPONENT:
                 pedido.onMessage(obj, session);
                 break;
+            case novedades.COMPONENT:
+                novedades.onMessage(obj, session);
+                break;
             case BackgroundLocation.COMPONENT:
                 BackgroundLocation.onMessage(obj, session);
                 break;

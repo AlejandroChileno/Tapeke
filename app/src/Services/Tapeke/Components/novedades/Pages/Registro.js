@@ -35,18 +35,15 @@ class Registro extends Component {
             data = Parent.Actions.getByKey(this.key, this.props);
             if (!data) return <SLoad />
         }
-        // if (this.state.direccion) {
-        //     data.direccion = this.state.direccion.direccion;
-        //     data.latitude = this.state.direccion.latitude;
-        //     data.longitude = this.state.direccion.longitude;
-        // }
         return <SForm
             center
             row
             ref={(form) => { this.form = form; }}
             inputs={{
-                monto: { label: "Monto", type: "money", isRequired: true, defaultValue: data["monto"] },
-                metro: { label: "Metros", type: "number", isRequired: false, defaultValue: data["metro"]},
+                foto_p: { type: "image", isRequired: false, defaultValue: `${SSocket.api.root}${Parent.component}/${this.key}?time=${new Date().getTime()}`, col: "xs-4 sm-3.5 md-3 lg-2.5 xl-2.5", style: { borderRadius: 8, overflow: 'hidden', width: 130, height: 130, borderWidth: 0 } },
+                titulo: { label: "titulo", isRequired: true, defaultValue: data["titulo"] },
+                fecha: { label: "fecha", type: "date", isRequired: true, defaultValue: data["fecha"] },
+                descripcion: { label: "descripcion", type: "textArea", isRequired: true, defaultValue: data["descripcion"] },
             }}
             // onSubmitName={"Registrar"}
             onSubmit={(values) => {
