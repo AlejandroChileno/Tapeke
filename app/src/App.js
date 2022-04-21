@@ -17,6 +17,7 @@ import SConfig from './SConfig';
 import BackgroundImage from './Components/BackgroundImage';
 import BarraSuperior from './Components/BarraSuperior';
 import StatusBar from './Components/StatusBar';
+import Firebase from './Firebase';
 setProps(SConfig.SocketProps);
 
 const store = createStore(
@@ -26,6 +27,12 @@ const store = createStore(
 );
 
 const App = (props) => {
+    //console.log(Firebase)
+    //console.log(Firebase)
+    Firebase.init();
+    // Firebase.auth().onAuthStateChanged(urs => {
+    //     console.log(urs);
+    // })
     return (
         <Provider store={store}>
             <SComponentContainer
