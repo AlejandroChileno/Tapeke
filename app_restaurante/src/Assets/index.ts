@@ -4,6 +4,7 @@ import Imputs from "./svg/imputs";
 import Login from "./svg/login";
 import Pedidos from "./svg/pedido";
 import Calificacion from "./svg/calificacion";
+import Camara from "./svg/camara";
 
 //Logo
 import Logo, { ReactComponent as LogoW } from './svg/logo.svg';
@@ -19,7 +20,9 @@ const Assets: SAssets = {
         ...Tapeke,
         ...Imputs,
         ...Pedidos,
-        ...Calificacion
+        ...Calificacion,
+        ...Camara
+
     }
 }
 
