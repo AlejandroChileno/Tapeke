@@ -41,7 +41,7 @@ const App = (props) => {
                 assets={Assets}
                 inputs={SConfig.SConfig_Inputs}
                 // background={<BackgroundImage />}
-                theme={{ initialTheme: "default", themes: SConfig.SThemeProps }}>
+                theme={{ initialTheme: "default", themes: SConfig.SThemeProps, noAnimated:true }}>
 
 
                 <StatusBar />
