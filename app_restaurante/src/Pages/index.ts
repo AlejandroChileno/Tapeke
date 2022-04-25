@@ -10,8 +10,8 @@ import Informacion from './Informacion';
 
 
 const Pages: SPageListProps = {
-    "/": LeerQr,
-    // "/": Inicio,
+    // "/": LeerQr,
+    "/": Inicio,
     "carga": Carga,
     "camara": CameraComponent,
     "leerqr": LeerQr,
