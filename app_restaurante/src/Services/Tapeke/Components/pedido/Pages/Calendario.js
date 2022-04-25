@@ -11,7 +11,7 @@ class Calendario extends React.Component {
         super(props);
         this.state = {
             fecha: new SDate(),
-            dia: 0,
+            // dia: 0,
         };
         this.key = SNavigation.getParam("keyUsuario");
     }
@@ -36,6 +36,7 @@ class Calendario extends React.Component {
                 this.setState({
                     hora: hora
                 })
+               
             }}>
             <SView col={"xs-12"} center height={40} style={{ backgroundColor: (this.state.hora != hora ? STheme.color.card : STheme.color.primary), borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 1 }}>
                 <SText font={"LondonTwo"} fontSize={14} color={(this.state.hora != hora ? STheme.color.text : STheme.color.secondary)} >{hora}</SText>
@@ -53,6 +54,7 @@ class Calendario extends React.Component {
         var arrayReturn = [];
 
         for (var i = 0; i < 31; i++) {
+            if (i == 0) var diaDinamico = mesActual.setDay(mesActual.getDay() - 1);
             var diaDinamico = mesActual.setDay(mesActual.getDay() + 1);
             if (parseInt(mesActualOriginal.getMonth()) == parseInt(diaDinamico.getMonth())) {
                 // console.log(diaDinamico.getMonth() + " - " + diaDinamico.getDay());
@@ -68,20 +70,21 @@ class Calendario extends React.Component {
     }
 
     getAllMonth(arrayMe) {
+        var instance = this;
         return arrayMe.map(function (item, index) {
             var index = item.split("-");
             var dia = index[0];
             var diastr = index[1];
             // <SView col={"xs-4"} center style={{ padding: 5 }}>{index[0] } ppp {index[1] } </SView>
-            return <><SView width={80} height={90} center style={{ backgroundColor:  (STheme.color.card), borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 1 }}
+            return <><SView width={80} height={90} center style={{  backgroundColor: (instance.state.dia == dia ? STheme.color.primary : STheme.color.card), borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 1 }}
                 onPress={() => {
-                    this.setState({
+                    instance.setState({
                         dia: dia
                     })
                 }}>
-                <SText font={"LondonTwo"} fontSize={24} color={(STheme.color.text)} >{dia}</SText>
+                <SText font={"LondonTwo"} fontSize={24} color={(instance.state.dia == dia ? STheme.color.secondary : STheme.color.text)} >{dia}</SText>
                 <SHr height={10} />
-                <SText font={"Roboto"} fontSize={14} color={(STheme.color.text)}>{diastr}</SText>
+                <SText font={"Roboto"} fontSize={14} color={(instance.state.dia == dia ? STheme.color.secondary : STheme.color.text)}>{diastr}</SText>
             </SView>
                 <SView width={10} />
             </>

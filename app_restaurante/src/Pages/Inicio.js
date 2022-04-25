@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { SHr, SIcon, SImage, SLoad, SNavigation, SPage, SScrollView2, SText, STheme, SView, SPopup, SForm, SButtom } from "servisofts-component";
 import BarraSuperiorTapeke from "../Components/BarraSuperiorTapeke";
-import Direccion from "../Components/BarraSuperiorTapeke/Direccion";
+// import Direccion from "../Components/BarraSuperiorTapeke/Direccion";
 import PBarraFooter from "../Components/PBarraFooter";
 import usuario from "../Services/Usuario/Components/usuario";
 import FloatButtomQR from '../Components/FloatButtomQR';
