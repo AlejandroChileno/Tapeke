@@ -20,6 +20,10 @@ class CameraComponent extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.state.qr = null;
+  }
+
   showCamara() {
     return <RNCamera
       ref={(ref) => { this.camera = ref; }}
@@ -55,74 +59,81 @@ class CameraComponent extends React.Component {
 
   }
 
-  send(file, url) {
-    if (!file) return;
-    console.log(url)
-    file.name = "perfil.png";
-    file.type = "image/png";
-    var body = new FormData();
-    body.append('file', {
-      uri: file.uri,
-      type: file.type,
-      name: file.name
-    });
-    console.log(file)
+  // send(file, url) {
+  //   if (!file) return;
+  //   console.log(url)
+  //   file.name = "perfil.png";
+  //   file.type = "image/png";
+  //   var body = new FormData();
+  //   body.append('file', {
+  //     uri: file.uri,
+  //     type: file.type,
+  //     name: file.name
+  //   });
+  //   console.log(file)
 
-    var request = new XMLHttpRequest();
-    request.open('POST', url, true);
-    request.send(body);
-    this.setState({ ...this.state })
-  }
+  //   var request = new XMLHttpRequest();
+  //   request.open('POST', url, true);
+  //   request.send(body);
+  //   this.setState({ ...this.state })
+  // }
 
-  showFoto() {
-    // this.send(this.state.fotoData, SSocket.api.root + "upload/camara/" + '1234567');
-    return (
-      <SView flex center backgroundColor='black' >
-        <SView col={"xs-8"} height={'70%'} style={{ top: '5%' }} border='white'>
-          {/* <SImage src={`${SSocket.api.root}` +"camara/" + '2?time='+ new Date().getTime()} style={{ resizeMode: "cover" }} /> */}
-          <SImage src={this.state.fotoData.uri} style={{ resizeMode: "cover" }} />
-        </SView>
-      </SView>
-    );
-  }
+  // showFoto() {
+  //   // this.send(this.state.fotoData, SSocket.api.root + "upload/camara/" + '1234567');
+  //   return (
+  //     <SView flex center backgroundColor='black' >
+  //       <SView col={"xs-8"} height={'70%'} style={{ top: '5%' }} border='white'>
+  //         {/* <SImage src={`${SSocket.api.root}` +"camara/" + '2?time='+ new Date().getTime()} style={{ resizeMode: "cover" }} /> */}
+  //         <SImage src={this.state.fotoData.uri} style={{ resizeMode: "cover" }} />
+  //       </SView>
+  //     </SView>
+  //   );
+  // }
 
-  showBoton() {
-    return <>
+  // showBoton() {
+  //   return <>
 
-      {/* <SIcon name={"BtnLinterna"} height={40} width={40} style={{ position: 'absolute', left: 27, top: 27 }} onPress={() => { this.setState({ flash: !this.state.flash }) }} /> */}
-      {/* <SIcon name={"BtnGaleria"} height={40} width={40} style={{ position: 'absolute', right: 27, top: 27 }} /> */}
+  //     {/* <SIcon name={"BtnLinterna"} height={40} width={40} style={{ position: 'absolute', left: 27, top: 27 }} onPress={() => { this.setState({ flash: !this.state.flash }) }} /> */}
+  //     {/* <SIcon name={"BtnGaleria"} height={40} width={40} style={{ position: 'absolute', right: 27, top: 27 }} /> */}
 
-      <SView col={"xs-12"} height={100} row backgroundColor={STheme.color.primary}  >
-        <SView col={"xs-3.5"} height center>
-          <SIcon name={"BtnAccept"} height={40} width={40} onPress={() => {
+  //     <SView col={"xs-12"} height={100} row backgroundColor={STheme.color.primary}  >
+  //       <SView col={"xs-3.5"} height center>
+  //         <SIcon name={"BtnAccept"} height={40} width={40} onPress={() => {
 
-            var onChange = SNavigation.getParam('onChange');
-            if (onChange) {
-              onChange(this.state.fotoData);
-              SNavigation.goBack();
-            }
-            // this.send(this.state.fotoData, SSocket.api.root + "upload/camara/" + '2') 
-            // SNavigation.navigate("cotizacion_farmacia/registro");
-          }} />
-        </SView>
-        <SView col={"xs-5"} height center onPress={() => { this.takePicture() }}>
-          <SIcon name={"BtnShooter"} fill={'transparent'} height={50} width={50} />
-        </SView>
-        <SView col={"xs-3.5"} height center>
-          <SIcon name={"BtnCancel"} height={40} width={40} onPress={() => { this.setState({ fotoData: null }) }} />
-        </SView>
-      </SView>
-    </>
-  }
+  //           var onChange = SNavigation.getParam('onChange');
+  //           if (onChange) {
+  //             onChange(this.state.fotoData);
+  //             SNavigation.goBack();
+  //           }
+  //           // this.send(this.state.fotoData, SSocket.api.root + "upload/camara/" + '2') 
+  //           // SNavigation.navigate("cotizacion_farmacia/registro");
+  //         }} />
+  //       </SView>
+  //       <SView col={"xs-5"} height center onPress={() => { this.takePicture() }}>
+  //         <SIcon name={"BtnShooter"} fill={'transparent'} height={50} width={50} />
+  //       </SView>
+  //       <SView col={"xs-3.5"} height center>
+  //         <SIcon name={"BtnCancel"} height={40} width={40} onPress={() => { this.setState({ fotoData: null }) }} />
+  //       </SView>
+  //     </SView>
+  //   </>
+  // }
 
   onBarCodeRead = (result) => {
     const { navigate } = this.props.navigation;
     const auxData = result; // Solo obtén dato
-    this.setState({ existeText: auxData.data });
-    if (!this.state.existeText) {
-      SNavigation.navigate("pedido/detalle", { orale: auxData.data })
-      // alert(JSON.stringify(dataa.data));
-      // pedido/detalle?key=9b8f27e9-696d-446f-ae9b-5d6d5bf1ab24
+    // this.setState({ existeText: auxData.data });
+
+    if (this.state.qr) return;
+    const validador = "tapekeapp.com/pedido/";
+    if (auxData.data.indexOf(validador) > -1) {
+      var spliter = auxData.data.split(validador);
+      if (spliter.length > 1) {
+        this.state.qr = spliter[1];
+        // alert(spliter[1]);    
+        // alert(JSON.stringify(dataa.data));
+        SNavigation.replace("pedido/", { keyPedido: spliter[1] });
+      }
     }
   };
 

@@ -100,22 +100,18 @@ class Login extends Component {
         if (reducer.type == "login") {
             this.props.state.usuarioReducer.type = "";
         }
-        // if (Parent.Actions.validateSession(this.props, true)) {
-        //     SNavigation.replace('/');
-        //     return null;
-        // }
+        if (Parent.Actions.validateSession(this.props, true)) {
+            SNavigation.replace('/');
+            return null;
+        }
 
-        return (
-            <>
-                <SPage title={'Login ' + Parent.component} center hidden>
+        return (<><SPage title={'Login ' + Parent.component} center hidden>
                     <SView center col={"xs-12"}>
                         <SHr height={50} />
                         <SView col={"xs-11 md-6 xl-4"} center  >
-                            <SView col={"xs-11"} height={180}>
-                                <SIcon name={"Logo"} />
+                            <SView col={"xs-11"} height={180}><SIcon name={"Logo"} />
                             </SView>
                             <SView height={30} />
-
                             {this.getFilter()}
                             <SHr height={20} />
                             {this.getForm()}
@@ -131,12 +127,11 @@ class Login extends Component {
                                     <SHr color={STheme.color.lightGray} height={1.5} ></SHr>
                                 </SView>
                             </SView>
-
                             <SView col={"xs-11"} height={100} row center  >
                                 <SView col={"xs-2"} height center>
                                 </SView>
                                 <SView flex center height={60} >
-                                    <LoginGoogle onLogin={(usr) => {
+                                    {/* <LoginGoogle onLogin={(usr) => {
                                         console.log(usr);
                                         Usuario.Actions.loginGoogle({
                                             ...usr
@@ -144,10 +139,9 @@ class Login extends Component {
                                     }}>
                                         <SView height={50} colSquare center style={{
                                             backgroundColor: 'white', borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 2, padding: 8
-                                        }}>
-                                            <SIcon name={"LoginGmail"} />
+                                        }}><SIcon name={"LoginGmail"} />
                                         </SView>
-                                    </LoginGoogle>
+                                    </LoginGoogle> */}
                                 </SView>
                                 <SView flex center height={60} >
                                     <LoginFacebook onLogin={(usr) => {
@@ -182,9 +176,7 @@ class Login extends Component {
                         </SView>
                     </SView>
                 </SPage>
-                {this.getCargando()}
-            </>
-        );
+                {this.getCargando()}</>);
     }
 }
 const initStates = (state) => {

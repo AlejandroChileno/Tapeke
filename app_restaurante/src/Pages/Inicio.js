@@ -7,20 +7,23 @@ import BarraSuperiorTapeke from "../Components/BarraSuperiorTapeke";
 import PBarraFooter from "../Components/PBarraFooter";
 import usuario from "../Services/Usuario/Components/usuario";
 import FloatButtomQR from '../Components/FloatButtomQR';
-
+ 
 
 class Inicio extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
-    //this.key = SNavigation.getParam("keyUsuario");
+    this.state = {
+      active: true,
+
+    };
+    this.key = SNavigation.getParam("keyUsuario");
     // this.key = SNavigation.getParam("page");
-    this.page = SNavigation.getParam("page");
+    // this.page = SNavigation.getParam("page");
   }
 
-  // componentDidMount() {
-  //   if (!usuario.Actions.validateSession(this.props)) { return <SLoad />; }
-  // }
+  componentDidMount() {
+    if (!usuario.Actions.validateSession(this.props)) { return <SLoad />; }
+  }
 
   getContent() {
     return <>
@@ -105,13 +108,17 @@ class Inicio extends Component {
   }
 
 
+
+  
+
   render() {
-    // if (!usuario.Actions.validateSession(this.props)) {
-    //   return <SLoad />;
-    // }
+    
+    if (!usuario.Actions.validateSession(this.props,true)) {
+      return <SLoad />;
+    }
     //var UsuaioPage = Pages["usuarioPage/lista"];
-
-
+  
+  // console.log("this.page",this.props.state.usuarioReducer.usuarioLog.key);
     return (
       <>
 

@@ -1,6 +1,6 @@
 //  COMPONENT CONFIG
 const component = "pedido"; // COMPONENT NAME
-const version = "2.0";
+const version = "1.0";
 // ---------------------------------------
 import Actions from "./Actions";
 import Reducer from "./Reducer";
@@ -12,13 +12,13 @@ export default {
     version,
     Actions,
     Reducers: {
-        // [component + 'Reducer']: Reducer
+         [component + 'Reducer']: Reducer
     },
     Pages: {
         // [component]: testing,
         // ["admin/" + component + "/registro"]: registroPack,
         [component + "/calendario"]: Calendario,
-        [component + "/detalle"]: Detalle,
+        [component + "/"]: Detalle,
     },
     // Components: {
     //     Horario,

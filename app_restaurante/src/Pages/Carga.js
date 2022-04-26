@@ -15,7 +15,7 @@ class Carga extends Component {
     redirect() {
         if (!usuario.Actions.validateSession(this.props, true)) {
             SNavigation.replace("login");
-            // SNavigation.replace("intro/paso1");
+            SNavigation.replace("intro/paso1");
         } else {
             SNavigation.replace("/");
         }

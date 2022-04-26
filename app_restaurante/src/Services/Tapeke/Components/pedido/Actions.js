@@ -16,18 +16,24 @@ export default class Actions {
                 version: Parent.version,
                 type: "getAll",
                 estado: "cargando",
-                key_usuario: props.state.usuarioReducer.usuarioLog.key,
+                 key_usuario: props.state.usuarioReducer.usuarioLog.key,
+
+                // key_usuario: this.props.state.usuarioReducer.usuarioLog.key,
             })
             return null;
         }
+        console.log("alvaro ", data);
         return data;
     }
 
     static getByKey = (key, props) => {
         var data = Actions.getAll(props);
         if (!data) return null;
+        // console.log(data);
         return data[key];
     }
+
+
 
     static getByKeyHorario = (key_horario, props) => {
         var data = Actions.getAll(props);
