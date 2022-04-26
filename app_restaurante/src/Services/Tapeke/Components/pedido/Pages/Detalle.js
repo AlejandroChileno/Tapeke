@@ -15,16 +15,27 @@ class Detalle extends React.Component {
         // this.cantidad = SNavigation.getParam('cantidad');
         // this.envioN = SNavigation.getParam('envio');
 
-        // this.pedidoId = "71dd50ea-1739-41c0-b9e8-a30c87950281";
-         this.pedidoId = SNavigation.getParam("keyPedido");
-        //  this.pedidoId=null;
+        // this.pedidoId = "71dsd50ea-1739-41c0-b9e8-a30c87950281";
+        this.pedidoId = SNavigation.getParam("keyPedido");
+    }
+
+    error() {
+        return <SView col={"xs-12"} center style={{ padding: 5 }} >
+            <SHr height={100} />
+            <SLoad />
+            <SText font={"LondonTwo"} fontSize={84}  >NO EXISTE</SText>
+            <SText font={"LondonTwo"} fontSize={84}  >PEDIDO</SText>
+        </SView>
     }
 
 
     // TODO: RICKY TIENES QUE PASAR BIEN EL DETALLE DEL PEDIDO DESDE EL BACKEND
     render() {
         this.data = Parent.Actions.getByKey(this.pedidoId, this.props);
-        if (!this.data) return <SLoad />
+        if (!this.data) {
+            return this.error();
+        }
+
         // alert(JSON.stringify(this.data.fecha));
 
         // this.auxRestaurante = pedido.Actions.getByKey(this.orale, this.props);
@@ -47,6 +58,7 @@ class Detalle extends React.Component {
         // alert(this.auxRestaurante.key);
         return (
             <SPage center>
+
                 <SView col={"xs-12"} row backgroundColor={STheme.color.card} center>
                     <SHr height={18} />
                     <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center style={{ backgroundColor: STheme.color.white }}>

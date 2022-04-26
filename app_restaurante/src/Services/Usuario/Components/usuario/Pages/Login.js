@@ -131,6 +131,7 @@ class Login extends Component {
                                 <SView col={"xs-2"} height center>
                                 </SView>
                                 <SView flex center height={60} >
+                                    {/* TODO: rICKY se comento porque, se cambio el nombre, tonces hay que cambiar el certificado*/}
                                     {/* <LoginGoogle onLogin={(usr) => {
                                         console.log(usr);
                                         Usuario.Actions.loginGoogle({
