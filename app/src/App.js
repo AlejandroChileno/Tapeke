@@ -18,6 +18,7 @@ import BackgroundImage from './Components/BackgroundImage';
 import BarraSuperior from './Components/BarraSuperior';
 import StatusBar from './Components/StatusBar';
 import Firebase from './Firebase';
+
 setProps(SConfig.SocketProps);
 
 const store = createStore(
@@ -41,7 +42,7 @@ const App = (props) => {
                 assets={Assets}
                 inputs={SConfig.SConfig_Inputs}
                 // background={<BackgroundImage />}
-                theme={{ initialTheme: "default", themes: SConfig.SThemeProps, noAnimated:true }}>
+                theme={{ initialTheme: "default", themes: SConfig.SThemeProps, noAnimated: true }}>
 
 
                 <StatusBar />

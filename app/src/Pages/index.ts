@@ -13,10 +13,10 @@ import Ayuda from './Ayuda';
 
 import MisCompras from './MisCompras';
 import ComoTeParecio from './MisCompras/ComoTeParecio';
-
+import Test from './Test';
 const Pages = {
     "/": Inicio,
-
+    "test": Test,
     "carga": Carga,
     "home": Home,
     "ajustes": Ajustes,

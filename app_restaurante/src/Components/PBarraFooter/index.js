@@ -7,6 +7,8 @@ export default class PBarraFooter extends Component {
 		super(props);
 		this.state = {
 		};
+		this.page = SNavigation.getParam("page");
+		
 	}
 
 	getItem({ key, title, icon, url, params }) {
@@ -14,8 +16,13 @@ export default class PBarraFooter extends Component {
 		if (key == this.props.url) {
 			color = STheme.color.info + "ff";
 		}
-		return <SView flex center height onPress={() => {
-			SNavigation.navigate(url, params);
+		
+		return <SView flex center style={{backgroundColor: (this.page != key ? STheme.color.primary : "#ad5308")}} height onPress={() => {
+			this.setState({
+				key: key
+			})
+			console.log(this.page + " - "+ key)
+			SNavigation.navigate(url, {page: key});
 		}}>
 			<SView height={23} colSquare center>
 				<SIcon name={icon} fill={STheme.color.secondary} />
@@ -30,9 +37,9 @@ export default class PBarraFooter extends Component {
 				// style={{ position: 'absolute', bottom: 0, backgroundColor: STheme.color.primary, overflow: 'hidden' }}	
 			>
 				<SView col={'xs-12'} row height >
-					{this.getItem({ key: "100", title: 'Pedidos de hoy', icon: 'Mpedidos', url: '/' })}
-					{this.getItem({ key: "200", title: 'Calendario', icon: 'Mcalendario', url: 'pedido/calendario' })}
-					{this.getItem({ key: "300", title: 'Mi calificación', icon: 'Mcalificacion', url: 'calificacion' })}
+					{this.getItem({ key: "1", title: 'Pedidos de hoy', icon: 'Mpedidos', url: '/' })}
+					{this.getItem({ key: "2", title: 'Calendario', icon: 'Mcalendario', url: 'pedido/calendario' })}
+					{this.getItem({ key: "3", title: 'Mi calificación', icon: 'Mcalificacion', url: 'calificacion' })}
 				</SView>
 			</SView >
 		);
