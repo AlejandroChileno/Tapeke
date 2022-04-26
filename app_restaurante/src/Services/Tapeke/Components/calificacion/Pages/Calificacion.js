@@ -9,7 +9,8 @@ class Calificacion extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
-        this.key = SNavigation.getParam("keyUsuario");
+        //this.key = SNavigation.getParam("keyUsuario");
+        this.page = SNavigation.getParam("page");
     }
 
     render() {
@@ -78,7 +79,7 @@ class Calificacion extends React.Component {
                 </SView>
 
             </SPage>
-            <PBarraFooter />
+            <PBarraFooter page={this.page} />
         </>);
     }
 }
