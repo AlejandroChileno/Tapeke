@@ -11,6 +11,7 @@ class Detalle extends React.Component {
         this.precio = SNavigation.getParam('precio');
         this.cantidad = SNavigation.getParam('cantidad');
         this.envioN = SNavigation.getParam('envio');
+        this.orale = SNavigation.getParam("orale");
 
     }
 
@@ -46,11 +47,9 @@ class Detalle extends React.Component {
                             <SView center col={"xs-2"} backgroundColor={"#9B060C"} height={85}  style={{ borderRadius: 8, overflow: 'hidden', }}>
                                 <SImage src={require('../../../../../Assets/img/perfil.jpg')} style={{
                                     width: "100%",
-                                    // height: 216,
                                     position: "relative",
                                     resizeMode: "cover"
                                 }} />
-                                {/* <SGradient colors={["#00000045", "#00000045",]} /> */}
                             </SView>
                             <SView col={"xs-10"} row >
                                 <SView col={"xs-1"}  >
@@ -74,13 +73,12 @@ class Detalle extends React.Component {
                         <SView col={"xs-11"} row center>
                             <SView col={"xs-12"}>
                                 <SHr height={15} />
-                                <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }} color={STheme.color.darkGray}>Detalle del pedido</SText>
+                                <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }} color={STheme.color.darkGray}>Detalle del pedido {"dato " + this.orale}</SText>
                                 <SHr height={15} />
                             </SView>
                             <SView center col={"xs-2"} backgroundColor={"#9B060C"} height={85} style={{ borderRadius: 8, overflow: 'hidden', }}>
                                 <SImage src={require('../../../../../Assets/img/restPerfil.jpg')} style={{
                                     width: "100%",
-                                    // height: 216,
                                     position: "relative",
                                     resizeMode: "cover"
                                 }} />
@@ -94,6 +92,8 @@ class Detalle extends React.Component {
                                         <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >Veggie Garden - Gran Via</SText>
                                     </SView>
                                     <SHr height={15} />
+                                    <SView col={"xs-12"} >
+
                                     <SView col={"xs-6"} style={{ justifyContent: 'flex-start', }}>
                                         <SText fontSize={14} font={"Roboto"} color={STheme.color.primary} fontWeight> Precio</SText>
                                         <SHr height={5} />
@@ -104,10 +104,12 @@ class Detalle extends React.Component {
                                             <SText fontSize={14} font={"Roboto"} color={STheme.color.primary} >Cantidad</SText>
                                         </SView>
                                         <SHr height={5} />
-                                        <SView col={"xs-6"} center >
+                                        {/* <SView col={"xs-6"} center row>
                                             <SView col={"xs-12"} style={{ height: 40, backgroundColor: STheme.color.card, borderRadius: 6 }} center> 1 </SView>
-                                        </SView>
+                                        </SView> */}
                                     </SView>
+                                    </SView>
+
                                 </SView>
                                 <SHr height={5} />
                             </SView>
@@ -160,7 +162,6 @@ class Detalle extends React.Component {
                             <SView center col={"xs-2"} backgroundColor={"#9B060C"} height={85}  style={{ borderRadius: 8, overflow: 'hidden', }}>
                                 <SImage src={require('../../../../../Assets/img/perfil2.jpg')} style={{
                                     width: "100%",
-                                    // height: 216,
                                     position: "relative",
                                     resizeMode: "cover"
                                 }} />
@@ -186,8 +187,7 @@ class Detalle extends React.Component {
                     <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center style={{ backgroundColor: STheme.color.white }}>
                     <SHr height={40} />
                         <PButtom fontSize={20} onPress={() => {
-                            //SNavigation.navigate("pedido/mapa")
-                            // SPopup.open({ content: this.popupConfirmacion(), key: "confirmar" });
+                            
                         }}>ENTREGADO</PButtom>
                         <SHr height={40} />
                     </SView>

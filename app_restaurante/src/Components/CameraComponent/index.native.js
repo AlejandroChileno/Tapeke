@@ -2,14 +2,11 @@ import React from "react";
 import { Animated, PermissionsAndroid, StyleSheet, Text, View } from "react-native";
 import { RNCamera } from "react-native-camera";
 import ImageResizer from 'react-native-image-resizer';
-import { SIcon, SImage, SNavigation, SText, STheme, SView } from "servisofts-component";
+import { SIcon, SImage, SNavigation, SPage, SText, STheme, SView } from "servisofts-component";
 
 
 
 class CameraComponent extends React.Component {
-
-
-
 
   constructor(props) {
     super(props)
@@ -33,7 +30,11 @@ class CameraComponent extends React.Component {
       captureAudio={false}
       onBarCodeRead={this.onBarCodeRead}>
 
-      <View style={{ width: '100%', height: 220, backgroundColor: 'rgba(0,0,0,0.5)' }} />
+      {/* <View style={{  height: '50%', backgroundColor: 'rgba(0,0,0,0.5)' }} /> */}
+      <SView style={{ flex: 1, width: '100%', height: 250, backgroundColor: 'rgba(0, 0, 0, 0.5)' }} row center>
+      </SView>
+
+
       <View style={[{ flexDirection: 'row' }]}>
         <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', flex: 1, }} />
         <Animated.View
@@ -43,9 +44,13 @@ class CameraComponent extends React.Component {
 
       </View>
 
-      <SView col={"xs-12"} style={{ flex: 1, backgroundColor: 'rgba(0, 0, 0, 0.5)' }} row center>
+      <SView style={{ flex: 1, width: '100%', height: 250, backgroundColor: 'rgba(0, 0, 0, 0.5)' }} row center>
         <SText center style={{ marginTop: 14, width: 300, color: '#fff' }} > Coloque el código QR en el cuadro y se escaneará automáticamente </SText>
       </SView>
+
+
+
+
     </RNCamera>
 
   }
@@ -81,10 +86,6 @@ class CameraComponent extends React.Component {
     );
   }
 
-
-
-
-
   showBoton() {
     return <>
 
@@ -114,33 +115,29 @@ class CameraComponent extends React.Component {
     </>
   }
 
-
-
-
   onBarCodeRead = (result) => {
     const { navigate } = this.props.navigation;
     const auxData = result; // Solo obtén dato
     this.setState({ existeText: auxData.data });
     if (!this.state.existeText) {
-      SNavigation.navigate("informacion", { orale: auxData.data })
+      SNavigation.navigate("pedido/detalle", { orale: auxData.data })
       // alert(JSON.stringify(dataa.data));
+      // pedido/detalle?key=9b8f27e9-696d-446f-ae9b-5d6d5bf1ab24
     }
   };
 
+
   render() {
-    if (this.state.fotoData) {
-      return (
+    return (
+
+      <SPage title={''} row style={{ overflow: 'hidden' }} >
+
         <SView flex>
-          {this.showFoto()}
+          {this.showCamara()}
           {/* {this.showBoton()} */}
         </SView>
-      );
-    }
-    return (
-      <SView flex>
-        {this.showCamara()}
-        {/* {this.showBoton()} */}
-      </SView>
+      </SPage>
+
     );
   }
 
