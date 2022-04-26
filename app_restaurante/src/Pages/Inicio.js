@@ -12,7 +12,9 @@ class Inicio extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.key = SNavigation.getParam("keyUsuario");
+    //this.key = SNavigation.getParam("keyUsuario");
+   // this.key = SNavigation.getParam("page");
+   this.page = SNavigation.getParam("page");
   }
 
   componentDidMount() {

@@ -13,7 +13,7 @@ class Calendario extends React.Component {
             fecha: new SDate(),
             // dia: 0,
         };
-        this.key = SNavigation.getParam("keyUsuario");
+        this.page = SNavigation.getParam("page");
     }
 
     // getDiaa(dia, diastr) {
