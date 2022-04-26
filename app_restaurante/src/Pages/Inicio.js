@@ -17,9 +17,9 @@ class Inicio extends Component {
    this.page = SNavigation.getParam("page");
   }
 
-  componentDidMount() {
-    if (!usuario.Actions.validateSession(this.props)) { return <SLoad />; }
-  }
+  // componentDidMount() {
+  //   if (!usuario.Actions.validateSession(this.props)) { return <SLoad />; }
+  // }
 
   getContent() {
     return <>
@@ -105,9 +105,9 @@ class Inicio extends Component {
 
 
   render() {
-    if (!usuario.Actions.validateSession(this.props)) {
-      return <SLoad />;
-    }
+    // if (!usuario.Actions.validateSession(this.props)) {
+    //   return <SLoad />;
+    // }
     //var UsuaioPage = Pages["usuarioPage/lista"];
 
 
@@ -116,9 +116,9 @@ class Inicio extends Component {
         <BarraSuperiorTapeke>
         </BarraSuperiorTapeke>
         <SPage title={"Pedidos de Hoy"} hidden center>
-          <SView col={"xs-12 sm-11 md-10 lg-8 xl-6"} center height>
+          <SView col={"xs-12 sm-11 md-10 lg-8 xl-6"} center height backgroundColor={'yellow'}>
             <SHr height={20} />
-            <SView col={"xs-11"} center>
+            <SView col={"xs-11"} center backgroundColor={'cyan'}>
               <SText font={"Roboto"} fontSize={32}>20:00 Hrs.</SText>
               <SHr height={10} />
               <SIcon name="Carga" width={270}></SIcon>
@@ -129,13 +129,13 @@ class Inicio extends Component {
               <SView col={"xs-12"} style={{ borderBottomWidth: 2, borderColor: STheme.color.primary }}></SView>
             </SView>
             <SHr height={20} />
-            <SView col={"xs-11"} center>
+            <SView col={"xs-11"} center backgroundColor={'red'} >
               {this.getContent()}
             </SView>
           </SView>
         </SPage>
         <FloatButtomQR onPress={() => {
-          SNavigation.navigate("admin/registro");
+          SNavigation.navigate("camara");
         }} />
         <SHr height={20} />
         <PBarraFooter />
