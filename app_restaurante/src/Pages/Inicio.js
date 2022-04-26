@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { SHr, SIcon, SImage, SLoad, SNavigation, SPage, SScrollView2, SText, STheme, SView, SPopup, SForm, SButtom } from "servisofts-component";
 import BarraSuperiorTapeke from "../Components/BarraSuperiorTapeke";
+// import BarraSuperiorTapeke from "../Components/BarraSuperiorTapeke";
 // import Direccion from "../Components/BarraSuperiorTapeke/Direccion";
 import PBarraFooter from "../Components/PBarraFooter";
 import usuario from "../Services/Usuario/Components/usuario";
@@ -13,8 +14,8 @@ class Inicio extends Component {
     super(props);
     this.state = {};
     //this.key = SNavigation.getParam("keyUsuario");
-   // this.key = SNavigation.getParam("page");
-   this.page = SNavigation.getParam("page");
+    // this.key = SNavigation.getParam("page");
+    this.page = SNavigation.getParam("page");
   }
 
   // componentDidMount() {
@@ -113,23 +114,32 @@ class Inicio extends Component {
 
     return (
       <>
-        <BarraSuperiorTapeke>
+
+        <BarraSuperiorTapeke backgroundColor={'blue'}  >
         </BarraSuperiorTapeke>
-        <SPage title={"Pedidos de Hoy"} hidden center>
-          <SView col={"xs-12 sm-11 md-10 lg-8 xl-6"} center height backgroundColor={'yellow'}>
+
+        <SPage title={"Pedidos de Hoy"} hidden disableScroll>
+
+          <SView col={"xs-12 sm-11 md-10 lg-8 xl-6"} row center backgroundColor={'transparent'}>
             <SHr height={20} />
-            <SView col={"xs-11"} center backgroundColor={'cyan'}>
-              <SText font={"Roboto"} fontSize={32}>20:00 Hrs.</SText>
-              <SHr height={10} />
+
+            <SText font={"Roboto"} fontSize={32}  >20:00 Hrs.</SText>
+            <SHr height={10} />
+
+            <SView col={"xs-11"} row center height={30} backgroundColor={'transparent'}>
               <SIcon name="Carga" width={270}></SIcon>
-              <SHr height={20} />
-              <SText font={"Roboto"} fontSize={16}>Jueves, 14 de abril, 2022</SText>
-              <SText font={"Roboto"} style={{ fontWeight: "bold" }} fontSize={16}>( 3 / 15 )</SText>
-              <SHr height={20} />
-              <SView col={"xs-12"} style={{ borderBottomWidth: 2, borderColor: STheme.color.primary }}></SView>
             </SView>
+            <SHr height={10} />
+            <SText font={"Roboto"} fontSize={16}>Jueves, 14 de abril, 2022</SText>
+            <SText font={"Roboto"} style={{ fontWeight: "bold" }} fontSize={16}>( 3 / 15 )</SText>
             <SHr height={20} />
-            <SView col={"xs-11"} center backgroundColor={'red'} >
+
+            <SView col={"xs-11"} style={{ borderBottomWidth: 2, borderColor: STheme.color.primary }}></SView>
+
+            <SHr height={20} />
+
+
+            <SView col={"xs-11"} row    >
               {this.getContent()}
             </SView>
           </SView>

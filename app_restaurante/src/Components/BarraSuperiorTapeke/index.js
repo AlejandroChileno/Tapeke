@@ -20,7 +20,7 @@ class BarraSuperiorTapeke extends Component {
         var usuario = this.props.state.usuarioReducer.usuarioLog
         if (!usuario) {
             // SNavigation.navigate("login");
-            return <SView />
+            // return <SView />
         }
 
         return (
