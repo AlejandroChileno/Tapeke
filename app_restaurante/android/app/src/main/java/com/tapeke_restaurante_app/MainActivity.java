@@ -1,4 +1,4 @@
-package com.tapeke_con_app;
+package com.tapeke_restaurante_app;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "tapeke_con_app";
+    return "tapeke_restaurante_app";
   }
 }

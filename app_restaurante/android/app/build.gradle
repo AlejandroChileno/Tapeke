@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.tapeke_con_app"
+        applicationId "com.tapeke_restaurante_app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 8

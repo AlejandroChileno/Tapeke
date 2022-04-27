@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.tapeke_con_app">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.tapeke_restaurante_app">
 
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.CAMERA" />
@@ -23,9 +23,9 @@
 
 		<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
 
-		<service android:name="com.tapeke_con_app.SSBackgroundLocation.SSBL_Service" android:enabled="true" android:exported="true" />
-		<service android:name="com.tapeke_con_app.SSBackgroundLocation.SSBL_event" android:enabled="true" android:exported="true"/>
-		<receiver android:name="com.tapeke_con_app.SSBackgroundLocation.SSBL_BootUpReceiver"
+		<service android:name="com.tapeke_restaurante_app.SSBackgroundLocation.SSBL_Service" android:enabled="true" android:exported="true" />
+		<service android:name="com.tapeke_restaurante_app.SSBackgroundLocation.SSBL_event" android:enabled="true" android:exported="true"/>
+		<receiver android:name="com.tapeke_restaurante_app.SSBackgroundLocation.SSBL_BootUpReceiver"
 			android:enabled="true"
 			android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
 			<intent-filter>

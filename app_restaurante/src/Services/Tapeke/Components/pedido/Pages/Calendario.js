@@ -14,6 +14,8 @@ class Calendario extends React.Component {
             // dia: 0,
         };
         this.page = SNavigation.getParam("page");
+        this.key_restaurante = "9e1a7498-1f5f-4df0-b97e-82b0cf3edbce";
+        // this.key_restaurante = SNavigation.getParam("key_restaurante");
     }
 
     // getDiaa(dia, diastr) {
@@ -36,7 +38,7 @@ class Calendario extends React.Component {
                 this.setState({
                     hora: hora
                 })
-               
+
             }}>
             <SView col={"xs-12"} center height={40} style={{ backgroundColor: (this.state.hora != hora ? STheme.color.card : STheme.color.primary), borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 1 }}>
                 <SText font={"LondonTwo"} fontSize={14} color={(this.state.hora != hora ? STheme.color.text : STheme.color.secondary)} >{hora}</SText>
@@ -76,7 +78,7 @@ class Calendario extends React.Component {
             var dia = index[0];
             var diastr = index[1];
             // <SView col={"xs-4"} center style={{ padding: 5 }}>{index[0] } ppp {index[1] } </SView>
-            return <><SView width={80} height={90} center style={{  backgroundColor: (instance.state.dia == dia ? STheme.color.primary : STheme.color.card), borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 1 }}
+            return <><SView width={80} height={90} center style={{ backgroundColor: (instance.state.dia == dia ? STheme.color.primary : STheme.color.card), borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 1 }}
                 onPress={() => {
                     instance.setState({
                         dia: dia
@@ -91,7 +93,22 @@ class Calendario extends React.Component {
         });
     }
 
+
+    getListahoRARIO() {
+        var data = Parent.Actions.getByKeyRestauranteHorarios(this.key_restaurante,this.props);
+		if (!data) return <SLoad />
+        console.log("alvaro "+data.hora_inicio);
+        
+ 	}
+
     render() {
+
+         
+         this.getListahoRARIO();
+        // var datas = {};
+        // datas = Pack.Actions.getAll(this.props);
+        // if (!datas) return <SLoad />
+
         return (<>
             <SPage title={''} hidden disableScroll center >
                 <BarraSuperiorTapeke>
@@ -157,6 +174,7 @@ class Calendario extends React.Component {
             </SPage>
             <PBarraFooter />
         </>);
+        
     }
 }
 const initStates = (state) => {

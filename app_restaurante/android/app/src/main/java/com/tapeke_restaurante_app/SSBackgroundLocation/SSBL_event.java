@@ -1,4 +1,4 @@
-package com.tapeke_con_app.SSBackgroundLocation;
+package com.tapeke_restaurante_app.SSBackgroundLocation;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.tapeke_con_app;
+package com.tapeke_restaurante_app;
 
 import android.app.Application;
 import android.content.Context;
@@ -15,7 +15,7 @@ import com.facebook.reactnative.androidsdk.FBSDKPackage;
 
 import com.facebook.react.bridge.JSIModulePackage; // <- add this
 import com.swmansion.reanimated.ReanimatedJSIModulePackage; // <- add this
-import com.tapeke_con_app.SSBackgroundLocation.SSBL_Package;
+import com.tapeke_restaurante_app.SSBackgroundLocation.SSBL_Package;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -75,7 +75,7 @@ public class MainApplication extends Application implements ReactApplication {
          We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
-        Class<?> aClass = Class.forName("com.tapeke_con_app.ReactNativeFlipper");
+        Class<?> aClass = Class.forName("com.tapeke_restaurante_app.ReactNativeFlipper");
         aClass
             .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
             .invoke(null, context, reactInstanceManager);

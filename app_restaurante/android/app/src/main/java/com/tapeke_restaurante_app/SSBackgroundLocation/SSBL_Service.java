@@ -1,4 +1,4 @@
-package com.tapeke_con_app.SSBackgroundLocation;
+package com.tapeke_restaurante_app.SSBackgroundLocation;
 
 import android.Manifest;
 import android.app.Notification;
@@ -23,8 +23,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 
 import com.facebook.react.HeadlessJsTaskService;
-import com.tapeke_con_app.MainActivity;
-import com.tapeke_con_app.R;
+import com.tapeke_restaurante_app.MainActivity;
+import com.tapeke_restaurante_app.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
