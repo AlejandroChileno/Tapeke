@@ -12,7 +12,7 @@ export default class Actions {
         if (!data) {
             if (reducer.estado == "cargando") return null;
             SSocket.send({
-                // service: Service.ServiceName,
+                 service: Service.ServiceName,
                 component: Parent.component,
                 version: Parent.version,
                 type: "getAll",

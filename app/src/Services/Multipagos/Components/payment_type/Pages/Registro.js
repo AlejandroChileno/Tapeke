@@ -1,7 +1,13 @@
 import { Text, View } from 'react-native'
-import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { SButtom, SForm, SHr, SPage, SText, SNavigation, SLoad, SView, SIcon } from 'servisofts-component';
 
-export default class Registro extends Component {
+import React, { Component } from 'react'
+import Parent from '../index'
+class Registro extends Component {
+
+
+  
   render() {
     return (
       <View>
@@ -10,3 +16,8 @@ export default class Registro extends Component {
     )
   }
 }
+
+const initStates = (state) => {
+  return { state }
+};
+export default connect(initStates)(Registro);
