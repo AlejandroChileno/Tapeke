@@ -13,6 +13,9 @@ class Confirmar extends React.Component {
         this.cantidad = SNavigation.getParam('cantidad');
         this.envioN = SNavigation.getParam('envio');
 
+        // this.state = { cantidad: 0, tipoPagoSeleccionado: null };
+
+
     }
 
     tipoEntrega() {
