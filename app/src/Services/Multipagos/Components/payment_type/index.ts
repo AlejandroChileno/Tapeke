@@ -7,7 +7,8 @@ import Reducer from "./Reducer";
 // import Components from "./Components";
 import Lista from "./Pages/Lista";
 import Registro from "./Pages/Registro";
- 
+import TipoPago from "./Components/TipoPago";
+
 
 //alvaro
 export default {
@@ -23,5 +24,8 @@ export default {
 
         [component + "/registro"]: Registro,
         [component + "/lista"]: Lista,
+    } , 
+    Components: {
+        TipoPago
     }
 }

@@ -9,6 +9,7 @@ export default class Actions {
     static getAll = (props) => {
         var reducer = Actions._getReducer(props);
         var data = reducer.data;
+        console.log("payment_type getAll "+data);
         if (!data) {
             if (reducer.estado == "cargando") return null;
             SSocket.send({
