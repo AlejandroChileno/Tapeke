@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SHr, SIcon, SImage, SNavigation, SText, STheme, SView, SLoad } from 'servisofts-component';
-import Parent from '../index';
+// import Parent from '../index';
 
 class TipoPago extends Component {
     constructor(props) {
@@ -14,44 +14,44 @@ class TipoPago extends Component {
 
 
     componentDidMount() {
-        this.props.callback({ tipopago: this.state.tipoPago })
+        this.props.callback({ tipopago: this.state.KeytipoPago })
     }
 
 
 
-    getAux(data) {
+    // INFO ESTO TRAIA DE LA BASE DE DATOS
+    // getAux(data) {
 
-        switch (data) {
-            case "Billetera":
-                return require('../../../../../Assets/img/tapeke.png');
-            case "Crédito":
-                return require('../../../../../Assets/img/Ptarjeta.png');
-            case "fassil":
-                return require('../../../../../Assets/img/Pfassil.png');
-            case "QR":
-                return require('../../../../../Assets/img/Ptarjeta.png');
-            case "TigoMoney":
-                return require('../../../../../Assets/img/Ptigo.png');
-            default:
-                return require('../../../../../Assets/img/Ptransferencia.png');
-        }
-    }
+    //     switch (data) {
+    //         case "Billetera":
+    //             return require('../../../../../Assets/img/tapeke.png');
+    //         case "Crédito":
+    //             return require('../../../../../Assets/img/Ptarjeta.png');
+    //         case "fassil":
+    //             return require('../../../../../Assets/img/Pfassil.png');
+    //         case "QR":
+    //             return require('../../../../../Assets/img/Ptarjeta.png');
+    //         case "TigoMoney":
+    //             return require('../../../../../Assets/img/Ptigo.png');
+    //         default:
+    //             return require('../../../../../Assets/img/Ptransferencia.png');
+    //     }
+    // }
 
-    getIcono() {
-        var data = Parent.Actions.getAll(this.props);
-        if (!data) return <SLoad />;
-        console.log(data);
-
-        return data.map((obj) => {
-            return <SView col={"xs-8"} >
-                <SText fontSize={16} font={"Roboto"} style={{ fontWeight: "bold" }}>{obj}   </SText>
-                <SView center style={{ width: 40, height: 40, borderRadius: 8, borderWidth: 1, borderColor: STheme.color.lightGray }}>
-                    <SImage src={this.getAux(obj)} style={{ borderRadius: 8, width: 30 }} />
-                </SView>
-            </SView>
-        })
-
-    }
+    // INFO ESTO TRAIA DE LA BASE DE DATOS
+    // getIcono() {
+    //     var data = Parent.Actions.getAll(this.props);
+    //     if (!data) return <SLoad />;
+    //     console.log(data);
+    //     return data.map((obj) => {
+    //         return <SView col={"xs-8"} >
+    //             <SText fontSize={16} font={"Roboto"} style={{ fontWeight: "bold" }}>{obj}   </SText>
+    //             <SView center style={{ width: 40, height: 40, borderRadius: 8, borderWidth: 1, borderColor: STheme.color.lightGray }}>
+    //                 <SImage src={this.getAux(obj)} style={{ borderRadius: 8, width: 30 }} />
+    //             </SView>
+    //         </SView>
+    //     })
+    // }
 
     item(key, descripcion, imagen) {
 
@@ -61,7 +61,7 @@ class TipoPago extends Component {
                 // start document
                 this.state.KeytipoPago = key;
                 this.state.tipoPago = descripcion;
-                if (this.props.callback) this.props.callback({ tipopago: this.state.tipoPago })
+                if (this.props.callback) this.props.callback({ tipopago: this.state.KeytipoPago })
                 this.setState({ ...this.state });
                 // end document
             }}>
@@ -85,20 +85,16 @@ class TipoPago extends Component {
     getTipoPago() {
 
         return <>
-            <SView col={"xs-12"} center >
-                <SView col={"xs-10 sm-5 lg-3"} row center style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }}>
+            <SView col={"xs-12 "} center >
+                <SView col={"xs-12"} row center style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6 }}>
                     <SView col={"xs-11"} row >
 
                         <SHr height={15} />
-                        {this.getIcono()}
-                        <SHr height={15} />
-
-                        {/* {this.item("p0001", "Efectivo", require('../../../../../Assets/img/efectivo.png'))} */}
-                        {/* {this.item("p0002", "Billetera Tapeke", require('../../../../../Assets/img/tapeke.png'))} */}
-                        {this.item("p0003", "Tarjeta de Debito / Crédito", require('../../../../../Assets/img/Ptarjeta.png'))}
-                        {this.item("p0004", "Banco FASSIL", require('../../../../../Assets/img/Pfassil.png'))}
-                        {this.item("p0005", "Transferencia QR", require('../../../../../Assets/img/Ptransferencia.png'))}
-                        {this.item("p0006", "Tigo Money", require('../../../../../Assets/img/Ptigo.png'))}
+                         {/* {this.item("p0002", "Billetera Tapeke", require('../../../../../Assets/img/tapeke.png'))} */}
+                        {this.item("Credito", "Tarjeta de Debito / Crédito", require('../../../../../Assets/img/Ptarjeta.png'))}
+                        {this.item("Fassil", "Banco FASSIL", require('../../../../../Assets/img/Pfassil.png'))}
+                        {this.item("QR", "Transferencia QR", require('../../../../../Assets/img/Ptransferencia.png'))}
+                        {this.item("TigoMoney", "Tigo Money", require('../../../../../Assets/img/Ptigo.png'))}
                     </SView>
                     <SHr height={15} />
                 </SView>
@@ -114,9 +110,9 @@ class TipoPago extends Component {
 
 
     render() {
-        var data = Parent.Actions.getAll(this.props);
-        if (!data) return <SLoad />;
-        console.log(data);
+        // var data = Parent.Actions.getAll(this.props);
+        // if (!data) return <SLoad />;
+        // console.log(data);
         return (
             this.getTipoPago()
         );

@@ -29,6 +29,29 @@ export default class Actions {
         if (!data) return null;
         return data[key];
     }
+
+    static getDetalle = (key,props) => {
+        var reducer = Actions._getReducer(props);
+        var data = reducer.dataDetalle[key];
+        if (!data) {
+            if (reducer.estado == "cargando") return null;
+            SSocket.send({
+                component: Parent.component,
+                version: Parent.version,
+                type: "getDetalle",
+                estado: "cargando",
+                key_pedido: key,
+                key_usuario: props.state.usuarioReducer.usuarioLog.key,
+            })
+            return null;
+        }
+
+        console.log("romoe ",JSON.stringify(data));
+        console.log("romoe ",data);
+        return data;
+    }
+
+
     static getVendidos = ({ key_pack, fecha }, props) => {
         var data = Actions.getAll(props);
         if (!data) return null;
@@ -38,15 +61,18 @@ export default class Actions {
         return cantidad;
     }
 
-    static registro = (data, props) => {
-        SSocket.send({
+    static registro = (data,key_pedido, props) => {
+        var sendT = {
             component: Parent.component,
             version: Parent.version,
+            key_pedido:key_pedido,
             type: "registro",
             estado: "cargando",
             key_usuario: props.state.usuarioReducer.usuarioLog.key,
             data: data
-        })
+        }
+        console.log("alvaro ",sendT);
+        SSocket.send(sendT)
     }
     static editar = (data, props) => {
         SSocket.send({

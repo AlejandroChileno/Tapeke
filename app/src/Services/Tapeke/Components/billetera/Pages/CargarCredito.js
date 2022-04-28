@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { SHr, SNavigation, SPage, SText, SView, STheme, SLoad, SButtom, SIcon, SWebView, SImage, SInput } from 'servisofts-component';
 import { WebView } from 'react-native';
 import PButtom from '../../../../../Components/PButtom';
-import TipoPago from '../Components/TipoPago';
+// import TipoPago from '../Components/TipoPago';
 import Parent from '..'
 import billetera from '..';
+import TipoPago from '../../../../Multipagos/Components/payment_type/Components/TipoPago';
+// import TipoPago from '../../../../Multipagos/Components/payment_type/Components/TipoPago';
 
 // backgroundColor={this.state.envio != 0 ? STheme.color.primary : "transparent"}
 class CargarCredito extends Component {
@@ -76,9 +78,15 @@ class CargarCredito extends Component {
                 <SPage title={'Cargar crédito'}>
                     <SView col={"xs-12"} row center border={'red'} >
                         {this.getHeaderCredito()}
-                        <TipoPago callback={(resp) => {
-                            this.setState({ tipoPagoSeleccionado: resp.tipopago });
-                        }} />
+                        <SHr height={18} />
+
+                        <SView col={"xs-11 md-5 lg-3"} center style={{ backgroundColor: STheme.color.white }}>
+                            <TipoPago callback={(resp) => {
+                                this.setState({ tipoPagoSeleccionado: resp.tipopago });
+                            }} />
+                        </SView>
+                        <SHr height={18} />
+
                         {this.getBoton()}
                     </SView>
                 </SPage>

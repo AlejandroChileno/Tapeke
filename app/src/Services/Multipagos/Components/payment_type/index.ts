@@ -8,7 +8,7 @@ import Reducer from "./Reducer";
 import Lista from "./Pages/Lista";
 import Registro from "./Pages/Registro";
 import TipoPago from "./Components/TipoPago";
-
+ 
 
 //alvaro
 export default {
