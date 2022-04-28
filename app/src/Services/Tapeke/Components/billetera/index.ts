@@ -4,9 +4,6 @@ const version = "1.0";
 // ---------------------------------------
 import Actions from "./Actions";
 import Reducer from "./Reducer";
-
-import TipoPago from "./Components/TipoPago";
-
 import Lista from "./Pages/Lista";
 import registro from "./Pages/registro";
 import Billetera from "./Pages/Billetera";
@@ -26,7 +23,5 @@ export default {
         ["admin/" + component]: Lista,
         ["admin/" + component + "/registro"]: registro,
     },
-    Components: {
-        TipoPago
-    }
+    Components: {}
 }

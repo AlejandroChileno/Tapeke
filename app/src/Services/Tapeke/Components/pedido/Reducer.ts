@@ -13,6 +13,7 @@ const initialState = () => {
     return {
         component: Parent.component,
         version: Parent.version,
+        dataDetalle:{}
     };
 }
 export default (state: any, action: DataProps) => {
@@ -34,12 +35,17 @@ const TypesSwitch = (state: any, action: DataProps) => {
         case "registro": return registro(state, action);
         case "editar": return editar(state, action);
         case "getById": return getById(state, action);
+        case "getDetalle": return getDetalle(state, action);
     }
 }
 
 const getAll = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
     state.data = action.data;
+}
+const getDetalle = (state: any, action: DataProps) => {
+    if (action.estado != "exito") return;
+    state.dataDetalle[action.data.key] = action.data;
 }
 const registro = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
