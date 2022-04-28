@@ -8,6 +8,8 @@ import Reducer from "./Reducer";
 import Lista from "./Pages/Lista";
 import Registro from "./Pages/Registro";
 import TipoPago from "./Components/TipoPago";
+import TipoPago_QR from "./Components/TipoPago_QR";
+import TipoPago_TigoMoney from "./Components/TipoPago_TigoMoney";
  
 
 //alvaro
@@ -26,6 +28,8 @@ export default {
         [component + "/lista"]: Lista,
     } , 
     Components: {
-        TipoPago
+        TipoPago,
+        TipoPago_QR,
+        TipoPago_TigoMoney
     }
 }

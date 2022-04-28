@@ -65,7 +65,11 @@ import EstrellaOff, { ReactComponent as EstrellaOffW } from './estrellaOff.svg';
 import Medalla1, { ReactComponent as Medalla1W } from './medalla1.svg';
 import Medalla2, { ReactComponent as Medalla2W } from './medalla2.svg';
 import Medalla3, { ReactComponent as Medalla3W } from './medalla3.svg';
+import QrPedido, { ReactComponent as QrPedidoW } from './QrPedido.svg';
 
+
+
+ 
 const Assets = {
 	// alvaro
 	"Billetera": { Native: Billetera, Web: BilleteraW },
@@ -133,7 +137,8 @@ const Assets = {
 	"Medalla1": { Native: Medalla1, Web: Medalla1W },
 	"Medalla2": { Native: Medalla2, Web: Medalla2W },
 	"Medalla3": { Native: Medalla3, Web: Medalla3W },
-
+	"QrPedido": { Native: QrPedido, Web: QrPedidoW },
+	 
 }
 
 export default Assets;

@@ -1,14 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SHr, SPage, SText, SView, STheme, SIcon, SNavigation} from 'servisofts-component';
+import { SHr, SPage, SText, SView, STheme, SIcon, SNavigation } from 'servisofts-component';
 import PButtom from '../../../../../Components/PButtom2';
+import TipoPago_QR from '../../../../Multipagos/Components/payment_type/Components/TipoPago_QR';
+import TipoPago_TigoMoney from '../../../../Multipagos/Components/payment_type/Components/TipoPago_TigoMoney';
 
 class MensajeSolicitud extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
+        this.key_tipoPago = SNavigation.getParam('key_tipoPago');
+        // this.key_tipoPago = "QR";
+    }
+
+    mostrarContenido() {
+
+        switch (this.key_tipoPago) {
+            case "QR": return <TipoPago_QR />;
+            case "TigoMoney": return <TipoPago_TigoMoney />;
+            default: return <TipoPago_QR />;
+        }
 
     }
+
 
     render() {
 
@@ -24,9 +38,10 @@ class MensajeSolicitud extends React.Component {
                             </SView>
                         </SView>
 
-                        <SView col={"xs-11"} row center>
-                            <SIcon name={"MensajeSolicitud"} height={290} />
-
+                        <SView col={"xs-11"} center  >
+                            <SHr height={20} />
+                            {this.mostrarContenido()}
+                            <SHr height={20} />
                         </SView>
 
                         <SView col={"xs-12"} row center   >
@@ -34,15 +49,8 @@ class MensajeSolicitud extends React.Component {
                                 <SText fontSize={18} color='white' bold center>¡Recuerda usar tapaboca para recoger tu pedido!</SText>
                             </SView>
                             <SHr height={20} />
-                            <SView col={"xs-12"} border={'transparent'}  center>
-                                <PButtom 
-                                    props={{
-                                        type: "outline"
-                                    }}
-                                    onPress={() => {
-                                        SNavigation.navigate("/")
-                                    }}
-                                >Ir a Inicio</PButtom>
+                            <SView col={"xs-12"} border={'transparent'} center>
+                                <PButtom props={{ type: "outline" }} onPress={() => { SNavigation.navigate("/") }} >Ir a Inicio</PButtom>
                             </SView>
                         </SView>
 

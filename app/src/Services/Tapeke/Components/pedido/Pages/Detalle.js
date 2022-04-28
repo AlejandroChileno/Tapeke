@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient, SForm, SNavigation, SLoad, SMath, SUuid } from 'servisofts-component';
+import { SForm, SGradient, SHr, SIcon, SImage, SLoad, SMath, SNavigation, SPage, SText, STheme, SUuid, SView } from 'servisofts-component';
+import SSocket from 'servisofts-socket';
 import PButtom from '../../../../../Components/PButtom';
+import costo_envio from '../../costo_envio';
 import restaurante from '../../restaurante';
 import Parent from '../index';
-import costo_envio from '../../costo_envio';
-import SSocket, { setProps } from 'servisofts-socket'
 
 
 class Detalle extends React.Component {
@@ -26,7 +26,7 @@ class Detalle extends React.Component {
     }
 
     componentDidMount() {
-     
+
     }
     getCostoEnvio() {
         var data_costos = costo_envio.Actions.getAll(this.props);
@@ -168,7 +168,7 @@ class Detalle extends React.Component {
 
         ).then((resp) => {
             this.state.key_pedido = SUuid();
-            SNavigation.navigate(Parent.component + "/confirmar", { keyPedido: resp.data.key})
+            SNavigation.navigate(Parent.component + "/confirmar", { keyPedido: resp.data.key })
             // console.log("SPromise ", resp);
         }).catch((err) => {
             //  SNavigation.navigate(Parent.component + "/confirmar", { keyPedido: this.state.key_pedido })
@@ -193,82 +193,72 @@ class Detalle extends React.Component {
                         <SView col={"xs-11"} row center>
                             <SView col={"xs-12"}>
                                 <SHr height={15} />
-                                <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Detalle pedido  {this.state.delivery} {this.auxRestaurante.pack.key}      </SText>
+                                <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Detalle pedido</SText>
                                 <SHr height={15} />
                             </SView>
-                            <SView col={"xs-12"} height={90} row center>
-
-                                <SView center width={85} backgroundColor={"#9B060C"} height={85} style={{ borderRadius: 8, overflow: 'hidden', }}>
-
-
+                            <SView col={"xs-12"} height={100} row center backgroundColor={"transparent"} >
+                                <SView center width={85} backgroundColor={"#9B060C"} height={85} border={'transparent'} style={{ borderRadius: 8, overflow: 'hidden', }}>
                                     <SImage src={`${SSocket.api.root}restaurante/${this.key_restaurante}`} style={{
                                         width: "100%",
-                                        // height: 216,
                                         position: "relative",
                                         resizeMode: "cover"
                                     }} />
                                     <SGradient colors={["#00000045", "#00000045",]} />
                                 </SView>
-
-                                <SView row flex height={85} border={'transparent'} >
-
+                                
+                                <SView row flex height={100} border={'transparent'} >
                                     <SView col={"xs-12"} row >
-                                        <SView col={"xs-12"} >
+                                        <SView col={"xs-12"} border={'transparent'}>
                                             <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >{this.auxRestaurante?.nombre}</SText>
                                         </SView>
-                                        <SHr height={15} />
-                                        <SView col={"xs-5.5"} style={{ justifyContent: 'flex-start', }}>
+                                        <SHr height={5} />
+                                        <SView col={"xs-5.5"} style={{ justifyContent: 'flex-start', }} border={'transparent'} >
                                             <SText fontSize={14} font={"Roboto"} color={STheme.color.primary} fontWeight> Precio</SText>
                                             <SHr height={5} />
                                             <SText fontSize={20} font={"Roboto"} style={{ fontWeight: "bold" }}>Bs. {SMath.formatMoney(this.auxRestaurante.pack?.precio ?? 0)}</SText>
                                         </SView>
+                                        
+                                        <SView col={"xs-6.5"} center row border={'transparent'}  >
 
-
-
-
-
-
-                                        <SView col={"xs-6.5"} center row   >
                                             <SView col={"xs-12"} center>
                                                 <SView width={114} height={26} center style={{ borderRadius: 8, backgroundColor: STheme.color.primary }}>
                                                     <SText fontSize={12} font={"Roboto"} color={STheme.color.secondary} >  {this.auxRestaurante.pack?.cantidad ?? 0} disponible(s)</SText>
                                                 </SView>
                                             </SView>
-                                            <SHr height={10} />
-                                            <SView width={34} border={'transparent'} onPress={() => {
-                                            }}>
+
+                                            {/* <SHr height={5} /> */}
+                                            <SView width={34} center border={'transparent'}>
                                                 <SView width={34} height={34} center style={{ backgroundColor: "#FFE0CF", borderRadius: 17 }}
                                                     onPress={() => {
                                                         if (this.state.cantidad <= 1) return;
                                                         this.setState({ cantidad: this.state.cantidad - 1 });
-                                                    }}
-                                                >
+                                                    }}>
                                                     <SText height={50} fontSize={32} color={STheme.color.primary}>-</SText>
                                                 </SView>
                                             </SView>
-                                            <SView flex row center >
-                                                {/* {this.getForm()} */}
-                                                <SText fontSize={35} color={STheme.color.text} center > {this.state.cantidad}</SText>
+                                            <SView width={15} />
+
+                                            <SView row center >
+                                                <SText fontSize={35} color={STheme.color.text} center >{this.state.cantidad}</SText>
                                             </SView>
-                                            <SView width={34} center border={'transparent'} onPress={() => {
-                                            }}>
+                                            <SView width={15} />
+
+                                            <SView width={34} center border={'transparent'} >
                                                 <SView width={34} height={34} center style={{ backgroundColor: STheme.color.primary, borderRadius: 17 }}
                                                     onPress={() => {
                                                         if (this.state.cantidad >= this.auxRestaurante.pack?.cantidad) return;
                                                         this.setState({ cantidad: this.state.cantidad + 1 });
-                                                    }}
-                                                >
-                                                    <SText height={50} fontSize={32} color={STheme.color.white}   >+</SText>
+                                                    }}>
+                                                    <SText height={50} fontSize={32} color={STheme.color.white}>+</SText>
                                                 </SView>
                                             </SView>
                                         </SView>
                                     </SView>
-                                    <SHr height={10} />
                                 </SView>
                             </SView>
 
                             <SHr height={15} />
-                            <SView col={"xs-12"} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray }}></SView>
+                            <SView col={"xs-12"} style={{ borderBottomWidth: 1, borderColor: "blue" }}></SView>
                             <SHr height={18} />
                         </SView>
                     </SView>
@@ -310,7 +300,6 @@ class Detalle extends React.Component {
                     <SHr height={40} />
                     <PButtom fontSize={20} onPress={() => {
                         this.ejecutar();
-
                         // SNavigation.navigate(Parent.component + "/confirmar", { key: this.key_restaurante, cantidad: this.state.cantidad, envio: this.state.envio, })
                     }}>REALIZAR PEDIDO</PButtom>
                     <SHr height={40} />

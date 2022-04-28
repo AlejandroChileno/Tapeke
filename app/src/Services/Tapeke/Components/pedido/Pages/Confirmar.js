@@ -16,22 +16,11 @@ class Confirmar extends React.Component {
         this.keyPedido = SNavigation.getParam('keyPedido');
     }
 
-    ejecutarPromise() {
-        SSocket.sendPromise(
-            {
-                "component": "pedido",
-                "type": "select_pay_method",
-                "key_pedido": this.keyPedido,
-                "pay_method": this.state.tipoPagoSeleccionado,
-            }
-
-        ).then((resp) => {
-            alert("exito")
-            console.log("SPromise ", resp);
-        }).catch((err) => {
-            alert("negativo")
-            console.log("SPromiseerror ", err);
-        });
+    datosCliente() {
+        var usuario = this.props.state.usuarioReducer.usuarioLog;
+        console.log("cliente ", usuario["Nombres"] + " " + usuario["Apellidos"]);
+        console.log("Telefono ", usuario["Telefono"]);
+        console.log("Correo ", usuario["Correo"]);
     }
 
 
@@ -57,8 +46,8 @@ class Confirmar extends React.Component {
                     <SView col={"xs-6"} center>
                         <SView width={140} height={44} center backgroundColor={STheme.color.primary} style={{ borderRadius: 8 }}
                             onPress={() => {
-                                // usando promise
-                                // this.ejecutar();
+                                this.form.submit()
+                                SPopup.close("confirmar");  // cerrar el popup
 
                                 // sin usar promise
                                 // var dataOk = {}
@@ -76,7 +65,6 @@ class Confirmar extends React.Component {
                                 // // console.log(JSON.stringify(dataOk) + " aquiii")
                                 // Parent.Actions.registro(dataOk,this.state.key_pedido, this.props);
                                 // // console.log(this.props.state.direccion_usuarioReducer.miDireccion)
-                                // //SPopup.close("confirmar"); SNavigation.navigate("pedido/mensajeSolicitud") 
                             }}>
                             <SText fontSize={14} color={STheme.color.white} style={{ fontWeight: 600 }} >Sí, Confirmar</SText>
                         </SView>
@@ -88,38 +76,45 @@ class Confirmar extends React.Component {
     }
 
 
-    getFacturacion() {
-        this.data = {};
-        // if (this.key) {
-        //     this.data = Parent.Actions.getByKey(this.key, this.props);
-        //     if (!this.data) return <SLoad />
-        // } else {
-        //     this.data = {};
-        // }
+    getFormFacturacion() {
         return <SForm
             ref={(form) => { this.form = form; }}
             col={"xs-11 sm-9 md-7 lg-5 xl-4"}
             center
-            inputProps={{
-                customStyle: "kolping"
-            }}
+            inputProps={{ customStyle: "kolping" }}
             inputs={{
                 nit: { label: "Nit" },
                 business_name: { label: "Razon social" },
             }}
-
-            onSubmitName={"Guardar"}
             onSubmit={(values) => {
                 var usuario = this.props.state.usuarioReducer.usuarioLog;
+                SSocket.sendPromise(
+                    {
+                        "component": "pedido",
+                        "type": "select_pay_method",
+                        "key_pedido": this.keyPedido,
+                        "pay_method": this.state.tipoPagoSeleccionado,
+                        "client": {
+                            "name": usuario["Nombres"],
+                            "last_name": usuario["Apellidos"],
+                            "ci": usuario["ci"],
+                            "phone": usuario["Telefono"],
+                            "email": usuario["Correo"],
+                            "bussiness_name": values["business_name"],
+                            "nit": values["nit"]
+                        }
+                    }
+                ).then((resp) => {
+                    alert("exito")
+                    console.log("SPromise ", resp);
+                    SNavigation.navigate("pedido/mensajeSolicitud", { key_tipoPago: this.state.tipoPagoSeleccionado })
 
-
-                console.log("nit ", values["nit"]);
-                console.log("razon social ", values["business_name"]);
-                console.log("cliente ", usuario["Nombres"] + " " + usuario["Apellidos"]);
-                console.log("Telefono ", usuario["Telefono"]);
-                console.log("Correo ", usuario["Correo"]);
-               
-                 // Parent.Actions.registro(values, this.props);
+                }).catch((err) => {
+                    alert("negativo")
+                    console.log("SPromiseerror ", err);
+                    SNavigation.navigate("pedido/mensajeSolicitud", { key_tipoPago: this.state.tipoPagoSeleccionado })
+                });
+                // Parent.Actions.registro(values, this.props);
             }}
         />
     }
@@ -128,20 +123,6 @@ class Confirmar extends React.Component {
     render() {
         this.auxPedido = Parent.Actions.getDetalle(this.keyPedido, this.props)
         if (!this.auxPedido) return <SLoad />
-        // var reducer = this.props.state[Parent.component + "Reducer"];
-        // if (reducer.type == "registro") {
-        //     if (reducer.estado == "exito") {
-        //         reducer.estado = "";
-        //         this.key = reducer.lastRegister?.key;
-        //         SPopup.close("confirmar");
-        //         SNavigation.navigate("pedido/mensajeSolicitud", { key: this.key })
-
-        //     } else if (reducer.estado == "error") {
-        //         reducer.estado = ""
-        //         SPopup.close("confirmar");
-        //         SPopup.alert(reducer.error)
-        //     }
-        // }
         return (
             <SPage center>
                 <SView col={"xs-12"} row backgroundColor={STheme.color.card} center>
@@ -150,7 +131,7 @@ class Confirmar extends React.Component {
                         <SView col={"xs-11"} row center>
                             <SView col={"xs-12"}>
                                 <SHr height={15} />
-                                <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Detalle pedido {this.state.tipoPagoSeleccionado}</SText>
+                                <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Detalle pedido</SText>
                                 <SHr height={15} />
                             </SView>
                             <SView center col={"xs-2"} backgroundColor={"#9B060C"} height={85} style={{ borderRadius: 8, overflow: 'hidden', }}>
@@ -196,7 +177,6 @@ class Confirmar extends React.Component {
                         </SView>
                     </SView>
                     <SHr height={18} />
-
                     <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} row center style={{ backgroundColor: STheme.color.white }}>
                         <SView col={"xs-11"} row center>
                             <SHr height={15} />
@@ -230,15 +210,11 @@ class Confirmar extends React.Component {
                         <TipoPago callback={(resp) => { this.setState({ tipoPagoSeleccionado: resp.tipopago }); }} />
                     </SView>
                     <SHr height={18} />
-
-
-                    {this.getFacturacion()}
-
-
+                    {this.getFormFacturacion()}
                     <SHr height={40} />
                     <PButtom fontSize={20} onPress={() => {
-                        this.ejecutarPromise();
-                        // SPopup.open({ content: this.popupConfirmacion(), key: "confirmar" });
+                        // this.form.submit()
+                        SPopup.open({ content: this.popupConfirmacion(), key: "confirmar" });
                     }}>CONFIRMAR</PButtom>
                     <SHr height={40} />
                 </SView>

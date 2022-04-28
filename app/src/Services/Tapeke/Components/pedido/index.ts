@@ -22,6 +22,6 @@ export default {
         [component + "/confirmar"]: Confirmar,
         [component + "/mapa"]: Mapa,
         [component + "/mensajeSolicitud"]: MensajeSolicitud,
-        
+
     },
 }
