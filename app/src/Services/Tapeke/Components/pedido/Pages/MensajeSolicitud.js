@@ -59,7 +59,7 @@ class MensajeSolicitud extends React.Component {
                                 <PButtom props={{ type: "outline" }} onPress={() => { ImgShared.compartir(this.key_qr); }} >compartir</PButtom>
 
                                 <SHr height={20} />
-                                <PButtom props={{ type: "outline" }} onPress={() => {   }} >galeria</PButtom>
+                                <PButtom props={{ type: "outline" }} onPress={() => { ImgSaveGallery.guardar(this.key_qr); }} >galeria</PButtom>
                                 <SHr height={20} />
 
                             </SView>

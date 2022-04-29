@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { SMapView, SUuid, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient, SForm, SNavigation, SPopup, SLoad, SMath } from 'servisofts-component';
 import PButtom from '../../../../../Components/PButtom';
 import TipoPago from '../../../../Multipagos/Components/payment_type/Components/TipoPago';
-import restaurante from '../../restaurante';
 import Parent from '../index';
 import SSocket, { setProps } from 'servisofts-socket'
 

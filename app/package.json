@@ -11,6 +11,7 @@
   "author": "servisofts",
   "license": "ISC",
   "dependencies": {
+    "@react-native-community/cameraroll": "^4.1.2",
     "@react-native-community/geolocation": "^2.0.2",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-native-firebase/app": "^14.8.0",
@@ -28,6 +29,7 @@
     "react-native": "^0.64.2",
     "react-native-document-picker": "^7.1.0",
     "react-native-fbsdk": "^3.0.0",
+    "react-native-fetch-blob": "^0.10.8",
     "react-native-file-viewer": "^2.1.4",
     "react-native-fs": "^2.18.0",
     "react-native-gesture-handler": "^1.10.3",
@@ -50,8 +52,7 @@
     "servisofts-socket": "2.3.1",
     "typescript": "^4.4.3",
     "xlsx-color": "^0.14.30"
-    
-   },
+  },
   "resolutions": {
     "react-error-overlay": "6.0.9"
   },
