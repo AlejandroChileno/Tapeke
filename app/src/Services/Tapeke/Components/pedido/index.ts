@@ -18,6 +18,7 @@ export default {
         [component + 'Reducer']: Reducer
     },
     Pages: {
+
         [component + "/detalle"]: Detalle,
         [component + "/confirmar"]: Confirmar,
         [component + "/mapa"]: Mapa,
