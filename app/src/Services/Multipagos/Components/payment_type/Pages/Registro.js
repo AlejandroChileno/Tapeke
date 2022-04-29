@@ -11,7 +11,7 @@ class Registro extends Component {
   render() {
     return (
       <View>
-        <Text>Registro payment_type</Text>
+        {/* <Text>Registro payment_type</Text> */}
       </View>
     )
   }
