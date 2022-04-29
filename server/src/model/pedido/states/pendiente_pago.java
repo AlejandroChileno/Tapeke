@@ -10,6 +10,7 @@ import Servisofts.SPGConect;
 import SocketCliente.SocketCliente;
 import model.pedido.Pedido;
 import model.pedido.State;
+import model.pedido.StateFactory.states;
 import model.pedido.exception.StateException;
 
 public class pendiente_pago extends State {
@@ -28,6 +29,9 @@ public class pendiente_pago extends State {
             throw new StateException("client::Object not found");
         }
         JSONObject client = obj.getJSONObject("client");
+        if (client.isNull("ci")) {
+            throw new StateException("client/ci::String not found");
+        }
         if (client.isNull("name")) {
             throw new StateException("client/name::String not found");
         }
@@ -100,6 +104,16 @@ public class pendiente_pago extends State {
         if (response.has("error")) {
             throw new StateException(response.getString("error"));
         }
+        JSONObject itemToEdit = new JSONObject();
+        itemToEdit.put("key", this.pedido.getKey());
+        itemToEdit.put("payment_type", pay_method);
+        try {
+            SPGConect.editObject("pedido", itemToEdit);
+        } catch (SQLException e) {
+            throw new StateException("Error al editar el pedido");
+        }
+        this.pedido.getData().put("payment_type", itemToEdit.getString("payment_type"));
+        this.pedido.changeState(states.pago_en_proceso, "select_pay_method");
         obj.put("data", response.getJSONObject("data"));
         obj.put("estado", "exito");
 

@@ -46,7 +46,7 @@
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0",
     "servisofts-component": "2.6.6",
-    "servisofts-socket": "2.2.9",
+    "servisofts-socket": "2.3.1",
     "typescript": "^4.4.3",
     "xlsx-color": "^0.14.30"
   },

@@ -97,7 +97,7 @@ class Confirmar extends React.Component {
                         "client": {
                             "name": usuario["Nombres"],
                             "last_name": usuario["Apellidos"],
-                            "ci": usuario["ci"],
+                            "ci": usuario["ci"]??" ",
                             "phone": usuario["Telefono"],
                             "email": usuario["Correo"],
                             "bussiness_name": values["business_name"],
@@ -110,9 +110,8 @@ class Confirmar extends React.Component {
                     SNavigation.navigate("pedido/mensajeSolicitud", { key_tipoPago: this.state.tipoPagoSeleccionado })
 
                 }).catch((err) => {
-                    alert("negativo")
-                    console.log("SPromiseerror ", err);
-                    SNavigation.navigate("pedido/mensajeSolicitud", { key_tipoPago: this.state.tipoPagoSeleccionado })
+                    alert(err.error)
+                    // SNavigation.navigate("pedido/mensajeSolicitud", { key_tipoPago: this.state.tipoPagoSeleccionado })
                 });
                 // Parent.Actions.registro(values, this.props);
             }}
