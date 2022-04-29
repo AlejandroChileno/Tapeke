@@ -11,6 +11,7 @@ import costo_envio from './Components/costo_envio';
 import otros from './Components/otros';
 import filtros from './Components/filtros';
 import novedades from './Components/novedades';
+import pago_tarjeta from './Components/pago_tarjeta';
 const ServiceName = "tapeke";
 
 const Pages: SPageListProps = {
@@ -25,7 +26,9 @@ const Pages: SPageListProps = {
     ...costo_envio.Pages,
     ...otros.Pages,
     ...filtros.Pages,
-    ...novedades.Pages
+    ...novedades.Pages,
+    ...pago_tarjeta.Pages
+
 
 
 }
@@ -41,6 +44,7 @@ const Reducers = {
     ...costo_envio.Reducers,
     ...filtros.Reducers,
     ...novedades.Reducers,
+    ...pago_tarjeta.Reducers,
 }
 
 export default {

@@ -67,6 +67,13 @@ import Medalla2, { ReactComponent as Medalla2W } from './medalla2.svg';
 import Medalla3, { ReactComponent as Medalla3W } from './medalla3.svg';
 import QrPedido, { ReactComponent as QrPedidoW } from './QrPedido.svg';
 
+import Alert, { ReactComponent as AlertW } from './alert.svg';
+import TarjetaSeguridad, { ReactComponent as TarjetaSeguridadW } from './tarjetaSeguridad.svg';
+import EditT, { ReactComponent as EditTW } from './editT.svg';
+import DeleteT, { ReactComponent as DeleteTW } from './deleteT.svg';
+import TarjetaAdd, { ReactComponent as TarjetaAddW } from './tarjetaAdd.svg';
+
+
 
 
  
@@ -138,6 +145,12 @@ const Assets = {
 	"Medalla2": { Native: Medalla2, Web: Medalla2W },
 	"Medalla3": { Native: Medalla3, Web: Medalla3W },
 	"QrPedido": { Native: QrPedido, Web: QrPedidoW },
+
+	"Alert2": { Native: Alert, Web: AlertW },
+	"TarjetaSeguridad": { Native: TarjetaSeguridad, Web: TarjetaSeguridadW },
+	"EditT": { Native: EditT, Web: EditTW },
+	"DeleteT": { Native: DeleteT, Web: DeleteTW },
+	"TarjetaAdd": { Native: TarjetaAdd, Web: TarjetaAddW },
 	 
 }
 
