@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SForm, SGradient, SHr, SIcon, SImage, SLoad, SMath, SNavigation, SPage, SText, STheme, SUuid, SView } from 'servisofts-component';
+import { SForm, SGradient, SHr, SIcon, SImage, SLoad, SMath, SNavigation, SPage, SText, STheme, SUuid, SView,SStorage } from 'servisofts-component';
 import SSocket from 'servisofts-socket';
 import PButtom from '../../../../../Components/PButtom';
 import costo_envio from '../../costo_envio';
@@ -23,6 +23,10 @@ class Detalle extends React.Component {
         };
         this.key_restaurante = SNavigation.getParam('key');
         this.auxRestaurante = null;
+
+        // SStorage.getItem("miData_log", "nada");
+      
+    
     }
 
     componentDidMount() {
@@ -145,7 +149,7 @@ class Detalle extends React.Component {
         this.aux = restaurante.Actions.getByKeyDetalle(this.key_restaurante, this.props)
         if (!this.aux) return alert("No se encontró el pack");
 
-
+ 
 
         SSocket.sendPromise(
             {
@@ -168,6 +172,10 @@ class Detalle extends React.Component {
 
         ).then((resp) => {
             this.state.key_pedido = SUuid();
+
+            // SStorage.setItem("miData_log", JSON.stringify(resp));
+            SStorage.setItem("pedido_en_curso", JSON.stringify(resp.data));
+
             SNavigation.navigate(Parent.component + "/confirmar", { keyPedido: resp.data.key })
             // console.log("SPromise ", resp);
         }).catch((err) => {

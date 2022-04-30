@@ -6,6 +6,7 @@ import SSocket from 'servisofts-socket';
 import TipoPago from '../../../../Multipagos/Components/payment_type/Components/TipoPago';
 import Parent from '../index';
 import PButtom from '../../../../../Components/PButtom';
+import { SStorage } from 'servisofts-component'
 
 class Confirmar extends React.Component {
     constructor(props) {
@@ -14,6 +15,13 @@ class Confirmar extends React.Component {
         this.keyPedido = SNavigation.getParam('keyPedido');
     }
 
+    componentDidMount(){
+        SStorage.getItem("pedido_en_curso",(val)=>{
+            if(!val) SNavigation.goBack();
+            this.setState({pedido_en_curso:JSON.parse(val)})
+            console.log(this.state.pedido_en_curso)
+        })
+    }
     datosCliente() {
         var usuario = this.props.state.usuarioReducer.usuarioLog;
         console.log("cliente ", usuario["Nombres"] + " " + usuario["Apellidos"]);
@@ -109,61 +117,6 @@ class Confirmar extends React.Component {
         </>
     }
 
-<<<<<<< Updated upstream
-	getViewTipoPago() {
-		this.auxPedido = Parent.Actions.getDetalle(this.keyPedido, this.props)
-		if (!this.auxPedido) return <SLoad />
-		return <>
-			<SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center style={{ backgroundColor: STheme.color.white }}>
-				<TipoPago callback={(resp) => { this.setState({ tipoPagoSeleccionado: resp.tipopago }); }} />
-			</SView>
-
-		</>
-	}
-
-	getViewFactura() {
-		return <>
-			<SForm
-				ref={(form) => { this.form = form; }}
-				col={"xs-11 sm-9 md-7 lg-5 xl-4"}
-				center
-				inputProps={{ customStyle: "kolping" }}
-				inputs={{
-					nit: { label: "Nit" },
-					business_name: { label: "Razon social" },
-				}}
-				onSubmit={(values) => {
-					var usuario = this.props.state.usuarioReducer.usuarioLog;
-					SSocket.sendPromise(
-						{
-							"component": "pedido",
-							"type": "select_pay_method",
-							"key_pedido": this.keyPedido,
-							"pay_method": this.state.tipoPagoSeleccionado,
-							"client": {
-								"name": usuario["Nombres"],
-								"last_name": usuario["Apellidos"],
-								"ci": usuario["ci"] ?? " ",
-								"phone": usuario["Telefono"],
-								"email": usuario["Correo"],
-								"bussiness_name": values["business_name"],
-								"nit": values["nit"]
-							}
-						}
-					).then((resp) => {
-						SNavigation.navigate("pedido/mensajeSolicitud", { key_tipoPago: this.state.tipoPagoSeleccionado, key_qr: resp.data.qr });
-						alert("exito ", resp);
-						SPopup.close("confirmar");
-
-					}).catch((err) => {
-						alert("negativo ", err.error)
-						SPopup.close("confirmar");
-					});
- 				}}
-			/>
-		</>
-	}
-=======
     getViewTipoPago() {
         return <>
             <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center style={{ backgroundColor: STheme.color.white }}>
@@ -210,7 +163,6 @@ class Confirmar extends React.Component {
                 });
             }} />
     }
->>>>>>> Stashed changes
 
     popupConfirmacion() {
         return <>
@@ -260,7 +212,14 @@ class Confirmar extends React.Component {
     }
 
 
-    render() {
+    _render() {
+
+        // this.props.dispatch({ type: "miData_log" });
+        // this.aux= SStorage.getItem("miData_log")
+        // var aux = this.props.state.usuarioReducer.usuarioLog;
+       //  var aewrwerux = this.props.state.PedidoReducer.miInformationLog;
+
+  
         this.auxPedido = Parent.Actions.getDetalle(this.keyPedido, this.props)
         if (!this.auxPedido) return <SLoad />
         console.log(this.state.tipoPagoSeleccionado + " AAAA")
@@ -272,7 +231,7 @@ class Confirmar extends React.Component {
                         <SView col={"xs-11"} row center>
                             <SView col={"xs-12"}>
                                 <SHr height={15} />
-                                <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Detalle pedido</SText>
+                                <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Detalle pedido {this.state.midato}   </SText>
                                 <SHr height={15} />
                             </SView>
                             <SView center col={"xs-2"} backgroundColor={"#9B060C"} height={85} style={{ borderRadius: 8, overflow: 'hidden', }}>
@@ -366,39 +325,18 @@ class Confirmar extends React.Component {
             </SPage >
         );
     }
-<<<<<<< Updated upstream
-	render() {
-		// this.auxPedido = Parent.Actions.getDetalle(this.keyPedido, this.props)
-		// if (!this.auxPedido) return <SLoad />
-		return (
-			<SPage center>
-				<SView col={"xs-12"} row backgroundColor={STheme.color.card} center>
-					<SHr height={18} />
-					{this.getViewDetalle()}
-					<SHr height={18} />
-					{this.getViewTipoPago()}
-					<SHr height={18} />
-					{this.getViewFactura()}
-					<SHr height={40} />
-					<PButtom fontSize={20} onPress={() => {
-						// this.form.submit();
-						if (this.state.tipoPagoSeleccionado == null) {
-							alert("Seleccione un tipo de pago");
-							return;
-						}
-						SPopup.open({ key: "confirmar", content: this.popupConfirmacion() });
-					}}>CONFIRMAR</PButtom>
-					<SHr height={40} />
-				</SView>
-			</SPage >
-		);
-	}
-=======
     render() {
+        // this.auxPedido = Parent.Actions.getDetalle(this.keyPedido, this.props)
+        // if (!this.auxPedido) return <SLoad />
+
+ 
+
         return (
             <SPage center>
                 <SView col={"xs-12"} row backgroundColor={STheme.color.card} center>
-                    <SHr height={18} />
+
+                    <SText>{this.state.pedido_en_curso?.key}</SText>
+                    <SHr height={18} /> 
                     {this.getViewDetalle()}
                     <SHr height={18} />
                     {this.getViewTipoPago()}
@@ -406,6 +344,12 @@ class Confirmar extends React.Component {
                     {this.getViewFactura()}
                     <SHr height={40} />
                     <PButtom fontSize={20} onPress={() => {
+                        // this.form.submit();
+                        console.log("aqui " + this.state.tipoPagoSeleccionado);
+                        if (this.state.tipoPagoSeleccionado == null) {
+                            alert("Seleccione un tipo de pago");
+                            return;
+                        }
                         SPopup.open({ key: "confirmar", content: this.popupConfirmacion() });
                     }}>CONFIRMAR</PButtom>
                     <SHr height={40} />
@@ -413,7 +357,6 @@ class Confirmar extends React.Component {
             </SPage >
         );
     }
->>>>>>> Stashed changes
 }
 const initStates = (state) => {
     return { state }
