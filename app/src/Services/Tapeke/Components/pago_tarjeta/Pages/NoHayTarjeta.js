@@ -46,7 +46,7 @@ class NoHayTarjeta extends Component {
                         </SView>
                         <SView col={"xs-12"} row center   >
                             <SView col={"xs-12"} border={'transparent'} center>
-                                <PButtom3 secondary props={{ type: "outline" }} onPress={() => { }} >AÑADIR TARJETA</PButtom3>
+                                <PButtom3 secondary props={{ type: "outline" }} onPress={() => { SNavigation.navigate(Parent.component + "/registro") }} >AÑADIR TARJETA</PButtom3>
                                 <SHr height={20} />
                             </SView>
                             <SHr height={10} />
