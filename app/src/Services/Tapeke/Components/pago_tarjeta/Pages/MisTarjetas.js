@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput, SPopup, SImage, STheme, SIcon } from 'servisofts-component';
 import Parent from '..'
 import SSocket from 'servisofts-socket';
-import PButtom from '../../../../../Components/PButtom';
 
 class MisTarjetas extends Component {
     constructor(props) {
@@ -14,88 +13,58 @@ class MisTarjetas extends Component {
     }
 
     MisTarjetas() {
-        return (<>
-            <SView col={"xs-12"} row center style={{ borderRadius: 8, borderWidth: 1, borderColor: STheme.color.gray }} backgroundColor={STheme.color.card} 
-                onPress={() => { alert("1") }}>
-                <SHr height={10} />
-                <SView col={"xs-11"} row >
-                    <SView col={"xs-2"}  height={30}>
-                        <SImage src={require('../../../../../Assets/img/tarjeta1.png')}  style={{ width: 40 }}/>
-                    </SView>
-                    <SView col={"xs-7 sm-7 md-8 lg-8 xl-8"} >
-                        <SHr height={10} />
-                        <SText fontSize={16} font={"Roboto"} style={{ fontWeight: "bold" }}>*** **** **** 7520</SText>
-                    </SView>
-                    <SView col={"xs-3 sm-3 md-2 lg-2 xl-2"} row >
-                        <SView style={{ borderRadius: 100, backgroundColor: STheme.color.success }} width={33} height={33} center flex
-                            onPress={() => { }}>
-                            <SIcon name="EditT" width="15"></SIcon>
+        var data = Parent.Actions.getAll(this.props);
+        if (!data) return <SLoad />
+
+        const key_usuario = this.props.state.usuarioReducer.usuarioLog.key;
+		var arr = Object.values(data).filter(x => x.key_usuario == key_usuario && x.estado == 1);
+		if (arr.length <= 0) {
+			SNavigation.navigate(Parent.component +"/registro")
+			return <SText>No hay direcciones</SText>
+		}
+
+        return Object.values(data).map((obj) => {
+            // console.log(this.props.state.usuarioReducer.usuarioLog.key + " //// "+obj.key_usuario )
+            // if((obj.estado != 1) || (this.props.state.usuarioReducer.usuarioLog.key != obj.key_usuario)) return null;
+           
+            // if((obj.estado != 1)) return null;
+           
+            var digitos = data[obj.key].numero_tarjeta.slice(-4);
+            return (<>
+                <SView col={"xs-12"} row center style={{ borderRadius: 8, borderWidth: 1, borderColor: STheme.color.gray }} backgroundColor={STheme.color.card}
+                    onPress={() => { alert("1") }}>
+                    <SHr height={10} />
+                    <SView col={"xs-11"} row >
+                        <SView col={"xs-2"} height={30}>
+                            <SImage src={require('../../../../../Assets/img/tarjeta1.png')} style={{ width: 40 }} />
                         </SView>
-                        <SView width={10}></SView>
-                        <SView style={{ borderRadius: 100, backgroundColor: STheme.color.error, }} width={33} height={33} center flex
-                            onPress={() => { alert("2") }}>
-                            <SIcon name="DeleteT" width="15"></SIcon>
+                        <SView col={"xs-7 sm-7 md-8 lg-8 xl-8"} >
+                            <SHr height={10} />
+                            <SText fontSize={16} font={"Roboto"} style={{ fontWeight: "bold" }}>*** **** **** {digitos}</SText>
+                        </SView>
+                        <SView col={"xs-3 sm-3 md-2 lg-2 xl-2"} row >
+                            <SView style={{ borderRadius: 100, backgroundColor: STheme.color.success }} width={33} height={33} center flex
+                                onPress={() => { SNavigation.navigate(Parent.component + "/registro", { key: data[obj.key].key }) }}>
+                                <SIcon name="EditT" width="15"></SIcon>
+                            </SView>
+                            <SView width={10}></SView>
+                            <SView style={{ borderRadius: 100, backgroundColor: STheme.color.error, }} width={33} height={33} center flex
+                                onPress={() => {
+                                    SPopup.confirm({ title: "Eliminar", message: "¿Esta seguro de eliminar?"+obj.key, onPress: () => { Parent.Actions.eliminar(obj, this.props)} }) 
+                                 }}>
+                                <SIcon name="DeleteT" width="15"></SIcon>
+                            </SView>
                         </SView>
                     </SView>
+                    <SHr height={10} />
                 </SView>
-                <SHr height={10} />
-            </SView>
-            <SHr height={7} />
-            <SView col={"xs-12"} row center style={{ borderRadius: 8, borderWidth: 1, borderColor: STheme.color.gray }} backgroundColor={STheme.color.card} 
-                onPress={() => { alert("1") }}>
-                <SHr height={10} />
-                <SView col={"xs-11"} row >
-                    <SView col={"xs-2"} height={30}>
-                        <SImage src={require('../../../../../Assets/img/tarjeta2.png')} style={{ width: 40 }} />
-                    </SView>
-                    <SView col={"xs-7 sm-7 md-8 lg-8 xl-8"} >
-                        <SHr height={10} />
-                        <SText fontSize={16} font={"Roboto"} style={{ fontWeight: "bold" }}>*** **** **** 8965</SText>
-                    </SView>
-                    <SView col={"xs-3 sm-3 md-2 lg-2 xl-2"} row >
-                        <SView style={{ borderRadius: 100, backgroundColor: STheme.color.success }} width={33} height={33} center flex
-                            onPress={() => { }}>
-                            <SIcon name="EditT" width="15"></SIcon>
-                        </SView>
-                        <SView width={10}></SView>
-                        <SView style={{ borderRadius: 100, backgroundColor: STheme.color.error, }} width={33} height={33} center flex
-                            onPress={() => { alert("2") }}>
-                            <SIcon name="DeleteT" width="15"></SIcon>
-                        </SView>
-                    </SView>
-                </SView>
-                <SHr height={10} />
-            </SView>
-            <SHr height={7} />
-            <SView col={"xs-12"} row center style={{ borderRadius: 8, borderWidth: 1, borderColor: STheme.color.gray }} backgroundColor={STheme.color.card} 
-                onPress={() => { alert("1") }}>
-                <SHr height={10} />
-                <SView col={"xs-11"} row >
-                    <SView col={"xs-2"} height={30}>
-                        <SImage src={require('../../../../../Assets/img/tarjeta1.png')} style={{ width: 40 }} />
-                    </SView>
-                    <SView col={"xs-7 sm-7 md-8 lg-8 xl-8"} >
-                        <SHr height={10} />
-                        <SText fontSize={16} font={"Roboto"} style={{ fontWeight: "bold" }}>*** **** **** 1256</SText>
-                    </SView>
-                    <SView col={"xs-3 sm-3 md-2 lg-2 xl-2"} row >
-                        <SView style={{ borderRadius: 100, backgroundColor: STheme.color.success }} width={33} height={33} center flex
-                            onPress={() => { }}>
-                            <SIcon name="EditT" width="15"></SIcon>
-                        </SView>
-                        <SView width={10}></SView>
-                        <SView style={{ borderRadius: 100, backgroundColor: STheme.color.error, }} width={33} height={33} center flex
-                            onPress={() => { alert("2") }}>
-                            <SIcon name="DeleteT" width="15"></SIcon>
-                        </SView>
-                    </SView>
-                </SView>
-                <SHr height={10} />
-            </SView>
-        </>)
+                <SHr height={7} />
+            </>)
+        });
     }
 
     render() {
+
         // var reducer = this.props.state[Parent.component + "Reducer"];
         // if (reducer.type == "registro" || reducer.type == "editar") {
         //     if (reducer.estado == "exito") {
@@ -106,6 +75,15 @@ class MisTarjetas extends Component {
         //         reducer.estado = "";
         //         SNavigation.goBack();
         //     }
+        // }
+
+        // var data = Parent.Actions.getAll(this.props);
+        // if (!data) return <SLoad />
+        // console.log(data.key_usuario+" OOOOO")
+
+        // if (this.props.state.usuarioReducer.usuarioLog.key != data.key_usuario) {
+        //     SNavigation.replace("direcciones")
+        //     return null;
         // }
 
         return (
@@ -143,10 +121,10 @@ class MisTarjetas extends Component {
                                 <SHr height={30} />
                                 {this.MisTarjetas()}
                                 <SHr height={30} />
-                                <SView col={"xs-12"}  style={{ alignItems: "flex-end" }} 
-                                onPress={() =>{SNavigation.navigate("pago_tarjeta/registro");}}>
+                                <SView col={"xs-12"} style={{ alignItems: "flex-end" }}
+                                    onPress={() => { SNavigation.navigate("pago_tarjeta/registro"); }}>
                                     <SView row>
-                                    <SIcon name={"TarjetaAdd"} width={25}></SIcon>
+                                        <SIcon name={"TarjetaAdd"} width={25}></SIcon>
                                         <SText color={STheme.color.primary}> Agregar una tarjeta </SText>
                                     </SView>
                                 </SView>
