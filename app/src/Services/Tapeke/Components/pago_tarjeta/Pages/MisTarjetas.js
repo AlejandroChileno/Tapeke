@@ -19,8 +19,8 @@ class MisTarjetas extends Component {
         const key_usuario = this.props.state.usuarioReducer.usuarioLog.key;
 		var arr = Object.values(data).filter(x => x.key_usuario == key_usuario && x.estado == 1);
 		if (arr.length <= 0) {
-			SNavigation.navigate(Parent.component +"/registro")
-			return <SText>No hay direcciones</SText>
+			SNavigation.navigate(Parent.component +"/pago_tarjeta")
+			// return <SText>No hay tarjetas registradas</SText>
 		}
 
         return Object.values(data).map((obj) => {
@@ -32,7 +32,7 @@ class MisTarjetas extends Component {
             var digitos = data[obj.key].numero_tarjeta.slice(-4);
             return (<>
                 <SView col={"xs-12"} row center style={{ borderRadius: 8, borderWidth: 1, borderColor: STheme.color.gray }} backgroundColor={STheme.color.card}
-                    onPress={() => { alert("1") }}>
+                    onPress={() => { alert(obj.key) }}>
                     <SHr height={10} />
                     <SView col={"xs-11"} row >
                         <SView col={"xs-2"} height={30}>
