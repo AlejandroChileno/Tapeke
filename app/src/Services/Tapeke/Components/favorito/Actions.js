@@ -1,5 +1,4 @@
 import SSocket from 'servisofts-socket';
-import Item from '../../../Kolping/Components/sucursal/Components/Item';
 import Parent from './index';
 
 export default class Actions {
@@ -28,17 +27,17 @@ export default class Actions {
         if (!data) return null;
         return data[key];
     }
-    static getByKeyUsuario = ( key_usuario, props) => {
+    static getByKeyUsuario = (key_usuario, props) => {
         var data = Actions.getAll(props);
         if (!data) return null;
-        var arr = Object.values(data).filter((itm)=>itm.key_usuario == key_usuario && itm.estado == 1)
+        var arr = Object.values(data).filter((itm) => itm.key_usuario == key_usuario && itm.estado == 1)
         return arr;
     }
     static getByKeyRestauranteAndKeyUsuario = (key_restaurante, key_usuario, props) => {
         var data = Actions.getAll(props);
         if (!data) return null;
-        var arr = Object.values(data).filter((itm)=>itm.key_restaurante == key_restaurante && itm.key_usuario == key_usuario && itm.estado == 1)
-        if(arr.length<=0) return "void";
+        var arr = Object.values(data).filter((itm) => itm.key_restaurante == key_restaurante && itm.key_usuario == key_usuario && itm.estado == 1)
+        if (arr.length <= 0) return "void";
         return arr[0];
     }
     static registro = (data, props) => {

@@ -154,7 +154,8 @@ class Confirmar extends React.Component {
                     }
                 ).then((resp) => {
                     SNavigation.navigate("pedido/mensajeSolicitud", { key_tipoPago: this.state.tipoPagoSeleccionado, key_qr: resp.data.qr });
-                    alert("exito ", resp);
+                    // alert("exito ", resp);
+                    // <SLoad/>
                     SPopup.close("confirmar");
                 }).catch((err) => {
                     SNavigation.navigate("pedido/mensajeSolicitud", { key_tipoPago: this.state.tipoPagoSeleccionado, key_qr: resp.data.qr });
