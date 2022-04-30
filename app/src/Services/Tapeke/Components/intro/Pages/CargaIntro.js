@@ -1,9 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { SHr, SPage, SText, SNavigation, SThread,SView, SIcon} from 'servisofts-component';
-// import Parent from '../index'
-// import Kolping from '../../../../../Components/Kolping';
-class CargaIntro extends React.Component {
+  class CargaIntro extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

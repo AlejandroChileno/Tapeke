@@ -1,17 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
-import { SDate, SImage, SNavigation, SPage, SView, SButtom, SText, SIcon, SHr,STheme } from 'servisofts-component';
+import { SButtom, SDate, SHr, SIcon, SImage, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
 import SSocket from 'servisofts-socket';
-// import CerrarSession from './CerrarSession';
-import Kolping from '../../../../../../Components/Kolping';
 
-// import AppParams from '../../Params';
-// import FilePreview from '../CarpetasPage/FilePreview';
-// import * as SImageImput from '.././../Component/SImageImput';
-// import moment from 'moment';
-// import SImage from '../../Component/SImage';
-// import CerrarSession from './CerrarSession';
 
 
 class Perfil extends Component {
@@ -123,11 +115,11 @@ class Perfil extends Component {
                     {this.getDatos()}
                     <SView height={50}></SView>
 
-                    <Kolping.KButtom primary onPress={() => {
+                    <SButtom primary onPress={() => {
                         SNavigation.navigate("editar", {
                             key: usuario.key,
                         })
-                    }}>EDITAR</Kolping.KButtom>
+                    }}>EDITAR</SButtom>
                     <SView height={30}></SView>
 
                 </SView>

@@ -129,7 +129,7 @@ class Confirmar extends React.Component {
             ref={(form) => { this.form = form; }}
             col={"xs-11 sm-9 md-7 lg-5 xl-4"}
             center
-            inputProps={{ customStyle: "kolping" }}
+            // inputProps={{ customStyle: "Calistenia" }}
             inputs={{
                 nit: { label: "Nit" },
                 business_name: { label: "Razon social" },

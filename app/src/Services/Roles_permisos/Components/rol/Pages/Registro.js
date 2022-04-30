@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SButtom, SForm, SHr, SPage, SText, SNavigation, SLoad,SView ,SIcon} from 'servisofts-component';
 import Parent from '../index'
-import Kolping from '../../../../../Components/Kolping';
-class Registro extends Component {
+ class Registro extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,9 +18,7 @@ class Registro extends Component {
         return <SForm
             ref={(form) => { this.form = form; }}
             col={"xs-11 sm-9 md-7 lg-5 xl-4"}
-            inputProps={{
-                customStyle: "kolping"
-            }}
+            // inputProps={{   customStyle: "Calistenia" }}
             inputs={{
                 descripcion: { label: "descripcion", isRequired: true, defaultValue: this.data["descripcion"], icon: <SIcon name={"InputUser"} width={40} height={30} /> },
             }}
@@ -43,13 +40,13 @@ class Registro extends Component {
                 <SView height={30}></SView>
                 {this.getContent()}
                 <SHr />
-                <Kolping.KButtom 
+                <SButtom 
                 style={{color: '#fff'}}
                     props={{
                         type: "outline"
                     }}
                     onPress={() => { this.form.submit() }}
-                >{(this.key ? "Editar" : "Registrar")}</Kolping.KButtom>
+                >{(this.key ? "Editar" : "Registrar")}</SButtom>
             </SPage>
         );
     }
