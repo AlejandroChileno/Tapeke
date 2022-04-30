@@ -24,17 +24,21 @@ class Registro extends Component {
             ref={(form) => { this.form = form; }}
             inputs={{
                 nombre: { label: "Nombre", placeholder: "Nombre completo", isRequired: true, defaultValue: data["nombre"] },
-                nro_tarjeta: { label: "Número de tarjeta", placeholder: "0000-0000-0000-0000", isRequired: true, defaultValue: data["nro_tarjeta"] },
-                caducidad_mes: { label: "Caducidad Mes", placeholder: "MM", isRequired: true, defaultValue: data["caducidad_mes"], col: "xs-12 sm-6 md-6 lg-6 xl-6", },
-                caducidad_anio: { label: "Caducidad Año", placeholder: "AA", isRequired: true, defaultValue: data["caducidad_anio"], col: "xs-12 sm-6 md-6 lg-6 xl-6" },
-                cod_seguridad: { label: "Código de seguridad", placeholder: "0000", isRequired: true, defaultValue: data["cod_seguridad"], col: "xs-12 sm-6 md-6 lg-6 xl-6" },
+                numero_tarjeta: { label: "Número de tarjeta", placeholder: "0000-0000-0000-0000", isRequired: true, defaultValue: data["numero_tarjeta"] },
+                mes: { label: "Caducidad Mes", placeholder: "MM", isRequired: true, defaultValue: data["mes"], col: "xs-12 sm-6 md-6 lg-6 xl-6", },
+                ano: { label: "Caducidad Año", placeholder: "AA", isRequired: true, defaultValue: data["ano"], col: "xs-12 sm-6 md-6 lg-6 xl-6" },
+                codigo_seguridad: { label: "Código de seguridad", placeholder: "0000", isRequired: true, defaultValue: data["codigo_seguridad"], col: "xs-12 sm-6 md-6 lg-6 xl-6" },
             }}
             // onSubmitName={"Registrar"}
             onSubmit={(values) => {
                 if (this.key) {
                     Parent.Actions.editar({ ...data, ...values }, this.props);
                 } else {
+                    console.log(values);
+
                     Parent.Actions.registro(values, this.props);
+                   
+
                 }
             }}
         />
@@ -43,11 +47,11 @@ class Registro extends Component {
     popupQueEs() {
         return <>
             <SView width={362} height={246} center row style={{ borderRadius: 8 }} withoutFeedback backgroundColor={STheme.color.background}   >
-                <SHr  height={20} />
-                <SView col={"xs-12"} height={35} center style={{borderBottomWidth: 1, borderColor: STheme.color.primary}}>
+                <SHr height={20} />
+                <SView col={"xs-12"} height={35} center style={{ borderBottomWidth: 1, borderColor: STheme.color.primary }}>
                     <SText color={STheme.color.darkGray} style={{ fontSize: 20 }} bold center >Código de seguridad</SText>
                 </SView>
-                <SHr  height={20} />
+                <SHr height={20} />
                 <SView col={"xs-11"} center row>
                     <SView col={"xs-5"} center flex>
                         <SIcon width={100} name='TarjetaSeguridad'></SIcon>
@@ -57,31 +61,32 @@ class Registro extends Component {
                     </SView>
                 </SView>
                 <SView col={"xs-12"} center>
-                        <SHr height={25} />
-                        <SView width={140} height={44} center backgroundColor={STheme.color.primary} style={{ borderRadius: 8 }} onPress={() => { SPopup.close("queEs"); }}  >
-                            <SText fontSize={14} color={STheme.color.white} bold>Entendido</SText>
-                        </SView>
-                        <SHr height={15} />
+                    <SHr height={25} />
+                    <SView width={140} height={44} center backgroundColor={STheme.color.primary} style={{ borderRadius: 8 }} onPress={() => { SPopup.close("queEs"); }}  >
+                        <SText fontSize={14} color={STheme.color.white} bold>Entendido</SText>
                     </SView>
+                    <SHr height={15} />
+                </SView>
             </SView>
         </>
     }
 
     render() {
-        // var reducer = this.props.state[Parent.component + "Reducer"];
-        // if (reducer.type == "registro" || reducer.type == "editar") {
-        //     if (reducer.estado == "exito") {
-        //         if (reducer.type == "registro") this.key = reducer.lastRegister?.key;
-        //         if (this.form) {
-        //             this.form.uploadFiles(SSocket.api.root + "upload/" + Parent.component + "/" + this.key);
-        //         }
-        //         reducer.estado = "";
-        //         SNavigation.goBack();
-        //     }
-        // }
+        var reducer = this.props.state[Parent.component + "Reducer"];
+        if (reducer.type == "registro" || reducer.type == "editar") {
+            if (reducer.estado == "exito") {
+                // if (reducer.type == "registro") this.key = reducer.lastRegister?.key;
+                // if (this.form) {
+                //     this.form.uploadFiles(SSocket.api.root + "upload/" + Parent.component + "/" + this.key);
+                // }
+                reducer.estado = "";
+                SNavigation.navigate(Parent.component + "/facturacion");
+                // console.log("entro")
+            }
+        }
 
         return (
-            <SPage title={'registro'} center>
+            <SPage title={''} center>
                 <SView row backgroundColor={STheme.color.card} center>
                     <SView col={"xs-12 "} center>
                         <SView center col={"xs-12 sm-10 md-8 lg-6 xl-4  "} backgroundColor={STheme.color.white}  >
@@ -127,7 +132,9 @@ class Registro extends Component {
                             <SView col={"xs-11"} row center>
                                 <PButtom fontSize={20} onPress={() => {
                                     this.form.submit();
-                                    SNavigation.navigate("pago_tarjeta/facturacion");
+                                    // SNavigation.navigate("pago_tarjeta/facturacion");
+                                    // SNavigation.navigate(Parent.component +"/facturacion");
+
                                 }}>GUARDAR TARJETA</PButtom>
                                 <SHr height={20} />
                             </SView>

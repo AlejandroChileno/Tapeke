@@ -24,14 +24,16 @@ class Facturacion extends Component {
             ref={(form) => { this.form = form; }}
             inputs={{
                 nombre: { label: "Nombre completo", placeholder: "Nombre completo", isRequired: true, defaultValue: data["nombre"] },
-                nit: { label: "Nit o Razón social", placeholder: "000000000", isRequired: true, defaultValue: data["nro_tarjeta"] },
+                nit: { label: "Nit o Razón social", placeholder: "000000000", isRequired: true, defaultValue: data["nit"] },
             }}
             // onSubmitName={"Registrar"}
             onSubmit={(values) => {
                 if (this.key) {
                     Parent.Actions.editar({ ...data, ...values }, this.props);
                 } else {
-                    Parent.Actions.registro(values, this.props);
+                    //Parent.Actions.registro(values, this.props);
+                    SNavigation.navigate(Parent.component +"/misTarjetas");
+
                 }
             }}
         />
@@ -111,7 +113,6 @@ class Facturacion extends Component {
                             <SView col={"xs-11"} row center>
                                 <PButtom fontSize={20} onPress={() => {
                                     this.form.submit();
-                                    SNavigation.navigate("pago_tarjeta/misTarjetas");
                                 }}>REALIZAR PAGO</PButtom>
                                 <SHr height={20} />
                             </SView>

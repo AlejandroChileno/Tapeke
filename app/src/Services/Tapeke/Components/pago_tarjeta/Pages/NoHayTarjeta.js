@@ -27,7 +27,7 @@ class NoHayTarjeta extends Component {
         // }
 
         return (
-            <SPage hidden disableScroll center>
+            <SPage  disableScroll center>
                 <SView flex center    col={"xs-11 sm-10 md-8 lg-6 xl-4"}  >
                     <SView col={"xs-12"}  center row style={{ backgroundColor: STheme.color.primary, borderRadius: 12 }}>
                         <SView col={"xs-12"} row center   >

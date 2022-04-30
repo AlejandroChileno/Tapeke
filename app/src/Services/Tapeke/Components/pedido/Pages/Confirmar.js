@@ -210,6 +210,111 @@ class Confirmar extends React.Component {
 		</>
 	}
 
+
+    render() {
+        this.auxPedido = Parent.Actions.getDetalle(this.keyPedido, this.props)
+        if (!this.auxPedido) return <SLoad />
+        console.log(this.state.tipoPagoSeleccionado+ " AAAA")
+        return (
+            <SPage center>
+                <SView col={"xs-12"} row backgroundColor={STheme.color.card} center>
+                    <SHr height={18} />
+                    <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center row style={{ backgroundColor: STheme.color.white }}>
+                        <SView col={"xs-11"} row center>
+                            <SView col={"xs-12"}>
+                                <SHr height={15} />
+                                <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Detalle pedido</SText>
+                                <SHr height={15} />
+                            </SView>
+                            <SView center col={"xs-2"} backgroundColor={"#9B060C"} height={85} style={{ borderRadius: 8, overflow: 'hidden', }}>
+                                <SImage src={require('../../../../../Assets/img/restPerfil.jpg')} style={{
+                                    width: "100%",
+                                    position: "relative",
+                                    resizeMode: "cover"
+                                }} />
+                                <SGradient colors={["#00000045", "#00000045",]} />
+                            </SView>
+                            <SView col={"xs-10"} row >
+                                <SView col={"xs-1"}  >
+                                </SView>
+                                <SView col={"xs-11"} row >
+                                    <SView col={"xs-12"} >
+                                        <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >{this.auxPedido.restaurante.nombre}</SText>
+                                    </SView>
+                                    <SHr height={15} />
+                                    <SView col={"xs-6"} style={{ justifyContent: 'flex-start', }}>
+                                        <SText fontSize={14} font={"Roboto"} color={STheme.color.primary} fontWeight> Precio</SText>
+                                        <SHr height={5} />
+                                        <SText fontSize={20} font={"Roboto"} style={{ fontWeight: "bold" }}>Bs. {this.auxPedido.pack?.precio ?? 0} </SText>
+                                    </SView>
+                                    <SView col={"xs-6"} center row>
+                                        <SView col={"xs-12"} center>
+                                            <SText fontSize={14} font={"Roboto"} color={STheme.color.primary} >Cantidad</SText>
+                                        </SView>
+                                        <SHr height={5} />
+                                        <SView col={"xs-12"} center   >
+                                            <SView col={"xs-6"} center style={{ height: 40, backgroundColor: STheme.color.card, borderRadius: 6 }}>
+                                                <SText fontSize={14} font={"Roboto"}   > {this.auxPedido.cantidad ?? 0} </SText>
+                                            </SView>
+                                        </SView>
+                                    </SView>
+                                </SView>
+                                <SHr height={5} />
+                            </SView>
+                            <SHr height={15} />
+                            <SView col={"xs-12"} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray }}></SView>
+                            <SHr height={12} />
+                            <SView col={"xs-12"} center>
+                                <SText fontSize={16} font={"Roboto"} style={{ fontWeight: "bold" }}>{this.auxPedido.delivery == 0 ? "Recoger del lugar" : "Envio a domicilio"}</SText>
+                            </SView>
+                            <SHr height={18} />
+                        </SView>
+                    </SView>
+                    <SHr height={18} />
+                    <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} row center style={{ backgroundColor: STheme.color.white }}>
+                        <SView col={"xs-11"} row center>
+                            <SHr height={15} />
+                            <SView col={"xs-6"} >
+                                <SText style={{ textAlign: "justify" }} fontSize={15} font={"Roboto"} >Total</SText>
+                            </SView>
+                            <SView col={"xs-6"} style={{ alignItems: "flex-end" }}>
+                                <SText fontSize={15} font={"Roboto"} >Bs. {SMath.formatMoney((this.auxPedido.pack?.precio ?? 0) * this.auxPedido.cantidad)}</SText>
+                            </SView>
+                            <SHr height={10} />
+                            <SView col={"xs-6"} >
+                                <SText style={{ textAlign: "justify" }} fontSize={15} font={"Roboto"} >Envío</SText>
+                            </SView>
+                            <SView col={"xs-6"} style={{ alignItems: "flex-end" }}>
+                                <SText fontSize={15} font={"Roboto"} >{"Bs. " + SMath.formatMoney(this.auxPedido.delivery)}</SText>
+                            </SView>
+                            <SHr height={10} />
+                            <SView col={"xs-12"} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray }}></SView>
+                            <SHr height={10} />
+                            <SView col={"xs-6"} >
+                                <SText style={{ textAlign: "justify", fontWeight: "bold" }} fontSize={15} font={"Roboto"} >Total:</SText>
+                            </SView>
+                            <SView col={"xs-6"} style={{ alignItems: "flex-end" }}>
+                                <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }} >Bs. {SMath.formatMoney(((this.auxPedido.pack?.precio ?? 0) * this.auxPedido.cantidad) + parseFloat(this.auxPedido.delivery ?? 0))}</SText>
+                            </SView>
+                            <SHr height={15} />
+                        </SView>
+                    </SView>
+                    <SHr height={18} />
+                    <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center style={{ backgroundColor: STheme.color.white }}>
+                        <TipoPago callback={(resp) => { this.setState({ tipoPagoSeleccionado: resp.tipopago }); }} />
+                    </SView>
+                    <SHr height={18} />
+                    {this.getFormFacturacion()}
+                    <SHr height={40} />
+                    <PButtom fontSize={20} onPress={() => {
+                        this.form.submit()
+                        // SPopup.open({ content: this.popupConfirmacion(), key: "confirmar" });
+                    }}>CONFIRMAR</PButtom>
+                    <SHr height={40} />
+                </SView>
+            </SPage >
+        );
+    }
 	render() {
 		// this.auxPedido = Parent.Actions.getDetalle(this.keyPedido, this.props)
 		// if (!this.auxPedido) return <SLoad />
