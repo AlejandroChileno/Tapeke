@@ -31,6 +31,11 @@ class Confirmar extends React.Component {
     getViewDetalle() {
         this.auxPedido = Parent.Actions.getDetalle(this.keyPedido, this.props)
         if (!this.auxPedido) return <SLoad />
+
+        if(this.auxPedido.key_payment_order){
+            SNavigation.navigate("pedido/mensajeSolicitud", { key_pedido:this.auxPedido.key});
+            return;
+        }
         return <>
             <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center row style={{ backgroundColor: STheme.color.white }}>
                 <SView col={"xs-11"} row center>
@@ -153,14 +158,12 @@ class Confirmar extends React.Component {
                         }
                     }
                 ).then((resp) => {
-                    SNavigation.navigate("pedido/mensajeSolicitud", { key_tipoPago: this.state.tipoPagoSeleccionado, key_qr: resp.data.qr });
+                    // SNavigation.navigate("pedido/mensajeSolicitud", { key_pedido:this.keyPedido});
                     // alert("exito ", resp);
-                    // <SLoad/>
-                    SPopup.close("confirmar");
+                     SPopup.close("confirmar");
                 }).catch((err) => {
-                    SNavigation.navigate("pedido/mensajeSolicitud", { key_tipoPago: this.state.tipoPagoSeleccionado, key_qr: resp.data.qr });
-
-                    alert("negativo ", err.error)
+                  //  SNavigation.navigate("pedido/mensajeSolicitud", { key_tipoPago: this.state.tipoPagoSeleccionado, key_qr: resp.data.qr });
+                    alert(JSON.stringify(err))
                     SPopup.close("confirmar");
                 });
             }} />
@@ -218,6 +221,8 @@ class Confirmar extends React.Component {
                     <SHr height={40} />
                 </SView>
                 <FloatButtomBack onPress={() => {
+                                        
+                    SStorage.removeItem("pedido_en_curso");
                     SNavigation.goBack();
                 }} />
          

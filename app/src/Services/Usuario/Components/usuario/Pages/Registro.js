@@ -106,8 +106,7 @@ class Registro extends Component {
     //TODO LICETH: Falta que ricky me devuelva detalle de error de usuario para mostrar error en popup
     alertError(error) {
         return <SView col={"xs-12 md-8 xl-6"} row style={{ height: 250, borderRadius: 8, }} backgroundColor={STheme.color.background} center>
-            {/* <BackgroundImage /> */}
-            {/* <SView style={{
+             {/* <SView style={{
                 width: "100%",
                 top: 0,
                 left: 0,

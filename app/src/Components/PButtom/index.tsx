@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { SLoad, SText, STheme, SView } from 'servisofts-component';
 
-type KButtom_props = {
+type PButtom_props = {
     primary?: boolean,
     secondary?: boolean,
     withe?: boolean,
@@ -14,7 +14,7 @@ type KButtom_props = {
     height?: number,
 }
 
-export default class KButtom extends Component<KButtom_props> {
+export default class PButtom extends Component<PButtom_props> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -50,7 +50,10 @@ export default class KButtom extends Component<KButtom_props> {
                     this.props.onPress();
                 }
             }} >
-            {this.props.loading ? <SLoad /> : <SText {...this.props} color={this.props.outline ? bgColor : colorText} font={"Roboto-Bold"} >{this.props.children}</SText>}
+            {this.props.loading ? <SLoad /> : <SText {...this.props} color={this.props.outline ? bgColor : colorText} font={"Roboto-Bold"} >
+                {/* {this.props.children} */}
+                
+                </SText>}
         </SView>);
     }
 }
