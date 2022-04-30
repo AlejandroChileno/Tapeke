@@ -7,8 +7,8 @@ class TipoPago extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            KeytipoPago: 'p0001',
-            tipoPago: 'Efectivo',
+            KeytipoPago: null,
+            tipoPago: null,
         };
     }
 
@@ -99,10 +99,10 @@ class TipoPago extends Component {
                     <SHr height={15} />
                 </SView>
             </SView>
-            {/* <SView col={"xs-10 sm-5 lg-3"} border={'transparent'} style={{ position: 'absolute' }}  >
+            <SView col={"xs-10 sm-5 lg-3"} border={'transparent'} style={{ position: 'absolute' }}  >
                 <SText>  {this.state.KeytipoPago} </SText>
                 <SText>  {this.state.tipoPago} </SText>
-            </SView> */}
+            </SView>
         </>
     }
 

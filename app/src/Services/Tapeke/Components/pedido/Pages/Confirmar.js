@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { SForm, SGradient, SHr, SImage, SLoad, SMath, SNavigation, SPage, SPopup, SText, STheme, SView } from 'servisofts-component';
 import SSocket from 'servisofts-socket';
+// import PButtom from '../../../../../Components/PButtom';
 import TipoPago from '../../../../Multipagos/Components/payment_type/Components/TipoPago';
 import Parent from '../index';
 import PButtom from '../../../../../Components/PButtom';
@@ -109,63 +110,57 @@ class Confirmar extends React.Component {
 	}
 
 	getViewTipoPago() {
+		this.auxPedido = Parent.Actions.getDetalle(this.keyPedido, this.props)
+		if (!this.auxPedido) return <SLoad />
 		return <>
 			<SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center style={{ backgroundColor: STheme.color.white }}>
-				<TipoPago callback={(resp) => {
-					 this.setState({ tipoPagoSeleccionado: resp.tipopago }); 
-
-					 if(resp.tipopago == "efectivo"){
-						 alert("Pago en efectivo");
-					 }
-					 if(resp.tipopago == "QR"){
-						 alert("Pago en efectivo");
-					 }
-					 if(resp.tipopago == "efectivo"){
-						 alert("Pago en efectivo");
-					 }
-
-					 }} />
+				<TipoPago callback={(resp) => { this.setState({ tipoPagoSeleccionado: resp.tipopago }); }} />
 			</SView>
+
 		</>
 	}
 
 	getViewFactura() {
-		return <SForm
-			ref={(form) => { this.form = form; }}
-			col={"xs-11 sm-9 md-7 lg-5 xl-4"}
-			center
-			inputProps={{ customStyle: "kolping" }}
-			inputs={{
-				nit: { label: "Nit" },
-				business_name: { label: "Razon social" },
-			}}
-			onSubmit={(values) => {
-				var usuario = this.props.state.usuarioReducer.usuarioLog;
-				SSocket.sendPromise(
-					{
-						"component": "pedido",
-						"type": "select_pay_method",
-						"key_pedido": this.keyPedido,
-						"pay_method": this.state.tipoPagoSeleccionado,
-						"client": {
-							"name": usuario["Nombres"],
-							"last_name": usuario["Apellidos"],
-							"ci": usuario["ci"] ?? " ",
-							"phone": usuario["Telefono"],
-							"email": usuario["Correo"],
-							"bussiness_name": values["business_name"],
-							"nit": values["nit"]
+		return <>
+			<SForm
+				ref={(form) => { this.form = form; }}
+				col={"xs-11 sm-9 md-7 lg-5 xl-4"}
+				center
+				inputProps={{ customStyle: "kolping" }}
+				inputs={{
+					nit: { label: "Nit" },
+					business_name: { label: "Razon social" },
+				}}
+				onSubmit={(values) => {
+					var usuario = this.props.state.usuarioReducer.usuarioLog;
+					SSocket.sendPromise(
+						{
+							"component": "pedido",
+							"type": "select_pay_method",
+							"key_pedido": this.keyPedido,
+							"pay_method": this.state.tipoPagoSeleccionado,
+							"client": {
+								"name": usuario["Nombres"],
+								"last_name": usuario["Apellidos"],
+								"ci": usuario["ci"] ?? " ",
+								"phone": usuario["Telefono"],
+								"email": usuario["Correo"],
+								"bussiness_name": values["business_name"],
+								"nit": values["nit"]
+							}
 						}
-					}
-				).then((resp) => {
-					SNavigation.navigate("pedido/mensajeSolicitud", { key_tipoPago: this.state.tipoPagoSeleccionado, key_qr: resp.data.qr });
-					alert("exito ", resp);
-					SPopup.close("confirmar");
-				}).catch((err) => {
-					alert("negativo ", err.error)
-					SPopup.close("confirmar");
-				});
-			}} />
+					).then((resp) => {
+						SNavigation.navigate("pedido/mensajeSolicitud", { key_tipoPago: this.state.tipoPagoSeleccionado, key_qr: resp.data.qr });
+						alert("exito ", resp);
+						SPopup.close("confirmar");
+
+					}).catch((err) => {
+						alert("negativo ", err.error)
+						SPopup.close("confirmar");
+					});
+ 				}}
+			/>
+		</>
 	}
 
 	popupConfirmacion() {
@@ -216,6 +211,8 @@ class Confirmar extends React.Component {
 	}
 
 	render() {
+		// this.auxPedido = Parent.Actions.getDetalle(this.keyPedido, this.props)
+		// if (!this.auxPedido) return <SLoad />
 		return (
 			<SPage center>
 				<SView col={"xs-12"} row backgroundColor={STheme.color.card} center>
@@ -227,6 +224,11 @@ class Confirmar extends React.Component {
 					{this.getViewFactura()}
 					<SHr height={40} />
 					<PButtom fontSize={20} onPress={() => {
+						// this.form.submit();
+						if (this.state.tipoPagoSeleccionado == null) {
+							alert("Seleccione un tipo de pago");
+							return;
+						}
 						SPopup.open({ key: "confirmar", content: this.popupConfirmacion() });
 					}}>CONFIRMAR</PButtom>
 					<SHr height={40} />
