@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SHr, SIcon, SImage, SPage, SText, STheme, SView ,SNavigation} from 'servisofts-component';
+import { SHr, SIcon, SImage, SPage, SText, STheme, SView ,SNavigation, SThread} from 'servisofts-component';
 import FloatButtomBack from '../../../../../Components/FloatButtomBack';
 import ImgSaveGallery from '../../../../../Components/ImgSaveGallery';
 import ImgShared from '../../../../../Components/ImgShared';
 import PButtom from '../../../../../Components/PButtom';
 import SSocket from "servisofts-socket";
+import Contador from '../../../../../Components/Contador';
  class MensajeSolicitud extends React.Component {
     constructor(props) {
         super(props);
@@ -15,7 +16,28 @@ import SSocket from "servisofts-socket";
   
     }
 
+    componentDidMount() {
+        this.getParams();
+    }
+    getParams(){
+        SSocket.sendPromise(
+            {
+                component:"pedido",
+                type:"get_payment_order",
+                key_pedido:this.key_pedido,
+            }
+        ).then((resp) => {
+            this.setState({pay_order:resp.data})
+        }).catch((err) => {
+            new SThread(1000, "getPaymentStatus", true).start(() => {
+                this.getParams();
+           })
+        });
+    }
     render() {
+        new SThread(5000, "getPaymentStatus", true).start(() => {
+             this.getParams();
+        })
         return (
             // <SPage hidden disableScroll center>
             <SPage hidden center>
@@ -64,6 +86,9 @@ import SSocket from "servisofts-socket";
                         <SHr height={30} />
 
 
+                        <Contador date={this.state?.pay_order?.expiration_date} ></Contador>
+
+
                         <PButtom fontSize={20} onPress={() => {
                             SSocket.sendPromise(
                                 {
@@ -72,7 +97,7 @@ import SSocket from "servisofts-socket";
                                     key_pedido:this.key_pedido,
                                 }
                             ).then((resp) => {
-                                console.log(resp);
+                                console.log(resp.data.data.expiration_date);
                             }).catch((err) => {
                             });
                     }}>get payment order</PButtom>

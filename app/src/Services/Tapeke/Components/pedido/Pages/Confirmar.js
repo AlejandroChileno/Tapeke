@@ -32,7 +32,7 @@ class Confirmar extends React.Component {
         this.auxPedido = Parent.Actions.getDetalle(this.keyPedido, this.props)
         if (!this.auxPedido) return <SLoad />
 
-        if(this.auxPedido.key_payment_order){
+        if(this.auxPedido.state.code == "pago_en_proceso"){
             SNavigation.navigate("pedido/mensajeSolicitud", { key_pedido:this.auxPedido.key});
             return;
         }
