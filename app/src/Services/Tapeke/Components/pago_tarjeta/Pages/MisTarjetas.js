@@ -19,8 +19,8 @@ class MisTarjetas extends Component {
                 onPress={() => { alert("1") }}>
                 <SHr height={10} />
                 <SView col={"xs-11"} row >
-                    <SView col={"xs-2"} >
-                        <SImage src={require('../../../../../Assets/img/tarjeta1.png')} style={{ width: 40 }} />
+                    <SView col={"xs-2"}  height={30}>
+                        <SImage src={require('../../../../../Assets/img/tarjeta1.png')}  style={{ width: 40 }}/>
                     </SView>
                     <SView col={"xs-7 sm-7 md-8 lg-8 xl-8"} >
                         <SHr height={10} />
@@ -45,7 +45,7 @@ class MisTarjetas extends Component {
                 onPress={() => { alert("1") }}>
                 <SHr height={10} />
                 <SView col={"xs-11"} row >
-                    <SView col={"xs-2"} >
+                    <SView col={"xs-2"} height={30}>
                         <SImage src={require('../../../../../Assets/img/tarjeta2.png')} style={{ width: 40 }} />
                     </SView>
                     <SView col={"xs-7 sm-7 md-8 lg-8 xl-8"} >
@@ -71,7 +71,7 @@ class MisTarjetas extends Component {
                 onPress={() => { alert("1") }}>
                 <SHr height={10} />
                 <SView col={"xs-11"} row >
-                    <SView col={"xs-2"} >
+                    <SView col={"xs-2"} height={30}>
                         <SImage src={require('../../../../../Assets/img/tarjeta1.png')} style={{ width: 40 }} />
                     </SView>
                     <SView col={"xs-7 sm-7 md-8 lg-8 xl-8"} >
@@ -112,11 +112,11 @@ class MisTarjetas extends Component {
             <SPage title={'Mis tarjetas'} center>
                 <SView row backgroundColor={STheme.color.card} center>
                     <SView col={"xs-12 "} center>
-                        <SView center col={"xs-12 sm-10 md-8 lg-6 xl-4  "} backgroundColor={STheme.color.white} height >
+                        <SView center col={"xs-12 sm-10 md-8 lg-6 xl-4  "} backgroundColor={STheme.color.white}  >
                             <SView col={"xs-11"} row >
                                 <SHr /><SHr />
                                 <SView col={"xs-12"} row>
-                                    <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Tarjetas de crédito o débito</SText>
+                                    <SText fontSize={18} font={"Roboto"} bold>Tarjetas de crédito o débito</SText>
                                     <SHr />
                                     <SText fontSize={13} font={"Roboto"}>Tapeke acepta la mayoría de tarjetas de crédito y débito.</SText>
                                     <SHr />
@@ -137,7 +137,7 @@ class MisTarjetas extends Component {
                             <SHr height={10} />
                             <SView col={"xs-11"} row >
                                 <SHr height={20} />
-                                <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Mis tarjetas de crédito y débido</SText>
+                                <SText fontSize={18} font={"Roboto"} bold>Mis tarjetas de crédito y débido</SText>
                                 <SHr height={10} />
                                 <SText fontSize={14} font={"Roboto"} >Elige tu tarjeta de pago:</SText>
                                 <SHr height={30} />
@@ -158,10 +158,6 @@ class MisTarjetas extends Component {
                         <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} style={{ backgroundColor: STheme.color.white, }} center>
                             <SHr height={50} />
                             <SView col={"xs-11"} row center>
-                                {/* <PButtom fontSize={20} onPress={() => {
-                                    this.form.submit();
-                                    SNavigation.navigate("pago_tarjeta/facturacion");
-                                }}>GUARDAR TARJETA</PButtom> */}
                                 <SHr height={20} />
                             </SView>
                         </SView>

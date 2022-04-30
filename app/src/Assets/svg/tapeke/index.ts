@@ -72,6 +72,7 @@ import TarjetaSeguridad, { ReactComponent as TarjetaSeguridadW } from './tarjeta
 import EditT, { ReactComponent as EditTW } from './editT.svg';
 import DeleteT, { ReactComponent as DeleteTW } from './deleteT.svg';
 import TarjetaAdd, { ReactComponent as TarjetaAddW } from './tarjetaAdd.svg';
+import SinTarjeta, { ReactComponent as SinTarjetaW } from './sinTarjeta.svg';
 
 
 
@@ -151,6 +152,7 @@ const Assets = {
 	"EditT": { Native: EditT, Web: EditTW },
 	"DeleteT": { Native: DeleteT, Web: DeleteTW },
 	"TarjetaAdd": { Native: TarjetaAdd, Web: TarjetaAddW },
+	"SinTarjeta": { Native: SinTarjeta, Web: SinTarjetaW },
 	 
 }
 

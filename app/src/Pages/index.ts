@@ -18,8 +18,8 @@ import MensajeSolicitud from '../Services/Tapeke/Components/pedido/Pages/Mensaje
 const Pages = {
 
     
-    "/": MensajeSolicitud,
-    // "/": Inicio,
+    // "/": MensajeSolicitud,
+    "/": Inicio,
     "test": Test,
     "carga": Carga,
     "home": Home,

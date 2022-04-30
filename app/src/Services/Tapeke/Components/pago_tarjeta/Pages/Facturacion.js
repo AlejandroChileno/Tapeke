@@ -55,11 +55,11 @@ class Facturacion extends Component {
             <SPage title={'Facturacion'} center>
                 <SView row backgroundColor={STheme.color.card} center>
                     <SView col={"xs-12 "} center>
-                        <SView center col={"xs-12 sm-10 md-8 lg-6 xl-4  "} backgroundColor={STheme.color.white} height >
+                        <SView center col={"xs-12 sm-10 md-8 lg-6 xl-4  "} backgroundColor={STheme.color.white}  >
                             <SView col={"xs-11"} row >
                                 <SView col={"xs-12"}>
                                     <SHr height={15} />
-                                    <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Detalle pedido</SText>
+                                    <SText fontSize={18} font={"Roboto"} bold>Detalle pedido</SText>
                                     <SHr height={15} />
                                 </SView>
                                 <SView center col={"xs-2"} backgroundColor={"#9B060C"} height={85} style={{ borderRadius: 8, overflow: 'hidden', }}>
@@ -74,7 +74,7 @@ class Facturacion extends Component {
                                     </SView>
                                     <SView col={"xs-11"} row >
                                         <SView col={"xs-12"} >
-                                            <SText color={STheme.color.text} fontSize={14} style={{ fontWeight: "bold" }}  >Veggie Garden - Gran Via</SText>
+                                            <SText color={STheme.color.text} fontSize={14} bold >Veggie Garden - Gran Via</SText>
                                         </SView>
                                         <SHr height={15} />
                                         <SView col={"xs-6"} style={{ justifyContent: 'flex-start', }}>
