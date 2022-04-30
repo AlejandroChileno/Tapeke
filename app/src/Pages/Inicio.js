@@ -6,6 +6,7 @@ import Direccion from "../Components/BarraSuperiorTapeke/Direccion";
 import PBarraFooter from "../Components/PBarraFooter";
 import Item from "../Services/Tapeke/Components/restaurante/Components/Item";
 import usuario from "../Services/Usuario/Components/usuario";
+import Validations from "../Validations";
 
 class Inicio extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class Inicio extends Component {
 
   componentDidMount() {
     if (!usuario.Actions.validateSession(this.props)) { return <SLoad />; }
+    
   }
 
   categoria(title) {
@@ -66,7 +68,7 @@ class Inicio extends Component {
     // }
     // var UsuaioPage = Pages["usuarioPage/lista"];
 
-
+    Validations.pedido_en_curso();
     return (
       <>
         <BarraSuperiorTapeke>

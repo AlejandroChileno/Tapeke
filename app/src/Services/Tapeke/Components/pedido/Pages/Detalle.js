@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SForm, SGradient, SHr, SIcon, SImage, SLoad, SMath, SNavigation, SPage, SText, STheme, SUuid, SView,SStorage } from 'servisofts-component';
+import { SForm, SGradient, SHr, SIcon, SImage, SLoad, SMath, SNavigation, SPage, SText, STheme, SUuid, SView, SStorage } from 'servisofts-component';
 import SSocket from 'servisofts-socket';
+import FloatButtomBack from '../../../../../Components/FloatButtomBack';
 import PButtom from '../../../../../Components/PButtom';
 import costo_envio from '../../costo_envio';
 import restaurante from '../../restaurante';
 import Parent from '../index';
-
-
+ 
 class Detalle extends React.Component {
     constructor(props) {
         super(props);
@@ -23,15 +23,8 @@ class Detalle extends React.Component {
         };
         this.key_restaurante = SNavigation.getParam('key');
         this.auxRestaurante = null;
-
-        // SStorage.getItem("miData_log", "nada");
-      
-    
     }
-
-    componentDidMount() {
-
-    }
+ 
     getCostoEnvio() {
         var data_costos = costo_envio.Actions.getAll(this.props);
         if (!data_costos) return <SLoad />;
@@ -57,10 +50,9 @@ class Detalle extends React.Component {
                 <SHr height={15} />
                 <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Tipo de entrega</SText>
                 <SHr height={20} />
-                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6, }}  {...(delivery ? {
-                    onPress: () => {
-                        this.setState({ envio: false, delivery: "false" });
-                    }
+                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6, }}  
+                {...(delivery ? {
+                    onPress: () => { this.setState({ envio: false, delivery: "false" }); }
                 } : {})} >
                     <SView col={"xs-2"} center flex>
                         <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}
@@ -149,7 +141,7 @@ class Detalle extends React.Component {
         this.aux = restaurante.Actions.getByKeyDetalle(this.key_restaurante, this.props)
         if (!this.aux) return alert("No se encontró el pack");
 
- 
+
 
         SSocket.sendPromise(
             {
@@ -213,7 +205,7 @@ class Detalle extends React.Component {
                                     }} />
                                     <SGradient colors={["#00000045", "#00000045",]} />
                                 </SView>
-                                
+
                                 <SView row flex height={100} border={'transparent'} >
                                     <SView col={"xs-12"} row >
                                         <SView col={"xs-12"} border={'transparent'}>
@@ -225,7 +217,7 @@ class Detalle extends React.Component {
                                             <SHr height={5} />
                                             <SText fontSize={20} font={"Roboto"} style={{ fontWeight: "bold" }}>Bs. {SMath.formatMoney(this.auxRestaurante.pack?.precio ?? 0)}</SText>
                                         </SView>
-                                        
+
                                         <SView col={"xs-6.5"} center row border={'transparent'}  >
 
                                             <SView col={"xs-12"} center>
@@ -266,7 +258,7 @@ class Detalle extends React.Component {
                             </SView>
 
                             <SHr height={15} />
-                            <SView col={"xs-12"} style={{ borderBottomWidth: 1, borderColor: "blue" }}></SView>
+                            <SView col={"xs-12"} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray }}></SView>
                             <SHr height={18} />
                         </SView>
                     </SView>
@@ -312,6 +304,12 @@ class Detalle extends React.Component {
                     }}>REALIZAR PEDIDO</PButtom>
                     <SHr height={40} />
                 </SView>
+
+                <FloatButtomBack onPress={() => {
+                    SNavigation.navigate("/explorar");
+                }} />
+                
+
             </SPage >
         );
     }
