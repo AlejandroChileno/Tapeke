@@ -113,6 +113,21 @@ class TipoPago extends Component {
         // var data = Parent.Actions.getAll(this.props);
         // if (!data) return <SLoad />;
         // console.log(data);
+        switch (this.state.KeytipoPago) {
+            case "Credito":
+             SNavigation.navigate( 'pago_tarjeta', { callback: this.props.callback });
+
+            // case "Fassil":
+            //     return SNavigation.push(this.props.navigation, 'pago_fassil', { callback: this.props.callback });
+            // case "QR":
+            //     return SNavigation.push(this.props.navigation, 'pago_qr', { callback: this.props.callback });
+            // case "TigoMoney":
+            //     return SNavigation.push(this.props.navigation, 'pago_tigo', { callback: this.props.callback });
+            // default:
+            //     return SNavigation.push(this.props.navigation, 'pago_transferencia', { callback: this.props.callback });
+        
+    
+        }
         return (
             this.getTipoPago()
         );

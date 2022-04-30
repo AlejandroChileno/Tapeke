@@ -222,7 +222,6 @@ class Confirmar extends React.Component {
   
         this.auxPedido = Parent.Actions.getDetalle(this.keyPedido, this.props)
         if (!this.auxPedido) return <SLoad />
-        console.log(this.state.tipoPagoSeleccionado + " AAAA")
         return (
             <SPage center>
                 <SView col={"xs-12"} row backgroundColor={STheme.color.card} center>

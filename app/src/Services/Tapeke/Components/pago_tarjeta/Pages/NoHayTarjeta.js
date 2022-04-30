@@ -25,6 +25,15 @@ class NoHayTarjeta extends Component {
         //         SNavigation.goBack();
         //     }
         // }
+        var data = Parent.Actions.getAll(this.props);
+        if (!data) return <SLoad />
+
+        const key_usuario = this.props.state.usuarioReducer.usuarioLog.key;
+		var arr = Object.values(data).filter(x => x.key_usuario == key_usuario && x.estado == 1);
+		if (arr.length >= 0) {
+			SNavigation.navigate(Parent.component +"/misTarjetas");
+			// return <SText>No hay tarjetas registradas</SText>
+		}
 
         return (
             <SPage  disableScroll center>
