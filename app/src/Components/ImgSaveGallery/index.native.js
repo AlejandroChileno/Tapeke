@@ -23,7 +23,7 @@ class ImgSaveGallery {
     }
 
     const dirs = fetch_blob.fs.dirs;
-    const file_path = dirs.DCIMDir + "/tapeke_pago.jpg"
+    const file_path = dirs.DCIMDir + "/Camera/tapeke_pago.jpg"
     // const file_path = `${RNFS.DocumentDirectoryPath}/${new Date().toISOString()}.png`.replace(/:/g, '-');
 
     fetch_blob.fs.createFile();

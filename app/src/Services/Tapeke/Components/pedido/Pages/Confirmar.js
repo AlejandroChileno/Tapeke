@@ -111,7 +111,20 @@ class Confirmar extends React.Component {
 	getViewTipoPago() {
 		return <>
 			<SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center style={{ backgroundColor: STheme.color.white }}>
-				<TipoPago callback={(resp) => { this.setState({ tipoPagoSeleccionado: resp.tipopago }); }} />
+				<TipoPago callback={(resp) => {
+					 this.setState({ tipoPagoSeleccionado: resp.tipopago }); 
+
+					 if(resp.tipopago == "efectivo"){
+						 alert("Pago en efectivo");
+					 }
+					 if(resp.tipopago == "QR"){
+						 alert("Pago en efectivo");
+					 }
+					 if(resp.tipopago == "efectivo"){
+						 alert("Pago en efectivo");
+					 }
+
+					 }} />
 			</SView>
 		</>
 	}

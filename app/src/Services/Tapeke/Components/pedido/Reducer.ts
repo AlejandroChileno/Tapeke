@@ -1,3 +1,4 @@
+import { SStorage } from 'servisofts-component';
 import Parent from './index'
 
 type DataProps = {
@@ -9,13 +10,31 @@ type DataProps = {
     [key: string]: any;
 }
 
+ 
+
 const initialState = () => {
-    return {
+    var initialState: any = {
         component: Parent.component,
         version: Parent.version,
         dataDetalle:{}
-    };
+
+    }
+    SStorage.getItem("usr_log", (resp: any) => {
+        initialState.usuarioLog = JSON.parse(resp);
+    })
+
+    SStorage.setItem("usr_log", (resp: any) => {
+        initialState.usuarioLog = JSON.parse(resp);
+    })
+    // SStorage.removeItem("usr_log", (resp: any) => {
+    //     initialState.usuarioLog = JSON.parse(resp);
+    // })
+   
+   
+
+    return initialState;
 }
+
 export default (state: any, action: DataProps) => {
     if (!state) return initialState();
     if (action.component != Parent.component) return state;
