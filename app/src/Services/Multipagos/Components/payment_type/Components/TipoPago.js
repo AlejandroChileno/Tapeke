@@ -7,8 +7,8 @@ class TipoPago extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            KeytipoPago: 'p0001',
-            tipoPago: 'Efectivo',
+            KeytipoPago: null,
+            tipoPago: null,
         };
     }
 
@@ -99,10 +99,10 @@ class TipoPago extends Component {
                     <SHr height={15} />
                 </SView>
             </SView>
-            {/* <SView col={"xs-10 sm-5 lg-3"} border={'transparent'} style={{ position: 'absolute' }}  >
+            <SView col={"xs-10 sm-5 lg-3"} border={'transparent'} style={{ position: 'absolute' }}  >
                 <SText>  {this.state.KeytipoPago} </SText>
                 <SText>  {this.state.tipoPago} </SText>
-            </SView> */}
+            </SView>
         </>
     }
 
@@ -113,6 +113,21 @@ class TipoPago extends Component {
         // var data = Parent.Actions.getAll(this.props);
         // if (!data) return <SLoad />;
         // console.log(data);
+        switch (this.state.KeytipoPago) {
+            case "Credito":
+             SNavigation.navigate( 'pago_tarjeta', { callback: this.props.callback });
+
+            // case "Fassil":
+            //     return SNavigation.push(this.props.navigation, 'pago_fassil', { callback: this.props.callback });
+            // case "QR":
+            //     return SNavigation.push(this.props.navigation, 'pago_qr', { callback: this.props.callback });
+            // case "TigoMoney":
+            //     return SNavigation.push(this.props.navigation, 'pago_tigo', { callback: this.props.callback });
+            // default:
+            //     return SNavigation.push(this.props.navigation, 'pago_transferencia', { callback: this.props.callback });
+        
+    
+        }
         return (
             this.getTipoPago()
         );

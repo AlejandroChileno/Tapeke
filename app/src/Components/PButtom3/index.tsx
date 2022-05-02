@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import { SLoad, SText, STheme, SView } from 'servisofts-component';
 
-type PButtom_props = {
+type PButtom3_props = {
     primary?: boolean,
     secondary?: boolean,
-    withe?: boolean,
     outline?: boolean,
     onPress?: () => void,
     loading?: boolean,
     small?: boolean,
-    style?: any,
-    width?: number,
-    height?: number,
+    style?: any
 }
 
-export default class PButtom extends Component<PButtom_props> {
+export default class PButtom3 extends Component<PButtom3_props> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -22,25 +19,21 @@ export default class PButtom extends Component<PButtom_props> {
     }
 
     render() {
-        var bgColor = this.props.primary ? STheme.color.primary : this.props.secondary ? STheme.color.info : STheme.color.primary;
-        var colorText = STheme.color.white;
-        if (this.props.withe) {
-            bgColor = "#fff"
-            colorText = STheme.color.primary;
-        }
+        var bgColor = this.props.primary ? STheme.color.primary : this.props.secondary ? STheme.color.primary : STheme.color.primary;
         var size = {
-            width: this.props.width ?? 350,
-            height: this.props.height ?? 55,
+            width: 350,
+            height: 50
         }
         if (this.props.small) {
             size.width = 100;
-            size.height = 30;
+            size.height = 35;
         }
         return (<SView height={size.height} style={{
-            borderRadius: 12,
+            borderRadius: 8,
+            backgroundColor: STheme.color.white,
             width: "100%",
             maxWidth: size.width,
-            ...(this.props.outline ? { borderWidth: 1, borderColor: bgColor } : { backgroundColor: bgColor }),
+            ...(this.props.outline ? {  } : { borderBottomWidth: 3, borderColor: bgColor }),
         }} center
             activeOpacity={this.props.loading ? 1 : 0.5}
             {...this.props}
@@ -50,9 +43,8 @@ export default class PButtom extends Component<PButtom_props> {
                     this.props.onPress();
                 }
             }} >
-            {this.props.loading ? <SLoad /> : <SText {...this.props} color={this.props.outline ? bgColor : colorText} font={"Roboto-Bold"} >
+            {this.props.loading ? <SLoad /> : <SText {...this.props} color={this.props.outline ? STheme.color.gray : bgColor} font={"Roboto-Bold"} fontSize={16}>
                 {/* {this.props.children} */}
-                
                 </SText>}
         </SView>);
     }

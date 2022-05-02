@@ -12,7 +12,7 @@ export default class TipoPago_TigoMoney extends Component {
                     ref={(form) => { this.form = form; }}
                     col={"xs-11 sm-9 md-7 lg-5 xl-8"}
                     center
-                    inputProps={{ customStyle: "kolping", backgroundColor: "white", color: STheme.color.primary }}
+                    inputProps={{ customStyle: "Calistenia", backgroundColor: "white", color: STheme.color.primary }}
                     inputs={{  telefono: { label: "INGRESA TU TELEFONO" },  }}
                     onSubmit={(values) => {
                         // Parent.Actions.registro(values, this.props);

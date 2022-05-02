@@ -32,11 +32,11 @@ class Filtros extends Component {
 		return <SForm
 			ref={(form) => { this.form = form; }}
 			col={"xs-11 sm-9 md-7 lg-5 xl-4"}
-			inputProps={{
-				// customStyle: "kolping"
-				col: "xs-12",
-				separation: 16
-			}}
+			// inputProps={{
+			// 	// customStyle: "Calistenia"
+			// 	col: "xs-12",
+			// 	separation: 16
+			// }}
 			inputs={{
 				nombre: { label: "Nombre del establecimiento", placeholder: "Buscar" },
 				categoria: { label: "Categoría", placeholder: "Todas" },

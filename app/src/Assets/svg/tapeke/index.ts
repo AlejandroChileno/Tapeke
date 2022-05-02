@@ -72,11 +72,14 @@ import TarjetaSeguridad, { ReactComponent as TarjetaSeguridadW } from './tarjeta
 import EditT, { ReactComponent as EditTW } from './editT.svg';
 import DeleteT, { ReactComponent as DeleteTW } from './deleteT.svg';
 import TarjetaAdd, { ReactComponent as TarjetaAddW } from './tarjetaAdd.svg';
+import SinTarjeta, { ReactComponent as SinTarjetaW } from './sinTarjeta.svg';
+
+
+import ImgSave, { ReactComponent as ImgSaveW } from './imgSave.svg';
+import ImgShare, { ReactComponent as ImgShareW } from './imgShare.svg';
 
 
 
-
- 
 const Assets = {
 	// alvaro
 	"Billetera": { Native: Billetera, Web: BilleteraW },
@@ -135,12 +138,12 @@ const Assets = {
 	"Cwhatsapp": { Native: C_whatsapp, Web: C_whatsappW },
 	"Cayudaflecha": { Native: C_ayuda_flecha, Web: C_ayuda_flechaW },
 	"UserAlert": { Native: UserAlert, Web: UserAlertW },
-	
-	
+
+
 	"EstrellaOn": { Native: EstrellaOn, Web: EstrellaOnW },
 	"EstrellaOff": { Native: EstrellaOff, Web: EstrellaOffW },
 
-	
+
 	"Medalla1": { Native: Medalla1, Web: Medalla1W },
 	"Medalla2": { Native: Medalla2, Web: Medalla2W },
 	"Medalla3": { Native: Medalla3, Web: Medalla3W },
@@ -151,7 +154,11 @@ const Assets = {
 	"EditT": { Native: EditT, Web: EditTW },
 	"DeleteT": { Native: DeleteT, Web: DeleteTW },
 	"TarjetaAdd": { Native: TarjetaAdd, Web: TarjetaAddW },
-	 
+	"SinTarjeta": { Native: SinTarjeta, Web: SinTarjetaW },
+
+	"ImgSave": { Native: ImgSave, Web: ImgSaveW },
+	"ImgShare": { Native: ImgShare, Web: ImgShareW },
+
 }
 
 export default Assets;

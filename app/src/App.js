@@ -14,8 +14,7 @@ import SSocket, { setProps } from 'servisofts-socket'
 
 import NavBar from './Components/NavBar';
 import SConfig from './SConfig';
-import BackgroundImage from './Components/BackgroundImage';
-import BarraSuperior from './Components/BarraSuperior';
+ import BarraSuperior from './Components/BarraSuperior';
 import StatusBar from './Components/StatusBar';
 import Firebase from './Firebase';
 
@@ -41,8 +40,7 @@ const App = (props) => {
                 // socket={SSocket}
                 assets={Assets}
                 inputs={SConfig.SConfig_Inputs}
-                // background={<BackgroundImage />}
-                theme={{ initialTheme: "default", themes: SConfig.SThemeProps, noAnimated: true }}>
+                 theme={{ initialTheme: "default", themes: SConfig.SThemeProps, noAnimated: true }}>
 
 
                 <StatusBar />
