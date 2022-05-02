@@ -1,15 +1,14 @@
 package model.pedido;
 
-import model.pedido.states.no_registrado;
-import model.pedido.states.pago_en_proceso;
-import model.pedido.states.pendiente_pago;
+import model.pedido.states.*;
 
 public class StateFactory {
 
     public static enum states {
         no_registrado,
         pendiente_pago,
-        pago_en_proceso
+        pago_en_proceso,
+        confirmado
     }
 
     public static State getState(Pedido pedido, String state) {
@@ -23,6 +22,8 @@ public class StateFactory {
                 return new pendiente_pago(pedido);
             case pago_en_proceso:
                 return new pago_en_proceso(pedido);
+            case confirmado:
+                return new confirmado(pedido);
 
         }
         return new no_registrado(pedido);

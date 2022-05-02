@@ -59,7 +59,8 @@ public class Pedido implements IPedidoActions {
 
     private JSONObject getFromDB() throws StateException {
         try {
-            return SPGConect.ejecutarConsultaObject("select pedido_state_get_detalle('" + this.key + "') as json");
+            JSONObject pedido =  SPGConect.ejecutarConsultaObject("select pedido_state_get_detalle('" + this.key + "') as json");
+            return pedido;
         } catch (SQLException e) {
             throw new StateException("Error al optener el pedido");
         }
@@ -96,5 +97,10 @@ public class Pedido implements IPedidoActions {
     @Override
     public void select_pay_method(JSONObject obj) throws StateException {
         this.state.select_pay_method(obj);
+    }
+    @Override
+    public void get_payment_order(JSONObject obj) throws StateException {
+        this.state.get_payment_order(obj);
+        
     }
 }

@@ -201,5 +201,10 @@ public class no_registrado extends State {
     public void pagar(JSONObject obj) throws StateException {
         noPermited();
     }
+    @Override
+    public void get_payment_order(JSONObject obj) throws StateException {
+        noPermited();
+        
+    }
 
 }

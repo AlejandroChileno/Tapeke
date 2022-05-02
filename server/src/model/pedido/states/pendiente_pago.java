@@ -1,12 +1,17 @@
 package model.pedido.states;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import Component.enviroment;
 import Servisofts.SConsole;
 import Servisofts.SPGConect;
+import Servisofts.SUtil;
 import SocketCliente.SocketCliente;
 import model.pedido.Pedido;
 import model.pedido.State;
@@ -64,7 +69,16 @@ public class pendiente_pago extends State {
         JSONObject petition = new JSONObject();
         petition.put("component", "payment_order");
         petition.put("type", "registro");
-        petition.put("data", new JSONObject().put("client", client).put("items", items));
+
+        JSONObject enviroments = enviroment.getAll(new JSONObject(), null);
+        int value = Integer.parseInt(enviroments.getJSONObject("tiempo_expiracion_pago_pedido").getString("value"));
+        Calendar cal = Calendar.getInstance(); // creates calendar
+        cal.setTime(new Date()); // sets calendar time/date
+        cal.add(Calendar.SECOND, value); // adds one hour
+        cal.getTime(); // returns new date object plus one hour
+        String expiration_time = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS").format(cal.getTime());
+        petition.put("data", new JSONObject().put("client", client).put("items", items)
+                .put("glosa", "Pago de prueba tapeke").put("expiration_date", expiration_time));
         JSONObject pay_order = SocketCliente.sendSinc("multipagos", petition);
         if (pay_order.getString("estado").equals("error")) {
             throw new StateException(pay_order.getString("error"));
@@ -122,6 +136,12 @@ public class pendiente_pago extends State {
     @Override
     public void pagar(JSONObject obj) throws StateException {
         noPermited();
+    }
+
+    @Override
+    public void get_payment_order(JSONObject obj) throws StateException {
+        noPermited();
+        
     }
 
 }

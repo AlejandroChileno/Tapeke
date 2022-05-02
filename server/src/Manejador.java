@@ -44,6 +44,9 @@ public class Manejador {
             case BackgroundLocation.COMPONENT:
                 BackgroundLocation.onMessage(obj, session);
                 break;
+            case pago_tarjeta.COMPONENT:
+                pago_tarjeta.onMessage(obj, session);
+                break;
 
         }
     }
