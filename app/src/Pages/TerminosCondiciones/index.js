@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SButtom, SHr, SIcon, SNavigation, SPage, SScrollView2, SText, STheme, SView, } from 'servisofts-component';
-  
+import PButtom from '../../Components/PButtom';
+
 const Texto = `TÉRMINOS Y CONDICIONES DE USO APP \n
 1. Estos Términos y Condiciones de Uso regulan las reglas a que se sujeta la utilización de la APP
 ____________________ (en adelante, la APP), que puede descargarse desde el dominio
@@ -104,8 +105,8 @@ class TerminosCondiciones extends Component {
                         borderTopRightRadius: 10,
                         overflow: 'hidden',
                     }} >
-                         <SView >
-                            <PButtom  primary onPress={() => {
+                        <SView >
+                            <PButtom primary onPress={() => {
                                 SNavigation.goBack();
                             }}>ACEPTAR</PButtom>
                         </SView>

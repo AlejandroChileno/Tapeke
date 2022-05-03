@@ -30,6 +30,9 @@ const SThemeProps: SThemeThemes = {
 const SocketProps = {
     name: 'tapeke',
 
+    // host: '192.168.3.2',
+    // ssl: true,
+
     host: '192.168.3.2',
     ssl: false,
 

@@ -13,7 +13,7 @@ class LoginFacebook extends Component {
     render() {
         return (
             <FacebookLogin
-                appId="1073310109907203"
+                appId="1004324290192134"
                 fields="id,name,first_name,last_name,email"
                 callback={(resp) => {
                     if (this.props.onLogin) {
