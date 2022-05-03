@@ -46,8 +46,8 @@ export default class Actions {
             return null;
         }
 
-        console.log("romoe ",JSON.stringify(data));
-        console.log("romoe ",data);
+        // console.log("romoe ",JSON.stringify(data));
+        // console.log("romoe ",data);
         return data;
     }
 
