@@ -2,16 +2,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { SForm, SGradient, SHr, SImage, SLoad, SMath, SNavigation, SPage, SPopup, SStorage, SText, STheme, SView } from 'servisofts-component';
 import SSocket from 'servisofts-socket';
- import FloatButtomBack from '../../../../../Components/FloatButtomBack';
+import FloatButtomBack from '../../../../../Components/FloatButtomBack';
 import PButtom from '../../../../../Components/PButtom';
 import TipoPago from '../../../../Multipagos/Components/payment_type/Components/TipoPago';
 import Parent from '../index';
+
 class Confirmar extends React.Component {
+
+    // state: any;
+    // props: any;
+    // keyPedido: string;
+    // form;
+    // auxPedido;
     constructor(props) {
         super(props);
         this.state = { tipoPagoSeleccionado: null, };
         this.keyPedido = SNavigation.getParam('keyPedido');
     }
+
 
     componentDidMount() {
         SStorage.getItem("pedido_en_curso", (val) => {
@@ -21,19 +29,12 @@ class Confirmar extends React.Component {
         })
     }
 
-    datosCliente() {
-        var usuario = this.props.state.usuarioReducer.usuarioLog;
-        console.log("cliente ", usuario["Nombres"] + " " + usuario["Apellidos"]);
-        console.log("Telefono ", usuario["Telefono"]);
-        console.log("Correo ", usuario["Correo"]);
-    }
-
     getViewDetalle() {
         this.auxPedido = Parent.Actions.getDetalle(this.keyPedido, this.props)
         if (!this.auxPedido) return <SLoad />
 
-        if(this.auxPedido.state.code == "pago_en_proceso"){
-            SNavigation.navigate("pedido/mensajeSolicitud", { key_pedido:this.auxPedido.key});
+        if (this.auxPedido.state.code == "pago_en_proceso") {
+            SNavigation.navigate("pedido/mensajeSolicitud", { key_pedido: this.auxPedido.key });
             return;
         }
         return <>
@@ -158,12 +159,11 @@ class Confirmar extends React.Component {
                         }
                     }
                 ).then((resp) => {
-                    // SNavigation.navigate("pedido/mensajeSolicitud", { key_pedido:this.keyPedido});
-                    // alert("exito ", resp);
-                     SPopup.close("confirmar");
+                    alert("exito");
+                    SNavigation.navigate("pedido/mensajeSolicitud", { key_pedido: this.keyPedido });
+                    SPopup.close("confirmar");
                 }).catch((err) => {
-                  //  SNavigation.navigate("pedido/mensajeSolicitud", { key_tipoPago: this.state.tipoPagoSeleccionado, key_qr: resp.data.qr });
-                    alert(JSON.stringify(err))
+                    alert("error");
                     SPopup.close("confirmar");
                 });
             }} />
@@ -172,11 +172,11 @@ class Confirmar extends React.Component {
     popupConfirmacion() {
         return <>
             <SView width={362} height={216} center row style={{ borderRadius: 8 }} withoutFeedback backgroundColor={STheme.color.background}>
-                <SHr col={"xs-12"} height={50} />
+                <SHr height={50} />
                 <SView col={"xs-9"} center>
                     <SText color={STheme.color.darkGray} style={{ fontSize: 20 }} bold center >¿Estás seguro que deseas realizar este pedido?</SText>
                 </SView>
-                <SHr col={"xs-12"} height={20} />
+                <SHr height={20} />
                 <SView col={"xs-11"} row center>
                     <SView col={"xs-6"} center>
                         <SView width={140} height={44} center border={STheme.color.primary} style={{ borderRadius: 8 }} onPress={() => { SPopup.close("confirmar"); }}  >
@@ -190,43 +190,43 @@ class Confirmar extends React.Component {
                         </SView>
                     </SView>
                 </SView>
-                <SHr col={"xs-12"} height={50} />
+                <SHr height={50} />
             </SView>
         </>
     }
 
     render() {
         return (
-            <SPage center hidden  >     
-            
+            <>
+                <SPage center hidden>
+                    <SView col={"xs-12"} row backgroundColor={STheme.color.card} center>
 
-                <SView col={"xs-12"} row backgroundColor={STheme.color.card} center>
+                        {/* <SText>{this.state.pedido_en_curso?.key}</SText> */}
+                        <SHr height={30} />
+                        {this.getViewDetalle()}
+                        <SHr height={18} />
+                        {this.getViewTipoPago()}
+                        <SHr height={18} />
+                        {this.getViewFactura()}
+                        <SHr height={40} />
+                        <PButtom fontSize={20} onPress={() => {
+                            console.log("aqui " + this.state.tipoPagoSeleccionado);
+                            if (this.state.tipoPagoSeleccionado == null) {
+                                alert("Seleccione un tipo de pago");
+                                return;
+                            }
+                            SPopup.open({ key: "confirmar", content: this.popupConfirmacion() });
+                        }}>CONFIRMAR</PButtom>
+                        <SHr height={40} />
+                    </SView>
+                    <FloatButtomBack onPress={() => {
 
-                    {/* <SText>{this.state.pedido_en_curso?.key}</SText> */}
-                    <SHr height={30} />
-                    {this.getViewDetalle()}
-                    <SHr height={18} />
-                    {this.getViewTipoPago()}
-                    <SHr height={18} />
-                    {/* {this.getViewFactura()} */}
-                    <SHr height={40} />
-                    <PButtom fontSize={20} onPress={() => {
-                        console.log("aqui " + this.state.tipoPagoSeleccionado);
-                        if (this.state.tipoPagoSeleccionado == null) {
-                            alert("Seleccione un tipo de pago");
-                            return;
-                        }
-                        SPopup.open({ key: "confirmar", content: this.popupConfirmacion() });
-                    }}>CONFIRMAR</PButtom>
-                    <SHr height={40} />
-                </SView>
-                <FloatButtomBack onPress={() => {
-                                        
-                    SStorage.removeItem("pedido_en_curso");
-                    SNavigation.goBack();
-                }} />
-         
-            </SPage >
+                        SStorage.removeItem("pedido_en_curso");
+                        SNavigation.goBack();
+                    }} />
+
+                </SPage >
+            </>
         );
     }
 }

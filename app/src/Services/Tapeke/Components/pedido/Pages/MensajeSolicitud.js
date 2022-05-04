@@ -1,42 +1,50 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SHr, SIcon, SImage, SPage, SText, STheme, SView ,SNavigation, SThread} from 'servisofts-component';
+import { SHr, SIcon, SImage, SPage, SText, STheme, SView, SNavigation, SThread, SStorage } from 'servisofts-component';
 import FloatButtomBack from '../../../../../Components/FloatButtomBack';
 import ImgSaveGallery from '../../../../../Components/ImgSaveGallery';
 import ImgShared from '../../../../../Components/ImgShared';
-import PButtom from '../../../../../Components/PButtom';
+import PButtom from '../../../../../Components/PButtom2';
 import SSocket from "servisofts-socket";
 import Contador from '../../../../../Components/Contador';
- class MensajeSolicitud extends React.Component {
+class MensajeSolicitud extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            isLoading: false,
+        };
         this.key_pedido = SNavigation.getParam('key_pedido');
         // this.key_qr = SNavigation.getParam('key_qr',"");
-  
+
     }
 
     componentDidMount() {
         this.getParams();
     }
-    getParams(){
+
+    async getParams () {
+        if(this.state.isLoading) return;
+        this.setState({ isLoading: true });
         SSocket.sendPromise(
             {
-                component:"pedido",
-                type:"get_payment_order",
-                key_pedido:this.key_pedido,
+                component: "pedido",
+                type: "get_payment_order",
+                key_pedido: this.key_pedido,
             }
         ).then((resp) => {
-            this.setState({pay_order:resp.data})
+            this.setState({ pay_order: resp.data, isLoading: false });
         }).catch((err) => {
+            this.setState({ isLoading: false });
+            console.log("ERROR", err);
             new SThread(1000, "getPaymentStatus", true).start(() => {
                 this.getParams();
-           })
+            })
         });
     }
+
     render() {
-        new SThread(5000, "getPaymentStatus", true).start(() => {
-             this.getParams();
+        new SThread(1000*10, "getPaymentStatus2", true).start(() => {
+            this.getParams();
         })
         return (
             // <SPage hidden disableScroll center>
@@ -62,16 +70,16 @@ import Contador from '../../../../../Components/Contador';
                             <SView col={"xs-2"} height center>
                             </SView>
                             <SView flex center height={60} >
-                                <SView height={60} colSquare center style={{ backgroundColor: 'white', borderRadius: 8, borderColor: STheme.color.primary, borderWidth: 2, padding: 8 }} onPress={() => { 
+                                <SView height={60} colSquare center style={{ backgroundColor: 'white', borderRadius: 8, borderColor: STheme.color.primary, borderWidth: 2, padding: 8 }} onPress={() => {
                                     // ImgSaveGallery.guardar(this.key_qr);
-                                     }}>
+                                }}>
                                     <SIcon name={"ImgSave"} />
                                 </SView>
                             </SView>
                             <SView flex center height={60} >
-                                <SView height={60} colSquare center style={{ backgroundColor: 'white', borderRadius: 8, borderColor: STheme.color.primary, borderWidth: 2, padding: 8 }} onPress={() => { 
+                                <SView height={60} colSquare center style={{ backgroundColor: 'white', borderRadius: 8, borderColor: STheme.color.primary, borderWidth: 2, padding: 8 }} onPress={() => {
                                     // ImgShared.compartir(this.key_qr);
-                                     }}>
+                                }}>
                                     <SIcon name={"ImgShare"} />
                                 </SView>
                             </SView>
@@ -80,28 +88,33 @@ import Contador from '../../../../../Components/Contador';
                         </SView>
                         <SHr height={30} />
 
-                        <PButtom fontSize={20} onPress={() => {
-                         // SNavigation.navigate(Parent.component + "/confirmar", { key: this.key_restaurante, cantidad: this.state.cantidad, envio: this.state.envio, })
-                    }}>REALIZAR PEDIDO</PButtom>
-                        <SHr height={30} />
-
+                        {/* <PButtom fontSize={20} onPress={() => {
+                            SNavigation.navigate(Parent.component + "/confirmar", { key: this.key_restaurante, cantidad: this.state.cantidad, envio: this.state.envio, })
+                        }}>REALIZAR PEDIDO</PButtom>
+                        <SHr height={30} /> */}
 
                         <Contador date={this.state?.pay_order?.expiration_date} ></Contador>
-
 
                         <PButtom fontSize={20} onPress={() => {
                             SSocket.sendPromise(
                                 {
-                                    component:"pedido",
-                                    type:"get_payment_order",
-                                    key_pedido:this.key_pedido,
+                                    component: "pedido",
+                                    type: "get_payment_order",
+                                    key_pedido: this.key_pedido,
                                 }
                             ).then((resp) => {
                                 console.log(resp.data.data.expiration_date);
-                            }).catch((err) => {
-                            });
-                    }}>get payment order</PButtom>
+                            }).catch((err) => { });
+                        }}>get payment order</PButtom>
+
+
                         <SHr height={30} />
+                        <PButtom fontSize={20} onPress={() => {
+                            SStorage.removeItem("pedido_en_curso");
+                            SNavigation.replace("/");
+                        }}>limpiar storage</PButtom>
+                        <SHr height={30} />
+
 
 
                         <SView col={"xs-12"} row center   >
