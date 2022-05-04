@@ -15,11 +15,13 @@ import MisCompras from './MisCompras';
 import ComoTeParecio from './MisCompras/ComoTeParecio';
 import Test from './Test';
 import MensajeSolicitud from '../Services/Tapeke/Components/pedido/Pages/MensajeSolicitud';
+import Preparacion from '../Services/Tapeke/Components/pedido/Pages/PedidoConfirmacion';
 const Pages = {
 
     
     // "/": MensajeSolicitud,
-    "/": Inicio,
+    // "/": Inicio,
+    "/": Preparacion,
     "test": Test,
     "carga": Carga,
     "home": Home,
