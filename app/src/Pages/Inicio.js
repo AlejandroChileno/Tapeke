@@ -67,7 +67,6 @@ class Inicio extends Component {
     // 	return <SLoad />;
     // }
     // var UsuaioPage = Pages["usuarioPage/lista"];
-
     Validations.pedido_en_curso();
     return (
       <>

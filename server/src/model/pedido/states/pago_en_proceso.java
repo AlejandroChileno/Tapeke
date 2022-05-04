@@ -31,7 +31,6 @@ public class pago_en_proceso extends State {
 
     @Override
     public void pagar(JSONObject obj) throws StateException {
-
         noPermited();
     }
 

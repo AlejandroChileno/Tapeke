@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput, SPopup, SImage, STheme, SIcon } from 'servisofts-component';
+import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput, SPopup, SImage, STheme, SIcon, SSection } from 'servisofts-component';
 import Parent from '..'
 import SSocket from 'servisofts-socket';
 
@@ -8,7 +8,7 @@ class MisTarjetas extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tipoPagoKey : "",
+            tipoPagoKey: "",
         };
         this.key = SNavigation.getParam("key");
         this.callback = SNavigation.getParam("callback");
@@ -25,7 +25,7 @@ class MisTarjetas extends Component {
             SNavigation.navigate(Parent.component + "/pago_tarjeta")
         }
         data = arr;
-        return Object.values(data).map((obj) => {
+        return Object.values(data).map((obj,i) => {
             // console.log(this.props.state.usuarioReducer.usuarioLog.key + " //// "+obj.key_usuario )
             // if((obj.estado != 1) || (this.props.state.usuarioReducer.usuarioLog.key != obj.key_usuario)) return null;
 
@@ -33,12 +33,12 @@ class MisTarjetas extends Component {
 
             //var digitos = data[obj.key].numero_tarjeta.slice(-4);
             var digitos = obj.numero_tarjeta.slice(-4);
-            return (<>
+            return (<SSection key={"card_cre"+i}>
                 <SView col={"xs-12"} row center style={{ borderRadius: 8, borderWidth: 1, borderColor: STheme.color.gray }} backgroundColor={STheme.color.card}
-                    onPress={() => { 
+                    onPress={() => {
                         this.callback({ objTarjeta: obj });
                         SNavigation.goBack();
-                        }}>
+                    }}>
                     <SHr height={10} />
                     <SView col={"xs-11"} row >
                         <SView col={"xs-2"} height={30}>
@@ -50,7 +50,7 @@ class MisTarjetas extends Component {
                         </SView>
                         <SView col={"xs-3 sm-3 md-2 lg-2 xl-2"} row >
                             <SView style={{ borderRadius: 100, backgroundColor: STheme.color.success }} width={33} height={33} center flex
-                                onPress={() => { SNavigation.navigate(Parent.component + "/registro", { key: obj.key , callback: this.callback} ) }}>
+                                onPress={() => { SNavigation.navigate(Parent.component + "/registro", { key: obj.key, callback: this.callback }) }}>
                                 <SIcon name="EditT" width="15"></SIcon>
                             </SView>
                             <SView width={10}></SView>
@@ -65,7 +65,7 @@ class MisTarjetas extends Component {
                     <SHr height={10} />
                 </SView>
                 <SHr height={7} />
-            </>)
+            </SSection>)
         });
     }
 

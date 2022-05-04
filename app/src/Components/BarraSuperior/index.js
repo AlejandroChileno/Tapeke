@@ -25,6 +25,7 @@ class BarraSuperior extends Component {
         }).start();
     }
     componentDidMount() {
+    
         this.startAnimation();
     }
 
@@ -48,6 +49,12 @@ class BarraSuperior extends Component {
         // }
         return <SView col={"xs-12"} height center >
             <SView onPress={() => {
+                if (this.props.onBack) {
+                    var prevent_default = this.props.onBack();
+                    if (prevent_default) {
+                        return;
+                    }
+                }
                 SNavigation.goBack();
             }} col={"xs-12"} style={{
                 paddingBottom: 4,

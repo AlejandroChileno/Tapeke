@@ -30,7 +30,7 @@ export default class Actions {
         return data[key];
     }
 
-    static getDetalle = (key,props) => {
+    static getDetalle = (key, props) => {
         var reducer = Actions._getReducer(props);
         var data = reducer.dataDetalle[key];
         if (!data) {
@@ -55,23 +55,23 @@ export default class Actions {
     static getVendidos = ({ key_pack, fecha }, props) => {
         var data = Actions.getAll(props);
         if (!data) return null;
-        var arr = Object.values(data).filter(item => item.key_pack == key_pack && item.fecha == fecha);
+        var arr = Object.values(data).filter(item => item.key_pack == key_pack && item.fecha == fecha && (item.state != "pendiente_pago"));
         var cantidad = 0;
         arr.map(item => cantidad += item.cantidad);
         return cantidad;
     }
 
-    static registro = (data,key_pedido, props) => {
+    static registro = (data, key_pedido, props) => {
         var sendT = {
             component: Parent.component,
             version: Parent.version,
-            key_pedido:key_pedido,
+            key_pedido: key_pedido,
             type: "registro",
             estado: "cargando",
             key_usuario: props.state.usuarioReducer.usuarioLog.key,
             data: data
         }
-        console.log("alvaro ",sendT);
+        console.log("alvaro ", sendT);
         SSocket.send(sendT)
     }
     static editar = (data, props) => {

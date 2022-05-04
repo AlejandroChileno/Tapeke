@@ -23,7 +23,7 @@ export default class Contador extends Component {
     minutes = Math.floor(minutes);
     seconds = Math.floor(seconds);
     if(diff <= 0 ){
-      return <SText>ExpiRADO</SText>
+      return null;
     }
     return (
       <SView col={"xs-12"} height={50} border={'transparent'} style={{ backgroundColor: STheme.color.primary }}>

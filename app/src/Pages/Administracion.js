@@ -14,7 +14,7 @@ class Administracion extends Component {
     render() {
         const UsuaioPage = Pages["usuarioPage/lista"];
         return (
-            <SPage title={'Administracion'} center>
+            <SPage title={'Administracion'} >
                 <UsuaioPage />
             </SPage>
         );

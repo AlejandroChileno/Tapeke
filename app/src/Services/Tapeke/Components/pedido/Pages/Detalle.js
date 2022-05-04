@@ -187,7 +187,7 @@ class Detalle extends React.Component {
 
         return (
             <SPage center>
-                <SView col={"xs-12"} row backgroundColor={STheme.color.card} center>
+                <SView col={"xs-12"} height backgroundColor={STheme.color.card} center>
                     <SHr height={18} />
                     <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center row style={{ backgroundColor: STheme.color.white }}>
                         <SView col={"xs-11"} row center>
@@ -305,9 +305,9 @@ class Detalle extends React.Component {
                     <SHr height={40} />
                 </SView>
 
-                <FloatButtomBack onPress={() => {
+                {/* <FloatButtomBack onPress={() => {
                     SNavigation.navigate("/explorar");
-                }} />
+                }} /> */}
                 
 
             </SPage >

@@ -14,8 +14,8 @@ import Ayuda from './Ayuda';
 import MisCompras from './MisCompras';
 import ComoTeParecio from './MisCompras/ComoTeParecio';
 import Test from './Test';
-import MensajeSolicitud from '../Services/Tapeke/Components/pedido/Pages/MensajeSolicitud';
-import Preparacion from '../Services/Tapeke/Components/pedido/Pages/PedidoConfirmacion';
+// import MensajeSolicitud from '../Services/Tapeke/Components/pedido/Pages/MensajeSolicitud';
+// import Preparacion from '../Services/Tapeke/Components/pedido/Pages/PedidoConfirmacion';
 const Pages = {
 
     

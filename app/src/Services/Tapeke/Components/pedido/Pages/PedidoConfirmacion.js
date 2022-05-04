@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SHr, SIcon, SImage, SLoad, SMapView, SMarker, SPage, SText, STheme, SView } from 'servisofts-component';
+import { SHr, SIcon, SImage, SLoad, SMapView, SMarker, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
 import Parent from '../index';
 import SSocket from 'servisofts-socket';
 
@@ -18,9 +18,9 @@ class PedidoConfirmacion extends React.Component {
             }
         };
 
-        this.key_pedido = "226dd263-666b-4af8-9e93-1d101bf28efb";
+        // this.key_pedido = "226dd263-666b-4af8-9e93-1d101bf28efb";
 
-        // this.key_pedido = SNavigation.getParam('key_pedido');
+        this.key_pedido = SNavigation.getParam('key_pedido');
     }
     showMapa() {
         this.auxPedido = Parent.Actions.getDetalle(this.key_pedido, this.props)
@@ -83,7 +83,6 @@ class PedidoConfirmacion extends React.Component {
         this.auxPedido = Parent.Actions.getDetalle(this.key_pedido, this.props)
         if (!this.auxPedido) return <SLoad />
 
-        console.log("holoa ", this.auxPedido);
         // console.log("hora ", this.auxPedido.horario.hora_inicio);
         // console.log("hora ", this.auxPedido.horario.hora_fin);
         return (

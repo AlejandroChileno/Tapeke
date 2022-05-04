@@ -24,6 +24,15 @@ class Item2 extends Component {
         </>
 
     }
+    getNoDisponible(cantidad) {
+        if(cantidad) return null;
+        return <SView col={"xs-10"} style={{
+            position: 'absolute',
+            backgroundColor: "#ff0000",
+            height: 2,
+        }}>
+        </SView>
+    }
     HeaderItemDisponible() {
         var cantidad = 0;
         if (this.props.data.pack) {
@@ -35,6 +44,7 @@ class Item2 extends Component {
             {/* <SView col={"xs-10"} row center style={{ justifyContent: 'flex-start', }}> */}
             <SView width={112} height={24} center style={{ borderRadius: 4, overflow: 'hidden', backgroundColor: '#FFBB3E', position: 'absolute', top: 8, left: 8 }}>
                 <SText fontSize={10} font={"Roboto"} color={STheme.color.secondary} >{cantidad} disponible(s)</SText>
+                {this.getNoDisponible(cantidad)}
             </SView>
             {/* <SView flex /> */}
             <SView width={40} center style={{
@@ -42,6 +52,7 @@ class Item2 extends Component {
             }} >
                 <FavoritoButtom data={this.props.data} size={20} />
             </SView>
+
             {/* </SView> */}
 
         </>
@@ -75,7 +86,7 @@ class Item2 extends Component {
                     <SView col={"xs-12"} height={125} border={'transparent'} />
                     <SView col={"xs-11"} row center border={'transparent'}  >
                         <SView col={"xs-5.5"} row center border={'transparent'} style={{ justifyContent: 'flex-start', }} >
-                            <SIcon name={'Reloj'} width={13}/>
+                            <SIcon name={'Reloj'} width={13} />
                             <SView width={4} />
                             {/* <SText fontSize={10} font={"Roboto"}> Hoy {this.props.data.horario}</SText> */}
                             <SText fontSize={10} font={"Roboto"} >{this.props.data.horario?.text}</SText>

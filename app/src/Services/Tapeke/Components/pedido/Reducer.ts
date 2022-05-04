@@ -17,10 +17,6 @@ const initialState = () => {
         dataDetalle: {},
     }
 
-    SStorage.getItem("miInformation_log", (resp: any) => {
-        initialState.miInformation = JSON.parse(resp);
-    })
-
     return initialState;
 }
 
@@ -49,7 +45,7 @@ const TypesSwitch = (state: any, action: DataProps) => {
 }
 
 const getAll = (state: any, action: DataProps) => {
-    
+
     if (action.estado != "exito") return;
     state.data = action.data;
 
@@ -59,15 +55,12 @@ const getAll = (state: any, action: DataProps) => {
 const getDetalle = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
     state.dataDetalle[action.data.key] = action.data;
-    SStorage.setItem("miInformation_log", JSON.stringify(action.data));
 }
 const registro = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
     state.lastRegister = action.data;
     if (!state.data) return;
     state.data[action.data.key] = action.data;
-    SStorage.setItem("miInformation_log", JSON.stringify(action.data));
-
 }
 const editar = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;

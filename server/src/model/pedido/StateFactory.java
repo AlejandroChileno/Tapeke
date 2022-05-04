@@ -8,6 +8,7 @@ public class StateFactory {
         no_registrado,
         pendiente_pago,
         pago_en_proceso,
+        pagado,
         confirmado
     }
 
@@ -22,6 +23,8 @@ public class StateFactory {
                 return new pendiente_pago(pedido);
             case pago_en_proceso:
                 return new pago_en_proceso(pedido);
+            case pagado:
+                return new pagado(pedido);
             case confirmado:
                 return new confirmado(pedido);
 

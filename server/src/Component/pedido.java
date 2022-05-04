@@ -112,11 +112,15 @@ public class pedido {
     public static void select_pay_method(JSONObject obj, SSSessionAbstract session) throws StateException {
         model.pedido.Pedido pedido = new model.pedido.Pedido(obj.getString("key_pedido"));
         pedido.select_pay_method(obj);
+        obj.put("data", pedido.toJson());
+        obj.put("estado", "exito");
     }
 
     public static void get_payment_order(JSONObject obj, SSSessionAbstract session) throws StateException {
         model.pedido.Pedido pedido = new model.pedido.Pedido(obj.getString("key_pedido"));
         pedido.get_payment_order(obj);
+        // obj.put("data", pedido.toJson());
+        // obj.put("estado", "exito");
     }
 
 }

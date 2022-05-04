@@ -40,7 +40,7 @@ class Lista extends Component {
     render() {
         return (
             // <SPage title={'Inicio'} preventBack center hidden>
-            <SView col={"xs-12 sm-11"} row center>
+            <SView col={"xs-12"} row center>
                 {this.getContent()}
             </SView>
             // </SPage>

@@ -125,19 +125,19 @@ class TipoPago extends Component {
                     <SView col={"xs-11"} row >
 
                         <SHr height={15} />
-                        {/* {this.item("p0002", "Billetera Tapeke", require('../../../../../Assets/img/tapeke.png'))} */}
+                        {this.item("Billetera", "Billetera Tapeke", require('../../../../../Assets/img/tapeke.png'))}
                         {this.item("Credito", "Tarjeta de Debito / Crédito", require('../../../../../Assets/img/Ptarjeta.png'))}
-                        {this.item("Fassil", "Banco FASSIL", require('../../../../../Assets/img/Pfassil.png'))}
+                        {/* {this.item("Fassil", "Banco FASSIL", require('../../../../../Assets/img/Pfassil.png'))} */}
                         {this.item("QR", "Transferencia QR", require('../../../../../Assets/img/Ptransferencia.png'))}
                         {this.item("TigoMoney", "Tigo Money", require('../../../../../Assets/img/Ptigo.png'))}
                     </SView>
                     <SHr height={15} />
                 </SView>
             </SView>
-            <SView col={"xs-10 sm-5 lg-3"} border={'transparent'} style={{ position: 'absolute' }}  >
+            {/* <SView col={"xs-10 sm-5 lg-3"} border={'transparent'} style={{ position: 'absolute' }}  >
                 <SText>  {this.state.KeytipoPago} </SText>
                 <SText>  {this.state.tipoPago} </SText>
-            </SView>
+            </SView> */}
         </>
     }
 

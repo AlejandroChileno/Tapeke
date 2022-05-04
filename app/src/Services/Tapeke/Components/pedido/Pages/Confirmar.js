@@ -22,11 +22,11 @@ class Confirmar extends React.Component {
 
 
     componentDidMount() {
-        SStorage.getItem("pedido_en_curso", (val) => {
-            if (!val) SNavigation.goBack();
-            this.setState({ pedido_en_curso: JSON.parse(val) })
-            console.log(this.state.pedido_en_curso)
-        })
+        // SStorage.getItem("pedido_en_curso", (val) => {
+        //     if (!val) SNavigation.goBack();
+        //     this.setState({ pedido_en_curso: JSON.parse(val) })
+        //     console.log(this.state.pedido_en_curso)
+        // })
     }
 
     getViewDetalle() {
@@ -34,7 +34,13 @@ class Confirmar extends React.Component {
         if (!this.auxPedido) return <SLoad />
 
         if (this.auxPedido.state.code == "pago_en_proceso") {
-            SNavigation.navigate("pedido/mensajeSolicitud", { key_pedido: this.auxPedido.key });
+            SNavigation.replace("pedido/mensajeSolicitud", { key_pedido: this.auxPedido.key });
+            return;
+        }
+        if (this.auxPedido.state.code == "pagado") {
+            SStorage.removeItem("pedido_en_curso")
+            SNavigation.replace("pedido/confirmacion", { key_pedido: this.auxPedido.key });
+
             return;
         }
         return <>
@@ -151,7 +157,7 @@ class Confirmar extends React.Component {
                         "client": {
                             "name": usuario["Nombres"],
                             "last_name": usuario["Apellidos"],
-                            "ci": usuario["ci"] ?? " ",
+                            "ci": "6392496",
                             "phone": usuario["Telefono"],
                             "email": usuario["Correo"],
                             "bussiness_name": values["business_name"],
@@ -159,11 +165,16 @@ class Confirmar extends React.Component {
                         }
                     }
                 ).then((resp) => {
-                    alert("exito");
-                    SNavigation.navigate("pedido/mensajeSolicitud", { key_pedido: this.keyPedido });
                     SPopup.close("confirmar");
+                    if (resp.data.state.code == "pagado") {
+                        SStorage.removeItem("pedido_en_curso")
+                        SNavigation.replace("pedido/confirmacion", { key_pedido: this.keyPedido });
+                        return;
+                    }
+                    SNavigation.navigate("pedido/mensajeSolicitud", { key_pedido: this.keyPedido });
                 }).catch((err) => {
-                    alert("error");
+                    // alert(err.error);
+                    SPopup.alert(err.error);
                     SPopup.close("confirmar");
                 });
             }} />
@@ -199,7 +210,9 @@ class Confirmar extends React.Component {
     render() {
         return (
             <>
-                <SPage center hidden>
+                <SPage center onBack={() => {
+                    SStorage.removeItem("pedido_en_curso");
+                }}>
                     <SView col={"xs-12"} row backgroundColor={STheme.color.card} center>
 
                         {/* <SText>{this.state.pedido_en_curso?.key}</SText> */}
@@ -208,7 +221,7 @@ class Confirmar extends React.Component {
                         <SHr height={18} />
                         {this.getViewTipoPago()}
                         <SHr height={18} />
-                         {this.getViewFactura()}
+                        {this.getViewFactura()}
                         <SHr height={40} />
                         <PButtom fontSize={20} onPress={() => {
                             console.log("aqui " + this.state.tipoPagoSeleccionado);
@@ -220,11 +233,6 @@ class Confirmar extends React.Component {
                         }}>CONFIRMAR</PButtom>
                         <SHr height={40} />
                     </SView>
-                    <FloatButtomBack onPress={() => {
-
-                        SStorage.removeItem("pedido_en_curso");
-                        SNavigation.goBack();
-                    }} />
 
                 </SPage >
             </>

@@ -8,6 +8,7 @@ import java.util.Date;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import Component.Billetera;
 import Component.enviroment;
 import Servisofts.SConsole;
 import Servisofts.SPGConect;
@@ -104,7 +105,34 @@ public class pendiente_pago extends State {
         if (pay_method.isEmpty()) {
             throw new StateException("pay_method::String is empty");
         }
-
+        if (pay_method.equals("Billetera")) {
+            String key_usuario = this.pedido.getData().getString("key_usuario");
+            try {
+                double monto_actual = Double.parseDouble(SPGConect.ejecutarConsultaString(
+                        "select sum(billetera.monto) from billetera where billetera.key_cliente = '" + key_usuario
+                                + "' and billetera.estado = 1"));
+                double total = this.pedido.getData().getDouble("precio") + this.pedido.getData().getDouble("delivery");
+                if (total > monto_actual) {
+                    throw new StateException("No tiene fondos suficientes en su billetera");
+                }
+                JSONObject billeteraMovimiento = new JSONObject();
+                billeteraMovimiento.put("key", SUtil.uuid());
+                billeteraMovimiento.put("estado", 1);
+                billeteraMovimiento.put("fecha_on", SUtil.now());
+                billeteraMovimiento.put("key_usuario", key_usuario);
+                billeteraMovimiento.put("key_cliente", key_usuario);
+                billeteraMovimiento.put("monto", total * -1);
+                billeteraMovimiento.put("tipo_pago", "Billetera");
+                billeteraMovimiento.put("key_pedido", this.pedido.getKey());
+                SPGConect.insertObject("billetera", billeteraMovimiento);
+                // obj.put("data", billeteraMovimiento);
+                // obj.put("estado", "exito");
+                this.pedido.changeState(states.pagado, "select_pay_method");
+                return;
+            } catch (SQLException e) {
+                throw new StateException(e.getMessage());
+            }
+        }
         if (this.pedido.getData().isNull("key_payment_order")) {
             this.create_pay_order(obj);
         }
@@ -128,8 +156,8 @@ public class pendiente_pago extends State {
         }
         this.pedido.getData().put("payment_type", itemToEdit.getString("payment_type"));
         this.pedido.changeState(states.pago_en_proceso, "select_pay_method");
-        obj.put("data", response.getJSONObject("data"));
-        obj.put("estado", "exito");
+        // obj.put("data", response.getJSONObject("data"));
+        // obj.put("estado", "exito");
 
     }
 
@@ -141,7 +169,7 @@ public class pendiente_pago extends State {
     @Override
     public void get_payment_order(JSONObject obj) throws StateException {
         noPermited();
-        
+
     }
 
 }

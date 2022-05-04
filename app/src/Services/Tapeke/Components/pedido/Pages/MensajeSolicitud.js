@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SHr, SIcon, SImage, SPage, SText, STheme, SView, SNavigation, SThread, SStorage } from 'servisofts-component';
+import { SHr, SIcon, SImage, SPage, SText, STheme, SView, SNavigation, SThread, SStorage, SPopup } from 'servisofts-component';
 import FloatButtomBack from '../../../../../Components/FloatButtomBack';
 import ImgSaveGallery from '../../../../../Components/ImgSaveGallery';
 import ImgShared from '../../../../../Components/ImgShared';
@@ -22,8 +22,8 @@ class MensajeSolicitud extends React.Component {
         this.getParams();
     }
 
-    async getParams () {
-        if(this.state.isLoading) return;
+    async getParams() {
+        if (this.state.isLoading) return;
         this.setState({ isLoading: true });
         SSocket.sendPromise(
             {
@@ -43,7 +43,13 @@ class MensajeSolicitud extends React.Component {
     }
 
     render() {
-        new SThread(1000*10, "getPaymentStatus2", true).start(() => {
+        if (this.state?.pay_order?.state == "expiration_date_timeout") {
+            SPopup.alert("El tiempo de espera para pagar ha expirado");
+            SStorage.removeItem("pedido_en_curso");
+            SNavigation.replace("/");
+            return null;
+        }
+        new SThread(1000 * 10, "getPaymentStatus2", true).start(() => {
             this.getParams();
         })
         return (
@@ -95,7 +101,7 @@ class MensajeSolicitud extends React.Component {
 
                         <Contador date={this.state?.pay_order?.expiration_date} ></Contador>
 
-                        <PButtom fontSize={20} onPress={() => {
+                        {/* <PButtom fontSize={20} onPress={() => {
                             SSocket.sendPromise(
                                 {
                                     component: "pedido",
@@ -105,16 +111,15 @@ class MensajeSolicitud extends React.Component {
                             ).then((resp) => {
                                 console.log(resp.data.data.expiration_date);
                             }).catch((err) => { });
-                        }}>get payment order</PButtom>
+                        }}>get payment order</PButtom> */}
 
 
-                        <SHr height={30} />
-                        <PButtom fontSize={20} onPress={() => {
+                        {/* <PButtom fontSize={20} onPress={() => {
                             SStorage.removeItem("pedido_en_curso");
-                            // SNavigation.replace("/");
-                            SNavigation.replace("pedido/confirmacion");
+                            SNavigation.replace("/");
+                            // SNavigation.replace("pedido/confirmacion");
 
-                        }}>limpiar storage</PButtom>
+                        }}>limpiar storage</PButtom> */}
                         <SHr height={30} />
 
 

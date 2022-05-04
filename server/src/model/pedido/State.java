@@ -23,7 +23,7 @@ public abstract class State implements IPedidoActions {
         return obj;
     }
 
-    public void noPermited() throws StateException{
+    public void noPermited() throws StateException {
         throw new StateException("El pedido se encuenta en estado: " + type);
     }
 
