@@ -11,6 +11,7 @@ class NoHayTarjeta extends Component {
         this.state = {
         };
         this.key = SNavigation.getParam("key");
+        this.callback = SNavigation.getParam("callback");
     }
 
     render() {
@@ -25,15 +26,16 @@ class NoHayTarjeta extends Component {
         //         SNavigation.goBack();
         //     }
         // }
-        var data = Parent.Actions.getAll(this.props);
-        if (!data) return <SLoad />
+      
+      
+        // var data = Parent.Actions.getAll(this.props);
+        // if (!data) return <SLoad />
 
-        const key_usuario = this.props.state.usuarioReducer.usuarioLog.key;
-		var arr = Object.values(data).filter(x => x.key_usuario == key_usuario && x.estado == 1);
-		if (arr.length >= 0) {
-			SNavigation.navigate(Parent.component +"/misTarjetas");
-			// return <SText>No hay tarjetas registradas</SText>
-		}
+        // const key_usuario = this.props.state.usuarioReducer.usuarioLog.key;
+		// var arr = Object.values(data).filter(x => x.key_usuario == key_usuario && x.estado == 1);
+		// if (arr.length > 0) {
+		// 	SNavigation.navigate(Parent.component +"/misTarjetas", { callback: this.callback});
+		// }
 
         return (
             <SPage  disableScroll center>
@@ -55,7 +57,7 @@ class NoHayTarjeta extends Component {
                         </SView>
                         <SView col={"xs-12"} row center   >
                             <SView col={"xs-12"} border={'transparent'} center>
-                                <PButtom3 secondary props={{ type: "outline" }} onPress={() => { SNavigation.navigate(Parent.component + "/registro") }} >AÑADIR TARJETA</PButtom3>
+                                <PButtom3 secondary props={{ type: "outline" }} onPress={() => { SNavigation.navigate(Parent.component + "/registro" , { callback: this.callback })  }} >AÑADIR TARJETA</PButtom3>
                                 <SHr height={20} />
                             </SView>
                             <SHr height={10} />
