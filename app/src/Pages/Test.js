@@ -7,7 +7,6 @@ class Test extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: 'PRESIONA EL BOTON',
         };
     }
 

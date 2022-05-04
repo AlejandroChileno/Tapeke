@@ -34,12 +34,12 @@ class Direccion extends React.Component {
 			SNavigation.navigate("direccion_usuario")
 			return <SText>No hay direcciones</SText>
 		}
-		return arr.map((obj) => {
+		return arr.map((obj, i) => {
 			// if (!SBuscador.validate(data[key], this.state.find)) {
 			//     return null;
 			// }
 			// if (data[key]['key_usuario'] != this.props.state.usuarioReducer.usuarioLog.key) return null;
-			return <>
+			return <SView key={"itmDirection" + i}>
 				<SView col={"xs-12"} height={64} row center border={"transparent"} onPress={() => {
 					this.props.dispatch({ component: "direccion_usuario", type: "editarMiDireccion", data: obj });
 					SNavigation.goBack()
@@ -69,7 +69,7 @@ class Direccion extends React.Component {
 
 				</SView>
 				<SHr height={10} />
-			</>
+			</SView>
 
 		})
 	}
@@ -103,7 +103,7 @@ class Direccion extends React.Component {
 							SLocation.getCurrentPosition().then((position) => {
 								alert(JSON.stringify(position))
 
-									//ricky dijo que lo iva a pensar como hacerlo
+								//ricky dijo que lo iva a pensar como hacerlo
 							}).catch((error) => {
 								console.log(error);
 							})

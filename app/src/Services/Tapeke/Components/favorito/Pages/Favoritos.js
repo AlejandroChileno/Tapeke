@@ -30,7 +30,7 @@ class Favoritos extends Component {
 		if (!favUsuario) return <SLoad />;
 		var arr = Object.values(data).filter((itm) => favUsuario.find((elm) => elm.key_restaurante == itm.key))
 		return arr.map((obj, index) => {
-			return <SView row col={"xs-10 md-5 lg-4 xl-3"} border={'transparent'} >
+			return <SView key={"itmDav"+index} row col={"xs-10 md-5 lg-4 xl-3"} border={'transparent'} >
 				<Item2 data={obj} ></Item2>
 				<SHr/>
 				<SHr/>

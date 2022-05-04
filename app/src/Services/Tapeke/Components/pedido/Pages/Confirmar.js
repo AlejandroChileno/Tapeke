@@ -207,7 +207,7 @@ class Confirmar extends React.Component {
                         <SHr height={18} />
                         {this.getViewTipoPago()}
                         <SHr height={18} />
-                        {this.getViewFactura()}
+                        {/* {this.getViewFactura()} */}
                         <SHr height={40} />
                         <PButtom fontSize={20} onPress={() => {
                             console.log("aqui " + this.state.tipoPagoSeleccionado);

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SHr, SIcon, SImage, SNavigation, SText, STheme, SView, SLoad } from 'servisofts-component';
-// import Parent from '../index';
+import ParenTarjeta from '../../../../Tapeke/Components/pago_tarjeta';
+
 
 class TipoPago extends Component {
     constructor(props) {
@@ -54,11 +55,44 @@ class TipoPago extends Component {
     // }
 
     item(key, descripcion, imagen) {
-
+        var dataTarjeta = ParenTarjeta.Actions.getAll(this.props);
+        if (!dataTarjeta) return;
+    
         return <>
             <SHr height={15} />
             <SView col={"xs-12"} row center onPress={() => {
                 // start document
+                var tarjetaNumber = "";
+                if (key == "Credito") {
+                    //Consultando si existe tarjetas
+                   
+
+                    const key_usuario = this.props.state.usuarioReducer.usuarioLog.key;
+                    var arr = Object.values(dataTarjeta).filter(x => x.key_usuario == key_usuario && x.estado == 1);
+                    var pagina = "";
+
+                    if (arr.length > 0) {
+                        // SNavigation.navigate(Parent.component +"/misTarjetas", { callback: this.callback});
+                        // return <SText>No hay tarjetas registradas</SText>
+                        pagina = "pago_tarjeta/misTarjetas";
+                    } else {
+                        pagina = "pago_tarjeta";
+                    }
+
+                    SNavigation.navigate(pagina, {
+                        callback: (tarjeta) => {
+                            this.state.KeytipoPago = key;
+                            this.state.tipoPago = descripcion;
+                            if (this.props.callback) this.props.callback({ tipopago: this.state.KeytipoPago, objTarjeta: null })
+                            this.setState({ ...this.state });
+                            console.log(JSON.stringify(tarjeta) + " AAAAA " + tarjeta.objTarjeta.numero_tarjeta);
+                            var digitos = tarjeta.objTarjeta.numero_tarjeta.slice(-4);
+                            //alert(digitos);
+                            this.tarjetaNumber = "*** *** *** " + digitos;
+                        }
+                    });
+                    return;
+                }
                 this.state.KeytipoPago = key;
                 this.state.tipoPago = descripcion;
                 if (this.props.callback) this.props.callback({ tipopago: this.state.KeytipoPago })
@@ -72,6 +106,7 @@ class TipoPago extends Component {
                 </SView>
                 <SView col={"xs-8"} >
                     <SText fontSize={16} font={"Roboto"} style={{ fontWeight: "bold" }}>{descripcion} </SText>
+                    {key == "Credito" ? <SText fontSize={16} font={"Roboto"} style={{ fontWeight: "bold" }}> {this.tarjetaNumber} </SText> : null}
                 </SView>
                 <SView col={"xs-2"} center>
                     <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}
@@ -90,7 +125,7 @@ class TipoPago extends Component {
                     <SView col={"xs-11"} row >
 
                         <SHr height={15} />
-                         {/* {this.item("p0002", "Billetera Tapeke", require('../../../../../Assets/img/tapeke.png'))} */}
+                        {/* {this.item("p0002", "Billetera Tapeke", require('../../../../../Assets/img/tapeke.png'))} */}
                         {this.item("Credito", "Tarjeta de Debito / Crédito", require('../../../../../Assets/img/Ptarjeta.png'))}
                         {this.item("Fassil", "Banco FASSIL", require('../../../../../Assets/img/Pfassil.png'))}
                         {this.item("QR", "Transferencia QR", require('../../../../../Assets/img/Ptransferencia.png'))}
@@ -113,21 +148,21 @@ class TipoPago extends Component {
         // var data = Parent.Actions.getAll(this.props);
         // if (!data) return <SLoad />;
         // console.log(data);
-        switch (this.state.KeytipoPago) {
-            case "Credito":
-             SNavigation.navigate( 'pago_tarjeta', { callback: this.props.callback });
+        // switch (this.state.KeytipoPago) {
+        //     case "Credito":
 
-            // case "Fassil":
-            //     return SNavigation.push(this.props.navigation, 'pago_fassil', { callback: this.props.callback });
-            // case "QR":
-            //     return SNavigation.push(this.props.navigation, 'pago_qr', { callback: this.props.callback });
-            // case "TigoMoney":
-            //     return SNavigation.push(this.props.navigation, 'pago_tigo', { callback: this.props.callback });
-            // default:
-            //     return SNavigation.push(this.props.navigation, 'pago_transferencia', { callback: this.props.callback });
-        
-    
-        }
+
+        //     // case "Fassil":
+        //     //     return SNavigation.push(this.props.navigation, 'pago_fassil', { callback: this.props.callback });
+        //     // case "QR":
+        //     //     return SNavigation.push(this.props.navigation, 'pago_qr', { callback: this.props.callback });
+        //     // case "TigoMoney":
+        //     //     return SNavigation.push(this.props.navigation, 'pago_tigo', { callback: this.props.callback });
+        //     // default:
+        //     //     return SNavigation.push(this.props.navigation, 'pago_transferencia', { callback: this.props.callback });
+
+
+        // }
         return (
             this.getTipoPago()
         );

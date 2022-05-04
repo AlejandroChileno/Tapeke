@@ -189,7 +189,7 @@ class Paso1 extends React.Component {
                             <SHr height={15} border={'blue'} />
 
                             <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-start', }}>
-                                <SIcon name={'Reloj'} width={13} colSquare center />
+                                <SIcon name={'Reloj'} width={13} />
                                 <SText fontSize={12} font={"Roboto"} >{this.dataRestaurante.horario.text}</SText>
                             </SView>
                             <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-end', }}>

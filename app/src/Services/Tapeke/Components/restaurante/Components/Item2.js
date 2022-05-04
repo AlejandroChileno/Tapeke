@@ -75,13 +75,13 @@ class Item2 extends Component {
                     <SView col={"xs-12"} height={125} border={'transparent'} />
                     <SView col={"xs-11"} row center border={'transparent'}  >
                         <SView col={"xs-5.5"} row center border={'transparent'} style={{ justifyContent: 'flex-start', }} >
-                            <SIcon name={'Reloj'} width={13} colSquare center />
+                            <SIcon name={'Reloj'} width={13}/>
                             <SView width={4} />
                             {/* <SText fontSize={10} font={"Roboto"}> Hoy {this.props.data.horario}</SText> */}
                             <SText fontSize={10} font={"Roboto"} >{this.props.data.horario?.text}</SText>
                         </SView>
                         <SView col={"xs-2.5"} row center style={{ justifyContent: 'flex-start', }} border={'transparent'}>
-                            <SIcon name={'Location'} height={13} width={9} center />
+                            <SIcon name={'Location'} height={13} width={9} />
                             <SView width={4} />
                             <SText fontSize={10} font={"Roboto"}>{this.props.data.distancia} Km</SText>
                         </SView>

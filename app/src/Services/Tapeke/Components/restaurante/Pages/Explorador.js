@@ -43,10 +43,11 @@ class Explorador extends React.Component {
         var data = Parent.Actions.getAllFilter(filtro, this.props);
         var data_favoritos = favorito.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props);
         if (!data) return <SLoad />;
+        if (!filtro) return <SLoad />;
         if (!data_favoritos) return <SLoad />;
         // var listaKeys = Object.keys(data);
         return data.map((obj) => {
-            return <SView col={"xs-10 md-5 lg-4 xl-3"} border={'transparent'} >
+            return <SView key={obj.key} col={"xs-10 md-5 lg-4 xl-3"} border={'transparent'} >
                 <Item2 data={obj} ></Item2>
             </SView>
         })
@@ -54,12 +55,6 @@ class Explorador extends React.Component {
 
     showLista() {
         return <>
-            {/* <SView height={8} border={'transparent'} /> */}
-            {/* {this.getCategoriasList()} */}
-            <BarraFiltros />
-            <SView height={8} />
-            {this.getBotonos()}
-            <SView height={20} />
             <SScrollView2 disableHorizontal={true} border={'transparent'}>
                 <SView col={"xs-12 "} center border={'transparent'} >
                     {this.getRestaurante()}
@@ -78,6 +73,10 @@ class Explorador extends React.Component {
                     <Direccion />
                 </BarraSuperiorTapeke>
                 <SView flex center col={"xs-12"}>
+                    <BarraFiltros />
+                    <SView height={8} />
+                    {this.getBotonos()}
+                    <SView height={20} />
                     {this.showLista()}
                 </SView>
                 <PBarraFooter />
