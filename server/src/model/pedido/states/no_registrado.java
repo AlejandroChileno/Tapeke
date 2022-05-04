@@ -1,9 +1,6 @@
 package model.pedido.states;
 
-import java.io.Console;
 import java.sql.SQLException;
-
-import javax.naming.spi.StateFactory;
 
 import org.json.JSONException;
 import org.json.JSONObject;

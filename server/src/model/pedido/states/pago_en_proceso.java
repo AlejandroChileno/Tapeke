@@ -1,12 +1,7 @@
 package model.pedido.states;
 
-import java.sql.SQLException;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import Servisofts.SConsole;
-import Servisofts.SPGConect;
 import SocketCliente.SocketCliente;
 import model.pedido.Pedido;
 import model.pedido.State;

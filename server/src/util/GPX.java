@@ -2,20 +2,17 @@ package util;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -80,7 +77,6 @@ public class GPX {
             doc.appendChild(gpx);
             save(doc);
         } catch (ParserConfigurationException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -97,7 +93,8 @@ public class GPX {
                 }
             }
             File itm = new File(this.url + name + ".gpx");
-            FileWriter fw = new FileWriter(this.url + name + ".gpx");
+            // INFO  falta importar, para utilizar 
+            // FileWriter fw = new FileWriter(this.url + name + ".gpx");
             
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
@@ -106,7 +103,6 @@ public class GPX {
             transformer.transform(source, result);
             // System.out.println("File saved!");
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

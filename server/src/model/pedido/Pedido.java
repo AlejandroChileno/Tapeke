@@ -2,13 +2,10 @@ package model.pedido;
 
 import java.sql.SQLException;
 
-import javax.naming.spi.StateFactory;
-
 import org.json.JSONObject;
 
 import Servisofts.SPGConect;
 import Servisofts.SUtil;
-import model.pedido.states.pendiente_pago;
 import model.pedido.StateFactory.states;
 import model.pedido.exception.StateException;
 
@@ -59,7 +56,8 @@ public class Pedido implements IPedidoActions {
 
     private JSONObject getFromDB() throws StateException {
         try {
-            JSONObject pedido =  SPGConect.ejecutarConsultaObject("select pedido_state_get_detalle('" + this.key + "') as json");
+            JSONObject pedido = SPGConect
+                    .ejecutarConsultaObject("select pedido_state_get_detalle('" + this.key + "') as json");
             return pedido;
         } catch (SQLException e) {
             throw new StateException("Error al optener el pedido");
@@ -84,6 +82,7 @@ public class Pedido implements IPedidoActions {
     public JSONObject getData() {
         return data;
     }
+
     @Override
     public void pagar(JSONObject obj) throws StateException {
         this.state.pagar(obj);
@@ -98,9 +97,10 @@ public class Pedido implements IPedidoActions {
     public void select_pay_method(JSONObject obj) throws StateException {
         this.state.select_pay_method(obj);
     }
+
     @Override
     public void get_payment_order(JSONObject obj) throws StateException {
         this.state.get_payment_order(obj);
-        
+
     }
 }
