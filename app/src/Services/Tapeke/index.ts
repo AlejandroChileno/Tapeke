@@ -12,6 +12,8 @@ import otros from './Components/otros';
 import filtros from './Components/filtros';
 import novedades from './Components/novedades';
 import pago_tarjeta from './Components/pago_tarjeta';
+
+import PedidoEnCurso from './Tasks/PedidoEnCurso';
 const ServiceName = "tapeke";
 
 const Pages: SPageListProps = {
@@ -45,6 +47,7 @@ const Reducers = {
     ...filtros.Reducers,
     ...novedades.Reducers,
     ...pago_tarjeta.Reducers,
+    ...PedidoEnCurso.Reducers,
 }
 
 export default {

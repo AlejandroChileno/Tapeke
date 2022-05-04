@@ -12,13 +12,12 @@ class BarraFiltros extends Component {
 
 
 
-    getCategoria(obj) {
+    getCategoria(obj, key) {
         var txt = obj.title;
         txt = txt.replace(/\s/g, '');
         var width = (txt.length * 8);
         width += 16;
-        return <>
-            {/* <SView width={30} /> */}
+        return <SView key={`itemCat-${key}`} row >
             <SView height={28} width={width} border={'transparent'}
                 style={{ backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }}
                 onPress={() => {
@@ -36,19 +35,19 @@ class BarraFiltros extends Component {
                 {/* </SView> */}
             </SView>
             <SView width={14} />
-        </>
+        </SView>
     }
 
     getCategoriasList() {
         var data = Parent.Actions.getAll(this.props);
         return Object.keys(data).map((key) => {
             var obj = data[key];
-            return this.getCategoria(obj);
+            return this.getCategoria(obj, key);
         })
     }
     getBtn() {
         return (< SView height={28} flex border={'transparent'} style={{ paddingLeft: 10, paddingRight: 10, backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }
-        } center onPress={() => { 
+        } center onPress={() => {
             SNavigation.navigate('explorar/filtros');
         }}>
             <SView row>

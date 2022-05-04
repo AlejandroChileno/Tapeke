@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SButtom, SHr, SPage, SText } from 'servisofts-component';
-import SSocket from 'servisofts-socket';
-import LogoCargando from '../Components/LogoCargando';
+import PedidoEnCurso from '../Services/Tapeke/Tasks/PedidoEnCurso';
 class Test extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: 'PRESIONA EL BOTON',
         };
     }
 
     render() {
         return (
             <SPage title={'Test'} center>
-                <LogoCargando/>
+                <SText>{PedidoEnCurso.getByKeyUsuario(this.props)}</SText>
             </SPage>
         );
     }

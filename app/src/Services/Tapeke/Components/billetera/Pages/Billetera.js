@@ -45,7 +45,8 @@ class Billetera extends Component {
 
 
     getDetalleBilletera(fecha, descripcion, monto) {
-        return <><SHr height={10} />
+        return <SView key={fecha} col={"xs-12"} center>
+            <SHr height={10} />
             <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center >
                 <SView col={"xs-12"} row backgroundColor={STheme.color.card} height={52} center style={{ borderRadius: 8 }}>
                     <SView col={"xs-8"} height style={{
@@ -59,7 +60,7 @@ class Billetera extends Component {
                     </SView>
                 </SView>
             </SView>
-        </>
+        </SView>
     }
 
 
@@ -72,10 +73,6 @@ class Billetera extends Component {
         // var usuarios = usuario.Actions.getAll(this.props);
         // if (!usuarios) return <SLoad />;
 
-        console.log("mi key usuario " + JSON.stringify(this.props.state.usuarioReducer.usuarioLog.key));
-        console.log("la informacion del cliente " + JSON.stringify(data));
-
-        // { this.getDetalleBilletera(new SDate(data.fecha_on).toString("yyyy-MM-dd hh:mm:ss"),data.fecha_on, 'Ingreso', SMath.formatMoney(data.monto)) }
 
         return data.map((obj) => {
             return this.getDetalleBilletera(new SDate(obj.fecha_on).toString("yyyy-MM-dd hh:mm:ss"), obj.tipo_pago, SMath.formatMoney(obj.monto))

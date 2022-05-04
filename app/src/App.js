@@ -14,7 +14,7 @@ import SSocket, { setProps } from 'servisofts-socket'
 
 import NavBar from './Components/NavBar';
 import SConfig from './SConfig';
- import BarraSuperior from './Components/BarraSuperior';
+import BarraSuperior from './Components/BarraSuperior';
 import StatusBar from './Components/StatusBar';
 import Firebase from './Firebase';
 
@@ -25,11 +25,9 @@ const store = createStore(
     {},
     applyMiddleware(reduxThunk),
 );
+Firebase.init();
 
 const App = (props) => {
-    //console.log(Firebase)
-    //console.log(Firebase)
-    Firebase.init();
     // Firebase.auth().onAuthStateChanged(urs => {
     //     console.log(urs);
     // })
@@ -40,7 +38,7 @@ const App = (props) => {
                 // socket={SSocket}
                 assets={Assets}
                 inputs={SConfig.SConfig_Inputs}
-                 theme={{ initialTheme: "default", themes: SConfig.SThemeProps, noAnimated: true }}>
+                theme={{ initialTheme: "default", themes: SConfig.SThemeProps, noAnimated: true }}>
 
 
                 <StatusBar />
@@ -51,7 +49,7 @@ const App = (props) => {
                     navBar: BarraSuperior,
                 }} />
                 {/* NO HAY BD */}
-                <SSocket identificarse={(props) => {
+                <SSocket store={store} identificarse={(props) => {
                     var usuario = props.state.usuarioReducer.usuarioLog;
                     return {
                         data: usuario ? usuario : {},
