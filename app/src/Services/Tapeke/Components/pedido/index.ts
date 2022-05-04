@@ -9,6 +9,7 @@ import Detalle from "./Pages/Detalle";
 import Confirmar from "./Pages/Confirmar";
 import Mapa from "./Pages/Mapa";
 import MensajeSolicitud from "./Pages/MensajeSolicitud";
+import PedidoConfirmacion from "./Pages/PedidoConfirmacion";
 
 export default {
     component,
@@ -23,6 +24,7 @@ export default {
         [component + "/confirmar"]: Confirmar,
         [component + "/mapa"]: Mapa,
         [component + "/mensajeSolicitud"]: MensajeSolicitud,
+        [component + "/confirmacion"]: PedidoConfirmacion,
 
     },
 }

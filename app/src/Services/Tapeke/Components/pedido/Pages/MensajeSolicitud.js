@@ -111,7 +111,9 @@ class MensajeSolicitud extends React.Component {
                         <SHr height={30} />
                         <PButtom fontSize={20} onPress={() => {
                             SStorage.removeItem("pedido_en_curso");
-                            SNavigation.replace("/");
+                            // SNavigation.replace("/");
+                            SNavigation.replace("pedido/confirmacion");
+
                         }}>limpiar storage</PButtom>
                         <SHr height={30} />
 

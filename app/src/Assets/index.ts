@@ -15,6 +15,8 @@
 
 // export default Assets;
 
+import Pedido from "./svg/pedido";
+
 import { SAssets } from 'servisofts-component';
 import Aspa, { ReactComponent as AspaW } from './svg/aspa.svg';
 import Ayuda, { ReactComponent as AyudaW } from './svg/ayuda.svg';
@@ -179,7 +181,9 @@ const Assets: SAssets = {
         "BackArrow": { Native: BackArrow, Web: BackArrowW },
         "MensajeSolicitud": { Native: MensajeSolicitud, Web: MensajeSolicitudW },
 
-        ...Tapeke
+        ...Tapeke,
+        ...Pedido,
+
     }
 }
 

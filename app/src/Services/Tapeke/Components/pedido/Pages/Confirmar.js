@@ -132,7 +132,7 @@ class Confirmar extends React.Component {
 
     getViewFactura() {
         return <SForm
-            ref={(form) => { this.form = form; }}
+            ref={(form) => { this._form = form; }}
             col={"xs-11 sm-9 md-7 lg-5 xl-4"}
             center
             // inputProps={{ customStyle: "Calistenia" }}
@@ -170,6 +170,7 @@ class Confirmar extends React.Component {
     }
 
     popupConfirmacion() {
+        var INSTACE = this;
         return <>
             <SView width={362} height={216} center row style={{ borderRadius: 8 }} withoutFeedback backgroundColor={STheme.color.background}>
                 <SHr height={50} />
@@ -185,7 +186,7 @@ class Confirmar extends React.Component {
                     </SView>
                     <SView col={"xs-6"} center>
                         <SView width={140} height={44} center backgroundColor={STheme.color.primary} style={{ borderRadius: 8 }}
-                            onPress={() => { this.form.submit() }}>
+                            onPress={() => { INSTACE._form.submit() }}>
                             <SText fontSize={14} color={STheme.color.white} bold >Sí, Confirmar</SText>
                         </SView>
                     </SView>
@@ -207,7 +208,7 @@ class Confirmar extends React.Component {
                         <SHr height={18} />
                         {this.getViewTipoPago()}
                         <SHr height={18} />
-                        {/* {this.getViewFactura()} */}
+                         {this.getViewFactura()}
                         <SHr height={40} />
                         <PButtom fontSize={20} onPress={() => {
                             console.log("aqui " + this.state.tipoPagoSeleccionado);
