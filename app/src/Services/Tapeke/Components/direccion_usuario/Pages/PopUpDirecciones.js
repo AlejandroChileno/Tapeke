@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SIcon, SPage, SScrollView2, SText, STheme, SView, SMapView, SMarker, SInput, SNavigation, SHr, SLoad, SPopup, } from 'servisofts-component';
+import { SIcon, SPage, SScrollView2, SText, STheme, SView, SMapView, SMarker, SInput, SNavigation, SHr, SLoad, SPopup, SSection, } from 'servisofts-component';
 import BarraSuperiorTapeke from '../../../../../Components/BarraSuperiorTapeke';
 import PButtom from '../../../../../Components/PButtom';
 import Parent from '../index'
@@ -10,6 +10,7 @@ class PopUpDirecciones extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            find: ""
         };
     }
 
@@ -36,11 +37,11 @@ class PopUpDirecciones extends React.Component {
                 ...detail,
                 direccion: this.state.direccion
             })
-            this.setState({ place_id: null });
+            this.state.place_id = null;
         }
-        return geocodeList.map((obj) => {
+        return geocodeList.map((obj, i) => {
             console.log(obj)
-            return <>
+            return <SSection key={"list_iten_" + i}>
                 <SHr height={10} />
                 <SView col={"xs-12"} height={64} row center border={"transparent"}>
                     <SView col={"xs-2"} height={64} center>
@@ -52,7 +53,8 @@ class PopUpDirecciones extends React.Component {
                         onPress={() => { var aux = this.setState({ place_id: obj.place_id, direccion: obj.direccion }); }} >
                         <SText fontSize={12} font={"Roboto"} color={STheme.color.gray} >{obj.direccion}</SText>
                     </SView>
-                </SView></>
+                </SView>
+            </SSection>
         });
     }
 
@@ -64,7 +66,9 @@ class PopUpDirecciones extends React.Component {
                     <SView col={"xs-12"} >
                         <SInput col={"xs-12"} placeholder={"Escribir direccion..."} style={{ borderWidth: 0, height: "100%" }}
                             color={STheme.color.text} placeholderTextColor={STheme.color.gray} height={40} fontSize={12}
-                            onChangeText={(text) => { this.setState({ find: text }) }}
+                            onChangeText={(text) => {
+                                this.setState({ find: text })
+                            }}
                         />
                     </SView>
                     <SHr height={10} />

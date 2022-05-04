@@ -18,7 +18,7 @@ class Lista extends Component {
 
         return new SOrdenador([{ key: "descripcion", order: "asc", peso: 1 }]).ordernarObject(data).map((key) => {
             var obj = data[key];
-            return <SView width={130} height={130} style={{
+            return <SView key={"page_"+key} width={130} height={130} style={{
                 padding: 12,
             }}>
                 <SView col={"xs-12"} height center style={{
