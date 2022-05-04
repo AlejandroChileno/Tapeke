@@ -34,7 +34,7 @@ const geocode = (state, action) => {
         var data = action.data;
         data.latitude = data.latitude.toFixed(6);
         data.longitude = data.longitude.toFixed(6);
-        console.log("REDUCER======",data.latitude + "," + data.longitude)
+        // console.log("REDUCER======",data.latitude + "," + data.longitude)
         state.geocode[data.latitude + "," + data.longitude] = action.data;
     }
 }
