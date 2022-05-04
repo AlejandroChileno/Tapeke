@@ -52,23 +52,23 @@ class PedidoConfirmacion extends React.Component {
 
                 <SView col={"xs-12"} height={90} row>
                     <SView col={"xs-3.5"} style={{ borderBottomWidth: 3, }} border={'transparent'} center  >
-                        <SIcon name="PedConfirmacion" width={48} fill={"red"} stroke={"red"} > </SIcon>
+                        <SIcon name="PedConfirmacion" width={48} fill={"white"} > </SIcon>
                         <SView col={"xs-12"} height={10} backgroundColor={STheme.color.primary} style={{ borderRadius: 16, }}></SView>
                         <SText color={STheme.color.primary} style={{ fontSize: 12 }} bold>Confirmación</SText>
                     </SView>
 
-                    <SView width={5} />
+                    <SView width={5} height />
                     <SView flex border={'transparent'} center>
-                        <SIcon name="PedPreparacion" width={48}> </SIcon>
-                        <SView col={"xs-12"} height={10} backgroundColor={STheme.color.primary} />
-                        <SText color={STheme.color.primary} style={{ fontSize: 12 }} bold>Preparacion</SText>
+                        <SIcon name="PedPreparacion" width={48} fill={STheme.color.primary + 66} />
+                        <SView col={"xs-12"} height={10} backgroundColor={STheme.color.primary+66} />
+                        <SText color={STheme.color.primary+66} style={{ fontSize: 12 }} bold>Preparacion</SText>
                     </SView>
-                    <SView width={5} />
+                    <SView width={5} height />
 
                     <SView col={"xs-3.5"} style={{ borderBottomWidth: 3, }} border={'transparent'} center>
-                        <SIcon name="PedDelivery" width={48}> </SIcon>
-                        <SView col={"xs-12"} height={10} backgroundColor={STheme.color.primary} style={{ borderRadius: 16, }} />
-                        <SText color={STheme.color.primary} style={{ fontSize: 12 }} bold>Delivery</SText>
+                        <SIcon name="PedDelivery" width={48} fill={STheme.color.primary + 66} />
+                        <SView col={"xs-12"} height={10} backgroundColor={STheme.color.primary + 66} style={{ borderRadius: 16, }} />
+                        <SText color={STheme.color.primary + 66} style={{ fontSize: 12 }} bold>Delivery</SText>
                     </SView>
                 </SView>
 
@@ -132,19 +132,19 @@ class PedidoConfirmacion extends React.Component {
                     <SHr height={15} />
                 </SView> */}
 
-                <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} height={260} row center backgroundColor={'transparent'}>
-                <SHr height={10} />
+                <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} height={270} row center backgroundColor={'transparent'}>
+                    <SHr height={10} />
 
                     <SView col={"xs-3"} height={7} backgroundColor={STheme.color.card} style={{ borderRadius: 16, }} />
-                <SHr height={5} />
+                    <SHr height={5} />
 
-                    <SView col={"xs-12"}  border={'transparent'} row center >
+                    <SView col={"xs-12"} border={'transparent'} row center >
                         <SText color={STheme.color.darkGray} style={{ fontSize: 12 }} bold>Llegada estimada</SText>
                     </SView>
                     <SView col={"xs-12"} border={'transparent'} row center >
-                        <SText  color={STheme.color.darkGray} style={{ fontSize: 38 }} bold>16:48 - 17:03</SText>
+                        <SText color={STheme.color.darkGray} style={{ fontSize: 38 }} bold>{this.auxPedido.horario.hora_inicio} - {this.auxPedido.horario.hora_fin}</SText>
                     </SView>
-                    <SView col={"xs-12"}  border={'transparent'} center >
+                    <SView col={"xs-12"} border={'transparent'} center >
                         <SText color={STheme.color.darkGray} style={{ fontSize: 15 }} bold>Estamos procesando tu pedido</SText>
                     </SView>
 

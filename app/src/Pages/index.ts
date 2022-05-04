@@ -20,8 +20,8 @@ const Pages = {
 
     
     // "/": MensajeSolicitud,
-    // "/": Inicio,
-    "/": Preparacion,
+    "/": Inicio,
+    // "/": Preparacion,
     "test": Test,
     "carga": Carga,
     "home": Home,
