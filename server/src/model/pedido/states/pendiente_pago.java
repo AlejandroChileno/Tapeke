@@ -9,9 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import Component.enviroment;
-import Servisofts.SConsole;
 import Servisofts.SPGConect;
-import Servisofts.SUtil;
 import SocketCliente.SocketCliente;
 import model.pedido.Pedido;
 import model.pedido.State;

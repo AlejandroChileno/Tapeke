@@ -1,15 +1,11 @@
 package Component;
 
-import java.util.Date;
-import java.util.UUID;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import Server.SSSAbstract.SSSessionAbstract;
 import Servisofts.SPGConect;
 import Servisofts.SUtil;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import Server.SSSAbstract.SSSessionAbstract;
 
 public class enviroment {
     public static final String COMPONENT = "enviroment";
@@ -69,5 +65,4 @@ public class enviroment {
             e.printStackTrace();
         }
     }
-
 }
