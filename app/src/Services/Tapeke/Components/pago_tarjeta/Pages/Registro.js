@@ -11,6 +11,8 @@ class Registro extends Component {
         this.state = {
         };
         this.key = SNavigation.getParam("key");
+        this.callback = SNavigation.getParam("callback");
+
     }
 
     getregistro() {
@@ -33,6 +35,7 @@ class Registro extends Component {
             onSubmit={(values) => {
                 if (this.key) {
                     Parent.Actions.editar({ ...data, ...values }, this.props);
+                    
                 } else {
                     console.log(values);
 
@@ -80,7 +83,8 @@ class Registro extends Component {
                 //     this.form.uploadFiles(SSocket.api.root + "upload/" + Parent.component + "/" + this.key);
                 // }
                 reducer.estado = "";
-                SNavigation.navigate(Parent.component + "/facturacion");
+                //SNavigation.navigate(Parent.component + "/facturacion");
+                SNavigation.navigate(Parent.component + "/misTarjetas" , { callback: this.callback });
                 // console.log("entro")
             }
         }
