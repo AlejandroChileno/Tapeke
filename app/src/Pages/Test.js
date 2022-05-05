@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SButtom, SHr, SPage, SText, STheme, SView } from 'servisofts-component';
+import { SButtom, SHr, SNavigation, SPage, SText, STheme, SView,  } from 'servisofts-component';
 import SSocket from 'servisofts-socket';
 import LogoCargando from '../Components/LogoCargando';
 class Test extends Component {
@@ -10,16 +10,40 @@ class Test extends Component {
         };
     }
 
+    // publicidada() {
+    //     //const auxLista=[{},{}];
+    //     const auxLista = { a: {}, b: {}, c: {}, d: {} };
+    //     return <SList
+    //       data={auxLista}
+    //       space={16}
+    //       center
+    //       horizontal={true}
+    //       render={(obj, key) => {
+    //         return <SView width={290} height={160} row backgroundColor={"transparent"}  >
+    //           <SView col={"xs-12"} height={160} style={{ resizeMode: "cover", maxWidth: "100%", minWidth: "100%", overflow: "hidden", }} backgroundColor={"red"} center  >
+    //             <SImage src={require("./fotos/publicidad.png")} style={{ borderRadius: 8, }} />
+    //           </SView>
+    //         </SView>
+    //       }} />
+    //   }
+
+
     render() {
         return (
             <SPage title={'Test'} center>
 
 
-                <SView col={"xs-12"} row center flex border={"transparent"} >
+                <SView col={"xs-12"} row center flex border={"transparent"} onPress={() => {
+                     //alert('hola');
+                    // SNavigation.navigate("admin"); this.fadeOut();
+                }}      >
                     <LogoCargando />
 
                 </SView >
 
+
+                
+                {/* 
                 <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} height={230} row center backgroundColor={'transparent'} >
                     <SHr height={20} />
                     <SText fontSize={14.5} font={"Roboto"} bold >El restaurante esta preparando tu pedido!!!</SText>
@@ -60,7 +84,7 @@ class Test extends Component {
                         </SView>
                     </SView>
                     <SHr height={15} />
-                </SView>
+                </SView> */}
             </SPage>
         );
     }

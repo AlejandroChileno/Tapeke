@@ -25,7 +25,7 @@ class Item2 extends Component {
 
     }
     getNoDisponible(cantidad) {
-        if(cantidad) return null;
+        if (cantidad) return null;
         return <SView col={"xs-10"} style={{
             position: 'absolute',
             backgroundColor: "#ff0000",
@@ -81,23 +81,29 @@ class Item2 extends Component {
             precio = this.props.data.pack.precio;
         }
         return <>
-            <SView col={"xs-12"} height={180} center onPress={() => { SNavigation.navigate("restaurante/perfil", { key: this.props.data.key }); }} >
-                <SView col={"xs-11.9"} height center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2 }}>
+            <SView col={"xs-12"} center onPress={() => { SNavigation.navigate("restaurante/perfil", { key: this.props.data.key }); }} >
+                <SView col={"xs-11.9"} center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2 }}>
                     <SView col={"xs-12"} height={125} border={'transparent'} />
-                    <SView col={"xs-11"} row center border={'transparent'}  >
-                        <SView col={"xs-5.5"} row center border={'transparent'} style={{ justifyContent: 'flex-start', }} >
-                            <SIcon name={'Reloj'} width={13} />
-                            <SView width={4} />
-                            {/* <SText fontSize={10} font={"Roboto"}> Hoy {this.props.data.horario}</SText> */}
-                            <SText fontSize={10} font={"Roboto"} >{this.props.data.horario?.text}</SText>
+                    <SView col={"xs-11"} height={45} row center border={'transparent'}  >
+                        <SView flex height row center border={'transparent'} style={{ justifyContent: 'flex-start', alignContent: 'center', }} >
+                            <SView col={"xs-12"} row >
+                                <SIcon name={'Reloj'} width={13} />
+                                <SView width={6} />
+                                <SText fontSize={12} font={"Roboto"} >{this.props.data.horario?.extraData?.text}</SText>
+                            </SView>
+                            <SHr height={1} />
+                            <SText fontSize={11.5} font={"Roboto"} >{this.props.data.horario?.extraData?.hora_inicio} - {this.props.data.horario?.extraData?.hora_fin}</SText>
                         </SView>
-                        <SView col={"xs-2.5"} row center style={{ justifyContent: 'flex-start', }} border={'transparent'}>
-                            <SIcon name={'Location'} height={13} width={9} />
-                            <SView width={4} />
-                            <SText fontSize={10} font={"Roboto"}>{this.props.data.distancia} Km</SText>
+
+                        <SView flex height row center style={{ alignContent: 'center', }} border={'transparent'}>
+                            <SView width={5} />
+                            <SIcon name={'Location'} height={15} width={11} />
+                            <SView width={6} />
+                            <SText fontSize={14} font={"Roboto"}>{this.props.data.distancia} Km</SText>
                         </SView>
-                        <SView col={"xs-4"} row center border={'transparent'} style={{ justifyContent: 'flex-end', }}>
-                            <SText fontSize={16} font={"Roboto"}>Bs. {SMath.formatMoney(precio)}</SText>
+
+                        <SView flex height row center border={'transparent'} style={{ justifyContent: 'flex-end', alignContent: 'center', }} >
+                            <SText fontSize={14} font={"Roboto"} center >Bs {SMath.formatMoney(precio)}</SText>
                         </SView>
                     </SView>
                 </SView>
