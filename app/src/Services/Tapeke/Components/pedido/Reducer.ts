@@ -1,5 +1,6 @@
 import Parent from './index'
 import { SStorage } from 'servisofts-component'
+import Validations from '../../../../Validations';
 
 type DataProps = {
     component: any,
@@ -55,6 +56,7 @@ const getAll = (state: any, action: DataProps) => {
 const getDetalle = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
     state.dataDetalle[action.data.key] = action.data;
+    Validations.set_pedido_en_curso(action.data);
 }
 const registro = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;

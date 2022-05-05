@@ -15,7 +15,7 @@ export default class Contador extends Component {
     if(!this.props.date) return <SLoad/>
     var time = new SDate(this.props.date);
     var diff = this.state.curTime.diffTime(time);
-    new SThread(1000, "hiloRelojTimeOut", true).start(() => {
+    new SThread(1000/10, "hiloRelojTimeOut", true).start(() => {
         this.setState({curTime:new SDate()});
     })
     var minutes = diff / (1000 * 60) ;

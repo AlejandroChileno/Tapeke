@@ -9,7 +9,8 @@ public class StateFactory {
         pendiente_pago,
         pago_en_proceso,
         pagado,
-        confirmado
+        confirmado,
+        timeout_pago
     }
 
     public static State getState(Pedido pedido, String state) {
@@ -27,6 +28,8 @@ public class StateFactory {
                 return new pagado(pedido);
             case confirmado:
                 return new confirmado(pedido);
+            case timeout_pago:
+                return new timeout_pago(pedido);
 
         }
         return new no_registrado(pedido);

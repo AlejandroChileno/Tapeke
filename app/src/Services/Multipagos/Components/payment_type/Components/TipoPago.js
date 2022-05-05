@@ -55,9 +55,11 @@ class TipoPago extends Component {
     // }
 
     item(key, descripcion, imagen) {
-        var dataTarjeta = ParenTarjeta.Actions.getAll(this.props);
-        if (!dataTarjeta) return;
-    
+
+        if (key == "Credito") {
+            var dataTarjeta = ParenTarjeta.Actions.getAll(this.props);
+            if (!dataTarjeta) return;
+        }
         return <>
             <SHr height={15} />
             <SView col={"xs-12"} row center onPress={() => {
@@ -65,7 +67,7 @@ class TipoPago extends Component {
                 var tarjetaNumber = "";
                 if (key == "Credito") {
                     //Consultando si existe tarjetas
-                   
+
 
                     const key_usuario = this.props.state.usuarioReducer.usuarioLog.key;
                     var arr = Object.values(dataTarjeta).filter(x => x.key_usuario == key_usuario && x.estado == 1);

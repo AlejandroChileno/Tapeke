@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SHr, SIcon, SImage, SPage, SText, STheme, SView, SNavigation, SThread, SStorage, SPopup } from 'servisofts-component';
-import FloatButtomBack from '../../../../../Components/FloatButtomBack';
-import ImgSaveGallery from '../../../../../Components/ImgSaveGallery';
-import ImgShared from '../../../../../Components/ImgShared';
-import PButtom from '../../../../../Components/PButtom2';
+import { SHr, SIcon, SImage, SPage, SText, STheme, SView, SNavigation, SThread, SStorage, SPopup, SLoad } from 'servisofts-component';
+// import FloatButtomBack from '../../../../../Components/FloatButtomBack';
+// import ImgSaveGallery from '../../../../../Components/ImgSaveGallery';
+// import ImgShared from '../../../../../Components/ImgShared';
+// import PButtom from '../../../../../Components/PButtom2';
 import SSocket from "servisofts-socket";
 import Contador from '../../../../../Components/Contador';
+import Parent from "../"
+import Validations from '../../../../../Validations';
 class MensajeSolicitud extends React.Component {
     constructor(props) {
         super(props);
@@ -23,8 +25,6 @@ class MensajeSolicitud extends React.Component {
     }
 
     async getParams() {
-        if (this.state.isLoading) return;
-        this.setState({ isLoading: true });
         SSocket.sendPromise(
             {
                 component: "pedido",
@@ -32,26 +32,44 @@ class MensajeSolicitud extends React.Component {
                 key_pedido: this.key_pedido,
             }
         ).then((resp) => {
-            this.setState({ pay_order: resp.data, isLoading: false });
+            this.setState({ pay_order: resp.data });
         }).catch((err) => {
-            this.setState({ isLoading: false });
-            console.log("ERROR", err);
             new SThread(1000, "getPaymentStatus", true).start(() => {
                 this.getParams();
             })
         });
     }
+    async getDetallePedido() {
+        if (this.state.isLoading) return;
+        // this.setState({ isLoading: true });
+        SSocket.sendPromise({
+            component: "pedido",
+            type: "getDetalle",
+            estado: "cargando",
+            key_pedido: this.key_pedido,
+            key_usuario: this.props.state.usuarioReducer.usuarioLog.key,
+        }).then((resp) => {
+            Validations.set_pedido_en_curso(resp.data);
+            this.setState({ pedido: resp.data });
+        })
+    }
 
     render() {
-        if (this.state?.pay_order?.state == "expiration_date_timeout") {
-            SPopup.alert("El tiempo de espera para pagar ha expirado");
-            SStorage.removeItem("pedido_en_curso");
-            SNavigation.replace("/");
-            return null;
-        }
-        new SThread(1000 * 10, "getPaymentStatus2", true).start(() => {
-            this.getParams();
-        })
+        this.auxPedido = Parent.Actions.getDetalle(this.key_pedido, this.props)
+        if (!this.auxPedido) return <SLoad />
+        new SThread(5000, "getDetallePedido", false).start(() => {
+            this.getDetallePedido();
+        });
+        Validations.pedido_en_curso("pedido/mensajeSolicitud");
+        // if (this.state?.pay_order?.state == "expiration_date_timeout") {
+        //     SPopup.alert("El tiempo de espera para pagar ha expirado");
+        //     SStorage.removeItem("pedido_en_curso");
+        //     SNavigation.replace("/");
+        //     return null;
+        // }
+        // new SThread(1000 * 10, "getPaymentStatus2", true).start(() => {
+        //     this.getParams();
+        // })
         return (
             // <SPage hidden disableScroll center>
             <SPage hidden center>

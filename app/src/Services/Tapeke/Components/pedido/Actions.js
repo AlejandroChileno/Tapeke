@@ -55,7 +55,7 @@ export default class Actions {
     static getVendidos = ({ key_pack, fecha }, props) => {
         var data = Actions.getAll(props);
         if (!data) return null;
-        var arr = Object.values(data).filter(item => item.key_pack == key_pack && item.fecha == fecha && (item.state != "pendiente_pago"));
+        var arr = Object.values(data).filter(item => item.key_pack == key_pack && item.fecha == fecha && (item.state != "pendiente_pago" && item.state != "timeout_pago"));
         var cantidad = 0;
         arr.map(item => cantidad += item.cantidad);
         return cantidad;
