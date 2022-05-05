@@ -79,7 +79,7 @@ public class pendiente_pago extends State {
         String expiration_time = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS").format(cal.getTime());
         petition.put("data", new JSONObject().put("client", client).put("items", items)
                 .put("glosa", "Pago de prueba tapeke").put("expiration_date", expiration_time));
-        JSONObject pay_order = SocketCliente.sendSinc("multipagos", petition);
+        JSONObject pay_order = SocketCliente.sendSinc("multipagos", petition, 30000);
         if (pay_order.getString("estado").equals("error")) {
             throw new StateException(pay_order.getString("error"));
         }
@@ -141,7 +141,7 @@ public class pendiente_pago extends State {
         petition.put("type", "pay_method");
         petition.put("pay_method", pay_method);
         petition.put("key_payment_order", this.pedido.getData().getString("key_payment_order"));
-        JSONObject response = SocketCliente.sendSinc("multipagos", petition);
+        JSONObject response = SocketCliente.sendSinc("multipagos", petition, 30000);
         if (response.has("error")) {
             throw new StateException(response.getString("error"));
         }

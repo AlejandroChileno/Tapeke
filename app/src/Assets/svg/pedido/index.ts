@@ -8,6 +8,7 @@ import PedPreparacion, { ReactComponent as PedPreparacionW } from './pedPreparac
 
 import RestauranteLogo, { ReactComponent as RestauranteLogoW } from './restauranteLogo.svg';
 import UserLogo, { ReactComponent as UserLogoW } from './userLogo.svg';
+import IChat, { ReactComponent as IChatW } from './iChat.svg';
 // import Location, { ReactComponent as LocationW } from './location.svg';
 
 const Assets = {
@@ -15,14 +16,9 @@ const Assets = {
 	"PedConfirmacion": { Native: PedConfirmacion, Web: PedConfirmacionW },
 	"PedDelivery": { Native: PedDelivery, Web: PedDeliveryW },
 	"PedPreparacion": { Native: PedPreparacion, Web: PedPreparacionW },
-	
 	"RestauranteLogo": { Native: RestauranteLogo, Web: RestauranteLogoW },
 	"UserLogo": { Native: UserLogo, Web: UserLogoW },
-	// "Location": { Native: Location, Web: LocationW },
-
-
-
-
+	"IChat": { Native: IChat, Web: IChatW },
 }
 
 export default Assets;
