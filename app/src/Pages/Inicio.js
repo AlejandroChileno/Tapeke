@@ -123,28 +123,36 @@ class Inicio extends Component {
         <SPage title={"as"} hidden center  >
           <SView col={"xs-12 md-12 lg-10 xl-8"} center height>
             {this.categoria("Recomendado Para Ti")}
-            {this.categoria("Cerca")}
-            <SHr height={80} />
-            <SView col={"xs-12"} height={190} border={"transparent"} >
+            {/* TODO ES PARA PROBAR, DE COMO SE VE */}
+            <SView col={"xs-12"} height={195} border={"transparent"} >
               <SScrollView2>
-                {this.publicidad()}
+                {this.favoritos()}
               </SScrollView2>
             </SView>
-            <SHr height={80} />
-
-            {this.categoria("Alimentación")}
-            
-            {this.categoria("Favoritos")}
-
-            <SView col={"xs-12"} height={200} border={"transparent"} >
-
+            {this.categoria("Cerca")}
+            {/* TODO ES PARA PROBAR, DE COMO SE VE */}
+            <SView col={"xs-12"} height={195} border={"transparent"} >
               <SScrollView2>
                 {this.favoritos()}
               </SScrollView2>
             </SView>
 
+            <SHr height={20} />
+            <SView col={"xs-12"} height={170} border={"transparent"} >
+              <SScrollView2>
+                {this.publicidad()}
+              </SScrollView2>
+            </SView>
+            <SHr height={20} />
 
-            <SHr height={80} />
+
+            {this.categoria("Favoritos")}
+            <SView col={"xs-12"} height={195} border={"transparent"} >
+              <SScrollView2>
+                {this.favoritos()}
+              </SScrollView2>
+            </SView>
+            <SHr height={20} />
           </SView>
         </SPage>
         <PBarraFooter />
