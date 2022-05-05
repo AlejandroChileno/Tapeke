@@ -109,9 +109,9 @@ class Inicio extends Component {
 
 
   render() {
-    // if (!usuario.Actions.validateSession(this.props)) {
-    // 	return <SLoad />;
-    // }
+    if (!usuario.Actions.validateSession(this.props)) {
+    	return <SLoad />;
+    }
     // var UsuaioPage = Pages["usuarioPage/lista"];
     Validations.pedido_en_curso();
     return (

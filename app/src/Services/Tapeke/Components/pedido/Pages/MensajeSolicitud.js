@@ -1,14 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { SHr, SIcon, SImage, SPage, SText, STheme, SView, SNavigation, SThread, SStorage, SPopup, SLoad } from 'servisofts-component';
-// import FloatButtomBack from '../../../../../Components/FloatButtomBack';
-// import ImgSaveGallery from '../../../../../Components/ImgSaveGallery';
-// import ImgShared from '../../../../../Components/ImgShared';
-// import PButtom from '../../../../../Components/PButtom2';
 import SSocket from "servisofts-socket";
 import Contador from '../../../../../Components/Contador';
-import Parent from "../"
 import Validations from '../../../../../Validations';
+// import ImgSaveGallery from '../../../../../Components/ImgSaveGallery';
+// import ImgShared from '../../../../../Components/ImgShared';
+
 class MensajeSolicitud extends React.Component {
     constructor(props) {
         super(props);
@@ -16,15 +14,19 @@ class MensajeSolicitud extends React.Component {
             isLoading: false,
         };
         this.key_pedido = SNavigation.getParam('key_pedido');
-        // this.key_qr = SNavigation.getParam('key_qr',"");
-
     }
 
     componentDidMount() {
+        this.isRun = true;
         this.getParams();
+        this.getDetallePedido();
+    }
+    componentWillUnmount() {
+        this.isRun = false;
     }
 
     async getParams() {
+        if (!this.isRun) return;
         SSocket.sendPromise(
             {
                 component: "pedido",
@@ -34,12 +36,17 @@ class MensajeSolicitud extends React.Component {
         ).then((resp) => {
             this.setState({ pay_order: resp.data });
         }).catch((err) => {
-            new SThread(1000, "getPaymentStatus", true).start(() => {
-                this.getParams();
-            })
+            if (err.error == "noIniciado") {
+                new SThread(500, "getPaymentStatus", false).start(() => {
+                    if (!this.isRun) return;
+                    this.getParams();
+                })
+            }
+
         });
     }
     async getDetallePedido() {
+        if (!this.isRun) return;
         if (this.state.isLoading) return;
         // this.setState({ isLoading: true });
         SSocket.sendPromise({
@@ -49,29 +56,35 @@ class MensajeSolicitud extends React.Component {
             key_pedido: this.key_pedido,
             key_usuario: this.props.state.usuarioReducer.usuarioLog.key,
         }).then((resp) => {
+
+            if (!this.isRun) return;
             Validations.set_pedido_en_curso(resp.data);
-            this.setState({ pedido: resp.data });
+            Validations.pedido_en_curso("pedido/mensajeSolicitud");
+            // this.setState({ pedido: { ...resp.data } });
+            new SThread(5000, "getDetallePedido", false).start(() => {
+                this.getDetallePedido();
+            });
+        }).catch((err) => {
+            if (err.error == "noIniciado") {
+                new SThread(500, "reintent_get_detalle", false).start(() => {
+                    if (!this.isRun) return;
+                    this.getDetallePedido();
+                })
+                return;
+            }
         })
     }
 
+    getQr() {
+        var method = this.state.pay_order?.methods;
+        if (!method) return null;
+        var obj = method[0];
+        if (!obj) return null;
+        var data = JSON.parse(obj.data);
+        return data.qr;
+    }
     render() {
-        this.auxPedido = Parent.Actions.getDetalle(this.key_pedido, this.props)
-        if (!this.auxPedido) return <SLoad />
-        new SThread(5000, "getDetallePedido", false).start(() => {
-            this.getDetallePedido();
-        });
-        Validations.pedido_en_curso("pedido/mensajeSolicitud");
-        // if (this.state?.pay_order?.state == "expiration_date_timeout") {
-        //     SPopup.alert("El tiempo de espera para pagar ha expirado");
-        //     SStorage.removeItem("pedido_en_curso");
-        //     SNavigation.replace("/");
-        //     return null;
-        // }
-        // new SThread(1000 * 10, "getPaymentStatus2", true).start(() => {
-        //     this.getParams();
-        // })
         return (
-            // <SPage hidden disableScroll center>
             <SPage hidden center>
                 <SHr height={40} />
 
@@ -86,7 +99,7 @@ class MensajeSolicitud extends React.Component {
                         <SHr height={60} />
                         <SView col={"xs-12"} center  >
                             <SView center col={"xs-12"} height={250}   >
-                                {/* <SImage src={`data:image/png;base64,${this.key_qr}`} /> */}
+                                <SImage src={`data:image/png;base64,${this.getQr()}`} />
                             </SView>
                         </SView>
                         <SHr height={50} />
@@ -111,37 +124,8 @@ class MensajeSolicitud extends React.Component {
                             </SView>
                         </SView>
                         <SHr height={30} />
-
-                        {/* <PButtom fontSize={20} onPress={() => {
-                            SNavigation.navigate(Parent.component + "/confirmar", { key: this.key_restaurante, cantidad: this.state.cantidad, envio: this.state.envio, })
-                        }}>REALIZAR PEDIDO</PButtom>
-                        <SHr height={30} /> */}
-
                         <Contador date={this.state?.pay_order?.expiration_date} ></Contador>
-
-                        {/* <PButtom fontSize={20} onPress={() => {
-                            SSocket.sendPromise(
-                                {
-                                    component: "pedido",
-                                    type: "get_payment_order",
-                                    key_pedido: this.key_pedido,
-                                }
-                            ).then((resp) => {
-                                console.log(resp.data.data.expiration_date);
-                            }).catch((err) => { });
-                        }}>get payment order</PButtom> */}
-
-
-                        {/* <PButtom fontSize={20} onPress={() => {
-                            SStorage.removeItem("pedido_en_curso");
-                            SNavigation.replace("/");
-                            // SNavigation.replace("pedido/confirmacion");
-
-                        }}>limpiar storage</PButtom> */}
                         <SHr height={30} />
-
-
-
                         <SView col={"xs-12"} row center   >
                             <SView col={"xs-11"} border={'transparent'}  >
                                 <SText fontSize={18} color='white' bold center>¡Recuerda usar tapaboca para recoger tu pedido!</SText>

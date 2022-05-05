@@ -71,14 +71,10 @@ public class pendiente_pago extends State {
         petition.put("type", "registro");
 
         JSONObject enviroments = enviroment.getAll(new JSONObject(), null);
-        int value = Integer.parseInt(enviroments.getJSONObject("tiempo_expiracion_pago_pedido").getString("value"));
-        Calendar cal = Calendar.getInstance(); // creates calendar
-        cal.setTime(new Date()); // sets calendar time/date
-        cal.add(Calendar.SECOND, value); // adds one hour
-        cal.getTime(); // returns new date object plus one hour
-        String expiration_time = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS").format(cal.getTime());
+        int expiration_time = Integer.parseInt(enviroments.getJSONObject("tiempo_expiracion_pago_pedido").getString("value"));
+        
         petition.put("data", new JSONObject().put("client", client).put("items", items)
-                .put("glosa", "Pago de prueba tapeke").put("expiration_date", expiration_time));
+                .put("glosa", "Pago de prueba tapeke").put("expiration_time", expiration_time));
         JSONObject pay_order = SocketCliente.sendSinc("multipagos", petition, 30000);
         if (pay_order.getString("estado").equals("error")) {
             throw new StateException(pay_order.getString("error"));

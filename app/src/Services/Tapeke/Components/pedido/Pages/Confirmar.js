@@ -154,7 +154,7 @@ class Confirmar extends React.Component {
                             "bussiness_name": values["business_name"],
                             "nit": values["nit"]
                         }
-                    }
+                    }, 60*1000
                 ).then((resp) => {
                     SPopup.close("confirmar");
                     this.auxPedido = resp.data;
