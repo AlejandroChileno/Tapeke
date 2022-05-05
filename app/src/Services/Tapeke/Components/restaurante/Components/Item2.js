@@ -60,7 +60,7 @@ class Item2 extends Component {
     }
     HeaderItemTitle() {
         return <>
-            <SView col={"xs-11"} height={50} row center style={{ position: 'absolute', top: 75, justifyContent: 'flex-start', }} >
+            <SView col={"xs-11"} height={50} row center style={{ position: 'absolute', top: 85, justifyContent: 'flex-start', }} >
                 <SView width={250} height={21} row center style={{ borderRadius: 8, overflow: 'hidden', backgroundColor: STheme.color.primary, left: 1, position: 'absolute' }}>
                     <SText col={"xs-12"} fontSize={12} font={"Roboto"} color={STheme.color.secondary} center style={{ position: 'absolute' }} >{this.props.data.nombre}</SText>
                 </SView>
@@ -68,7 +68,6 @@ class Item2 extends Component {
                     <SImage src={`${SSocket.api.root}restaurante/${this.props.data.key}`} style={{
                         resizeMode: 'cover',
                     }} />
-                    {/* <SImage src={require('../../../../../Pages/fotos/perfil001.png')} /> */}
                 </SView>
             </SView>
         </>
@@ -81,9 +80,9 @@ class Item2 extends Component {
             precio = this.props.data.pack.precio;
         }
         return <>
-            <SView col={"xs-12"} center onPress={() => { SNavigation.navigate("restaurante/perfil", { key: this.props.data.key }); }} >
+            <SView col={"xs-12"} height={190} center border={'transparent'} onPress={() => { SNavigation.navigate("restaurante/perfil", { key: this.props.data.key }); }} >
                 <SView col={"xs-11.9"} center border={STheme.color.card} style={{ borderRadius: 8, borderWidth: 2 }}>
-                    <SView col={"xs-12"} height={125} border={'transparent'} />
+                    <SView col={"xs-12"} height={130} border={'transparent'} />
                     <SView col={"xs-11"} height={45} row center border={'transparent'}  >
                         <SView flex height row center border={'transparent'} style={{ justifyContent: 'flex-start', alignContent: 'center', }} >
                             <SView col={"xs-12"} row >
@@ -105,13 +104,17 @@ class Item2 extends Component {
                         <SView flex height row center border={'transparent'} style={{ justifyContent: 'flex-end', alignContent: 'center', }} >
                             <SText fontSize={14} font={"Roboto"} center >Bs {SMath.formatMoney(precio)}</SText>
                         </SView>
+ 
                     </SView>
+                    <SHr height={5} />
+
                 </SView>
                 {this.HeaderItemFoto()}
                 {this.HeaderItemDisponible()}
                 {this.HeaderItemTitle()}
+
             </SView>
-            <SView height={30} />
+
         </>
     }
 

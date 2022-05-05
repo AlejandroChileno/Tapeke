@@ -66,7 +66,7 @@ class Inicio extends Component {
       center
       horizontal={true}
       render={(obj, key) => {
-        return <SView width={320} height={180} row backgroundColor={"transparent"}  >
+        return <SView width={320} height={220}   center backgroundColor={"transparent"} style={{overflow: 'hidden',}} >
           <Item2 data={obj} ></Item2>
         </SView>
       }} />
@@ -139,7 +139,7 @@ class Inicio extends Component {
             {this.categoria("Favoritos")}
 
 
-            <SView col={"xs-12"} height={200} border={"cyan"} >
+            <SView col={"xs-12"} height={220} border={"cyan"} >
               <SScrollView2>
                 {this.favoritos()}
               </SScrollView2>
