@@ -70,6 +70,12 @@ export default class Actions {
             }
             dow.sdate = dia;
             dow.text = text + " " + dow.hora_inicio + " - " + dow.hora_fin;
+            dow.extraData ={
+                text: text,
+                hora_inicio: dow.hora_inicio,
+                hora_fin: dow.hora_fin,
+            }
+ 
             list.push(dow);
         })
         list.sort((a, b) => { return a.sdate.getTime() > b.sdate.getTime() ? 1 : -1 });
