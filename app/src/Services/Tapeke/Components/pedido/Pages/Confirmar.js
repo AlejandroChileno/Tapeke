@@ -166,11 +166,11 @@ class Confirmar extends React.Component {
                     }
                 ).then((resp) => {
                     SPopup.close("confirmar");
-                    if (resp.data.state.code == "pagado") {
+                    // if (resp.data.state.code == "pagado") {
                         SStorage.removeItem("pedido_en_curso")
                         SNavigation.replace("pedido/confirmacion", { key_pedido: this.keyPedido });
                         return;
-                    }
+                    // }
                     SNavigation.navigate("pedido/mensajeSolicitud", { key_pedido: this.keyPedido });
                 }).catch((err) => {
                     // alert(err.error);

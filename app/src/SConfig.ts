@@ -33,7 +33,7 @@ const SocketProps = {
     // host: '192.168.3.2',
     // ssl: true,
 
-    host: '192.168.3.7',
+    host: '192.168.3.2',
     ssl: false,
 
     // host: 'alvaro.ss.lo',

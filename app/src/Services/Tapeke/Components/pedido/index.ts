@@ -10,6 +10,7 @@ import Confirmar from "./Pages/Confirmar";
 import Mapa from "./Pages/Mapa";
 import MensajeSolicitud from "./Pages/MensajeSolicitud";
 import PedidoConfirmacion from "./Pages/PedidoConfirmacion";
+import PedidoQR from "./Pages/PedidoQR";
 
 export default {
     component,
@@ -25,6 +26,7 @@ export default {
         [component + "/mapa"]: Mapa,
         [component + "/mensajeSolicitud"]: MensajeSolicitud,
         [component + "/confirmacion"]: PedidoConfirmacion,
+        [component + "/pedidoqr"]: PedidoQR,
 
     },
 }

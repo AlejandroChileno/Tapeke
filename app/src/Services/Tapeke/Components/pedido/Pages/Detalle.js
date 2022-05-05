@@ -7,7 +7,7 @@ import PButtom from '../../../../../Components/PButtom';
 import costo_envio from '../../costo_envio';
 import restaurante from '../../restaurante';
 import Parent from '../index';
- 
+
 class Detalle extends React.Component {
     constructor(props) {
         super(props);
@@ -24,7 +24,7 @@ class Detalle extends React.Component {
         this.key_restaurante = SNavigation.getParam('key');
         this.auxRestaurante = null;
     }
- 
+
     getCostoEnvio() {
         var data_costos = costo_envio.Actions.getAll(this.props);
         if (!data_costos) return <SLoad />;
@@ -50,10 +50,10 @@ class Detalle extends React.Component {
                 <SHr height={15} />
                 <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }}>Tipo de entrega</SText>
                 <SHr height={20} />
-                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6, }}  
-                {...(delivery ? {
-                    onPress: () => { this.setState({ envio: false, delivery: "false" }); }
-                } : {})} >
+                <SView col={"xs-12"} row style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 6, }}
+                    {...(delivery ? {
+                        onPress: () => { this.setState({ envio: false, delivery: "false" }); }
+                    } : {})} >
                     <SView col={"xs-2"} center flex>
                         <SView width={18} height={18} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 25 }}
                             backgroundColor={this.state.envio != false ? "transparent" : STheme.color.primary} ></SView>
@@ -164,15 +164,13 @@ class Detalle extends React.Component {
 
         ).then((resp) => {
             this.state.key_pedido = SUuid();
-
             // SStorage.setItem("miData_log", JSON.stringify(resp));
             SStorage.setItem("pedido_en_curso", JSON.stringify(resp.data));
-
             SNavigation.navigate(Parent.component + "/confirmar", { keyPedido: resp.data.key })
-            // console.log("SPromise ", resp);
+            console.log("SPromise ", resp);
         }).catch((err) => {
             //  SNavigation.navigate(Parent.component + "/confirmar", { keyPedido: this.state.key_pedido })
-            // console.log("SPromiseerror ", err);
+            console.log("SPromiseerror ", err);
         });
 
     }
@@ -308,7 +306,7 @@ class Detalle extends React.Component {
                 {/* <FloatButtomBack onPress={() => {
                     SNavigation.navigate("/explorar");
                 }} /> */}
-                
+
 
             </SPage >
         );

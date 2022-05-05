@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput, SPopup, STheme, SIcon, SImage } from 'servisofts-component';
+import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput, SPopup, STheme, SIcon, SImage, SSection } from 'servisofts-component';
 import Parent from '..'
 import SSocket from 'servisofts-socket'
 
@@ -16,9 +16,9 @@ class Novedades extends Component {
     getLista() {
         var data = Parent.Actions.getAll(this.props);
         if (!data) return <SLoad />
-        return Object.values(data).map((obj) => {
+        return Object.values(data).map((obj,i) => {
             if (obj.estado != "1") return null;
-            return <>
+            return <SSection key={"mi_iten_key_"+i}>
                 <SView col={"xs-12"} row center backgroundColor={STheme.color.card} style={{ borderRadius: 8 }}>
                     <SImage src={SSocket.api.root + Parent.component + "/" + obj.key} style={{
                         borderTopLeftRadius: 8,
@@ -42,7 +42,7 @@ class Novedades extends Component {
                     <SHr height={25} />
                 </SView>
                 <SHr height={20} />
-            </>
+                </SSection>
         })
     }
     render() {
