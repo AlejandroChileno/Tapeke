@@ -4,6 +4,7 @@ import { SForm, SGradient, SHr, SImage, SLoad, SMath, SNavigation, SPage, SPopup
 import SSocket from 'servisofts-socket';
 import FloatButtomBack from '../../../../../Components/FloatButtomBack';
 import PButtom from '../../../../../Components/PButtom';
+import Validations from '../../../../../Validations';
 import TipoPago from '../../../../Multipagos/Components/payment_type/Components/TipoPago';
 import Parent from '../index';
 
@@ -32,17 +33,7 @@ class Confirmar extends React.Component {
     getViewDetalle() {
         this.auxPedido = Parent.Actions.getDetalle(this.keyPedido, this.props)
         if (!this.auxPedido) return <SLoad />
-
-        if (this.auxPedido.state.code == "pago_en_proceso") {
-            SNavigation.replace("pedido/mensajeSolicitud", { key_pedido: this.auxPedido.key });
-            return;
-        }
-        if (this.auxPedido.state.code == "pagado") {
-            SStorage.removeItem("pedido_en_curso")
-            SNavigation.replace("pedido/confirmacion", { key_pedido: this.auxPedido.key });
-
-            return;
-        }
+        Validations.pedido_en_curso("pedido/confirmar");
         return <>
             <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center row style={{ backgroundColor: STheme.color.white }}>
                 <SView col={"xs-11"} row center>
@@ -163,15 +154,12 @@ class Confirmar extends React.Component {
                             "bussiness_name": values["business_name"],
                             "nit": values["nit"]
                         }
-                    }
+                    }, 60*1000
                 ).then((resp) => {
                     SPopup.close("confirmar");
-                    // if (resp.data.state.code == "pagado") {
-                        SStorage.removeItem("pedido_en_curso")
-                        SNavigation.replace("pedido/confirmacion", { key_pedido: this.keyPedido });
-                        return;
-                    // }
-                    SNavigation.navigate("pedido/mensajeSolicitud", { key_pedido: this.keyPedido });
+                    this.auxPedido = resp.data;
+                    Validations.set_pedido_en_curso(this.auxPedido);
+                    Validations.pedido_en_curso();
                 }).catch((err) => {
                     // alert(err.error);
                     SPopup.alert(err.error);

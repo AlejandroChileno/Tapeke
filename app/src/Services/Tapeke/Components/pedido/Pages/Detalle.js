@@ -4,6 +4,7 @@ import { SForm, SGradient, SHr, SIcon, SImage, SLoad, SMath, SNavigation, SPage,
 import SSocket from 'servisofts-socket';
 import FloatButtomBack from '../../../../../Components/FloatButtomBack';
 import PButtom from '../../../../../Components/PButtom';
+import Validations from '../../../../../Validations';
 import costo_envio from '../../costo_envio';
 import restaurante from '../../restaurante';
 import Parent from '../index';
@@ -164,10 +165,12 @@ class Detalle extends React.Component {
 
         ).then((resp) => {
             this.state.key_pedido = SUuid();
+            Validations.set_pedido_en_curso(resp.data);
             // SStorage.setItem("miData_log", JSON.stringify(resp));
-            SStorage.setItem("pedido_en_curso", JSON.stringify(resp.data));
-            SNavigation.navigate(Parent.component + "/confirmar", { keyPedido: resp.data.key })
-            console.log("SPromise ", resp);
+            // SStorage.setItem("pedido_en_curso", JSON.stringify(resp.data));
+            Validations.pedido_en_curso();
+            // SNavigation.navigate(Parent.component + "/confirmar", { keyPedido: resp.data.key })
+            // console.log("SPromise ", resp);
         }).catch((err) => {
             //  SNavigation.navigate(Parent.component + "/confirmar", { keyPedido: this.state.key_pedido })
             console.log("SPromiseerror ", err);
