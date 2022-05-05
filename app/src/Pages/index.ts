@@ -22,6 +22,7 @@ const Pages = {
     
     // "/": MensajeSolicitud,
     "/": Inicio,
+    // "/": Test,
     // "/": PedidoQR,
     // "/": Preparacion,
     "test": Test,

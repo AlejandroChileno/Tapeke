@@ -9,6 +9,9 @@ import Item from "../Services/Tapeke/Components/restaurante/Components/Item";
 import usuario from "../Services/Usuario/Components/usuario";
 import Validations from "../Validations";
 import SSocket from 'servisofts-socket'
+import restaurante from "../Services/Tapeke/Components/restaurante";
+import favorito from "../Services/Tapeke/Components/favorito";
+import Item2 from "../Services/Tapeke/Components/restaurante/Components/Item2";
 
 class Inicio extends Component {
   constructor(props) {
@@ -21,6 +24,54 @@ class Inicio extends Component {
     if (!usuario.Actions.validateSession(this.props)) { return <SLoad />; }
 
   }
+
+
+
+  publicidad() {
+
+    var data = novedades.Actions.getAll(this.props);
+    if (!data) return <SLoad />
+
+    const fechas = new SDate().toString("yyyy-mm-dd")
+    return <SList
+      data={data}
+      space={16}
+      center
+      horizontal={true}
+      // filter={(item) => item.fecha > fecha}
+      render={(obj, key) => {
+        // if (obj.fecha > fechas) return null;
+        return <SView width={290} height={160} row backgroundColor={"transparent"}  >
+          <SView col={"xs-12"} height={160} style={{ resizeMode: "cover", maxWidth: "100%", minWidth: "100%", overflow: "hidden", borderRadius: 8, }} backgroundColor={"transparentred"} center  >
+            <SImage src={SSocket.api.root + "novedades/" + obj.key} style={{
+              borderTopLeftRadius: 8, borderTopRightRadius: 8,
+              maxWidth: "100%", minWidth: "100%", overflow: "hidden",
+              resizeMode: "cover", height: 165,
+            }} />
+          </SView>
+        </SView>
+      }} />
+  }
+
+  favoritos() {
+
+    var data = restaurante.Actions.getAllFilter({}, this.props);
+    var favUsuario = favorito.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props)
+    if (!data) return <SLoad />;
+    if (!favUsuario) return <SLoad />;
+    var arr = Object.values(data).filter((itm) => favUsuario.find((elm) => elm.key_restaurante == itm.key))
+    return <SList
+      data={arr}
+      space={16}
+      center
+      horizontal={true}
+      render={(obj, key) => {
+        return <SView width={320} height={180} row backgroundColor={"transparent"}  >
+          <Item2 data={obj} ></Item2>
+        </SView>
+      }} />
+  }
+
 
   categoria(title) {
     return (
@@ -38,80 +89,30 @@ class Inicio extends Component {
           </SView>
         </SView>
 
-        <SView col={"xs-12"} height={170} border={"transparent"} >
+
+
+
+
+        {/* <SView col={"xs-12"} height={170} border={"transparent"} >
           <SScrollView2>
             <SView center row>
               <SView width={16} />
-              {/* <Item></Item> */}
+              <Item></Item>
             </SView>
             <SHr />
           </SScrollView2>
-        </SView>
+        </SView> */}
+
+
       </>
     );
   }
 
 
-  publicidad1() {
-    //const auxLista=[{},{}];
-    const auxLista = { a: {}, b: {}, c: {}, d: {} };
-    return <SList
-      data={auxLista}
-      space={16}
-      center
-      render={(obj, key) => {
-        return <SView col={"xs-11 md-5 "} backgroundColor={"transparent"}  >
-          <SView col={"xs-12"} height={160} style={{ resizeMode: "cover", maxWidth: "100%", minWidth: "100%", overflow: "hidden", }} backgroundColor={"transparentred"} center  >
-            <SImage src={require("./fotos/publicidad.png")} />
-          </SView>
-        </SView>
-      }} />
-  }
-
-  publicidad() {
-    var data = novedades.Actions.getAll(this.props);
-    if (!data) return <SLoad />
-
-    const fecha = new SDate().toString("yyyy-mm-dd")
-    return Object.values(data).map((obj, i) => {
-      if (obj.estado != "1") return null;
-      if (obj.fecha > fecha) return null;
-
-      // console.log(obj.fecha);
-      // console.log(new SDate().toString("yyyy-mm-dd"));
-
-      return <SSection key={"mi_iten_key_" + i}>
-        <SView col={"xs-12"} row center backgroundColor={STheme.color.card} style={{ borderRadius: 8 }}>
-          {/* <SImage src={SSocket.api.root + Parent.component + "/" + obj.key} style={{ */}
-          <SImage src={SSocket.api.root + "novedades/" + obj.key} style={{
-            borderTopLeftRadius: 8, borderTopRightRadius: 8,
-            maxWidth: "100%", minWidth: "100%", overflow: "hidden",
-            resizeMode: "cover", height: 165
-          }} />
-          <SHr height={20} />
-          <SView col={"xs-11"}>
-            <SText color={STheme.color.primary} font={"Roboto"} fontSize={18} style={{}}>{obj.titulo}</SText>
-            <SHr height={5} />
-            <SView col={"xs-12"} row center style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray }} ></SView>
-            <SHr height={5} />
-            <SView col={"xs-12"} center flex style={{ alignItems: "flex-end" }}>
-              <SText color={STheme.color.darkGray}>{obj.fecha}</SText>
-            </SView>
-            <SHr height={10} />
-            <SText color={STheme.color.text} font={"Roboto"} fontSize={15} style={{}}>{obj.descripcion}</SText>
-          </SView>
-          <SHr height={25} />
-        </SView>
-        <SHr height={20} />
-      </SSection>
-    })
-  }
-
-
   render() {
-    // if (!usuario.Actions.validateSession(this.props)) {
-    // 	return <SLoad />;
-    // }
+    if (!usuario.Actions.validateSession(this.props)) {
+      return <SLoad />;
+    }
     // var UsuaioPage = Pages["usuarioPage/lista"];
     Validations.pedido_en_curso();
     return (
@@ -119,15 +120,32 @@ class Inicio extends Component {
         <BarraSuperiorTapeke>
           <Direccion />
         </BarraSuperiorTapeke>
-        <SPage title={"as"} hidden center>
+        <SPage title={"as"} hidden center  >
           <SView col={"xs-12 md-12 lg-10 xl-8"} center height>
-            {this.categoria("Recomendado Para Ti")}
-            {this.categoria("Cerca")}
-            {this.publicidad()}
+            {/* {this.categoria("Recomendado Para Ti")} */}
+            {/* {this.categoria("Cerca")} */}
+            <SHr height={80} />
+
+            <SView col={"xs-12"} height={190} border={"cyan"} >
+              <SScrollView2>
+                {this.publicidad()}
+              </SScrollView2>
+            </SView>
+
+
             <SHr height={80} />
 
             {this.categoria("Alimentación")}
             {this.categoria("Favoritos")}
+
+
+            <SView col={"xs-12"} height={200} border={"cyan"} >
+              <SScrollView2>
+                {this.favoritos()}
+              </SScrollView2>
+            </SView>
+
+
             <SHr height={80} />
           </SView>
         </SPage>
