@@ -66,7 +66,7 @@ class Inicio extends Component {
       center
       horizontal={true}
       render={(obj, key) => {
-        return <SView width={320} height={220}   center backgroundColor={"transparent"} style={{overflow: 'hidden',}} >
+        return <SView width={320}     >
           <Item2 data={obj} ></Item2>
         </SView>
       }} />
@@ -122,24 +122,22 @@ class Inicio extends Component {
         </BarraSuperiorTapeke>
         <SPage title={"as"} hidden center  >
           <SView col={"xs-12 md-12 lg-10 xl-8"} center height>
-            {/* {this.categoria("Recomendado Para Ti")} */}
-            {/* {this.categoria("Cerca")} */}
+            {this.categoria("Recomendado Para Ti")}
+            {this.categoria("Cerca")}
             <SHr height={80} />
-
-            <SView col={"xs-12"} height={190} border={"cyan"} >
+            <SView col={"xs-12"} height={190} border={"transparent"} >
               <SScrollView2>
                 {this.publicidad()}
               </SScrollView2>
             </SView>
-
-
             <SHr height={80} />
 
             {this.categoria("Alimentación")}
+            
             {this.categoria("Favoritos")}
 
+            <SView col={"xs-12"} height={200} border={"transparent"} >
 
-            <SView col={"xs-12"} height={220} border={"cyan"} >
               <SScrollView2>
                 {this.favoritos()}
               </SScrollView2>

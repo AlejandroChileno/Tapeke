@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SIcon, SLoad, SNavigation, SPage, SPopup, SScrollView2, SText, STheme, SView } from 'servisofts-component';
+import { SHr, SIcon, SLoad, SNavigation, SPage, SPopup, SScrollView2, SText, STheme, SView } from 'servisofts-component';
 import BarraSuperiorTapeke from '../../../../../Components/BarraSuperiorTapeke';
 import Direccion from '../../../../../Components/BarraSuperiorTapeke/Direccion';
 import PBarraFooter from '../../../../../Components/PBarraFooter';
@@ -49,6 +49,8 @@ class Explorador extends React.Component {
         return data.map((obj) => {
             return <SView key={obj.key} col={"xs-10 md-5 lg-4 xl-3"} border={'transparent'} >
                 <Item2 data={obj} ></Item2>
+                <SHr />
+                <SHr />
             </SView>
         })
     }
@@ -59,6 +61,7 @@ class Explorador extends React.Component {
                 <SView col={"xs-12 "} center border={'transparent'} >
                     {this.getRestaurante()}
                 </SView >
+
             </SScrollView2>
         </>
     }
