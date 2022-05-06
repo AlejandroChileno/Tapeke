@@ -22,6 +22,12 @@ class PedidoConfirmacion extends React.Component {
 
         this.key_pedido = SNavigation.getParam('key_pedido');
     }
+    componentDidMount() {
+        this.isRun = true;
+    }
+    componentWillUnmount() {
+        this.isRun = false;
+    }
     showMapa() {
         this.auxPedido = Parent.Actions.getDetalle(this.key_pedido, this.props)
         if (!this.auxPedido) return <SLoad />
@@ -60,8 +66,8 @@ class PedidoConfirmacion extends React.Component {
                     <SView width={5} height />
                     <SView flex border={'transparent'} center>
                         <SIcon name="PedPreparacion" width={48} fill={STheme.color.primary + 22} />
-                        <SView col={"xs-12"} height={10} backgroundColor={STheme.color.primary+22} />
-                        <SText color={STheme.color.primary+22} style={{ fontSize: 12 }} bold>Preparacion</SText>
+                        <SView col={"xs-12"} height={10} backgroundColor={STheme.color.primary + 22} />
+                        <SText color={STheme.color.primary + 22} style={{ fontSize: 12 }} bold>Preparacion</SText>
                     </SView>
                     <SView width={5} height />
 
@@ -86,7 +92,7 @@ class PedidoConfirmacion extends React.Component {
         // console.log("hora ", this.auxPedido.horario.hora_inicio);
         // console.log("hora ", this.auxPedido.horario.hora_fin);
         return (
-            <SPage hidden disableScroll center>
+            <SPage disableScroll center>
                 <SView col={"xs-12"} row center flex border={"transparent"} >
                     {this.showMapa()}
                 </SView >
@@ -135,9 +141,10 @@ class PedidoConfirmacion extends React.Component {
                     <SHr height={10} />
 
                     <SView col={"xs-3"} height={7} backgroundColor={STheme.color.card} style={{ borderRadius: 16, }}
-                    
-                    onPress={() => { 
-                        SNavigation.navigate("pedido/pedidoqr", { key_pedido: this.key_pedido })  }} />
+
+                        onPress={() => {
+                            SNavigation.navigate("pedido/pedidoqr", { key_pedido: this.key_pedido })
+                        }} />
                     <SHr height={5} />
 
                     <SView col={"xs-12"} border={'transparent'} row center >

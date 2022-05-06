@@ -22,9 +22,13 @@ class index extends Component {
 		return <SList
 			data={data}
 			space={16}
-			filter={(item) => item.estado == '1' && item.key_usuario == key_usuario && item.state != "pendiente_pago"}
+			filter={(item) => item.estado == '1' && item.key_usuario == key_usuario}
 			render={(obj, key) => {
-				return <SView col={"xs-12 "} height={90} row border={STheme.color.card} style={{ borderRadius: 8, }}   >
+				return <SView col={"xs-12 "} height={90} row border={STheme.color.card} style={{ borderRadius: 8, }} onPress={() => {
+					if (obj.state == "pagado") {
+						SNavigation.navigate("pedido/confirmacion", { key_pedido: obj.key });
+					}
+				}} >
 					<SView col={"xs-2"} center   >
 						<SView height={40} width={40} style={{ backgroundColor: '#E9EAEE', borderRadius: 50, }} center   >
 							<SImage src={`${SSocket.api.root}restaurante/${"key_restaurante"}`} style={{ borderRadius: 8, resizeMode: 'cover' }} />

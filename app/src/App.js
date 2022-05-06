@@ -39,8 +39,6 @@ const App = (props) => {
                 assets={Assets}
                 inputs={SConfig.SConfig_Inputs}
                 theme={{ initialTheme: "default", themes: SConfig.SThemeProps, noAnimated: true }}>
-
-
                 <StatusBar />
                 <SNavigation props={{
                     prefixes: ["https://component.servisofts.com", "component.servisofts://"],
