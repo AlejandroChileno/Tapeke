@@ -82,7 +82,7 @@ class Direccion extends Component {
 
         }
         if (direccion.descripcion) {
-            return direccion.descripcion + "\n" + dir;
+            //   return direccion.descripcion + "\n" + dir;
         }
         return dir;
     }
