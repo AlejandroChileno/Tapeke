@@ -55,7 +55,6 @@ class NoHayTarjeta extends Component {
         //     SNavigation.goBack();
         // } 
 
-
         return (
             <SPage disableScroll center>
                 <SView flex center col={"xs-11 sm-10 md-8 lg-6 xl-4"}  >
