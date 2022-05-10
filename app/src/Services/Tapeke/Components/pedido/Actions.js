@@ -22,7 +22,29 @@ export default class Actions {
         }
         return data;
     }
+    static getAllActivos = (props) => {
+        var reducer = Actions._getReducer(props);
+        var data = reducer.data_activos;
+        if (!data) {
+            if (reducer.estado == "cargando") return null;
+            SSocket.send({
+                component: Parent.component,
+                version: Parent.version,
+                type: "getAllActivos",
+                estado: "cargando",
+                key_usuario: props.state.usuarioReducer.usuarioLog.key,
+            })
+            return null;
+        }
+        return data;
+    }
 
+    static getPedidoByKeyUsuario = (key_usuario, props) => {
+        var data = Actions.getAllActivos(props);
+        if (!data) return null;
+        var arr = Object.values(data).filter((itm) => itm.key_usuario == key_usuario && itm.estado == 1)
+        return arr;
+    }
 
     static getByKey = (key, props) => {
         var data = Actions.getAll(props);

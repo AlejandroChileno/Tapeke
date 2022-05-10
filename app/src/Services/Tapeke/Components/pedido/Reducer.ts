@@ -38,6 +38,7 @@ export default (state: any, action: DataProps) => {
 const TypesSwitch = (state: any, action: DataProps) => {
     switch (action.type) {
         case "getAll": return getAll(state, action);
+        case "getAllActivos": return getAllActivos(state, action);
         case "registro": return registro(state, action);
         case "editar": return editar(state, action);
         case "getById": return getById(state, action);
@@ -51,6 +52,11 @@ const getAll = (state: any, action: DataProps) => {
     state.data = action.data;
 
     // SStorage.setItem("miInformation_log", JSON.stringify(action.data));
+
+}
+const getAllActivos = (state: any, action: DataProps) => {
+    if (action.estado != "exito") return;
+    state.data_activos = action.data;
 
 }
 const getDetalle = (state: any, action: DataProps) => {
