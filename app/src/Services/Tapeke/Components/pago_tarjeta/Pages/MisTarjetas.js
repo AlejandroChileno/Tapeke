@@ -12,6 +12,7 @@ class MisTarjetas extends Component {
         };
         this.key = SNavigation.getParam("key");
         this.callback = SNavigation.getParam("callback");
+        this.keyPedido = SNavigation.getParam('keyPedido');
     }
 
 
@@ -25,7 +26,7 @@ class MisTarjetas extends Component {
             SNavigation.navigate(Parent.component + "/pago_tarjeta")
         }
         data = arr;
-        return Object.values(data).map((obj,i) => {
+        return Object.values(data).map((obj, i) => {
             // console.log(this.props.state.usuarioReducer.usuarioLog.key + " //// "+obj.key_usuario )
             // if((obj.estado != 1) || (this.props.state.usuarioReducer.usuarioLog.key != obj.key_usuario)) return null;
 
@@ -33,9 +34,10 @@ class MisTarjetas extends Component {
 
             //var digitos = data[obj.key].numero_tarjeta.slice(-4);
             var digitos = obj.numero_tarjeta.slice(-4);
-            return (<SSection key={"card_cre"+i}>
+            return (<SSection key={"card_cre" + i}>
                 <SView col={"xs-12"} row center style={{ borderRadius: 8, borderWidth: 1, borderColor: STheme.color.gray }} backgroundColor={STheme.color.card}
                     onPress={() => {
+                        // SPopup.open({ content: this.popupCodigoSeguridad(), key: "CodigoSeguridad" });
                         this.callback({ objTarjeta: obj });
                         SNavigation.goBack();
                     }}>
@@ -69,6 +71,33 @@ class MisTarjetas extends Component {
         });
     }
 
+    popupCodigoSeguridad() {
+        return <>
+            <SView width={362} height={246} center row style={{ borderRadius: 8 }} withoutFeedback backgroundColor={STheme.color.background}   >
+                <SHr height={20} />
+                <SView col={"xs-12"} height={35} center style={{ borderBottomWidth: 1, borderColor: STheme.color.primary }}>
+                    <SText color={STheme.color.darkGray} style={{ fontSize: 20 }} bold center >Código de seguridad</SText>
+                </SView>
+                <SHr height={20} />
+                <SView col={"xs-11"} center row>
+                    <SView col={"xs-5"} center flex>
+                        <SIcon width={100} name='TarjetaSeguridad'></SIcon>
+                    </SView>
+                    <SView col={"xs-6"} center>
+                        <SText fontSize={14} color={STheme.color.text}  >Son los 3-4 dígitos numéricos ubicados en la parte trasera de su tarjeta.</SText>
+                    </SView>
+                </SView>
+                <SView col={"xs-12"} center>
+                    <SHr height={25} />
+                    <SView width={140} height={44} center backgroundColor={STheme.color.primary} style={{ borderRadius: 8 }} onPress={() => { SPopup.close("queEs"); }}  >
+                        <SText fontSize={14} color={STheme.color.white} bold>Entendido</SText>
+                    </SView>
+                    <SHr height={15} />
+                </SView>
+            </SView>
+        </>
+    }
+
     render() {
 
         // var reducer = this.props.state[Parent.component + "Reducer"];
@@ -91,6 +120,7 @@ class MisTarjetas extends Component {
         //     SNavigation.replace("direcciones")
         //     return null;
         // }
+        // alert(this.keyPedido)
 
         return (
             <SPage title={'Mis tarjetas'} center>
@@ -128,7 +158,9 @@ class MisTarjetas extends Component {
                                 {this.MisTarjetas()}
                                 <SHr height={30} />
                                 <SView col={"xs-12"} style={{ alignItems: "flex-end" }}
-                                    onPress={() => { SNavigation.navigate("pago_tarjeta/registro"); }}>
+                                    onPress={() => {
+                                        SNavigation.navigate("pago_tarjeta/registro", { callback: this.callback, keyPedido: this.keyPedido });
+                                    }}>
                                     <SView row>
                                         <SIcon name={"TarjetaAdd"} width={25}></SIcon>
                                         <SText color={STheme.color.primary}> Agregar una tarjeta </SText>

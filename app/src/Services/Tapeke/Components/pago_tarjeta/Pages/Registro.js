@@ -12,7 +12,7 @@ class Registro extends Component {
         };
         this.key = SNavigation.getParam("key");
         this.callback = SNavigation.getParam("callback");
-
+        this.keyPedido = SNavigation.getParam('keyPedido');
     }
 
     getregistro() {
@@ -35,12 +35,12 @@ class Registro extends Component {
             onSubmit={(values) => {
                 if (this.key) {
                     Parent.Actions.editar({ ...data, ...values }, this.props);
-                    
+
                 } else {
                     console.log(values);
-
+                    this.callback({ objTarjeta: values });
                     Parent.Actions.registro(values, this.props);
-                   
+
 
                 }
             }}
@@ -78,16 +78,21 @@ class Registro extends Component {
         var reducer = this.props.state[Parent.component + "Reducer"];
         if (reducer.type == "registro" || reducer.type == "editar") {
             if (reducer.estado == "exito") {
-                // if (reducer.type == "registro") this.key = reducer.lastRegister?.key;
-                // if (this.form) {
-                //     this.form.uploadFiles(SSocket.api.root + "upload/" + Parent.component + "/" + this.key);
-                // }
-                reducer.estado = "";
-                //SNavigation.navigate(Parent.component + "/facturacion");
-                SNavigation.navigate(Parent.component + "/misTarjetas" , { callback: this.callback });
-                // console.log("entro")
+                if (this.keyPedido != null) {
+                    SNavigation.navigate("pedido/confirmar", { callback: this.callback , keyPedido: this.keyPedido });
+                } else {
+                    // if (reducer.type == "registro") this.key = reducer.lastRegister?.key;
+                    // if (this.form) {
+                    //     this.form.uploadFiles(SSocket.api.root + "upload/" + Parent.component + "/" + this.key);
+                    // }
+                    reducer.estado = "";
+                    //SNavigation.navigate(Parent.component + "/facturacion");
+                    SNavigation.navigate(Parent.component + "/misTarjetas", { callback: this.callback });
+                    // console.log("entro")
+                }
             }
         }
+        //alert(this.keyPedido);
 
         return (
             <SPage title={''} center>

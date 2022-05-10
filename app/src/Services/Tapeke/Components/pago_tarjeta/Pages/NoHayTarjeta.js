@@ -12,6 +12,8 @@ class NoHayTarjeta extends Component {
         };
         this.key = SNavigation.getParam("key");
         this.callback = SNavigation.getParam("callback");
+        this.keyPedido = SNavigation.getParam('keyPedido');
+
     }
 
     render() {
@@ -26,21 +28,38 @@ class NoHayTarjeta extends Component {
         //         SNavigation.goBack();
         //     }
         // }
-      
-      
+
+
         // var data = Parent.Actions.getAll(this.props);
         // if (!data) return <SLoad />
 
         // const key_usuario = this.props.state.usuarioReducer.usuarioLog.key;
-		// var arr = Object.values(data).filter(x => x.key_usuario == key_usuario && x.estado == 1);
-		// if (arr.length > 0) {
-		// 	SNavigation.navigate(Parent.component +"/misTarjetas", { callback: this.callback});
-		// }
+        // var arr = Object.values(data).filter(x => x.key_usuario == key_usuario && x.estado == 1);
+        // if (arr.length > 0) {
+        // 	SNavigation.navigate(Parent.component +"/misTarjetas", { callback: this.callback});
+        // }
+        
+        //Consultando si existe tarjetas
+        var dataTarjeta = Parent.Actions.getAll(this.props);
+        if (!dataTarjeta) return <SLoad />;
+        const key_usuario = this.props.state.usuarioReducer.usuarioLog.key;
+        var arr = Object.values(dataTarjeta).filter(x => x.key_usuario == key_usuario && x.estado == 1);
+        var pagina = "";
+
+        if (arr.length > 0) {
+            SNavigation.replace("pago_tarjeta/misTarjetas", {
+                callback: this.callback, keyPedido: this.keyPedido
+            });
+        }
+        // else{
+        //     SNavigation.goBack();
+        // } 
+
 
         return (
-            <SPage  disableScroll center>
-                <SView flex center    col={"xs-11 sm-10 md-8 lg-6 xl-4"}  >
-                    <SView col={"xs-12"}  center row style={{ backgroundColor: STheme.color.primary, borderRadius: 12 }}>
+            <SPage disableScroll center>
+                <SView flex center col={"xs-11 sm-10 md-8 lg-6 xl-4"}  >
+                    <SView col={"xs-12"} center row style={{ backgroundColor: STheme.color.primary, borderRadius: 12 }}>
                         <SView col={"xs-12"} row center   >
                             <SView col={"xs-11"} border={'transparent'}  >
                                 <SHr height={20} />
@@ -57,7 +76,7 @@ class NoHayTarjeta extends Component {
                         </SView>
                         <SView col={"xs-12"} row center   >
                             <SView col={"xs-12"} border={'transparent'} center>
-                                <PButtom3 secondary props={{ type: "outline" }} onPress={() => { SNavigation.navigate(Parent.component + "/registro" , { callback: this.callback })  }} >AÑADIR TARJETA</PButtom3>
+                                <PButtom3 secondary props={{ type: "outline" }} onPress={() => { SNavigation.navigate(Parent.component + "/registro", { callback: this.callback, keyPedido: this.keyPedido } ); }} >AÑADIR TARJETA</PButtom3>
                                 <SHr height={20} />
                             </SView>
                             <SHr height={10} />

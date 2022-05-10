@@ -55,7 +55,7 @@ class Confirmar extends React.Component {
                         </SView>
                         <SView col={"xs-11"} row >
                             <SView col={"xs-12"} >
-                                <SText color={STheme.color.text} fontSize={14} bold  >{this.auxPedido.restaurante.nombre}</SText>
+                                <SText color={STheme.color.text} fontSize={14} bold  >{this.auxPedido.restaurante?.nombre}</SText>
                             </SView>
                             <SHr height={15} />
                             <SView col={"xs-6"} style={{ justifyContent: 'flex-start', }}>
@@ -122,7 +122,7 @@ class Confirmar extends React.Component {
     getViewTipoPago() {
         return <>
             <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center style={{ backgroundColor: STheme.color.white }}>
-                <TipoPago callback={(resp) => { this.setState({ tipoPagoSeleccionado: resp.tipopago }); }} />
+                <TipoPago keyPedido={this.keyPedido} callback={(resp) => { this.setState({ tipoPagoSeleccionado: resp.tipopago, keyPedido: this.keyPedido }); }} />
             </SView>
         </>
     }
@@ -209,7 +209,7 @@ class Confirmar extends React.Component {
                         <SHr height={18} />
                         {this.getViewTipoPago()}
                         <SHr height={18} />
-                        {this.getViewFactura()}
+                        {/* {this.getViewFactura()} */}
                         <SHr height={40} />
                         <PButtom fontSize={20} onPress={() => {
                             console.log("aqui " + this.state.tipoPagoSeleccionado);
