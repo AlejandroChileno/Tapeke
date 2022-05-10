@@ -26,10 +26,10 @@ class Registro extends Component {
             ref={(form) => { this.form = form; }}
             inputs={{
                 nombre: { label: "Nombre", placeholder: "Nombre completo", isRequired: true, defaultValue: data["nombre"] },
-                numero_tarjeta: { label: "Número de tarjeta", placeholder: "0000-0000-0000-0000", isRequired: true, defaultValue: data["numero_tarjeta"] ,type: "number"},
-                mes: { label: "Caducidad Mes", placeholder: "MM", isRequired: true, defaultValue: data["mes"], col: "xs-12 sm-6 md-6 lg-6 xl-6",type: "number", maxLength: 2  },
-                ano: { label: "Caducidad Año", placeholder: "AA", isRequired: true, defaultValue: data["ano"], col: "xs-12 sm-6 md-6 lg-6 xl-6" ,type: "number", maxLength: 2},
-                codigo_seguridad: { label: "Código de seguridad", placeholder: "0000", isRequired: true, defaultValue: data["codigo_seguridad"], col: "xs-12 sm-6 md-6 lg-6 xl-6",type: "number", maxLength: 4  },
+                numero_tarjeta: { label: "Número de tarjeta", placeholder: "0000-0000-0000-0000", isRequired: true, defaultValue: data["numero_tarjeta"], type: "number" },
+                mes: { label: "Caducidad Mes", placeholder: "MM", isRequired: true, defaultValue: data["mes"], col: "xs-12 sm-6 md-6 lg-6 xl-6", type: "number", maxLength: 2 },
+                ano: { label: "Caducidad Año", placeholder: "AA", isRequired: true, defaultValue: data["ano"], col: "xs-12 sm-6 md-6 lg-6 xl-6", type: "number", maxLength: 2 },
+                codigo_seguridad: { label: "Código de seguridad", placeholder: "0000", isRequired: true, defaultValue: data["codigo_seguridad"], col: "xs-12 sm-6 md-6 lg-6 xl-6", type: "number", maxLength: 4 },
             }}
             // onSubmitName={"Registrar"}
             onSubmit={(values) => {
@@ -79,20 +79,13 @@ class Registro extends Component {
         if (reducer.type == "registro" || reducer.type == "editar") {
             if (reducer.estado == "exito") {
                 if (this.keyPedido != null) {
-                    SNavigation.navigate("pedido/confirmar", { callback: this.callback , keyPedido: this.keyPedido });
+                    SNavigation.navigate("pedido/confirmar", { callback: this.callback, keyPedido: this.keyPedido });
                 } else {
-                    // if (reducer.type == "registro") this.key = reducer.lastRegister?.key;
-                    // if (this.form) {
-                    //     this.form.uploadFiles(SSocket.api.root + "upload/" + Parent.component + "/" + this.key);
-                    // }
                     reducer.estado = "";
-                    //SNavigation.navigate(Parent.component + "/facturacion");
                     SNavigation.navigate(Parent.component + "/misTarjetas", { callback: this.callback });
-                    // console.log("entro")
                 }
             }
         }
-        //alert(this.keyPedido);
 
         return (
             <SPage title={''} center>
