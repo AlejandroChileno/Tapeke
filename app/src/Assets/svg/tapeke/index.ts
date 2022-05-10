@@ -77,6 +77,8 @@ import SinTarjeta, { ReactComponent as SinTarjetaW } from './sinTarjeta.svg';
 
 import ImgSave, { ReactComponent as ImgSaveW } from './imgSave.svg';
 import ImgShare, { ReactComponent as ImgShareW } from './imgShare.svg';
+import BilleteraVacio, { ReactComponent as BilleteraVacioW } from './billeteraVacio.svg';
+
 
 
 
@@ -158,6 +160,7 @@ const Assets = {
 
 	"ImgSave": { Native: ImgSave, Web: ImgSaveW },
 	"ImgShare": { Native: ImgShare, Web: ImgShareW },
+	"BilleteraVacio": { Native: BilleteraVacio, Web: BilleteraVacioW },
 
 }
 

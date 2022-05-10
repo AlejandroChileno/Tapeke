@@ -13,7 +13,7 @@ public class App {
         console.info("");
         JSONObject config = Config.getJSON();
         JSONObject mail_server = config.getJSONObject("mail_server");
-        console.log("Mail server: ");
+        console.log("Mail server: ");  
         console.warning("\t//" + mail_server.getString("host") + ":" + mail_server.getInt("port"));
         console.warning("\t" + mail_server.getString("email"));
         console.log("");

@@ -12,8 +12,8 @@ class MisTarjetas extends Component {
         };
         this.key = SNavigation.getParam("key");
         this.callback = SNavigation.getParam("callback");
+        this.keyPedido = SNavigation.getParam('keyPedido');
     }
-
 
     MisTarjetas() {
         var data = Parent.Actions.getAll(this.props);
@@ -25,19 +25,13 @@ class MisTarjetas extends Component {
             SNavigation.navigate(Parent.component + "/pago_tarjeta")
         }
         data = arr;
-        return Object.values(data).map((obj,i) => {
-            // console.log(this.props.state.usuarioReducer.usuarioLog.key + " //// "+obj.key_usuario )
-            // if((obj.estado != 1) || (this.props.state.usuarioReducer.usuarioLog.key != obj.key_usuario)) return null;
-
-            // if((obj.estado != 1)) return null;
-
-            //var digitos = data[obj.key].numero_tarjeta.slice(-4);
+        return Object.values(data).map((obj, i) => {
             var digitos = obj.numero_tarjeta.slice(-4);
-            return (<SSection key={"card_cre"+i}>
+            return (<SSection key={"card_cre" + i}>
                 <SView col={"xs-12"} row center style={{ borderRadius: 8, borderWidth: 1, borderColor: STheme.color.gray }} backgroundColor={STheme.color.card}
                     onPress={() => {
-                        this.callback({ objTarjeta: obj });
-                        SNavigation.goBack();
+                        SPopup.open({ content: this.popupCodigoSeguridad(obj), key: "CodigoSeguridad" });
+
                     }}>
                     <SHr height={10} />
                     <SView col={"xs-11"} row >
@@ -69,6 +63,68 @@ class MisTarjetas extends Component {
         });
     }
 
+    getVerificarCodigo(obj) {
+        let data = {};
+        if (obj.key) {
+            data = Parent.Actions.getByKey(obj.key, this.props);
+            if (!data) return <SLoad />
+        }
+        return <SForm
+            row
+            ref={(form) => { this.form = form; }}
+            inputs={{
+                codigo_seguridad: { label: "Ingrese el código", placeholder: "0000", isRequired: true, col: "xs-12", type: "number", maxLength: 4 },
+            }}
+            // onSubmitName={"Registrar"}
+            onSubmit={(values) => {
+                if (data["codigo_seguridad"] == values["codigo_seguridad"]) {
+                    //TIENE QUE HACER:
+                    this.callback({ objTarjeta: obj });
+                    SPopup.close("CodigoSeguridad");
+                    SNavigation.goBack();
+
+                } else {
+                    console.log(values);
+                    SPopup.alert("Código incorrecto");
+                }
+            }}
+        />
+    }
+
+    popupCodigoSeguridad(obj) {
+        return <>
+            <SView width={362} height={325} center row style={{ borderRadius: 8 }} withoutFeedback backgroundColor={STheme.color.background}   >
+                <SHr height={20} />
+                <SView col={"xs-12"} height={35} center style={{ borderBottomWidth: 1, borderColor: STheme.color.primary }}>
+                    <SText color={STheme.color.darkGray} style={{ fontSize: 20 }} bold center >Código de seguridad</SText>
+                </SView>
+                <SHr height={15} />
+                <SView col={"xs-11"} center >
+                    <SText fontSize={14} color={STheme.color.text}  >Son los 3-4 dígitos numéricos ubicados en la parte trasera de su tarjeta.</SText>
+                </SView>
+                <SView col={"xs-11"} center row>
+                    <SView col={"xs-5"} center flex>
+                    <SHr height={15} />
+                        <SIcon width={100} name='TarjetaSeguridad'></SIcon>
+                    </SView>
+                    <SView col={"xs-6"} center>
+                        {this.getVerificarCodigo(obj)}
+                    </SView>
+                </SView>
+                <SView col={"xs-12"} center>
+                    <SHr height={25} />
+                    <SView width={140} height={44} center backgroundColor={STheme.color.primary} style={{ borderRadius: 8 }}
+                        onPress={() => {
+                            this.form.submit();
+                        }}  >
+                        <SText fontSize={14} color={STheme.color.white} bold>Verificar</SText>
+                    </SView>
+                    <SHr height={15} />
+                </SView>
+            </SView>
+        </>
+    }
+
     render() {
 
         // var reducer = this.props.state[Parent.component + "Reducer"];
@@ -91,6 +147,7 @@ class MisTarjetas extends Component {
         //     SNavigation.replace("direcciones")
         //     return null;
         // }
+        // alert(this.keyPedido)
 
         return (
             <SPage title={'Mis tarjetas'} center>
@@ -128,7 +185,9 @@ class MisTarjetas extends Component {
                                 {this.MisTarjetas()}
                                 <SHr height={30} />
                                 <SView col={"xs-12"} style={{ alignItems: "flex-end" }}
-                                    onPress={() => { SNavigation.navigate("pago_tarjeta/registro"); }}>
+                                    onPress={() => {
+                                        SNavigation.navigate("pago_tarjeta/registro", { callback: this.callback, keyPedido: this.keyPedido });
+                                    }}>
                                     <SView row>
                                         <SIcon name={"TarjetaAdd"} width={25}></SIcon>
                                         <SText color={STheme.color.primary}> Agregar una tarjeta </SText>

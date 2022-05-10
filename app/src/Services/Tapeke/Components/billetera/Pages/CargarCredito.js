@@ -26,11 +26,11 @@ class CargarCredito extends Component {
             <SHr height={30} />
             <SView col={"xs-10 sm-5 lg-3.5"} border={'transparent'} center  >
                 <SView col={"xs-12"} border={'transparent'}>
-                    <SText fontSize={24} color={'black'} font={"Roboto"} bold center>¡Recarga creditos a tu billetera!</SText>
+                    <SText fontSize={24} color={'black'} font={"Roboto"} bold center>¡Recarga crédito a tu billetera!</SText>
                 </SView>
                 <SHr height={25} />
                 <SView col={"xs-12"} border={'transparent'}>
-                    <SText fontSize={16} color={'#979797'} font={"Roboto"} center>Compra creditos para facilitar la compra de tu packs.</SText>
+                    <SText fontSize={16} color={'#979797'} font={"Roboto"} center>Compra crédito para facilitar la compra de tus packs.</SText>
                 </SView>
 
 
