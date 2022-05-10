@@ -12,7 +12,7 @@ class Registro extends Component {
         };
         this.key = SNavigation.getParam("key");
         this.callback = SNavigation.getParam("callback");
-
+        this.keyPedido = SNavigation.getParam('keyPedido');
     }
 
     getregistro() {
@@ -26,21 +26,21 @@ class Registro extends Component {
             ref={(form) => { this.form = form; }}
             inputs={{
                 nombre: { label: "Nombre", placeholder: "Nombre completo", isRequired: true, defaultValue: data["nombre"] },
-                numero_tarjeta: { label: "Número de tarjeta", placeholder: "0000-0000-0000-0000", isRequired: true, defaultValue: data["numero_tarjeta"] },
-                mes: { label: "Caducidad Mes", placeholder: "MM", isRequired: true, defaultValue: data["mes"], col: "xs-12 sm-6 md-6 lg-6 xl-6", },
-                ano: { label: "Caducidad Año", placeholder: "AA", isRequired: true, defaultValue: data["ano"], col: "xs-12 sm-6 md-6 lg-6 xl-6" },
-                codigo_seguridad: { label: "Código de seguridad", placeholder: "0000", isRequired: true, defaultValue: data["codigo_seguridad"], col: "xs-12 sm-6 md-6 lg-6 xl-6" },
+                numero_tarjeta: { label: "Número de tarjeta", placeholder: "0000-0000-0000-0000", isRequired: true, defaultValue: data["numero_tarjeta"], type: "number" },
+                mes: { label: "Caducidad Mes", placeholder: "MM", isRequired: true, defaultValue: data["mes"], col: "xs-12 sm-6 md-6 lg-6 xl-6", type: "number", maxLength: 2 },
+                ano: { label: "Caducidad Año", placeholder: "AA", isRequired: true, defaultValue: data["ano"], col: "xs-12 sm-6 md-6 lg-6 xl-6", type: "number", maxLength: 2 },
+                codigo_seguridad: { label: "Código de seguridad", placeholder: "0000", isRequired: true, defaultValue: data["codigo_seguridad"], col: "xs-12 sm-6 md-6 lg-6 xl-6", type: "number", maxLength: 4 },
             }}
             // onSubmitName={"Registrar"}
             onSubmit={(values) => {
                 if (this.key) {
                     Parent.Actions.editar({ ...data, ...values }, this.props);
-                    
+
                 } else {
                     console.log(values);
-
+                    this.callback({ objTarjeta: values });
                     Parent.Actions.registro(values, this.props);
-                   
+
 
                 }
             }}
@@ -78,14 +78,12 @@ class Registro extends Component {
         var reducer = this.props.state[Parent.component + "Reducer"];
         if (reducer.type == "registro" || reducer.type == "editar") {
             if (reducer.estado == "exito") {
-                // if (reducer.type == "registro") this.key = reducer.lastRegister?.key;
-                // if (this.form) {
-                //     this.form.uploadFiles(SSocket.api.root + "upload/" + Parent.component + "/" + this.key);
-                // }
-                reducer.estado = "";
-                //SNavigation.navigate(Parent.component + "/facturacion");
-                SNavigation.navigate(Parent.component + "/misTarjetas" , { callback: this.callback });
-                // console.log("entro")
+                if (this.keyPedido != null) {
+                    SNavigation.navigate("pedido/confirmar", { callback: this.callback, keyPedido: this.keyPedido });
+                } else {
+                    reducer.estado = "";
+                    SNavigation.navigate(Parent.component + "/misTarjetas", { callback: this.callback });
+                }
             }
         }
 

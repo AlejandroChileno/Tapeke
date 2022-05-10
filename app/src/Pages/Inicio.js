@@ -30,10 +30,8 @@ class Inicio extends Component {
 
 
  publicidad() {
-
   var data = novedades.Actions.getAll(this.props);
   if (!data) return <SLoad />
-
   return <SList
    data={data}
    space={16}
@@ -50,13 +48,11 @@ class Inicio extends Component {
        resizeMode: "cover", height: 165,
       }} />
      </SView>
-
     </SView>
    }} />
  }
 
  favoritos() {
-
   var data = restaurante.Actions.getAllFilter({}, this.props);
   var favUsuario = favorito.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props)
   if (!data) return <SLoad />;
@@ -77,48 +73,32 @@ class Inicio extends Component {
 
 
  pedidoencurso() {
-
-
   var dataPedido = pedido.Actions.getPedidoByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props)
   var restaurantes = restaurante.Actions.getAll(this.props);
   if (!dataPedido) return <SLoad />
   if (!restaurantes) return <SLoad />
-
-
-
   return <SList
    data={dataPedido}
    space={16}
    horizontal={true}
-
    render={(data) => {
     var restaurante_obj = restaurantes[data.horario.key_restaurante];
-
     return <SView width={280} height={110} row backgroundColor={"#271B43"} style={{ borderRadius: 8, }} >
-
-
      <SView col={"xs-12"} row center onPress={() => {
       SNavigation.navigate("pedido/confirmacion", { key_pedido: data.key });
- 
      }} >
       <SView width={14} height />
-
       <SView flex height={40} style={{ justifyContent: 'center', }}    >
-
        <SText fontSize={12} font={"Roboto"} color={"white"} >{restaurante_obj.nombre}</SText>
        <SHr height={3} />
-
        <SText fontSize={14} font={"Roboto"} color={"white"} >Tu pedido esta en camino</SText>
       </SView>
-
       <SView col={"xs-2"} height={40} style={{ alignContent: 'center', }}>
        <SView height={36} width={36} center   >
         <SIcon name="Menu" fill="white" ></SIcon>
        </SView>
       </SView>
       <BarraCargando />
-
-
      </SView>
      <SView col={"xs-12"} row   >
       <SView col={"xs-6"} center    >
@@ -129,8 +109,6 @@ class Inicio extends Component {
    }} />
  }
 
-
-
  categoria(title) {
   return (
    <>
@@ -140,17 +118,11 @@ class Inicio extends Component {
       <SText fontSize={18} font={"LondonMM"} bold>{title}</SText>
      </SView>
      <SView col={"xs-4"} row center style={{ justifyContent: "flex-end" }} onPress={() => {
-
      }}>
       <SText fontSize={12} font={"LondonMM"} bold center style={{ right: 2 }}>Ver todos</SText>
       <SIcon name={"Back"} width={12} height={12} fill={STheme.color.primary} style={{ transform: [{ rotate: "180deg" }] }} />
      </SView>
     </SView>
-
-
-
-
-
     {/* <SView col={"xs-12"} height={170} border={"transparent"} >
           <SScrollView2>
             <SView center row>
@@ -160,8 +132,6 @@ class Inicio extends Component {
             <SHr />
           </SScrollView2>
         </SView> */}
-
-
    </>
   );
  }
@@ -181,15 +151,11 @@ class Inicio extends Component {
     <SPage title={"as"} hidden center  >
      <SView col={"xs-12 md-12 lg-10 xl-8"} center height>
       {this.categoria("Pedido en curso")}
-      <SView col={"xs-12"} height={130}>
+      <SView col={"xs-11"} height={130}>
        <SScrollView2>
         {this.pedidoencurso()}
        </SScrollView2>
       </SView>
-
-
-
-
       {this.categoria("Recomendado Para Ti")}
       {/* TODO ES PARA PROBAR, DE COMO SE VE */}
       <SView col={"xs-12"} height={195} border={"transparent"} >
@@ -198,16 +164,12 @@ class Inicio extends Component {
        </SScrollView2>
       </SView>
       {this.categoria("Cerca")}
-
-
-
       {/* TODO ES PARA PROBAR, DE COMO SE VE */}
       <SView col={"xs-12"} height={195} border={"transparent"} >
        <SScrollView2>
         {this.favoritos()}
        </SScrollView2>
       </SView>
-
       <SHr height={20} />
       <SView col={"xs-12"} height={170} border={"transparent"} >
        <SScrollView2>
@@ -215,8 +177,6 @@ class Inicio extends Component {
        </SScrollView2>
       </SView>
       <SHr height={20} />
-
-
       {this.categoria("Favoritos")}
       <SView col={"xs-12"} height={195} border={"transparent"} >
        <SScrollView2>

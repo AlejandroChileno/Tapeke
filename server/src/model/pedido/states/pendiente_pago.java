@@ -71,8 +71,9 @@ public class pendiente_pago extends State {
         petition.put("type", "registro");
 
         JSONObject enviroments = enviroment.getAll(new JSONObject(), null);
-        int expiration_time = Integer.parseInt(enviroments.getJSONObject("tiempo_expiracion_pago_pedido").getString("value"));
-        
+        int expiration_time = Integer
+                .parseInt(enviroments.getJSONObject("tiempo_expiracion_pago_pedido").getString("value"));
+
         petition.put("data", new JSONObject().put("client", client).put("items", items)
                 .put("glosa", "Pago de prueba tapeke").put("expiration_time", expiration_time));
         JSONObject pay_order = SocketCliente.sendSinc("multipagos", petition, 30000);
@@ -106,7 +107,8 @@ public class pendiente_pago extends State {
                 double monto_actual = Double.parseDouble(SPGConect.ejecutarConsultaString(
                         "select sum(billetera.monto) from billetera where billetera.key_cliente = '" + key_usuario
                                 + "' and billetera.estado = 1"));
-                double total = this.pedido.getData().getDouble("precio") + this.pedido.getData().getDouble("delivery");
+                double total = (this.pedido.getData().getDouble("precio") * this.pedido.getData().getInt("cantidad"))
+                        + this.pedido.getData().getDouble("delivery");
                 if (total > monto_actual) {
                     throw new StateException("No tiene fondos suficientes en su billetera");
                 }

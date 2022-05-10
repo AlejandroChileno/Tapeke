@@ -57,8 +57,7 @@ class TipoPago extends Component {
     item(key, descripcion, imagen) {
 
         if (key == "Credito") {
-            var dataTarjeta = ParenTarjeta.Actions.getAll(this.props);
-            if (!dataTarjeta) return;
+
         }
         return <>
             <SHr height={15} />
@@ -66,20 +65,22 @@ class TipoPago extends Component {
                 // start document
                 var tarjetaNumber = "";
                 if (key == "Credito") {
-                    //Consultando si existe tarjetas
-
-
-                    const key_usuario = this.props.state.usuarioReducer.usuarioLog.key;
-                    var arr = Object.values(dataTarjeta).filter(x => x.key_usuario == key_usuario && x.estado == 1);
                     var pagina = "";
+                    //Consultando si existe tarjetas
+                    // var dataTarjeta = ParenTarjeta.Actions.getAll(this.props);
+                    // if (!dataTarjeta) return <SLoad />;
+                    // const key_usuario = this.props.state.usuarioReducer.usuarioLog.key;
+                    // var arr = Object.values(dataTarjeta).filter(x => x.key_usuario == key_usuario && x.estado == 1);
+                    // var pagina = "";
 
-                    if (arr.length > 0) {
-                        // SNavigation.navigate(Parent.component +"/misTarjetas", { callback: this.callback});
-                        // return <SText>No hay tarjetas registradas</SText>
-                        pagina = "pago_tarjeta/misTarjetas";
-                    } else {
-                        pagina = "pago_tarjeta";
-                    }
+                    // if (arr.length > 0) {
+                    //     pagina = "pago_tarjeta/misTarjetas";
+                    // } else {
+                    //     pagina = "pago_tarjeta";
+                    // }
+
+                    pagina = "pago_tarjeta";
+                    //alert(this.props.keyPedido);
 
                     SNavigation.navigate(pagina, {
                         callback: (tarjeta) => {
@@ -91,7 +92,8 @@ class TipoPago extends Component {
                             var digitos = tarjeta.objTarjeta.numero_tarjeta.slice(-4);
                             //alert(digitos);
                             this.tarjetaNumber = "*** *** *** " + digitos;
-                        }
+                        },
+                        keyPedido: this.props.keyPedido
                     });
                     return;
                 }

@@ -19,6 +19,9 @@ public class pedido {
                 case "getAll":
                     getAll(obj, session);
                     break;
+                case "getAllActivos":
+                    getAllActivos(obj, session);
+                    break;
                 case "getAllProximos":
                     getAllProximos(obj, session);
                     break;
@@ -59,6 +62,13 @@ public class pedido {
             throw new StateException("key_pedido is empty");
         }
         return key_pedido;
+    }
+
+    public static void getAllActivos(JSONObject obj, SSSessionAbstract session) throws SQLException {
+        String consulta = "select pedido_get_all_activos() as json";
+        JSONObject data = SPGConect.ejecutarConsultaObject(consulta);
+        obj.put("data", data);
+        obj.put("estado", "exito");
     }
 
     public static void getAll(JSONObject obj, SSSessionAbstract session) throws SQLException {
