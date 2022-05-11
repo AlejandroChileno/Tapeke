@@ -15,6 +15,7 @@ import MisCompras from './MisCompras';
 import ComoTeParecio from './MisCompras/ComoTeParecio';
 import Test from './Test';
 import PedidoQR from '../Services/Tapeke/Components/pedido/Pages/PedidoQR';
+
 // import MensajeSolicitud from '../Services/Tapeke/Components/pedido/Pages/MensajeSolicitud';
 // import Preparacion from '../Services/Tapeke/Components/pedido/Pages/PedidoConfirmacion';
 const Pages = {
@@ -39,7 +40,7 @@ const Pages = {
     "ayuda": Ayuda,
     "comoteparecio": ComoTeParecio,
 
-
+    
 
 
 }
