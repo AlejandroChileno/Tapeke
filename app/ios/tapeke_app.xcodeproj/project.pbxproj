@@ -35,7 +35,8 @@
 		2223D95E77744A9CA06FC85B /* Roboto-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Light.ttf"; path = "../node_modules/servisofts-component/font/Roboto-Light.ttf"; sourceTree = "<group>"; };
 		2AEEC81AC1334751914023F0 /* LondonMM.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = LondonMM.ttf; path = "../node_modules/servisofts-component/font/LondonMM.ttf"; sourceTree = "<group>"; };
 		46F0D055081F029C2FCAD5D1 /* libPods-tapeke_app.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tapeke_app.a"; sourceTree = BUILT_PRODUCTS_DIR; };
- 		49BF292027FE9014008B9DCA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		491625D3282A4AE100A9FAB5 /* tapeke_app.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = tapeke_app.entitlements; path = tapeke_app/tapeke_app.entitlements; sourceTree = "<group>"; };
+		49BF292027FE9014008B9DCA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		49DC7FDF27AC04AC00B93FC3 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		50AE628FD6660FE7B65A258E /* Pods-tapeke_app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tapeke_app.release.xcconfig"; path = "Target Support Files/Pods-tapeke_app/Pods-tapeke_app.release.xcconfig"; sourceTree = "<group>"; };
 		7C6F04CF755A47D0A0253172 /* LondonTwo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = LondonTwo.ttf; path = "../node_modules/servisofts-component/font/LondonTwo.ttf"; sourceTree = "<group>"; };
@@ -64,6 +65,7 @@
 		13B07FAE1A68108700A75B9A /* tapeke_app */ = {
 			isa = PBXGroup;
 			children = (
+				491625D3282A4AE100A9FAB5 /* tapeke_app.entitlements */,
 				49BF292027FE9014008B9DCA /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -377,6 +379,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = tapeke_app/tapeke_app.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -412,6 +415,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = tapeke_app/tapeke_app.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

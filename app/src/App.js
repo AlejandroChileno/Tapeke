@@ -16,7 +16,7 @@ import NavBar from './Components/NavBar';
 import SConfig from './SConfig';
 import BarraSuperior from './Components/BarraSuperior';
 import StatusBar from './Components/StatusBar';
-import Firebase from './Firebase';
+// import Firebase from './Firebase';
 
 setProps(SConfig.SocketProps);
 
@@ -25,7 +25,7 @@ const store = createStore(
     {},
     applyMiddleware(reduxThunk),
 );
-Firebase.init();
+// Firebase.init();
 
 const App = (props) => {
     // Firebase.auth().onAuthStateChanged(urs => {
@@ -34,7 +34,7 @@ const App = (props) => {
     return (
         <Provider store={store}>
             <SComponentContainer
-                debug
+                // debug
                 // socket={SSocket}
                 assets={Assets}
                 inputs={SConfig.SConfig_Inputs}

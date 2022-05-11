@@ -14,6 +14,7 @@ target 'tapeke_app' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'Google-Maps-iOS-Utils'
+  
   # pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
   # pod 'react-native-image-resizer', :path => '../node_modules/react-native-image-resizer'
@@ -21,5 +22,6 @@ target 'tapeke_app' do
   pod 'react-native-cameraroll', :path => '../node_modules/@react-native-community/cameraroll'
 
   pod 'react-native-fetch-blob', :path => '../node_modules/react-native-fetch-blob'
+  pod 'RNFBMessaging', :path => '../node_modules/@react-native-firebase/messaging'
 
 end

@@ -10,8 +10,11 @@ messaging().setBackgroundMessageHandler(async remoteMessage => {
 
 class Firebase {
 
-    static init() {
-        //App.initializeApp();
+    static async init() {
+        await messaging().requestPermission({
+            sound: false,
+            announcement: true,
+        });
         messaging().getToken().then(fcmToken => {
             if (fcmToken) {
                 console.log(fcmToken);
