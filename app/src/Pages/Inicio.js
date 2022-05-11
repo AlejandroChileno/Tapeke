@@ -149,9 +149,9 @@ class Inicio extends Component {
      <Direccion />
     </BarraSuperiorTapeke>
     <SPage title={"as"} hidden center  >
-     <SView col={"xs-12 md-12 lg-10 xl-8"} center height>
+     <SView col={"xs-12"} center height>
       {this.categoria("Pedido en curso")}
-      <SView col={"xs-11"} height={130}>
+      <SView col={"xs-12"} height={130}>
        <SScrollView2>
         {this.pedidoencurso()}
        </SScrollView2>
