@@ -5,6 +5,8 @@ import BarraSuperiorTapeke from '../../../../../Components/BarraSuperiorTapeke';
 import PBarraFooter from '../../../../../Components/PBarraFooter';
 import Parent from '../index'
 import PButtom from '../../../../../Components/PButtom';
+import pedido from '../index';
+import horario from '../../horario';
 
 class Calendario extends React.Component {
     constructor(props) {
@@ -14,7 +16,7 @@ class Calendario extends React.Component {
             // dia: 0,
         };
         this.page = SNavigation.getParam("page");
-        this.key_restaurante = "9e1a7498-1f5f-4df0-b97e-82b0cf3edbce";
+        this.key_restaurante = "9b8f27e9-696d-446f-ae9b-5d6d5bf1ab24";
         // this.key_restaurante = SNavigation.getParam("key_restaurante");
     }
 
@@ -95,19 +97,37 @@ class Calendario extends React.Component {
 
 
     getListahoRARIO() {
-        var data = Parent.Actions.getByKeyRestauranteHorarios(this.key_restaurante,this.props);
-		if (!data) return <SLoad />
-        console.log("alvaro "+data.hora_inicio);
-        
- 	}
+      
+
+        var data = horario.Actions.getAll(this.props);
+        if (!data) return <SLoad />
+        var arr = Object.values(data).filter(item => item.key_restaurante == this.key_restaurante)
+
+
+
+
+        console.log("alvaro ", JSON.stringify(arr));
+        return arr.map((obj, index) => {
+            return <SView key={"itmDav" + index} row col={"xs-10 md-5 lg-4 xl-3"} border={'transparent'} >
+                {JSON.stringify(obj["dia"])}
+
+                {/* {this.getAllMonth(obj)} */}
+
+                <SHr />
+                <SHr />
+            </SView>
+        })
+
+
+
+
+
+
+    }
 
     render() {
 
-         
-         this.getListahoRARIO();
-        // var datas = {};
-        // datas = Pack.Actions.getAll(this.props);
-        // if (!datas) return <SLoad />
+
 
         return (<>
             <SPage title={''} hidden disableScroll center >
@@ -115,6 +135,7 @@ class Calendario extends React.Component {
                 </BarraSuperiorTapeke>
                 <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} row>
                     <SHr height={30} />
+
 
                     <SView col={"xs-12"} style={{ borderBottomWidth: 2, borderColor: STheme.color.primary }}>
                         <SText font={"Roboto"} color={STheme.color.text} fontSize={20} >{this.state.fecha.toString("MONTH, yyyy")}</SText>
@@ -140,6 +161,7 @@ class Calendario extends React.Component {
                         </SView>
                         <SHr height={20} />
                     </SView>
+                    {this.getListahoRARIO()}
 
 
                     <SHr height={25} />
@@ -174,7 +196,7 @@ class Calendario extends React.Component {
             </SPage>
             <PBarraFooter />
         </>);
-        
+
     }
 }
 const initStates = (state) => {
