@@ -20,19 +20,19 @@ class Calendario extends React.Component {
         // this.key_restaurante = SNavigation.getParam("key_restaurante");
     }
 
-    getDiaa(dia, diastr) {
-        console.log(dia + " /// " + diastr);
-        return <SView width={80} height={90} center style={{ backgroundColor: (this.state.dia == dia ? STheme.color.primary : STheme.color.card), borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 1 }}
-            onPress={() => {
-                this.setState({
-                    dia: dia
-                })
-            }}>
-            <SText font={"LondonTwo"} fontSize={24} color={(this.state.dia == dia ? STheme.color.secondary : STheme.color.text)} >{dia}</SText>
-            <SHr height={10} />
-            <SText font={"Roboto"} fontSize={14} color={(this.state.dia == dia ? STheme.color.secondary : STheme.color.text)}>{diastr}</SText>
-        </SView>
-    }
+    // getDiaa(dia, diastr) {
+    //     console.log(dia + " /// " + diastr);
+    //     return <SView width={80} height={90} center style={{ backgroundColor: (this.state.dia == dia ? STheme.color.primary : STheme.color.card), borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 1 }}
+    //         onPress={() => {
+    //             this.setState({
+    //                 dia: dia
+    //             })
+    //         }}>
+    //         <SText font={"LondonTwo"} fontSize={24} color={(this.state.dia == dia ? STheme.color.secondary : STheme.color.text)} >{dia}</SText>
+    //         <SHr height={10} />
+    //         <SText font={"Roboto"} fontSize={14} color={(this.state.dia == dia ? STheme.color.secondary : STheme.color.text)}>{diastr}</SText>
+    //     </SView>
+    // }
     getHora(hora) {
         var isSelect = false;
         return <SView col={"xs-4"} center style={{ padding: 5 }}
@@ -48,91 +48,56 @@ class Calendario extends React.Component {
         </SView>
     }
 
-    listaDias() {
-        // var mesActual= this.state.fecha;
-        var mesActualOriginal = new SDate();
-        var mesActual = new SDate();
-        var dia = "";
+    // listaDias() {
+    //     // var mesActual= this.state.fecha;
+    //     var mesActualOriginal = new SDate();
+    //     var mesActual = new SDate();
+    //     var dia = "";
+    //     var arrayDias = ["LU", "MAR", "MI", "JU", "VI", "SA", "DO"];
+    //     var arrayReturn = [];
+    //     for (var i = 0; i < 31; i++) {
+    //         if (i == 0) var diaDinamico = mesActual.setDay(mesActual.getDay() - 1);
+    //         var diaDinamico = mesActual.setDay(mesActual.getDay() + 1);
+    //         if (parseInt(mesActualOriginal.getMonth()) == parseInt(diaDinamico.getMonth())) {
+    //             // console.log(diaDinamico.getMonth() + " - " + diaDinamico.getDay());
+    //             // console.log(arrayDias[diaDinamico.getDayOfWeek()]);
+    //             var diaSemana = arrayDias[diaDinamico.getDayOfWeek()];
+    //             // this.getDia(diaDinamico.getDay(), diaSemana);
+    //             arrayReturn.push("" + diaDinamico.getDay() + "-" + diaSemana + "");
+    //         } else {
+    //             break;
+    //         }
+    //     }
+    //     return arrayReturn;
+    // }
 
-        var arrayDias = ["LU", "MAR", "MI", "JU", "VI", "SA", "DO"];
-        var arrayReturn = [];
-
-        for (var i = 0; i < 31; i++) {
-            if (i == 0) var diaDinamico = mesActual.setDay(mesActual.getDay() - 1);
-            var diaDinamico = mesActual.setDay(mesActual.getDay() + 1);
-            if (parseInt(mesActualOriginal.getMonth()) == parseInt(diaDinamico.getMonth())) {
-                // console.log(diaDinamico.getMonth() + " - " + diaDinamico.getDay());
-                // console.log(arrayDias[diaDinamico.getDayOfWeek()]);
-                var diaSemana = arrayDias[diaDinamico.getDayOfWeek()];
-                // this.getDia(diaDinamico.getDay(), diaSemana);
-                arrayReturn.push("" + diaDinamico.getDay() + "-" + diaSemana + "");
-            } else {
-                break;
-            }
-        }
-        return arrayReturn;
-    }
-
-    getAllMonth(arrayMe) {
-
-        var instance = this;
-        return arrayMe.map(function (item, index) {
-            var index = item.split("-");
-            var dia = index[0];
-            var diastr = index[1];
-            // <SView col={"xs-4"} center style={{ padding: 5 }}>{index[0] } ppp {index[1] } </SView>
-            return <><SView width={80} height={90} center style={{ backgroundColor: (instance.state.dia == dia ? STheme.color.primary : STheme.color.card), borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 1 }}
-                onPress={() => {
-                    instance.setState({
-                        dia: dia
-                    })
-                }}>
-                <SText font={"LondonTwo"} fontSize={24} color={(instance.state.dia == dia ? STheme.color.secondary : STheme.color.text)} >{dia}</SText>
-                <SHr height={10} />
-                <SText font={"Roboto"} fontSize={14} color={(instance.state.dia == dia ? STheme.color.secondary : STheme.color.text)}>{diastr}</SText>
-            </SView>
-                <SView width={10} />
-            </>
-        });
-    }
-    getAllMonthaasas(arrayMe) {
-
-        var data = horario.Actions.getAll(this.props);
-        if (!data) return <SLoad />
-        var arr = Object.values(data).filter(item => item.key_restaurante == this.key_restaurante)
+    // getAllMonth(arrayMe) {
+    //     var instance = this;
+    //     return arrayMe.map(function (item, index) {
+    //         var index = item.split("-");
+    //         var dia = index[0];
+    //         var diastr = index[1];
+    //         // <SView col={"xs-4"} center style={{ padding: 5 }}>{index[0] } ppp {index[1] } </SView>
+    //         return <><SView width={80} height={90} center style={{ backgroundColor: (instance.state.dia == dia ? STheme.color.primary : STheme.color.card), borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 1 }}
+    //             onPress={() => {
+    //                 instance.setState({
+    //                     dia: dia
+    //                 })
+    //             }}>
+    //             <SText font={"LondonTwo"} fontSize={24} color={(instance.state.dia == dia ? STheme.color.secondary : STheme.color.text)} >{dia}</SText>
+    //             <SHr height={10} />
+    //             <SText font={"Roboto"} fontSize={14} color={(instance.state.dia == dia ? STheme.color.secondary : STheme.color.text)}>{diastr}</SText>
+    //         </SView>
+    //             <SView width={10} />
+    //         </>
+    //     });
+    // }
 
 
-        var instance = this;
-        return arr.map(function (item, index) {
-            var index = item.split("-");
-            var dia = index[0];
-            var diastr = index[1];
-            // <SView col={"xs-4"} center style={{ padding: 5 }}>{index[0] } ppp {index[1] } </SView>
-            return <><SView width={80} height={90} center style={{ backgroundColor: (instance.state.dia == dia ? STheme.color.primary : STheme.color.card), borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 1 }}
-                onPress={() => {
-                    instance.setState({
-                        dia: dia
-                    })
-                }}>
-                <SText font={"LondonTwo"} fontSize={24} color={(instance.state.dia == dia ? STheme.color.secondary : STheme.color.text)} >{dia}</SText>
-                <SHr height={10} />
-                <SText font={"Roboto"} fontSize={14} color={(instance.state.dia == dia ? STheme.color.secondary : STheme.color.text)}>{dia}</SText>
-            </SView>
-                <SView width={10} />
-            </>
-        });
-    }
-
-    getListahoRARIO() {
-      
-
-        var data = horario.Actions.getAll(this.props);
-        if (!data) return <SLoad />
-        var arr = Object.values(data).filter(item => item.key_restaurante == this.key_restaurante)
-
-
-
-
+    getListahorarioAlvaro() {
+        var auxdata = horario.Actions.getAll(this.props);
+        if (!auxdata) return <SLoad />
+        var arr = Object.values(auxdata).filter(item => item.key_restaurante == this.key_restaurante)
         console.log("alvaro ", JSON.stringify(arr));
         return arr.map((obj, index) => {
             return <SView key={"itmDav" + index} row col={"xs-10 md-5 lg-4 xl-3"} border={'transparent'} >
@@ -145,12 +110,40 @@ class Calendario extends React.Component {
                 <SHr />
             </SView>
         })
+    }
 
 
+    getDias() {
 
 
+        var auxDia = [2, 3];
+        var dias = new SDate().addMonth(1).setDay(0).getDay();
+        var curDate = new SDate();
+        var arr = Array.from(Array(dias - curDate.getDay() + 1).keys())
 
+        return arr.map((i) => {
+            var day = i + curDate.getDay();
+            var fecha = new SDate().setDay(day);
+            if (!auxDia.includes(fecha.getDayOfWeek())) return console.log("fecha ", fecha);
+             var isCurrent = fecha.toString("yyyy-MM-dd") == new SDate().toString("yyyy-MM-dd");
 
+            // return <SText border={"red"}>{fecha.toString("MON,dd") + "\t"} d= {fecha.getDayOfWeek()} {"\t"} {fecha.getDayOfWeekJson().text}  {isCurrent ? "(HOY)" : ""}</SText>
+
+            // <SText font={"LondonTwo"} fontSize={24} color={(this.state.dia == dia ? STheme.color.secondary : STheme.color.text)} >{dia}</SText>
+            // var dia = JSON.stringify(fecha.toString("dd"));
+         
+
+            return <>  <SView width={80} height={90} center style={{ backgroundColor: STheme.color.card, borderRadius: 8, borderColor:this.state.dia == JSON.stringify(fecha.toString("dd")) ? STheme.color.primary : STheme.color.lightGray, borderWidth: 1 }}
+                onPress={() => { this.setState({ dia: JSON.stringify(fecha.toString("dd")) })
+                 }}  >
+                <SText font={"LondonTwo"} fontSize={24} color={this.state.dia == JSON.stringify(fecha.toString("dd")) ? STheme.color.primary :STheme.color.text} >{fecha.toString("dd")}</SText>
+                <SHr height={10} />
+                <SText font={"Roboto"} fontSize={14} color={(this.state.dia == JSON.stringify(fecha.toString("dd")) ? STheme.color.primary : STheme.color.text)}>{fecha.getDayOfWeekJson().text}</SText>
+
+            </SView>
+                <SView width={10} />
+            </>
+        })
     }
 
     render() {
@@ -179,17 +172,16 @@ class Calendario extends React.Component {
                                     {this.getDiaa(20, "JU")}
                                     <SView width={10} />
                                     {this.getDiaa(21, "VI")} */}
-
                                     {/* {this.getDia(21, "VI", this.listaDias())} */}
-
-                                    {this.getAllMonth(this.listaDias())}
-
+                                    {/* {this.getAllMonth(this.listaDias())} */}
+                                    {this.getDias()}
+                                    {/* {this.getListahorarioAlvaro()} */}
                                 </SView>
                             </SScrollView2>
                         </SView>
                         <SHr height={20} />
                     </SView>
-                    {this.getListahoRARIO()}
+                    {/* {this.getAllMonthaasas()} */}
 
 
                     <SHr height={25} />
