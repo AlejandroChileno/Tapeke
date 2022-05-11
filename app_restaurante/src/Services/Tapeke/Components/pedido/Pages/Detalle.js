@@ -1,22 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient, SForm, SNavigation, SPopup, SLoad, SMath } from 'servisofts-component';
-import PButtom from '../../../../../Components/PButtom';
+import { SButtom, SGradient, SHr, SImage, SLoad, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
 import pedido from '../index';
 import Parent from '../index';
-import SSocket from 'servisofts-socket';
 
 class Detalle extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
-
-        // this.precio = SNavigation.getParam('precio');
-        // this.cantidad = SNavigation.getParam('cantidad');
-        // this.envioN = SNavigation.getParam('envio');
-
-        // this.pedidoId = "71dsd50ea-1739-41c0-b9e8-a30c87950281";
-        this.pedidoId = SNavigation.getParam("keyPedido");
+        // this.pedidoId = SNavigation.getParam("keyPedido");
+        this.pedidoId = "07979989-ce30-485a-873d-6bb2e177d613";
     }
 
     error() {
@@ -31,7 +24,7 @@ class Detalle extends React.Component {
 
     // TODO: RICKY TIENES QUE PASAR BIEN EL DETALLE DEL PEDIDO DESDE EL BACKEND
     render() {
-        this.data = Parent.Actions.getByKey(this.pedidoId, this.props);
+        this.data = pedido.Actions.getByKey(this.pedidoId, this.props);
         if (!this.data) {
             return this.error();
         }
@@ -210,9 +203,9 @@ class Detalle extends React.Component {
                     <SHr height={18} />
                     <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center style={{ backgroundColor: STheme.color.white }}>
                         <SHr height={40} />
-                        <PButtom fontSize={20} onPress={() => {
+                        <SButtom fontSize={20} onPress={() => {
 
-                        }}>ENTREGADO</PButtom>
+                        }}>ENTREGADO</SButtom>
                         <SHr height={40} />
                     </SView>
                 </SView>

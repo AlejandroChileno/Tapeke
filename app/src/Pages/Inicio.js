@@ -83,7 +83,7 @@ class Inicio extends Component {
    horizontal={true}
    render={(data) => {
     var restaurante_obj = restaurantes[data.horario.key_restaurante];
-    return <SView width={280} height={110} row backgroundColor={"#271B43"} style={{ borderRadius: 8, }} >
+    return <SView width={250} height={110} row backgroundColor={STheme.color.primary} style={{ borderRadius: 8, }} >
      <SView col={"xs-12"} row center onPress={() => {
       SNavigation.navigate("pedido/confirmacion", { key_pedido: data.key });
      }} >
@@ -95,14 +95,15 @@ class Inicio extends Component {
       </SView>
       <SView col={"xs-2"} height={40} style={{ alignContent: 'center', }}>
        <SView height={36} width={36} center   >
-        <SIcon name="Menu" fill="white" ></SIcon>
+        <SIcon name="PedDelivery"  fill="red"></SIcon>
        </SView>
       </SView>
       <BarraCargando />
      </SView>
      <SView col={"xs-12"} row   >
-      <SView col={"xs-6"} center    >
-       <SText width={120} height={20} style={{ fontSize: 14, color: "white" }} center >Ver los detalles   </SText>
+      <SView col={"xs-6"} center row    >
+       <SText width={120} height={20} style={{ fontSize: 14, color: "white" }} center >Ver los detalles<SIcon name={"Back"} width={12} height={12} fill={"white"} style={{ transform: [{ rotate: "180deg" }] }} center />
+  </SText>
       </SView>
      </SView>
     </SView>
