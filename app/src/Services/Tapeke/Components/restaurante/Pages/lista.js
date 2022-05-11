@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SIcon, SImage, SLoad, SNavigation, SPage, SPopup, STable2, SText, SView } from 'servisofts-component';
+import { SIcon, SImage, SInput, SLoad, SNavigation, SPage, SPopup, STable2, SText, SView } from 'servisofts-component';
 import Parent from '..'
 import SSocket from 'servisofts-socket'
 import FloatButtom from '../../../../../Components/FloatButtom';
