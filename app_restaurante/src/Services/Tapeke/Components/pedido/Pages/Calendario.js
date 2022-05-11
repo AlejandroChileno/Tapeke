@@ -20,19 +20,19 @@ class Calendario extends React.Component {
         // this.key_restaurante = SNavigation.getParam("key_restaurante");
     }
 
-    // getDiaa(dia, diastr) {
-    //     //console.log(dia + " /// " + diastr);
-    //     return <SView width={80} height={90} center style={{ backgroundColor: (this.state.dia == dia ? STheme.color.primary : STheme.color.card), borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 1 }}
-    //         onPress={() => {
-    //             this.setState({
-    //                 dia: dia
-    //             })
-    //         }}>
-    //         <SText font={"LondonTwo"} fontSize={24} color={(this.state.dia == dia ? STheme.color.secondary : STheme.color.text)} >{dia}</SText>
-    //         <SHr height={10} />
-    //         <SText font={"Roboto"} fontSize={14} color={(this.state.dia == dia ? STheme.color.secondary : STheme.color.text)}>{diastr}</SText>
-    //     </SView>
-    // }
+    getDiaa(dia, diastr) {
+        console.log(dia + " /// " + diastr);
+        return <SView width={80} height={90} center style={{ backgroundColor: (this.state.dia == dia ? STheme.color.primary : STheme.color.card), borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 1 }}
+            onPress={() => {
+                this.setState({
+                    dia: dia
+                })
+            }}>
+            <SText font={"LondonTwo"} fontSize={24} color={(this.state.dia == dia ? STheme.color.secondary : STheme.color.text)} >{dia}</SText>
+            <SHr height={10} />
+            <SText font={"Roboto"} fontSize={14} color={(this.state.dia == dia ? STheme.color.secondary : STheme.color.text)}>{diastr}</SText>
+        </SView>
+    }
     getHora(hora) {
         var isSelect = false;
         return <SView col={"xs-4"} center style={{ padding: 5 }}
@@ -74,6 +74,7 @@ class Calendario extends React.Component {
     }
 
     getAllMonth(arrayMe) {
+
         var instance = this;
         return arrayMe.map(function (item, index) {
             var index = item.split("-");
@@ -94,7 +95,33 @@ class Calendario extends React.Component {
             </>
         });
     }
+    getAllMonthaasas(arrayMe) {
 
+        var data = horario.Actions.getAll(this.props);
+        if (!data) return <SLoad />
+        var arr = Object.values(data).filter(item => item.key_restaurante == this.key_restaurante)
+
+
+        var instance = this;
+        return arr.map(function (item, index) {
+            var index = item.split("-");
+            var dia = index[0];
+            var diastr = index[1];
+            // <SView col={"xs-4"} center style={{ padding: 5 }}>{index[0] } ppp {index[1] } </SView>
+            return <><SView width={80} height={90} center style={{ backgroundColor: (instance.state.dia == dia ? STheme.color.primary : STheme.color.card), borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 1 }}
+                onPress={() => {
+                    instance.setState({
+                        dia: dia
+                    })
+                }}>
+                <SText font={"LondonTwo"} fontSize={24} color={(instance.state.dia == dia ? STheme.color.secondary : STheme.color.text)} >{dia}</SText>
+                <SHr height={10} />
+                <SText font={"Roboto"} fontSize={14} color={(instance.state.dia == dia ? STheme.color.secondary : STheme.color.text)}>{dia}</SText>
+            </SView>
+                <SView width={10} />
+            </>
+        });
+    }
 
     getListahoRARIO() {
       
@@ -112,6 +139,7 @@ class Calendario extends React.Component {
                 {JSON.stringify(obj["dia"])}
 
                 {/* {this.getAllMonth(obj)} */}
+                {/* {this.getDiaa(obj["dia"], "MA")} */}
 
                 <SHr />
                 <SHr />
@@ -144,13 +172,13 @@ class Calendario extends React.Component {
                             <SScrollView2>
                                 <SView center row>
                                     {/* {this.listaDias()} */}
-                                    {/* {this.getDia(18, "MA")}
+                                    {/* {this.getDiaa(18, "MA")}
                                     <SView width={10} />
-                                    {this.getDia(19, "MI")}
+                                    {this.getDiaa(19, "MI")}
                                     <SView width={10} />
-                                    {this.getDia(20, "JU")}
+                                    {this.getDiaa(20, "JU")}
                                     <SView width={10} />
-                                    {this.getDia(21, "VI")} */}
+                                    {this.getDiaa(21, "VI")} */}
 
                                     {/* {this.getDia(21, "VI", this.listaDias())} */}
 
