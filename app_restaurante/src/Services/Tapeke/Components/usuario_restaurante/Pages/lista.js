@@ -11,31 +11,28 @@ class lista extends Component {
         super(props);
         this.state = {
         };
-        this.key_usuario = "a02175c1-3de7-41cc-902b-8aa037b91d23";
-        // this.key_usuario = this.props.state.usuarioReducer.usuarioLog;
     }
 
     getLista() {
-        var data = Parent.Actions.getByKeyUsuario(this.key_usuario, this.props);
+        var data = Parent.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props);
         var restaurantes = restaurante.Actions.getAll(this.props);
         if (!data) return <SLoad />
         if (!restaurantes) return <SLoad />
-        console.log(data);
+        var arr = Object.values(restaurantes).filter(o=>data.find(o2=>o2.key_restaurante==o.key));
         return <SList
-            data={data}
+            data={arr}
             space={16}
             // filter={obj => {
             //     if (obj.estado != 1) return false;
-            //     return !data.find(o => o.key_restaurante == obj.key_restaurante)
+            //     return data.find(o => o.key_restaurante == obj.key)
             // }}
-            // filter={(item) => item.estado == '1' && item.key_usuario == key_usuario}
-            render={(obj, key) => {
+             render={(obj, key) => {
                 return <SView col={"xs-12 "} height={90} row border={STheme.color.card} style={{ borderRadius: 8, }}  >
 
                     <SView col={"xs-12"} row   >
-                        <SText col={"xs-12"} height={20} style={{ backgroundColor: '#EEEEEE', borderRadius: 4, fontSize: 14, alignItems: 'center', }}>key {obj['key']}</SText>
-                        <SText col={"xs-12"} height={20} style={{ backgroundColor: '#EEEEEE', borderRadius: 4, fontSize: 14, alignItems: 'center', }}>restaurante{obj['key_restaurante']}</SText>
-                        {/* <SText col={"xs-12"} height={20} style={{ backgroundColor: '#EEEEEE', borderRadius: 4, fontSize: 14, alignItems: 'center', }} center > key restaurante {obj['nombre']}</SText> */}
+                        {/* <SText col={"xs-12"} height={20} style={{ backgroundColor: '#EEEEEE', borderRadius: 4, fontSize: 14, alignItems: 'center', }}>key {obj['key']}</SText> */}
+                        {/* <SText col={"xs-12"} height={20} style={{ backgroundColor: '#EEEEEE', borderRadius: 4, fontSize: 14, alignItems: 'center', }}>restaurante{obj['key_restaurante']}</SText> */}
+                        <SText col={"xs-12"} height={20} style={{ backgroundColor: '#EEEEEE', borderRadius: 4, fontSize: 14, alignItems: 'center', }} center >restaurante{obj['nombre']}</SText>
 
 
 
@@ -49,6 +46,9 @@ class lista extends Component {
                 <SView col={"xs-12"} center height>
                     {this.getLista()}
                 </SView>
+                <FloatButtom onPress={() => {
+                    SNavigation.navigate("admin/usuario_restaurante/lista002");
+                }} />
             </SPage>
         );
     }

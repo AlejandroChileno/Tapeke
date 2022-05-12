@@ -4,56 +4,59 @@ import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput, SPo
 import Parent from '..'
 import SSocket from 'servisofts-socket';
 import usuario from '../../../../Usuario/Components/usuario';
+import restaurante from '../../restaurante';
 class registro extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            direccion: null
-        };
-        this.key_restaurante = SNavigation.getParam("key_usuario");
+        this.state = {};
     }
 
     getUsuarios() {
-        var data = Parent.Actions.getByKeyRestaurante(this.key_restaurante, this.props);
-        var usuarios = usuario.Actions.getAll(this.props);
-        if (!usuarios) return <SLoad />
-        return <SList data={usuarios} center space={16}
+        var data = Parent.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props);
+        var dataRestaurante = restaurante.Actions.getAll(this.props);
+        if (!dataRestaurante) return <SLoad />
+
+        console.log(dataRestaurante);
+
+        return <SList data={dataRestaurante} center space={16}
             filter={obj => {
                 if (obj.estado != 1) return false;
-                return !data.find(o => o.key_usuario == obj.key)
+                return data.find(o => o.key_restaurante == obj.key)
             }}
             render={obj => {
-                return <SView col={"xs-11"} height={48}
+                return <SView col={"xs-11"} height={90}
                     style={{
                         borderBottomWidth: 2,
                         borderBottomColor: "#eee",
                     }} row center onPress={() => {
                         SPopup.confirm({
-                            title: "¿Está seguro de que desea agregar este usuario?",
-                            message: `${obj.Nombres} ${obj.Apellidos}`,
+                            title: "¿Está seguro de que desea Ir a este restaurante ?",
+                            message: `${obj.nombre}`,
                             onPress: () => {
-                                Parent.Actions.registro({
-                                    key_usuario: obj.key,
-                                    key_restaurante: this.key_restaurante
-                                }, this.props);
-                                SNavigation.goBack();
+
+                                // SNavigation.navigate("restaurante/perfil", { key_restaurante: `${obj.key}` });
+                                SNavigation.navigate("admin/usuario_restaurante/restaurante", { key_restaurante: `${obj.key}` });
+
+
                             }
                         })
                     }}>
                     <SView width={8} />
-                    <SView width={40} height={40} center style={{
-                        borderRadius: 20,
+                    <SView width={70} height={70} center style={{
+                        borderRadius: 40,
                         overflow: 'hidden',
                         backgroundColor: '#eee',
                     }}>
-                        <SImage src={SSocket.api.root + "usuario/" + obj.key} style={{
+
+                        <SImage src={SSocket.api.root + "restaurante/" + obj.key} style={{
                             resizeMode: "cover",
                         }} />
                     </SView>
                     <SView width={8} />
                     <SView flex>
-                        <SText fontSize={14} bold>{`${obj.Nombres} ${obj.Apellidos}`}</SText>
-                        <SText fontSize={12}>{`${obj.Correo}`}</SText>
+                        <SText fontSize={14} bold>{`${obj.nombre}  `}</SText>
+                        <SText fontSize={12}>{`${obj.descripcion}`}</SText>
+                        <SText fontSize={12}>{`${obj.direccion}`}</SText>
                     </SView>
                 </SView>
             }} />

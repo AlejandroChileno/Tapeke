@@ -5,7 +5,8 @@ const version = "1.0";
 import Actions from "./Actions";
 import Reducer from "./Reducer";
 import lista from "./Pages/lista";
-import registro from "./Pages/registro";
+import lista002 from "./Pages/lista002";
+import RestauranteSeleccionado from "./Pages/RestauranteSeleccionado";
 
 
 
@@ -18,7 +19,8 @@ export default {
     },
     Pages: {
         ["admin/" + component]: lista,
-        ["admin/" + component + "/registro"]: registro,
+        ["admin/" + component + "/lista002"]: lista002,
+        ["admin/" + component + "/restaurante"]: RestauranteSeleccionado,
     },
     Components: {
     }
