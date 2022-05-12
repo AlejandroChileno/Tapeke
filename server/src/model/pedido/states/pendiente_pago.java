@@ -75,7 +75,8 @@ public class pendiente_pago extends State {
                 .parseInt(enviroments.getJSONObject("tiempo_expiracion_pago_pedido").getString("value"));
 
         petition.put("data", new JSONObject().put("client", client).put("items", items)
-                .put("glosa", "Pago de prueba tapeke").put("expiration_time", expiration_time));
+                .put("glosa", "Pago de prueba tapeke").put("payment_type", obj.getString("pay_method"))
+                .put("expiration_time", expiration_time));
         JSONObject pay_order = SocketCliente.sendSinc("multipagos", petition, 30000);
         if (pay_order.getString("estado").equals("error")) {
             throw new StateException(pay_order.getString("error"));
