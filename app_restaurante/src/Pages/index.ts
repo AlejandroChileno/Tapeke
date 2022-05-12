@@ -1,17 +1,23 @@
-import { SPageListProps } from 'servisofts-component'
+import { SPageListProps } from 'servisofts-component';
+import CameraComponent from '../Components/CameraComponent';
 import Services from '../Services';
+import lista001 from '../Services/Tapeke/Components/usuario_restaurante/Pages/lista001';
+import lista002 from '../Services/Tapeke/Components/usuario_restaurante/Pages/lista002';
 import Carga from './Carga';
 import Inicio from './Inicio';
-import CameraComponent from '../Components/CameraComponent';
-import Detalle from '../Services/Tapeke/Components/pedido/Pages/Detalle';
-import Login from '../Services/Usuario/Components/usuario/Pages/Login';
+import PedidoEscaneado from './PedidoEscaneado';
 
 
 const Pages: SPageListProps = {
-    "/": Inicio,
+    // "/": Inicio,
+    // "/": lista001,
+
+    "/": lista002,
+    "inicio": Inicio,
+
     "carga": Carga,
     "camara": CameraComponent,
-
+    "pedidoescaneado": PedidoEscaneado,
     ...Services.Pages,
 }
 

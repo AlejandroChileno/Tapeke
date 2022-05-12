@@ -56,17 +56,19 @@ class CameraComponent extends React.Component {
 
     if (this.state.qr) return;
 
-    const validador = "tapekeapp.com/pedido/";
+    const validador = "tapeke://pedido/";
     if (auxData.data.indexOf(validador) > -1) {
       var spliter = auxData.data.split(validador);
       if (spliter.length > 1) {
         this.state.qr = spliter[1];
         // alert(spliter[1]);    
         // alert(JSON.stringify(dataa.data));
-        SNavigation.replace("pedido/", { keyPedido: spliter[1] });
+        // SNavigation.navigate("pedidoescaneado", { key_pedido: spliter[1] });
+        SNavigation.replace("pedido/", { key_pedido: spliter[1] });
       }
     }
   };
+
 
 
   render() {

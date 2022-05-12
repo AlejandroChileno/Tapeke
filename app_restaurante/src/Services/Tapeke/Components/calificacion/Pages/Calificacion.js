@@ -9,7 +9,7 @@ class Calificacion extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
-        //this.key = SNavigation.getParam("keyUsuario");
+        this.UsuarioLogeado = this.props.state.usuarioReducer.usuarioLog.key;
         this.page = SNavigation.getParam("page");
     }
 
@@ -17,10 +17,10 @@ class Calificacion extends React.Component {
         return (<>
             <BarraSuperiorTapeke>
             </BarraSuperiorTapeke>
-            <SPage title={''} hidden center >
-                <SView flex center col={"xs-12 sm-10 md-8 lg-6 xl-4"} >
-                <SHr height={30} />
-                    <SView col={"xs-11"} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 8 }} row center backgroundColor={STheme.color.card} >
+            <SPage title={''} hidden center   >
+                <SView flex col={"xs-12 sm-10 md-8 lg-6 xl-4"} row center backgroundColor={"transparent"}  >
+                    <SHr height={30} />
+                    <SView col={"xs-11"} height={180} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 8 }} row center backgroundColor={STheme.color.card} >
                         <SHr height={10} />
                         <SView col={"xs-5"} center style={{ borderRightWidth: 1, borderColor: STheme.color.lightGray }}>
                             <SIcon name={"CalCalidad"} width={60} fill={STheme.color.card} />
@@ -35,7 +35,7 @@ class Calificacion extends React.Component {
                         <SHr height={10} />
                     </SView>
                     <SHr height={25} />
-                    <SView col={"xs-11"} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 8 }} row center backgroundColor={STheme.color.card} >
+                    <SView col={"xs-11"} height={180} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 8 }} row center backgroundColor={STheme.color.card} >
                         <SHr height={10} />
                         <SView col={"xs-5"} center style={{ borderRightWidth: 1, borderColor: STheme.color.lightGray }}>
                             <SIcon name={"CalCantidad"} width={60} fill={STheme.color.card} />
@@ -50,7 +50,7 @@ class Calificacion extends React.Component {
                         <SHr height={10} />
                     </SView>
                     <SHr height={25} />
-                    <SView col={"xs-11"} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 8 }} row center backgroundColor={STheme.color.card} >
+                    <SView col={"xs-11"} height={180} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 8 }} row center backgroundColor={STheme.color.card} >
                         <SHr height={10} />
                         <SView col={"xs-5"} center style={{ borderRightWidth: 1, borderColor: STheme.color.lightGray }}>
                             <SIcon name={"CalServicio"} width={60} fill={STheme.color.card} />
@@ -65,7 +65,7 @@ class Calificacion extends React.Component {
                         <SHr height={10} />
                     </SView>
                     <SHr height={25} />
-                    <SView col={"xs-11"} height={110} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 8 }} row center backgroundColor={STheme.color.card} >
+                    <SView col={"xs-11"} height={130} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 8 }} row center backgroundColor={STheme.color.card} >
                         <SHr height={10} />
                         <SView col={"xs-5"} center style={{ borderRightWidth: 1, borderColor: STheme.color.lightGray }}>
                             <SIcon name={"calComentario"} width={60} fill={STheme.color.card} />

@@ -154,10 +154,10 @@ class Perfil extends React.Component {
 
         this.dataRestaurante = restaurante.Actions.getByKeyDetalle(this.key_restaurante, this.props)
         if (!this.dataRestaurante) return <SLoad />
-        var cantidad = 0;
-        if (this.dataRestaurante.pack) {
-            cantidad = this.dataRestaurante.pack.disponibles;
-        }
+        // var cantidad = 0;
+        // if (this.dataRestaurante.pack) {
+        //     cantidad = this.dataRestaurante.pack.disponibles;
+        // }
         return <SPage   >
             <SView col={"xs-12"} row backgroundColor={STheme.color.card} center>
                 <SView col={"xs-12  "} center >

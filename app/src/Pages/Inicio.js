@@ -24,10 +24,7 @@ class Inicio extends Component {
 
   componentDidMount() {
     if (!usuario.Actions.validateSession(this.props)) { return <SLoad />; }
-
   }
-
-
 
   publicidad() {
     var data = novedades.Actions.getAll(this.props);
@@ -106,8 +103,6 @@ class Inicio extends Component {
         </SView>
       }} />
   }
-
-
 
   pedidoencurso() {
     return <PedidosEnCurso />

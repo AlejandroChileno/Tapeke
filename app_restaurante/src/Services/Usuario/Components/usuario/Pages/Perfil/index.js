@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
-import { SDate, SImage, SNavigation, SPage, SView, SButtom, SText, SIcon, SHr, STheme } from 'servisofts-component';
+import { SButtom, SDate, SHr, SIcon, SImage, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
 import SSocket from 'servisofts-socket';
-// import CerrarSession from './CerrarSession';
-import Kolping from '../../../../../../Components/Kolping';
-import PButtom from '../../../../../../Components/PButtom';
 
-// import AppParams from '../../Params';
-// import FilePreview from '../CarpetasPage/FilePreview';
-// import * as SImageImput from '.././../Component/SImageImput';
-// import moment from 'moment';
-// import SImage from '../../Component/SImage';
-// import CerrarSession from './CerrarSession';
 
 
 class Perfil extends Component {
@@ -100,7 +91,7 @@ class Perfil extends Component {
             {/* {this.getDato("Nombres", "InputUser")} */}
             {/* {this.getDato("Apellidos", "InputUser")} */}
             {/* {this.getDato("CI", "InputUser")} */}
-            {this.getDato("Fecha de nacimiento", "InputCalendar")}
+            {this.getDato("Fecha de nacimiento", "Calendar")}
             {this.getDato("Telefono", "InputPhone")}
             {this.getDato("Correo", "InputEmail")}
             {this.getDato("Password", "InputPassword")}
@@ -124,12 +115,11 @@ class Perfil extends Component {
                     {this.getDatos()}
                     <SView height={50}></SView>
 
-
-                    <PButtom primary onPress={() => {
+                    <SButtom primary onPress={() => {
                         SNavigation.navigate("editar", {
                             key: usuario.key,
                         })
-                    }}>EDITAR</PButtom>
+                    }}>EDITAR</SButtom>
                     <SView height={30}></SView>
 
                 </SView>

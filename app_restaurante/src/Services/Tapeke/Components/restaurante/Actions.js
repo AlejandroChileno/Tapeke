@@ -38,64 +38,64 @@ export default class Actions {
         return d;
     }
     //filter:{ soloHoy:bool, soloDisponible:bool, entregaDomicilio:bool }
-    static getAllFilter = (filter, props) => {
-        var data = Actions.getAll(props);
-        var horarios_restaurantes = horario.Actions.getAll(props);
-        var data_pedidos = pedido.Actions.getAll(props);
-        if (!data) return null;
-        if (!horarios_restaurantes) return null;
-        if (!data_pedidos) return null;
-        var miDireccion = props.state.direccion_usuarioReducer.miDireccion;
-        var miDistancia = props.state.direccion_usuarioReducer.miDistancia;
-        var list = [];
-        Object.values(data).map((obj) => {
-            if (obj.estado != 1) return;
-            if (filter.entregaDomicilio && !obj.delivery) return;
-            //Distancias
-            if (!obj.latitude || !obj.longitude) return;
-            obj.distancia = parseFloat(Actions.getDistance(miDireccion.latitude, miDireccion.longitude, obj.latitude, obj.longitude) / 1000).toFixed(1);
-            if (miDistancia < obj.distancia) return null;
-            //Horarios
-            var arr_horarios = Object.values(horarios_restaurantes).filter(itm => itm.key_restaurante == obj.key);
-            if (arr_horarios.length <= 0) return null;
-            obj.horario = horario.Actions.getByKeyRestauranteProximo(obj.key, props);
-            if (!obj.horario) return null;
-            //Cargamos el pack
-            obj.pack = pack.Actions.getByKeyHorario(obj.horario.key, props);
-            if (filter.soloDisponible) {
-                if (!obj.pack) return null;
-            }
-            if (obj.horario.dia != new SDate().getDayOfWeek()) {
-                if (filter.soloHoy) {
-                    //SI no queremos que aparesca los del proximo miercoles
-                    // if (obj.horario.sdate.toString("yyyy-MM-dd") != new SDate().toString("yyyy-MM-dd")) return null; 
-                    return;
-                }
-            }
+    // static getAllFilter = (filter, props) => {
+    //     var data = Actions.getAll(props);
+    //     var horarios_restaurantes = horario.Actions.getAll(props);
+    //     var data_pedidos = pedido.Actions.getAll(props);
+    //     if (!data) return null;
+    //     if (!horarios_restaurantes) return null;
+    //     if (!data_pedidos) return null;
+    //     var miDireccion = props.state.direccion_usuarioReducer.miDireccion;
+    //     var miDistancia = props.state.direccion_usuarioReducer.miDistancia;
+    //     var list = [];
+    //     Object.values(data).map((obj) => {
+    //         if (obj.estado != 1) return;
+    //         if (filter.entregaDomicilio && !obj.delivery) return;
+    //         //Distancias
+    //         if (!obj.latitude || !obj.longitude) return;
+    //         obj.distancia = parseFloat(Actions.getDistance(miDireccion.latitude, miDireccion.longitude, obj.latitude, obj.longitude) / 1000).toFixed(1);
+    //         if (miDistancia < obj.distancia) return null;
+    //         //Horarios
+    //         var arr_horarios = Object.values(horarios_restaurantes).filter(itm => itm.key_restaurante == obj.key);
+    //         if (arr_horarios.length <= 0) return null;
+    //         obj.horario = horario.Actions.getByKeyRestauranteProximo(obj.key, props);
+    //         if (!obj.horario) return null;
+    //         //Cargamos el pack
+    //         obj.pack = pack.Actions.getByKeyHorario(obj.horario.key, props);
+    //         if (filter.soloDisponible) {
+    //             if (!obj.pack) return null;
+    //         }
+    //         if (obj.horario.dia != new SDate().getDayOfWeek()) {
+    //             if (filter.soloHoy) {
+    //                 //SI no queremos que aparesca los del proximo miercoles
+    //                 // if (obj.horario.sdate.toString("yyyy-MM-dd") != new SDate().toString("yyyy-MM-dd")) return null; 
+    //                 return;
+    //             }
+    //         }
 
-            if (obj.pack) {
-                var cantidad = pedido.Actions.getVendidos({ key_pack: obj.pack.key, fecha: obj.horario.fecha }, props);
-                obj.pack.disponibles = obj.pack.cantidad - cantidad;
-                if (obj.pack.disponibles <= 0) {
-                    obj.pack.disponibles = 0;
-                    if (filter.soloDisponible) {
-                        return null;
-                    }
-                }
-            }
+    //         if (obj.pack) {
+    //             var cantidad = pedido.Actions.getVendidos({ key_pack: obj.pack.key, fecha: obj.horario.fecha }, props);
+    //             obj.pack.disponibles = obj.pack.cantidad - cantidad;
+    //             if (obj.pack.disponibles <= 0) {
+    //                 obj.pack.disponibles = 0;
+    //                 if (filter.soloDisponible) {
+    //                     return null;
+    //                 }
+    //             }
+    //         }
 
-            //INSERTAMOS
-            list.push(obj);
-        })
+    //         //INSERTAMOS
+    //         list.push(obj);
+    //     })
 
-        list = list.sort((a, b) => {
-            return a.distancia > b.distancia ? 1 : -1;
-        });
-        list = list.sort((a, b) => {
-            return a.horario.sdate.getTime() > b.horario.sdate.getTime() ? 1 : -1;
-        });
-        return list;
-    }
+    //     list = list.sort((a, b) => {
+    //         return a.distancia > b.distancia ? 1 : -1;
+    //     });
+    //     list = list.sort((a, b) => {
+    //         return a.horario.sdate.getTime() > b.horario.sdate.getTime() ? 1 : -1;
+    //     });
+    //     return list;
+    // }
     static getByKey = (key, props) => {
         var data = Actions.getAll(props);
         if (!data) return null;
@@ -116,17 +116,17 @@ export default class Actions {
         if (!obj.horario) return null;
         obj.pack = pack.Actions.getByKeyHorario(obj.horario.key, props);
 
-        if (!obj.latitude || !obj.longitude) return null;
-        var miDireccion = props.state.direccion_usuarioReducer.miDireccion;
-        obj.distancia = parseFloat(Actions.getDistance(miDireccion.latitude, miDireccion.longitude, obj.latitude, obj.longitude) / 1000).toFixed(1);
+        // if (!obj.latitude || !obj.longitude) return null;
+        // var miDireccion = props.state.direccion_usuarioReducer.miDireccion;
+        // obj.distancia = parseFloat(Actions.getDistance(miDireccion.latitude, miDireccion.longitude, obj.latitude, obj.longitude) / 1000).toFixed(1);
 
-        if (obj.pack) {
-            var cantidad = pedido.Actions.getVendidos({ key_pack: obj.pack.key, fecha: obj.horario.fecha }, props);
-            obj.pack.disponibles = obj.pack.cantidad - cantidad;
-            if (obj.pack.disponibles <= 0) {
-                obj.pack.disponibles = 0;
-            }
-        }
+        // if (obj.pack) {
+        //     var cantidad = pedido.Actions.getVendidos({ key_pack: obj.pack.key, fecha: obj.horario.fecha }, props);
+        //     obj.pack.disponibles = obj.pack.cantidad - cantidad;
+        //     if (obj.pack.disponibles <= 0) {
+        //         obj.pack.disponibles = 0;
+        //     }
+        // }
         return obj;
     }
 

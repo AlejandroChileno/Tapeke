@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SLoad } from 'servisofts-component';
-import { SButtom, SDate, SForm, SNavigation, SPage, SPopup, SText, STheme, SView, SIcon } from 'servisofts-component';
+import { SButtom, SForm, SIcon, SNavigation, SPage, SText, SView } from 'servisofts-component';
+import SSocket from 'servisofts-socket';
 import Usuario from '..';
-import BackgroundImage from '../../../../../Components/BackgroundImage';
-import Kolping from '../../../../../Components/Kolping';
-import PButtom from '../../../../../Components/PButtom';
-
-
-
-import SSocket from 'servisofts-socket'
 class EditarUsuario extends Component {
     constructor(props) {
         super(props);
@@ -26,18 +19,18 @@ class EditarUsuario extends Component {
             style={{
                 alignItems: "center",
             }}
-            inputProps={{
-                col: "xs-12",
-                customStyle: "kolping",
+            // inputProps={{
+            //     col: "xs-12",
+            //     customStyle: "Calistenia",
 
-            }}
+            // }}
             inputs={{
                 foto_p: { type: "image", isRequired: false, defaultValue: `${SSocket.api.root}usuario/${this.key}?time=${new Date().getTime()}`, col: "xs-4 sm-3.5 md-3 lg-2.5 xl-2.5", style: { borderRadius: 100, overflow: 'hidden', width: 130, height: 130, borderWidth: 0 } },
                 Nombres: { label: "Nombres", isRequired: true, defaultValue: this.usr.Nombres, icon: <SIcon name={"InputUser"} width={40} height={30} /> },
                 Apellidos: { label: "Apellidos", isRequired: true, defaultValue: this.usr.Apellidos, icon: <SIcon name={"InputUser"} width={40} height={30} /> },
                 // CI: { label: "Documento de identidad", defaultValue: this.usr.CI, icon: <SIcon name={"InputUser"} width={40} height={30} /> },
                 // "Fecha de nacimiento": { label: "Fecha de nacimiento", type: "date", defaultValue: this.usr["Fecha de nacimiento"], icon: <SIcon name={"Calendar"} width={40} height={30} /> },
-                "Telefono": { label: "Telefono", defaultValue: this.usr["Telefono"], type: "phone", icon: <SIcon name={"InputPhone"} width={40} height={30} /> },
+                "Telefono": { label: "Telefono", defaultValue: this.usr["Telefono"], type: "phone" },
                 Correo: { label: "Correo", type: "email", isRequired: true, defaultValue: this.usr.Correo, icon: <SIcon name={"InputEmail"} width={40} height={30} /> },
                 ...(isApi ? {} : {
                     Password: { label: "Contraseña", type: "password", isRequired: true, defaultValue: this.usr.Password, icon: <SIcon name={"InputPassword"} width={40} height={30} /> },
@@ -91,14 +84,14 @@ class EditarUsuario extends Component {
                         {this.getForm()}
                         <SView height={16} />
                         <SView col={"xs-11"} row center>
-                            <PButtom primary props={{
+                            <SButtom primary props={{
                                 type: "outline"
                             }}
                                 onPress={() => {
                                     this.form.submit();
                                 }}>
                                 {"CONFIRMAR"}
-                            </PButtom>
+                            </SButtom>
                         </SView>
                         <SView height={36} />
                     </SView>

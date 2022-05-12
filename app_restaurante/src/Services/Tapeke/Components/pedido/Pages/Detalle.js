@@ -8,16 +8,15 @@ class Detalle extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
-        // this.pedidoId = SNavigation.getParam("keyPedido");
-        this.pedidoId = "07979989-ce30-485a-873d-6bb2e177d613";
+        this.pedidoId = SNavigation.getParam("key_pedido");
     }
 
     error() {
         return <SView col={"xs-12"} center style={{ padding: 5 }} >
             <SHr height={100} />
             <SLoad />
-            <SText font={"LondonTwo"} fontSize={84}  >NO EXISTE</SText>
-            <SText font={"LondonTwo"} fontSize={84}  >PEDIDO</SText>
+            <SText font={"LondonTwo"} fontSize={84}>NO EXISTE</SText>
+            <SText font={"LondonTwo"} fontSize={84}>PEDIDO</SText>
         </SView>
     }
 
@@ -90,7 +89,9 @@ class Detalle extends React.Component {
                         <SView col={"xs-11"} row center>
                             <SView col={"xs-12"}>
                                 <SHr height={15} />
-                                <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }} color={STheme.color.darkGray}>Detalle del pedido {"dato " + this.data.fecha}</SText>
+                                <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }} color={STheme.color.darkGray}>Detalle de pedido</SText>
+
+                                {/* <SText fontSize={18} font={"Roboto"} style={{ fontWeight: "bold" }} color={STheme.color.darkGray}>Detalle del pedido {"dato " + this.data.fecha}</SText> */}
                                 <SHr height={15} />
                             </SView>
                             <SView center col={"xs-2"} backgroundColor={"#9B060C"} height={85} style={{ borderRadius: 8, overflow: 'hidden', }}>
@@ -121,9 +122,6 @@ class Detalle extends React.Component {
                                                 <SText fontSize={14} font={"Roboto"} color={STheme.color.primary} >Cantidad</SText>
                                             </SView>
                                             <SHr height={5} />
-                                            {/* <SView col={"xs-6"} center row>
-                                            <SView col={"xs-12"} style={{ height: 40, backgroundColor: STheme.color.card, borderRadius: 6 }} center> 1 </SView>
-                                        </SView> */}
                                         </SView>
                                     </SView>
 
@@ -203,10 +201,10 @@ class Detalle extends React.Component {
                     <SHr height={18} />
                     <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center style={{ backgroundColor: STheme.color.white }}>
                         <SHr height={40} />
-                        <SButtom fontSize={20} onPress={() => {
 
-                        }}>ENTREGADO</SButtom>
-                        <SHr height={40} />
+                        <SButtom style={{ backgroundColor: STheme.color.primary, width: 300, fontSize: 40, borderRadius: 8, }} onPress={() => { }} > ENTREGADO </SButtom>
+
+
                     </SView>
                 </SView>
             </SPage >
