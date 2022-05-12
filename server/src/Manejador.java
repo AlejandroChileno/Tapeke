@@ -47,6 +47,9 @@ public class Manejador {
             case pago_tarjeta.COMPONENT:
                 pago_tarjeta.onMessage(obj, session);
                 break;
+            case usuario_restaurante.COMPONENT:
+                usuario_restaurante.onMessage(obj, session);
+                break;
 
         }
     }

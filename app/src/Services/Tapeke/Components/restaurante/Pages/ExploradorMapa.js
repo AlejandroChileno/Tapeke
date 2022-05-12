@@ -1,10 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SHr, SIcon, SMapView, SMarker, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
+import { SHr, SIcon, SImage, SMapView, SMarker, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
 import BarraSuperiorTapeke from '../../../../../Components/BarraSuperiorTapeke';
 import Direccion from '../../../../../Components/BarraSuperiorTapeke/Direccion';
 import PBarraFooter from '../../../../../Components/PBarraFooter';
 import Parent from ".."
+import SSocket from 'servisofts-socket';
+import BarraFiltros from '../../filtros/Components/BarraFiltros';
+import filtros from '../../filtros';
+
 class exploradorMapa extends React.Component {
     constructor(props) {
         super(props);
@@ -30,13 +34,34 @@ class exploradorMapa extends React.Component {
     }
 
     getRestaurante() {
-        var data = Parent.Actions.getAllFilter({ soloHoy: false }, this.props);
+        var filtro = filtros.Actions.getFiltrosActivos(this.props);
+        var data = Parent.Actions.getAllFilter(filtro, this.props);
         if (!data) return null;
+        let size = 70;
         return data.map((obj, index) => {
-            return <SMarker key={"marker"+index} lat={obj.latitude} lng={obj.longitude} onPress={() => {
+            return <SMarker key={"marker" + index} lat={obj.latitude} lng={obj.longitude} onPress={() => {
                 SNavigation.navigate("restaurante/perfil", { key: obj.key });
             }} >
-                <SIcon name={"MarcadorMapa"} width={40} height={40} />
+                <SView width={size} height={size} style={{
+                    alignItems: 'center',
+                }}>
+                    <SIcon name={"MarcadorMapa"} width={size} height={size} />
+                    <SView style={{
+                        position: 'absolute',
+                        top: size * 0.03,
+                        width: size * 0.56,
+                        height: size * 0.56,
+                        backgroundColor: "#ffffff66",
+                        borderRadius: size,
+                        overflow: 'hidden',
+                    }}>
+                        <SImage src={SSocket.api.root + "/restaurante/" + obj.key} style={{
+                            resizeMode: 'cover',
+                            width: "100%",
+                            height: "100%",
+                        }} />
+                    </SView>
+                </SView>
             </SMarker>
         })
     }
@@ -55,13 +80,19 @@ class exploradorMapa extends React.Component {
                         longitudeDelta: 0.0421,
                     }}
                     preventCenter>
-                    <SMarker lat={miDireccion.latitude} lng={miDireccion.longitude} >
-                        <SIcon name={"Marker"} width={20} height={20} />
-                    </SMarker>
                     {this.getRestaurante()}
+
+                    <SMarker lat={miDireccion.latitude} lng={miDireccion.longitude} >
+                        <SIcon name={"Marker"} width={30} height={30} fill={"#4285F4"}/>
+                    </SMarker>
                 </SMapView>
             </SView>
-            <SView col={"xs-12"} height={50} border={'transparent'} style={{ position: 'absolute', top: 90, }} center   >
+            <SView col={"xs-12"} border={'transparent'} style={{ position: 'absolute' }} center   >
+                <SView backgroundColor={"#ffffffcc"} style={{
+                    borderRadius: 4,
+                }}>
+                    <BarraFiltros />
+                </SView>
                 {this.getBotonos()}
             </SView>
         </>
@@ -71,15 +102,15 @@ class exploradorMapa extends React.Component {
 
     render() {
         return (
-            <>
-                < SPage title={''} hidden disableScroll center >
-                    <BarraSuperiorTapeke>
-                        <Direccion />
-                    </BarraSuperiorTapeke>
+            < SPage title={''} hidden disableScroll center >
+                <BarraSuperiorTapeke>
+                    <Direccion />
+                </BarraSuperiorTapeke>
+                <SView col={"xs-12"} flex >
                     {this.showMapa()}
-                    <PBarraFooter />
-                </ SPage >
-            </>
+                </SView>
+                <PBarraFooter />
+            </ SPage >
         );
     }
 }

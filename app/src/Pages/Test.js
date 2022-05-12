@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { SButtom, SDate, SHr, SNavigation, SPage, SText, STheme, SView, } from 'servisofts-component';
 import SSocket from 'servisofts-socket';
 import LogoCargando from '../Components/LogoCargando';
+import SExpandable from '../Components/SExpandable';
 class Test extends Component {
     constructor(props) {
         super(props);
@@ -26,8 +27,32 @@ class Test extends Component {
 
     render() {
         return (
-            <SPage title={'Test'}>
-                {this.getDias()}
+            <SPage title={'Test'} disableScroll>
+                    <SExpandable type={"bottom"}  >
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                        <SText>{"Hola soy expandable"}</SText>
+                    </SExpandable>
             </SPage>
         );
     }

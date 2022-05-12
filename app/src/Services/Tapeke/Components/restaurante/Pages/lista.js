@@ -30,8 +30,8 @@ class lista extends Component {
                 { key: "nombre", label: "Nombre", width: 130 },
                 { key: "descripcion", label: "Descripcion", width: 280 },
                 { key: "direccion", label: "Direccion", width: 200 },
-                { key: "latitude", label: "Lat", width: 130 },
-                { key: "longitude", label: "Lng", width: 130 },
+                // { key: "latitude", label: "Lat", width: 130 },
+                // { key: "longitude", label: "Lng", width: 130 },
                 {
                     key: "delivery", label: "Delivery", width: 130, center: true,
                     component: (item) => {
@@ -64,12 +64,16 @@ class lista extends Component {
                 {
                     key: "key-horario", label: "Horarios", width: 60, center: true,
                     component: (item) => {
-                        // return <SView onPress={() => { SNavigation.navigate("admin/" + Parent.component + "/horario", { key: item }) }}>
-                        //     <SIcon name={"Horario"} width={35} />
-                        // </SView>
-
                         return <SView onPress={() => { SNavigation.navigate("admin/horario", { key: item }) }}>
                             <SIcon name={"Horario"} width={35} />
+                        </SView>
+                    }
+                },
+                {
+                    key: "key-administradores", label: "administradores", width: 60, center: true,
+                    component: (item) => {
+                        return <SView onPress={() => { SNavigation.navigate("admin/usuario_restaurante", { key_restaurante: item }) }}>
+                            <SIcon name={"Usuarios_proveedor"} width={35} />
                         </SView>
                     }
                 },

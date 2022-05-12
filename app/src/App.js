@@ -41,7 +41,7 @@ const App = (props) => {
                 theme={{ initialTheme: "default", themes: SConfig.SThemeProps, noAnimated: true }}>
                 <StatusBar />
                 <SNavigation props={{
-                    prefixes: ["https://component.servisofts.com", "component.servisofts://"],
+                    prefixes: ["https://tapekeapp.com", "tapeke://"],
                     pages: Pages,
                     title: "App Tapeke",
                     navBar: BarraSuperior,

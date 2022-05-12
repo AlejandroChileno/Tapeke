@@ -11,6 +11,7 @@ import Mapa from "./Pages/Mapa";
 import MensajeSolicitud from "./Pages/MensajeSolicitud";
 import PedidoConfirmacion from "./Pages/PedidoConfirmacion";
 import PedidoQR from "./Pages/PedidoQR";
+import Carga from "./Pages/Carga";
 
 export default {
     component,
@@ -20,7 +21,7 @@ export default {
         [component + 'Reducer']: Reducer
     },
     Pages: {
-
+        [component]: Carga,
         [component + "/detalle"]: Detalle,
         [component + "/confirmar"]: Confirmar,
         [component + "/mapa"]: Mapa,
