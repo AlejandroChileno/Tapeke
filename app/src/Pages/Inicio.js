@@ -9,6 +9,7 @@ import PBarraFooter from "../Components/PBarraFooter";
 import favorito from "../Services/Tapeke/Components/favorito";
 import novedades from "../Services/Tapeke/Components/novedades";
 import pedido from "../Services/Tapeke/Components/pedido";
+import PedidosEnCurso from "../Services/Tapeke/Components/pedido/Components/PedidosEnCurso";
 import restaurante from "../Services/Tapeke/Components/restaurante";
 import Item2 from "../Services/Tapeke/Components/restaurante/Components/Item2";
 import usuario from "../Services/Usuario/Components/usuario";
@@ -74,7 +75,7 @@ class Inicio extends Component {
     var sort = Object.values(data).sort((a, b) => {
       return a.distancia - b.distancia;
     });
-    var arr = sort.slice(0, 5);
+    var arr = sort.slice(0, 6);
     var i = 0;
     return <SList
       data={arr}
@@ -92,7 +93,7 @@ class Inicio extends Component {
     // TODO::
     var data = restaurante.Actions.getAllFilter({}, this.props);
     if (!data) return <SLoad />;
-    var arr = Object.values(data).slice(0, 5);
+    var arr = Object.values(data).slice(0, 6);
     return <SList
       data={arr}
       space={16}
@@ -109,59 +110,25 @@ class Inicio extends Component {
 
 
   pedidoencurso() {
-    var dataPedido = pedido.Actions.getPedidoByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props)
-    var restaurantes = restaurante.Actions.getAll(this.props);
-    if (!dataPedido) return <SLoad />
-    if (!restaurantes) return <SLoad />
-    return <SList
-      data={dataPedido}
-      space={16}
-      horizontal={true}
-      filter={data => data.state != "pendiente_pago" && data.state != "timeout_pago"}
-      render={(data) => {
-        var restaurante_obj = restaurantes[data.horario.key_restaurante];
-        return <SView width={250} height={110} row backgroundColor={STheme.color.primary} style={{ borderRadius: 8, }} >
-          <SView col={"xs-12"} row center onPress={() => {
-            SNavigation.navigate("pedido", { key_pedido: data.key });
-          }} >
-            <SView width={14} height />
-            <SView flex height={40} style={{ justifyContent: 'center', }}    >
-              <SText fontSize={12} font={"Roboto"} color={"white"} >{restaurante_obj.nombre}</SText>
-              <SHr height={3} />
-              <SText fontSize={14} font={"Roboto"} color={"white"} >{data.state}</SText>
-            </SView>
-            <SView col={"xs-2"} height={40} style={{ alignContent: 'center', }}>
-              <SView height={36} width={36} center   >
-                <SIcon name="PedDelivery" fill="red"></SIcon>
-              </SView>
-            </SView>
-            <SView col={"xs-11"}>
-              <BarraCargando />
-            </SView>
-          </SView>
-          <SView col={"xs-12"} row   >
-            <SView col={"xs-6"} center row    >
-              <SText width={120} height={20} style={{ fontSize: 14, color: "white" }} center >Ver los detalles<SIcon name={"Back"} width={12} height={12} fill={"white"} style={{ transform: [{ rotate: "180deg" }] }} center />
-              </SText>
-            </SView>
-          </SView>
-        </SView>
-      }} />
+    return <PedidosEnCurso />
   }
 
-  categoria(title) {
+  categoria(title, url) {
     return (
       <>
-        <SHr height={15} />
-        <SView col={"xs-11 md-11.3 lg-11.5 xl-11.7"} height={35} row center border={'transparent'}  >
+        <SHr height={8} />
+        <SView col={"xs-12"} height={35} row center border={'transparent'} >
+          <SView width={12} />
           <SView col={"xs-8"} row style={{ justifyContent: "flex-start" }}>
-            <SText fontSize={18} font={"LondonMM"} bold>{title}</SText>
+            <SText fontSize={18} font={"Roboto"} >{title}</SText>
           </SView>
-          <SView col={"xs-4"} row center style={{ justifyContent: "flex-end" }} onPress={() => {
+          <SView flex row center style={{ justifyContent: "flex-end" }} onPress={() => {
+            SNavigation.navigate(url);
           }}>
-            <SText fontSize={12} font={"LondonMM"} bold center style={{ right: 2 }}>Ver todos</SText>
+            <SText fontSize={12} font={"Roboto"} center style={{ right: 2 }}>Ver todos</SText>
             <SIcon name={"Back"} width={12} height={12} fill={STheme.color.primary} style={{ transform: [{ rotate: "180deg" }] }} />
           </SView>
+          <SView width={8} />
         </SView>
       </>
     );
@@ -181,24 +148,26 @@ class Inicio extends Component {
         </BarraSuperiorTapeke>
         <SPage title={"as"} hidden center  >
           <SView col={"xs-12"} center height>
-            {this.categoria("Pedido en curso")}
+            {this.categoria("Pedido en curso", "compras")}
             <SView col={"xs-12"} height={130}>
               <SScrollView2>
                 {this.pedidoencurso()}
               </SScrollView2>
             </SView>
-            {this.categoria("Recomendado Para Ti")}
+            {this.categoria("Recomendado Para Ti", "explorar")}
             <SView col={"xs-12"} height={195} border={"transparent"} >
               <SScrollView2>
                 {this.paraTi()}
               </SScrollView2>
             </SView>
-            {this.categoria("Cerca")}
+            {this.categoria("Cerca", "explorar")}
             <SView col={"xs-12"} height={195} border={"transparent"} >
               <SScrollView2>
                 {this.cerca()}
               </SScrollView2>
             </SView>
+            <SHr height={20} />
+            <SHr height={20} />
             <SHr height={20} />
             <SView col={"xs-12"} height={170} border={"transparent"} >
               <SScrollView2>
@@ -206,7 +175,8 @@ class Inicio extends Component {
               </SScrollView2>
             </SView>
             <SHr height={20} />
-            {this.categoria("Favoritos")}
+            <SHr height={20} />
+            {this.categoria("Favoritos", "favorito")}
             <SView col={"xs-12"} height={195} border={"transparent"} >
               <SScrollView2>
                 {this.favoritos()}
@@ -215,7 +185,7 @@ class Inicio extends Component {
             <SHr height={20} />
           </SView>
         </SPage>
-        <PBarraFooter />
+        <PBarraFooter url={"/"} />
       </>
     );
   }

@@ -6,6 +6,7 @@ import Actions from "./Actions";
 import Reducer from "./Reducer";
 import Perfil from "./Pages/Perfil";
 import Item from "./Components/Item";
+import Marker from "./Components/Marker";
 import Item2 from "./Components/Item2";
 import Filtros from "./Components/Filtros";
 import Categoria from "./Pages/Categoria";
@@ -53,5 +54,6 @@ export default {
     Components: {
         Item,
         Item2,
+        Marker
     }
 }

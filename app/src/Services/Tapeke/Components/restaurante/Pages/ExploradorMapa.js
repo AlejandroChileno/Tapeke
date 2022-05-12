@@ -39,30 +39,9 @@ class exploradorMapa extends React.Component {
         if (!data) return null;
         let size = 70;
         return data.map((obj, index) => {
-            return <SMarker key={"marker" + index} lat={obj.latitude} lng={obj.longitude} onPress={() => {
+            return <Parent.Components.Marker key={"marker" + index} lat={obj.latitude} lng={obj.longitude} data={obj} onPress={() => {
                 SNavigation.navigate("restaurante/perfil", { key: obj.key });
-            }} >
-                <SView width={size} height={size} style={{
-                    alignItems: 'center',
-                }}>
-                    <SIcon name={"MarcadorMapa"} width={size} height={size} />
-                    <SView style={{
-                        position: 'absolute',
-                        top: size * 0.03,
-                        width: size * 0.56,
-                        height: size * 0.56,
-                        backgroundColor: "#ffffff66",
-                        borderRadius: size,
-                        overflow: 'hidden',
-                    }}>
-                        <SImage src={SSocket.api.root + "/restaurante/" + obj.key} style={{
-                            resizeMode: 'cover',
-                            width: "100%",
-                            height: "100%",
-                        }} />
-                    </SView>
-                </SView>
-            </SMarker>
+            }} />
         })
     }
 
@@ -83,7 +62,7 @@ class exploradorMapa extends React.Component {
                     {this.getRestaurante()}
 
                     <SMarker lat={miDireccion.latitude} lng={miDireccion.longitude} >
-                        <SIcon name={"Marker"} width={30} height={30} fill={"#4285F4"}/>
+                        <SIcon name={"Marker"} width={30} height={30} fill={"#4285F4"} />
                     </SMarker>
                 </SMapView>
             </SView>

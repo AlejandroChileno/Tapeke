@@ -32,7 +32,6 @@ class Carga extends Component {
     render() {
         if (!this.key_pedido) {
             SNavigation.replace("/");
-            return null;
         }
         return (
             <SPage hidden disableScroll>

@@ -44,7 +44,7 @@ class PedidoQR extends React.Component {
     }
 
     getImage() {
-        if (!this.state.data) return <SImage src={require("./qr.png")} />;
+        if (!this.state.data) return <SLoad />
         return <SImage src={`data: image/png;base64,${this.state.data.b64}`} style={{
             width: "100%",
             height: "100%"

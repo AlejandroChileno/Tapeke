@@ -56,7 +56,7 @@ class Favoritos extends Component {
 					<SHr height={80} />
 				</SScrollView2>
 
-				<PBarraFooter />
+				<PBarraFooter url={"favorito"} />
 
 			</ SPage >
 		);

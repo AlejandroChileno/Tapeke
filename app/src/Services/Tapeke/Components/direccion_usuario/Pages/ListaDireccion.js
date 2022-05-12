@@ -102,14 +102,11 @@ class Direccion extends React.Component {
 
 							SLocation.getCurrentPosition().then((position) => {
 								alert(JSON.stringify(position))
-
-								//ricky dijo que lo iva a pensar como hacerlo
 							}).catch((error) => {
 								console.log(error);
 							})
 
-
-							alert("datos quemado " + this.state.latitudeQuemado + " long " + this.state.longitudeQuemado); ç
+							// alert("datos quemado " + this.state.latitudeQuemado + " long " + this.state.longitudeQuemado); ç
 
 							var data = {
 								// descripcion: this.inpNombreUbicacion.getValue(),
@@ -123,7 +120,7 @@ class Direccion extends React.Component {
 
 							// this.map.center();
 						}}>
-							<SText fontSize={14} font={"Roboto"} color={STheme.color.primary} bold>Utilizaraaaaaaa mi ubicación actual</SText>
+							<SText fontSize={14} font={"Roboto"} color={STheme.color.primary} bold>Utilizar mi ubicación actual</SText>
 						</SView>
 					</SView>
 

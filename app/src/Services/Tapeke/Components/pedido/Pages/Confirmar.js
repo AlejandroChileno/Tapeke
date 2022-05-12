@@ -30,6 +30,18 @@ class Confirmar extends React.Component {
         //     console.log(this.state.pedido_en_curso)
         // })
     }
+    getEnvion() {
+        if (!this.auxPedido.delivery) return;
+        return <>
+            <SView col={"xs-6"} >
+                <SText style={{ textAlign: "justify" }} fontSize={15} font={"Roboto"} >Envío</SText>
+            </SView>
+            <SView col={"xs-6"} style={{ alignItems: "flex-end" }}>
+                <SText fontSize={15} font={"Roboto"} >{"Bs. " + SMath.formatMoney(this.auxPedido.delivery)}</SText>
+            </SView>
+            <SHr height={10} />
+        </>
+    }
 
     getViewDetalle() {
         this.auxPedido = Parent.Actions.getDetalle(this.keyPedido, this.props)
@@ -98,13 +110,7 @@ class Confirmar extends React.Component {
                         <SText fontSize={15} font={"Roboto"} >Bs. {SMath.formatMoney((this.auxPedido.pack?.precio ?? 0) * this.auxPedido.cantidad)}</SText>
                     </SView>
                     <SHr height={10} />
-                    <SView col={"xs-6"} >
-                        <SText style={{ textAlign: "justify" }} fontSize={15} font={"Roboto"} >Envío</SText>
-                    </SView>
-                    <SView col={"xs-6"} style={{ alignItems: "flex-end" }}>
-                        <SText fontSize={15} font={"Roboto"} >{"Bs. " + SMath.formatMoney(this.auxPedido.delivery)}</SText>
-                    </SView>
-                    <SHr height={10} />
+                    {this.getEnvion()}
                     <SView col={"xs-12"} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray }}></SView>
                     <SHr height={10} />
                     <SView col={"xs-6"} >
@@ -239,25 +245,27 @@ class Confirmar extends React.Component {
                 <SPage center onBack={() => {
                     SStorage.removeItem("pedido_en_curso");
                 }}>
-                    <SView col={"xs-12"} row backgroundColor={STheme.color.card} center>
+                    <SView col={"xs-12"} backgroundColor={STheme.color.card} center height>
+                        <SView col={"xs-12"} row center>
 
-                        {/* <SText>{this.state.pedido_en_curso?.key}</SText> */}
-                        <SHr height={30} />
-                        {this.getViewDetalle()}
-                        <SHr height={18} />
-                        {this.getViewTipoPago()}
-                        <SHr height={18} />
-                        {this.getViewFactura()}
-                        <SHr height={40} />
-                        <PButtom fontSize={20} onPress={() => {
-                            console.log("aqui " + this.state.tipoPagoSeleccionado);
-                            if (this.state.tipoPagoSeleccionado == null) {
-                                alert("Seleccione un tipo de pago");
-                                return;
-                            }
-                            SPopup.open({ key: "confirmar", content: this.popupConfirmacion() });
-                        }}>CONFIRMAR</PButtom>
-                        <SHr height={40} />
+                            {/* <SText>{this.state.pedido_en_curso?.key}</SText> */}
+                            <SHr height={30} />
+                            {this.getViewDetalle()}
+                            <SHr height={18} />
+                            {this.getViewTipoPago()}
+                            <SHr height={18} />
+                            {this.getViewFactura()}
+                            <SHr height={40} />
+                            <PButtom fontSize={20} onPress={() => {
+                                console.log("aqui " + this.state.tipoPagoSeleccionado);
+                                if (this.state.tipoPagoSeleccionado == null) {
+                                    SPopup.alert("Select a payment method");
+                                    return;
+                                }
+                                SPopup.open({ key: "confirmar", content: this.popupConfirmacion() });
+                            }}>CONFIRMAR</PButtom>
+                            <SHr height={40} />
+                        </SView>
                     </SView>
 
                 </SPage >

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { SHr, SIcon, SImage, SLoad, SMapView, SMarker, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
 import Parent from '../index';
 import SSocket from 'servisofts-socket';
+import Restaurante from '../../restaurante';
 
 class PedidoConfirmacion extends React.Component {
     constructor(props) {
@@ -32,19 +33,21 @@ class PedidoConfirmacion extends React.Component {
         this.auxPedido = Parent.Actions.getDetalle(this.key_pedido, this.props)
         if (!this.auxPedido) return <SLoad />
         // this.auxPedido.direccion.latitude
+        console.log(this.auxPedido);
         return <>
 
 
             <SMapView initialRegion={
                 {
-                    latitude: this.auxPedido.restaurante.latitude,
-                    longitude: this.auxPedido.restaurante.longitude,
-                    latitudeDelta: 0.0922,
+                    latitude: (this.auxPedido.restaurante.latitude + this.auxPedido.direccion.latitude) / 2,
+                    longitude: (this.auxPedido.restaurante.longitude + this.auxPedido.direccion.longitude) / 2,
+                    latitudeDelta: 0.0722,
                     longitudeDelta: 0.0421,
                 }}
                 preventCenter>
-                <SMarker lat={this.auxPedido?.restaurante.latitude} lng={this.auxPedido?.restaurante.longitude}  >
-                    <SIcon name="MarcadorMapa" width={20} height={30} />
+                <Restaurante.Components.Marker data={this.auxPedido.restaurante} lat={this.auxPedido.restaurante.latitude} lng={this.auxPedido.restaurante.longitude} />
+                <SMarker lat={this.auxPedido.direccion.latitude} lng={this.auxPedido.direccion.longitude} >
+                    <SIcon name={"Marker"} width={30} height={30} fill={"#4285F4"} />
                 </SMarker>
             </SMapView>
         </>
@@ -92,7 +95,10 @@ class PedidoConfirmacion extends React.Component {
         // console.log("hora ", this.auxPedido.horario.hora_inicio);
         // console.log("hora ", this.auxPedido.horario.hora_fin);
         return (
-            <SPage disableScroll center>
+            <SPage disableScroll center onBack={() => {
+                SNavigation.replace("/");
+                return true;
+            }}>
                 <SView col={"xs-12"} row center flex border={"transparent"} >
                     {this.showMapa()}
                 </SView >

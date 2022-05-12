@@ -73,7 +73,7 @@ class MisTarjetas extends Component {
             row
             ref={(form) => { this.form = form; }}
             inputs={{
-                codigo_seguridad: { label: "Ingrese el código", placeholder: "0000", isRequired: true, col: "xs-12", type: "number", maxLength: 4 },
+                codigo_seguridad: { label: "Ingrese el código", placeholder: "0000", isRequired: true, col: "xs-12", type: "password", maxLength: 4 },
             }}
             // onSubmitName={"Registrar"}
             onSubmit={(values) => {
@@ -104,7 +104,7 @@ class MisTarjetas extends Component {
                 </SView>
                 <SView col={"xs-11"} center row>
                     <SView col={"xs-5"} center flex>
-                    <SHr height={15} />
+                        <SHr height={15} />
                         <SIcon width={100} name='TarjetaSeguridad'></SIcon>
                     </SView>
                     <SView col={"xs-6"} center>
@@ -150,58 +150,60 @@ class MisTarjetas extends Component {
         // alert(this.keyPedido)
 
         return (
-            <SPage title={'Mis tarjetas'} center>
-                <SView row backgroundColor={STheme.color.card} center>
-                    <SView col={"xs-12 "} center>
-                        <SView center col={"xs-12 sm-10 md-8 lg-6 xl-4  "} backgroundColor={STheme.color.white}  >
-                            <SView col={"xs-11"} row >
-                                <SHr /><SHr />
-                                <SView col={"xs-12"} row>
-                                    <SText fontSize={18} font={"Roboto"} bold>Tarjetas de crédito o débito</SText>
-                                    <SHr />
-                                    <SText fontSize={13} font={"Roboto"}>Tapeke acepta la mayoría de tarjetas de crédito y débito.</SText>
-                                    <SHr />
-                                    <SView col={"xs-12"} row height={30}>
-                                        <SImage src={require('../../../../../Assets/img/tarjeta1.png')} style={{ width: 40 }} />
-                                        <SImage src={require('../../../../../Assets/img/tarjeta2.png')} style={{ width: 40 }} />
-                                        <SImage src={require('../../../../../Assets/img/tarjeta3.png')} style={{ width: 40 }} />
-                                    </SView>
+            <SPage title={'Mis tarjetas'}>
+                <SView backgroundColor={STheme.color.card} flex>
+                    <SView row center>
+                        <SView col={"xs-12 "} center>
+                            <SView center col={"xs-12 sm-10 md-8 lg-6 xl-4  "} backgroundColor={STheme.color.white}  >
+                                <SView col={"xs-11"} row >
                                     <SHr /><SHr />
-                                </SView>
-                            </SView>
-                        </SView>
-                    </SView>
-
-                    <SHr height={18} />
-                    <SView col={"xs-12 "} center>
-                        <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} style={{ backgroundColor: STheme.color.white, }} center>
-                            <SHr height={10} />
-                            <SView col={"xs-11"} row >
-                                <SHr height={20} />
-                                <SText fontSize={18} font={"Roboto"} bold>Mis tarjetas de crédito y débido</SText>
-                                <SHr height={10} />
-                                <SText fontSize={14} font={"Roboto"} >Elige tu tarjeta de pago:</SText>
-                                <SHr height={30} />
-                                {this.MisTarjetas()}
-                                <SHr height={30} />
-                                <SView col={"xs-12"} style={{ alignItems: "flex-end" }}
-                                    onPress={() => {
-                                        SNavigation.navigate("pago_tarjeta/registro", { callback: this.callback, keyPedido: this.keyPedido });
-                                    }}>
-                                    <SView row>
-                                        <SIcon name={"TarjetaAdd"} width={25}></SIcon>
-                                        <SText color={STheme.color.primary}> Agregar una tarjeta </SText>
+                                    <SView col={"xs-12"} row>
+                                        <SText fontSize={18} font={"Roboto"} bold>Tarjetas de crédito o débito</SText>
+                                        <SHr />
+                                        <SText fontSize={13} font={"Roboto"}>Tapeke acepta la mayoría de tarjetas de crédito y débito.</SText>
+                                        <SHr />
+                                        <SView col={"xs-12"} row height={30}>
+                                            <SImage src={require('../../../../../Assets/img/tarjeta1.png')} style={{ width: 40 }} />
+                                            <SImage src={require('../../../../../Assets/img/tarjeta2.png')} style={{ width: 40 }} />
+                                            <SImage src={require('../../../../../Assets/img/tarjeta3.png')} style={{ width: 40 }} />
+                                        </SView>
+                                        <SHr /><SHr />
                                     </SView>
                                 </SView>
                             </SView>
                         </SView>
-                    </SView>
 
-                    <SView col={"xs-12 "} center>
-                        <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} style={{ backgroundColor: STheme.color.white, }} center>
-                            <SHr height={50} />
-                            <SView col={"xs-11"} row center>
-                                <SHr height={20} />
+                        <SHr height={18} />
+                        <SView col={"xs-12 "} center>
+                            <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} style={{ backgroundColor: STheme.color.white, }} center>
+                                <SHr height={10} />
+                                <SView col={"xs-11"} row >
+                                    <SHr height={20} />
+                                    <SText fontSize={18} font={"Roboto"} bold>Mis tarjetas de crédito y débido</SText>
+                                    <SHr height={10} />
+                                    <SText fontSize={14} font={"Roboto"} >Elige tu tarjeta de pago:</SText>
+                                    <SHr height={30} />
+                                    {this.MisTarjetas()}
+                                    <SHr height={30} />
+                                    <SView col={"xs-12"} style={{ alignItems: "flex-end" }}
+                                        onPress={() => {
+                                            SNavigation.navigate("pago_tarjeta/registro", { callback: this.callback, keyPedido: this.keyPedido });
+                                        }}>
+                                        <SView row>
+                                            <SIcon name={"TarjetaAdd"} width={25}></SIcon>
+                                            <SText color={STheme.color.primary}> Agregar una tarjeta </SText>
+                                        </SView>
+                                    </SView>
+                                </SView>
+                            </SView>
+                        </SView>
+
+                        <SView col={"xs-12 "} center>
+                            <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} style={{ backgroundColor: STheme.color.white, }} center>
+                                <SHr height={50} />
+                                <SView col={"xs-11"} row center>
+                                    <SHr height={20} />
+                                </SView>
                             </SView>
                         </SView>
                     </SView>

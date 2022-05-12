@@ -10,29 +10,34 @@ export default class PBarraFooter extends Component {
 	}
 
 	getItem({ key, title, icon, url, params }) {
-		var color = STheme.color.secondary + "66";
-		if (key == this.props.url) {
-			color = STheme.color.info + "ff";
-		}
+		var color = "#ffffff";
+		var isSelect = (key == this.props.url)
 		return <SView flex center height onPress={() => {
 			SNavigation.navigate(url, params);
-		}}>
-			<SView height={23} colSquare center>
-				<SIcon name={icon} fill={STheme.color.secondary} />
+		}} >
+			<SView style={{
+				borderRadius: 16,
+				backgroundColor: (isSelect ? "#ffffff44" : ""),
+				width: 55,
+				height: 45,
+			}} center>
+				<SView height={23} colSquare center >
+					<SIcon name={icon} />
+				</SView>
+				<SView height={2} />
+				<SText font={"Arial"} fontSize={8} center color={color}  >{title}</SText>
 			</SView>
-			<SView height={2} />
-			<SText font={"Arial"} fontSize={8} center color={STheme.color.secondary}  >{title}</SText>
 		</SView>
 	}
 	render() {
 		return (
 			<SView col={"xs-12"} height={50} border={'transparent'} style={{ backgroundColor: STheme.color.primary }}
-				// style={{ position: 'absolute', bottom: 0, backgroundColor: STheme.color.primary, overflow: 'hidden' }}	
+			// style={{ position: 'absolute', bottom: 0, backgroundColor: STheme.color.primary, overflow: 'hidden' }}	
 			>
 				<SView col={'xs-12'} row height >
-					{this.getItem({ key: "100", title: 'Descrubir', icon: 'MenuLocation', url: '/' })}
-					{this.getItem({ key: "200", title: 'Explorar', icon: 'MenuExplorar', url: 'explorar' })}
-					{this.getItem({ key: "300", title: 'Favoritos', icon: 'MenuFavoritos', url: 'favorito' })}
+					{this.getItem({ key: "/", title: 'Descrubir', icon: 'MenuLocation', url: '/' })}
+					{this.getItem({ key: "explorar", title: 'Explorar', icon: 'MenuExplorar', url: 'explorar' })}
+					{this.getItem({ key: "favorito", title: 'Favoritos', icon: 'MenuFavoritos', url: 'favorito' })}
 				</SView>
 			</SView >
 		);

@@ -77,12 +77,11 @@ class Explorador extends React.Component {
                 </BarraSuperiorTapeke>
                 <SView flex center col={"xs-12"}>
                     <BarraFiltros />
-                    <SView height={8} />
                     {this.getBotonos()}
                     <SView height={20} />
                     {this.showLista()}
                 </SView>
-                <PBarraFooter />
+                <PBarraFooter url={"explorar"} />
             </SPage>
         );
     }
