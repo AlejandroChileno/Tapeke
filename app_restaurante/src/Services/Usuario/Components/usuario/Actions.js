@@ -29,7 +29,6 @@ export default class Actions {
             estado: "cargando",
             data: data,
         }
-        // alert(JSON.stringify(object));
         SSocket.send(object);
     }
     static loginGoogle(data) {
@@ -68,7 +67,7 @@ export default class Actions {
                 type: "getAll",
                 estado: "cargando",
                 key_usuario: "",
-                cabecera: "conductor"
+                cabecera: "usuario_app"
             })
             return null;
         }
@@ -89,7 +88,7 @@ export default class Actions {
             type: "registro",
             estado: "cargando",
             key_usuario: "",
-            cabecera: "conductor",
+            cabecera: "usuario_app",
             data: data
         })
     }
@@ -101,7 +100,7 @@ export default class Actions {
             type: "editar",
             estado: "cargando",
             key_usuario: "",
-            cabecera: "conductor",
+            cabecera: "usuario_app",
             data: data
         })
     }
@@ -113,7 +112,7 @@ export default class Actions {
             type: "editar",
             estado: "cargando",
             key_usuario: "",
-            cabecera: "conductor",
+            cabecera: "usuario_app",
             data: {
                 ...data,
                 estado: 0,

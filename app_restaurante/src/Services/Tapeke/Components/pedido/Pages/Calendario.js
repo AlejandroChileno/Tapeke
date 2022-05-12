@@ -125,18 +125,19 @@ class Calendario extends React.Component {
             var day = i + curDate.getDay();
             var fecha = new SDate().setDay(day);
             if (!auxDia.includes(fecha.getDayOfWeek())) return console.log("fecha ", fecha);
-             var isCurrent = fecha.toString("yyyy-MM-dd") == new SDate().toString("yyyy-MM-dd");
+            var isCurrent = fecha.toString("yyyy-MM-dd") == new SDate().toString("yyyy-MM-dd");
 
             // return <SText border={"red"}>{fecha.toString("MON,dd") + "\t"} d= {fecha.getDayOfWeek()} {"\t"} {fecha.getDayOfWeekJson().text}  {isCurrent ? "(HOY)" : ""}</SText>
 
             // <SText font={"LondonTwo"} fontSize={24} color={(this.state.dia == dia ? STheme.color.secondary : STheme.color.text)} >{dia}</SText>
             // var dia = JSON.stringify(fecha.toString("dd"));
-         
 
-            return <>  <SView width={80} height={90} center style={{ backgroundColor: STheme.color.card, borderRadius: 8, borderColor:this.state.dia == JSON.stringify(fecha.toString("dd")) ? STheme.color.primary : STheme.color.lightGray, borderWidth: 1 }}
-                onPress={() => { this.setState({ dia: JSON.stringify(fecha.toString("dd")) })
-                 }}  >
-                <SText font={"LondonTwo"} fontSize={24} color={this.state.dia == JSON.stringify(fecha.toString("dd")) ? STheme.color.primary :STheme.color.text} >{fecha.toString("dd")}</SText>
+
+            return <>  <SView width={80} height={90} center style={{ backgroundColor: STheme.color.card, borderRadius: 8, borderColor: this.state.dia == JSON.stringify(fecha.toString("dd")) ? STheme.color.primary : STheme.color.lightGray, borderWidth: 1 }}
+                onPress={() => {
+                    this.setState({ dia: JSON.stringify(fecha.toString("dd")) })
+                }}  >
+                <SText font={"LondonTwo"} fontSize={24} color={this.state.dia == JSON.stringify(fecha.toString("dd")) ? STheme.color.primary : STheme.color.text} >{fecha.toString("dd")}</SText>
                 <SHr height={10} />
                 <SText font={"Roboto"} fontSize={14} color={(this.state.dia == JSON.stringify(fecha.toString("dd")) ? STheme.color.primary : STheme.color.text)}>{fecha.getDayOfWeekJson().text}</SText>
 

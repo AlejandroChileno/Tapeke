@@ -41,9 +41,8 @@ const App = (props) => {
                     title: "App Tapeke",
  
                 }} />
-                <SSocket identificarse={(props) => {
-                    // var usuario = props.state.usuarioReducer.usuarioLog;
-                    var usuario = {}
+                <SSocket  store={store} identificarse={(props) => {
+                     var usuario = props.state.usuarioReducer.usuarioLog;
                     return {
                         data: usuario ? usuario : {},
                         deviceKey: "as-asa-as",
