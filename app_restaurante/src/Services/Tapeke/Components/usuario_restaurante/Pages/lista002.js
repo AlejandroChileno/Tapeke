@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SForm, SHr, SLoad, SNavigation, SPage, SText, SView, SDate, SInput, SPopup, SList, SImage } from 'servisofts-component';
-import Parent from '..'
+import { SImage, SList, SLoad, SNavigation, SPage, SPopup, SText, SView } from 'servisofts-component';
 import SSocket from 'servisofts-socket';
-import usuario from '../../../../Usuario/Components/usuario';
+import Parent from '..';
 import restaurante from '../../restaurante';
 class registro extends Component {
     constructor(props) {
@@ -26,31 +25,19 @@ class registro extends Component {
             render={obj => {
                 return <SView col={"xs-11"} height={90}
                     style={{
-                        borderBottomWidth: 2,
-                        borderBottomColor: "#eee",
+                        borderBottomWidth: 2, borderBottomColor: "#eee",
                     }} row center onPress={() => {
                         SPopup.confirm({
-                            title: "¿Está seguro de que desea Ir a este restaurante ?",
-                            message: `${obj.nombre}`,
+                            title: "¿Está seguro de que desea Ir a este restaurante ?", message: `${obj.nombre}`,
                             onPress: () => {
-
-                                // SNavigation.navigate("restaurante/perfil", { key_restaurante: `${obj.key}` });
-                                SNavigation.navigate("admin/usuario_restaurante/restaurante", { key_restaurante: `${obj.key}` });
-
-
+                                SNavigation.navigate("inicio", { key_restaurante: `${obj.key}` });
+                                // SNavigation.navigate("admin/usuario_restaurante/restaurante", { key_restaurante: `${obj.key}` });
                             }
                         })
                     }}>
                     <SView width={8} />
-                    <SView width={70} height={70} center style={{
-                        borderRadius: 40,
-                        overflow: 'hidden',
-                        backgroundColor: '#eee',
-                    }}>
-
-                        <SImage src={SSocket.api.root + "restaurante/" + obj.key} style={{
-                            resizeMode: "cover",
-                        }} />
+                    <SView width={70} height={70} center style={{ borderRadius: 40, overflow: 'hidden', backgroundColor: '#eee', }}>
+                        <SImage src={SSocket.api.root + "restaurante/" + obj.key} style={{ resizeMode: "cover", }} />
                     </SView>
                     <SView width={8} />
                     <SView flex>
@@ -60,9 +47,7 @@ class registro extends Component {
                     </SView>
                 </SView>
             }} />
-
     }
-
     render() {
         return (
             <SPage title={'registro'}>

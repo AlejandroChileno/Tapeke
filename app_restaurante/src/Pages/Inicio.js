@@ -5,20 +5,18 @@ import BarraSuperiorTapeke from "../Components/BarraSuperiorTapeke";
 // import BarraSuperiorTapeke from "../Components/BarraSuperiorTapeke";
 // import Direccion from "../Components/BarraSuperiorTapeke/Direccion";
 import PBarraFooter from "../Components/PBarraFooter";
- import FloatButtomQR from '../Components/FloatButtomQR';
+import FloatButtomQR from '../Components/FloatButtomQR';
 import usuario from "../Services/Usuario/Components/usuario";
+import restaurante from "../Services/Tapeke/Components/restaurante";
+import SSocket from 'servisofts-socket';
 
 
 class Inicio extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      active: true,
+    this.state = {};
 
-    };
-    this.key = SNavigation.getParam("keyUsuario");
-    // this.key = SNavigation.getParam("page");
-    // this.page = SNavigation.getParam("page");
+    this.key_restaurante = SNavigation.getParam("key_restaurante");
   }
 
   componentDidMount() {
@@ -109,19 +107,34 @@ class Inicio extends Component {
 
 
   render() {
-    
-    if (!usuario.Actions.validateSession(this.props,true)) {
+
+    if (!usuario.Actions.validateSession(this.props, true)) {
       return <SLoad />;
     }
     // var UsuaioPage = Pages["usuarioPage/lista"];
-  
-     return (
+
+    var dataRestaurante = restaurante.Actions.getByKeyDetalle(this.key_restaurante, this.props)
+    if (!dataRestaurante) return <SLoad />
+
+    return (
       <>
         <BarraSuperiorTapeke >
         </BarraSuperiorTapeke>
-
         <SPage title={"Pedidos de Hoy"} hidden disableScroll>
           <SView col={"xs-12 sm-11 md-10 lg-8 xl-6"} row center backgroundColor={'transparent'}>
+            <SHr height={20} />
+            <SView col={"xs-11"} row center border={STheme.color.primary}>
+              <SText font={"Roboto"} fontSize={40}  >Restaurante</SText>
+              <SView col={"xs-12"} row center >
+                <SView width={25} />
+                <SView width={60} height={60} center style={{ borderRadius: 40, overflow: 'hidden', backgroundColor: '#eee', }}>
+                  <SImage src={SSocket.api.root + "restaurante/" + dataRestaurante.key} style={{ resizeMode: "cover", }} />
+                </SView>
+                <SView flex center>
+                  <SText font={"Roboto"} fontSize={25}  >{dataRestaurante.nombre}</SText>
+                </SView>
+              </SView>
+            </SView>
             <SHr height={20} />
             <SText font={"Roboto"} fontSize={32}  >20:00 Hrs.</SText>
             <SHr height={10} />
@@ -140,7 +153,8 @@ class Inicio extends Component {
           </SView>
         </SPage>
         <FloatButtomQR onPress={() => {
-          SNavigation.navigate("camara");  }} />
+          SNavigation.navigate("camara");
+        }} />
         <SHr height={20} />
         <PBarraFooter />
       </>

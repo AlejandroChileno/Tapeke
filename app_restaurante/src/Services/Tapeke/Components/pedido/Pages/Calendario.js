@@ -133,15 +133,18 @@ class Calendario extends React.Component {
             // var dia = JSON.stringify(fecha.toString("dd"));
 
 
-            return <>  <SView width={80} height={90} center style={{ backgroundColor: STheme.color.card, borderRadius: 8, borderColor: this.state.dia == JSON.stringify(fecha.toString("dd")) ? STheme.color.primary : STheme.color.lightGray, borderWidth: 1 }}
-                onPress={() => {
-                    this.setState({ dia: JSON.stringify(fecha.toString("dd")) })
-                }}  >
-                <SText font={"LondonTwo"} fontSize={24} color={this.state.dia == JSON.stringify(fecha.toString("dd")) ? STheme.color.primary : STheme.color.text} >{fecha.toString("dd")}</SText>
-                <SHr height={10} />
-                <SText font={"Roboto"} fontSize={14} color={(this.state.dia == JSON.stringify(fecha.toString("dd")) ? STheme.color.primary : STheme.color.text)}>{fecha.getDayOfWeekJson().text}</SText>
-
-            </SView>
+            return <>
+                <SView width={80} height={90} center style={{
+                    backgroundColor: STheme.color.card, borderRadius: 8,
+                    borderColor: this.state.dia == JSON.stringify(fecha.toString("dd")) ? STheme.color.primary : STheme.color.lightGray, borderWidth: 1
+                }}
+                    onPress={() => {
+                        this.setState({ dia: JSON.stringify(fecha.toString("dd")) })
+                    }}  >
+                    <SText font={"LondonTwo"} fontSize={24} color={this.state.dia == JSON.stringify(fecha.toString("dd")) ? STheme.color.primary : STheme.color.text} >{fecha.toString("dd")}</SText>
+                    <SHr height={10} />
+                    <SText font={"Roboto"} fontSize={14} color={(this.state.dia == JSON.stringify(fecha.toString("dd")) ? STheme.color.primary : STheme.color.text)}>{fecha.getDayOfWeekJson().text}</SText>
+                </SView>
                 <SView width={10} />
             </>
         })
@@ -152,13 +155,11 @@ class Calendario extends React.Component {
 
 
         return (<>
-            <SPage title={''} hidden disableScroll center >
-                <BarraSuperiorTapeke>
-                </BarraSuperiorTapeke>
-                <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} row>
-                    <SHr height={30} />
-
-
+            <BarraSuperiorTapeke>
+            </BarraSuperiorTapeke>
+            <SPage title={''} hidden center >
+                <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} row center height backgroundColor={"transparent"} >
+                    <SHr height={20} />
                     <SView col={"xs-12"} style={{ borderBottomWidth: 2, borderColor: STheme.color.primary }}>
                         <SText font={"Roboto"} color={STheme.color.text} fontSize={20} >{this.state.fecha.toString("MONTH, yyyy")}</SText>
                         <SHr height={25} />
@@ -213,7 +214,7 @@ class Calendario extends React.Component {
                     </SView>
 
                 </SView>
-                <SHr height={30} />
+                {/* <SHr height={30} /> */}
             </SPage>
             <PBarraFooter />
         </>);
