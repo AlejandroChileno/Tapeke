@@ -63,6 +63,43 @@ class Inicio extends Component {
       center
       horizontal={true}
       render={(obj) => {
+        return <SView width={320}   >
+          <Item2 data={obj} ></Item2>
+        </SView>
+      }} />
+  }
+  cerca() {
+    var data = restaurante.Actions.getAllFilter({}, this.props);
+    if (!data) return <SLoad />;
+    var sort = Object.values(data).sort((a, b) => {
+      return a.distancia - b.distancia;
+    });
+    var arr = sort.slice(0, 5);
+    var i = 0;
+    return <SList
+      data={arr}
+      space={16}
+      center
+      order={[{ key: "distancia", order: "asc" }]}
+      horizontal={true}
+      render={(obj) => {
+        return <SView width={320}      >
+          <Item2 data={obj} ></Item2>
+        </SView>
+      }} />
+  }
+  paraTi() {
+    // TODO::
+    var data = restaurante.Actions.getAllFilter({}, this.props);
+    if (!data) return <SLoad />;
+    var arr = Object.values(data).slice(0, 5);
+    return <SList
+      data={arr}
+      space={16}
+      center
+      order={[{ key: "distancia", order: "desc" }]}
+      horizontal={true}
+      render={(obj) => {
         return <SView width={320}      >
           <Item2 data={obj} ></Item2>
         </SView>
@@ -126,15 +163,6 @@ class Inicio extends Component {
             <SIcon name={"Back"} width={12} height={12} fill={STheme.color.primary} style={{ transform: [{ rotate: "180deg" }] }} />
           </SView>
         </SView>
-        {/* <SView col={"xs-12"} height={170} border={"transparent"} >
-          <SScrollView2>
-            <SView center row>
-              <SView width={16} />
-              <Item></Item>
-            </SView>
-            <SHr />
-          </SScrollView2>
-        </SView> */}
       </>
     );
   }
@@ -160,17 +188,15 @@ class Inicio extends Component {
               </SScrollView2>
             </SView>
             {this.categoria("Recomendado Para Ti")}
-            {/* TODO ES PARA PROBAR, DE COMO SE VE */}
             <SView col={"xs-12"} height={195} border={"transparent"} >
               <SScrollView2>
-                {this.favoritos()}
+                {this.paraTi()}
               </SScrollView2>
             </SView>
             {this.categoria("Cerca")}
-            {/* TODO ES PARA PROBAR, DE COMO SE VE */}
             <SView col={"xs-12"} height={195} border={"transparent"} >
               <SScrollView2>
-                {this.favoritos()}
+                {this.cerca()}
               </SScrollView2>
             </SView>
             <SHr height={20} />
