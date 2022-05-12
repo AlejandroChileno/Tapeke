@@ -17,7 +17,7 @@ export default class BarraCargando extends Component {
     anim_rotar() {
         Animated.timing(this.animValue, {
             toValue: 1,
-            duration: 3500,
+            duration: 3500 * (Math.random() * 0.2 + 0.5),
             useNativeDriver: false,
             easing: Easing.linear
         }).start(() => {
@@ -25,13 +25,10 @@ export default class BarraCargando extends Component {
             this.anim_rotar();
         });
     }
-
-
     render() {
         return (
-            <SView col={"xs-12"} height={6} style={{ justifyContent: 'center', overflow: 'hidden', backgroundColor: STheme.color.card }}  >
-
-                <SView animated style={{ left: this.animValue.interpolate({ inputRange: [0, 1], outputRange: ["-3%", "100%"] }) }}>
+            <SView col={"xs-12"} height={6} style={{ justifyContent: 'center', overflow: 'hidden', backgroundColor: STheme.color.card, borderRadius: 8 }}  >
+                <SView animated style={{ left: this.animValue.interpolate({ inputRange: [0, 1], outputRange: ["-30%", "100%"] }) }}>
                     <SView width={50} height={4} style={{ borderRadius: 8, backgroundColor: STheme.color.primary, }} />
                 </SView>
             </SView>

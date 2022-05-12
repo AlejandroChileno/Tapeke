@@ -6,7 +6,6 @@ import BarraCargando from "../Components/BarraCargando";
 import BarraSuperiorTapeke from "../Components/BarraSuperiorTapeke";
 import Direccion from "../Components/BarraSuperiorTapeke/Direccion";
 import PBarraFooter from "../Components/PBarraFooter";
-import Firebase from "../Firebase";
 import favorito from "../Services/Tapeke/Components/favorito";
 import novedades from "../Services/Tapeke/Components/novedades";
 import pedido from "../Services/Tapeke/Components/pedido";
@@ -76,24 +75,27 @@ class Inicio extends Component {
       data={dataPedido}
       space={16}
       horizontal={true}
+      filter={data => data.state != "pendiente_pago" && data.state != "timeout_pago"}
       render={(data) => {
         var restaurante_obj = restaurantes[data.horario.key_restaurante];
         return <SView width={250} height={110} row backgroundColor={STheme.color.primary} style={{ borderRadius: 8, }} >
           <SView col={"xs-12"} row center onPress={() => {
-            SNavigation.navigate("pedido/confirmacion", { key_pedido: data.key });
+            SNavigation.navigate("pedido", { key_pedido: data.key });
           }} >
             <SView width={14} height />
             <SView flex height={40} style={{ justifyContent: 'center', }}    >
               <SText fontSize={12} font={"Roboto"} color={"white"} >{restaurante_obj.nombre}</SText>
               <SHr height={3} />
-              <SText fontSize={14} font={"Roboto"} color={"white"} >Tu pedido esta en camino</SText>
+              <SText fontSize={14} font={"Roboto"} color={"white"} >{data.state}</SText>
             </SView>
             <SView col={"xs-2"} height={40} style={{ alignContent: 'center', }}>
               <SView height={36} width={36} center   >
                 <SIcon name="PedDelivery" fill="red"></SIcon>
               </SView>
             </SView>
-            <BarraCargando />
+            <SView col={"xs-11"}>
+              <BarraCargando />
+            </SView>
           </SView>
           <SView col={"xs-12"} row   >
             <SView col={"xs-6"} center row    >
@@ -138,7 +140,7 @@ class Inicio extends Component {
       return <SLoad />;
     }
     // var UsuaioPage = Pages["usuarioPage/lista"];
-    Validations.pedido_en_curso();
+    // Validations.pedido_en_curso();
     return (
       <>
         <BarraSuperiorTapeke>

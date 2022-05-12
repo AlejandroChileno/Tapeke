@@ -14,13 +14,17 @@ public class PedidoTask extends Thread {
     public void run() {
         while (isRun) {
             try {
-                System.out.println("PedidoTask");
                 Thread.sleep(1000 * 60);
+                sync_pedidos_pagados();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+    }
 
+    private void sync_pedidos_pagados() {
+        System.out.println("sync_pedidos_pagados");
+        
     }
 
 }

@@ -38,7 +38,7 @@ export default class Validations {
             case "timeout_pago":
                 SStorage.removeItem("pedido_en_curso")
                 SPopup.alert("El tiempo de espera para pagar ha expirado");
-                SNavigation.goBack();
+                SNavigation.replace("/");
                 return;
         }
     }

@@ -19,7 +19,7 @@ public class ManejadorCliente {
                 if (data.has("error")) {
                     SConsole.log("ERROR: " + data.get("error").toString());
                 } else {
-                    SConsole.log("Error not found");
+                    SConsole.log("Error not found::"+data.toString());
                 }
             }
         }

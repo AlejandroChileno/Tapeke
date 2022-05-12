@@ -30,6 +30,16 @@
 				<string>com.googleusercontent.apps.885912798330-0h3tgs7ku8k8g35u832n2fng85i284b9</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>tapeke</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>tapeke</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
