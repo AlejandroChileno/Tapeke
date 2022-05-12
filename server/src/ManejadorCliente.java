@@ -19,7 +19,7 @@ public class ManejadorCliente {
                 if (data.has("error")) {
                     SConsole.log("ERROR: " + data.get("error").toString());
                 } else {
-                    SConsole.log("Error not found::"+data.toString());
+                    SConsole.log("Error not found::" + data.toString());
                 }
             }
         }
@@ -54,11 +54,17 @@ public class ManejadorCliente {
                                 pedidoState.changeState(states.timeout_pago,
                                         "ManejadorCliente.payment_order::on_change_state");
                             }
+                            if (payment_order.getString("state").equals("confirmada")) {
+                                model.pedido.Pedido pedidoState = new model.pedido.Pedido(pedido.getString("key"));
+                                pedidoState.changeState(states.pagado,
+                                        "ManejadorCliente.payment_order::on_change_state");
+                            }
                             data.put("estado", "exito");
                         }
                     } catch (SQLException | StateException e) {
                         e.printStackTrace();
                     }
+                    data.put("estado", "exito");
                     data.put("noSend", true);
                     SocketCliente.send("multipagos", data.toString());
 
