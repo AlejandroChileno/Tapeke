@@ -64,8 +64,8 @@ class CargarCredito extends Component {
                         tipo_pago: this.state.tipoPagoSeleccionado,
                         key_cliente: this.props.state.usuarioReducer.usuarioLog.key,
                     }
-                    Parent.Actions.registro(dataOk, this.props);
-                    alert("registro exitoso");
+                    // Parent.Actions.registro(dataOk, this.props);
+                    // TODO: registrar el pago
                 }}>CARGAR CRÉDITO</PButtom>
                 <SHr height={30} />
             </SView>

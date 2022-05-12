@@ -30,7 +30,11 @@ class PedidosEnCurso extends Component {
         return <SList
             data={dataPedido}
             space={16}
-            horizontal={true}
+            horizontal
+            order={[
+                { key: "fecha", order: "asc", peso: 2 },
+                { key: "horario/hora_inicio", order: "asc", peso: 1 }
+            ]}
             filter={data => !excluded_states.includes(data.state)}
             render={(data) => {
                 var restaurante_obj = restaurantes[data.horario.key_restaurante];
@@ -67,7 +71,7 @@ class PedidosEnCurso extends Component {
                     <SHr />
                     <SView col={"xs-12"} center row>
                         <SText width={120} font={"Roboto"} style={{ fontSize: 11, color: "#eeeeee", textDecoration: "underline" }} center >Ver los detalles</SText>
-                        <SIcon name={"Back"} width={12} height={12} fill={"#eeeeee"} style={{ transform: [{ rotate: "180deg" }] }} center />
+                        <SIcon name={"Back"} width={12} height={12} fill={"#eeeeee"} style={{ transform: [{ rotate: "180deg" }] }} />
                     </SView>
                     <SHr />
                 </SView>

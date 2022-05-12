@@ -38,7 +38,7 @@ public class pago_en_proceso extends State {
         JSONObject pay_order = SocketCliente.sendSinc("multipagos", petition);
         String state = pay_order.getJSONObject("data").getString("state");
         System.out.println(state);
-        switch(state){
+        switch (state) {
             case "Expiration date timeout":
                 // throw new StateException("Expiration date timeout");
                 break;
@@ -49,4 +49,10 @@ public class pago_en_proceso extends State {
         obj.put("data", pay_order.getJSONObject("data"));
         obj.put("estado", "exito");
     }
+
+    @Override
+    public void entregar(JSONObject obj) throws StateException {
+        noPermited();
+    }
+
 }

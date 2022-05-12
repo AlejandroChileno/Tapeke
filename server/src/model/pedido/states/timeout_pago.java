@@ -33,4 +33,9 @@ public class timeout_pago extends State {
 
     }
 
+    @Override
+    public void entregar(JSONObject obj) throws StateException {
+        noPermited();
+    }
+
 }

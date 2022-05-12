@@ -6,10 +6,10 @@ import model.pedido.Pedido;
 import model.pedido.State;
 import model.pedido.exception.StateException;
 
-public class pagado extends State {
+public class entregado extends State {
 
-    public pagado(Pedido pedido) {
-        super(pedido, "pagado", "pagado");
+    public entregado(Pedido pedido) {
+        super(pedido, "entregado", "Pedido entregado");
     }
 
     @Override
@@ -20,7 +20,6 @@ public class pagado extends State {
     @Override
     public void select_pay_method(JSONObject obj) throws StateException {
         noPermited();
-
     }
 
     @Override
@@ -31,8 +30,8 @@ public class pagado extends State {
     @Override
     public void get_payment_order(JSONObject obj) throws StateException {
         noPermited();
-    }
 
+    }
     @Override
     public void entregar(JSONObject obj) throws StateException {
         noPermited();

@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import { Animated, Easing } from 'react-native';
 import { STheme, SView } from 'servisofts-component';
-export default class BarraCargando extends Component {
+export default class BarraCargando extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,7 +18,7 @@ export default class BarraCargando extends Component {
         Animated.timing(this.animValue, {
             toValue: 1,
             duration: 3500 * (Math.random() * 0.2 + 0.5),
-            useNativeDriver: false,
+            useNativeDriver: true,
             easing: Easing.linear
         }).start(() => {
             this.animValue.setValue(0);

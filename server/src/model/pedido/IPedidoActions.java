@@ -9,6 +9,7 @@ public interface IPedidoActions {
     public void registrar(JSONObject obj) throws StateException;
     public void select_pay_method(JSONObject obj) throws StateException;
     public void pagar(JSONObject obj) throws StateException;
+    public void entregar(JSONObject obj) throws StateException;
     public void get_payment_order(JSONObject obj) throws StateException;
 
     public JSONObject toJson();

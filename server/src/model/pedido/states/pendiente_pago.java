@@ -119,7 +119,9 @@ public class pendiente_pago extends State {
                 billeteraMovimiento.put("key_usuario", key_usuario);
                 billeteraMovimiento.put("key_cliente", key_usuario);
                 billeteraMovimiento.put("monto", total * -1);
-                billeteraMovimiento.put("tipo_pago", "Billetera");
+                billeteraMovimiento.put("tipo_pago", "compra_tapeke");
+                billeteraMovimiento.put("detalle", "Compra de tapeke en "
+                        + this.pedido.getData().getJSONObject("restaurante").getString("nombre") + " por " + total);
                 billeteraMovimiento.put("key_pedido", this.pedido.getKey());
                 SPGConect.insertObject("billetera", billeteraMovimiento);
                 // obj.put("data", billeteraMovimiento);
@@ -167,6 +169,11 @@ public class pendiente_pago extends State {
     public void get_payment_order(JSONObject obj) throws StateException {
         noPermited();
 
+    }
+
+    @Override
+    public void entregar(JSONObject obj) throws StateException {
+        noPermited();
     }
 
 }

@@ -1,6 +1,5 @@
 package model.pedido.states;
 
-
 import org.json.JSONObject;
 
 import model.pedido.Pedido;
@@ -32,6 +31,11 @@ public class confirmado extends State {
     public void get_payment_order(JSONObject obj) throws StateException {
         noPermited();
 
+    }
+
+    @Override
+    public void entregar(JSONObject obj) throws StateException {
+        noPermited();
     }
 
 }

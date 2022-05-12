@@ -103,4 +103,10 @@ public class Pedido implements IPedidoActions {
         this.state.get_payment_order(obj);
 
     }
+
+    @Override
+    public void entregar(JSONObject obj) throws StateException {
+        this.state.entregar(obj);
+    }
+
 }

@@ -35,9 +35,9 @@ class Billetera extends Component {
             </SView>
             <SHr height={18} color={STheme.color.card} />
             <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} row center>
-                <SHr height={10} />
-                <PButtom fontSize={20} width={"100%"} onPress={() => { SNavigation.navigate('billetera/cargarcredito', { monto: SMath.formatMoney(montoTotal) }) }}>CARGAR CRÉDITO</PButtom>
-                <SHr height={10} />
+                <SHr height={8} />
+                <PButtom fontSize={16} width={"100%"} onPress={() => { SNavigation.navigate('billetera/cargarcredito', { monto: SMath.formatMoney(montoTotal) }) }}>CARGAR CRÉDITO</PButtom>
+                <SHr height={8} />
             </SView>
             <SHr height={18} color={STheme.color.card} />
         </>
@@ -49,14 +49,16 @@ class Billetera extends Component {
             <SHr height={10} />
             <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center >
                 <SView col={"xs-12"} row backgroundColor={STheme.color.card} height={52} center style={{ borderRadius: 8 }}>
-                    <SView col={"xs-8"} height style={{
+                    <SView col={"xs-8 md-9"} height style={{
                         justifyContent: "center",
                     }}>
-                        <SText font={"Roboto"} color={STheme.color.lightGray} fontSize={12} style={{ paddingLeft: 10 }} >{fecha}</SText>
-                        <SText font={"Roboto"} color={STheme.color.text} fontSize={14} style={{ paddingLeft: 10 }} >{descripcion}</SText>
+                        <SText font={"Roboto"} color={STheme.color.text} fontSize={12} style={{ paddingLeft: 4 }} >{new SDate(fecha).toString("yyyy-MM-dd hh:mm")}</SText>
+                        <SHr height={4} />
+                        <SText font={"Roboto"} color={STheme.color.gray} fontSize={10} style={{ paddingLeft: 4 }} >{descripcion}</SText>
                     </SView>
-                    <SView col={"xs-4"} style={{ textAlign: "right" }} row center><SIcon name={monto > 0 ? 'Ingreso' : 'Egreso'} width={20} height={15} fill={"#8DBF3B"} /><SView col={"xs-1"} />
-                        <SText font={"Roboto"} color={STheme.color.text} fontSize={12}>{monto}</SText>
+                    <SView col={"xs-4 md-3"} style={{ textAlign: "right" }} row >
+                        <SIcon name={monto > 0 ? 'Ingreso' : 'Egreso'} width={20} height={15} fill={"#8DBF3B"} /><SView col={"xs-1"} />
+                        <SText font={"Roboto"} color={STheme.color.text} fontSize={14}>{SMath.formatMoney(monto)}</SText>
                     </SView>
                 </SView>
             </SView>
@@ -65,6 +67,15 @@ class Billetera extends Component {
 
 
 
+    getDetalle(obj) {
+        if (obj.tipo_pago == 'compra_tapeke') {
+            return obj.detalle
+        }
+        if (obj.tipo_pago == 'Manual') {
+            return "Cargado por tapeke"
+        }
+        return obj.tipo_pago
+    }
 
     getLista() {
 
@@ -73,12 +84,13 @@ class Billetera extends Component {
         // var usuarios = usuario.Actions.getAll(this.props);
         // if (!usuarios) return <SLoad />;
 
-
-        return data.map((obj) => {
-            return this.getDetalleBilletera(new SDate(obj.fecha_on).toString("yyyy-MM-dd hh:mm:ss"), obj.tipo_pago, SMath.formatMoney(obj.monto))
-        })
-
-
+        return <SList
+            order={[{ key: "fecha_on", type: "desc", pedo: 1 }]}
+            data={data}
+            render={(obj) => {
+                return this.getDetalleBilletera(new SDate(obj.fecha_on).toString("yyyy-MM-dd hh:mm:ss"), this.getDetalle(obj), obj.monto)
+            }}
+        />
 
     }
 
