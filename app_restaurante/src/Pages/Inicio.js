@@ -120,20 +120,27 @@ class Inicio extends Component {
       <>
         <BarraSuperiorTapeke >
         </BarraSuperiorTapeke>
-        <SPage title={"Pedidos de Hoy"} hidden disableScroll>
+        <SPage title={"Pedidos de Hoy"} hidden center>
           <SView col={"xs-12 sm-11 md-10 lg-8 xl-6"} row center backgroundColor={'transparent'}>
             <SHr height={20} />
-            <SView col={"xs-11"} row center border={STheme.color.primary}>
-              <SText font={"Roboto"} fontSize={40}  >Restaurante</SText>
+            {/* <SView col={"xs-12"} row center >
+              <SHr height={10} />
+              <SText font={"Roboto"} fontSize={25}  >RESTAURANTE</SText>
+              <SHr height={10} />
+            </SView> */}
+            <SView col={"xs-11"} row center border={STheme.color.primary} style={{ borderRadius: 8 }}>
+              <SHr height={10} />
               <SView col={"xs-12"} row center >
                 <SView width={25} />
                 <SView width={60} height={60} center style={{ borderRadius: 40, overflow: 'hidden', backgroundColor: '#eee', }}>
                   <SImage src={SSocket.api.root + "restaurante/" + dataRestaurante.key} style={{ resizeMode: "cover", }} />
                 </SView>
-                <SView flex center>
+                <SView width={25} />
+                <SView center>
                   <SText font={"Roboto"} fontSize={25}  >{dataRestaurante.nombre}</SText>
                 </SView>
               </SView>
+              <SHr height={15} />
             </SView>
             <SHr height={20} />
             <SText font={"Roboto"} fontSize={32}  >20:00 Hrs.</SText>
