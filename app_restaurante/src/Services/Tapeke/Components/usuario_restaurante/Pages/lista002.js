@@ -52,6 +52,7 @@ class registro extends Component {
                 </SView>
             }} />
     }
+
     render() {
         var data = Parent.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props);
         // var dataRestaurante = restaurante.Actions.getAll(this.props);
@@ -59,7 +60,7 @@ class registro extends Component {
          const key_usuario = this.props.state.usuarioReducer.usuarioLog.key;
         var arr = Object.values(data).filter(x => x.key_usuario == key_usuario && x.estado == 1);
         if (data.length <= 1) {
-            SNavigation.replace("inicio", {
+            SNavigation.navigate("inicio", {
                 key_restaurante: arr[0].key_restaurante
             });
         }

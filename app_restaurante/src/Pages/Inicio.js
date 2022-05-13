@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SHr, SIcon, SImage, SLoad, SNavigation, SPage, SScrollView2, SText, STheme, SView, SPopup, SForm, SButtom } from "servisofts-component";
+import { SHr, SIcon, SImage, SLoad, SNavigation, SPage, SScrollView2, SText, STheme, SView, SPopup, SForm, SButtom,SDate } from "servisofts-component";
 import BarraSuperiorTapeke from "../Components/BarraSuperiorTapeke";
 // import BarraSuperiorTapeke from "../Components/BarraSuperiorTapeke";
 // import Direccion from "../Components/BarraSuperiorTapeke/Direccion";
@@ -8,6 +8,8 @@ import PBarraFooter from "../Components/PBarraFooter";
 import FloatButtomQR from '../Components/FloatButtomQR';
 import usuario from "../Services/Usuario/Components/usuario";
 import restaurante from "../Services/Tapeke/Components/restaurante";
+import horario from "../Services/Tapeke/Components/horario";
+import pedido from "../Services/Tapeke/Components/pedido";
 import SSocket from 'servisofts-socket';
 
 
@@ -113,8 +115,17 @@ class Inicio extends Component {
     }
     // var UsuaioPage = Pages["usuarioPage/lista"];
 
+    var dataHorarioCercano = horario.Actions.getByKeyRestauranteProximo(this.key_restaurante, this.props);
     var dataRestaurante = restaurante.Actions.getByKeyDetalle(this.key_restaurante, this.props)
+    // var dataPedido = pedido.Actions.getAll(this.props)
+
+
+    if (!dataHorarioCercano) return <SLoad />
     if (!dataRestaurante) return <SLoad />
+    // if (!dataPedido) return <SLoad />
+
+
+
 
     return (
       <>
@@ -143,13 +154,13 @@ class Inicio extends Component {
               <SHr height={15} />
             </SView>
             <SHr height={20} />
-            <SText font={"Roboto"} fontSize={32}  >20:00 Hrs.</SText>
+            <SText font={"Roboto"} fontSize={32}  >{dataHorarioCercano.text.replace(/^\w/, (c) => c.toUpperCase())} Hrs.</SText>
             <SHr height={10} />
-            <SView col={"xs-11"} row center height={30} backgroundColor={'transparent'}>
+            <SView col={"xs-11"} row center height={25} backgroundColor={'transparent'}>
               <SIcon name="Carga" width={270}></SIcon>
             </SView>
             <SHr height={10} />
-            <SText font={"Roboto"} fontSize={16}>Jueves, 14 de abril, 2022</SText>
+            <SText font={"Roboto"} fontSize={16}>{dataHorarioCercano.extraData.text},  {new SDate(dataHorarioCercano.fecha, "yyyy-MM-dd").toString("dd de MONTH, yyyy")} </SText>
             <SText font={"Roboto"} style={{ fontWeight: "bold" }} fontSize={16}>( 3 / 15 )</SText>
             <SHr height={20} />
             <SView col={"xs-11"} style={{ borderBottomWidth: 2, borderColor: STheme.color.primary }}></SView>
