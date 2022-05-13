@@ -133,16 +133,16 @@ public class pendiente_pago extends State {
                 throw new StateException(e.getMessage());
             }
         }
-        if (this.pedido.getData().isNull("key_payment_order")) {
-            this.create_pay_order(obj);
-        }
+        // if (this.pedido.getData().isNull("key_payment_order")) {
+        this.create_pay_order(obj);
+        // }
 
         JSONObject petition = new JSONObject();
         petition.put("component", "payment_order");
         petition.put("type", "pay_method");
         petition.put("pay_method", pay_method);
         petition.put("key_payment_order", this.pedido.getData().getString("key_payment_order"));
-        JSONObject response = SocketCliente.sendSinc("multipagos", petition, 30000);
+        JSONObject response = SocketCliente.sendSinc("multipagos", petition, 1000 * 60 * 2);
         if (response.has("error")) {
             throw new StateException(response.getString("error"));
         }
