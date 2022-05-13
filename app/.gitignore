@@ -57,6 +57,7 @@ buck-out/
 *.jsbundle
 
 # CocoaPods
+*/ios/Pods/
 /ios/Pods/
 
 
@@ -65,6 +66,7 @@ buck-out/
 
 # dependencies
 /node_modules
+*/node_modules
 /.pnp
 .pnp.js
 
