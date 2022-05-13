@@ -63,8 +63,7 @@ class CameraComponent extends React.Component {
         this.state.qr = spliter[1];
         // alert(spliter[1]);    
         // alert(JSON.stringify(dataa.data));
-        // SNavigation.navigate("pedidoescaneado", { key_pedido: spliter[1] });
-        SNavigation.replace("pedido/", { key_pedido: spliter[1] });
+         SNavigation.replace("pedido/", { key_pedido: spliter[1] });
       }
     }
   };
