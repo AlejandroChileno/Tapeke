@@ -29,7 +29,7 @@ class Inicio extends Component {
   }
 
   getContent(dataHorarioCercano, dataPack, dataPackVendidos) {
-   
+
     return Object.keys(dataPackVendidos).map((key, index) => {
       var montoTotal = dataPackVendidos[key].cantidad * dataPackVendidos[key].precio;
       //datos UserInfo
@@ -45,9 +45,11 @@ class Inicio extends Component {
           <SView col={"xs-11"} row center>
             <SView col={"xs-3"} center>
               <SView width={60} height={60} style={{ borderRadius: 8, overflow: "hidden" }}>
-                <SImage src={SSocket.api.root + "usuario/" + dataUsuario.key + "?date=" + new Date().getTime()} style={{
+                {/* <SImage src={SSocket.api.root + "usuario/" + dataUsuario.key + "?date=" + new Date().getTime()} style={{ */}
+                <SImage src={SSocket.api.root + "usuario/" + dataUsuario.key } style={{
                   resizeMode: "cover", width: "100%",
                   height: "100%",
+                  borderRadius: 8, overflow: "hidden"
                 }} />
               </SView>
             </SView>
@@ -144,11 +146,11 @@ class Inicio extends Component {
     var dataHorarioCercano = horario.Actions.getByKeyRestauranteProximo(this.key_restaurante, this.props);
     if (!dataHorarioCercano) return null;
 
-     //Pack
-     var dataPack = pack.Actions.getByKeyHorario(dataHorarioCercano.key, this.props);
-     if (!dataPack) return null;
-     var dataPackVendidos = pedido.Actions.getVendidosData({ key_pack: dataPack.key, fecha: dataHorarioCercano.fecha }, this.props);
-     if (!dataPackVendidos) return null;
+    //Pack
+    var dataPack = pack.Actions.getByKeyHorario(dataHorarioCercano.key, this.props);
+    if (!dataPack) return null;
+    var dataPackVendidos = pedido.Actions.getVendidosData({ key_pack: dataPack.key, fecha: dataHorarioCercano.fecha }, this.props);
+    if (!dataPackVendidos) return null;
 
     return <>
       <SHr height={20} />
@@ -164,7 +166,7 @@ class Inicio extends Component {
       <SView col={"xs-11"} style={{ borderBottomWidth: 2, borderColor: STheme.color.primary }}></SView>
       <SHr height={20} />
       <SView col={"xs-11"} row    >
-        {this.getContent(dataHorarioCercano,dataPack,dataPackVendidos)}
+        {this.getContent(dataHorarioCercano, dataPack, dataPackVendidos)}
       </SView>
     </>
   }
