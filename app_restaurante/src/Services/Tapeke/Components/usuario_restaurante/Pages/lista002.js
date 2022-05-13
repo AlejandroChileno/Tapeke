@@ -3,12 +3,17 @@ import { connect } from 'react-redux';
 import { SImage, SList, SLoad, SNavigation, SPage, SPopup, SText, SView, SHr, STheme } from 'servisofts-component';
 import SSocket from 'servisofts-socket';
 import Parent from '..';
+import usuario from '../../../../Usuario/Components/usuario';
 import restaurante from '../../restaurante';
 class registro extends Component {
     constructor(props) {
         super(props);
         this.state = {};
     }
+
+    componentDidMount() {
+        if (!usuario.Actions.validateSession(this.props)) { return <SLoad />; }
+      }
 
     getUsuarios() {
         var data = Parent.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props);
@@ -54,6 +59,10 @@ class registro extends Component {
     }
 
     render() {
+        if (!usuario.Actions.validateSession(this.props, true)) {
+            return <SLoad />;
+          }
+
         var data = Parent.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props);
         // var dataRestaurante = restaurante.Actions.getAll(this.props);
         if (!data) return <SLoad />
@@ -65,7 +74,7 @@ class registro extends Component {
             });
         }
         return (
-            <SPage title={'Lista'} >
+            <SPage title={'Tapeke Restaurante'} >
                 <SView col={"xs-12"} center>
                     <SView col={"xs-11 sm-11 md-10 lg-8 xl-6"} center >
                         <SHr height={20} />

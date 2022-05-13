@@ -52,6 +52,28 @@ export default class Actions {
         return data;
     }
 
+    static getDetalle = (key, props) => {
+        var reducer = Actions._getReducer(props);
+        var data = reducer.dataDetalle[key];
+        if (!data) {
+            if (reducer.estado == "cargando") return null;
+            SSocket.send({
+                component: Parent.component,
+                version: Parent.version,
+                type: "getDetalle",
+                estado: "cargando",
+                key_pedido: key,
+                key_usuario: props.state.usuarioReducer.usuarioLog.key,
+            })
+            return null;
+        }
+
+        // console.log("romoe ",JSON.stringify(data));
+        // console.log("romoe ",data);
+        return data;
+    }
+
+
     static getByKey = (key, props) => {
         var data = Actions.getAll(props);
         if (!data) return null;

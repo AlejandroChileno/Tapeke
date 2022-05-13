@@ -13,9 +13,9 @@ const Pages: SPageListProps = {
     // "/": Inicio,
     // "/": lista001,
 
-    "/": Borrador,
-    // "/": lista002,
-    // "inicio": Inicio,
+    // "/": Borrador,
+    "/": lista002,
+    "inicio": Inicio,
 
     "carga": Carga,
     "camara": CameraComponent,
