@@ -61,6 +61,10 @@ class Confirmar extends React.Component {
                             position: "relative",
                             resizeMode: "cover"
                         }} />
+
+{/* <SImage src={`${SSocket.api.root}restaurante/${this.data.restaurante.key}`} style={{ width: "100%", position: "relative", resizeMode: "cover" }} /> */}
+
+
                         <SGradient colors={["#00000045", "#00000045",]} />
                     </SView>
                     <SView col={"xs-10"} row >
@@ -90,6 +94,7 @@ class Confirmar extends React.Component {
                         </SView>
                         <SHr height={5} />
                     </SView>
+
                     <SHr height={15} />
                     <SView col={"xs-12"} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray }}></SView>
                     <SHr height={12} />

@@ -52,6 +52,28 @@ export default class Actions {
         return data;
     }
 
+    static getDetalle = (key, props) => {
+        var reducer = Actions._getReducer(props);
+        var data = reducer.dataDetalle[key];
+        if (!data) {
+            if (reducer.estado == "cargando") return null;
+            SSocket.send({
+                component: Parent.component,
+                version: Parent.version,
+                type: "getDetalle",
+                estado: "cargando",
+                key_pedido: key,
+                key_usuario: props.state.usuarioReducer.usuarioLog.key,
+            })
+            return null;
+        }
+
+        // console.log("romoe ",JSON.stringify(data));
+        // console.log("romoe ",data);
+        return data;
+    }
+
+
     static getByKey = (key, props) => {
         var data = Actions.getAll(props);
         if (!data) return null;
@@ -66,6 +88,16 @@ export default class Actions {
         if (!data) return null;
         return Object.values(data).filter(item => item.key_horario == key_horario)[0];
     }
+
+    static getVendidosData = ({ key_pack, fecha }, props) => {
+        var data = Actions.getAll(props);
+        if (!data) return null;
+        var arr = Object.values(data).filter(item => item.key_pack == key_pack && item.fecha == fecha && (item.state != "pendiente_pago" && item.state != "timeout_pago"));
+        var cantidad = 0;
+        arr.map(item => cantidad += item.cantidad);
+        return arr;
+    }
+
 
     static registro = (data, props) => {
         SSocket.send({

@@ -1,4 +1,4 @@
-import Parent from './index'
+import Parent from './index';
 
 type DataProps = {
     component: any,
@@ -10,11 +10,16 @@ type DataProps = {
 }
 
 const initialState = () => {
-    return {
+    var initialState: any = {
         component: Parent.component,
         version: Parent.version,
-    };
+        dataDetalle: {},
+    }
+
+    return initialState;
 }
+
+
 export default (state: any, action: DataProps) => {
     if (!state) return initialState();
     if (action.component != Parent.component) return state;
@@ -31,15 +36,27 @@ export default (state: any, action: DataProps) => {
 const TypesSwitch = (state: any, action: DataProps) => {
     switch (action.type) {
         case "getAll": return getAll(state, action);
+        case "getAllActivos": return getAllActivos(state, action);
         case "registro": return registro(state, action);
         case "editar": return editar(state, action);
         case "getById": return getById(state, action);
+        case "getDetalle": return getDetalle(state, action);
     }
 }
 
 const getAll = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
     state.data = action.data;
+    // SStorage.setItem("miInformation_log", JSON.stringify(action.data));
+}
+const getAllActivos = (state: any, action: DataProps) => {
+    if (action.estado != "exito") return;
+    state.data_activos = action.data;
+
+}
+const getDetalle = (state: any, action: DataProps) => {
+    if (action.estado != "exito") return;
+    state.dataDetalle[action.data.key] = action.data;
 }
 const registro = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
