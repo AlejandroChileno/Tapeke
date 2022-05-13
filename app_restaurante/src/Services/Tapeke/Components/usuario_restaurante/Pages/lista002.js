@@ -14,7 +14,6 @@ class registro extends Component {
     getUsuarios() {
         var data = Parent.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props);
         if (!data) return <SLoad />
-
         var dataRestaurante = restaurante.Actions.getAll(this.props);
         if (!dataRestaurante) return <SLoad />
 
@@ -24,8 +23,6 @@ class registro extends Component {
                 SNavigation.replace("inicio", { key_restaurante: arr[0].key_restaurante });
             }
         });
-
-
         return <>
             <SHr height={20} />
             <SView col={"xs-12"} center style={{ borderBottomWidth: 2, borderColor: STheme.color.primary }} height={50}>
@@ -39,11 +36,11 @@ class registro extends Component {
                     return data.find(o => o.key_restaurante == obj.key)
                 }}
                 render={obj => {
-                    return <SView col={"xs-12"} backgroundColor={STheme.color.card}
+                    return <SView col={"xs-12"} backgroundColor={STheme.color.card} row
                         style={{
                             borderWidth: 2, borderColor: STheme.color.lightGray,
                             borderRadius: 8, overflow: 'hidden'
-                        }} row center onPress={() => {
+                        }} center onPress={() => {
                             SPopup.confirm({
                                 title: "¿Está seguro que desea ir a este restaurante?", message: `${obj.nombre}`,
                                 onPress: () => {
@@ -51,18 +48,20 @@ class registro extends Component {
                                 }
                             })
                         }}>
-                        <SHr height={15} />
-                        <SView width={8} />
-                        <SView width={70} height={70} center style={{ borderRadius: 40, overflow: 'hidden', backgroundColor: '#eee', }}>
-                            <SImage src={SSocket.api.root + "restaurante/" + obj.key} style={{ resizeMode: "cover", }} />
+                        <SView col={"xs-3"} center row>
+                            <SHr height={10} />
+                            <SView width={70} height={70} style={{ borderRadius: 40, overflow: 'hidden', backgroundColor: '#eee', }}>
+                                <SImage src={SSocket.api.root + "restaurante/" + obj.key} style={{ resizeMode: "cover", }} />
+                            </SView>
+                            <SHr height={10} />
                         </SView>
-                        <SView width={8} />
-                        <SView flex>
+                        <SView flex col={"xs-9"}>
+                            <SHr height={10} />
                             <SText font={"Roboto"} fontSize={16} bold color={STheme.color.primary}>{`${obj.nombre}  `}</SText>
                             <SText font={"Roboto"} fontSize={13}>{`${obj.descripcion}`}</SText>
                             <SText font={"Roboto"} fontSize={12} style={{ fontStyle: "italic" }}>{`${obj.direccion}`}</SText>
+                            <SHr height={10} />
                         </SView>
-                        <SHr height={15} />
                     </SView>
                 }} />
         </>
