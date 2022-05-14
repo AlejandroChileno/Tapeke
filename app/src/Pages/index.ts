@@ -5,6 +5,7 @@ import Ajustes from './Ajustes';
 import Inicio from './Inicio';
 import Administracion from './Administracion';
 import TerminosCondiciones from '../Pages/TerminosCondiciones';
+import SmsValidation from '../Pages/SmsValidation';
 import inDevelop from './inDevelop';
 // import Billetera from '../Services/Tapeke/Components/billetera/Pages/Billetera';
 
@@ -39,7 +40,7 @@ const Pages = {
     // "billetera": Billetera,
     "ayuda": Ayuda,
     "comoteparecio": ComoTeParecio,
-
+    "smsvalidation": SmsValidation
     
 
 

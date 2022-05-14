@@ -3,7 +3,6 @@ import CameraComponent from '../Components/CameraComponent';
 import Services from '../Services';
 import lista001 from '../Services/Tapeke/Components/usuario_restaurante/Pages/lista001';
 import lista002 from '../Services/Tapeke/Components/usuario_restaurante/Pages/lista002';
-import Borrador from './Borrador';
 import Carga from './Carga';
 import Inicio from './Inicio';
 import PedidoEscaneado from './PedidoEscaneado';
