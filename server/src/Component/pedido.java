@@ -44,6 +44,9 @@ public class pedido {
                 case "pagar":
                     pagar(obj, session);
                     break;
+                case "entregar":
+                    entregar(obj, session);
+                    break;
             }
         } catch (Exception e) {
             obj.remove("data");
@@ -126,6 +129,11 @@ public class pedido {
         pedido.get_payment_order(obj);
         // obj.put("data", pedido.toJson());
         // obj.put("estado", "exito");
+    }
+
+    public static void entregar(JSONObject obj, SSSessionAbstract session) throws StateException {
+        model.pedido.Pedido pedido = new model.pedido.Pedido(obj.getString("key_pedido"));
+        pedido.get_payment_order(obj);
     }
 
 }

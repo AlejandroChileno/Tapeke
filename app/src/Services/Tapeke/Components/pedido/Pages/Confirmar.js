@@ -202,16 +202,19 @@ class Confirmar extends React.Component {
                             "bussiness_name": values["business_name"],
                             "nit": values["nit"]
                         }
-                    }, 60 * 1000
+                    }, 60 * 1000 * 4
                 ).then((resp) => {
                     SPopup.close("confirmar");
                     this.auxPedido = resp.data;
                     Validations.set_pedido_en_curso(this.auxPedido);
                     Validations.pedido_en_curso();
                 }).catch((err) => {
-                    // alert(err.error);
-                    //SPopup.alert(err.error);
-                    SPopup.open({ content: this.popupSinFondos(err.error), key: "sinFondos" });
+                    if (err.pay_method == "billetera") {
+                        SPopup.open({ content: this.popupSinFondos(err.error), key: "sinFondos" });
+                    } else {
+                        SPopup.alert(err.error)
+                    }
+
                     SPopup.close("confirmar");
                 });
             }} />

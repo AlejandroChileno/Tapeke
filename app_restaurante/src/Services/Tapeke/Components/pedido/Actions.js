@@ -89,6 +89,16 @@ export default class Actions {
         return Object.values(data).filter(item => item.key_horario == key_horario)[0];
     }
 
+    static getVendidosData = ({ key_pack, fecha }, props) => {
+        var data = Actions.getAll(props);
+        if (!data) return null;
+        var arr = Object.values(data).filter(item => item.key_pack == key_pack && item.fecha == fecha && (item.state != "pendiente_pago" && item.state != "timeout_pago"));
+        var cantidad = 0;
+        arr.map(item => cantidad += item.cantidad);
+        return arr;
+    }
+
+
     static registro = (data, props) => {
         SSocket.send({
             component: Parent.component,
