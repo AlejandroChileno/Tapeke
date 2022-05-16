@@ -73,8 +73,8 @@ class CameraComponent extends React.Component {
   render() {
     return (
 
-      <SPage title={''} disableScroll>
-        <SView style={{ flex: 1 }}>
+      <SPage title={''} row style={{ overflow: 'hidden' }} >
+        <SView flex>
           {this.showCamara()}
         </SView>
       </SPage>

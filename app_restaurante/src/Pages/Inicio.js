@@ -35,17 +35,14 @@ class Inicio extends Component {
       //datos UserInfo
       var dataUsuario = usuario.Actions.getByKey(dataPackVendidos[key].key_usuario, this.props);
       if (!dataUsuario) return null;
-      console.log(JSON.stringify(dataUsuario) + "USUARIOOOOO");
-
 
       return <>
         <SView col={"xs-12"} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 8 }} row center backgroundColor={STheme.color.card}
-          onPress={() => { SNavigation.navigate("pedido/detalle"); }}>
+          onPress={() => { SNavigation.navigate("pedido/", {key_pedido: dataPackVendidos[key].key}); }}>
           <SHr height={10} />
           <SView col={"xs-11"} row center>
             <SView col={"xs-3"} center>
               <SView width={60} height={60} style={{ borderRadius: 8, overflow: "hidden" }}>
-                {/* <SImage src={SSocket.api.root + "usuario/" + dataUsuario.key + "?date=" + new Date().getTime()} style={{ */}
                 <SImage src={SSocket.api.root + "usuario/" + dataUsuario.key } style={{
                   resizeMode: "cover", width: "100%",
                   height: "100%",
@@ -121,7 +118,6 @@ class Inicio extends Component {
       </>
 
     })
-
   }
 
   contenidoHead() {
@@ -178,7 +174,6 @@ class Inicio extends Component {
       return <SLoad />;
     }
     // var UsuaioPage = Pages["usuarioPage/lista"];
-
 
     return (
       <>

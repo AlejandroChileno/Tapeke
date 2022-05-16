@@ -4,32 +4,55 @@ import { connect } from "react-redux";
 import { SButtom, SHr, SIcon, SInput, SPage, STheme, SView } from "servisofts-component";
 
 
-class Borrador extends Component {
+class SmsValidation extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.campo = {}
+    this.campo = {};
   }
-
 
 
   pintar() {
     var arr = Array.from(Array(5).keys())
     return arr.map((i) => {
       return <SInput placeholder={"0"}
-        type={'number'}
+        // type={'number'}
         flex
-        maxLength={1}
+        // maxLength={1}
         style={{ borderColor: STheme.color.gray, borderRadius: 4, borderWidth: 1, fontSize: 20, width: 55, height: 55 }}
         ref={(ref) => { this.campo[i] = ref }}
-        // TODO SI LE DA ELIMINAR QUE RETROCEDA 
+        
+        onPress={() => {
+          if(!this.campo[i].getValue()){
+            for (const a of Object.values(this.campo)) {
+              if(!a.getValue()){
+                a.focus();
+                return
+              }
+            }
+          }
+        }}
+
         onChangeText={(text) => {
+
+          
+
+          if(this.campo[i].getValue()){
+            if(this.campo[i].getValue().length > 1){
+              this.campo[i].setValue(text.substr(-1));
+            }
+            if(text !=this.campo[i].getValue()){
+              this.campo[i].setValue(text);
+            }
+          }
+
           if (i < 4 && text) {
             this.campo[i + 1].focus();
           }
-          if (!text && i > 0) {
+          if (i > 0 && !text ) {
             this.campo[i - 1].focus();
           }
+          
         }}
       />
     })
@@ -58,10 +81,6 @@ class Borrador extends Component {
           <SView col={"xs-12"} height={30} />
           <SButtom style={{ backgroundColor: STheme.color.primary, width: 300, fontSize: 40, borderRadius: 8, }}
             onPress={() => {
-
-
-
-
               for (var i = 0; i < 5; i++) {
                 if (this.campo[i].state.value == null) {
                   // alert(this.campo[i].state.value);
@@ -80,4 +99,4 @@ class Borrador extends Component {
 const initStates = (state) => {
   return { state };
 };
-export default connect(initStates)(Borrador);
+export default connect(initStates)(SmsValidation);
