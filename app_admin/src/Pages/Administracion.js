@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SPage, SText } from 'servisofts-component';
-import Pages from '.';
+import { SPage, SText, SLoad } from 'servisofts-component';
+import UsuarioPageLista from '../Services/Roles_permisos/Components/usuarioPage/Pages/Lista';
 import BarraSuperiorTapeke from '../Components/BarraSuperiorTapeke';
+import usuario from '../Services/Usuario/Components/usuario';
 
 
 class Administracion extends Component {
@@ -13,11 +14,13 @@ class Administracion extends Component {
     }
 
     render() {
-        const UsuaioPage = Pages["usuarioPage/lista"];
+        if (!usuario.Actions.validateSession(this.props)) {
+            return <SLoad />;
+        }
         return (
             <SPage title={'Administracion'} preventBack hidden>
                 <BarraSuperiorTapeke><SText color={"#fff"} bold font={"Roboto"} fontSize={18}>Administración</SText></BarraSuperiorTapeke>
-                <UsuaioPage />
+                <UsuarioPageLista />
             </SPage>
         );
     }
