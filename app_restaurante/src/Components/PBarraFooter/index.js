@@ -8,7 +8,7 @@ export default class PBarraFooter extends Component {
 		this.state = {
 		};
 		this.page = SNavigation.getParam("page");
-		
+		this.key_restaurante = SNavigation.getParam("key_restaurante");
 	}
 
 	getItem({ key, title, icon, url, params }) {
@@ -22,7 +22,7 @@ export default class PBarraFooter extends Component {
 				key: key
 			})
 			console.log(this.page + " - "+ key)
-			SNavigation.navigate(url, {page: key});
+			SNavigation.navigate(url, {page: key, key_restaurante: this.key_restaurante});
 		}}>
 			<SView height={23} colSquare center>
 				<SIcon name={icon} fill={STheme.color.secondary} />
@@ -37,7 +37,7 @@ export default class PBarraFooter extends Component {
 				// style={{ position: 'absolute', bottom: 0, backgroundColor: STheme.color.primary, overflow: 'hidden' }}	
 			>
 				<SView col={'xs-12'} row height >
-					{this.getItem({ key: "1", title: 'Pedidos de hoy', icon: 'Mpedidos', url: '/' })}
+					{this.getItem({ key: "1", title: 'Pedidos de hoy', icon: 'Mpedidos', url: 'inicio' })}
 					{this.getItem({ key: "2", title: 'Calendario', icon: 'Mcalendario', url: 'pedido/calendario' })}
 					{this.getItem({ key: "3", title: 'Mi calificación', icon: 'Mcalificacion', url: 'calificacion' })}
 				</SView>

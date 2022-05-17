@@ -16,8 +16,8 @@ class Calendario extends React.Component {
             // dia: 0,
         };
         this.page = SNavigation.getParam("page");
-        this.key_restaurante = "9b8f27e9-696d-446f-ae9b-5d6d5bf1ab24";
-        // this.key_restaurante = SNavigation.getParam("key_restaurante");
+        // this.key_restaurante = "9b8f27e9-696d-446f-ae9b-5d6d5bf1ab24";
+        this.key_restaurante = SNavigation.getParam("key_restaurante");
     }
 
     // getDiaa(dia, diastr) {
@@ -112,10 +112,7 @@ class Calendario extends React.Component {
         })
     }
 
-
-    getDias() {
-
-
+    getDias_() {
         var auxDia = [2, 3];
         var dias = new SDate().addMonth(1).setDay(0).getDay();
         var curDate = new SDate();
@@ -126,13 +123,9 @@ class Calendario extends React.Component {
             var fecha = new SDate().setDay(day);
             if (!auxDia.includes(fecha.getDayOfWeek())) return console.log("fecha ", fecha);
             var isCurrent = fecha.toString("yyyy-MM-dd") == new SDate().toString("yyyy-MM-dd");
-
             // return <SText border={"red"}>{fecha.toString("MON,dd") + "\t"} d= {fecha.getDayOfWeek()} {"\t"} {fecha.getDayOfWeekJson().text}  {isCurrent ? "(HOY)" : ""}</SText>
-
             // <SText font={"LondonTwo"} fontSize={24} color={(this.state.dia == dia ? STheme.color.secondary : STheme.color.text)} >{dia}</SText>
             // var dia = JSON.stringify(fecha.toString("dd"));
-
-
             return <>
                 <SView width={80} height={90} center style={{
                     backgroundColor: STheme.color.card, borderRadius: 8,
@@ -140,6 +133,58 @@ class Calendario extends React.Component {
                 }}
                     onPress={() => {
                         this.setState({ dia: JSON.stringify(fecha.toString("dd")) })
+                    }}  >
+                    <SText font={"LondonTwo"} fontSize={24} color={this.state.dia == JSON.stringify(fecha.toString("dd")) ? STheme.color.primary : STheme.color.text} >{fecha.toString("dd")}</SText>
+                    <SHr height={10} />
+                    <SText font={"Roboto"} fontSize={14} color={(this.state.dia == JSON.stringify(fecha.toString("dd")) ? STheme.color.primary : STheme.color.text)}>{fecha.getDayOfWeekJson().text}</SText>
+                </SView>
+                <SView width={10} />
+            </>
+        })
+    }
+
+    getDias() {
+        var auxDia = [2, 3];
+        var dias = new SDate().addMonth(1).setDay(0).getDay();
+        var curDate = new SDate();
+        var arr = Array.from(Array(dias - curDate.getDay() + 1).keys())
+
+        var dataHorario = horario.Actions.getByKeyRestaurante(this.key_restaurante, this.props);
+        //var dataHorario = horario.Actions.getByKeyRestauranteProximo(this.key_restaurante, this.props);
+        // var data = horario.Actions.getAll(this.props);
+        // if (!data) return <SLoad />
+        // var dataHorario = Object.values(data).filter(item => item.key_restaurante == this.key_restaurante)
+        if (!dataHorario) return <SLoad />
+
+
+        // var arrDias = Object.values(dataHorario).filter(item => item.dia != null)
+        var arrDias = [];
+        //Object.keys(dataHorario).map(k => arrDias.push(dataHorario[k].dia))
+        console.log(JSON.stringify(dataHorario) + "dataHorario");
+        //console.log(JSON.stringify(arrDias) + "arrHorario");
+        return Object.keys(dataHorario).map((key) => {
+            //var day = index + curDate.getDay();
+            //var fecha = new SDate(dataHorario[key].fecha_on)
+           
+            var day = key + curDate.getDay();
+            // var fecha = new SDate().setDay(day);
+            var fecha = new SDate().setDay(day);
+            console.log(fecha)
+            // if (!auxDia.includes(fecha.getDayOfWeek())) return console.log("fecha ", fecha);
+            
+            // var isCurrent = fecha.toString("yyyy-MM-dd") == new SDate().toString("yyyy-MM-dd");
+            
+            // return <SText border={"red"}>{fecha.toString("MON,dd") + "\t"} d= {fecha.getDayOfWeek()} {"\t"} {fecha.getDayOfWeekJson().text}  {isCurrent ? "(HOY)" : ""}</SText>
+            // <SText font={"LondonTwo"} fontSize={24} color={(this.state.dia == dia ? STheme.color.secondary : STheme.color.text)} >{dia}</SText>
+            // var dia = JSON.stringify(fecha.toString("dd"));
+            return <>
+                <SView width={80} height={90} center style={{
+                    backgroundColor: STheme.color.card, borderRadius: 8,
+                    borderColor: this.state.dia == JSON.stringify(fecha.toString("dd")) ? STheme.color.primary : STheme.color.lightGray, borderWidth: 1
+                }}
+                    onPress={() => {
+                        this.setState({ dia: JSON.stringify(fecha.toString("dd")) })
+                        this.setState({ hora: JSON.stringify(dataHorario[key].hora_inicio +" - "+ dataHorario[key].hora_fin) })
                     }}  >
                     <SText font={"LondonTwo"} fontSize={24} color={this.state.dia == JSON.stringify(fecha.toString("dd")) ? STheme.color.primary : STheme.color.text} >{fecha.toString("dd")}</SText>
                     <SHr height={10} />
@@ -191,12 +236,12 @@ class Calendario extends React.Component {
                         <SText font={"Roboto"} fontSize={20} color={STheme.color.text} >Horarios</SText>
                         <SHr height={25} />
                         <SView col={"xs-12"} row center>
-                            {this.getHora("09:00 AM")}
-                            {this.getHora("09:30 AM")}
+                            {(this.state.hora) ? this.getHora(this.state.hora): <SText font={"Roboto"} fontSize={20} color={STheme.color.text} >Seleccione un dia</SText>}
+                            {/* {this.getHora("09:30 AM")}
                             {this.getHora("10:00 AM")}
                             {this.getHora("10:30 AM")}
                             {this.getHora("11:00 AM")}
-                            {this.getHora("11:30 AM")}
+                            {this.getHora("11:30 AM")} */}
                         </SView>
                         <SHr height={20} />
                     </SView>
