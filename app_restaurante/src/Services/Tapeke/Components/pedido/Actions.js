@@ -98,6 +98,17 @@ export default class Actions {
         return arr;
     }
 
+    static entregar = (key, props) => {
+        SSocket.send({
+            component: Parent.component,
+            version: Parent.version,
+            type: "entregar",
+            estado: "cargando",
+            key_pedido: key,
+            key_usuario: props.state.usuarioReducer.usuarioLog.key,
+        })
+    }
+
 
     static registro = (data, props) => {
         SSocket.send({

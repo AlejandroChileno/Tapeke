@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SButtom, SGradient, SHr, SIcon, SImage, SLoad, SMath, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
+import { SButtom, SGradient, SHr, SIcon, SImage, SLoad, SMath, SNavigation, SPage, SText, STheme, SView, SPopup } from 'servisofts-component';
 import usuario from '../../../../Usuario/Components/usuario';
 import pedido from '../index';
 import Parent from '../index';
@@ -10,7 +10,8 @@ class Detalle extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
-        this.pedidoId = SNavigation.getParam("key_pedido");
+        // this.pedidoId = SNavigation.getParam("key_pedido");
+        this.pedidoId = "8a6f5d23-8c91-47bc-9a18-ec2314b29b0a"
     }
 
     error() {
@@ -22,13 +23,13 @@ class Detalle extends React.Component {
         </SView>
     }
 
-
     // TODO: RICKY TIENES QUE PASAR BIEN EL DETALLE DEL PEDIDO DESDE EL BACKEND
     render() {
         this.data = pedido.Actions.getDetalle(this.pedidoId, this.props);
-        if (!this.data) {
-            return this.error();
-        }
+        // if (!this.data) {
+        //     return this.error();
+        // }
+        if (!this.data) return <SLoad />
         this.dataUsuario = usuario.Actions.getByKey(this.data.key_usuario, this.props);
         if (!this.dataUsuario) return <SLoad />
 
@@ -58,6 +59,26 @@ class Detalle extends React.Component {
         //     }
         // }
         // alert(this.auxRestaurante.key);
+
+        var reducer = this.props.state[Parent.component + "Reducer"];
+        if (reducer.type == "entregar" ) {
+            if (reducer.estado == "exito") {
+                reducer.estado = "";
+                SNavigation.goBack();
+            }
+        }
+
+        //this.data.state = "no_recogido"
+        var mensaje2 = "";
+        if (this.data.state == "en_camino") {
+            mensaje2 = "El pedido esta en camino."
+        }
+        if (this.data.state == "entregado") {
+            mensaje2 = "El pedido ya fue entregado."
+        }
+        if (this.data.state == "no_recogido") {
+            mensaje2 = "El pedido no puede ser recogido por estar fuera del tiempo de entrega."
+        }
         return (
             <SPage center>
 
@@ -71,7 +92,6 @@ class Detalle extends React.Component {
                                 <SHr height={15} />
                             </SView>
                             <SView col={"xs-12"} row >
-
                                 <SView center width={70} backgroundColor={"#9B060C"} height={70} style={{ borderRadius: 8, overflow: 'hidden', }}>
                                     <SImage src={`${SSocket.api.root}usuario/${this.data.key_usuario}`} style={{ width: "100%", position: "relative", resizeMode: "cover" }} />
                                 </SView>
@@ -105,12 +125,9 @@ class Detalle extends React.Component {
                             </SView>
                             {/* <SHr height={15} /> */}
                             <SView col={"xs-12"} row center>
-
                                 <SView width={84} height={84} center backgroundColor={"red"} style={{ borderRadius: 8, overflow: 'hidden', }}>
-
                                     <SImage src={`${SSocket.api.root}restaurante/${this.data.restaurante.key}`} style={{ width: "100%", position: "relative", resizeMode: "cover" }} />
                                 </SView>
-
                                 <SView flex center row >
                                     <SView col={"xs-1"}  >
                                     </SView>
@@ -139,7 +156,6 @@ class Detalle extends React.Component {
                                     <SHr height={5} />
                                 </SView>
                             </SView>
-
                             <SHr height={18} />
                         </SView>
                     </SView>
@@ -224,8 +240,45 @@ class Detalle extends React.Component {
                     <SHr height={18} />
                     <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center style={{ backgroundColor: STheme.color.white }}>
                         <SHr height={40} />
+                        {(this.data.state == "en_camino") || (this.data.state == "entregado") || (this.data.state == "no_recogido") ?
+                            <SView col={"xs-11"} center backgroundColor={STheme.color.success} style={{ borderRadius: 4, overflow: 'hidden', }}>
+                                <SHr height={20} />
+                                <SView col={"xs-11"} >
+                                    <SText font={"Roboto"} center fontSize={18} color={STheme.color.white}>MENSAJE: {mensaje2}</SText>
+                                </SView>
+                                <SHr height={20} />
+                            </SView> :
+                            <SButtom style={{ backgroundColor: STheme.color.primary, width: 300, fontSize: 40, borderRadius: 8, }}
+                                onPress={() => {
+                                    var mensaje = "";
+                                    if (this.data.state != "listo") {
+                                        switch (this.data.state) {
+                                            case "pendiente_pago":
+                                                mensaje = "Su pedido está pendiente de pago";
+                                                break;
+                                            case "pago_en_proceso":
+                                                mensaje = "Su pedido está en procceso de pago";
+                                                break;
+                                            case "pagado":
+                                                mensaje = "Su pedido está pagado";
+                                                break;
+                                            case "timeout_pago": //TODO: duda en el mesaje
+                                                mensaje = "Su pedido está en espera de pago";
+                                                break;
+                                        }
+                                        mensaje += " pero aún no está listo.";
+                                        SPopup.alert(mensaje);
+                                    } else {
+                                        //componet pedido
+                                        //type entregar
+                                        //key_pedido estado cargando
+                                        //alert()
+                                        Parent.Actions.entregar(this.pedidoId, this.props);
+                                        // SPopup.alert("Ya está listo y se puede entregar.");
+                                    }
+                                }} > ENTREGADO </SButtom>
+                        }
 
-                        <SButtom style={{ backgroundColor: STheme.color.primary, width: 300, fontSize: 40, borderRadius: 8, }} onPress={() => { }} > ENTREGADO </SButtom>
                         <SHr height={40} />
 
 
