@@ -59,7 +59,7 @@ export default class Actions {
             if (reducer.estado == "cargando") return null;
             SSocket.send({
                 component: Parent.component,
-                version: Parent.version,
+                version: Parent.version,    
                 type: "getDetalle",
                 estado: "cargando",
                 key_pedido: key,
@@ -119,4 +119,14 @@ export default class Actions {
             }
         })
     }
+    static getDetalleEstado(pedido) {
+        if (pedido.state == "pagado" && pedido.fecha_recordado) {
+            return Parent.Estados["recordado"].title
+        }
+        if (Parent.Estados[pedido.state]) {
+            return Parent.Estados[pedido.state].title
+        }
+        return pedido.state;
+    }
+
 }

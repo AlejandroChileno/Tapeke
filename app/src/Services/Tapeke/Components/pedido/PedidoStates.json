@@ -1,0 +1,23 @@
+{
+    "pagado": {
+        "title": "Esperando la hora de comer."
+    },
+    "recordado": {
+        "title": "Tu tapeke estara pronto."
+    },
+    "listo": {
+        "title": "Tu tapeke esta listo."
+    },
+    "entregado": {
+        "title": "Como te parecio tu tapeke?"
+    },
+    "en_camino": {
+        "title": "Tu tapeke esta en camino."
+    },
+    "no_recogido": {
+        "title": "Lo sentimos, no llegaste a tiempo para recojer tu tapeke."
+    },
+    "pago_en_proceso": {
+        "title": "Pago en proceso."
+    }
+}

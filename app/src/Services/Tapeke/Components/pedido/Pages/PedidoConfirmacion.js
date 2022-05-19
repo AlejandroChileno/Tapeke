@@ -160,7 +160,7 @@ class PedidoConfirmacion extends React.Component {
                         <SText color={STheme.color.darkGray} style={{ fontSize: 38 }} bold>{this.auxPedido.horario.hora_inicio} - {this.auxPedido.horario.hora_fin}</SText>
                     </SView>
                     <SView col={"xs-12"} border={'transparent'} center >
-                        <SText color={STheme.color.darkGray} style={{ fontSize: 15 }} bold>Estamos procesando tu pedido</SText>
+                        <SText color={STheme.color.darkGray} style={{ fontSize: 15 }} bold>{Parent.Actions.getDetalleEstado(this.auxPedido)}</SText>
                     </SView>
 
                     {this.getBotones()}

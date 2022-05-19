@@ -71,7 +71,7 @@ public class Pedido implements IPedidoActions {
             obj = this.data;
         }
         obj.put("key", this.key);
-        obj.put("state", this.state.toJson());
+        obj.put("state", this.state.code);
         return obj;
     }
 
@@ -107,6 +107,27 @@ public class Pedido implements IPedidoActions {
     @Override
     public void entregar(JSONObject obj) throws StateException {
         this.state.entregar(obj);
+
+    }
+
+    @Override
+    public void entregar_a_conductor(JSONObject obj) throws StateException {
+        this.state.entregar_a_conductor(obj);
+    }
+
+    @Override
+    public void sync_listos(JSONObject obj) throws StateException {
+        this.state.sync_listos(obj);
+    }
+
+    @Override
+    public void sync_no_recogido(JSONObject obj) throws StateException {
+        this.state.sync_no_recogido(obj);
+    }
+
+    @Override
+    public void sync_recordatorio(JSONObject obj) throws StateException {
+        this.state.sync_recordatorio(obj);
     }
 
 }

@@ -102,6 +102,14 @@ public class pendiente_pago extends State {
         if (pay_method.isEmpty()) {
             throw new StateException("pay_method::String is empty");
         }
+        JSONObject itemToEdit = new JSONObject();
+        itemToEdit.put("key", this.pedido.getKey());
+        itemToEdit.put("payment_type", pay_method);
+        try {
+            SPGConect.editObject("pedido", itemToEdit);
+        } catch (SQLException e) {
+            throw new StateException("Error al editar el pedido");
+        }
         if (pay_method.equals("Billetera")) {
             String key_usuario = this.pedido.getData().getString("key_usuario");
             try {
@@ -125,18 +133,13 @@ public class pendiente_pago extends State {
                         + this.pedido.getData().getJSONObject("restaurante").getString("nombre") + " por " + total);
                 billeteraMovimiento.put("key_pedido", this.pedido.getKey());
                 SPGConect.insertObject("billetera", billeteraMovimiento);
-                // obj.put("data", billeteraMovimiento);
-                // obj.put("estado", "exito");
                 this.pedido.changeState(states.pagado, "select_pay_method");
                 return;
             } catch (SQLException e) {
                 throw new StateException(e.getMessage());
             }
         }
-        // if (this.pedido.getData().isNull("key_payment_order")) {
         this.create_pay_order(obj);
-        // }
-
         JSONObject petition = new JSONObject();
         petition.put("component", "payment_order");
         petition.put("type", "pay_method");
@@ -146,18 +149,8 @@ public class pendiente_pago extends State {
         if (response.has("error")) {
             throw new StateException(response.getString("error"));
         }
-        JSONObject itemToEdit = new JSONObject();
-        itemToEdit.put("key", this.pedido.getKey());
-        itemToEdit.put("payment_type", pay_method);
-        try {
-            SPGConect.editObject("pedido", itemToEdit);
-        } catch (SQLException e) {
-            throw new StateException("Error al editar el pedido");
-        }
         this.pedido.getData().put("payment_type", itemToEdit.getString("payment_type"));
         this.pedido.changeState(states.pago_en_proceso, "select_pay_method");
-        // obj.put("data", response.getJSONObject("data"));
-        // obj.put("estado", "exito");
 
     }
 
@@ -174,6 +167,26 @@ public class pendiente_pago extends State {
 
     @Override
     public void entregar(JSONObject obj) throws StateException {
+        noPermited();
+    }
+
+    @Override
+    public void entregar_a_conductor(JSONObject obj) throws StateException {
+        noPermited();
+    }
+
+    @Override
+    public void sync_listos(JSONObject obj) throws StateException {
+        noPermited();
+    }
+
+    @Override
+    public void sync_no_recogido(JSONObject obj) throws StateException {
+        noPermited();
+    }
+
+    @Override
+    public void sync_recordatorio(JSONObject obj) throws StateException {
         noPermited();
     }
 

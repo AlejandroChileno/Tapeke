@@ -37,5 +37,23 @@ public class timeout_pago extends State {
     public void entregar(JSONObject obj) throws StateException {
         noPermited();
     }
+    @Override
+    public void entregar_a_conductor(JSONObject obj) throws StateException {
+        noPermited();
+    }
+
+    @Override
+    public void sync_listos(JSONObject obj) throws StateException {
+        noPermited();
+    }
+
+    @Override
+    public void sync_no_recogido(JSONObject obj) throws StateException {
+        noPermited();
+    }
+    @Override
+    public void sync_recordatorio(JSONObject obj) throws StateException {
+        noPermited();
+    }
 
 }

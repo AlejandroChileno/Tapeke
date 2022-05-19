@@ -22,7 +22,7 @@ class index extends Component {
 		return <SList
 			data={data}
 			space={16}
-			filter={(item) => item.estado == '1' && item.key_usuario == key_usuario}
+			filter={(item) => item.estado == '1' && item.key_usuario == key_usuario && item.state != "pendiente_pago" && item.state != "timeout_pago"}
 			render={(obj, key) => {
 				return <SView col={"xs-12 "} height={90} row border={STheme.color.card} style={{ borderRadius: 8, }} onPress={() => {
 					if (obj.state == "pagado") {

@@ -48,6 +48,12 @@ public class Horario {
             data.put("fecha_on", fecha_on);
             data.put("key_usuario", obj.getString("key_usuario"));
             SPGConect.insertArray(COMPONENT, new JSONArray().put(data));
+
+            // JSONObject packs = new JSONObject();
+            // packs.put("key_horario", data.getString("key"));
+            // packs.put("precio", 15.00);
+            // packs.put("cantidad", 10);
+
             obj.put("data", data);
             obj.put("estado", "exito");
         } catch (Exception e) {

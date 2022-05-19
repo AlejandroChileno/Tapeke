@@ -43,7 +43,7 @@ class Registro extends Component {
                     }
                     this.usr = {
                         facebook_key: data.id,
-                        // Correo: data.email,
+                        Correo: data.email,
                         Nombres: data.first_name,
                         Apellidos: data.last_name,
                     }

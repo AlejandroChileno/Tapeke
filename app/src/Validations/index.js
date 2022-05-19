@@ -22,7 +22,7 @@ export default class Validations {
         this._pedido_en_curso(this._obj_pedido_en_curso, url);
     }
     static async _pedido_en_curso(obj, url) {
-        switch (obj.state.code) {
+        switch (obj.state) {
             case "pendiente_pago":
                 if (url == "pedido/confirmar") return;
                 SNavigation.navigate("pedido/confirmar", { keyPedido: obj.key })

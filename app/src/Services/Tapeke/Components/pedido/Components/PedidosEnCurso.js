@@ -4,7 +4,7 @@ import { SDate, SHr, SIcon, SList, SLoad, SNavigation, SText, STheme, SView } fr
 import BarraCargando from "../../../../../Components/BarraCargando";
 import pedido from "../../../../../Services/Tapeke/Components/pedido";
 import restaurante from "../../../../../Services/Tapeke/Components/restaurante";
-
+import Parent from "../";
 class PedidosEnCurso extends Component {
     constructor(props) {
         super(props);
@@ -13,13 +13,6 @@ class PedidosEnCurso extends Component {
 
 
 
-    getDetalleEstado(pedido) {
-        switch (pedido.state) {
-            case "pagado":
-                return "Esperando la hora de comer.";
-        }
-        return pedido.state;
-    }
 
     pedidoencurso() {
         var excluded_states = ["pendiente_pago", "timeout_pago"];
@@ -48,10 +41,10 @@ class PedidosEnCurso extends Component {
                             <SView flex style={{ justifyContent: 'center', }}    >
                                 <SText fontSize={14} font={"Roboto"} color={"white"} >{restaurante_obj.nombre}</SText>
                                 <SHr height={8} />
-                                <SText fontSize={12} font={"Roboto"} color={"white"} bold >{this.getDetalleEstado(data)}</SText>
+                                <SText fontSize={12} font={"Roboto"} color={"white"} bold >{Parent.Actions.getDetalleEstado(data)}</SText>
                                 <SHr height={4} />
                                 <SView row >
-                                    <SText fontSize={12} font={"Roboto"} color={"white"} >{new SDate(data.fecha).toString("dd de MONTH")}</SText>
+                                    <SText fontSize={12} font={"Roboto"} color={"white"} >{new SDate(data.fecha, "yyyy-MM-dd").toString("dd de MONTH")}</SText>
                                     <SView width={8} />
                                     <SText fontSize={12} font={"Roboto"} color={"white"} >{data.horario.hora_inicio} - {data.horario.hora_fin}</SText>
                                 </SView>

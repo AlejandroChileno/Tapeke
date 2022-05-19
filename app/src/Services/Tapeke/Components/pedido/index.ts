@@ -13,10 +13,12 @@ import PedidoConfirmacion from "./Pages/PedidoConfirmacion";
 import PedidoQR from "./Pages/PedidoQR";
 import Carga from "./Pages/Carga";
 
+import PedidoState from "./PedidoStates.json";
 export default {
     component,
     version,
     Actions,
+    Estados: PedidoState,
     Reducers: {
         [component + 'Reducer']: Reducer
     },

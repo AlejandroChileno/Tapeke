@@ -1,9 +1,14 @@
 package model.pedido.states;
 
+import java.sql.SQLException;
+
 import org.json.JSONObject;
 
+import Servisofts.SPGConect;
+import Servisofts.SUtil;
 import model.pedido.Pedido;
 import model.pedido.State;
+import model.pedido.StateFactory.states;
 import model.pedido.exception.StateException;
 
 public class pagado extends State {
@@ -36,6 +41,36 @@ public class pagado extends State {
     @Override
     public void entregar(JSONObject obj) throws StateException {
         noPermited();
+    }
+
+    @Override
+    public void entregar_a_conductor(JSONObject obj) throws StateException {
+        noPermited();
+    }
+
+    @Override
+    public void sync_listos(JSONObject obj) throws StateException {
+        this.pedido.changeState(states.listo, "sync_listos");
+    }
+
+    @Override
+    public void sync_no_recogido(JSONObject obj) throws StateException {
+        noPermited();
+    }
+
+    @Override
+    public void sync_recordatorio(JSONObject obj) throws StateException {
+        // TODO: Notificar el cliente que el pedido estara listo pronto
+        JSONObject objEdit = new JSONObject();
+        objEdit.put("key", this.pedido.getData().getString("key"));
+        objEdit.put("fecha_recordado", SUtil.now());
+        try {
+            SPGConect.editObject("pedido", objEdit);
+            System.out.println("notificar q se acerca el pedido");
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 }

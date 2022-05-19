@@ -68,7 +68,7 @@ public class pedido {
     }
 
     public static void getAllActivos(JSONObject obj, SSSessionAbstract session) throws SQLException {
-        String consulta = "select pedido_get_all_activos() as json";
+        String consulta = "select pedido_get_all_activos(0) as json";
         JSONObject data = SPGConect.ejecutarConsultaObject(consulta);
         obj.put("data", data);
         obj.put("estado", "exito");
@@ -133,7 +133,7 @@ public class pedido {
 
     public static void entregar(JSONObject obj, SSSessionAbstract session) throws StateException {
         model.pedido.Pedido pedido = new model.pedido.Pedido(obj.getString("key_pedido"));
-        pedido.get_payment_order(obj);
+        pedido.entregar(obj);
     }
 
 }

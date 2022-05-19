@@ -11,7 +11,10 @@ public class StateFactory {
         pagado,
         confirmado,
         timeout_pago,
-        entregado
+        entregado,
+        listo,
+        en_camino,
+        no_recogido
     }
 
     public static State getState(Pedido pedido, String state) {
@@ -31,8 +34,14 @@ public class StateFactory {
                 return new confirmado(pedido);
             case timeout_pago:
                 return new timeout_pago(pedido);
+            case listo:
+                return new listo(pedido);
             case entregado:
                 return new entregado(pedido);
+            case en_camino:
+                return new en_camino(pedido);
+            case no_recogido:
+                return new no_recogido(pedido);
 
         }
         return new no_registrado(pedido);
