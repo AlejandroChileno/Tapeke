@@ -61,7 +61,7 @@ class Detalle extends React.Component {
         // alert(this.auxRestaurante.key);
 
         var reducer = this.props.state[Parent.component + "Reducer"];
-        if (reducer.type == "entregar" ) {
+        if (reducer.type == "entregar") {
             if (reducer.estado == "exito") {
                 reducer.estado = "";
                 SNavigation.goBack();
@@ -211,26 +211,36 @@ class Detalle extends React.Component {
                                 <SHr height={15} />
                             </SView>
                             <SView col={"xs-12"} row >
-
-                                <SView center width={70} height={70} backgroundColor={"transparent"} style={{ borderRadius: 8, overflow: 'hidden', }}>
-                                    {/* <SImage src={`${SSocket.api.root}usuario/${this.data.key_usuario}`} style={{ width: "100%", position: "relative", resizeMode: "cover" }} /> */}
-                                    <SIcon width={70} height={70} name={"PedDelivery"} fill={STheme.color.primary} />
-
-                                </SView>
-                                <SView flex center row >
-                                    <SView col={"xs-1"}  >
-                                    </SView>
-                                    <SView col={"xs-11"} row >
-                                        <SView col={"xs-12"} >
-                                            <SText font={"Roboto"} color={STheme.color.text} fontSize={16} style={{ fontWeight: "bold" }}  >{this.dataUsuario.Nombres + " " + this.dataUsuario.Apellidos}</SText>
+                                {(this.data.delivery == 0) ?
+                                    <SView col={"xs-12"} row center backgroundColor={STheme.color.primary} style={{ borderRadius: 4, overflow: 'hidden', }}>
+                                        <SHr height={20} />
+                                        <SView col={"xs-11"} row center>
+                                            <SIcon name="Shopper" width={35} fill={STheme.color.white} />
+                                            <SText fontSize={15} font={"Roboto"} color={STheme.color.white} > Cliente recoge pedido en local</SText>
                                         </SView>
-                                        <SHr height={10} />
-                                        <SView col={"xs-12"} style={{ justifyContent: 'flex-start', }}>
-                                            <SText color={STheme.color.darkGray} fontSize={16} font={"Roboto"} style={{ fontWeight: "bold" }}>Telf: {this.dataUsuario.Telefono} </SText>
+                                        <SHr height={20} />
+                                    </SView> :
+                                    <SView>
+                                        <SView center width={70} height={70} backgroundColor={"transparent"} style={{ borderRadius: 8, overflow: 'hidden', }}>
+                                            {/* <SImage src={`${SSocket.api.root}usuario/${this.data.key_usuario}`} style={{ width: "100%", position: "relative", resizeMode: "cover" }} /> */}
+                                            <SIcon width={70} height={70} name={"PedDelivery"} fill={STheme.color.primary} />
+                                        </SView>
+                                        <SView flex center row >
+                                            <SView col={"xs-1"}  >
+                                            </SView>
+                                            <SView col={"xs-11"} row >
+                                                <SView col={"xs-12"} >
+                                                    <SText font={"Roboto"} color={STheme.color.text} fontSize={16} style={{ fontWeight: "bold" }}  >{this.dataUsuario.Nombres + " " + this.dataUsuario.Apellidos}</SText>
+                                                </SView>
+                                                <SHr height={10} />
+                                                <SView col={"xs-12"} style={{ justifyContent: 'flex-start', }}>
+                                                    <SText color={STheme.color.darkGray} fontSize={16} font={"Roboto"} style={{ fontWeight: "bold" }}>Telf: {this.dataUsuario.Telefono} </SText>
+                                                </SView>
+                                            </SView>
+                                            <SHr height={5} />
                                         </SView>
                                     </SView>
-                                    <SHr height={5} />
-                                </SView>
+                                }
                             </SView>
                         </SView>
                         <SHr height={18} />
@@ -244,7 +254,7 @@ class Detalle extends React.Component {
                             <SView col={"xs-11"} center backgroundColor={STheme.color.success} style={{ borderRadius: 4, overflow: 'hidden', }}>
                                 <SHr height={20} />
                                 <SView col={"xs-11"} >
-                                    <SText font={"Roboto"} center fontSize={18} color={STheme.color.white}>MENSAJE: {mensaje2}</SText>
+                                    <SText font={"Roboto"} center fontSize={18} color={STheme.color.white}>Mensaje: {mensaje2}</SText>
                                 </SView>
                                 <SHr height={20} />
                             </SView> :
@@ -269,12 +279,7 @@ class Detalle extends React.Component {
                                         mensaje += " pero aún no está listo.";
                                         SPopup.alert(mensaje);
                                     } else {
-                                        //componet pedido
-                                        //type entregar
-                                        //key_pedido estado cargando
-                                        //alert()
                                         Parent.Actions.entregar(this.pedidoId, this.props);
-                                        // SPopup.alert("Ya está listo y se puede entregar.");
                                     }
                                 }} > ENTREGADO </SButtom>
                         }
