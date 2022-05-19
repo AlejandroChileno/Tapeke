@@ -153,7 +153,7 @@ class Confirmar extends React.Component {
                     </SView>
                     <SView col={"xs-11"} center>
                         <SHr height={8} />
-                        <SText fontSize={14} color={STheme.color.text}  >No tiene fondo suficiente en su billetera Tapeke.</SText>
+                        <SText fontSize={14} color={STheme.color.primary}  >No tiene fondo suficiente en su billetera Tapeke.</SText>
                     </SView>
                 </SView>
                 <SView col={"xs-12"} center>
@@ -210,9 +210,13 @@ class Confirmar extends React.Component {
                     Validations.pedido_en_curso();
                 }).catch((err) => {
                     if (err.pay_method == "billetera") {
-                        SPopup.open({ content: this.popupSinFondos(err.error), key: "sinFondos" });
+                        alert("No tiene fondos suficientes en su billetera Tapeke.");
+                        // SPopup.open({ content: this.popupSinFondos(err.error), key: "sinFondos" });
                     } else {
-                        SPopup.alert(err.error)
+                        // alert("No tiene fondos suficientes en su billetera Tapekeassaas.");
+                        SPopup.open({ content: this.popupSinFondos(err.error), key: "sinFondos" });
+
+                        // SPopup.alert(err.error)
                     }
 
                     SPopup.close("confirmar");
