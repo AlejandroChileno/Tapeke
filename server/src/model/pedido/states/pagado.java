@@ -64,8 +64,10 @@ public class pagado extends State {
         JSONObject objEdit = new JSONObject();
         objEdit.put("key", this.pedido.getData().getString("key"));
         objEdit.put("fecha_recordado", SUtil.now());
+        this.pedido.getData().put("fecha_recordado", objEdit.get("fecha_recordado"));
         try {
             SPGConect.editObject("pedido", objEdit);
+            this.pedido.notifyOnChangeUser();
             System.out.println("notificar q se acerca el pedido");
         } catch (SQLException e) {
             // TODO Auto-generated catch block

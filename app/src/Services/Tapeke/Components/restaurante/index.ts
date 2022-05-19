@@ -8,7 +8,6 @@ import Perfil from "./Pages/Perfil";
 import Item from "./Components/Item";
 import Marker from "./Components/Marker";
 import Item2 from "./Components/Item2";
-import Filtros from "./Components/Filtros";
 import Categoria from "./Pages/Categoria";
 import Explorador from "./Pages/Explorador";
 import lista from "./Pages/lista";
@@ -40,7 +39,6 @@ export default {
         // ["favoritos"]: Favoritos,
         [component + "/categoria"]: Categoria,
         ["explorar"]: Explorador,
-        ["explorar/filtros"]: Filtros,
         // [component + "/filtros"]: Filtros,
 
         ["mapa"]: ExploradorMapa,

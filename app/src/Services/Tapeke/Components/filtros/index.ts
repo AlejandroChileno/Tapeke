@@ -6,7 +6,7 @@ import Actions from "./Actions";
 import Reducer from "./Reducer";
 
 import BarraFiltros from "./Components/BarraFiltros";
-
+import Filtros from "./Pages/Filtros";
 export default {
     component,
     version,
@@ -15,6 +15,7 @@ export default {
         [component + 'Reducer']: Reducer
     },
     Pages: {
+        "explorar/filtros": Filtros
     },
     Components: {
         BarraFiltros

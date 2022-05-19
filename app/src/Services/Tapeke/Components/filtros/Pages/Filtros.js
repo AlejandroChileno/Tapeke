@@ -5,7 +5,7 @@ import { ScrollView } from 'react-native';
 import {
 	SGradient, SHr, SIcon, SImage, SLoad, SPage, SScrollView2, SText, STheme, SView, SNavigation, SInput, SForm, SButtom
 } from 'servisofts-component';
-import Item2 from './Item2';
+import Item2 from '../../restaurante/Components/Item2';
 import PBarraFooter from '../../../../../Components/PBarraFooter';
 import BarraSuperiorFiltro from '../../../../../Components/BarraSuperiorFiltro';
 import PButtom from '../../../../../Components/PButtom';
@@ -46,13 +46,7 @@ class Filtros extends Component {
 			}}
 			// onSubmitName={"APLICAR"}
 			onSubmit={(values) => {
-				if (this.key) {
-					Parent.Actions.editar({ ...this.data, ...values }, this.data, this.props);
-				} else {
-
-					Parent.Actions.registro(values, this.props);
-					// nombre
-				}
+				SNavigation.goBack();
 			}}
 		/>
 	}

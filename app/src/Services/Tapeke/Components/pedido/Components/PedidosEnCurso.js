@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SDate, SHr, SIcon, SList, SLoad, SNavigation, SText, STheme, SView } from "servisofts-component";
+import { SDate, SHr, SIcon, SList, SLoad, SNavigation, SText, STheme, SView, SScrollView2 } from "servisofts-component";
 import BarraCargando from "../../../../../Components/BarraCargando";
 import pedido from "../../../../../Services/Tapeke/Components/pedido";
 import restaurante from "../../../../../Services/Tapeke/Components/restaurante";
@@ -15,7 +15,8 @@ class PedidosEnCurso extends Component {
 
 
     pedidoencurso(dataPedido) {
-
+        var restaurantes = restaurante.Actions.getAll(this.props);
+        if (!restaurantes) return null;
         return <SList
             data={dataPedido}
             space={16}
@@ -71,8 +72,6 @@ class PedidosEnCurso extends Component {
 
     render() {
         var excluded_states = ["pendiente_pago", "timeout_pago"];
-        var restaurantes = restaurante.Actions.getAll(this.props);
-        if (!restaurantes) return null;
         var dataPedido = pedido.Actions.getPedidoByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props)
         if (!dataPedido) return null;
         dataPedido = dataPedido.filter(data => !excluded_states.includes(data.state));

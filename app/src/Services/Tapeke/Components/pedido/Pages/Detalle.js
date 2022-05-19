@@ -191,7 +191,7 @@ class Detalle extends React.Component {
         return <SView width={114} center row border={'transparent'}  >
             <SView col={"xs-12"} center>
                 <SView width={114} height={26} center style={{ borderRadius: 8, backgroundColor: STheme.color.primary }}>
-                    <SText fontSize={12} font={"Roboto"} color={STheme.color.secondary} >  {this.auxRestaurante.pack?.cantidad ?? 0} disponible(s)</SText>
+                    <SText fontSize={12} font={"Roboto"} color={STheme.color.secondary} >  {this.auxRestaurante.pack?.disponibles ?? 0} disponible(s)</SText>
                 </SView>
             </SView>
             <SView col={"xs-12"} center row>
@@ -211,7 +211,7 @@ class Detalle extends React.Component {
                 <SView col={"xs-3"} center border={'transparent'} >
                     <SView width={34} height={34} center style={{ backgroundColor: STheme.color.primary, borderRadius: 17 }}
                         onPress={() => {
-                            if (this.state.cantidad >= this.auxRestaurante.pack?.cantidad) return;
+                            if (this.state.cantidad >= this.auxRestaurante.pack?.disponibles) return;
                             this.setState({ cantidad: this.state.cantidad + 1 });
                         }}>
                         <SText fontSize={32} color={STheme.color.white} style={{

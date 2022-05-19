@@ -2,8 +2,10 @@ package model.pedido;
 
 import java.sql.SQLException;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import Server.SSSAbstract.SSServerAbstract;
 import Servisofts.SPGConect;
 import Servisofts.SUtil;
 import model.pedido.StateFactory.states;
@@ -76,8 +78,28 @@ public class Pedido implements IPedidoActions {
         return obj;
     }
 
+    public void notifyOnChangeUser() {
+        if (!this.data.has("key")) {
+            return;
+        }
+        JSONObject obj = new JSONObject();
+        obj.put("component", "pedido");
+        obj.put("type", "editar");
+        obj.put("data", this.data);
+        obj.put("estado", "exito");
+        SSServerAbstract.sendUsers(obj.toString(), new JSONArray().put(this.data.getString("key_usuario")));
+    }
+
     public void notifyOnChange() {
-        System.out.println(this.data);
+        if (!this.data.has("key")) {
+            return;
+        }
+        JSONObject obj = new JSONObject();
+        obj.put("component", "pedido");
+        obj.put("type", "editar");
+        obj.put("data", this.data);
+        obj.put("estado", "exito");
+        SSServerAbstract.sendAllServer(obj.toString());
     }
 
     public String getKey() {
