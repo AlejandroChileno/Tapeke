@@ -2,18 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { SHr, SIcon, SImage, SList, SLoad, SNavigation, SPage, SScrollView2, SText, STheme, SView } from "servisofts-component";
 import SSocket from 'servisofts-socket';
-import BarraCargando from "../Components/BarraCargando";
 import BarraSuperiorTapeke from "../Components/BarraSuperiorTapeke";
 import Direccion from "../Components/BarraSuperiorTapeke/Direccion";
 import PBarraFooter from "../Components/PBarraFooter";
 import favorito from "../Services/Tapeke/Components/favorito";
 import novedades from "../Services/Tapeke/Components/novedades";
-import pedido from "../Services/Tapeke/Components/pedido";
 import PedidosEnCurso from "../Services/Tapeke/Components/pedido/Components/PedidosEnCurso";
 import restaurante from "../Services/Tapeke/Components/restaurante";
 import Item2 from "../Services/Tapeke/Components/restaurante/Components/Item2";
 import usuario from "../Services/Usuario/Components/usuario";
-import Validations from "../Validations";
 
 class Inicio extends Component {
   constructor(props) {

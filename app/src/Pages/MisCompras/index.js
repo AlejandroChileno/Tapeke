@@ -9,9 +9,7 @@ class index extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			// keyRestaurante: '9b8f27e9-696d-446f-ae9b-5d6d5bf1ab24',
-		};
+		this.state = {};
 	}
 
 	getBotones(auxKey) {
