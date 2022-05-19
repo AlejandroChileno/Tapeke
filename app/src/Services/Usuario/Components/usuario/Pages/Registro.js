@@ -4,11 +4,14 @@ import { SButtom, SForm, SHr, SPage, SText, SNavigation, SLoad, SView, SIcon, SP
 import SSocket from 'servisofts-socket';
 import Parent from '../index'
 import PButtom from '../../../../../Components/PButtom';
+import usuario from '../index';
 class Registro extends Component {
     constructor(props) {
         super(props);
         this.state = {
             envio: 0,
+            // telefono:"",
+            // correo:"",
         };
         this.key = SNavigation.getParam("key");
         this.type = SNavigation.getParam("type");
@@ -61,11 +64,8 @@ class Registro extends Component {
                 alignItems: "center",
             }}
             inputs={{
-                // foto_p: { type: "image", isRequired: false, defaultValue: `${SSocket.api.root}${Parent.component}/${this.key}`, col: "xs-4 sm-3.5 md-3 lg-2.5 xl-2" },
                 Nombres: { placeholder: "Nombres", isRequired: true, defaultValue: this.usr.Nombres },
                 Apellidos: { placeholder: "Apellidos", isRequired: true, defaultValue: this.usr.Apellidos },
-                // CI: { label: "Documento de identidad", defaultValue: this.usr.CI, icon: <SIcon name={"InputUser"} width={40} height={30} /> },
-                // "Fecha de nacimiento": { label: "Fecha de nacimiento", defaultValue: this.usr["Fecha de nacimiento"], icon: <SIcon name={"Calendar"} width={40} height={30} />, type: "date" },
                 "Telefono": { placeholder: "Teléfono", isRequired: true, defaultValue: this.usr["Telefono"], type: "phone" },
                 Correo: { placeholder: "Correo", type: "email", isRequired: true, defaultValue: this.usr.Correo },
                 ...(!this.type ? {
@@ -74,6 +74,26 @@ class Registro extends Component {
                 } : {})
             }}
             onSubmit={(values) => {
+
+                // if (values["Telefono"] = this.usr.Telefono) {
+                //     alert("El Telefono ya esta registrado");
+                //     return null;
+                // }
+
+
+                // if (values["Correo"] = this.state.correo) {
+                //     alert("El correo ya esta registrado");
+                //     return null;
+                // }
+
+
+
+
+                if (values["Password"] != values["RepPassword"]) {
+                    alert("Las contraseñas no coinciden");
+                    return null;
+                }
+
                 if (this.key) {
                     Parent.Actions.editar({
                         ...this.usr,
@@ -96,6 +116,8 @@ class Registro extends Component {
                         // var error = "Debes aceptar los términos y condiciones"
                         // SPopup.open({ key: "errorRegistro", content: this.alertError(error) });
                     } else {
+                        this.state.aux = values;
+                        
                         Parent.Actions.registro(values, this.props);
                     }
                 }
@@ -105,8 +127,14 @@ class Registro extends Component {
 
     //TODO LICETH: Falta que ricky me devuelva detalle de error de usuario para mostrar error en popup
     alertError(error) {
+        // if (error.Correo == this.state.aux.Correo) {
+        //     alert("El coreoooooooooooo ya esta registrado");
+        //     SPopup.close("errorRegistro");
+        //     return null;
+        // }
+ 
         return <SView col={"xs-12 md-8 xl-6"} row style={{ height: 250, borderRadius: 8, }} backgroundColor={STheme.color.background} center>
-             {/* <SView style={{
+            {/* <SView style={{
                 width: "100%",
                 top: 0,
                 left: 0,
@@ -140,10 +168,26 @@ class Registro extends Component {
 
 
     render() {
-        var error = Parent.Actions.getError("registro", this.props);
+        // var error = Parent.Actions.getError("registro", this.props);
+        var error = usuario.Actions.getError("registro", this.props);
+
         if (error) {
+            console.log("alvaro1 ",error);
+            console.log("alvaro2 ",this.state.aux);
+          
+            if (error.Telefono == this.state.aux.Telefono) {
+                alert("El Telefono ya esta registrado");
+                // return null;
+            }
+
+            if (error.Correo == this.state.aux.Correo) {
+                alert("El correo ya esta registrado");
+            // return null;
+            }
+
             SPopup.open({ key: "errorRegistro", content: this.alertError(error) });
         }
+
         if (this.props.state.usuarioReducer.estado == "exito" && (this.props.state.usuarioReducer.type == "registro") || (this.props.state.usuarioReducer.type == "editar")) {
             this.props.state.usuarioReducer.estado = "";
             if (this.props.state.usuarioReducer.lastRegister) {
