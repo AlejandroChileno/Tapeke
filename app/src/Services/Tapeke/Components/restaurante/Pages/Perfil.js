@@ -123,7 +123,7 @@ class Paso1 extends React.Component {
                     <SView center col={"xs-12"} row style={{ borderBottomWidth: 1, borderTopWidth: 1, borderColor: STheme.color.lightGray }}>
                         <SView col={"xs-6"} row center style={{ borderRightWidth: 1, borderColor: STheme.color.lightGray }}
                             onPress={() => {
-                                //SNavigation.navigate(Parent.component + "/registro")
+                                SNavigation.navigate(Parent.component + "/detalle", { key: this.key_restaurante });
                             }}>
                             <SHr height={20} />
                             <SIcon name={'Detalle'} height={17} width={22} />
