@@ -20,11 +20,31 @@ export default class Actions {
         }
         return data;
     }
+    static getMediaByRestaurante = (key_restaurante,props) => {
+        var reducer = Actions._getReducer(props);
+        var data = reducer.media[key_restaurante];
+        if (!data) {
+            if (reducer.estado == "cargando") return null;
+            SSocket.send({
+                component: Parent.component,
+                version: Parent.version,
+                type: "get_media_restaurante",
+                estado: "cargando",
+                key_restaurante: key_restaurante,
+                key_usuario: props.state.usuarioReducer.usuarioLog.key,
+            })
+            return null;
+        }
+        console.log("NADA" +data);
+        return data;
+    }
+
     static getByKey = (key, props) => {
         var data = Actions.getAll(props);
         if (!data) return null;
         return data[key];
     }
+
     static registro = (data, props) => {
         SSocket.send({
             component: Parent.component,

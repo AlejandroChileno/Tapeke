@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SHr, SNavigation, SPage, SText, SView, STheme, SLoad, SButtom, SIcon, SWebView, SInput, SImage } from 'servisofts-component';
-import { WebView } from 'react-native';
- import PButtom from '../../../../../Components/PButtom';
+import { SHr, SIcon, SInput, SNavigation, SPage, SPopup, SText, STheme, SView } from 'servisofts-component';
 import calificacion from '..';
+import PButtom from '../../../../../Components/PButtom';
 
 
 class Registro extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            selectValue: 5
-        };
+        this.state = { selectValue: 5 };
         this.key_pedido = SNavigation.getParam('key_pedido');
-
     }
 
 
@@ -23,11 +19,9 @@ class Registro extends Component {
         return arr.map((x, i) => {
             return <>
                 <SView col={"xs-2.2"} height={40} row center onPress={() => {
-                    if (this.state.selectValue == i) {
-                    }
+                    if (this.state.selectValue == i) { }
                     this.setState({ selectValue: i });
                 }}>
-
                     <SIcon name={i > this.state.selectValue ? "EstrellaOff" : "EstrellaOn"} width={i > this.state.selectValue ? 40 : 40} fill={STheme.color.card} />
                 </SView>
             </>
@@ -41,14 +35,10 @@ class Registro extends Component {
         return <SView col={"xs-4"}>
             <SView col={"xs-12"} center>
                 <SView width={70} height={70}
-                    // border={STheme.color.card}
                     backgroundColor={!isSelect ? '#F39773' : "#ffffff"}
                     style={{ borderRadius: 35 }}
                     center
-                    onPress={() => {
-                        this.setState({ [key]: !this.state[key] });
-                    }}
-                >
+                    onPress={() => { this.setState({ [key]: !this.state[key] }); }} >
                     <SIcon name={icon} width={40} height={40} fill={!isSelect ? '#ffffff' : STheme.color.primary} stroke={!isSelect ? '#ffffff' : STheme.color.primary} />
                 </SView>
             </SView>
@@ -73,12 +63,17 @@ class Registro extends Component {
             buen_servicio: this.state.buen_servicio == true,
             comentario: this.inp_comentario.getValue() ?? "",
         }
-
         calificacion.Actions.registro(obj, this.props);
-        SNavigation.replace("/");
-        // console.log(obj);
     }
     render() {
+        var reducer = calificacion.Actions._getReducer(this.props);
+        if (reducer.estado == "exito") {
+            reducer.estado = "";
+            SNavigation.goBack();
+        } else if (reducer.estado == "error") {
+            reducer.estado = "";
+            SPopup.alert("Ya existe una calificación para este pedido");
+        }
         return (
             <>
                 <SPage title={'Ayuda'}>

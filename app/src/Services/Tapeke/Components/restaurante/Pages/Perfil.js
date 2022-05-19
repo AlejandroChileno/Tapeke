@@ -7,6 +7,7 @@ import SSocket from 'servisofts-socket';
 import Parent from '../index';
 import horario from '../../horario';
 import FavoritoButtom from '../../favorito/Components/FavoritoButtom';
+import Calificacion from '../../calificacion';
 
 class Paso1 extends React.Component {
     constructor(props) {
@@ -96,7 +97,7 @@ class Paso1 extends React.Component {
     }
 
     recoger() {
-        // var this.dataRestaurante = restaurante.Actions.getByKey(this.key_restaurante, this.props)
+          this.dataRestaurante = restaurante.Actions.getByKey(this.key_restaurante, this.props)
         if (!this.dataRestaurante) return <SLoad />
         return <>
             <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center style={{ backgroundColor: STheme.color.white }}>
@@ -209,7 +210,7 @@ class Paso1 extends React.Component {
                 </SView>
 
                 <SHr height={18} />
-                <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} style={{ backgroundColor: STheme.color.white }} center>
+                <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} row style={{ backgroundColor: STheme.color.white }} center>
                     <SView col={"xs-11"}>
                         <SHr height={15} />
                         <SText fontSize={24} font={"Roboto"} style={{ fontWeight: "bold" }}>Sobre Nosotros</SText>
@@ -219,8 +220,10 @@ class Paso1 extends React.Component {
                     </SView>
                 </SView>
                 <SHr height={18} />
-                {this.calificacion()}
-                <SHr height={18} />
+
+                <Calificacion.Components.MediaRestaurante data={this.dataRestaurante} />
+                {/* {this.calificacion()} */}
+
                 {this.recoger()}
                 <SHr height={18} />
                 <SHr height={40} />

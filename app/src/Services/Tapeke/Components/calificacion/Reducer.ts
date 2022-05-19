@@ -13,6 +13,7 @@ const initialState = () => {
     return {
         component: Parent.component,
         version: Parent.version,
+        media:{}
     };
 }
 export default (state: any, action: DataProps) => {
@@ -34,12 +35,17 @@ const TypesSwitch = (state: any, action: DataProps) => {
         case "registro": return registro(state, action);
         case "editar": return editar(state, action);
         case "getById": return getById(state, action);
+        case "get_media_restaurante": return get_media_restaurante(state, action);
     }
 }
 
 const getAll = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
     state.data = action.data;
+}
+const get_media_restaurante = (state: any, action: DataProps) => {
+    if (action.estado != "exito") return;
+    state.media[action.key_restaurante] = action.data;
 }
 const registro = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
