@@ -99,9 +99,6 @@ public class ManejadorCliente {
                     mailConfig.put("subject", "Registro exitoso!");
                     mailConfig.put("path", "mail/registro_exitoso.html");
                     new Email(new JSONArray().put(data.getJSONObject("data").getString("Correo")), mailConfig, null);
-                    SConsole.log("Registro", data.getJSONObject("data").toString());
-                } else if (data.getString("estado").equals("error")) {
-                    data.remove("error");
                 }
                 break;
             }

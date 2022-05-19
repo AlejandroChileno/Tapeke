@@ -56,9 +56,8 @@ const getAll = (state: any, action: DataProps) => {
 }
 const registro = (state: any, action: DataProps) => {
     if (action.estado == "error") {
-        action.error = action.data;
+        action.error = action.error;
     }
-
     if (action.estado != "exito") return;
     state.lastRegister = action.data;
     if (!state.data) return;

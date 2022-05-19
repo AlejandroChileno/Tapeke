@@ -77,7 +77,7 @@ public class pendiente_pago extends State {
         petition.put("data", new JSONObject().put("client", client).put("items", items)
                 .put("glosa", "Pago de prueba tapeke").put("payment_type", obj.getString("pay_method"))
                 .put("expiration_time", expiration_time));
-        JSONObject pay_order = SocketCliente.sendSinc("multipagos", petition, 30000);
+        JSONObject pay_order = SocketCliente.sendSinc("multipagos", petition, 15000);
         if (pay_order.getString("estado").equals("error")) {
             throw new StateException(pay_order.getString("error"));
         }
@@ -113,13 +113,17 @@ public class pendiente_pago extends State {
         if (pay_method.equals("Billetera")) {
             String key_usuario = this.pedido.getData().getString("key_usuario");
             try {
-                double monto_actual = Double.parseDouble(SPGConect.ejecutarConsultaString(
+                String mont = SPGConect.ejecutarConsultaString(
                         "select sum(billetera.monto) from billetera where billetera.key_cliente = '" + key_usuario
-                                + "' and billetera.estado = 1"));
+                                + "' and billetera.estado = 1");
+                double monto_actual = 0;
+                if (mont != null) {
+                    monto_actual = Double.parseDouble(mont);
+                }
                 double total = (this.pedido.getData().getDouble("precio") * this.pedido.getData().getInt("cantidad"))
                         + this.pedido.getData().getDouble("delivery");
                 if (total > monto_actual) {
-                    throw new StateException("No tiene fondos suficientes en su billetera");
+                    throw new StateException("sin_fondo");
                 }
                 JSONObject billeteraMovimiento = new JSONObject();
                 billeteraMovimiento.put("key", SUtil.uuid());
@@ -145,7 +149,11 @@ public class pendiente_pago extends State {
         petition.put("type", "pay_method");
         petition.put("pay_method", pay_method);
         petition.put("key_payment_order", this.pedido.getData().getString("key_payment_order"));
-        JSONObject response = SocketCliente.sendSinc("multipagos", petition, 1000 * 60 * 2);
+        int timeOut = 1000 * 60 * 2;
+        if (pay_method.equals("QR")) {
+            timeOut = 10000;
+        }
+        JSONObject response = SocketCliente.sendSinc("multipagos", petition, timeOut);
         if (response.has("error")) {
             throw new StateException(response.getString("error"));
         }

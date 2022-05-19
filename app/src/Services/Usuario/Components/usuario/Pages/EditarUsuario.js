@@ -77,9 +77,9 @@ class EditarUsuario extends Component {
                 <SView center>
                     <SView col={"xs-11 md-6 xl-4"} center>
                         <SView height={16} />
-                        <SView col={"xs-12"}>
-                            <SText color={"#DE5738"} fontSize={18} font={"LondonTwo"}>MIS DATOS</SText>
-                        </SView>
+                        {/* <SView col={"xs-12"} center> 
+                            <SText color={"#DE5738"} fontSize={18} font={"Roboto-Bold"}>MIS DATOS</SText>
+                        </SView> */}
                         {this.getForm()}
                         <SView height={16} />
                         <SView col={"xs-11"} row center>

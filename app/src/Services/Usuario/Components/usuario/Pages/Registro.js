@@ -85,10 +85,6 @@ class Registro extends Component {
                 //     alert("El correo ya esta registrado");
                 //     return null;
                 // }
-
-
-
-
                 if (values["Password"] != values["RepPassword"]) {
                     alert("Las contraseñas no coinciden");
                     return null;
@@ -101,23 +97,27 @@ class Registro extends Component {
                     }, this.props);
                 } else {
                     if (this.type) {
-                        console.log(this.usr);
                         switch (this.type) {
                             case "gmail":
                                 values["gmail_key"] = this.usr.gmail_key;
-                                if (!values["gmail_key"]) return null;
+                                if (!values["gmail_key"]) {
+                                    SPopup.alert("Error al registrar con facebook.");
+                                    return null;
+                                }
                                 break;
                             case "facebook":
+                                values["facebook_key"] = this.usr.facebook_key;
+                                if (!values["facebook_key"]) {
+                                    SPopup.alert("Error al registrar con facebook.");
+                                    return null;
+                                }
                                 break;
                         }
                     }
                     if (this.state.envio == 0) {
                         SPopup.alert("Debes aceptar los términos y condiciones")
-                        // var error = "Debes aceptar los términos y condiciones"
-                        // SPopup.open({ key: "errorRegistro", content: this.alertError(error) });
                     } else {
                         this.state.aux = values;
-                        
                         Parent.Actions.registro(values, this.props);
                     }
                 }
@@ -132,7 +132,7 @@ class Registro extends Component {
         //     SPopup.close("errorRegistro");
         //     return null;
         // }
- 
+
         return <SView col={"xs-12 md-8 xl-6"} row style={{ height: 250, borderRadius: 8, }} backgroundColor={STheme.color.background} center>
             {/* <SView style={{
                 width: "100%",
@@ -172,9 +172,9 @@ class Registro extends Component {
         var error = usuario.Actions.getError("registro", this.props);
 
         if (error) {
-            console.log("alvaro1 ",error);
-            console.log("alvaro2 ",this.state.aux);
-          
+            console.log("alvaro1 ", error);
+            console.log("alvaro2 ", this.state.aux);
+
             if (error.Telefono == this.state.aux.Telefono) {
                 alert("El Telefono ya esta registrado");
                 // return null;
@@ -182,7 +182,7 @@ class Registro extends Component {
 
             if (error.Correo == this.state.aux.Correo) {
                 alert("El correo ya esta registrado");
-            // return null;
+                // return null;
             }
 
             SPopup.open({ key: "errorRegistro", content: this.alertError(error) });
@@ -191,7 +191,7 @@ class Registro extends Component {
         if (this.props.state.usuarioReducer.estado == "exito" && (this.props.state.usuarioReducer.type == "registro") || (this.props.state.usuarioReducer.type == "editar")) {
             this.props.state.usuarioReducer.estado = "";
             if (this.props.state.usuarioReducer.lastRegister) {
-                this.key = this.props.state.usuarioReducer.lastRegister.key;
+                // this.key = this.props.state.usuarioReducer.lastRegister.key;
                 var lastRegister = this.props.state.usuarioReducer.lastRegister;
                 if (lastRegister.key) {
                     if (!Parent.Actions.validateSession(this.props, true)) {
@@ -199,19 +199,29 @@ class Registro extends Component {
                             Parent.Actions.loginGoogle({
                                 id: lastRegister.gmail_key
                             }, this.props);
+                            SNavigation.replace("login")
+                            return null;
+                        } else if (lastRegister.facebook_key) {
+                            Parent.Actions.loginFacebook({
+                                id: lastRegister.facebook_key
+                            }, this.props);
+                            SNavigation.replace("login")
+                            return null;
                         } else {
                             Parent.Actions.login({
                                 usuario: this.props.state.usuarioReducer.lastRegister.Correo,
                                 password: this.props.state.usuarioReducer.lastRegister.Password
                             }, this.props);
+                            SNavigation.replace("login")
+                            return null;
                         }
 
                     }
                 }
             }
-            if (this.form) {
-                this.form.uploadFiles(SSocket.api.root + "upload/" + Parent.component + "/" + this.key);
-            }
+            // if (this.form) {
+            //     this.form.uploadFiles(SSocket.api.root + "upload/" + Parent.component + "/" + this.key);
+            // }
             // SNavigation.goBack();
         }
         if (this.key) {

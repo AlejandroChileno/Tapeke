@@ -55,16 +55,25 @@ class Inicio extends Component {
     if (!data) return <SLoad />;
     if (!favUsuario) return <SLoad />;
     var arr = Object.values(data).filter((itm) => favUsuario.find((elm) => elm.key_restaurante == itm.key))
-    return <SList
-      data={arr}
-      space={16}
-      center
-      horizontal={true}
-      render={(obj) => {
-        return <SView width={320}   >
-          <Item2 data={obj} ></Item2>
-        </SView>
-      }} />
+    if (arr.length == 0) return null;
+    return <>
+      {this.categoria("Favoritos", "favorito")}
+      <SView col={"xs-12"} height={195} border={"transparent"} >
+        <SScrollView2>
+          <SList
+            data={arr}
+            space={16}
+            center
+            horizontal={true}
+            render={(obj) => {
+              return <SView width={320}   >
+                <Item2 data={obj} ></Item2>
+              </SView>
+            }} />
+        </SScrollView2>
+      </SView>
+    </>
+
   }
   cerca() {
     var data = restaurante.Actions.getAllFilter({}, this.props);
@@ -105,10 +114,11 @@ class Inicio extends Component {
   }
 
   pedidoencurso() {
-    return <PedidosEnCurso />
+    return <PedidosEnCurso categoria={this.categoria("Pedido en curso", "compras")} />
   }
 
   categoria(title, url) {
+
     return (
       <>
         <SHr height={8} />
@@ -129,56 +139,58 @@ class Inicio extends Component {
     );
   }
 
+  getContent() {
+    if (!this.props.state.direccion_usuarioReducer.miDireccion) {
+      return <SLoad />
+    }
+    return <SView col={"xs-12"} center height>
+
+      {this.pedidoencurso()}
+
+      {this.categoria("Recomendado Para Ti", "explorar")}
+      <SView col={"xs-12"} height={195} border={"transparent"} >
+        <SScrollView2>
+          {this.paraTi()}
+        </SScrollView2>
+      </SView>
+      {this.categoria("Cerca", "explorar")}
+      <SView col={"xs-12"} height={195} border={"transparent"} >
+        <SScrollView2>
+          {this.cerca()}
+        </SScrollView2>
+      </SView>
+      <SHr height={20} />
+      <SHr height={20} />
+      <SHr height={20} />
+      <SView col={"xs-12"} height={170} border={"transparent"} >
+        <SScrollView2>
+          {this.publicidad()}
+        </SScrollView2>
+      </SView>
+      <SHr height={20} />
+      <SHr height={20} />
+
+      {this.favoritos()}
+
+      <SHr height={20} />
+    </SView>
+  }
+  getDireccion() {
+    if (!usuario.Actions.validateSession(this.props, true)) {
+      return <SLoad />
+    }
+    return <Direccion />
+  }
 
   render() {
-    if (!usuario.Actions.validateSession(this.props)) {
-      return <SLoad />;
-    }
-    // var UsuaioPage = Pages["usuarioPage/lista"];
-    // Validations.pedido_en_curso();
+    usuario.Actions.validateSession(this.props)
     return (
       <>
         <BarraSuperiorTapeke>
-          <Direccion />
+          {this.getDireccion()}
         </BarraSuperiorTapeke>
         <SPage title={"as"} hidden center  >
-          <SView col={"xs-12"} center height>
-            {this.categoria("Pedido en curso", "compras")}
-            <SView col={"xs-12"} height={130}>
-              <SScrollView2>
-                {this.pedidoencurso()}
-              </SScrollView2>
-            </SView>
-            {this.categoria("Recomendado Para Ti", "explorar")}
-            <SView col={"xs-12"} height={195} border={"transparent"} >
-              <SScrollView2>
-                {this.paraTi()}
-              </SScrollView2>
-            </SView>
-            {this.categoria("Cerca", "explorar")}
-            <SView col={"xs-12"} height={195} border={"transparent"} >
-              <SScrollView2>
-                {this.cerca()}
-              </SScrollView2>
-            </SView>
-            <SHr height={20} />
-            <SHr height={20} />
-            <SHr height={20} />
-            <SView col={"xs-12"} height={170} border={"transparent"} >
-              <SScrollView2>
-                {this.publicidad()}
-              </SScrollView2>
-            </SView>
-            <SHr height={20} />
-            <SHr height={20} />
-            {this.categoria("Favoritos", "favorito")}
-            <SView col={"xs-12"} height={195} border={"transparent"} >
-              <SScrollView2>
-                {this.favoritos()}
-              </SScrollView2>
-            </SView>
-            <SHr height={20} />
-          </SView>
+          {this.getContent()}
         </SPage>
         <PBarraFooter url={"/"} />
       </>

@@ -39,13 +39,18 @@ export default class Actions {
     }
     //filter:{ soloHoy:bool, soloDisponible:bool, entregaDomicilio:bool }
     static getAllFilter = (filter, props) => {
+        var miDireccion = props.state.direccion_usuarioReducer.miDireccion;
+        if(!miDireccion) return null;
+        if(!miDireccion.latitude) return null;
         var data = Actions.getAll(props);
         var horarios_restaurantes = horario.Actions.getAll(props);
-        var data_pedidos = pedido.Actions.getAll(props);
+        var packs = pack.Actions.getAll(props);
         if (!data) return null;
         if (!horarios_restaurantes) return null;
-        if (!data_pedidos) return null;
-        var miDireccion = props.state.direccion_usuarioReducer.miDireccion;
+        if (!packs) return null;
+        var data_pedidos = pedido.Actions.getAll(props);
+        // if (!data_pedidos) return null;
+      
         var miDistancia = props.state.direccion_usuarioReducer.miDistancia;
         var list = [];
         Object.values(data).map((obj) => {

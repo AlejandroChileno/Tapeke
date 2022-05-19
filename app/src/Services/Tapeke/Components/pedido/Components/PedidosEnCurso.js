@@ -14,12 +14,8 @@ class PedidosEnCurso extends Component {
 
 
 
-    pedidoencurso() {
-        var excluded_states = ["pendiente_pago", "timeout_pago"];
-        var dataPedido = pedido.Actions.getPedidoByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props)
-        var restaurantes = restaurante.Actions.getAll(this.props);
-        if (!dataPedido) return <SLoad />
-        if (!restaurantes) return <SLoad />
+    pedidoencurso(dataPedido) {
+
         return <SList
             data={dataPedido}
             space={16}
@@ -28,7 +24,7 @@ class PedidosEnCurso extends Component {
                 { key: "fecha", order: "asc", peso: 2 },
                 { key: "horario/hora_inicio", order: "asc", peso: 1 }
             ]}
-            filter={data => !excluded_states.includes(data.state)}
+
             render={(data) => {
                 var restaurante_obj = restaurantes[data.horario.key_restaurante];
                 return <SView width={320} backgroundColor={STheme.color.primary} style={{ borderRadius: 8, }} center onPress={() => {
@@ -74,8 +70,23 @@ class PedidosEnCurso extends Component {
 
 
     render() {
-        return this.pedidoencurso();
+        var excluded_states = ["pendiente_pago", "timeout_pago"];
+        var restaurantes = restaurante.Actions.getAll(this.props);
+        if (!restaurantes) return null;
+        var dataPedido = pedido.Actions.getPedidoByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props)
+        if (!dataPedido) return null;
+        dataPedido = dataPedido.filter(data => !excluded_states.includes(data.state));
+        if (dataPedido.length == 0) return null;
+        return <>
+            {this.props.categoria}
+            <SView col={"xs-12"} height={130} >
+                <SScrollView2>
+                    {this.pedidoencurso(dataPedido)}
+                </SScrollView2>
+            </SView >
+        </>
     }
+
 }
 const initStates = (state) => {
     return { state };

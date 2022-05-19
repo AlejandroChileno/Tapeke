@@ -8,6 +8,7 @@ import Validations from '../../../../../Validations';
 import TipoPago from '../../../../Multipagos/Components/payment_type/Components/TipoPago';
 import Parent from '../index';
 import ParentBilletera from '../../billetera/index';
+import BarraCargando from '../../../../../Components/BarraCargando';
 
 class Confirmar extends React.Component {
 
@@ -62,7 +63,7 @@ class Confirmar extends React.Component {
                             resizeMode: "cover"
                         }} />
 
-{/* <SImage src={`${SSocket.api.root}restaurante/${this.data.restaurante.key}`} style={{ width: "100%", position: "relative", resizeMode: "cover" }} /> */}
+                        {/* <SImage src={`${SSocket.api.root}restaurante/${this.data.restaurante.key}`} style={{ width: "100%", position: "relative", resizeMode: "cover" }} /> */}
 
 
                         <SGradient colors={["#00000045", "#00000045",]} />
@@ -187,6 +188,12 @@ class Confirmar extends React.Component {
             }}
             onSubmit={(values) => {
                 var usuario = this.props.state.usuarioReducer.usuarioLog;
+                var timeOut = 60 * 1000 * 4;
+                if (this.state.tipoPagoSeleccionado == "QR" || this.state.tipoPagoSeleccionado == "Billetera") {
+                    timeOut = 10000;
+                }
+                SPopup.close("confirmar");
+                this.setState({ loading: true });
                 SSocket.sendPromise(
                     {
                         "component": "pedido",
@@ -196,26 +203,26 @@ class Confirmar extends React.Component {
                         "client": {
                             "name": usuario["Nombres"],
                             "last_name": usuario["Apellidos"],
-                            "ci": "6392496",
+                            "ci": " ",
                             "phone": usuario["Telefono"],
                             "email": usuario["Correo"],
                             "bussiness_name": values["business_name"],
                             "nit": values["nit"]
                         }
-                    }, 60 * 1000 * 4
+                    }, timeOut
                 ).then((resp) => {
-                    SPopup.close("confirmar");
+                    this.setState({ loading: false });
                     this.auxPedido = resp.data;
                     Validations.set_pedido_en_curso(this.auxPedido);
                     Validations.pedido_en_curso();
                 }).catch((err) => {
-                    if (err.pay_method == "billetera") {
+                    this.setState({ loading: false });
+                    if (err.pay_method == "Billetera") {
                         SPopup.open({ content: this.popupSinFondos(err.error), key: "sinFondos" });
                     } else {
                         SPopup.alert(err.error)
                     }
 
-                    SPopup.close("confirmar");
                 });
             }} />
     }
@@ -247,6 +254,21 @@ class Confirmar extends React.Component {
         </>
     }
 
+    getLoading() {
+        if (!this.state.loading) return null;
+        return <SView col={"xs-12"} height center style={{
+            position: "absolute",
+            backgroundColor: "#ffffff"
+        }}>
+
+            <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center>
+                <BarraCargando />
+                <SHr height={18} />
+                <SText font='Roboto' fontSize={16} color={STheme.color.gray}>Estamos procesando tu compra.</SText>
+            </SView>
+
+        </SView>
+    }
     render() {
         return (
             <>
@@ -275,8 +297,8 @@ class Confirmar extends React.Component {
                             <SHr height={40} />
                         </SView>
                     </SView>
-
                 </SPage >
+                {this.getLoading()}
             </>
         );
     }

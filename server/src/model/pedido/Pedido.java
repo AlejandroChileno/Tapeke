@@ -49,6 +49,7 @@ public class Pedido implements IPedidoActions {
             pedido.put("key", this.key);
             pedido.put("state", this.state.code);
             SPGConect.editObject("pedido", pedido);
+            this.notifyOnChange();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -73,6 +74,10 @@ public class Pedido implements IPedidoActions {
         obj.put("key", this.key);
         obj.put("state", this.state.code);
         return obj;
+    }
+
+    public void notifyOnChange() {
+        System.out.println(this.data);
     }
 
     public String getKey() {

@@ -50,6 +50,9 @@ public class Manejador {
             case usuario_restaurante.COMPONENT:
                 usuario_restaurante.onMessage(obj, session);
                 break;
+            case calificacion.COMPONENT:
+                calificacion.onMessage(obj, session);
+                break;
 
         }
     }

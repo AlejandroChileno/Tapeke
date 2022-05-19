@@ -16,6 +16,7 @@ class Lista extends Component {
         return <STable2
             header={[
                 { key: "index", label: "#", width: 50 },
+                { key: "key", label: "key", width: 200 },
                 {
                     key: "key-foto", label: "Foto", width: 70, center: true, component: (key) => {
                         return <SView width={40} height={40} onPress={() => {
@@ -24,11 +25,9 @@ class Lista extends Component {
                         </SView>
                     }
                 },
-                { key: "CI", label: "CI", width: 150 },
                 { key: "Nombres", label: "Nombres", width: 150 },
                 { key: "Apellidos", label: "Apellidos", width: 150 },
                 { key: "Correo", label: "Correo", width: 150 },
-                { key: "Fecha de nacimiento", label: "Fecha de nacimiento", width: 150 },
                 { key: "Telefono", label: "Telefono", width: 150 },
                 // { key: "Password", label: "Password", width: 150 },
                 {
