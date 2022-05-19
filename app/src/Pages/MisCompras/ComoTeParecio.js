@@ -11,6 +11,8 @@ class ComoTeParecio extends Component {
 		this.state = {
 			selectValue: 5
 		};
+		this.key_pedido = SNavigation.getParam('key_pedido');
+
 	}
 
 
@@ -67,7 +69,7 @@ class ComoTeParecio extends Component {
 			buena_calidad: this.state.buena_calidad == true,
 			buena_cantidad: this.state.buena_cantidad == true,
 			buen_servicio: this.state.buen_servicio == true,
-			comentario: this.inp_comentario.getValue()??"",
+			comentario: this.inp_comentario.getValue() ?? "",
 		}
 		console.log(obj);
 	}

@@ -15,6 +15,7 @@ import pago_tarjeta from './Components/pago_tarjeta';
 import usuario_restaurante from './Components/usuario_restaurante';
 
 import PedidoEnCurso from './Tasks/PedidoEnCurso';
+import calificacion from './Components/calificacion';
 const ServiceName = "tapeke";
 
 const Pages: SPageListProps = {
@@ -32,7 +33,8 @@ const Pages: SPageListProps = {
     ...novedades.Pages,
     ...pago_tarjeta.Pages,
     ...usuario_restaurante.Pages,
-
+    ...calificacion.Pages,
+    
 
 }
 
@@ -50,6 +52,7 @@ const Reducers = {
     ...pago_tarjeta.Reducers,
     ...PedidoEnCurso.Reducers,
     ...usuario_restaurante.Reducers,
+    ...calificacion.Reducers,
 }
 
 export default {
