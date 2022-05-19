@@ -1,21 +1,18 @@
-import Services from '../Services';
-import Home from './Home';
-import Carga from './Carga';
-import Ajustes from './Ajustes';
-import Inicio from './Inicio';
-import Administracion from './Administracion';
-import TerminosCondiciones from '../Pages/TerminosCondiciones';
 import SmsValidation from '../Pages/SmsValidation';
-import inDevelop from './inDevelop';
-// import Billetera from '../Services/Tapeke/Components/billetera/Pages/Billetera';
-
-import SelectDireccion from './SelectDireccion';
+import TerminosCondiciones from '../Pages/TerminosCondiciones';
+import Services from '../Services';
+import Administracion from './Administracion';
+import Ajustes from './Ajustes';
 import Ayuda from './Ayuda';
-
+import Carga from './Carga';
+import Home from './Home';
+import inDevelop from './inDevelop';
+import Inicio from './Inicio';
 import MisCompras from './MisCompras';
-import ComoTeParecio from './MisCompras/ComoTeParecio';
+// import Billetera from '../Services/Tapeke/Components/billetera/Pages/Billetera';
+import SelectDireccion from './SelectDireccion';
 import Test from './Test';
-import PedidoQR from '../Services/Tapeke/Components/pedido/Pages/PedidoQR';
+
 
 // import MensajeSolicitud from '../Services/Tapeke/Components/pedido/Pages/MensajeSolicitud';
 // import Preparacion from '../Services/Tapeke/Components/pedido/Pages/PedidoConfirmacion';
@@ -39,8 +36,7 @@ const Pages = {
     "compras": MisCompras,
     // "billetera": Billetera,
     "ayuda": Ayuda,
-    "comoteparecio": ComoTeParecio,
-    "smsvalidation": SmsValidation
+     "smsvalidation": SmsValidation
     
 
 
