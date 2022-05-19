@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SButtom, SForm, SIcon, SNavigation, SPage, SText, SView } from 'servisofts-component';
+import { SButtom, SForm, SIcon, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
 import SSocket from 'servisofts-socket';
 import Usuario from '..';
+import PButtom from '../../../../../Components/PButtom';
 class EditarUsuario extends Component {
     constructor(props) {
         super(props);
@@ -25,21 +26,24 @@ class EditarUsuario extends Component {
 
             // }}
             inputs={{
-                foto_p: { type: "image", isRequired: false, defaultValue: `${SSocket.api.root}usuario/${this.key}?time=${new Date().getTime()}`, col: "xs-4 sm-3.5 md-3 lg-2.5 xl-2.5", style: { borderRadius: 100, overflow: 'hidden', width: 130, height: 130, borderWidth: 0 } },
+                foto_p: { type: "image", isRequired: false, defaultValue: `${SSocket.api.root}usuario/${this.key}?time=${new Date().getTime()}`, col: "xs-4 sm-3.5 md-3 lg-2.5 xl-2.5", style: { borderRadius: 100, overflow: 'hidden', width: 130, height: 130, borderWidth: 1, borderColor: STheme.color.lightGray, } },
                 Nombres: { label: "Nombres", isRequired: true, defaultValue: this.usr.Nombres, icon: <SIcon name={"InputUser"} width={40} height={30} /> },
                 Apellidos: { label: "Apellidos", isRequired: true, defaultValue: this.usr.Apellidos, icon: <SIcon name={"InputUser"} width={40} height={30} /> },
-                // CI: { label: "Documento de identidad", defaultValue: this.usr.CI, icon: <SIcon name={"InputUser"} width={40} height={30} /> },
-                // "Fecha de nacimiento": { label: "Fecha de nacimiento", type: "date", defaultValue: this.usr["Fecha de nacimiento"], icon: <SIcon name={"Calendar"} width={40} height={30} /> },
                 "Telefono": { label: "Telefono", defaultValue: this.usr["Telefono"], type: "phone" },
                 Correo: { label: "Correo", type: "email", isRequired: true, defaultValue: this.usr.Correo, icon: <SIcon name={"InputEmail"} width={40} height={30} /> },
                 ...(isApi ? {} : {
                     Password: { label: "Contraseña", type: "password", isRequired: true, defaultValue: this.usr.Password, icon: <SIcon name={"InputPassword"} width={40} height={30} /> },
                     RepPassword: { label: "Repetir contraseña", type: "password", isRequired: true, defaultValue: this.usr.Password, icon: <SIcon name={"InputRePassword"} width={40} height={30} /> }
                 }),
-                // "Direccion": { label: "Dirección", defaultValue: this.usr["Direccion"], type: "direccion", icon: <SIcon name={"map"} width={40} height={30} /> },
 
             }}
             onSubmit={(values) => {
+
+                if (values.Password != values.RepPassword) {
+                    alert("Las contraseñas no coinciden");
+                    return null;
+                }
+
                 var finalObj = {
                     ...this.usr,
                     ...values
@@ -72,26 +76,16 @@ class EditarUsuario extends Component {
             <SPage title={"Editar usuario!"}>
                 <SView center>
                     <SView col={"xs-11 md-6 xl-4"} center>
-                        <SView height={8} />
-                        {/* <SText fontSize={20} bold>{"Editar usuario!"}</SText> */}
-                        <SView height={8} />
-                        {/* <SView width={160} height={160}>
-                            <KFotoPerfil data={usuario} component={"usuario"} />
-                        </SView> */}
+                        <SView height={16} />
                         <SView col={"xs-12"}>
                             <SText color={"#DE5738"} fontSize={18} font={"LondonTwo"}>MIS DATOS</SText>
                         </SView>
                         {this.getForm()}
                         <SView height={16} />
                         <SView col={"xs-11"} row center>
-                            <SButtom primary props={{
-                                type: "outline"
-                            }}
-                                onPress={() => {
-                                    this.form.submit();
-                                }}>
-                                {"CONFIRMAR"}
-                            </SButtom>
+                            <PButtom fontSize={20} onPress={() => {
+                                this.form.submit();
+                            }}>CONFIRMAR</PButtom>
                         </SView>
                         <SView height={36} />
                     </SView>
