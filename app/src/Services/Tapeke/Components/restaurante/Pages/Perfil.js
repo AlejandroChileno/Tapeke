@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SMapView, SMarker, SHr, SPage, SText, SView, SIcon, STheme, SImage, SGradient, SNavigation, SLoad, SDate, SMath } from 'servisofts-component';
+import { SDate, SGradient, SHr, SIcon, SImage, SLoad, SMapView, SMarker, SMath, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
+import SSocket from 'servisofts-socket';
 import restaurante from '..';
 import PButtom from '../../../../../Components/PButtom';
-import SSocket from 'servisofts-socket';
-import Parent from '../index';
-import horario from '../../horario';
+import Calificacion from '../../calificacion';
 import FavoritoButtom from '../../favorito/Components/FavoritoButtom';
+import horario from '../../horario';
+import Parent from '../index';
 
 class Paso1 extends React.Component {
     constructor(props) {
@@ -96,7 +97,7 @@ class Paso1 extends React.Component {
     }
 
     recoger() {
-        // var this.dataRestaurante = restaurante.Actions.getByKey(this.key_restaurante, this.props)
+        this.dataRestaurante = restaurante.Actions.getByKey(this.key_restaurante, this.props)
         if (!this.dataRestaurante) return <SLoad />
         return <>
             <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center style={{ backgroundColor: STheme.color.white }}>
@@ -136,9 +137,12 @@ class Paso1 extends React.Component {
                             <SText color={STheme.color.primary} fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>Cómo llegar {">"}</SText>
                         </SView>
                     </SView>
+                    <SHr height={18} />
                     {this.hayDelivery(this.dataRestaurante.delivery)}
                 </SView>
             </SView>
+            <SHr height={18} />
+
         </>
     }
 
@@ -146,9 +150,12 @@ class Paso1 extends React.Component {
         if (!this.dataRestaurante.pack) return null;
         if (!this.dataRestaurante.pack.disponibles) return null;
         if (this.dataRestaurante.pack.disponibles <= 0) return null;
-        return <PButtom fontSize={20} onPress={() => {
-            SNavigation.navigate("pedido/detalle", { key: this.key_restaurante });
-        }}>RESERVAR</PButtom>
+        return <>
+            <PButtom fontSize={20} onPress={() => {
+                SNavigation.navigate("pedido/detalle", { key: this.key_restaurante });
+            }}>RESERVAR</PButtom>
+            <SHr height={28} />
+        </>
     }
     render() {
 
@@ -209,7 +216,7 @@ class Paso1 extends React.Component {
                 </SView>
 
                 <SHr height={18} />
-                <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} style={{ backgroundColor: STheme.color.white }} center>
+                <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} row style={{ backgroundColor: STheme.color.white }} center>
                     <SView col={"xs-11"}>
                         <SHr height={15} />
                         <SText fontSize={24} font={"Roboto"} style={{ fontWeight: "bold" }}>Sobre Nosotros</SText>
@@ -219,14 +226,14 @@ class Paso1 extends React.Component {
                     </SView>
                 </SView>
                 <SHr height={18} />
-                {this.calificacion()}
-                <SHr height={18} />
+
+                <Calificacion.Components.MediaRestaurante data={this.dataRestaurante} />
+                {/* {this.calificacion()} */}
+
                 {this.recoger()}
-                <SHr height={18} />
-                <SHr height={40} />
                 {this.getReservar()}
-                <SHr height={40} />
             </SView>
+
         </SPage>
     }
 }
