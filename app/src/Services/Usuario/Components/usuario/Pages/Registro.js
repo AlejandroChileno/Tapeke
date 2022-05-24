@@ -75,7 +75,7 @@ class Registro extends Component {
             }}
             onSubmit={(values) => {
                 if (values["Password"] != values["RepPassword"]) {
-                    alert("Las contraseñas no coinciden");
+                    SPopup.open({content: this.alertErrorPassword() });
                     return null;
                 }
 
@@ -114,7 +114,7 @@ class Registro extends Component {
         />
     }
 
-    alertError(error, mensaje) {
+    alertError(error, icono, mensaje) {
         return <SView col={"xs-12 md-8 xl-6"} row style={{ height: 250, borderRadius: 8, }} backgroundColor={STheme.color.background} center>
             <SView col={"xs-11"}  >
                 <SView height={30}></SView>
@@ -128,6 +128,20 @@ class Registro extends Component {
         </SView>
     }
 
+    alertErrorPassword() {
+        return <SView col={"xs-11 md-8 xl-6"} row center style={{ height: 250, borderRadius: 8, }} backgroundColor={STheme.color.background} >
+            <SView col={"xs-11"} height={40} />
+            <SView col={"xs-11"}  >
+                <SIcon name={"InputPassword"} height={100} />
+            </SView>
+            <SView col={"xs-11"} height={15} />
+            <SView col={"xs-12"} center  >
+                <SText center color={STheme.color.darkGray} style={{ fontSize: 18, fontWeight: "bold" }}>Las contraseñas no coinciden</SText>
+            </SView>
+            <SView col={"xs-11"} height={30} />
+        </SView>
+    }
+
 
     render() {
         // var error = Parent.Actions.getError("registro", this.props);
@@ -138,15 +152,11 @@ class Registro extends Component {
             console.log("alvaro2 ", this.state.aux);
 
             if (error.Telefono == this.state.aux.Telefono) {
-                SPopup.open({ key: "errorRegistro", content: this.alertError(error, "Número") });
-                // SPopup.close("errorRegistro");
-                // return;
-                // alert("El Telefono ya esta registrado");
-                // return null;
+                SPopup.open({ key: "errorRegistro", content: this.alertError(error, "UserAlert", "Número") });
             }
 
             if (error.Correo == this.state.aux.Correo) {
-                SPopup.open({ key: "errorRegistro", content: this.alertError(error, "Correo") });
+                SPopup.open({ key: "errorRegistro", content: this.alertError(error, "Email", "Correo") });
                 // SPopup.close("errorRegistro");
                 // return;
                 // alert("El correo ya esta registrado");
