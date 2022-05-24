@@ -10,8 +10,8 @@ class Detalle extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
-        // this.pedidoId = SNavigation.getParam("key_pedido");
-        this.pedidoId = "8a6f5d23-8c91-47bc-9a18-ec2314b29b0a"
+         this.pedidoId = SNavigation.getParam("key_pedido");
+        // this.pedidoId = "8a6f5d23-8c91-47bc-9a18-ec2314b29b0a"
     }
 
     error() {

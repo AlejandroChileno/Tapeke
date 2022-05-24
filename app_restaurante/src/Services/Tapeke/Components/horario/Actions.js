@@ -64,7 +64,7 @@ export default class Actions {
             var dia = new SDate(dow.fecha + " " + dow.hora_inicio, "yyyy-MM-dd hh:mm");
             if (dia.getTime() < new SDate().getTime()) {
                 dow.fecha = date.addDay(7).toString("yyyy-MM-dd");
-                text = "Proximo " + SDate.getDayOfWeek(dow.dia).text?.toLowerCase();
+                text = "Próximo " + SDate.getDayOfWeek(dow.dia).text?.toLowerCase();
                 dia = new SDate(dow.fecha + " " + dow.hora_inicio, "yyyy-MM-dd hh:mm");
             }
             dow.sdate = dia;
