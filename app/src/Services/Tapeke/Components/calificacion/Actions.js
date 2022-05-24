@@ -35,7 +35,7 @@ export default class Actions {
             })
             return null;
         }
-        console.log("NADA" +data);
+        // console.log("NADA" +data);
         return data;
     }
 

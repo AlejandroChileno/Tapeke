@@ -10,7 +10,7 @@ class LoginGoogle extends Component {
 
     render() {
         const responseGoogle = (response) => {
-            console.log(response);
+            // console.log(response);
             if (response.googleId) {
                 if (this.props.onLogin) {
                     this.props.onLogin({

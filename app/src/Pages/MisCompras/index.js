@@ -34,7 +34,7 @@ class index extends Component {
 			space={16}
 			filter={(item) => item.estado == '1' && item.key_usuario == key_usuario && item.state != "pendiente_pago" && item.state != "timeout_pago"}
 			render={(obj, key) => {
-				console.log("resta ", obj.state);
+				// console.log("resta ", obj.state);
 				return <SView col={"xs-12 "} height={100} row border={STheme.color.card} style={{ borderRadius: 8, }}
 					onPress={() => {
 						if (obj.state == "pagado") {

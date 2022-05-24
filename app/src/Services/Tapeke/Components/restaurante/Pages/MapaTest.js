@@ -55,7 +55,7 @@ class MapaTest extends Component {
 					}}
 
 					onRegionChangeComplete={(region) => {
-						console.log(region);
+						// console.log(region);
 						this.setState({ region: region })
 					}}
 

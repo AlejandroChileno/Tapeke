@@ -138,7 +138,7 @@ const Horario = (props) => {
         } else {
             inputArray = eval("input_" + key2)
         }
-        console.log(inputArray)
+        // console.log(inputArray)
         //console.log(JSON.stringify(inputArray)+"---" + dias[key2].text);
 
 

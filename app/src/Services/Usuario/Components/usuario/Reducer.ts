@@ -79,8 +79,6 @@ const getById = (state: any, action: DataProps) => {
     state.data[action.data.key] = action.data;
 }
 const login = (state: any, action: DataProps) => {
-
-
     if (action.estado != "exito") return;
     state.usuarioLog = action.data;
     SStorage.setItem("usr_log", JSON.stringify(action.data));

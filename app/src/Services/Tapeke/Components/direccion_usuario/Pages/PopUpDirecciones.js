@@ -40,7 +40,7 @@ class PopUpDirecciones extends React.Component {
             this.state.place_id = null;
         }
         return geocodeList.map((obj, i) => {
-            console.log(obj)
+            // console.log(obj)
             return <SSection key={"list_iten_" + i}>
                 <SHr height={10} />
                 <SView col={"xs-12"} height={64} row center border={"transparent"}>
