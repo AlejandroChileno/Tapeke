@@ -74,17 +74,6 @@ class Registro extends Component {
                 } : {})
             }}
             onSubmit={(values) => {
-
-                // if (values["Telefono"] = this.usr.Telefono) {
-                //     alert("El Telefono ya esta registrado");
-                //     return null;
-                // }
-
-
-                // if (values["Correo"] = this.state.correo) {
-                //     alert("El correo ya esta registrado");
-                //     return null;
-                // }
                 if (values["Password"] != values["RepPassword"]) {
                     alert("Las contraseñas no coinciden");
                     return null;
@@ -132,7 +121,7 @@ class Registro extends Component {
                 <SIcon name={"UserAlert"} height={100} />
             </SView>
             <SView col={"xs-11"} center  >
-                <SText color={STheme.color.darkGray} style={{ fontSize: 20, fontWeight: "bold" }}>{mensaje} activo</SText>
+                <SText color={STheme.color.darkGray} style={{ fontSize: 20, fontWeight: "bold" }}>{mensaje} existente</SText>
                 <SText color={STheme.color.darkGray} style={{ fontSize: 15 }}>El {mensaje} que ingreso ya está asociado a una cuenta activa.</SText>
                 <SView height={30}></SView>
             </SView>
