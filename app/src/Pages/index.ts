@@ -24,7 +24,7 @@ const Pages = {
     // "/": Test,
     // "/": PedidoQR,
     // "/": Preparacion,
-    "test": Test,
+    // "test": Test,
     "carga": Carga,
     "home": Home,
     "ajustes": Ajustes,
