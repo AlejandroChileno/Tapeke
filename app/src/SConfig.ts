@@ -1,6 +1,6 @@
 import { SThemeThemes } from 'servisofts-component'
-import SConfig_Inputs from './SConfig_Inputs'
 import MapStyle from './mapStyle'
+import SConfig_Inputs from './SConfig_Inputs'
 const SThemeProps: SThemeThemes = {
     default: {
         barStyle: "light-content",

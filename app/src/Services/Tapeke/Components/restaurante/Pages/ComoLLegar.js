@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { SDate, SIcon, SImage, SLoad, SMapView, SMarker, SNavigation, SPage, SText, STheme, SView, SHr } from 'servisofts-component';
 import SSocket from 'servisofts-socket';
 import restaurante from '..';
+import PButtom from '../../../../../Components/PButtom';
 import horario from '../../horario';
+import { Text, View, StyleSheet, Linking, TouchableOpacity, Alert, Platform } from 'react-native';
 
 
 class ComoLLegar extends React.Component {
@@ -67,8 +69,10 @@ class ComoLLegar extends React.Component {
 
 
     getInfo() {
+
         var auxRestaurante = restaurante.Actions.getByKeyDetalle(this.key_restaurante, this.props)
         if (!auxRestaurante) return <SLoad />
+
         return <SView col={"xs-11 sm-8 lg-5"} height={140} style={{ position: 'absolute', borderRadius: 20, bottom: 20 }} backgroundColor={'#EEEEEE'} row center>
             <SView width={15} />
             <SView width={120} height={115}  >
@@ -86,6 +90,19 @@ class ComoLLegar extends React.Component {
                 </SView>
                 <SHr height={6} />
                 <SText color={STheme.color.text} fontSize={12} >Direccion: {auxRestaurante.direccion} </SText>
+
+
+                <PButtom fontSize={16} onPress={() => {
+                    const latitude = auxRestaurante.latitude;
+                    const longitude = auxRestaurante.longitude;
+                    const label = auxRestaurante.direccion;
+                    var latLng = latitude + "," + longitude
+                    const url = Platform.select({
+                        ios: "maps:"+latLng+"?q="+label+"@" +latLng,
+                        android: "geo:"+latLng+"?q=" + latLng+ "(" + label+")"
+                    });
+                    Linking.openURL(url);
+                }}>Llévame</PButtom>
 
             </SView>
             <SView width={15} />

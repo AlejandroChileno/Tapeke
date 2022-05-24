@@ -40,26 +40,25 @@ class Direccion extends React.Component {
 			// }
 			// if (data[key]['key_usuario'] != this.props.state.usuarioReducer.usuarioLog.key) return null;
 			return <SView key={"itmDirection" + i}>
-				<SView col={"xs-12"} height={64} row center border={"transparent"} onPress={() => {
+				<SView col={"xs-12"} height={70} row center border={"transparent"} onPress={() => {
 					this.props.dispatch({ component: "direccion_usuario", type: "editarMiDireccion", data: obj });
 					SNavigation.goBack()
 				}} >
-					<SView col={"xs-2"} height={64} center   >
+					<SView col={"xs-2"} height center backgroundColor={"transparent"}      >
 						<SView height={36} width={36} style={{ backgroundColor: '#E9EAEE', borderRadius: 50, }} center   >
 							<SIcon name={'Marker'} height={24} width={40} fill={'#484848'} />
 						</SView>
 					</SView>
-					<SView col={"xs-10"} row height={64} style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray, justifyContent: 'center', }}  >
-						<SView col={"xs-10"} height={64} style={{ justifyContent: 'center', }}  >
-							<SText fontSize={15} font={"Roboto"} color={STheme.color.text} >{obj['descripcion']}</SText>
-							<SHr height={5} />
-							<SText fontSize={12} font={"Roboto"} color={STheme.color.gray} >{obj['direccion']}</SText>
+
+					<SView col={"xs-10"} height row style={{ borderBottomWidth: 1, borderColor: STheme.color.lightGray, justifyContent: 'center', }}  >
+						<SView flex row center style={{ justifyContent: 'flex-start', }}  >
+							<SText col={"xs-12r"} height={20} backgroundColor={"transparent"} fontSize={15} font={"Roboto"} color={STheme.color.primary} >{obj['descripcion']}</SText>
+							<SView col={"xs-12"} height={40} row backgroundColor={"transparent"} style={{ overflow: 'hidden', }}   >
+								<SText col={"xs-12"} fontSize={12} font={"Roboto"} color={STheme.color.gray} >{obj['direccion']}</SText>
+							</SView>
 						</SView>
-						<SView col={"xs-2"} height={64} center onPress={() => {
-							// SNavigation.goBack();
-							Parent.Actions.eliminar(obj, this.props)
-							//alert(key);
-							//console.log(key);
+						<SView width={36} height center backgroundColor={"transparent"} onPress={() => {
+							Parent.Actions.eliminar(obj, this.props);
 						}} >
 							<SView height={36} width={36} center   >
 								<SIcon name={'DeleteDir'} height={24} width={40} fill={'#484848'} />
@@ -82,51 +81,45 @@ class Direccion extends React.Component {
 				{/* <BarraSuperiorTapeke  >
 					<SText font={"Roboto"} fontSize={25} color={STheme.color.secondary}>Mis Favoritos</SText>
 				</BarraSuperiorTapeke> */}
-				<SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} flex >
+				<SView col={"xs-11 sm-10 md-8 lg-4 xl-4"} flex >
 					<SHr height={20} />
 					<SView col={"xs-12"} center>
 						<SInput col={"xs-12"} placeholder={"Escribir el nombre de la direccion..."} style={{ borderWidth: 0, height: "100%" }}
 							color={STheme.color.text} placeholderTextColor={STheme.color.gray} height={40} fontSize={12} />
 					</SView>
 					<SHr height={10} />
-					{this.getDirecciones()}
+					<SView col={"xs-12"} flex>
+						<SScrollView2 disableHorizontal>
+							{this.getDirecciones()}
+						</SScrollView2>
+					</SView>
 					<SHr height={10} />
-
 					<SView col={"xs-12"} row center height={40} border={'transparent'} onPress={() => { alert('alvaro') }}>
 						<SView width={40} center>
 							<SIcon name={'LocationTapeke'} height={14} width={14} fill={STheme.color.primary} />
 						</SView>
 
-
 						<SView onPress={() => {
-
 							SLocation.getCurrentPosition().then((position) => {
 								alert(JSON.stringify(position))
 							}).catch((error) => {
 								console.log(error);
 							})
-
 							// alert("datos quemado " + this.state.latitudeQuemado + " long " + this.state.longitudeQuemado); ç
-
 							var data = {
 								// descripcion: this.inpNombreUbicacion.getValue(),
 								latitude: this.state.region?.latitudeQuemado,
 								longitude: this.state.region?.longitudeQuemado,
 								// direccion: this.state.nombre,
 							}
-
 							// Parent.Actions.registro(data, this.props)
-
-
 							// this.map.center();
 						}}>
 							<SText fontSize={14} font={"Roboto"} color={STheme.color.primary} bold>Utilizar mi ubicación actual</SText>
 						</SView>
 					</SView>
-
 				</SView >
 			</ SPage >
-
 			<FloatButtomTap onPress={() => {
 				SNavigation.navigate("direccion_usuario");
 				this.props.state.direccion_usuarioReducer.estado = 0;

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { SButtom, SDate, SHr, SNavigation, SPage, SText, STheme, SView, } from 'servisofts-component';
 import SSocket from 'servisofts-socket';
 import LogoCargando from '../Components/LogoCargando';
+import PButtom from '../Components/PButtom';
+import { Text, View, StyleSheet, Linking, TouchableOpacity, Alert, Platform } from 'react-native';
 import SExpandable from '../Components/SExpandable';
 class Test extends Component {
     constructor(props) {
@@ -27,32 +29,47 @@ class Test extends Component {
 
     render() {
         return (
-            <SPage title={'Test'} disableScroll>
-                    <SExpandable type={"bottom"}  >
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                        <SText>{"Hola soy expandable"}</SText>
-                    </SExpandable>
+            <SPage title={'Test'} disableScroll center>
+
+                <PButtom fontSize={16} onPress={() => {
+
+                    const latitude = "-17.754099469769788";
+                    const longitude = "-63.19945794336029";
+                    const label = "Centro Comercial Ventura Mall";
+
+                    var latLng = latitude + "," + longitude
+                    const url = Platform.select({
+                        ios: "maps:" + latLng + "?q=" + label + "@" + latLng,
+                        android: "geo:" + latLng + "?q=" + latLng + "(" + label + ")"
+                    });
+                    Linking.openURL(url);
+                }}>Llévame</PButtom>
+
+                {/* <SExpandable type={"bottom"}  >
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                    <SText>{"Hola soy expandable"}</SText>
+                </SExpandable> */}
             </SPage>
         );
     }

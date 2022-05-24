@@ -74,19 +74,8 @@ class Registro extends Component {
                 } : {})
             }}
             onSubmit={(values) => {
-
-                // if (values["Telefono"] = this.usr.Telefono) {
-                //     alert("El Telefono ya esta registrado");
-                //     return null;
-                // }
-
-
-                // if (values["Correo"] = this.state.correo) {
-                //     alert("El correo ya esta registrado");
-                //     return null;
-                // }
                 if (values["Password"] != values["RepPassword"]) {
-                    alert("Las contraseñas no coinciden");
+                    SPopup.open({content: this.alertErrorPassword() });
                     return null;
                 }
 
@@ -102,14 +91,14 @@ class Registro extends Component {
                                 values["gmail_key"] = this.usr.gmail_key;
                                 if (!values["gmail_key"]) {
                                     SPopup.alert("Error al registrar con facebook.");
-                                    return null;
+                                    return;
                                 }
                                 break;
                             case "facebook":
                                 values["facebook_key"] = this.usr.facebook_key;
                                 if (!values["facebook_key"]) {
                                     SPopup.alert("Error al registrar con facebook.");
-                                    return null;
+                                    return;
                                 }
                                 break;
                         }
@@ -125,44 +114,31 @@ class Registro extends Component {
         />
     }
 
-    //TODO LICETH: Falta que ricky me devuelva detalle de error de usuario para mostrar error en popup
-    alertError(error) {
-        // if (error.Correo == this.state.aux.Correo) {
-        //     alert("El coreoooooooooooo ya esta registrado");
-        //     SPopup.close("errorRegistro");
-        //     return null;
-        // }
-
+    alertError(error, icono, mensaje) {
         return <SView col={"xs-12 md-8 xl-6"} row style={{ height: 250, borderRadius: 8, }} backgroundColor={STheme.color.background} center>
-            {/* <SView style={{
-                width: "100%",
-                top: 0,
-                left: 0,
-                position: "absolute",
-                ...this.props.style,
-            }}>
-                <SIcon name={"Enfermera10"} height={500} />
-            </SView> */}
             <SView col={"xs-11"}  >
                 <SView height={30}></SView>
                 <SIcon name={"UserAlert"} height={100} />
             </SView>
-            <SView col={"xs-11"} center style={{
-                // width: "100%",
-                // height: "100%",
-            }} >
-                {/* <SText style={{ fontSize: 16, }}>El usuario ya existe</SText> */}
-                <SText color={STheme.color.darkGray} style={{ fontSize: 20, fontWeight: "bold" }}>Número activo</SText>
-                <SText color={STheme.color.darkGray} style={{ fontSize: 15 }}>El número que ingreso ya está asociado a una cuenta activa.</SText>
-                {/* <SText secondary style={{ fontSize: 12, }}>{`Nombre: ${error["Nombres"] + " " + error["Apellidos"]}`}</SText> */}
-
-                {/* <SText secondary style={{ fontSize: 12, }}>{`Correo: ${error["Correo"]}`}</SText> */}
-
+            <SView col={"xs-11"} center  >
+                <SText color={STheme.color.darkGray} style={{ fontSize: 20, fontWeight: "bold" }}>{mensaje} existente</SText>
+                <SText color={STheme.color.darkGray} style={{ fontSize: 15 }}>El {mensaje} que ingreso ya está asociado a una cuenta activa.</SText>
                 <SView height={30}></SView>
-                {/* <SText style={{ fontSize: 12, }}>{`Fecha nacimiento: ${error["Fecha nacimiento"]}`}</SText> */}
-                {/* <SText secondary style={{ fontSize: 12, }}>{`CI: ${error["CI"]}`}</SText>
-                <SText secondary style={{ fontSize: 12, }}>{`Telefono: ${error["Telefono"]}`}</SText> */}
             </SView>
+        </SView>
+    }
+
+    alertErrorPassword() {
+        return <SView col={"xs-11 md-8 xl-6"} row center style={{ height: 250, borderRadius: 8, }} backgroundColor={STheme.color.background} >
+            <SView col={"xs-11"} height={40} />
+            <SView col={"xs-11"}  >
+                <SIcon name={"InputPassword"} height={100} />
+            </SView>
+            <SView col={"xs-11"} height={15} />
+            <SView col={"xs-12"} center  >
+                <SText center color={STheme.color.darkGray} style={{ fontSize: 18, fontWeight: "bold" }}>Las contraseñas no coinciden</SText>
+            </SView>
+            <SView col={"xs-11"} height={30} />
         </SView>
     }
 
@@ -176,16 +152,18 @@ class Registro extends Component {
             console.log("alvaro2 ", this.state.aux);
 
             if (error.Telefono == this.state.aux.Telefono) {
-                alert("El Telefono ya esta registrado");
-                // return null;
+                SPopup.open({ key: "errorRegistro", content: this.alertError(error, "UserAlert", "Número") });
             }
 
             if (error.Correo == this.state.aux.Correo) {
-                alert("El correo ya esta registrado");
+                SPopup.open({ key: "errorRegistro", content: this.alertError(error, "Email", "Correo") });
+                // SPopup.close("errorRegistro");
+                // return;
+                // alert("El correo ya esta registrado");
                 // return null;
             }
 
-            SPopup.open({ key: "errorRegistro", content: this.alertError(error) });
+            // SPopup.open({ key: "errorRegistro", content: this.alertError(error, "Número") });
         }
 
         if (this.props.state.usuarioReducer.estado == "exito" && (this.props.state.usuarioReducer.type == "registro") || (this.props.state.usuarioReducer.type == "editar")) {
