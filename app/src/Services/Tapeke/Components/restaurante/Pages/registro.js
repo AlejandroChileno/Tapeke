@@ -89,8 +89,8 @@ class registro extends Component {
                         // this.form.submit();
                         var vals = this.form.getValues();
                         SNavigation.navigate('direccion', {
-                            longitude: vals.longitude??null,
-                            latitude: vals.latitude??null,
+                            longitude: vals.longitude ?? null,
+                            latitude: vals.latitude ?? null,
                             callback: (resp) => {
                                 this.form.setValues({
                                     direccion: resp.direccion,
