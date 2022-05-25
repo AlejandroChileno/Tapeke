@@ -1,18 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
 import { connect } from 'react-redux';
-import { SDate, SImage, SNavigation, SPage, SView, SButtom, SText, SIcon, SHr, STheme } from 'servisofts-component';
+import { SButtom, SDate, SHr, SIcon, SImage, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
 import SSocket from 'servisofts-socket';
-// import CerrarSession from './CerrarSession';
-import Kolping from '../../../../../../Components/Kolping';
 import PButtom from '../../../../../../Components/PButtom';
 
-// import AppParams from '../../Params';
-// import FilePreview from '../CarpetasPage/FilePreview';
-// import * as SImageImput from '.././../Component/SImageImput';
-// import moment from 'moment';
-// import SImage from '../../Component/SImage';
-// import CerrarSession from './CerrarSession';
 
 
 class Perfil extends Component {
@@ -45,17 +37,18 @@ class Perfil extends Component {
                     justifyContent: "center",
                     alignItems: "center"
                 }}>
+
+
                     <SView style={{
                         width: "90%",
                         height: "90%",
                         backgroundColor: "#66000022",
                         borderRadius: 100,
                         overflow: "hidden",
-                    }} >
-                        <SImage src={`${SSocket.api.root}usuario/${usuario.key}?time=${new Date().getTime()}`} style={{
-                            width: "100%",
-                            height: "100%",
-                        }} />
+                    }} border={STheme.color.card}>
+                        <SImage src={`${SSocket.api.root}usuario/${usuario.key}?time=${new Date().getTime()}`}
+
+                            style={{ resizeMode: 'cover', }} />
 
 
                     </SView>
@@ -71,12 +64,8 @@ class Perfil extends Component {
                         }} font='LondonBetween'>{usuario["Nombres"] + " " + usuario["Apellidos"]} </SText>
                     </SView>
                     <SHr />
-                    <SView center>
-                        <SText style={{
-                            fontSize: 14,
-                            // color: "#bbb"
-                        }} font={"LondonBetween"} color={STheme.color.gray} font={"LondonMM"}>{usuario["CI"] ?? "--"} </SText>
-                    </SView>
+                    
+                   
                 </SView>
             </SView>
         )
@@ -100,11 +89,11 @@ class Perfil extends Component {
             {/* {this.getDato("Nombres", "InputUser")} */}
             {/* {this.getDato("Apellidos", "InputUser")} */}
             {/* {this.getDato("CI", "InputUser")} */}
-            {this.getDato("Fecha de nacimiento", "InputCalendar")}
+            {/* {this.getDato("Fecha de nacimiento", "Calendar")} */}
             {this.getDato("Telefono", "InputPhone")}
             {this.getDato("Correo", "InputEmail")}
             {this.getDato("Password", "InputPassword")}
-            {this.getDato("Direccion", "InputLocation")}
+            {/* {this.getDato("Direccion", "InputLocation")} */}
 
         </SView>
     }
@@ -118,18 +107,16 @@ class Perfil extends Component {
         return (
             <SPage title="Editar Perfil" center>
                 <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center>
-                    <SView height={80}></SView>
+                    {/* <SView height={80}></SView> */}
                     {this.getPerfil()}
                     <SView height={10}></SView>
                     {this.getDatos()}
                     <SView height={50}></SView>
 
-
-                    <PButtom primary onPress={() => {
-                        SNavigation.navigate("editar", {
-                            key: usuario.key,
-                        })
+                    <PButtom fontSize={20} onPress={() => {
+                        SNavigation.navigate("editar", { key: usuario.key });
                     }}>EDITAR</PButtom>
+
                     <SView height={30}></SView>
 
                 </SView>

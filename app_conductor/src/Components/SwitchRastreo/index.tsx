@@ -15,7 +15,7 @@ type _SwitchRastreoProps = {
 
 export default class SwitchRastreo extends Component<_SwitchRastreoProps> {
     state;
-    animValue
+    animValue;
     constructor(props: any) {
         super(props);
         this.state = {
@@ -23,7 +23,6 @@ export default class SwitchRastreo extends Component<_SwitchRastreoProps> {
             colors: {
                 active: this.props.colors?.active ?? "#2FC25F",
                 inactive: this.props.colors?.inactive ?? "#B7B7B7",
-
                 acent: this.props.colors?.acent ?? "#fff"
             },
         };
@@ -34,7 +33,7 @@ export default class SwitchRastreo extends Component<_SwitchRastreoProps> {
         Animated.timing(this.animValue, {
             toValue: this.state.active ? 0 : 1,
             duration: 250,
-            useNativeDriver: true
+            useNativeDriver: false
         }).start(() => {
             this.state.active = !this.state.active;
             this.setState({
@@ -52,7 +51,10 @@ export default class SwitchRastreo extends Component<_SwitchRastreoProps> {
             backgroundColor: this.animValue.interpolate({
                 inputRange: [0, 1],
                 outputRange: [this.state.colors["inactive"], this.state.colors["active"]]
-            }),}}
+            }),
+
+
+        }}
             onPress={() => { this.fadeIn() }}>
 
 
@@ -63,7 +65,8 @@ export default class SwitchRastreo extends Component<_SwitchRastreoProps> {
                 width: 50,
                 height: 33,
                 position: "absolute",
-                right: this.animValue.interpolate({ inputRange: [0, 1], outputRange: [16, (this.props.width ?? 100) - 50 - 16] }),}}
+                right: this.animValue.interpolate({ inputRange: [0, 1], outputRange: [16, (this.props.width ?? 100) - 50 - 16] }),
+            }}
             >
                 <SText>{this.state.active ? "Online" : "OffLine"}</SText>
             </SView>

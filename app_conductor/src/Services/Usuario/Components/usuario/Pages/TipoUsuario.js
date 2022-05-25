@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SButtom, SForm, SHr, SIcon, SNavigation, SPage, SPopup, SText, STheme, SView } from 'servisofts-component';
-import Parent from '../index'
-import Usuario from '..';
-import Kolping from '../../../../../Components/Kolping';
-import LogoAnimado from '../../../../../Pages/Carga';
+import { SForm, SPage } from 'servisofts-component';
+import Parent from '../index';
 class TipoUsuario extends Component {
     constructor(props) {
         super(props);
@@ -18,10 +15,10 @@ class TipoUsuario extends Component {
             props={{
                 col: "xs-12",
             }}
-            inputProps={{
-                customStyle: "kolping",
-                separation: 16,
-            }}
+            // inputProps={{
+            //     customStyle: "Calistenia",
+            //     separation: 16,
+            // }}
             inputs={{
                 usuario: {
                     placeholder: "E-mail",

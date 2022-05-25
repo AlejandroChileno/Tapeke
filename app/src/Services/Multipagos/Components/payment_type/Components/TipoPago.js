@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SHr, SIcon, SImage, SNavigation, SText, STheme, SView, SLoad } from 'servisofts-component';
+import { SHr, SIcon, SImage, SNavigation, SText, STheme, SView, SLoad, SInput } from 'servisofts-component';
 import ParenTarjeta from '../../../../Tapeke/Components/pago_tarjeta';
 
 
@@ -134,6 +134,18 @@ class TipoPago extends Component {
                         {/* {this.item("Fassil", "Banco FASSIL", require('../../../../../Assets/img/Pfassil.png'))} */}
                         {this.item("QR", "Transferencia QR", require('../../../../../Assets/img/Ptransferencia.png'))}
                         {this.item("TigoMoney", "Tigo Money", require('../../../../../Assets/img/Ptigo.png'))}
+
+                    </SView>
+
+                    <SView col={"xs-10"} center >
+                        <SHr height={15} />
+                        <SInput fontSize={16} placeholder={"Ingresar el Telefono"}
+                            type={'telefono'}
+                            isRequired={true}
+                            height={55}
+                            center
+                            ref={(ref) => { this.inpNombreUbicacion = ref }}
+                        />
                     </SView>
                     <SHr height={15} />
                 </SView>

@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import { SLoad } from 'servisofts-component';
 import { SButtom, SDate, SForm, SNavigation, SPage, SPopup, SText, STheme, SView, SIcon } from 'servisofts-component';
 import Usuario from '..';
-// import BackgroundImage from '../../../Components/BackgroundImage';
-// import FotoPerfilComponent from '../../../Components/FotoPerfilComponent';
+ // import FotoPerfilComponent from '../../../Components/FotoPerfilComponent';
 // import LogoAnimado from '../../CargaPage/LogoAnimado';
 // import RolDeUsuario from './RolDeUsuario';
 import PButtom from '../../../../../Components/PButtom';
@@ -66,7 +65,7 @@ class CodigoRecuperarPass extends Component {
 
                         }} center >
                             <SView height={5} ></SView>
-                            <SIcon name={"CodigoRecuperado"} width={110} height={110} />
+                            <SIcon name={"Message"} width={110} height={110} />
                         </SView>
                         {/* {this.key ? <SView col={"xs-6"} height={150}> <FotoPerfilComponent data={this.usr} component={"usuario"} /> </SView> : null} */}
                         <SView height={26} />
