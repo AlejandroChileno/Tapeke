@@ -12,6 +12,7 @@ import MensajeSolicitud from "./Pages/MensajeSolicitud";
 import PedidoConfirmacion from "./Pages/PedidoConfirmacion";
 import PedidoQR from "./Pages/PedidoQR";
 import Carga from "./Pages/Carga";
+import NoRecogido from "./Pages/NoRecogido";
 
 import PedidoState from "./PedidoStates.json";
 export default {
@@ -30,6 +31,7 @@ export default {
         [component + "/mensajeSolicitud"]: MensajeSolicitud,
         [component + "/confirmacion"]: PedidoConfirmacion,
         [component + "/pedidoqr"]: PedidoQR,
+        [component + "/noRecogido"]: NoRecogido,
 
     },
 }

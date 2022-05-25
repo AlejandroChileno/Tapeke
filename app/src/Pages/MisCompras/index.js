@@ -80,6 +80,9 @@ class index extends Component {
 										if (obj.state == "pagado") {
 											SNavigation.navigate("pedido/confirmacion", { key_pedido: obj.key });
 										}
+										if (obj.state == "no_recogido") {
+											SNavigation.navigate("pedido/noRecogido", { key_pedido: obj.key });
+										}
 									}} >
 									<SView col={"xs-12"} row center border={"transparent"}  >
 										<SView col={"xs-2"} center border={"transparent"}  >

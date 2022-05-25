@@ -80,6 +80,7 @@ import ImgShare, { ReactComponent as ImgShareW } from './imgShare.svg';
 import BilleteraVacio, { ReactComponent as BilleteraVacioW } from './billeteraVacio.svg';
 import SinFavorito, { ReactComponent as SinFavoritoW } from './favorito.svg';
 import noCompras, { ReactComponent as noComprasW } from './noCompras.svg';
+import noRecogido, { ReactComponent as noRecogidoW } from './noRecogido.svg';
 
 
 
@@ -165,6 +166,7 @@ const Assets = {
 	"BilleteraVacio": { Native: BilleteraVacio, Web: BilleteraVacioW },
 	"SinFavorito": { Native: SinFavorito, Web: SinFavoritoW },
 	"NoCompras": { Native: noCompras, Web: noComprasW },
+	"NoRecogido": { Native: noRecogido, Web: noRecogidoW },
 
 }
 
