@@ -140,7 +140,7 @@ class Inicio extends Component {
     if (!this.props.state.direccion_usuarioReducer.miDireccion) {
       return <SLoad />
     }
-    return <SView col={"xs-12"} center height>
+    return <SView col={"xs-12"} center>
 
       {this.pedidoencurso()}
 
@@ -186,8 +186,10 @@ class Inicio extends Component {
         <BarraSuperiorTapeke>
           {this.getDireccion()}
         </BarraSuperiorTapeke>
-        <SPage title={"as"} hidden center  >
-          {this.getContent()}
+        <SPage title={"as"} hidden>
+          <SView col={"xs-12"} center>
+            {this.getContent()}
+          </SView>
         </SPage>
         <PBarraFooter url={"/"} />
       </>

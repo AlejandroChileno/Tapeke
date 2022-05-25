@@ -4,6 +4,8 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <Firebase.h>
 
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
@@ -12,7 +14,6 @@
 #import <FlipperKitNetworkPlugin/FlipperKitNetworkPlugin.h>
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
-
 
 
 static void InitializeFlipper(UIApplication *application) {
@@ -30,10 +31,12 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
 #endif
   
+  [FIRApp configure];
   [GMSServices provideAPIKey:@"AIzaSyCrpBhYNgOIQA8-A_gtB3b5jC0aEbSL0QU"];
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
@@ -47,7 +50,23 @@ static void InitializeFlipper(UIApplication *application) {
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+
+  [[FBSDKApplicationDelegate sharedInstance] application:application
+  didFinishLaunchingWithOptions:launchOptions];
+
   return YES;
+}
+
+- (BOOL)application:(UIApplication *)application
+openURL:(NSURL *)url
+options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
+openURL:url
+sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
+];
+// Add any custom logic here.
+return handled;
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge
@@ -58,5 +77,6 @@ static void InitializeFlipper(UIApplication *application) {
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
 }
+
 
 @end

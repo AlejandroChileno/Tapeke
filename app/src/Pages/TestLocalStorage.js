@@ -19,7 +19,7 @@ class Test extends Component {
         SStorage.getItem("pedido_en_curso", (val) => {
             if (!val) SNavigation.goBack();
             this.setState({ pedido_en_curso: JSON.parse(val) })
-            console.log(this.state.pedido_en_curso)
+            // console.log(this.state.pedido_en_curso)
         })
     }
 

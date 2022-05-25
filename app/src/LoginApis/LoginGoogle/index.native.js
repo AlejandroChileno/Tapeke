@@ -17,7 +17,7 @@ class LoginGoogle extends Component {
             const userInfo = await GoogleSignin.signIn();
             this.setState({ userInfo });
             GoogleSignin.signOut();
-            console.log(userInfo);
+            // console.log(userInfo);
             if (userInfo.user) {
                 if (this.props.onLogin) {
                     this.props.onLogin(userInfo.user);

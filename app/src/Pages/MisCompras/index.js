@@ -4,6 +4,7 @@ import { SButtom, SDate, SHr, SIcon, SImage, SLoad, SNavigation, SPage, SSection
 import pedido from '../../Services/Tapeke/Components/pedido';
 import SSocket from 'servisofts-socket';
 import BarraCargando from '../../Components/BarraCargando';
+import PButtom from '../../Components/PButtom';
 
 class index extends Component {
 	constructor(props) {
@@ -24,55 +25,98 @@ class index extends Component {
 		</SView>);
 	}
 
+	sinCompras() {
+		return <>
+			<SPage title={'Mis Compras'} disableScroll center>
+				<SView col={"xs-12"} row center >
+					<SView col={"xs-11 sm-6 md-6 lg-4 xl-4"} >
+						<SView col={"xs-12"} center row  >
+							<SView col={"xs-12"} row center   >
+								<SView col={"xs-11"} border={'transparent'}  >
+									<SHr height={20} />
+									<SText fontSize={24} color={STheme.color.primary} font={"Roboto"} bold center>Usted no realizó compras</SText>
+									<SHr height={20} />
+									<SText fontSize={18} color={STheme.color.text} bold center font={"Roboto"} >No tiene compras realizadas en este momento.</SText>
+								</SView>
+							</SView>
+							<SView col={"xs-11"} center  >
+								<SHr height={30} />
+								<SView center col={"xs-12"}   >
+									<SIcon name="NoCompras" height={320}></SIcon >
+								</SView>
+							</SView>
+							<SHr height={50} />
+							<SView col={"xs-12"} row>
+								<PButtom fontSize={20} onPress={() => {
+									SNavigation.navigate("/");
+								}}>COMPRAR</PButtom>
+							</SView>
+							<SHr height={30} />
+						</SView>
+					</SView>
+				</SView>
+			</SPage>
+		</>
+	}
+
 	getCompras() {
 		const key_usuario = this.props.state.usuarioReducer.usuarioLog.key;
 		var dataPedido = pedido.Actions.getPedidoByKeyUsuarioDetalle(this.props.state.usuarioReducer.usuarioLog.key, this.props)
 		if (!dataPedido) return <SLoad />
+		if (dataPedido.length == 0) return this.sinCompras();
 
-		return <SList
-			data={dataPedido}
-			space={16}
-			filter={(item) => item.estado == '1' && item.key_usuario == key_usuario && item.state != "pendiente_pago" && item.state != "timeout_pago"}
-			render={(obj, key) => {
-				console.log("resta ", obj.state);
-				return <SView col={"xs-12 "} height={100} row border={STheme.color.card} style={{ borderRadius: 8, }}
-					onPress={() => {
-						if (obj.state == "pagado") {
-							SNavigation.navigate("pedido/confirmacion", { key_pedido: obj.key });
-						}
-					}} >
-					<SView col={"xs-12"} row center border={"transparent"}  >
-						<SView col={"xs-2"} center border={"transparent"}  >
-							<SView height={40} width={40} style={{ backgroundColor: '#E9EAEE', borderRadius: 50, }} center   >
-								<SImage src={`${SSocket.api.root}restaurante/${obj?.restaurante?.key}`} style={{ borderRadius: 8, resizeMode: 'cover' }} />
-							</SView>
-						</SView>
-						<SView col={"xs-8"} height={40} row border={"transparent"} style={{}} >
-							<SText fontSize={16} font={"Roboto"} color={STheme.color.text} >{obj?.restaurante?.nombre}</SText>
-							<SText fontSize={12} font={"Roboto"} color={STheme.color.text} >{new SDate(obj.fecha, "yyyy-MM-dd").toString("dd de MONTH")}  {obj.horario.hora_inicio} - {obj.horario.hora_fin}</SText>
-							<SView width={8} />
-							<SText fontSize={12} font={"Roboto"} color={STheme.color.primary} bold >{pedido.Actions.getDetalleEstado(obj)}</SText>
-						</SView>
-						<SView col={"xs-2"} height={40} row center style={{ alignContent: 'center', }}>
-							<SText fontSize={18} font={"Roboto"} color={STheme.color.gray} >x {obj?.cantidad}</SText>
-						</SView>
-					</SView>
-					<SView col={"xs-12"} row center border={"transparent"}>
-						{(obj.state == "pagado") ? <BarraCargando /> : this.getBotones(obj?.key)}
+		return <>
+			<SPage title={'Mis Compras'}>
+				<SView col={"xs-12"} row center >
+					<SView col={"xs-11 sm-6 md-6 lg-4 xl-4"} >
+						<SList
+							data={dataPedido}
+							space={16}
+							filter={(item) => item.estado == '1' && item.key_usuario == key_usuario && item.state != "pendiente_pago" && item.state != "timeout_pago"}
+							render={(obj, key) => {
+								// console.log("resta ", obj.state);
+								return <SView col={"xs-12 "} height={100} row border={STheme.color.card} style={{ borderRadius: 8, }}
+									onPress={() => {
+										if (obj.state == "pagado") {
+											SNavigation.navigate("pedido/confirmacion", { key_pedido: obj.key });
+										}
+									}} >
+									<SView col={"xs-12"} row center border={"transparent"}  >
+										<SView col={"xs-2"} center border={"transparent"}  >
+											<SView height={40} width={40} style={{ backgroundColor: '#E9EAEE', borderRadius: 50, }} center   >
+												<SImage src={`${SSocket.api.root}restaurante/${obj?.restaurante?.key}`} style={{ borderRadius: 8, resizeMode: 'cover' }} />
+											</SView>
+										</SView>
+										<SView col={"xs-8"} height={40} row border={"transparent"} style={{}} >
+											<SText fontSize={16} font={"Roboto"} color={STheme.color.text} >{obj?.restaurante?.nombre}</SText>
+											<SText fontSize={12} font={"Roboto"} color={STheme.color.text} >{new SDate(obj.fecha, "yyyy-MM-dd").toString("dd de MONTH")}  {obj.horario.hora_inicio} - {obj.horario.hora_fin}</SText>
+											<SView width={8} />
+											<SText fontSize={12} font={"Roboto"} color={STheme.color.primary} bold >{pedido.Actions.getDetalleEstado(obj)}</SText>
+										</SView>
+										<SView col={"xs-2"} height={40} row center style={{ alignContent: 'center', }}>
+											<SText fontSize={18} font={"Roboto"} color={STheme.color.gray} >x {obj?.cantidad}</SText>
+										</SView>
+									</SView>
+									<SView col={"xs-12"} row center border={"transparent"}>
+										{(obj.state == "pagado") ? <BarraCargando /> : this.getBotones(obj?.key)}
+									</SView>
+								</SView>
+							}} />
 					</SView>
 				</SView>
-			}} />
+			</SPage>
+		</>
 	}
 
 	render() {
 		return (
-			<SPage title={'MisCompras'}>
-				<SView col={"xs-12"} row center >
-					<SView col={"xs-11 sm-6 md-6 lg-4 xl-4"} >
-						{this.getCompras()}
-					</SView>
-				</SView>
-			</SPage>
+			// <SPage title={'Mis Compras'}>
+			// 	<SView col={"xs-12"} row center >
+			// 		<SView col={"xs-11 sm-6 md-6 lg-4 xl-4"} >
+			this.getCompras()
+			// 		</SView>
+			// 	</SView>
+			// </SPage>
 		);
 	}
 }

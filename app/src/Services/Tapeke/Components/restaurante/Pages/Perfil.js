@@ -166,7 +166,9 @@ class Paso1 extends React.Component {
             cantidad = this.dataRestaurante.pack.disponibles;
         }
         return <SPage   >
-            <SView col={"xs-12"} row backgroundColor={STheme.color.card} center>
+            <SView col={"xs-12"} row backgroundColor={STheme.color.card} style={{
+                minHeight: "100%",
+            }} center>
                 <SView col={"xs-12  "} center >
                     <SView center col={"xs-12 sm-10 md-8 lg-6 xl-4  "} backgroundColor={"#9B060C"} height={216} >
                         <SImage src={`${SSocket.api.root}restaurante/${this.dataRestaurante.key}`} style={{ width: "100%", position: "relative", resizeMode: "cover" }} />
