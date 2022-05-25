@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import { SHr, SLoad } from 'servisofts-component';
 import { SButtom, SDate, SForm, SNavigation, SPage, SPopup, SText, STheme, SView, SIcon } from 'servisofts-component';
 import Usuario from '..';
-// import BackgroundImage from '../../../Components/BackgroundImage';
-// import FotoPerfilComponent from '../../../Components/FotoPerfilComponent';
+ // import FotoPerfilComponent from '../../../Components/FotoPerfilComponent';
 // import LogoAnimado from '../../CargaPage/LogoAnimado';
 // import RolDeUsuario from './RolDeUsuario';
 import PButtom from '../../../../../Components/PButtom';
@@ -32,7 +31,7 @@ class RecuperarPass extends Component {
                 col: "xs-12",
             }}
             inputs={{
-                Correo: { placeholder: "Ingrese su correo electrónico", type: "email", icon: <SIcon name={"InputEmail"} width={40} height={30} />,isRequired: true },
+                Correo: { placeholder: "Ingrese su correo electrónico", type: "email", isRequired: true },
             }}
             onSubmit={(values) => {
                 // if (this.key) {
