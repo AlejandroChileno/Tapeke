@@ -220,9 +220,7 @@ class Confirmar extends React.Component {
                     if (err.pay_method == "Billetera") {
                         SPopup.open({ content: this.popupSinFondos(err.error), key: "sinFondos" });
                     } else {
-                        // alert("No tiene fondos suficientes en su billetera Tapekeassaas.");
-                        SPopup.open({ content: this.popupSinFondos(err.error), key: "sinFondos" });
-
+                        // SPopup.open({ content: this.popupSinFondos(err.error), key: " hay error" });
                         // SPopup.alert(err.error)
                     }
 

@@ -89,18 +89,11 @@ class Direccion extends React.Component {
 						<SInput col={"xs-12"} placeholder={"Escribir el nombre de la direccion..."}
 							style={{ borderWidth: 0, height: "100%" }}
 							color={STheme.color.text} placeholderTextColor={STheme.color.gray} height={40} fontSize={12}
-							onChangeText={(text) => {
-								this.setState({ find: text })
-							}}
-						/>
-
+							onChangeText={(text) => { this.setState({ find: text }) }} />
 					</SView>
-
 					{/* <SView SView col={"xs-12"}   style={{ position: "absolute", top: 60 }} border={"blue"} >
 						<SText fontSize={14} font={"Roboto"} color={STheme.color.primary} bold>aqui {this.state.find} </SText>
 					</SView> */}
-
-
 					<SHr height={10} />
 					<SView col={"xs-12"} flex>
 						<SScrollView2 disableHorizontal>
