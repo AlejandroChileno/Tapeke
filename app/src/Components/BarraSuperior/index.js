@@ -25,7 +25,7 @@ class BarraSuperior extends Component {
         }).start();
     }
     componentDidMount() {
-    
+
         this.startAnimation();
     }
 
@@ -93,13 +93,13 @@ class BarraSuperior extends Component {
                     </SView>
                     <View style={{
                         flex: 1,
-
                         justifyContent: "center",
                         alignItems: "center"
                     }} center>
                         {this.getTitle()}
-
                     </View>
+                    <SView height width={50} center>
+                    </SView>
                 </View>
             </Animated.View>
         );
