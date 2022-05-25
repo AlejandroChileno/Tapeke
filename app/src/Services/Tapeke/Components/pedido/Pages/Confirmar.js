@@ -230,32 +230,43 @@ class Confirmar extends React.Component {
             }} />
     }
 
+    btn = ({ title, onPress, active }) => {
+        return <SView col={"xs-5.5"} height={44} center border={STheme.color.primary} backgroundColor={active ? STheme.color.primary : ""} style={{ borderRadius: 8 }} onPress={onPress}  >
+            <SText fontSize={14} color={active ? STheme.color.secondary : STheme.color.primary} bold>{title}</SText>
+        </SView>
+    }
     popupConfirmacion() {
         var INSTACE = this;
-        return <>
-            <SView width={362} height={216} center row style={{ borderRadius: 8 }} withoutFeedback backgroundColor={STheme.color.background}>
-                <SHr height={50} />
-                <SView col={"xs-9"} center>
-                    <SText color={STheme.color.darkGray} style={{ fontSize: 20 }} bold center >¿Estás seguro que deseas realizar este pedido?</SText>
-                </SView>
-                <SHr height={20} />
-                <SView col={"xs-11"} row center>
-                    <SView col={"xs-6"} center>
-                        <SView width={140} height={44} center border={STheme.color.primary} style={{ borderRadius: 8 }} onPress={() => { SPopup.close("confirmar"); }}  >
-                            <SText fontSize={14} color={STheme.color.primary} bold>No, cancelar</SText>
-                        </SView>
-                    </SView>
-                    <SView col={"xs-6"} center>
-                        <SView width={140} height={44} center backgroundColor={STheme.color.primary} style={{ borderRadius: 8 }}
-                            onPress={() => { INSTACE._form.submit() }}>
-                            <SText fontSize={14} color={STheme.color.white} bold >Sí, Confirmar</SText>
-                        </SView>
-                    </SView>
-                </SView>
-                <SHr height={50} />
+        return <SView
+            style={{
+                width: "100%",
+                maxWidth: 365,
+                height: 210,
+                borderRadius: 8,
+
+            }}
+            center row
+            withoutFeedback
+            backgroundColor={STheme.color.background}
+        >
+            <SView col={"xs-10"} center>
+                <SText color={STheme.color.darkGray} style={{ fontSize: 20 }} bold center >¿Estás seguro que deseas realizar este pedido?</SText>
             </SView>
-        </>
+
+            <SView col={"xs-12"} style={{ alignItems: "center", }}>
+                <SView row col={"xs-11"}>
+                    {this.btn({ title: "No, cancelar", onPress: () => { SPopup.close("confirmar"); }, active: false })}
+                    <SView col={"xs-1"} />
+                    {this.btn({ title: "Sí, Confirmar", onPress: () => { INSTACE._form.submit() }, active: true })}
+                </SView>
+            </SView>
+
+            <SView col={"xs-11"} center>
+                <SText color={STheme.color.darkGray} style={{ fontSize: 12 }} center >IMPORTANTE: Por favor tome en cuenta que no se podra cancelar el pedido posteriormente.</SText>
+            </SView>
+        </SView>
     }
+
 
     getLoading() {
         if (!this.state.loading) return null;
@@ -273,6 +284,7 @@ class Confirmar extends React.Component {
         </SView>
     }
     render() {
+        // return this.popupConfirmacion()
         return (
             <>
                 <SPage center onBack={() => {
