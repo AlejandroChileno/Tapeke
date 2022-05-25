@@ -26,23 +26,6 @@ class Favoritos extends Component {
 	sinFavorito() {
 		return <>
 		<SView  center col={"xs-11 sm-10 md-8 lg-6 xl-4"}  >
-                    {/* <SView col={"xs-12"} center row style={{ backgroundColor: STheme.color.primary, borderRadius: 12 }}>
-                        <SView col={"xs-12"} row center   >
-                            <SView col={"xs-11"} border={'transparent'}  >
-                                <SHr height={20} />
-                                <SText fontSize={24} color={STheme.color.white} font={"Roboto"} bold center> No hay Favorito registrado</SText>
-                                <SHr height={20} />
-                                <SText fontSize={18} color={STheme.color.white} bold center font={"Roboto"} >Guarda en Favorito tus restaurantes más visitados.</SText>
-                            </SView>
-                        </SView>
-                        <SView col={"xs-11"} center  >
-                            <SHr height={20} />
-                            <SView center col={"xs-12"}   >
-                                <SIcon name="SinFavorito" height={320}></SIcon >
-                            </SView>
-                        </SView>
-						<SHr height={30} />
-                    </SView> */}
 					 <SView col={"xs-12"} center row style={{ }}>
                         <SView col={"xs-12"} row center   >
                             <SView col={"xs-11"} border={'transparent'}  >
