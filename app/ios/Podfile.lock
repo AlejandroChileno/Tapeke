@@ -463,7 +463,7 @@ PODS:
     - React-Core
   - RNSVG (12.3.0):
     - React-Core
-  - servisofts-socket (2.4.3):
+  - servisofts-socket (2.5.3):
     - CocoaAsyncSocket
     - React-Core
   - Yoga (1.14.0)
@@ -729,9 +729,9 @@ SPEC CHECKSUMS:
   RNScreens: 40a2cb40a02a609938137a1e0acfbf8fc9eebf19
   RNShare: 807d6f8231b8ebcf6dd839294b877342eb93d4e5
   RNSVG: 302bfc9905bd8122f08966dc2ce2d07b7b52b9f8
-  servisofts-socket: 57d2ddd69e9ff2f652c78e391b5400f0c16fb603
+  servisofts-socket: 9d2c23d05a35507481a1959e561acefb85a07ca9
   Yoga: e6ecf3fa25af9d4c87e94ad7d5d292eedef49749
 
-PODFILE CHECKSUM: ac8ecf6bc963739663ae7afce021ee84654718f0
+PODFILE CHECKSUM: e18a83f9bf4a81dea42769734e0fd339769e9081
 
 COCOAPODS: 1.11.3

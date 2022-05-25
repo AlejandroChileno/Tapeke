@@ -4,7 +4,6 @@ import { getMessaging, getToken, onMessage } from "firebase/messaging";
 class Firebase {
     static init() {
         try {
-
             const firebaseConfig = {
                 apiKey: "AIzaSyAcR4QG15DCTi5072tSPn81gFFAEPxVv4o",
                 authDomain: "tapeke-20bb6.firebaseapp.com",

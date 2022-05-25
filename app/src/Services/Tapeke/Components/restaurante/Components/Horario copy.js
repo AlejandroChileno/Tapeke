@@ -23,7 +23,7 @@ const Horario = () => {
         var _inputsDia = {...inputsDia};
          _inputsDia = { [key2]: { key: '', value: '' } };
         setInputsDia(_inputsDia)
-        console.log(JSON.stringify(_inputsDia));
+        // console.log(JSON.stringify(_inputsDia));
       
          // switch (key2) {
         //     case "0":
