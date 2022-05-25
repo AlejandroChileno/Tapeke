@@ -1,6 +1,7 @@
 import SmsValidation from '../Pages/SmsValidation';
 import TerminosCondiciones from '../Pages/TerminosCondiciones';
 import Services from '../Services';
+import chatPage from '../Services/Tapeke/Components/chatPage';
 import Administracion from './Administracion';
 import Ajustes from './Ajustes';
 import Ayuda from './Ayuda';
@@ -11,7 +12,6 @@ import Inicio from './Inicio';
 import MisCompras from './MisCompras';
 // import Billetera from '../Services/Tapeke/Components/billetera/Pages/Billetera';
 import SelectDireccion from './SelectDireccion';
-import Test from './Test';
 
 
 // import MensajeSolicitud from '../Services/Tapeke/Components/pedido/Pages/MensajeSolicitud';
@@ -20,6 +20,7 @@ const Pages = {
 
     
     // "/": MensajeSolicitud,
+    // "/": chatPage,
     "/": Inicio,
     // "/": Test,
     // "/": PedidoQR,

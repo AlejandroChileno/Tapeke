@@ -15,6 +15,7 @@ export default {
         [component + 'Reducer']: Reducer
     },
     Pages: {
+        // "/": Lista,
         [component + ""]: Lista,
         [component + "/lista"]: Lista,
         [component + "/registro"]: Registro,
