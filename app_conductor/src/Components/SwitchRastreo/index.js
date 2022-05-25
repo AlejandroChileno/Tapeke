@@ -16,6 +16,8 @@ type _SwitchRastreoProps = {
 export default class SwitchRastreo extends Component<_SwitchRastreoProps> {
     state;
     animValue;
+
+
     constructor(props: any) {
         super(props);
         this.state = {
@@ -27,6 +29,9 @@ export default class SwitchRastreo extends Component<_SwitchRastreoProps> {
             },
         };
         this.animValue = new Animated.Value(0);
+    }
+    componentDidMount() {
+        this.props.callback({ ConductorOnline: this.state.active })
     }
     fadeIn() {
         this.animValue.stopAnimation();
@@ -55,20 +60,26 @@ export default class SwitchRastreo extends Component<_SwitchRastreoProps> {
 
 
         }}
-            onPress={() => { this.fadeIn() }}>
+            onPress={() => {
+                this.fadeIn();
+                this.props.callback({ ConductorOnline: this.state.active })
+            }}
+
+        >
 
 
 
 
 
             <SView animated center style={{
-                width: 50,
+                width: 70,
                 height: 33,
                 position: "absolute",
-                right: this.animValue.interpolate({ inputRange: [0, 1], outputRange: [16, (this.props.width ?? 100) - 50 - 16] }),
+
+                right: this.animValue.interpolate({ inputRange: [0, 1], outputRange: [16, (this.props.width ?? 100) - 70 - 16] }),
             }}
             >
-                <SText>{this.state.active ? "Online" : "OffLine"}</SText>
+                <SText >{this.state.active ? "Online" : "OffLine"}</SText>
             </SView>
 
 

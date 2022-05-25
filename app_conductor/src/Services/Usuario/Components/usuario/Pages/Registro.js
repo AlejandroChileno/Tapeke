@@ -218,7 +218,7 @@ class Registro extends Component {
                         <SView col={"xs-1"} onPress={() => { this.setState(this.state.envio == 0 ? { envio: 1 } : { envio: 0 }); }}>
                             <SIcon name={this.state.envio != 0 ? 'IconCheckedOk' : "IconChecked"} fill={STheme.color.primary} width={30} height={30}></SIcon>
                         </SView>
-                        <SView col={"xs-9"} center style={{ alignItems: "center" }} onPress={() => {
+                        <SView col={"xs-11"} center style={{ alignItems: "center" }} onPress={() => {
                             SNavigation.navigate('terminos');
                         }} >
                             <SText color={STheme.color.text} fontSize={14} font={"LondonBetween"} style={{ textDecorationLine: 'underline' }} >
