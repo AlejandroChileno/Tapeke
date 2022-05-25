@@ -16,6 +16,8 @@ import usuario_restaurante from './Components/usuario_restaurante';
 
 import PedidoEnCurso from './Tasks/PedidoEnCurso';
 import calificacion from './Components/calificacion';
+
+import recoger_usuario from './Components/recoger_usuario';
 const ServiceName = "tapeke";
 
 const Pages: SPageListProps = {
@@ -34,6 +36,7 @@ const Pages: SPageListProps = {
     ...pago_tarjeta.Pages,
     ...usuario_restaurante.Pages,
     ...calificacion.Pages,
+    ...recoger_usuario.Pages,
     
 
 }
@@ -53,6 +56,7 @@ const Reducers = {
     ...PedidoEnCurso.Reducers,
     ...usuario_restaurante.Reducers,
     ...calificacion.Reducers,
+    ...recoger_usuario.Reducers,
 }
 
 export default {

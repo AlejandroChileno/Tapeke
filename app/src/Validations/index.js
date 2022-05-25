@@ -31,9 +31,17 @@ export default class Validations {
                 if (url == "pedido/mensajeSolicitud") return;
                 SNavigation.replace("pedido/mensajeSolicitud", { key_pedido: obj.key })
                 return;
-            case "pagado":
+            case "pagado"://AQUI SE DEBE DE CARGAR EL PEDIDO A RECOGER
                 SStorage.removeItem("pedido_en_curso")
-                SNavigation.replace("pedido/confirmacion", { key_pedido: obj.key });
+                console.log(JSON.stringify(obj) + "AQUIII");
+                if (obj.delivery == 0) {
+                    SNavigation.replace("recoger_usuario/pagado", { key_pedido: obj.key })
+                }
+                if (obj.delivery != 0) {
+                    console.log("CON DELIVERY");
+                    SNavigation.replace("recoger_delivery/pagado", { key_pedido: obj.key })
+                }
+                // SNavigation.replace("pedido/confirmacion", { key_pedido: obj.key });
                 return;
             case "timeout_pago":
                 SStorage.removeItem("pedido_en_curso")
