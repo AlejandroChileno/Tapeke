@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { SIcon, SPage, SScrollView2, SText, STheme, SView, SMapView, SMarker, SInput, SNavigation, SHr, SLoad, SPopup, SLocation, } from 'servisofts-component';
+import { SIcon, SPage, SScrollView2, SText, STheme, SView, SMapView, SMarker, SInput, SNavigation, SHr, SLoad, SPopup, SLocation, SBuscador, } from 'servisofts-component';
 import BarraSuperiorTapeke from '../../../../../Components/BarraSuperiorTapeke';
 import PButtom from '../../../../../Components/PButtom';
 import Parent from '../index'
@@ -12,6 +12,7 @@ class Direccion extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			find: "",
 
 			latitudeQuemado: -17.808690397665742,
 			longitudeQuemado: -63.16250034566757,
@@ -35,10 +36,10 @@ class Direccion extends React.Component {
 			return <SText>No hay direcciones</SText>
 		}
 		return arr.map((obj, i) => {
-			// if (!SBuscador.validate(data[key], this.state.find)) {
-			//     return null;
-			// }
-			// if (data[key]['key_usuario'] != this.props.state.usuarioReducer.usuarioLog.key) return null;
+			if (!SBuscador.validate(obj, this.state.find)) {
+				return null;
+			}
+
 			return <SView key={"itmDirection" + i}>
 				<SView col={"xs-12"} height={70} row center border={"transparent"} onPress={() => {
 					this.props.dispatch({ component: "direccion_usuario", type: "editarMiDireccion", data: obj });
@@ -83,10 +84,23 @@ class Direccion extends React.Component {
 				</BarraSuperiorTapeke> */}
 				<SView col={"xs-11 sm-10 md-8 lg-4 xl-4"} flex >
 					<SHr height={20} />
+
 					<SView col={"xs-12"} center>
-						<SInput col={"xs-12"} placeholder={"Escribir el nombre de la direccion..."} style={{ borderWidth: 0, height: "100%" }}
-							color={STheme.color.text} placeholderTextColor={STheme.color.gray} height={40} fontSize={12} />
+						<SInput col={"xs-12"} placeholder={"Escribir el nombre de la direccion..."}
+							style={{ borderWidth: 0, height: "100%" }}
+							color={STheme.color.text} placeholderTextColor={STheme.color.gray} height={40} fontSize={12}
+							onChangeText={(text) => {
+								this.setState({ find: text })
+							}}
+						/>
+
 					</SView>
+
+					{/* <SView SView col={"xs-12"}   style={{ position: "absolute", top: 60 }} border={"blue"} >
+						<SText fontSize={14} font={"Roboto"} color={STheme.color.primary} bold>aqui {this.state.find} </SText>
+					</SView> */}
+
+
 					<SHr height={10} />
 					<SView col={"xs-12"} flex>
 						<SScrollView2 disableHorizontal>
