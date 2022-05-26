@@ -35,6 +35,10 @@ export default class Validations {
                 SStorage.removeItem("pedido_en_curso")
                 SNavigation.replace("pedido/confirmacion", { key_pedido: obj.key });
                 return;
+            case "listo":
+                SStorage.removeItem("pedido_en_curso")
+                SNavigation.replace("pedido/confirmacion", { key_pedido: obj.key });
+                return;
             case "timeout_pago":
                 SStorage.removeItem("pedido_en_curso")
                 SPopup.alert("El tiempo de espera para pagar ha expirado");

@@ -8,36 +8,50 @@ import { Notifications } from 'react-native-notifications';
 const sleep = ms => {
     return new Promise(resolve => setTimeout(resolve, ms));
 };
-messaging().setBackgroundMessageHandler(async remoteMessage => {
-    console.log('Message handled in the background!', remoteMessage);
-});
+
 
 class Firebase {
 
     static async init() {
-        await sleep(500);
-        // await messaging().hasPermission();
-        await messaging().requestPermission({
-            sound: true,
-            announcement: true,
-            providesAppNotificationSettings: true
-        });
-        // await messaging().setAutoInitEnabled(true);
-        messaging().getToken().then(fcmToken => {
-            if (fcmToken) {
-                console.log(fcmToken);
-            }
-        }).catch(err => {
-            console.log(err.message);
-        });
-        const unsubscribe = messaging().onMessage(async remoteMessage => {
-            console.log('Message received. ', remoteMessage);
-            Notifications.postLocalNotification({
-                title: 'Tapeke',
-                body: remoteMessage.notification.body,
+        try {
+
+            await sleep(500);
+            // await messaging().hasPermission();
+            var authorizationStatus = await messaging().requestPermission({
+                sound: true,
+                announcement: true,
+                providesAppNotificationSettings: true
             });
-            // Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
-        });
+            if (authorizationStatus === messaging.AuthorizationStatus.AUTHORIZED) {
+                console.log('User has notification permissions enabled.');
+            } else if (authorizationStatus === messaging.AuthorizationStatus.PROVISIONAL) {
+                console.log('User has provisional notification permissions.');
+            } else {
+                console.log('User has notification permissions disabled');
+            }
+            // await messaging().setAutoInitEnabled(true);
+            messaging().getToken().then(fcmToken => {
+                if (fcmToken) {
+                    console.log(fcmToken);
+                }
+            }).catch(err => {
+                console.log(err.message);
+            });
+            messaging().setBackgroundMessageHandler(async remoteMessage => {
+                console.log('Message handled in the background!', remoteMessage);
+            });
+            const unsubscribe = messaging().onMessage(async remoteMessage => {
+                console.log('Message received. ', remoteMessage);
+                Notifications.postLocalNotification({
+                    title: 'Tapeke',
+                    body: remoteMessage.notification.body,
+                });
+                // Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+            });
+        } catch (e) {
+            console.log(e)
+        }
+
     }
 }
 export default Firebase;

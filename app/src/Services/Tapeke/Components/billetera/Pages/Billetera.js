@@ -52,7 +52,7 @@ class Billetera extends Component {
                     <SView col={"xs-8 md-9"} height style={{
                         justifyContent: "center",
                     }}>
-                        <SText font={"Roboto"} color={STheme.color.text} fontSize={12} style={{ paddingLeft: 4 }} >{new SDate(fecha).toString("yyyy-MM-dd hh:mm")}</SText>
+                        <SText font={"Roboto"} color={STheme.color.text} fontSize={12} style={{ paddingLeft: 4 }} >{fecha}</SText>
                         <SHr height={4} />
                         <SText font={"Roboto"} color={STheme.color.gray} fontSize={10} style={{ paddingLeft: 4 }} >{descripcion}</SText>
                     </SView>
@@ -88,7 +88,7 @@ class Billetera extends Component {
             order={[{ key: "fecha_on", type: "desc", pedo: 1 }]}
             data={data}
             render={(obj) => {
-                return this.getDetalleBilletera(new SDate(obj.fecha_on).toString("yyyy-MM-dd hh:mm:ss"), this.getDetalle(obj), obj.monto)
+                return this.getDetalleBilletera(new SDate(obj.fecha_on).toString("yyyy-MM-dd hh:mm"), this.getDetalle(obj), obj.monto)
             }}
         />
 

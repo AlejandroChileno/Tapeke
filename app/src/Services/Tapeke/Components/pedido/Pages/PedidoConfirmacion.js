@@ -33,10 +33,7 @@ class PedidoConfirmacion extends React.Component {
         this.auxPedido = Parent.Actions.getDetalle(this.key_pedido, this.props)
         if (!this.auxPedido) return <SLoad />
         // this.auxPedido.direccion.latitude
-        console.log(this.auxPedido);
         return <>
-
-
             <SMapView initialRegion={
                 {
                     latitude: (this.auxPedido.restaurante.latitude + this.auxPedido.direccion.latitude) / 2,
@@ -96,7 +93,8 @@ class PedidoConfirmacion extends React.Component {
         // console.log("hora ", this.auxPedido.horario.hora_fin);
         return (
             <SPage disableScroll center onBack={() => {
-                SNavigation.replace("/");
+                SNavigation.goBack();
+                SNavigation.reset("/");
                 return true;
             }}>
                 <SView col={"xs-12"} row center flex border={"transparent"} >

@@ -52,7 +52,7 @@ class MediaRestaurante extends Component {
     }
     calificacion() {
         this.dataRestaurante = calificacion.Actions.getMediaByRestaurante(this.props.data.key, this.props)
-        if (!this.dataRestaurante) return <SLoad />
+        if (!this.dataRestaurante) return null;
         var cl = this.dataRestaurante;
         if (!cl.buen_servicio_media && !cl.buena_calidad_media && !cl.buena_cantidad_media) return null;
         return <>

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Animated, Dimensions, TouchableOpacity, Platform } from 'react-native';
-import { connect } from 'react-redux';
 import { SIcon, SImage, SNavigation, SView, STheme, SText } from 'servisofts-component';
-import SSocket from 'servisofts-socket';
 // import RelojEntrenamiento from '../../Pages/EntrenamientoPage/Entrenamiento/RelojEntrenamiento';
 // import AppParams from '../../Params';
 // import Svg from '../../Svg';
@@ -25,7 +23,7 @@ class BarraSuperior extends Component {
         }).start();
     }
     componentDidMount() {
-    
+
         this.startAnimation();
     }
 
@@ -105,7 +103,4 @@ class BarraSuperior extends Component {
         );
     }
 }
-const initStates = (state) => {
-    return { state }
-};
-export default connect(initStates)(BarraSuperior);
+export default BarraSuperior;

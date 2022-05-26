@@ -18,7 +18,7 @@ export default class BarraCargando extends PureComponent {
         Animated.timing(this.animValue, {
             toValue: 1,
             duration: 3500 * (Math.random() * 0.2 + 0.5),
-            useNativeDriver: true,
+            useNativeDriver: false,
             easing: Easing.linear
         }).start(() => {
             this.animValue.setValue(0);

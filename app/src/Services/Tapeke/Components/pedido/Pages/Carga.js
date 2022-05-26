@@ -23,10 +23,20 @@ class Carga extends Component {
             key_pedido: this.key_pedido,
             key_usuario: this.props.state.usuarioReducer.usuarioLog.key,
         }).then((resp) => {
-            Validations.set_pedido_en_curso(resp.data);
-            Validations.pedido_en_curso("pedido");
+            this.props.dispatch(resp);
+            this.props.dispatch({
+                component: "pedido",
+                type: "editar",
+                data: resp.data,
+                estado: "exito",
+            })
+            new SThread(1500, "getPaymentStatus", false).start(() => {
+                Validations.set_pedido_en_curso(resp.data);
+                Validations.pedido_en_curso("pedido");
+            })
+
         }).catch((err) => {
-            console.log(err);
+            this.getDetallePedido();
         })
     }
     render() {

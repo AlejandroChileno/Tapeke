@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Animated } from 'react-native';
 import { connect } from 'react-redux';
 import { SIcon, STheme, SView } from 'servisofts-component';
 import NavBar from '../NavBar';
@@ -9,7 +8,6 @@ class BarraSuperiorTapeke extends Component {
  constructor(props) {
   super(props);
   this.state = {
-   anim: new Animated.Value(0),
 
   };
 

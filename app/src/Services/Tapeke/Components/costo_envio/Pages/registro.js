@@ -6,7 +6,7 @@ import SSocket from 'servisofts-socket';
 import PButtom from '../../../../../Components/PButtom';
 
 const inputHandler = (text, nro) => {
-    console.log(text.nativeEvent.text);
+    // console.log(text.nativeEvent.text);
     var value = text.nativeEvent.text;
     if (value.length >= nro) {
         SPopup.alert("Usted no puede ingresar más de " + nro + " caracteres");

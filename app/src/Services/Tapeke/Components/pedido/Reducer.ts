@@ -78,6 +78,7 @@ const editar = (state: any, action: DataProps) => {
     if (state.data_activos) {
         state.data_activos[action.data.key] = action.data;
     }
+    
 }
 const getById = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
