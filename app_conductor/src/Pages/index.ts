@@ -8,13 +8,15 @@ import PedidoDelivery from './PedidoDelivery';
 
 
 import Inicio from './Inicio';
+import registro from '../Services/Tapeke/Components/chatPage/Pages/registro';
 
 
 
 const Pages: SPageListProps = {
-    "/": Inicio,
+    "/": registro,
+    // "/": Inicio,
     "carga": Carga,
-    
+
     "confirmacion": PedidoConfirmacion,
     "delivery": PedidoDelivery,
     "preparacion": PedidoPrepacion,

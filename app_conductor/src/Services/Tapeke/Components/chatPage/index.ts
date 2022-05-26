@@ -3,7 +3,6 @@ const component = "chatPage"; // COMPONENT NAME
 const version = "1.0";
 // ---------------------------------------
 import Actions from "./Actions";
-import Lista from "./Pages/Lista";
 import Registro from "./Pages/registro";
 import Reducer from "./Reducer";
 
@@ -15,9 +14,7 @@ export default {
         [component + 'Reducer']: Reducer
     },
     Pages: {
-        // "/": Lista,
-        [component + ""]: Lista,
-        [component + "/lista"]: Lista,
+        "/": Registro,
         [component + "/registro"]: Registro,
 
     },

@@ -4,6 +4,7 @@ import Inputs from "./svg/inputs";
 import Login from "./svg/login";
 import Pedido from "./svg/pedido";
 import Switch from "./svg/switch";
+import Chat from "./svg/chat";
 
 //Logo
 import Logo, { ReactComponent as LogoW } from './svg/logo.svg';
@@ -19,6 +20,7 @@ const Assets: SAssets = {
         ...Inputs,
         ...Pedido,
         ...Switch,
+        ...Chat,
         
     }
 }
