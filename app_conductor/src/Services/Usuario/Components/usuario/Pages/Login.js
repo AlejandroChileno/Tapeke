@@ -120,7 +120,7 @@ class Login extends Component {
                             <SHr height={20} />
                             {this.getForm()}
                             <SView height={20} />
-                            <SView col={"xs-11"} height={40} row center  >
+                            {/* <SView col={"xs-11"} height={40} row center  >
                                 <SView col={"xs-3"} height center>
                                     <SHr color={STheme.color.lightGray} height={1.5} ></SHr>
                                 </SView>
@@ -130,9 +130,9 @@ class Login extends Component {
                                 <SView col={"xs-3"} height center>
                                     <SHr color={STheme.color.lightGray} height={1.5} ></SHr>
                                 </SView>
-                            </SView>
+                            </SView> */}
 
-                            <SView col={"xs-11"} height={100} row center  >
+                            {/* <SView col={"xs-11"} height={100} row center  >
                                 <SView col={"xs-2"} height center>
                                 </SView>
                                 <SView flex center height={60} >
@@ -145,7 +145,7 @@ class Login extends Component {
                                         <SView height={50} colSquare center style={{
                                             backgroundColor: 'white', borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 2, padding: 8
                                         }}>
-                                            <SIcon name={"LoginGmail"} />
+                                            <SIcon name={"IconGoogle"} />
                                         </SView>
                                     </LoginGoogle>
                                 </SView>
@@ -157,13 +157,13 @@ class Login extends Component {
                                         }, this.props);
                                     }}>
                                         <SView height={50} colSquare center style={{ backgroundColor: 'white', borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 2, padding: 8 }}>
-                                            <SIcon name={"LoginFacebook"} />
+                                            <SIcon name={"IconFaceb"} />
                                         </SView>
                                     </LoginFacebook>
                                 </SView>
                                 <SView col={"xs-2"} height center>
                                 </SView>
-                            </SView>
+                            </SView> */}
                             <SView height={10} />
                             <SView col={"xs-11"} row center>
                                 <PButtom fontSize={20} onPress={() => {

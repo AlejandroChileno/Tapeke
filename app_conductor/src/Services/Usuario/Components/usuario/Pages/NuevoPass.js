@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { SLoad } from 'servisofts-component';
-import { SButtom, SDate, SForm, SNavigation, SPage, SPopup, SText, STheme, SView, SIcon } from 'servisofts-component';
+import { SButtom, SDate, SForm, SIcon, SLoad, SNavigation, SPage, SPopup, SText, STheme, SView } from 'servisofts-component';
 import Usuario from '..';
-// import BackgroundImage from '../../../Components/BackgroundImage';
-// import FotoPerfilComponent from '../../../Components/FotoPerfilComponent';
+ // import FotoPerfilComponent from '../../../Components/FotoPerfilComponent';
 // import LogoAnimado from '../../CargaPage/LogoAnimado';
 // import RolDeUsuario from './RolDeUsuario';
 import PButtom from '../../../../../Components/PButtom';

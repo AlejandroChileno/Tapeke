@@ -38,7 +38,7 @@ class NoHayTarjeta extends Component {
         // if (arr.length > 0) {
         // 	SNavigation.navigate(Parent.component +"/misTarjetas", { callback: this.callback});
         // }
-        
+
         //Consultando si existe tarjetas
         var dataTarjeta = Parent.Actions.getAll(this.props);
         if (!dataTarjeta) return <SLoad />;
@@ -56,9 +56,11 @@ class NoHayTarjeta extends Component {
         // } 
 
         return (
-            <SPage disableScroll center>
+            <SPage center>
+                <SHr height={20} />
                 <SView flex center col={"xs-11 sm-10 md-8 lg-6 xl-4"}  >
                     <SView col={"xs-12"} center row style={{ backgroundColor: STheme.color.primary, borderRadius: 12 }}>
+                        <SHr height={30} />
                         <SView col={"xs-12"} row center   >
                             <SView col={"xs-11"} border={'transparent'}  >
                                 <SHr height={20} />
@@ -75,13 +77,14 @@ class NoHayTarjeta extends Component {
                         </SView>
                         <SView col={"xs-12"} row center   >
                             <SView col={"xs-12"} border={'transparent'} center>
-                                <PButtom3 secondary props={{ type: "outline" }} onPress={() => { SNavigation.navigate(Parent.component + "/registro", { callback: this.callback, keyPedido: this.keyPedido } ); }} >AÑADIR TARJETA</PButtom3>
-                                <SHr height={20} />
+                            <SHr height={20} />
+                                <PButtom3 secondary props={{ type: "outline" }} onPress={() => { SNavigation.navigate(Parent.component + "/registro", { callback: this.callback, keyPedido: this.keyPedido }); }} >AÑADIR TARJETA</PButtom3>
                             </SView>
-                            <SHr height={10} />
+                            <SHr height={30} />
                         </SView>
                     </SView>
                 </SView>
+                <SHr height={20} />
             </SPage >
         );
     }

@@ -55,12 +55,18 @@ const getAll = (state: any, action: DataProps) => {
     state.data = action.data;
 }
 const registro = (state: any, action: DataProps) => {
+    if (action.estado == "error") {
+        action.error = action.error;
+    }
     if (action.estado != "exito") return;
     state.lastRegister = action.data;
+    // aqui
     if (!state.data) return;
     state.data[action.data.key] = action.data;
 }
 const editar = (state: any, action: DataProps) => {
+    // aqio
+//  aqui
     if (action.estado != "exito") return;
     if (state.usuarioLog) {
         if (state.usuarioLog.key == action.data.key) {
@@ -68,6 +74,7 @@ const editar = (state: any, action: DataProps) => {
             SStorage.setItem("usr_log", JSON.stringify(action.data));
         }
     }
+    // aqui
     if (!state.data) return;
     state.data[action.data.key] = action.data;
 }

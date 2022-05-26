@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import { SPopup } from 'servisofts-component';
+import { SButtom, SPopup } from 'servisofts-component';
 import Usuario from '../../..';
-import Kolping from '../../../../../Components/Kolping';
 
 class CerrarSession extends Component {
     constructor(props) {
@@ -14,7 +12,7 @@ class CerrarSession extends Component {
 
     render() {
         return (
-            <Kolping.KButtom secondary onPress={() => {
+            <SButtom secondary onPress={() => {
                 SPopup.confirm({
                     title: "Cerrar sesión", message: "Seguro que desea desconectar su usuario?", onPress: () => {
                         Usuario.Actions.logout(this.props)
@@ -22,7 +20,7 @@ class CerrarSession extends Component {
                 })
             }}>
                 CERRAR SESIÓN
-            </Kolping.KButtom>
+            </SButtom>
         );
     }
 }

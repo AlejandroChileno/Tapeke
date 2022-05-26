@@ -75,7 +75,7 @@ class Registro extends Component {
             }}
             onSubmit={(values) => {
                 if (values["Password"] != values["RepPassword"]) {
-                    SPopup.open({ content: this.alertErrorPassword() });
+                    SPopup.open({content: this.alertErrorPassword() });
                     return null;
                 }
 
@@ -207,38 +207,36 @@ class Registro extends Component {
             if (!this.usr) return <SLoad />
         }
         return (
-            <SPage title={'Registro de ' + Parent.component}>
+            <SPage title={'Registro de ' + Parent.component} center>
+                <SView height={30}></SView>
                 <SView col={"xs-12"} center>
-                    <SView height={30}></SView>
-                    <SView col={"xs-12"} center>
-                        {this.getContent()}
-                    </SView>
-                    <SHr height={25} />
-                    <SView col={"xs-11 sm-9 md-7 lg-5 xl-4"} height={30}>
-                        <SView col={"xs-10"} row center>
-                            <SView col={"xs-1"} onPress={() => { this.setState(this.state.envio == 0 ? { envio: 1 } : { envio: 0 }); }}>
-                                <SIcon name={this.state.envio != 0 ? 'IconCheckedOk' : "IconChecked"} fill={STheme.color.primary} width={30} height={30}></SIcon>
-                            </SView>
-                            <SView col={"xs-9"} center style={{ alignItems: "center" }} onPress={() => {
-                                SNavigation.navigate('terminos');
-                            }} >
-                                <SText color={STheme.color.text} fontSize={14} font={"LondonBetween"} style={{ textDecorationLine: 'underline' }} >
-                                    Aceptar términos y condiciones
-                                </SText>
-                            </SView>
+                    {this.getContent()}
+                </SView>
+                <SHr height={25} />
+                <SView col={"xs-11 sm-9 md-7 lg-5 xl-4"} height={30}>
+                    <SView col={"xs-10"} row center>
+                        <SView col={"xs-1"} onPress={() => { this.setState(this.state.envio == 0 ? { envio: 1 } : { envio: 0 }); }}>
+                            <SIcon name={this.state.envio != 0 ? 'IconCheckedOk' : "IconChecked"} fill={STheme.color.primary} width={30} height={30}></SIcon>
+                        </SView>
+                        <SView col={"xs-11"} center style={{ alignItems: "center" }} onPress={() => {
+                            SNavigation.navigate('terminos');
+                        }} >
+                            <SText color={STheme.color.text} fontSize={14} font={"LondonBetween"} style={{ textDecorationLine: 'underline' }} >
+                                Aceptar términos y condiciones
+                            </SText>
                         </SView>
                     </SView>
-                    <SHr height={25} />
-                    <PButtom
-                        props={{
-                            type: "outline"
-                        }}
-                        onPress={() => {
-                            this.form.submit()
-                        }}
-                    >{(this.key ? "Editar" : "Registrar")}</PButtom>
-                    <SView height={40}></SView>
                 </SView>
+                <SHr height={25} />
+                <PButtom
+                    props={{
+                        type: "outline"
+                    }}
+                    onPress={() => {
+                        this.form.submit()
+                    }}
+                >{(this.key ? "Editar" : "Registrar")}</PButtom>
+                <SView height={40}></SView>
             </SPage>
         );
     }
