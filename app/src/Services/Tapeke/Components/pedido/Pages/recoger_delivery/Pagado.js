@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { SHr, SIcon, SImage, SLoad, SMapView, SMarker, SNavigation, SPage, SText, STheme, SView } from 'servisofts-component';
-import Parent from '../index';
+import Parent from '../../index';
 import SSocket from 'servisofts-socket';
-import Restaurante from '../../restaurante';
+import Restaurante from '../../../restaurante';
 
-class PedidoConfirmacion extends React.Component {
+class Pagado extends React.Component {
     constructor(props) {
         super(props);
         // this.state = {
@@ -18,9 +18,7 @@ class PedidoConfirmacion extends React.Component {
                 longitude: -63.1821408,
             }
         };
-
         // this.key_pedido = "226dd263-666b-4af8-9e93-1d101bf28efb";
-
         this.key_pedido = SNavigation.getParam('key_pedido');
     }
     componentDidMount() {
@@ -35,8 +33,6 @@ class PedidoConfirmacion extends React.Component {
         // this.auxPedido.direccion.latitude
         console.log(this.auxPedido);
         return <>
-
-
             <SMapView initialRegion={
                 {
                     latitude: (this.auxPedido.restaurante.latitude + this.auxPedido.direccion.latitude) / 2,
@@ -47,18 +43,15 @@ class PedidoConfirmacion extends React.Component {
                 preventCenter>
                 <Restaurante.Components.Marker data={this.auxPedido.restaurante} lat={this.auxPedido.restaurante.latitude} lng={this.auxPedido.restaurante.longitude} />
                 <SMarker lat={this.auxPedido.direccion.latitude} lng={this.auxPedido.direccion.longitude} >
-                    <SIcon name={"Marker"} width={30} height={30} fill={"#4285F4"} />
+                    <SIcon name={"Marker"} width={50} height={50} fill={"#FA790E"} />
                 </SMarker>
             </SMapView>
         </>
     }
 
     getBotones() {
-
-
         return (
             <>
-
                 <SView col={"xs-12"} height={90} row>
                     <SView col={"xs-3.5"} style={{ borderBottomWidth: 3, }} border={'transparent'} center  >
                         <SIcon name="PedConfirmacion" width={48} fill={"white"} > </SIcon>
@@ -80,7 +73,6 @@ class PedidoConfirmacion extends React.Component {
                         <SText color={STheme.color.primary + 22} style={{ fontSize: 12 }} bold>Delivery</SText>
                     </SView>
                 </SView>
-
             </>
         );
     }
@@ -143,11 +135,10 @@ class PedidoConfirmacion extends React.Component {
                     <SHr height={15} />
                 </SView> */}
 
-                <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} height={270} row center backgroundColor={'transparent'}>
+                <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} height={225} row center backgroundColor={'transparent'}>
                     <SHr height={10} />
 
                     <SView col={"xs-3"} height={7} backgroundColor={STheme.color.card} style={{ borderRadius: 16, }}
-
                         onPress={() => {
                             SNavigation.navigate("pedido/pedidoqr", { key_pedido: this.key_pedido })
                         }} />
@@ -162,10 +153,9 @@ class PedidoConfirmacion extends React.Component {
                     <SView col={"xs-12"} border={'transparent'} center >
                         <SText color={STheme.color.darkGray} style={{ fontSize: 15 }} bold>{Parent.Actions.getDetalleEstado(this.auxPedido)}</SText>
                     </SView>
-
                     {this.getBotones()}
                 </SView>
-
+                <SHr height={5} />
             </SPage >
         );
     }
@@ -173,4 +163,4 @@ class PedidoConfirmacion extends React.Component {
 const initStates = (state) => {
     return { state }
 };
-export default connect(initStates)(PedidoConfirmacion);
+export default connect(initStates)(Pagado);

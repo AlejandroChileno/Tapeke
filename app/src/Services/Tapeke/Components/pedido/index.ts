@@ -9,10 +9,13 @@ import Detalle from "./Pages/Detalle";
 import Confirmar from "./Pages/Confirmar";
 import Mapa from "./Pages/Mapa";
 import MensajeSolicitud from "./Pages/MensajeSolicitud";
-import PedidoConfirmacion from "./Pages/PedidoConfirmacion";
+// import PedidoConfirmacion from "./Pages/PedidoConfirmacion";
 import PedidoQR from "./Pages/PedidoQR";
 import Carga from "./Pages/Carga";
 import NoRecogido from "./Pages/NoRecogido";
+import PagadoU from "./Pages/recoger_usuario/Pagado";
+import EntregaTiempo from "./Pages/recoger_usuario/EntregaTiempo";
+import PagadoD from "./Pages/recoger_delivery/Pagado";
 
 import PedidoState from "./PedidoStates.json";
 export default {
@@ -29,9 +32,15 @@ export default {
         [component + "/confirmar"]: Confirmar,
         [component + "/mapa"]: Mapa,
         [component + "/mensajeSolicitud"]: MensajeSolicitud,
-        [component + "/confirmacion"]: PedidoConfirmacion,
+        // [component + "/confirmacion"]: PedidoConfirmacion,
         [component + "/pedidoqr"]: PedidoQR,
         [component + "/noRecogido"]: NoRecogido,
+        [component + "/noRecogido"]: NoRecogido,
+
+        [component + "/usuario/pagado"]: PagadoU,
+        [component + "/usuario/entrega"]: EntregaTiempo,
+
+        [component + "/delivery/pagado"]: PagadoD,
 
     },
 }

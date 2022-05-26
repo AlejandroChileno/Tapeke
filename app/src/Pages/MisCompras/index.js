@@ -78,7 +78,13 @@ class index extends Component {
 								return <SView col={"xs-12 "} height={100} row border={STheme.color.card} style={{ borderRadius: 8, }}
 									onPress={() => {
 										if (obj.state == "pagado") {
-											SNavigation.navigate("pedido/confirmacion", { key_pedido: obj.key });
+											// SNavigation.navigate("pedido/confirmacion", { key_pedido: obj.key });
+											if (obj.delivery == 0) {
+												SNavigation.replace("pedido/usuario/pagado", { key_pedido: obj.key })
+											}
+											if (obj.delivery != 0) {
+												SNavigation.replace("pedido/delivery/pagado", { key_pedido: obj.key })
+											}
 										}
 										if (obj.state == "no_recogido") {
 											SNavigation.navigate("pedido/noRecogido", { key_pedido: obj.key });
