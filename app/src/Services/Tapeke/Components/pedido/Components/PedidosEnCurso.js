@@ -4,6 +4,8 @@ import { SDate, SHr, SIcon, SList, SLoad, SNavigation, SText, STheme, SView, SSc
 import BarraCargando from "../../../../../Components/BarraCargando";
 import pedido from "../../../../../Services/Tapeke/Components/pedido";
 import restaurante from "../../../../../Services/Tapeke/Components/restaurante";
+import Validations from '../../../../../Validations';
+
 import Parent from "../";
 class PedidosEnCurso extends Component {
     constructor(props) {
@@ -14,7 +16,7 @@ class PedidosEnCurso extends Component {
 
 
 
-    pedidoencurso(dataPedido) {
+    pedidoencurso(dataPedido) { 
         var restaurantes = restaurante.Actions.getAll(this.props);
         if (!restaurantes) return null;
         return <SList
@@ -29,7 +31,20 @@ class PedidosEnCurso extends Component {
             render={(data) => {
                 var restaurante_obj = restaurantes[data.horario.key_restaurante];
                 return <SView width={320} backgroundColor={STheme.color.primary} style={{ borderRadius: 8, }} center onPress={() => {
-                    SNavigation.navigate("pedido", { key_pedido: data.key });
+                    // SNavigation.navigate("pedido", { key_pedido: data.key });
+                    //Validations.pedido_en_curso("pedido");
+                    if (data.state == "pagado") {
+                        // SNavigation.navigate("pedido/confirmacion", { key_pedido: obj.key });
+                        if (data.delivery == 0) {
+                            SNavigation.navigate("pedido/usuario/pagado", { key_pedido: data.key })
+                        }
+                        if (data.delivery != 0) {
+                            SNavigation.navigate("pedido/delivery/pagado", { key_pedido: data.key })
+                        }
+                    }
+                    if (data.state == "no_recogido") {
+                        SNavigation.navigate("pedido/noRecogido", { key_pedido: data.key });
+                    }
                 }}>
                     <SView flex col={"xs-12"} center>
                         <SHr />
