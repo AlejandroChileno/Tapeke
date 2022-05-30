@@ -16,7 +16,7 @@ class PedidosEnCurso extends Component {
 
 
 
-    pedidoencurso(dataPedido) { 
+    pedidoencurso(dataPedido) {
         var restaurantes = restaurante.Actions.getAll(this.props);
         if (!restaurantes) return null;
         return <SList
@@ -44,6 +44,14 @@ class PedidosEnCurso extends Component {
                     }
                     if (data.state == "no_recogido") {
                         SNavigation.navigate("pedido/noRecogido", { key_pedido: data.key });
+                    }
+                    if (data.state == "listo") {
+                        if (data.delivery == 0) {
+                            SNavigation.navigate("pedido/usuario/entrega", { key_pedido: data.key })
+                        }
+                        if (data.delivery != 0) {
+                             SNavigation.navigate("pedido/delivery/pagado", { key_pedido: data.key })
+                        }
                     }
                 }}>
                     <SView flex col={"xs-12"} center>
