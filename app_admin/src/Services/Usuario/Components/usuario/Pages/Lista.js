@@ -16,7 +16,7 @@ class Lista extends Component {
         return <STable2
             header={[
                 { key: "index", label: "#", width: 50 },
-                { key: "key", label: "key", width: 200 },
+                // { key: "key", label: "key", width: 200 },
                 {
                     key: "key-foto", label: "Foto", width: 70, center: true, component: (key) => {
                         return <SView width={40} height={40} onPress={() => {
@@ -25,11 +25,18 @@ class Lista extends Component {
                         </SView>
                     }
                 },
-                { key: "Nombres", label: "Nombres", width: 150 },
-                { key: "Apellidos", label: "Apellidos", width: 150 },
+                { key: "-", label: "Nombres", width: 200, render:o=>o.Nombres+" "+o.Apellidos },
                 { key: "Correo", label: "Correo", width: 150 },
-                { key: "Telefono", label: "Telefono", width: 150 },
-                // { key: "Password", label: "Password", width: 150 },
+                { key: "Telefono", label: "Telefono", width: 130, center:true, },
+                { key: "-Tipo", label: "Tipo", width: 100, center:true, render: o => {
+                    if(o["gmail_key"]){
+                        return "Gmail";
+                    }
+                    if(o["facebook_key"]){
+                        return "Facebook";
+                    }
+                    return "App"
+                } },
                 {
                     key: "key-editar", label: "Editar", width: 50, center: true, component: (item) => {
                         return <SView onPress={() => { SNavigation.navigate(Parent.component + "/registro", { key: item }) }}>

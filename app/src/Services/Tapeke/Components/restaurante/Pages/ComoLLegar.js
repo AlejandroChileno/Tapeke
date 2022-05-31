@@ -66,7 +66,18 @@ class ComoLLegar extends React.Component {
 
     }
 
-
+    viajar(auxRestaurante) {
+        const latitude = auxRestaurante.latitude;
+        const longitude = auxRestaurante.longitude;
+        const label = auxRestaurante.direccion;
+        var latLng = latitude + "," + longitude
+        const url = Platform.select({
+            ios: "maps:" + latLng + "?q=" + label + "@" + latLng,
+            android: "geo:" + latLng + "?q=" + latLng + "(" + label + ")",
+            web: "https://www.google.com/maps/search/?api=1&query=" + latLng + "&query_place_id=" + latLng + "&query_place_id=" + label
+        });
+        Linking.openURL(url);
+    }
 
     getInfo() {
 
@@ -83,26 +94,32 @@ class ComoLLegar extends React.Component {
                 <SHr height={10} />
                 <SText color={STheme.color.text} fontSize={16} style={{ fontWeight: "bold" }}  >{auxRestaurante.nombre} </SText>
                 <SHr height={6} />
-                <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-start', }}>
+                <SView col={"xs-12"} height={20} row center style={{ justifyContent: 'flex-start', }}>
                     <SIcon name={'Reloj'} width={13} colSquare center />
                     <SView width={8} />
                     <SText fontSize={12} font={"Roboto"} >{auxRestaurante.horario.text} </SText>
                 </SView>
                 <SHr height={6} />
                 <SText color={STheme.color.text} fontSize={12} >Direccion: {auxRestaurante.direccion} </SText>
+                <SHr height={10} />
+                <SView col={"xs-12"} center>
+
+                    <SView center backgroundColor={STheme.color.primary} width={100} height={40} style={{
+                        borderRadius: 4,
+                    }} onPress={() => {
+                        this.viajar(auxRestaurante)
+                    }}>
+                        <SView center row>
+                            <SView flex />
+                            <SIcon name={"Marker"} width={14} fill={"#fff"} />
+                            <SView width={4} />
+                            <SText color={"#fff"} center>Viajar</SText>
+                            <SView flex />
+                        </SView>
+                    </SView>
+                </SView>
 
 
-                <PButtom fontSize={16} onPress={() => {
-                    const latitude = auxRestaurante.latitude;
-                    const longitude = auxRestaurante.longitude;
-                    const label = auxRestaurante.direccion;
-                    var latLng = latitude + "," + longitude
-                    const url = Platform.select({
-                        ios: "maps:"+latLng+"?q="+label+"@" +latLng,
-                        android: "geo:"+latLng+"?q=" + latLng+ "(" + label+")"
-                    });
-                    Linking.openURL(url);
-                }}>Llévame</PButtom>
 
             </SView>
             <SView width={15} />
@@ -115,7 +132,6 @@ class ComoLLegar extends React.Component {
         return (
             <SPage title={'Elegir mi dirección'} disableScroll center  >
                 {this.showMapa()}
-                {this.getBotonShare()}
                 {this.getInfo()}
             </ SPage >
         );

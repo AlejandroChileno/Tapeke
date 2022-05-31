@@ -62,11 +62,11 @@ class MediaRestaurante extends Component {
                         <SHr height={15} />
                         <SText fontSize={15} font={"Roboto"} style={{ fontWeight: "bold" }}>Qué piensan otros usuarios</SText>
                         <SHr height={20} />
-                        {this.dataRestaurante.buen_servicio_media ? this.getcalificacion1() : ""}
+                        {this.dataRestaurante.buen_servicio_media ? this.getcalificacion1() : null}
                         <SHr height={15} />
-                        {this.dataRestaurante.buena_calidad_media ? this.getcalificacion2() : ""}
+                        {this.dataRestaurante.buena_calidad_media ? this.getcalificacion2() : null}
                         <SHr height={15} />
-                        {this.dataRestaurante.buena_cantidad_media ? this.getcalificacion2() : ""}
+                        {this.dataRestaurante.buena_cantidad_media ? this.getcalificacion2() : null}
                         <SHr height={15} />
                     </SView>
                 </SView>
