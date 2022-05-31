@@ -4,6 +4,7 @@ import { SHr, SIcon, SImage, SLoad, SMapView, SMarker, SNavigation, SPage, SText
 import Parent from '../../index';
 import SSocket from 'servisofts-socket';
 import Restaurante from '../../../restaurante';
+import BotonesEstado from '../../Components/BotonesEstado'
 
 class Pagado extends React.Component {
     constructor(props) {
@@ -48,21 +49,37 @@ class Pagado extends React.Component {
         </>
     }
 
-    getBotones() {
+    getBotones(data) {
+        if (data.state == "pagado") {
+            var estadoPagado = data.state;
+        }
+        if (data.state == "listo") {
+            var estadoListo = data.state;
+        }
+        if (data.state == "en_camino") {
+            var estadoEnCamino = data.state;
+        }
+        if (data.state == "conductor_cerca") {
+            var estadoConductor = data.state;
+        }
+
         return (
             <>
+                <SView col={"xs-12"} border={'transparent'} center >
+                    <SText color={STheme.color.darkGray} style={{ fontSize: 15 }} bold>{Parent.Actions.getDetalleEstado(data)}</SText>
+                </SView>
                 <SView col={"xs-12"} height={90} row>
                     <SView col={"xs-3.5"} style={{ borderBottomWidth: 3, }} border={'transparent'} center  >
-                        <SIcon name="PedConfirmacion" width={48} fill={"white"} > </SIcon>
-                        <SView col={"xs-12"} height={10} backgroundColor={STheme.color.primary} style={{ borderRadius: 16, }}></SView>
-                        <SText color={STheme.color.primary} style={{ fontSize: 12 }} bold>Confirmación</SText>
+                        <SIcon name="PedConfirmacion" width={48} fill={estadoPagado ? STheme.color.primary : STheme.color.primary + 22}  > </SIcon>
+                        <SView col={"xs-12"} height={10} backgroundColor={estadoPagado ? STheme.color.primary : STheme.color.primary + 22} style={{ borderRadius: 16, }}></SView>
+                        <SText color={estadoPagado ? STheme.color.primary : STheme.color.primary + 22} style={{ fontSize: 12 }} bold>Confirmación</SText>
                     </SView>
 
                     <SView width={5} height />
                     <SView flex border={'transparent'} center>
-                        <SIcon name="PedPreparacion" width={48} fill={STheme.color.primary + 22} />
-                        <SView col={"xs-12"} height={10} backgroundColor={STheme.color.primary + 22} />
-                        <SText color={STheme.color.primary + 22} style={{ fontSize: 12 }} bold>Preparacion</SText>
+                        <SIcon name="PedPreparacion" width={48} fill={estadoListo ? STheme.color.primary : STheme.color.primary + 22} />
+                        <SView col={"xs-12"} height={10} backgroundColor={estadoListo ? STheme.color.primary : STheme.color.primary + 22} />
+                        <SText color={estadoListo ? STheme.color.primary : STheme.color.primary + 22} style={{ fontSize: 12 }} bold>Preparación</SText>
                     </SView>
                     <SView width={5} height />
 
@@ -150,10 +167,10 @@ class Pagado extends React.Component {
                     <SView col={"xs-12"} border={'transparent'} row center >
                         <SText color={STheme.color.darkGray} style={{ fontSize: 38 }} bold>{this.auxPedido.horario.hora_inicio} - {this.auxPedido.horario.hora_fin}</SText>
                     </SView>
-                    <SView col={"xs-12"} border={'transparent'} center >
-                        <SText color={STheme.color.darkGray} style={{ fontSize: 15 }} bold>{Parent.Actions.getDetalleEstado(this.auxPedido)}</SText>
-                    </SView>
-                    {this.getBotones()}
+
+                    {/* {this.getBotones(this.auxPedido)}
+                    <SHr height={20}/> */}
+                    <BotonesEstado data={this.auxPedido}/>
                 </SView>
                 <SHr height={5} />
             </SPage >
