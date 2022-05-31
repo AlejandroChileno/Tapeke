@@ -79,6 +79,14 @@ class listaHorario extends Component {
                     }
                 },
                 {
+                    key: "key-conductores", label: "Conductores", width: 60, center: true,
+                    component: (item) => {
+                        return <SView onPress={() => { SNavigation.navigate("conductor_horario", { key_horario: item }) }}>
+                            <SIcon name={"Bicicleta"} width={35} />
+                        </SView>
+                    }
+                },
+                {
                     key: "key-pack", label: "Packs", width: 60, center: true,
                     component: (item) => {
                         return <SView onPress={() => { SNavigation.navigate("admin/pack/registro", { key_horario: item }) }}>

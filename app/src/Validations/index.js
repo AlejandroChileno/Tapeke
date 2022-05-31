@@ -35,11 +35,13 @@ export default class Validations {
                 SStorage.removeItem("pedido_en_curso")
                 console.log(JSON.stringify(obj) + "AQUIII");
                 if (obj.delivery == 0) {
-                    SNavigation.replace("pedido/usuario/pagado", { key_pedido: obj.key })
+                    SNavigation.navigate("pedido/usuario/pagado", { key_pedido: obj.key })
+                    return;
                 }
                 if (obj.delivery != 0) {
                     console.log("CON DELIVERY");
-                    SNavigation.replace("pedido/delivery/pagado", { key_pedido: obj.key })
+                    SNavigation.navigate("pedido/delivery/pagado", { key_pedido: obj.key })
+                    return;
                 }
                 // SNavigation.replace("pedido/confirmacion", { key_pedido: obj.key });
                 return;

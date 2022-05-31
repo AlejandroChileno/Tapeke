@@ -152,10 +152,10 @@ class Pagado extends Component {
 
                             </SView>
                             <SText fontSize={18} font={"Roboto"} color={STheme.color.primary} bold center >Hora de entrega: {datas?.horario?.hora_inicio} - {datas?.horario?.hora_fin}</SText>
-                            <SHr height={10} />
+                            {/* <SHr height={10} />
                             <PButtom fontSize={20} onPress={() => {
                                 SNavigation.navigate("pedido/usuario/entrega", { key_pedido: this.key});
-                            }}>ESTADO PEDIDO</PButtom>
+                            }}>ESTADO PEDIDO</PButtom> */}
                             <SHr height={50} />
                         </SView>
                     </SView>

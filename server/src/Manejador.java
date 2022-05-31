@@ -53,7 +53,12 @@ public class Manejador {
             case calificacion.COMPONENT:
                 calificacion.onMessage(obj, session);
                 break;
-
+            case enviroment.COMPONENT:
+                enviroment.onMessage(obj, session);
+                break;
+            case conductor_horario.COMPONENT:
+                conductor_horario.onMessage(obj, session);
+                break;
         }
     }
 }

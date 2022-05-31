@@ -12,8 +12,10 @@ import otros from './Components/otros';
 import filtros from './Components/filtros';
 import novedades from './Components/novedades';
 import pago_tarjeta from './Components/pago_tarjeta';
-import usuario_restaurante from './Components/usuario_restaurante';
+import enviroment from './Components/enviroment';
 
+import usuario_restaurante from './Components/usuario_restaurante';
+import conductor_horario from './Components/conductor_horario';
 import PedidoEnCurso from './Tasks/PedidoEnCurso';
 const ServiceName = "tapeke";
 
@@ -31,6 +33,8 @@ const Pages: SPageListProps = {
     ...filtros.Pages,
     ...novedades.Pages,
     ...pago_tarjeta.Pages,
+    ...enviroment.Pages,
+    ...conductor_horario.Pages,
     ...usuario_restaurante.Pages,
 
 
@@ -49,6 +53,8 @@ const Reducers = {
     ...novedades.Reducers,
     ...pago_tarjeta.Reducers,
     ...PedidoEnCurso.Reducers,
+    ...enviroment.Reducers,
+    ...conductor_horario.Reducers,
     ...usuario_restaurante.Reducers,
 }
 
