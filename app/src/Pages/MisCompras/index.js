@@ -80,10 +80,10 @@ class index extends Component {
 										if (obj.state == "pagado") {
 											// SNavigation.navigate("pedido/confirmacion", { key_pedido: obj.key });
 											if (obj.delivery == 0) {
-												SNavigation.replace("pedido/usuario/pagado", { key_pedido: obj.key })
+												SNavigation.navigate("pedido/usuario/pagado", { key_pedido: obj.key })
 											}
 											if (obj.delivery != 0) {
-												SNavigation.replace("pedido/delivery/pagado", { key_pedido: obj.key })
+												SNavigation.navigate("pedido/delivery/pagado", { key_pedido: obj.key })
 											}
 										}
 										if (obj.state == "no_recogido") {
