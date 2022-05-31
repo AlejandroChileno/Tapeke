@@ -51,7 +51,7 @@ class Inicio extends Component {
               </SView>
             </SView>
             <SView col={"xs-3"} center style={{ borderRightWidth: 1, borderColor: STheme.color.lightGray }}>
-              <SText font={"Roboto"} fontSize={13} color={STheme.color.primary}>CANTIDAD</SText>
+              <SText font={"Roboto"} fontSize={13} color={STheme.color.primary}>PACKS</SText>
               <SText font={"Roboto"} fontSize={24} color={STheme.color.text}>x {dataPackVendidos[key].cantidad}</SText>
             </SView>
             <SView col={"xs-6"} row >
