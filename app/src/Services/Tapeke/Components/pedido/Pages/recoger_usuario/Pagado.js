@@ -74,7 +74,7 @@ class Pagado extends Component {
         if (!datas) return <SLoad />
 
         return (
-            <SPage title="Recoger del Lugar ok" >
+            <SPage title="Recoger del Lugar" >
                 <SView col={"xs-12"} height backgroundColor={STheme.color.card} center>
                     <SHr height={18} />
                     <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center row style={{ backgroundColor: STheme.color.white }}>
