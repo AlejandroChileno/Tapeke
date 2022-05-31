@@ -16,7 +16,6 @@ class BotonesEstado extends Component {
 
     getBotones(){
          var dataPedido = this.state.data;
-        // var dataPedido = props.data;
 
          if (!dataPedido) return "nadaa";
 
@@ -65,11 +64,6 @@ class BotonesEstado extends Component {
 
 
     render() {
-        // var excluded_states = ["pendiente_pago", "timeout_pago"];
-        // var dataPedido = pedido.Actions.getPedidoByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props)
-        // if (!dataPedido) return null;
-        // dataPedido = dataPedido.filter(data => !excluded_states.includes(data.state));
-        // if (dataPedido.length == 0) return null;
         return <>
             {this.props.categoria}
             <SView col={"xs-12"}  >
