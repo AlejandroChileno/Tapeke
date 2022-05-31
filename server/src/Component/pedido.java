@@ -25,6 +25,9 @@ public class pedido {
                 case "getAllProximos":
                     getAllProximos(obj, session);
                     break;
+                case "getAllMapa":
+                    getAllMapa(obj, session);
+                    break;
                 case "registro":
                     registro(obj, session);
                     break;
@@ -76,6 +79,12 @@ public class pedido {
 
     public static void getAll(JSONObject obj, SSSessionAbstract session) throws SQLException {
         String consulta = "select get_all('" + COMPONENT + "') as json";
+        JSONObject data = SPGConect.ejecutarConsultaObject(consulta);
+        obj.put("data", data);
+        obj.put("estado", "exito");
+    }
+    public static void getAllMapa(JSONObject obj, SSSessionAbstract session) throws SQLException {
+        String consulta = "select pedido_get_all_mapa() as json";
         JSONObject data = SPGConect.ejecutarConsultaObject(consulta);
         obj.put("data", data);
         obj.put("estado", "exito");

@@ -28,6 +28,7 @@ const SThemeProps: SThemeThemes = {
 }
 
 const SocketProps = {
+    
     name: 'tapeke',
     // host: 'tapekeapp.com',
     // ssl: true,

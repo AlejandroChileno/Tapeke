@@ -36,9 +36,16 @@ public class Email extends Thread {
     }
 
     // public static void main(String[] args) {
-    // JSONObject obj = new JSONObject();
-    // obj.put("correo", "ricky.paz.d.97@gmail.com");
-    // new EmailRegistroUsr(obj).start();
+    //     JSONObject obj = new JSONObject();
+    //     obj.put("correo", "ricky.paz.d.97@gmail.com");
+
+    //     JSONObject mailConfig = new JSONObject();
+    //     JSONObject dataMail = obj;
+    //     mailConfig.put("subject", "Recuperar contraseña");
+    //     mailConfig.put("path", "mail/recuperar_pass.html");
+    //     JSONObject params = new JSONObject();
+
+    //     new Email(new JSONArray().put("ricky.paz.d.97@gmail.com"), mailConfig, params);
     // }
 
     @Override
@@ -81,7 +88,7 @@ public class Email extends Thread {
                 valor = file.read();
             }
             file.close();
-            if(params != null){
+            if (params != null) {
                 for (String key : params.keySet()) {
                     cuerpo = cuerpo.replace("{" + key + "}", params.getString(key));
                 }

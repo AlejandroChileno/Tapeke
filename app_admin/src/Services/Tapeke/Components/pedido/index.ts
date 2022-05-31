@@ -5,13 +5,11 @@ const version = "1.0";
 import Actions from "./Actions";
 import Reducer from "./Reducer";
 
-import Detalle from "./Pages/Detalle";
-import Confirmar from "./Pages/Confirmar";
-import Mapa from "./Pages/Mapa";
-import MensajeSolicitud from "./Pages/MensajeSolicitud";
-import PedidoConfirmacion from "./Pages/PedidoConfirmacion";
-import PedidoQR from "./Pages/PedidoQR";
-import Carga from "./Pages/Carga";
+import Lista from "./Pages/Lista";
+import Activos from "./Pages/Activos";
+import Entregados from "./Pages/Entregados";
+import DashBoard from "./Pages/DashBoard";
+import Home from "./Pages/Home";
 
 export default {
     component,
@@ -21,13 +19,10 @@ export default {
         [component + 'Reducer']: Reducer
     },
     Pages: {
-        [component]: Carga,
-        [component + "/detalle"]: Detalle,
-        [component + "/confirmar"]: Confirmar,
-        [component + "/mapa"]: Mapa,
-        [component + "/mensajeSolicitud"]: MensajeSolicitud,
-        [component + "/confirmacion"]: PedidoConfirmacion,
-        [component + "/pedidoqr"]: PedidoQR,
-
+        [component]: Home,
+        [component + "/all"]: Lista,
+        [component + "/activos"]: Activos,
+        [component + "/entregados"]: Entregados,
+        [component + "/dashboard"]: DashBoard
     },
 }

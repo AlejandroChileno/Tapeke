@@ -6,6 +6,7 @@ import TerminosCondiciones from '../Pages/TerminosCondiciones';
 import inDevelop from './inDevelop';
 import SelectDireccion from './SelectDireccion';
 import Ayuda from './Ayuda';
+import Test from './Test';
 const Pages = {
     "/": Administracion,
     "carga": Carga,
@@ -15,6 +16,7 @@ const Pages = {
     ...Services.Pages,
     "direccion": SelectDireccion,
     "ayuda": Ayuda,
+    "test": Test
 }
 
 export default Pages;

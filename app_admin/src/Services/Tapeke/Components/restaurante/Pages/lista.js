@@ -28,8 +28,8 @@ class lista extends Component {
                     }
                 },
                 { key: "nombre", label: "Nombre", width: 130 },
-                { key: "descripcion", label: "Descripcion", width: 280 },
-                { key: "direccion", label: "Direccion", width: 200 },
+                // { key: "descripcion", label: "Descripcion", width: 280 },
+                // { key: "direccion", label: "Direccion", width: 200 },
                 // { key: "latitude", label: "Lat", width: 130 },
                 // { key: "longitude", label: "Lng", width: 130 },
                 {

@@ -59,6 +59,9 @@ public class Manejador {
             case conductor_horario.COMPONENT:
                 conductor_horario.onMessage(obj, session);
                 break;
+            case sms_code.COMPONENT:
+                sms_code.onMessage(obj, session);
+                break;
         }
     }
 }
