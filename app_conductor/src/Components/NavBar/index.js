@@ -3,7 +3,7 @@ import { Animated } from 'react-native';
 import { SView, SImage, SNavigation, STheme, SIcon, SText, SScrollView2 } from 'servisofts-component';
 import { connect } from 'react-redux';
 import SSocket from 'servisofts-socket';
- 
+
 
 class NavBar extends React.Component {
 	static INSTACE = null;
@@ -51,7 +51,7 @@ class NavBar extends React.Component {
 			SNavigation.navigate('login');
 			return <SView />
 		}
- 		return <SView col={"xs-9 md-6 xl-4"} height backgroundColor={STheme.color.background}
+		return <SView col={"xs-9 md-6 xl-4"} height backgroundColor={STheme.color.background}
 			style={{
 				position: "absolute",
 				left: this.animSize.interpolate({
@@ -97,12 +97,12 @@ class NavBar extends React.Component {
 					</SView>
 				</SView>
 			</SView>
-			<SView height={20} border={'transparent'}/>
+			<SView height={20} border={'transparent'} />
 
 			<SScrollView2 disableHorizontal >
 
 				<SView col={"xs-12"} center  >
- 
+
 
 					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("/"); this.fadeOut(); }}  >
 						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
@@ -123,10 +123,19 @@ class NavBar extends React.Component {
 							<SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
 						</SView>
 					</SView>
+					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("chatpage"); this.fadeOut(); }}  >
+						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
+							<SIcon fill="#666666" name={"AppAlert"} width={28} height={27} />
+							<SText font={"Roboto"} style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Mis Chats</SText>
+						</SView>
+						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
+							<SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
+						</SView>
+					</SView>
 
-				 
-			
-				
+
+
+
 
 					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("consulta/ayuda"); this.fadeOut(); }}  >
 						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
@@ -160,7 +169,7 @@ class NavBar extends React.Component {
 						<SText style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonMM"}>Version 1.0.6</SText>
 					</SView>
 
-					<SView height={20} border={'transparent'}/>
+					<SView height={20} border={'transparent'} />
 
 				</SView>
 			</SScrollView2>

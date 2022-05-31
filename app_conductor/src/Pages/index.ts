@@ -13,8 +13,8 @@ import registro from '../Services/Tapeke/Components/chatPage/Pages/registro';
 
 
 const Pages: SPageListProps = {
-    "/": registro,
-    // "/": Inicio,
+    // "/": registro,
+    "/": Inicio,
     "carga": Carga,
 
     "confirmacion": PedidoConfirmacion,
