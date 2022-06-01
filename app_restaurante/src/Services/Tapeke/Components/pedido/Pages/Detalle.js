@@ -25,6 +25,15 @@ class Detalle extends React.Component {
 
     // TODO: RICKY TIENES QUE PASAR BIEN EL DETALLE DEL PEDIDO DESDE EL BACKEND
     render() {
+
+        var reducer = this.props.state[Parent.component + "Reducer"];
+        if (reducer.type == "entregar") {
+            if (reducer.estado == "exito") {
+                reducer.estado = "";
+                SNavigation.goBack();
+            }
+        }
+        
         this.data = pedido.Actions.getDetalle(this.pedidoId, this.props);
         // if (!this.data) {
         //     return this.error();
@@ -60,13 +69,7 @@ class Detalle extends React.Component {
         // }
         // alert(this.auxRestaurante.key);
 
-        var reducer = this.props.state[Parent.component + "Reducer"];
-        if (reducer.type == "entregar") {
-            if (reducer.estado == "exito") {
-                reducer.estado = "";
-                SNavigation.goBack();
-            }
-        }
+       
 
         //this.data.state = "no_recogido"
         var mensaje2 = "";

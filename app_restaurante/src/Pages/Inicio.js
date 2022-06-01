@@ -38,7 +38,7 @@ class Inicio extends Component {
 
       return <>
         <SView col={"xs-12"} style={{ borderWidth: 1, borderColor: STheme.color.lightGray, borderRadius: 8 }} row center backgroundColor={STheme.color.card}
-          onPress={() => { SNavigation.navigate("pedido/", {key_pedido: dataPackVendidos[key].key}); }}>
+          onPress={() => { SNavigation.navigate("pedido", {key_pedido: dataPackVendidos[key].key}); }}>
           <SHr height={10} />
           <SView col={"xs-11"} row center>
             <SView col={"xs-3"} center>
@@ -66,8 +66,8 @@ class Inicio extends Component {
                   <SText font={"Roboto"} fontSize={12} color={STheme.color.text}>Bs. {montoTotal}</SText>
                 </SView>
                 <SView col={"xs-12"} flex style={{ alignItems: "flex-end", bottom: -5 }}>
-                  <SView width={35} height={35} style={{ borderRadius: 100, }} backgroundColor={STheme.color.lightGray} center>
-                    <SIcon name="Aspa" width={20} height={20}></SIcon>
+                  <SView width={35} height={35} style={{ borderRadius: 100, }} backgroundColor={dataPackVendidos[key].state=="entregado" ? STheme.color.success : STheme.color.lightGray} center>
+                    <SIcon name="Aspa"  width={20} height={20}></SIcon>
                   </SView>
                 </SView>
               </SView>
@@ -194,7 +194,7 @@ class Inicio extends Component {
           SNavigation.navigate("camara");
         }} />
         <SHr height={20} />
-        <PBarraFooter />
+        <PBarraFooter url={"/"} />
       </>
     );
   }

@@ -61,11 +61,11 @@ export default class Actions {
             } else if (dia < date.getDayOfWeek()) {
                 dow.fecha = date.addDay(7 - date.getDayOfWeek() + dow.dia).toString("yyyy-MM-dd");
             }
-            var dia = new SDate(dow.fecha + " " + dow.hora_inicio, "yyyy-MM-dd hh:mm");
+            var dia = new SDate(dow.fecha + " " + dow.hora_fin, "yyyy-MM-dd hh:mm");
             if (dia.getTime() < new SDate().getTime()) {
                 dow.fecha = date.addDay(7).toString("yyyy-MM-dd");
                 text = "Próximo " + SDate.getDayOfWeek(dow.dia).text?.toLowerCase();
-                dia = new SDate(dow.fecha + " " + dow.hora_inicio, "yyyy-MM-dd hh:mm");
+                dia = new SDate(dow.fecha + " " + dow.hora_fin, "yyyy-MM-dd hh:mm");
             }
             dow.sdate = dia;
             dow.text = text + " " + dow.hora_inicio + " - " + dow.hora_fin;

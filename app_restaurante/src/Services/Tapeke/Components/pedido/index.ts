@@ -17,8 +17,8 @@ export default {
     Pages: {
         // [component]: testing,
         // ["admin/" + component + "/registro"]: registroPack,
-        [component + "/calendario"]: Calendario,
-        [component + "/"]: Detalle,
+        ["calendario"]: Calendario,
+        [component ]: Detalle,
     },
     // Components: {
     //     Horario,
