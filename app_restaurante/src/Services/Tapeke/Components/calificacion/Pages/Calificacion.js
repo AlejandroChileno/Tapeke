@@ -79,7 +79,7 @@ class Calificacion extends React.Component {
                 </SView>
 
             </SPage>
-            <PBarraFooter page={this.page} />
+            <PBarraFooter url={"calificacion"}  />
         </>);
     }
 }

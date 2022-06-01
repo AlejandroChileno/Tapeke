@@ -261,7 +261,7 @@ class Calendario extends React.Component {
                 </SView>
                 {/* <SHr height={30} /> */}
             </SPage>
-            <PBarraFooter />
+            <PBarraFooter url={"calendario"} />
         </>);
 
     }

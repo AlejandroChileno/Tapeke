@@ -12,24 +12,26 @@ export default class PBarraFooter extends Component {
 	}
 
 	getItem({ key, title, icon, url, params }) {
-		var color = STheme.color.secondary + "66";
-		if (key == this.props.url) {
-			color = STheme.color.info + "ff";
-		}
-		
-		return <SView flex center style={{backgroundColor: (this.page != key ? STheme.color.primary : "#ad5308")}} height onPress={() => {
-			this.setState({
-				key: key
-			})
-			console.log(this.page + " - "+ key)
-			SNavigation.navigate(url, {page: key, key_restaurante: this.key_restaurante});
-		}}>
-			<SView height={23} colSquare center>
-				<SIcon name={icon} fill={STheme.color.secondary} />
+		var color = "#ffffff";
+		var isSelect = (key == this.props.url)
+		return <SView flex center height onPress={() => {
+			SNavigation.navigate(url, params);
+		}} >
+			<SView style={{
+				borderRadius: 16,
+				backgroundColor: (isSelect ? "#ffffff44" : ""),
+				width: 55,
+				height: 45,
+			}} center>
+				<SView height={23} colSquare center >
+					<SIcon name={icon} />
+				</SView>
+				<SView height={2} />
+				<SText font={"Arial"} fontSize={8} center color={color}  >{title}</SText>
 			</SView>
-			<SView height={2} />
-			<SText font={"Arial"} fontSize={8} center color={STheme.color.secondary}  >{title}</SText>
 		</SView>
+
+
 	}
 	render() {
 		return (
@@ -37,9 +39,9 @@ export default class PBarraFooter extends Component {
 				// style={{ position: 'absolute', bottom: 0, backgroundColor: STheme.color.primary, overflow: 'hidden' }}	
 			>
 				<SView col={'xs-12'} row height >
-					{this.getItem({ key: "1", title: 'Pedidos de hoy', icon: 'Mpedidos', url: 'inicio' })}
-					{this.getItem({ key: "2", title: 'Calendario', icon: 'Mcalendario', url: 'pedido/calendario' })}
-					{this.getItem({ key: "3", title: 'Mi calificación', icon: 'Mcalificacion', url: 'calificacion' })}
+					{this.getItem({ key: "/", title: 'Pedidos', icon: 'Mpedidos', url: '/' })}
+					{this.getItem({ key: "calendario", title: 'Calendario', icon: 'Mcalendario', url: 'calendario' })}
+					{this.getItem({ key: "calificacion", title: 'Calificación', icon: 'Mcalificacion', url: 'calificacion' })}
 				</SView>
 			</SView >
 		);

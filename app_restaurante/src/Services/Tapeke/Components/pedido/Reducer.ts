@@ -41,6 +41,7 @@ const TypesSwitch = (state: any, action: DataProps) => {
         case "editar": return editar(state, action);
         case "getById": return getById(state, action);
         case "getDetalle": return getDetalle(state, action);
+        case "entregar": return entregar(state, action);
     }
 }
 
@@ -58,6 +59,15 @@ const getDetalle = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
     state.dataDetalle[action.data.key] = action.data;
 }
+const entregar = (state: any, action: DataProps) => {
+    if (action.estado != "exito") return;
+    if (state.data){
+      //  state.data[action.data.key]= action.data;
+    }
+    if (state.dataDetalle){
+       // state.dataDetalle[action.data.key] = action.data;
+    }
+}
 const registro = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
     state.lastRegister = action.data;
@@ -66,8 +76,12 @@ const registro = (state: any, action: DataProps) => {
 }
 const editar = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
-    if (!state.data) return;
-    state.data[action.data.key] = action.data;
+    if (state.data){
+        state.data[action.data.key]= action.data;
+      }
+      if (state.dataDetalle){
+         state.dataDetalle[action.data.key] = action.data;
+      }
 }
 const getById = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;

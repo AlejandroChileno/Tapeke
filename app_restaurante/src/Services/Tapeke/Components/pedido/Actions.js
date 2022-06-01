@@ -106,6 +106,7 @@ export default class Actions {
             estado: "cargando",
             key_pedido: key,
             key_usuario: props.state.usuarioReducer.usuarioLog.key,
+            
         })
     }
 
