@@ -1,9 +1,9 @@
 //  COMPONENT CONFIG
-const component = "chatPage"; // COMPONENT NAME
+const component = "conductor_horario"; // COMPONENT NAME
 const version = "1.0";
 // ---------------------------------------
 import Actions from "./Actions";
-import Registro from "./Pages/registro";
+import Lista from "./Pages/Lista";
 import Reducer from "./Reducer";
 
 export default {
@@ -14,8 +14,7 @@ export default {
         [component + 'Reducer']: Reducer
     },
     Pages: {
-        [component + "/lista"]: Registro,
-
+         [component + "/lista"]: Lista,
     },
     Components: {}
 }
