@@ -19,6 +19,7 @@
     "@react-native-google-signin/google-signin": "^7.0.1",
     "@react-navigation/native": "^5.9.6",
     "@react-navigation/stack": "^5.14.7",
+    "crypto-js": "^4.1.1",
     "firebase": "^9.6.11",
     "google-map-react": "^2.1.6",
     "html-react-parser": "^1.2.8",

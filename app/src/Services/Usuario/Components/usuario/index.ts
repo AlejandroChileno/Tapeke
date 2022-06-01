@@ -7,6 +7,11 @@ import Reducer from "./Reducer";
 
 import Lista from "./Pages/Lista";
 import Registro from "./Pages/registro/Registro";
+import RegistroPassword from "./Pages/registro/RegistroPassword";
+import RegistroTelefono from "./Pages/registro/RegistroTelefono";
+import SmsValidation from "./Pages/registro/SmsValidation";
+import RegistroCarga from "./Pages/registro/RegistroCarga";
+
 import RecuperarPass from "./Pages/RecuperarPass";
 import CodigoRecuperarPass from "./Pages/CodigoRecuperarPass";
 import NuevoPass from "./Pages/NuevoPass";
@@ -24,14 +29,18 @@ export default {
         [component + 'Reducer']: Reducer
     },
     Pages: {
-        ["admin/"+component]: Lista,
+        ["admin/" + component]: Lista,
         [component + "/registro"]: Registro,
+        [component + "/registropassword"]: RegistroPassword,
+        [component + "/registrotelefono"]: RegistroTelefono,
+        [component + "/smsvalidation"]: SmsValidation,
+        [component + "/carga"]: RegistroCarga,
         [component + "/recuperarContrasena"]: RecuperarPass,
         [component + "/codigoRecuperarContrasena"]: CodigoRecuperarPass,
         [component + "/nuevaContrasena"]: NuevoPass,
         [component + "/rol"]: RolUsr,
         "perfil": Perfil,
-        "login":Login,
+        "login": Login,
         "editar": Editar
     }
 }

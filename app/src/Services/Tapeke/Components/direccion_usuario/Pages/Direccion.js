@@ -68,7 +68,7 @@ class Direccion extends React.Component {
         var geocode = Parent.Actions.geocode(this.state.region, this.props);
         if (!geocode) return 'cargando...';
         var aux = geocode.direccion;
-        if(!aux) return "cargando..."
+        if (!aux) return "cargando..."
         // alert('getGeocode');
 
         if (this.state.nombre != aux) {
@@ -103,12 +103,10 @@ class Direccion extends React.Component {
                 data: reducer.lastRegister
             })
 
-
-
-            _direcion = this.state?.nombre,
-                _latitude = this.state?.latitude,
-                _longitude = this.state?.longitude,
-                SNavigation.goBack()
+            _direcion = this.state?.nombre;
+            _latitude = this.state?.latitude;
+            _longitude = this.state?.longitude;
+            SNavigation.replace("/");
         }
         this.getGeocode()
         return (<SPage title={'Elegir mi dirección'} disableScroll center>

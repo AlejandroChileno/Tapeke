@@ -10,7 +10,7 @@ import PBarraFooter from '../../../../../Components/PBarraFooter';
 import BarraSuperiorFiltro from '../../../../../Components/BarraSuperiorFiltro';
 import PButtom from '../../../../../Components/PButtom';
 
-
+import Parent from '..';
 
 class Filtros extends Component {
 	constructor(props) {
@@ -29,6 +29,7 @@ class Filtros extends Component {
 		// } else {
 		// 	this.data = {};
 		// }
+		this.data = Parent.Actions.getCustom(this.props);
 		return <SForm
 			ref={(form) => { this.form = form; }}
 			col={"xs-11 sm-9 md-7 lg-5 xl-4"}
@@ -38,14 +39,15 @@ class Filtros extends Component {
 			// 	separation: 16
 			// }}
 			inputs={{
-				nombre: { label: "Nombre del establecimiento", placeholder: "Buscar" },
-				categoria: { label: "Categoría", placeholder: "Todas" },
-				preferencias: { label: "Preferencias alimenticias", placeholder: "Ninguna" },
-				horario: { label: "Horario de recogida", placeholder: "Todo el día" },
-				pack: { label: "Ocultar sin packs", placeholder: "No" },
+				nombre: { label: "Nombre del establecimiento", placeholder: "Buscar", defaultValue: this.data?.nombre },
+				categoria: { label: "Categoría", placeholder: "Todas", defaultValue: this.data?.categoria },
+				preferencias: { label: "Preferencias alimenticias", placeholder: "Ninguna", defaultValue: this.data?.preferencias },
+				horario: { label: "Horario de recogida", placeholder: "Todo el día", defaultValue: this.data?.horario },
+				pack: { label: "Ocultar sin packs", placeholder: "No", defaultValue: this.data?.pack },
 			}}
 			// onSubmitName={"APLICAR"}
 			onSubmit={(values) => {
+				Parent.Actions.setCustom(values, this.props);
 				SNavigation.goBack();
 			}}
 		/>

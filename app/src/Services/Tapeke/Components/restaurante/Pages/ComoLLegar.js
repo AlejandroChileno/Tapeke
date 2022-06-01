@@ -42,10 +42,15 @@ class ComoLLegar extends React.Component {
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421,
                     }}
+                    options={{
+                        fullscreenControl: false,
+                        zoomControl: false,
+                    }}
                     showUserLocation={true}
                 >
                     <SMarker lat={auxRestaurante.latitude} lng={auxRestaurante.longitude}  >
-                        <SIcon name="MarcadorMapa" width={40} height={40} />
+                        <SIcon name="MarcadorMapa" width={50} height={50} />
+                        <SView height={10} />
                     </SMarker>
                 </SMapView>
             </SView>
@@ -84,9 +89,11 @@ class ComoLLegar extends React.Component {
         var auxRestaurante = restaurante.Actions.getByKeyDetalle(this.key_restaurante, this.props)
         if (!auxRestaurante) return <SLoad />
 
-        return <SView col={"xs-11 sm-8 lg-5"} height={140} style={{ position: 'absolute', borderRadius: 20, bottom: 20 }} backgroundColor={'#EEEEEE'} row center>
+        return <SView col={"xs-11 sm-8 lg-5"} style={{ position: 'absolute', borderRadius: 20, bottom: 20 }} backgroundColor={'#EEEEEE'} row center>
             <SView width={15} />
-            <SView width={120} height={115}  >
+            <SView col={"xs-3"} style={{
+                maxWidth: 100,
+            }} colSquare>
                 <SImage src={`${SSocket.api.root}restaurante/${auxRestaurante.key}`} style={{ width: "100%", position: "relative", resizeMode: "cover", borderRadius: 10 }} />
             </SView>
             <SView width={10} />
@@ -100,25 +107,31 @@ class ComoLLegar extends React.Component {
                     <SText fontSize={12} font={"Roboto"} >{auxRestaurante.horario.text} </SText>
                 </SView>
                 <SHr height={6} />
-                <SText color={STheme.color.text} fontSize={12} >Direccion: {auxRestaurante.direccion} </SText>
+                <SView row>
+                    <SIcon name={"Marker"} width={11} fill={"#000"} />
+                    <SView width={10} />
+                    <SText color={STheme.color.text} fontSize={12} >{auxRestaurante.direccion} </SText>
+
+                </SView>
                 <SHr height={10} />
                 <SView col={"xs-12"} center>
 
-                    <SView center backgroundColor={STheme.color.primary} width={100} height={40} style={{
+                    <SView center backgroundColor={STheme.color.primary} width={100} height={30} style={{
                         borderRadius: 4,
                     }} onPress={() => {
                         this.viajar(auxRestaurante)
                     }}>
                         <SView center row>
                             <SView flex />
-                            <SIcon name={"Marker"} width={14} fill={"#fff"} />
-                            <SView width={4} />
+                            <SIcon name={"Marker"} width={10} fill={"#fff"} />
+                            <SView width={8} />
                             <SText color={"#fff"} center>Viajar</SText>
                             <SView flex />
                         </SView>
                     </SView>
-                </SView>
 
+                </SView>
+                <SHr />
 
 
             </SView>
@@ -130,7 +143,7 @@ class ComoLLegar extends React.Component {
     render() {
 
         return (
-            <SPage title={'Elegir mi dirección'} disableScroll center  >
+            <SPage title={'Cómo llegar?'} disableScroll center  >
                 {this.showMapa()}
                 {this.getInfo()}
             </ SPage >

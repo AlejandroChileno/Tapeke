@@ -11,22 +11,12 @@ public class Sms {
     public static String sendCode(String phone) throws Exception {
 
         String code = getCode();
-        new Thread() {
-            public void run() {
-                try {
-                    Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-                    Message message = Message.creator(
-                            new com.twilio.type.PhoneNumber(phone),
-                            new com.twilio.type.PhoneNumber(T_PHONE),
-                            "Tapeke App verification code " + code)
-                            .create();
-
-                    System.out.println(message.getSid());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        Message message = Message.creator(
+                new com.twilio.type.PhoneNumber(phone),
+                new com.twilio.type.PhoneNumber(T_PHONE),
+                "Tapeke App verification code " + code)
+                .create();
         return code;
     }
 

@@ -19,4 +19,22 @@ export default class Actions {
         })
         return filtros;
     }
+    static setCustom = (data, props) => {
+        props.dispatch({
+            component: "filtros",
+            type: "setCustom",
+            data: data
+        })
+    }
+    static getCustom = (props) => {
+        var reducer = Actions._getReducer(props);
+        var data = reducer.custom;
+        // var filtros = {};
+        // Object.values(data).map((obj) => {
+        //     if (obj.active) {
+        //         filtros[obj.key] = true;
+        //     }
+        // })
+        return data;
+    }
 }

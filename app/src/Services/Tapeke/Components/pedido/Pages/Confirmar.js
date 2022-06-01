@@ -45,6 +45,9 @@ class Confirmar extends React.Component {
     }
 
     getViewDetalle() {
+        if (!this.keyPedido) {
+            return null;
+        }
         this.auxPedido = Parent.Actions.getDetalle(this.keyPedido, this.props)
         if (!this.auxPedido) return <SLoad />
         Validations.pedido_en_curso("pedido/confirmar");
@@ -135,7 +138,13 @@ class Confirmar extends React.Component {
     getViewTipoPago() {
         return <>
             <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center style={{ backgroundColor: STheme.color.white }}>
-                <TipoPago keyPedido={this.keyPedido} callback={(resp) => { this.setState({ tipoPagoSeleccionado: resp.tipopago, keyPedido: this.keyPedido }); }} />
+                <TipoPago
+                    defaultPhone={this.props.state.usuarioReducer?.usuarioLog?.Telefono}
+                    ref={ref => this._tipoPago = ref}
+                // callback={(resp) => {
+                //     this.setState({ tipoPagoSeleccionado: resp.tipopago, keyPedido: this.keyPedido });
+                // }}
+                />
             </SView>
         </>
     }
@@ -161,11 +170,11 @@ class Confirmar extends React.Component {
                     <SHr height={15} />
                     <SView width={140} height={44} center backgroundColor={STheme.color.primary} style={{ borderRadius: 8 }}
                         onPress={() => {
-                            var data = ParentBilletera.Actions.getByKeyCliente(this.props.state.usuarioReducer.usuarioLog.key, this.props);
-                            if (!data) return <SLoad />;
-                            var montoTotal = 0;
-                            data.map((obj) => { montoTotal += obj.monto; })
-                            SNavigation.navigate('billetera/cargarcredito', { monto: SMath.formatMoney(montoTotal) })
+                            // var data = ParentBilletera.Actions.getByKeyCliente(this.props.state.usuarioReducer.usuarioLog.key, this.props);
+                            // if (!data) return <SLoad />;
+                            // var montoTotal = 0;
+                            // data.map((obj) => { montoTotal += obj.monto; })
+                            SNavigation.navigate('billetera')
                             SPopup.close("sinFondos");
                         }}  >
                         <SText fontSize={14} color={STheme.color.white} bold>Cargar crédito</SText>
@@ -179,19 +188,52 @@ class Confirmar extends React.Component {
     getViewFactura() {
         return <SForm
             ref={(form) => { this._form = form; }}
-            col={"xs-11 sm-9 md-7 lg-5 xl-4"}
+            col={"xs-12 sm-10 md-8 lg-6 xl-4"}
+            inputProps={{
+                customStyle: "default",
+                style: {
+                    height: 50,
+                    width: "100%",
+                    borderWidth: 0,
+                    fontSize: 10,
+                    borderRadius: 4,
+                    fontSize: 14,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    backgroundColor: "#fff"
+                }
+            }}
             center
-            // inputProps={{ customStyle: "Calistenia" }}
             inputs={{
-                nit: { label: "Nit" },
-                business_name: { label: "Razon social" },
+                nit: { icon: <SText bold width={50} center>Nit: </SText>, placeholder: "N/R" },
+                business_name: { icon: <SText bold width={50} center>R.S.: </SText>, placeholder: "N/R" },
             }}
             onSubmit={(values) => {
                 var usuario = this.props.state.usuarioReducer.usuarioLog;
                 var timeOut = 60 * 1000 * 4;
-                if (this.state.tipoPagoSeleccionado == "QR" || this.state.tipoPagoSeleccionado == "Billetera") {
+                var tipoPago = this.state.tipoPagoSelect
+                if (tipoPago.key == "QR" || tipoPago.key == "Billetera") {
                     timeOut = 15000;
                 }
+                var phone = usuario["Telefono"] ?? ""
+                phone = phone.replace("+591 ", '');
+                phone = phone.replace(" ", '');
+
+                var client = {
+                    "name": usuario["Nombres"],
+                    "last_name": usuario["Apellidos"],
+                    "ci": values["nit"] ?? " ",
+                    "phone": phone,
+                    "email": usuario["Correo"],
+                    "bussiness_name": values["business_name"],
+                    "nit": values["nit"]
+                }
+
+                if (tipoPago.key == "TigoMoney") {
+                    client.ci = tipoPago.phone;
+                    client.phone = tipoPago.phone;
+                }
+
                 SPopup.close("confirmar");
                 this.setState({ loading: true });
                 SSocket.sendPromise(
@@ -199,16 +241,8 @@ class Confirmar extends React.Component {
                         "component": "pedido",
                         "type": "select_pay_method",
                         "key_pedido": this.keyPedido,
-                        "pay_method": this.state.tipoPagoSeleccionado,
-                        "client": {
-                            "name": usuario["Nombres"],
-                            "last_name": usuario["Apellidos"],
-                            "ci": " ",
-                            "phone": usuario["Telefono"],
-                            "email": usuario["Correo"],
-                            "bussiness_name": values["business_name"],
-                            "nit": values["nit"]
-                        }
+                        "pay_method": tipoPago.key,
+                        "client": client
                     }, timeOut
                 ).then((resp) => {
                     this.auxPedido = resp.data;
@@ -222,7 +256,7 @@ class Confirmar extends React.Component {
                         SPopup.open({ content: this.popupSinFondos(err.error), key: "sinFondos" });
                     } else {
                         // SPopup.open({ content: this.popupSinFondos(err.error), key: " hay error" });
-                        // SPopup.alert(err.error)
+                        SPopup.alert(err.error)
                     }
 
                 });
@@ -301,8 +335,8 @@ class Confirmar extends React.Component {
                             {this.getViewFactura()}
                             <SHr height={40} />
                             <PButtom fontSize={20} onPress={() => {
-                                console.log("aqui " + this.state.tipoPagoSeleccionado);
-                                if (this.state.tipoPagoSeleccionado == null) {
+                                this.state.tipoPagoSelect = this._tipoPago.getValue()
+                                if (!this.state.tipoPagoSelect) {
                                     SPopup.alert("Select a payment method");
                                     return;
                                 }

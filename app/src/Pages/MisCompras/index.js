@@ -46,7 +46,7 @@ class index extends Component {
 								</SView>
 							</SView>
 							<SHr height={50} />
-							<SView col={"xs-12"} row>
+							<SView col={"xs-12"} row center>
 								<PButtom fontSize={20} onPress={() => {
 									SNavigation.navigate("/");
 								}}>COMPRAR</PButtom>

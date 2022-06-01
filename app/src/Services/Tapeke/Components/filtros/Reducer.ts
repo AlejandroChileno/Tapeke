@@ -51,11 +51,14 @@ const TypesSwitch = (state: any, action: DataProps) => {
         // case "getAll": return getAll(state, action);
         // case "registro": return registro(state, action);
         case "editar": return editar(state, action);
-        // case "getById": return getById(state, action);
+        case "setCustom": return setCustom(state, action);
     }
 }
 
 const editar = (state: any, action: DataProps) => {
     if (!state.data) return;
     state.data[action.data.key] = action.data;
+}
+const setCustom = (state: any, action: DataProps) => {
+    state.custom = action.data;
 }

@@ -4,6 +4,7 @@ import { SButtom, SForm, SHr, SPage, SText, SNavigation, SLoad, SView, SIcon, SP
 import SSocket from 'servisofts-socket';
 import Parent from "../../"
 import PButtom from '../../../../../../Components/PButtom';
+import Header from './components/Header';
 class Registro extends Component {
     constructor(props) {
         super(props);
@@ -21,9 +22,40 @@ class Registro extends Component {
             this.usr = Parent.Actions.getByKey(this.key, this.props);
             if (!this.usr) return <SLoad />
         }
+        if (this.type) {
+            var reducer = this.props.state.usuarioReducer;
+            switch (this.type) {
+                case "gmail":
+                    var data = reducer.gmailData;
+                    if (!data) {
+                        SNavigation.goBack();
+                        return;
+                    }
+                    this.usr = {
+                        gmail_key: data.id,
+                        Correo: data.email,
+                        Nombres: data.givenName,
+                        Apellidos: data.familyName,
+                    }
+                    break;
+                case "facebook":
+                    var data = reducer.facebookData;
+                    if (!data) {
+                        SNavigation.goBack();
+                        return;
+                    }
+                    this.usr = {
+                        facebook_key: data.id,
+                        Correo: data.email,
+                        Nombres: data.first_name,
+                        Apellidos: data.last_name,
+                    }
+                    break;
+            }
+        }
         return <SForm
             ref={(form) => { this.form = form; }}
-            col={"xs-11 sm-9 md-7 lg-5 xl-4"}
+            col={"xs-12"}
             inputProps={{
                 col: "xs-12",
                 separation: 16
@@ -37,6 +69,39 @@ class Registro extends Component {
                 Correo: { placeholder: "Correo", type: "email", isRequired: true, defaultValue: this.usr.Correo },
             }}
             onSubmit={(values) => {
+
+                SSocket.sendPromise({
+                    service: "usuario",
+                    version: "2.0",
+                    component: "usuario",
+                    type: "validateRegistro",
+                    estado: "cargando",
+                    cabecera: "usuario_app",
+                    data: {
+                        ...this.usr,
+                        ...values,
+                        Telefono: "+xxxxxxxxx",
+                    }
+                }).then(res => {
+                    if (this.type) {
+                        SNavigation.navigate("usuario/registrotelefono", {
+                            type: this.type,
+                            ...this.usr,
+                            ...values,
+                        })
+                    } else {
+                        SNavigation.navigate("usuario/registropassword", {
+                            ...this.usr,
+                            ...values,
+                        })
+                    }
+
+                }).catch(err => {
+                    if (err?.data?.Correo == err?.error?.Correo) {
+                        alert("Error e el correo")
+                        return;
+                    }
+                })
             }}
         />
     }
@@ -46,19 +111,22 @@ class Registro extends Component {
         return (
             <SPage title={'Registro de ' + Parent.component}>
                 <SView col={"xs-12"} center>
+                    <Header title={"Bienvenido a Tapeke"} />
                     <SView height={30}></SView>
-                    <SView col={"xs-12"} center>
+                    <SView col={"xs-11 sm-9 md-7 lg-6 xl-4"} center>
                         {this.getContent()}
+                        <SHr height={25} />
+                        <PButtom
+                            width={"100%"}
+                            props={{
+                                type: "outline"
+                            }}
+                            onPress={() => {
+                                this.form.submit()
+                            }}
+                        >{"Continuar"}</PButtom>
                     </SView>
-                    <SHr height={25} />
-                    <PButtom
-                        props={{
-                            type: "outline"
-                        }}
-                        onPress={() => {
-                            this.form.submit()
-                        }}
-                    >{"Registrar"}</PButtom>
+
                     <SView height={40}></SView>
                 </SView>
             </SPage>

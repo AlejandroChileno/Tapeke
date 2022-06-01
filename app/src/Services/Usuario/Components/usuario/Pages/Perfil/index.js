@@ -64,8 +64,8 @@ class Perfil extends Component {
                         }} font='LondonBetween'>{usuario["Nombres"] + " " + usuario["Apellidos"]} </SText>
                     </SView>
                     <SHr />
-                    
-                   
+
+
                 </SView>
             </SView>
         )
@@ -105,20 +105,22 @@ class Perfil extends Component {
             return <SView />
         }
         return (
-            <SPage title="Editar Perfil" center>
-                <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center>
-                    {/* <SView height={80}></SView> */}
-                    {this.getPerfil()}
-                    <SView height={10}></SView>
-                    {this.getDatos()}
-                    <SView height={50}></SView>
+            <SPage title="Editar Perfil" >
+                <SView col={"xs-12"} center>
+                    <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center>
+                        {/* <SView height={80}></SView> */}
+                        {this.getPerfil()}
+                        <SView height={10}></SView>
+                        {this.getDatos()}
+                        <SView height={50}></SView>
 
-                    <PButtom fontSize={20} onPress={() => {
-                        SNavigation.navigate("editar", { key: usuario.key });
-                    }}>EDITAR</PButtom>
+                        <PButtom fontSize={20} onPress={() => {
+                            SNavigation.navigate("editar", { key: usuario.key });
+                        }}>EDITAR</PButtom>
 
-                    <SView height={30}></SView>
+                        <SView height={30}></SView>
 
+                    </SView>
                 </SView>
             </SPage>
         );

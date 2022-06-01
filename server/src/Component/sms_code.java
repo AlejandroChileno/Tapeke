@@ -13,6 +13,7 @@ import util.Sms;
 
 public class sms_code {
     public static final String COMPONENT = "sms_code";
+    public static int validSeconds = 60 * 5;
 
     public static void onMessage(JSONObject obj, SSSessionAbstract session) {
         switch (obj.getString("type")) {
@@ -54,6 +55,20 @@ public class sms_code {
                 obj.put("error", "Falta el telefono");
                 return;
             }
+
+            JSONObject recentCode = SPGConect
+                    .ejecutarConsultaObject("select to_json(sq.*) as json from (select * from sms_code where phone = '"
+                            + data.getString("phone")
+                            + "' and estado = 1 and fecha_validacion is null AND (fecha_on::timestamp + CAST('"
+                            + validSeconds + " seconds' AS INTERVAL)) >= now()::timestamp ) as sq");
+            if (recentCode.has("key")) {
+                obj.put("estado", "error");
+                obj.put("error", "existe_codigo");
+                obj.put("validSecond", validSeconds);
+                obj.put("fecha_on", recentCode.getString("fecha_on"));
+                return;
+            }
+
             data.put("code", Sms.sendCode(data.getString("phone")));
             data.put("key", UUID.randomUUID().toString());
             data.put("estado", 1);
@@ -63,7 +78,7 @@ public class sms_code {
             obj.put("estado", "exito");
         } catch (Exception e) {
             obj.put("estado", "error");
-            e.printStackTrace();
+            obj.put("error", e.getMessage());
         }
     }
 
@@ -77,7 +92,8 @@ public class sms_code {
             String code = obj.getString("code");
             JSONObject data = SPGConect
                     .ejecutarConsultaObject("select to_json(sq.*) as json from (select * from sms_code where code = '"
-                            + code + "' and estado = 1 and fecha_validacion is null) as sq");
+                            + code + "' and estado = 1 and fecha_validacion is null AND (fecha_on::timestamp + CAST('"
+                            + validSeconds + " seconds' AS INTERVAL)) >= now()::timestamp ) as sq");
             if (!data.has("key")) {
                 obj.put("estado", "error");
                 obj.put("error", "Codigo invalido");

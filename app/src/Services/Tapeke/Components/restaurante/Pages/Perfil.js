@@ -115,6 +115,13 @@ class Paso1 extends React.Component {
                                 latitudeDelta: 0.0922,
                                 longitudeDelta: 0.0421,
                             }}
+                            options={{
+                                fullscreenControl:false,
+                                zoomControl:false,
+                                gestureHandling:"none",
+                                scrollwheel:false,
+                                
+                            }}
                             preventCenter>
                             <SMarker lat={this.dataRestaurante.latitude} lng={this.dataRestaurante.longitude}  >
                                 <SIcon name="MarcadorMapa" width={20} height={30} />
@@ -199,6 +206,7 @@ class Paso1 extends React.Component {
 
                             <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-start', }}>
                                 <SIcon name={'Reloj'} width={13} />
+                                <SView width={4}/>
                                 <SText fontSize={12} font={"Roboto"} >{this.dataRestaurante.horario.text}</SText>
                             </SView>
                             <SView col={"xs-6"} height={20} row center style={{ justifyContent: 'flex-end', }}>

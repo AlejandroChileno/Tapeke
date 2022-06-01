@@ -1,4 +1,3 @@
-import SmsValidation from '../Pages/SmsValidation';
 import TerminosCondiciones from '../Pages/TerminosCondiciones';
 import Services from '../Services';
 import chatPage from '../Services/Tapeke/Components/chatPage';
@@ -21,7 +20,6 @@ const Pages = {
     
     // "/": MensajeSolicitud,
     // "/": chatPage,
-    // "/": SmsValidation,
     "/": Inicio,
     // "/": Test,
     // "/": PedidoQR,
@@ -38,7 +36,6 @@ const Pages = {
     "compras": MisCompras,
     // "billetera": Billetera,
     "ayuda": Ayuda,
-     "smsvalidation": SmsValidation
     
 
 
