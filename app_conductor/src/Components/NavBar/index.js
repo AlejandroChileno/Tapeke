@@ -132,6 +132,15 @@ class NavBar extends React.Component {
 							<SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
 						</SView>
 					</SView>
+					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("conductor_horario/lista"); this.fadeOut(); }}  >
+						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
+							<SIcon fill="#666666" name={"AppAlert"} width={28} height={27} />
+							<SText font={"Roboto"} style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Mis Entregas</SText>
+						</SView>
+						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
+							<SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
+						</SView>
+					</SView>
 
 
 

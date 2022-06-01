@@ -28,7 +28,7 @@ class registro extends Component {
                     <SView height width={35} center backgroundColor={'transparent'} />
                 </SView>
             </SView>
-            <SView flex border={"transparent"} >
+            <SView flex border={"transparent"} center >
                 <ListaMensajes />
             </SView>
             <FooterChats />

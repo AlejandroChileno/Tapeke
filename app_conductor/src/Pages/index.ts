@@ -1,20 +1,22 @@
-import { SPageListProps } from 'servisofts-component'
+import { SPageListProps } from 'servisofts-component';
 import Services from '../Services';
+import Lista from '../Services/Tapeke/Components/conductor_horario/Pages/Lista';
 import Carga from './Carga';
-
-import PedidoConfirmacion from './PedidoConfirmacion';
-import PedidoPrepacion from './PedidoPrepacion';
-import PedidoDelivery from './PedidoDelivery';
-
-
 import Inicio from './Inicio';
-import registro from '../Services/Tapeke/Components/chatPage/Pages/registro';
+import PedidoConfirmacion from './PedidoConfirmacion';
+import PedidoDelivery from './PedidoDelivery';
+import PedidoPrepacion from './PedidoPrepacion';
 
+
+
+ 
 
 
 const Pages: SPageListProps = {
     // "/": registro,
-    "/": Inicio,
+     "/": Inicio,
+    // "/": ListaEstrega,
+    // "/": Lista,
     "carga": Carga,
 
     "confirmacion": PedidoConfirmacion,
