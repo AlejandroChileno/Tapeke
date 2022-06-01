@@ -105,6 +105,7 @@ class Calificacion extends React.Component {
         this.dataRestaurante = calificacion.Actions.getMediaByRestaurante(this.key, this.props)
         if (!this.dataRestaurante) return null;
         var cl = this.dataRestaurante;
+        if(this.dataRestaurante.cantidad == 0) return <SText fontSize={18} font={"Roboto"}>No tiene calificaciones para mostrar</SText>;
         if (!cl.buen_servicio_media && !cl.buena_calidad_media && !cl.buena_cantidad_media) return null;
         return (
             <>
