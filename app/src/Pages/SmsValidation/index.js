@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { TextInput } from 'react-native';
 import { connect } from "react-redux";
-import { SButtom, SHr, SIcon, SInput, SPage, STheme, SView } from "servisofts-component";
+import { SButtom, SHr, SIcon, SInput, SPage, SPopup, SText, STheme, SView } from "servisofts-component";
 
 
 class SmsValidation extends Component {
@@ -21,11 +21,11 @@ class SmsValidation extends Component {
         // maxLength={1}
         style={{ borderColor: STheme.color.gray, borderRadius: 4, borderWidth: 1, fontSize: 20, width: 55, height: 55 }}
         ref={(ref) => { this.campo[i] = ref }}
-        
+
         onPress={() => {
-          if(!this.campo[i].getValue()){
+          if (!this.campo[i].getValue()) {
             for (const a of Object.values(this.campo)) {
-              if(!a.getValue()){
+              if (!a.getValue()) {
                 a.focus();
                 return
               }
@@ -35,13 +35,13 @@ class SmsValidation extends Component {
 
         onChangeText={(text) => {
 
-          
 
-          if(this.campo[i].getValue()){
-            if(this.campo[i].getValue().length > 1){
+
+          if (this.campo[i].getValue()) {
+            if (this.campo[i].getValue().length > 1) {
               this.campo[i].setValue(text.substr(-1));
             }
-            if(text !=this.campo[i].getValue()){
+            if (text != this.campo[i].getValue()) {
               this.campo[i].setValue(text);
             }
           }
@@ -49,10 +49,10 @@ class SmsValidation extends Component {
           if (i < 4 && text) {
             this.campo[i + 1].focus();
           }
-          if (i > 0 && !text ) {
+          if (i > 0 && !text) {
             this.campo[i - 1].focus();
           }
-          
+
         }}
       />
     })
@@ -70,26 +70,44 @@ class SmsValidation extends Component {
             <SIcon name={"Logo"} />
           </SView>
 
-          <SView col={"xs-12"} height={30} />
+          <SView col={"xs-12"} height={10} />
+
+          <SText>Introduce el código enviado.</SText>
+
+
 
           <SView col={"xs-11"} height={200} center backgroundColor={'transparent'} >
-            <SView col={"xs-12"} row center backgroundColor={'transparent'} >
-              {this.pintar()}
+            <SView width={300}   >
+              <SInput type="number" isRequired={true} maxLength={5} center ref={r => this.inpCodigo = r} style={{ borderRadius: 8, backgroundColor: STheme.color.card, fontSize: 16, height: 48 }}
+                placeholder={"Código:12345"} />
+              {/* {this.pintar()} */}
             </SView>
           </SView>
 
-          <SView col={"xs-12"} height={30} />
+          {/* <SView col={"xs-12"} height={30} /> */}
           <SButtom style={{ backgroundColor: STheme.color.primary, width: 300, fontSize: 40, borderRadius: 8, }}
             onPress={() => {
-              for (var i = 0; i < 5; i++) {
-                if (this.campo[i].state.value == null) {
-                  // alert(this.campo[i].state.value);
-                  return this.campo[i].focus();
-                }
+              if (!this.inpCodigo.verify()) return null;
+              if (this.inpCodigo.getValue().length < 5) {
+                SPopup.alert("ingrese el codigo completo");
+              } else if (this.inpCodigo.getValue() != "12345") {
+                SPopup.alert("codigo invalido");
+              } else {
+                SPopup.alert("exito");
               }
+
+              // alert(this.inpCodigo.getValue() ?? "no hay texto");
+              // SPopup.alert("error ");
+
+              // for (var i = 0; i < 5; i++) {
+              //   if (this.campo[i].state.value == null) {
+              //     // alert(this.campo[i].state.value);
+              //     return this.campo[i].focus();
+              //   }
+              // }
             }}
           > ENVIAR </SButtom>
-          <SHr height={10} />
+          <SHr height={20} />
         </SView>
       </SPage>
     </>
