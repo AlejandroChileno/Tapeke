@@ -5,6 +5,8 @@ import Parent from '../index'
 import Usuario from '..';
 import PButtom from '../../../../../Components/PButtom';
 import PButtom2 from '../../../../../Components/PButtom2';
+import CryptoJS from 'crypto-js';
+
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -44,6 +46,7 @@ class Login extends Component {
             }}
             onSubmit={(data) => {
                 if (data) {
+                    data["password"] = CryptoJS.MD5(data["password"]).toString();
                     Parent.Actions.login(data, this.props);
                 }
             }}
@@ -130,7 +133,7 @@ class Login extends Component {
                                 </SView>
                             </SView>
 
-                            
+
                             <SView height={10} />
                             <SView col={"xs-11"} row center>
                                 <PButtom fontSize={20} onPress={() => {

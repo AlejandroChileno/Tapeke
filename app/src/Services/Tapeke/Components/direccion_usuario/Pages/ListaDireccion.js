@@ -62,7 +62,7 @@ class Direccion extends React.Component {
 							Parent.Actions.eliminar(obj, this.props);
 						}} >
 							<SView height={36} width={36} center   >
-								<SIcon name={'DeleteDir'} height={24} width={40} fill={'#484848'} />
+								<SIcon name={'DeleteDir'} height={20} width={40} fill={'#484848'} />
 							</SView>
 						</SView>
 					</SView>
