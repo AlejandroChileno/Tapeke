@@ -33,26 +33,27 @@ class PedidosEnCurso extends Component {
                 return <SView width={320} backgroundColor={STheme.color.primary} style={{ borderRadius: 8, }} center onPress={() => {
                     // SNavigation.navigate("pedido", { key_pedido: data.key });
                     //Validations.pedido_en_curso("pedido");
-                    if (data.state == "pagado") {
-                        // SNavigation.navigate("pedido/confirmacion", { key_pedido: obj.key });
-                        if (data.delivery == 0) {
-                            SNavigation.navigate("pedido/usuario/pagado", { key_pedido: data.key })
-                        }
-                        if (data.delivery != 0) {
-                            SNavigation.navigate("pedido/delivery/pagado", { key_pedido: data.key })
-                        }
-                    }
-                    if (data.state == "no_recogido") {
-                        SNavigation.navigate("pedido/noRecogido", { key_pedido: data.key });
-                    }
-                    if (data.state == "listo") {
-                        if (data.delivery == 0) {
-                            SNavigation.navigate("pedido/usuario/entrega", { key_pedido: data.key })
-                        }
-                        if (data.delivery != 0) {
-                             SNavigation.navigate("pedido/delivery/pagado", { key_pedido: data.key })
-                        }
-                    }
+                    Validations._pedido_en_curso(data, "/")
+                    // if (data.state == "pagado") {
+                    //     // SNavigation.navigate("pedido/confirmacion", { key_pedido: obj.key });
+                    //     if (data.delivery == 0) {
+                    //         SNavigation.navigate("pedido/usuario/pagado", { key_pedido: data.key })
+                    //     }
+                    //     if (data.delivery != 0) {
+                    //         SNavigation.navigate("pedido/delivery/pagado", { key_pedido: data.key })
+                    //     }
+                    // }
+                    // if (data.state == "no_recogido") {
+                    //     SNavigation.navigate("pedido/noRecogido", { key_pedido: data.key });
+                    // }
+                    // if (data.state == "listo") {
+                    //     if (data.delivery == 0) {
+                    //         SNavigation.navigate("pedido/usuario/entrega", { key_pedido: data.key })
+                    //     }
+                    //     if (data.delivery != 0) {
+                    //         SNavigation.navigate("pedido/delivery/pagado", { key_pedido: data.key })
+                    //     }
+                    // }
                 }}>
                     <SView flex col={"xs-12"} center>
                         <SHr />
@@ -79,7 +80,8 @@ class PedidosEnCurso extends Component {
                     </SView>
                     <SHr />
                     <SView col={"xs-11"}>
-                        <BarraCargando />
+                        {data.state != "entregado" ? <BarraCargando /> : null}
+                        {/* <SText>{data.state}</SText> */}
                     </SView>
                     <SHr />
                     <SView col={"xs-12"} center row>

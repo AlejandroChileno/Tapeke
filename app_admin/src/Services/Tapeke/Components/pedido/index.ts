@@ -10,6 +10,7 @@ import Activos from "./Pages/Activos";
 import Entregados from "./Pages/Entregados";
 import DashBoard from "./Pages/DashBoard";
 import Home from "./Pages/Home";
+import ByPackFecha from "./Pages/ByPackFecha";
 
 export default {
     component,
@@ -23,6 +24,7 @@ export default {
         [component + "/all"]: Lista,
         [component + "/activos"]: Activos,
         [component + "/entregados"]: Entregados,
-        [component + "/dashboard"]: DashBoard
+        [component + "/dashboard"]: DashBoard,
+        [component + "/byPackFecha"]: ByPackFecha,
     },
 }

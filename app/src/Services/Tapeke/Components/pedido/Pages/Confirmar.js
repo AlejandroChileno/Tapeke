@@ -211,10 +211,11 @@ class Confirmar extends React.Component {
                         }
                     }, timeOut
                 ).then((resp) => {
-                    this.setState({ loading: false });
                     this.auxPedido = resp.data;
+                    console.log(resp);
                     Validations.set_pedido_en_curso(this.auxPedido);
-                    Validations.pedido_en_curso();
+                    Validations.pedido_en_curso("pedido/confirmar");
+                    this.setState({ loading: false });
                 }).catch((err) => {
                     this.setState({ loading: false });
                     if (err.pay_method == "Billetera") {

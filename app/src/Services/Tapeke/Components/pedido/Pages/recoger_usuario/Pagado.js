@@ -59,14 +59,7 @@ class Pagado extends Component {
 
 
     render() {
-        var reducer = this.props.state[Pack.component + "Reducer"];
-        if (reducer.type == "registro" || reducer.type == "editar") {
-            if (reducer.estado == "exito") {
-                reducer.estado = "";
-                SNavigation.goBack();
-            }
-        }
-
+      
         let datas = {};
         datas = Pedido.Actions.getDetalle(this.key, this.props);
 

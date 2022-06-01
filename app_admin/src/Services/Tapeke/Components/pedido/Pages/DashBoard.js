@@ -14,25 +14,21 @@ class DashBoard extends Component {
         };
     }
 
-    data() {
-        var data_pedido = pedido.Actions.getAll(this.props);
-        var data_pack = pack.Actions.getAll(this.props);
-        var data_horario = horario.Actions.getAll(this.props);
-        var data_restaurante = restaurante.Actions.getAll(this.props);
-        var data_usuario = usuario.Actions.getAll(this.props);
-        var data_conductor_horario = conductor_horario.Actions.getAll(this.props);
-        if (!data_pedido) return <SLoad />
-        if (!data_pack) return <SLoad />
-        if (!data_horario) return <SLoad />
-        if (!data_restaurante) return <SLoad />
-        if (!data_usuario) return <SLoad />
-        if (!data_conductor_horario) return <SLoad />
+    buildData({
+        fechaStr,
+        data_pedido,
+        data_pack,
+        data_horario,
+        data_restaurante,
+        data_usuario,
+        data_conductor_horario
+    }) {
         var data = {}
         Object.values(data_pack).map(obj => {
             var horario = data_horario[obj?.key_horario]
             var restaurante = data_restaurante[horario?.key_restaurante]
 
-            var sd = new SDate();
+            var sd = new SDate(fechaStr, "yyyy-MM-dd");
             if (!horario) return null;
             if (horario?.dia == sd.getDayOfWeek()) {
 
@@ -41,9 +37,15 @@ class DashBoard extends Component {
             } else if (horario?.dia < sd.getDayOfWeek()) {
                 sd.addDay((7 - sd.getDayOfWeek()) + horario?.dia);
             }
+
             var fecha = sd.toString("yyyy-MM-dd");
-            // dow.fecha = date.addDay(7 - date.getDayOfWeek() + dow.dia).toString("yyyy-MM-dd");
-            var pedidos = Object.values(data_pedido).filter(p => p.key_pack == obj?.key && p.fecha == fecha)
+
+            var dia = new SDate(fecha + " " + horario?.hora_fin, "yyyy-MM-dd hh:mm");
+            if (dia.getTime() < new SDate().getTime()) {
+                fecha = sd.addDay(7).toString("yyyy-MM-dd");
+                // dia = new SDate(fecha + " " + horario?.hora_fin, "yyyy-MM-dd hh:mm");
+            }
+            var pedidos = Object.values(data_pedido).filter(p => p.key_pack == obj?.key && p.fecha == fecha && p.state != "pendiente_pago" && p.state != "timeout_pago");
             var delivery = pedidos.filter(p => p.delivery > 0)
             var conductores = Object.values(data_conductor_horario).filter(p => p.key_horario == horario?.key)
             var fecha_date = new SDate(fecha + " " + horario?.hora_inicio, "yyyy-MM-dd hh:mm");
@@ -58,6 +60,26 @@ class DashBoard extends Component {
                 conductores
             }
         })
+        return data;
+    }
+    data() {
+        var data_pedido = pedido.Actions.getAll(this.props);
+        var data_pack = pack.Actions.getAll(this.props);
+        var data_horario = horario.Actions.getAll(this.props);
+        var data_restaurante = restaurante.Actions.getAll(this.props);
+        var data_usuario = usuario.Actions.getAll(this.props);
+        var data_conductor_horario = conductor_horario.Actions.getAll(this.props);
+        if (!data_pedido) return <SLoad />
+        if (!data_pack) return <SLoad />
+        if (!data_horario) return <SLoad />
+        if (!data_restaurante) return <SLoad />
+        if (!data_usuario) return <SLoad />
+        if (!data_conductor_horario) return <SLoad />
+        var data = {
+            // ...this.buildData({ fechaStr: new SDate().addDay(-7).toString("yyyy-MM-dd"), data_pedido, data_pack, data_horario, data_restaurante, data_usuario, data_conductor_horario }),
+            ...this.buildData({ fechaStr: new SDate().toString("yyyy-MM-dd"), data_pedido, data_pack, data_horario, data_restaurante, data_usuario, data_conductor_horario }),
+            // ...this.buildData({ fechaStr: new SDate().addDay(7).toString("yyyy-MM-dd"), data_pedido, data_pack, data_horario, data_restaurante, data_usuario, data_conductor_horario }),
+        }
         return <STable2
             header={[
                 { key: "index", label: "#", width: 50 },
@@ -75,8 +97,14 @@ class DashBoard extends Component {
                 // { key: "horario/hora_inicio", label: "Inicio",  width: 50 },
                 // { key: "horario/hora_fin", label: "Fin", width: 50 },
                 {
-                    key: "-pedidos", label: "pedidos", width: 70, center: true, render: (obj) => {
-                        return "( " + obj.pedidos.length + " / " + obj.cantidad + " )"
+                    key: "-pedidos", label: "pedidos", width: 70, center: true,
+                    component: (obj) => {
+                        return <SView col={"xs-12"} height center onPress={() => {
+                            SNavigation.navigate("pedido/byPackFecha", { key_pack: obj.key, fecha: obj.fecha });
+                        }
+                        } >
+                            <SText center>{"( " + obj.pedidos.length + " / " + obj.cantidad + " )"}</SText>
+                        </SView >
                     }
                 },
                 {
@@ -90,31 +118,31 @@ class DashBoard extends Component {
                         return <SView col={"xs-12"} height center onPress={() => {
                             SNavigation.navigate("conductor_horario", { key_horario: obj.horario.key });
                         }
-                } >
-                <SText>{obj.conductores.length}</SText>
+                        } >
+                            <SText center>{obj.conductores.length}</SText>
                         </SView >
                     }
                 },
 
             ]
-}
+            }
 
-limit = { 50}
-data = { data }
-filter = {(itm) => {
-    return true
-    // return itm.state != "pendiente_pago"
-}}
-/>
+            limit={50}
+            data={data}
+            filter={(itm) => {
+                return true
+                // return itm.state != "pendiente_pago"
+            }}
+        />
 
     }
-render() {
-    return (
-        <SPage title={"DashBoard"} disableScroll>
-            {this.data()}
-        </SPage>
-    );
-}
+    render() {
+        return (
+            <SPage title={"DashBoard"} disableScroll>
+                {this.data()}
+            </SPage>
+        );
+    }
 }
 const initStates = (state) => {
     return { state }

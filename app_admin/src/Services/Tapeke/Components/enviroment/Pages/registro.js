@@ -45,8 +45,7 @@ class registro extends Component {
             row
             ref={(form) => { this.form = form; }}
             inputs={{
-                monto: { label: "Monto", type: "money", isRequired: true, defaultValue: data["monto"]?SMath.formatMoney(data["monto"]):0 },
-                metro: { label: "Metros", type: "number", isRequired: false, defaultValue: data["metro"]},
+                value: { label: "value", type: "value", isRequired: false, defaultValue: data["value"]},
             }}
             // onSubmitName={"Registrar"}
             onSubmit={(values) => {
@@ -64,9 +63,9 @@ class registro extends Component {
         if (reducer.type == "registro" || reducer.type == "editar") {
             if (reducer.estado == "exito") {
                 if (reducer.type == "registro") this.key = reducer.lastRegister?.key;
-                if (this.form) {
-                    this.form.uploadFiles(SSocket.api.root + "upload/" + Parent.component + "/" + this.key);
-                }
+                // if (this.form) {
+                //     this.form.uploadFiles(SSocket.api.root + "upload/" + Parent.component + "/" + this.key);
+                // }
                 reducer.estado = "";
                 SNavigation.goBack();
             }
