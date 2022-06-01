@@ -21,14 +21,14 @@ class lista extends Component {
                 { key: "detalle", label: "Detail", width: 300 },
                 { key: "value", label: "Valor", width: 130 , center:true},
                 { key: "type", label: "Type", width: 100 },
-                // {
-                //     key: "key-editar", label: "Editar", width: 50, center: true,
-                //     component: (item) => {
-                //         return <SView onPress={() => { SNavigation.navigate( Parent.component + "/registro", { key: item }) }}>
-                //             <SIcon name={"Edit"} width={35} />
-                //         </SView>
-                //     }
-                // },
+                {
+                    key: "key-editar", label: "Editar", width: 50, center: true,
+                    component: (item) => {
+                        return <SView onPress={() => { SNavigation.navigate( Parent.component + "/registro", { key: item }) }}>
+                            <SIcon name={"Edit"} width={35} />
+                        </SView>
+                    }
+                },
                 // {
                 //     key: "key-eliminar", label: "Eliminar", width: 70, center: true,
                 //     component: (key) => {
@@ -52,9 +52,9 @@ class lista extends Component {
                 <SView col={"xs-12"} center height>
                     {this.getLista()}
                 </SView>
-                <FloatButtom onPress={() => {
+                {/* <FloatButtom onPress={() => {
                     SNavigation.navigate("admin/costo_envio/registro");
-                }} />
+                }} /> */}
             </SPage>
         );
     }

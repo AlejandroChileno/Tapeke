@@ -37,8 +37,8 @@ public class listo extends State {
     @Override
     public void entregar(JSONObject obj) throws StateException {
         System.out.println("El pedido fue entregado al cliente");
-        // TODO: notificar pedido entregado.
         this.pedido.changeState(states.entregado, "entregar");
+        obj.put("estado", "exito");
     }
 
     @Override

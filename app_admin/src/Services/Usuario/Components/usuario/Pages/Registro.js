@@ -11,7 +11,7 @@ class Registro extends Component {
             envio: 0,
         };
         this.key = SNavigation.getParam("key");
-        this.type = SNavigation.getParam("type");
+        this.type = SNavigation.getParam("type", null);
     }
     getContent() {
         this.usr = {};
@@ -49,6 +49,12 @@ class Registro extends Component {
                     }
                     break;
             }
+        }
+        if (this.usr["facebook_key"]) {
+            this.type = "facebook";
+        }
+        if (this.usr["gmail_key"]) {
+            this.type = "gmail";
         }
         return <SForm
             ref={(form) => { this.form = form; }}
@@ -106,7 +112,7 @@ class Registro extends Component {
     //TODO LICETH: Falta que ricky me devuelva detalle de error de usuario para mostrar error en popup
     alertError(error) {
         return <SView col={"xs-12 md-8 xl-6"} row style={{ height: 250, borderRadius: 8, }} backgroundColor={STheme.color.background} center>
-             {/* <SView style={{
+            {/* <SView style={{
                 width: "100%",
                 top: 0,
                 left: 0,
@@ -144,7 +150,7 @@ class Registro extends Component {
         if (error) {
             SPopup.open({ key: "errorRegistro", content: this.alertError(error) });
         }
-        if (this.props.state.usuarioReducer.estado == "exito" && (this.props.state.usuarioReducer.type == "registro") || (this.props.state.usuarioReducer.type == "editar")) {
+        if (this.props.state.usuarioReducer.estado == "exito" && ((this.props.state.usuarioReducer.type == "registro") || (this.props.state.usuarioReducer.type == "editar"))) {
             this.props.state.usuarioReducer.estado = "";
             if (this.props.state.usuarioReducer.lastRegister) {
                 this.key = this.props.state.usuarioReducer.lastRegister.key;
@@ -168,7 +174,8 @@ class Registro extends Component {
             if (this.form) {
                 this.form.uploadFiles(SSocket.api.root + "upload/" + Parent.component + "/" + this.key);
             }
-            // SNavigation.goBack();
+            this.props.state.usuarioReducer.estado = "";
+            SNavigation.goBack();
         }
         if (this.key) {
             this.usr = Parent.Actions.getByKey(this.key, this.props);
