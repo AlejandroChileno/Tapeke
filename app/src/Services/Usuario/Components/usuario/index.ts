@@ -6,7 +6,7 @@ import Actions from "./Actions";
 import Reducer from "./Reducer";
 
 import Lista from "./Pages/Lista";
-import Registro from "./Pages/Registro";
+import Registro from "./Pages/registro/Registro";
 import RecuperarPass from "./Pages/RecuperarPass";
 import CodigoRecuperarPass from "./Pages/CodigoRecuperarPass";
 import NuevoPass from "./Pages/NuevoPass";

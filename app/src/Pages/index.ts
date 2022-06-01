@@ -21,8 +21,8 @@ const Pages = {
     
     // "/": MensajeSolicitud,
     // "/": chatPage,
-    "/": SmsValidation,
-    // "/": Inicio,
+    // "/": SmsValidation,
+    "/": Inicio,
     // "/": Test,
     // "/": PedidoQR,
     // "/": Preparacion,
