@@ -22,17 +22,29 @@ export default class Actions {
         }
         return data;
     }
+    static getMediaByRestaurante = (key_restaurante,props) => {
+        var reducer = Actions._getReducer(props);
+        var data = reducer.media[key_restaurante];
+        if (!data) {
+            if (reducer.estado == "cargando") return null;
+            SSocket.send({
+                component: Parent.component,
+                version: Parent.version,
+                type: "get_media_restaurante",
+                estado: "cargando",
+                key_restaurante: key_restaurante,
+                key_usuario: props.state.usuarioReducer.usuarioLog.key,
+            })
+            return null;
+        }
+        // console.log("NADA" +data);
+        return data;
+    }
 
     static getByKey = (key, props) => {
         var data = Actions.getAll(props);
         if (!data) return null;
         return data[key];
-    }
-
-    static getByKeyHorario = (key_horario, props) => {
-        var data = Actions.getAll(props);
-        if (!data) return null;
-        return Object.values(data).filter(item => item.key_horario == key_horario)[0];
     }
 
     static registro = (data, props) => {

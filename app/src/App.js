@@ -25,6 +25,7 @@ const App = (props) => {
         <Redux>
             <SComponentContainer
                 assets={Assets}
+                debug //habilitar opciones tema red etc
                 inputs={SConfig.SConfig_Inputs}
                 theme={{ initialTheme: "default", themes: SConfig.SThemeProps, noAnimated: true }}
             >

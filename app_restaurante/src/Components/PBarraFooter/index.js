@@ -39,9 +39,9 @@ export default class PBarraFooter extends Component {
 				// style={{ position: 'absolute', bottom: 0, backgroundColor: STheme.color.primary, overflow: 'hidden' }}	
 			>
 				<SView col={'xs-12'} row height >
-					{this.getItem({ key: "/", title: 'Pedidos', icon: 'Mpedidos', url: '/' })}
-					{this.getItem({ key: "calendario", title: 'Calendario', icon: 'Mcalendario', url: 'calendario' })}
-					{this.getItem({ key: "calificacion", title: 'Calificación', icon: 'Mcalificacion', url: 'calificacion' })}
+					{this.getItem({ key: "inicio", title: 'Pedidos', icon: 'Mpedidos', url: 'inicio', params: { key_restaurante: this.key_restaurante } })}
+					{this.getItem({ key: "calendario", title: 'Calendario', icon: 'Mcalendario', url: 'calendario' , params: { key_restaurante: this.key_restaurante } })}
+					{this.getItem({ key: "calificacion", title: 'Calificación', icon: 'Mcalificacion', url: 'calificacion', params: { key_restaurante: this.key_restaurante } })}
 				</SView>
 			</SView >
 		);

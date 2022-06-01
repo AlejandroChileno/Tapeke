@@ -194,7 +194,7 @@ class Inicio extends Component {
           SNavigation.navigate("camara");
         }} />
         <SHr height={20} />
-        <PBarraFooter url={"/"} />
+        <PBarraFooter url={"inicio"}  />
       </>
     );
   }

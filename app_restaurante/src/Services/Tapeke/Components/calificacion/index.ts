@@ -11,7 +11,7 @@ export default {
     version,
     Actions,
     Reducers: {
-        // [component + 'Reducer']: Reducer
+        [component + 'Reducer']: Reducer
     },
     Pages: {
          [component]: Calificacion,
