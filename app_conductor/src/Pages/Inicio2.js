@@ -6,18 +6,10 @@ import SBLocation, { Data } from "../SBLocation";
 import usuario from "../Services/Usuario/Components/usuario";
 
 
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { SHr, SIcon, SImage, SLoad, SNavigation, SPage, SScrollView2, SText, STheme, SView, SPopup, SForm, SButtom } from "servisofts-component";
-import BarraSuperiorTapeke from "../Components/BarraSuperiorTapeke";
-import Direccion from "../Components/BarraSuperiorTapeke/Direccion";
-import PBarraFooter from "../Components/PBarraFooter";
-import Item from "../Services/Tapeke/Components/restaurante/Components/Item";
-import usuario from "../Services/Usuario/Components/usuario";
+ 
 
 
-
-class Inicio extends Component {
+class Inicio2 extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -126,4 +118,4 @@ class Inicio extends Component {
 const initStates = (state) => {
   return { state };
 };
-export default connect(initStates)(Inicio);
+export default connect(initStates)(Inicio2);

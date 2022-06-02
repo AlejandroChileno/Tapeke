@@ -39,11 +39,21 @@ export default class Actions {
             data: data
         })
     }
+    static send = (data, props) => {
+        SSocket.send({
+            component: Parent.component,
+            version: Parent.version,
+            type: "registro",
+            estado: "cargando",
+            key_usuario: props.state.usuarioReducer.usuarioLog.key,
+            data: data
+        })
+    }
     static editar = (data, props) => {
         SSocket.send({
             component: Parent.component,
             version: Parent.version,
-            type: "editar",
+            type: "send",
             estado: "cargando",
             key_usuario: props.state.usuarioReducer.usuarioLog.key,
             data: data

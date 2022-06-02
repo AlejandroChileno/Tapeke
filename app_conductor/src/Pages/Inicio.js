@@ -1,21 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
-import { SHr, SIcon, SImage, SLoad, SNavigation, SPage, SScrollView2, SText, STheme, SView, SPopup, SForm, SButtom, SMapView, SMarker, SPolyline } from "servisofts-component";
+import { SButtom, SHr, SIcon, SLoad, SMapView, SMarker, SNavigation, SPage, SPolyline, SText, STheme, SView } from "servisofts-component";
 import BarraCargando from "../Components/BarraCargando";
-
-
 import BarraSuperiorTapeke from "../Components/BarraSuperiorTapeke";
-import Direccion from "../Components/BarraSuperiorTapeke/Direccion";
-import PBarraFooter from "../Components/PBarraFooter";
 import SwitchRastreo from "../Components/SwitchRastreo";
+import SBLocation from "../SBLocation";
 import usuario from "../Services/Usuario/Components/usuario";
+
+
+
 
 class Inicio extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: false,
+      // active: SBLocation.isStarted(),
       regionAlvaro: {
         latitude: -17.808690397665742,
         longitude: -63.16250034566757,
@@ -26,6 +25,25 @@ class Inicio extends Component {
 
   componentDidMount() {
     if (!usuario.Actions.validateSession(this.props)) { return <SLoad />; }
+  }
+
+  getMarkers() {
+    return Data.history.map((obj) => {
+      return <SMarker lat={obj.latitude} lng={obj.longitude} title={new SDate(new Date(obj.time)).toString("yyyy-MM-dd hh:mm:ss") + ""}>
+        {/* <SIcon name={"Marker"} width={20} height={20} /> */}
+      </SMarker>
+    })
+  }
+
+  getPolyline() {
+    return <SPolyline
+      coordinates={Data.history.map((obj) => { return { latitude: obj.latitude, longitude: obj.longitude } })}
+      strokeColor="#000" // fallback for when `strokeColors` is not supported by the map-provider
+      strokeColors={[
+        '#fF0000',
+        '#000000', // no color, creates a "long" gradient between the previous and next coordinate
+      ]}
+      strokeWidth={2} />
   }
 
   showMapa() {
@@ -53,7 +71,8 @@ class Inicio extends Component {
   }
 
   showMensajeBucandoPedido() {
-    if (this.state.active) {
+
+    if (!SBLocation.isStarted()) {
       return <SView col={"xs-12 md-12 lg-10 xl-8"} height={60} row center style={{ position: 'absolute', top: 0, backgroundColor: "red", }}  >
         <SView col={"xs-11 "} height row center >
           <SView width={50} border={"transparent"}>
@@ -66,8 +85,7 @@ class Inicio extends Component {
           </SView>
         </SView>
       </SView>
-    }
-    else {
+    } else if (SBLocation.isStarted()) {
       return <SView col={"xs-12 md-12 lg-10 xl-8"} center height={60} style={{ position: 'absolute', top: 0, backgroundColor: "#2BC25F", }}  >
         <SView col={"xs-11  "} height>
           <SView flex center  >
@@ -184,9 +202,20 @@ class Inicio extends Component {
         <BarraSuperiorTapeke>
           <SwitchRastreo width={130} height={40}
             callback={(resp) => {
-              this.setState({ active: resp.ConductorOnline });
-              // alert(this.state.active);
-            }}
+              // this.setState({ active: resp.ConductorOnline });
+ 
+              if (!SBLocation.isStarted()) {
+                SBLocation.start({
+                  minTime: 3000,
+                  minDistance: 1
+                });
+              } if (SBLocation.isStarted()) {
+                SBLocation.stop();
+              } else {
+                SBLocation.addListener((data) => {
+                  // this.setState({ ...this.state })
+                })
+              }}}
 
 
           />
