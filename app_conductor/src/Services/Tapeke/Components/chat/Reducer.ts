@@ -34,6 +34,7 @@ const TypesSwitch = (state: any, action: DataProps) => {
         case "registro": return registro(state, action);
         case "editar": return editar(state, action);
         case "getById": return getById(state, action);
+        case "send": return send(state, action);
     }
 }
 
@@ -43,6 +44,13 @@ const getAll = (state: any, action: DataProps) => {
 }
 const registro = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
+    state.lastRegister = action.data;
+    if (!state.data) return;
+    state.data[action.data.key] = action.data;
+}
+const send = (state: any, action: DataProps) => {
+    if (action.estado != "exito") return;
+    // state.lastRegister = action.data;
     if (!state.data) return;
     state.data[action.data.key] = action.data;
 }

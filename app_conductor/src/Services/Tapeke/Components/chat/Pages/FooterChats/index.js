@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { SHr, SIcon, SInput, STheme, SView } from 'servisofts-component';
+import chat from '../..';
+import { connect } from "react-redux";
 
-export default class FooterChats extends Component {
+class FooterChats extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,7 +14,7 @@ export default class FooterChats extends Component {
     render() {
         return (
             <SView col={"xs-12"} center height={70} style={{
-
+                position: "absolute",
                 bottom: 0, overflow: 'hidden',
                 backgroundColor: STheme.color.primary,
             }}>
@@ -29,6 +31,16 @@ export default class FooterChats extends Component {
                         <SView width={44} height={44} style={{ borderRadius: 50, paddingLeft: 6, }} backgroundColor={STheme.color.secondary} center onPress={() => {
 
                             alert(this.input_message.getValue() ?? "no hay texto");
+
+                            values = {
+                                key_usuario_emisor: this.props.state.usuarioReducer.usuarioLog.key,
+                                key_usuario_receptor: this.props.emisor,
+                                mensaje: this.input_message.getValue(),
+                            }
+                            // values  = { this.input_message.getValue() }
+                            // chat.sendMessage(values);
+                            chat.Actions.send(values, this.props);
+
                         }}>
                             <SIcon name="BtnChat" fill={STheme.color.primary} width={24} height={24} />
                         </SView>
@@ -40,3 +52,7 @@ export default class FooterChats extends Component {
         );
     }
 }
+const initStates = (state) => {
+    return { state };
+};
+export default connect(initStates)(FooterChats);

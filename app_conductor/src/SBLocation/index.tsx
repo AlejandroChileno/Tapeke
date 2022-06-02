@@ -14,8 +14,8 @@ export type _Props = {
 }
 
 const PROPS = {
-    nombre: "Mi Nombre",
-    label: "algo111",
+    nombre: "Tapeke te esta rastreando",
+    label: "pedido nro:555 - cliente: Juan Perez",
     minTime: 1000,
     minDistance: 0,
 }
@@ -76,13 +76,17 @@ class SBLocation {
         }
         Data.onLocationChange(props.data);
         try {
-            SSocket.sendHttp(SSocket.api.root + "api", {
-                component: "backgroundLocation",
-                type: "onChange",
-                estado: "cargando",
-                key_usuario: "eduardo",
-                data: Data.lastLocation,
-            });
+            SStorage.getItem("usr_log", (resp: any) => {
+                var usr =JSON.parse(resp);
+                SSocket.sendHttp(SSocket.api.root + "api", {
+                    component: "backgroundLocation",
+                    type: "onChange",
+                    estado: "cargando",
+                    key_usuario:usr.key,
+                    data: Data.lastLocation,
+                });
+            })
+            
         } catch (e) {
 
         }

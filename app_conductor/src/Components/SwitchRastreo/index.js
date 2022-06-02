@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { SLoad, SText, STheme, SView } from 'servisofts-component';
 
 import { Animated } from 'react-native';
+import SBLocation from '../../SBLocation';
 
 type _SwitchRastreoProps = {
     colors: {
@@ -21,17 +22,21 @@ export default class SwitchRastreo extends Component<_SwitchRastreoProps> {
     constructor(props: any) {
         super(props);
         this.state = {
-            active: false,
+            active:SBLocation.isStarted() ,
             colors: {
                 active: this.props.colors?.active ?? "#2FC25F",
                 inactive: this.props.colors?.inactive ?? "#B7B7B7",
                 acent: this.props.colors?.acent ?? "#fff"
             },
         };
-        this.animValue = new Animated.Value(0);
+        this.animValue = new Animated.Value(this.state.active ? 1 : 0);
     }
     componentDidMount() {
-        this.props.callback({ ConductorOnline: this.state.active })
+        SBLocation.addListener((data) => {
+            if(!this.state.active){
+                this.fadeIn();
+            }
+           })
     }
     fadeIn() {
         this.animValue.stopAnimation();

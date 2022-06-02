@@ -1,13 +1,43 @@
 import React, { Component } from 'react';
-import { SHr, SScrollView2, SText, STheme, SView } from 'servisofts-component';
+import { connect } from "react-redux";
+import { SHr, SLoad, SScrollView2, SText, STheme, SView } from 'servisofts-component';
+import chat from '../..';
 
-export default class ListaMensajes extends Component {
+
+class ListaMensajes extends Component {
     constructor(props) {
         super(props);
         this.state = {};
+        // this.cliente = this.props.emisor;
+        // this.conductor = this.props.state.usuarioReducer.usuarioLog.key;
+
     }
 
     msjLeft(texto) {
+        var timeMSJ = "10: 21 pm";
+
+        var data = chat.Actions.getAll(this.props);
+        if (!data) return <SLoad />;
+        var listaKeys = Object.keys(data);
+        return listaKeys.map((key, index) => {
+            var obj = data[key];
+            console.log(obj);
+            return <>
+                <SView col={"xs-12"} row style={{ justifyContent: 'flex-start', }}>
+                    <SView style={{ maxWidth: '90%', minWidth: '10%', paddingLeft: 8, paddingRight: 8, borderRadius: 5, backgroundColor: STheme.color.card }}>
+                        <SView height={8} />
+                        <SText>{obj["mensaje"]}</SText>
+                        <SText fontSize={8} style={{ alignItems: 'flex-end' }} >{timeMSJ}</SText>
+                        <SView height={8} />
+                    </SView>
+                </SView>
+
+                <SView height={20} backgroundColor={"transparent"} />
+            </>
+        })
+    }
+
+    msjLeftsaas(texto) {
         var timeMSJ = "10: 21 pm";
         return (<>
             <SView col={"xs-12"} row style={{ justifyContent: 'flex-start', }}>
@@ -57,13 +87,13 @@ export default class ListaMensajes extends Component {
                     <SView col={"xs-12"} row center>
                         <SView col={"xs-11"} height border={"transparent"}   >
                             {this.msjLeft("Hola Ing. Alvaro Siles ok")}
-                            {this.msjRight("Hola Estudiante, que se le ofrece?")}
+                            {/* {this.msjRight("Hola Estudiante, que se le ofrece?")}
                             {this.msjLeft("Can you believe this amazing chat bubbles?It's all CSS. Can you believe this amazing chat bubbles? It's al CSS.Can you believe this amazing chat bubbles?It's all CSS. 😍")}
                             {this.msjRight("Can you believe this amazing chat bubbles?It's all CSS. Can you believe this amazing chat bubbles? It's al CSS.Can you believe this amazing chat bubbles?It's all CSS. 😍")}
                             {this.msjLeft("Can you believe this amazing chat bubbles?It's all CSS. Can you believe this amazing chat bubbles? It's al CSS.Can you believe this amazing chat bubbles?It's all CSS. 😍 Can you believe this amazing chat bubbles?It's all CSS. Can you believe this amazing chat bubbles? It's al CSS.Can you believe this amazing chat bubbles?It's all CSS. 😍 Can you believe this amazing chat bubbles?It's all CSS. Can you believe this amazing chat bubbles? It's al CSS.Can you believe this amazing chat bubbles?It's all CSS. 😍")}
                             {this.msjLeft("Chau 😍")}
                             {this.msjLeft("Chau 😍")}
-                            {this.msjRight("Chau 😍")}
+                            {this.msjRight("Chau 😍")} */}
                             {this.msjRight("Chau 😍")}
                         </SView>
                     </SView>
@@ -72,3 +102,7 @@ export default class ListaMensajes extends Component {
         );
     }
 }
+const initStates = (state) => {
+    return { state };
+};
+export default connect(initStates)(ListaMensajes);

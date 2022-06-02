@@ -104,7 +104,7 @@ class NavBar extends React.Component {
 				<SView col={"xs-12"} center  >
 
 
-					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("/"); this.fadeOut(); }}  >
+					{/* <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("/"); this.fadeOut(); }}  >
 						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
 							<SIcon fill="#666666" name={"AppAlert"} width={32} height={31} />
 							<SText font={"Roboto"} style={{ paddingLeft: 5, color: "#666666", fontSize: 16 }} >Inicio</SText>
@@ -112,9 +112,9 @@ class NavBar extends React.Component {
 						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
 							<SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
 						</SView>
-					</SView>
+					</SView> */}
 
-					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("direcciones"); this.fadeOut(); }}  >
+					{/* <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("direcciones"); this.fadeOut(); }}  >
 						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
 							<SIcon fill="#666666" name={"AppAlert"} width={28} height={27} />
 							<SText font={"Roboto"} style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Mis Direcciones</SText>
@@ -122,8 +122,9 @@ class NavBar extends React.Component {
 						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
 							<SIcon fill={STheme.color.secondary} name={"Icon1"} width={20} height={20} />
 						</SView>
-					</SView>
-					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("chatpage"); this.fadeOut(); }}  >
+					</SView> */}
+
+					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("chat/lista"); this.fadeOut(); }}  >
 						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
 							<SIcon fill="#666666" name={"AppAlert"} width={28} height={27} />
 							<SText font={"Roboto"} style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Mis Chats</SText>
@@ -146,7 +147,7 @@ class NavBar extends React.Component {
 
 
 
-					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("consulta/ayuda"); this.fadeOut(); }}  >
+					{/* <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("consulta/ayuda"); this.fadeOut(); }}  >
 						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
 							<SIcon fill="#666666" name={"AppAlert"} width={28} height={27} />
 							<SText font={"Roboto"} style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Ayuda</SText>
@@ -154,7 +155,7 @@ class NavBar extends React.Component {
 						<SView col={"xs-2"} height style={{ justifyContent: 'flex-end', }} row center>
 							<SIcon stroke={"#405394"} name={"Icon1"} width={20} height={20} />
 						</SView>
-					</SView>
+					</SView> */}
 
 					<SView col={"xs-11"} height={60} border={'transparent'} row
 						onPress={() => { this.props.dispatch({ type: "USUARIO_LOGOUT" }); SNavigation.replace("login"); this.fadeOut(); }}>
