@@ -58,6 +58,7 @@ class exploradorMapa extends React.Component {
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421,
                     }}
+                    
                     preventCenter>
                     {this.getRestaurante()}
 

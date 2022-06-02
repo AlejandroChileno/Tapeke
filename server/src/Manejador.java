@@ -62,6 +62,15 @@ public class Manejador {
             case sms_code.COMPONENT:
                 sms_code.onMessage(obj, session);
                 break;
+            case chat.COMPONENT:
+                chat.onMessage(obj, session);
+                break;
+            case usuario.COMPONENT:
+                usuario.onMessage(obj, session);
+                break;
+            case firebase_token.COMPONENT:
+                firebase_token.onMessage(obj, session);
+                break;
         }
     }
 }

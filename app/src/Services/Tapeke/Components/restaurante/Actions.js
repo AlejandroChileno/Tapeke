@@ -4,6 +4,7 @@ import horario from '../horario';
 import pack from '../pack';
 import { SDate } from 'servisofts-component';
 import pedido from '../pedido';
+import filtros from '../filtros';
 export default class Actions {
     static _getReducer = (props) => {
         return props.state[Parent.component + "Reducer"];
@@ -40,8 +41,8 @@ export default class Actions {
     //filter:{ soloHoy:bool, soloDisponible:bool, entregaDomicilio:bool }
     static getAllFilter = (filter, props) => {
         var miDireccion = props.state.direccion_usuarioReducer.miDireccion;
-        if(!miDireccion) return null;
-        if(!miDireccion.latitude) return null;
+        if (!miDireccion) return null;
+        if (!miDireccion.latitude) return null;
         var data = Actions.getAll(props);
         var horarios_restaurantes = horario.Actions.getAll(props);
         var packs = pack.Actions.getAll(props);
@@ -50,12 +51,15 @@ export default class Actions {
         if (!packs) return null;
         var data_pedidos = pedido.Actions.getAll(props);
         // if (!data_pedidos) return null;
-      
+
+        var filtrosCustom = filtros.Actions.getCustom(props);
         var miDistancia = props.state.direccion_usuarioReducer.miDistancia;
         var list = [];
         Object.values(data).map((obj) => {
             if (obj.estado != 1) return;
             if (filter.entregaDomicilio && !obj.delivery) return;
+
+
             //Distancias
             if (!obj.latitude || !obj.longitude) return;
             obj.distancia = parseFloat(Actions.getDistance(miDireccion.latitude, miDireccion.longitude, obj.latitude, obj.longitude) / 1000).toFixed(1);
@@ -90,6 +94,20 @@ export default class Actions {
             }
 
             //INSERTAMOS
+            if (filtrosCustom) {
+                var valid = true;
+                Object.keys(filtrosCustom).map((key) => {
+                    var fc = filtrosCustom[key];
+                    if (!fc) return;
+                    if(!fc.active) return;
+                    if (fc.validate) {
+                        if (!fc.validate(obj, fc)) {
+                            valid = false;
+                        }
+                    }
+                })
+                if (!valid) return null;
+            }
             list.push(obj);
         })
 

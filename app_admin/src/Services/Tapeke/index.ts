@@ -17,6 +17,8 @@ import enviroment from './Components/enviroment';
 import usuario_restaurante from './Components/usuario_restaurante';
 import conductor_horario from './Components/conductor_horario';
 import PedidoEnCurso from './Tasks/PedidoEnCurso';
+
+import conductor from './Components/conductor';
 const ServiceName = "tapeke";
 
 const Pages: SPageListProps = {
@@ -36,6 +38,7 @@ const Pages: SPageListProps = {
     ...enviroment.Pages,
     ...conductor_horario.Pages,
     ...usuario_restaurante.Pages,
+    ...conductor.Pages,
 
 
 }
@@ -56,6 +59,7 @@ const Reducers = {
     ...enviroment.Reducers,
     ...conductor_horario.Reducers,
     ...usuario_restaurante.Reducers,
+    ...conductor.Reducers,
 }
 
 export default {

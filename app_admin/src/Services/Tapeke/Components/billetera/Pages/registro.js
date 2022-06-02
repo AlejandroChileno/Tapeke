@@ -22,6 +22,7 @@ class registro extends Component {
         this.state = {
         };
         this.key = SNavigation.getParam("key");
+        this.key_cliente = SNavigation.getParam("key_cliente");
         this._ref = {};
         this._ref2 = {};
     }
@@ -34,22 +35,34 @@ class registro extends Component {
             data = Parent.Actions.getByKey(this.key, this.props);
             if (!data) return <SLoad />
         }
+        var inputs = {};
+        inputs["monto"] = { label: "monto", type: "money", isRequired: true, defaultValue: data["monto"] }
+        // inputs["tipo_pago"] = { label: "tipo_pago", type: "text", isRequired: true, defaultValue: data["tipo_pago"] }
+        if (!this.key_cliente) {
+            inputs["key_cliente"] = { label: "key_cliente", type: "text", isRequired: true, defaultValue: data["key_cliente"] }
+        }
+
         return <SForm
             center
             ref={(form) => { this.form = form; }}
-            inputs={{
-                monto: { label: "monto", type: "money", isRequired: true, defaultValue: data["monto"] },
-                tipo_pago: { label: "tipo_pago", type: "text", isRequired: true, defaultValue: data["tipo_pago"] },
-                key_cliente: { label: "key_cliente", type: "text", isRequired: true, defaultValue: data["key_cliente"] },
-
-            }}
-            // onSubmitName={"Registrar"}
+            inputs={inputs}
             onSubmit={(values) => {
-                if (this.key) {
-                    Parent.Actions.editar({ ...data, ...values }, this.props);
-                } else {
-                    Parent.Actions.registro(values, this.props);
-                }
+                SPopup.confirm({
+                    title: `¿Esta seguro que desea regalar ${values.monto} creditos?`,
+                    message: `Esta accion quedara registrada.`,
+                    onPress: () => {
+                        if (this.key_cliente) {
+                            values["key_cliente"] = this.key_cliente;
+                        }
+                        if (this.key) {
+                            Parent.Actions.editar({ ...data, ...values }, this.props);
+                        } else {
+                            values["tipo_pago"] = "Administrador";
+                            Parent.Actions.registro(values, this.props);
+                        }
+                    }
+                })
+
             }}
         />
     }
@@ -68,15 +81,18 @@ class registro extends Component {
         }
 
         return (
-            <SPage title={'registro'} center>
-                <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center>
-                    <SHr />
-                    {this.getregistro()}
-                    <SHr />
-                    <PButtom fontSize={20} onPress={() => {
-                        this.form.submit();
-                    }}>CONFIRMAR</PButtom>
-                    <SHr />
+            <SPage title={'registro'}>
+                <SView col={"xs-12"} center>
+                    <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center>
+                        <SHr />
+                        {this.getregistro()}
+                        <SHr />
+                        <PButtom fontSize={20} onPress={() => {
+
+                            this.form.submit();
+                        }}>CONFIRMAR</PButtom>
+                        <SHr />
+                    </SView>
                 </SView>
             </SPage>
         );

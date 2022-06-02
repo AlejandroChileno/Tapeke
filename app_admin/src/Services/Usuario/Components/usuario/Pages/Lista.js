@@ -52,6 +52,14 @@ class Lista extends Component {
                         </SView>
                     }
                 },
+                {
+                    key: "key-addCredits", label: "Billetera", width: 50, center: true,
+                    component: (item) => {
+                        return <SView onPress={() => { SNavigation.navigate("admin/billetera/registro", { key_cliente: item }) }}>
+                            <SIcon name={"Billetera"} width={35} />
+                        </SView>
+                    }
+                },
             ]}
             data={data}
         />
