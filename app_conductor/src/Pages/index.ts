@@ -1,6 +1,5 @@
 import { SPageListProps } from 'servisofts-component';
 import Services from '../Services';
-import Lista from '../Services/Tapeke/Components/conductor_horario/Pages/Lista';
 import Carga from './Carga';
 import Inicio from './Inicio';
 import PedidoConfirmacion from './PedidoConfirmacion';

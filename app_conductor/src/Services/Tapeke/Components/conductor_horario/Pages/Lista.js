@@ -159,25 +159,21 @@ class Lista extends Component {
 
 
 	render() {
-
-
 		return (
 			<>
 				<SPage title={""} hidden disableScroll     >
 
-					{/* <SHr height={40} /> */}
- 
-					<SView col={"xs-12"} height={60} backgroundColor={STheme.color.primary} style={{borderBottomLeftRadius: 8, borderBottomRightRadius: 8,}} >
-                <SView col={"xs-12"} height row center flex style={{ paddingLeft: 16, paddingRight: 16 }}>
-                    <SView height width={35} center backgroundColor={'transparent'} onPress={() => { SNavigation.goBack(); }} >
-                        <SIcon name={"Back"} width={24} height={24} fill={STheme.color.secondary} style={{ paddingLeft: 6, paddingTop: 12, }} />
-                    </SView>
-                    <SView flex center >
-                        <SText font={"Roboto"} fontSize={24} color={STheme.color.secondary}>conductor_horario</SText>
-                    </SView>
-                    <SView height width={35} center backgroundColor={'transparent'} />
-                </SView>
-            </SView>
+					<SView col={"xs-12"} height={60} backgroundColor={STheme.color.primary} style={{ borderBottomLeftRadius: 8, borderBottomRightRadius: 8, }} >
+						<SView col={"xs-12"} height row center flex style={{ paddingLeft: 16, paddingRight: 16 }}>
+							<SView height width={35} center backgroundColor={'transparent'} onPress={() => { SNavigation.goBack(); }} >
+								<SIcon name={"Back"} width={24} height={24} fill={STheme.color.secondary} style={{ paddingLeft: 6, paddingTop: 12, }} />
+							</SView>
+							<SView flex center >
+								<SText font={"Roboto"} fontSize={24} color={STheme.color.secondary}>conductor_horario</SText>
+							</SView>
+							<SView height width={35} center backgroundColor={'transparent'} />
+						</SView>
+					</SView>
 					<SHr height={20} />
 
 					<SView col={"xs-12"} height center border={"transparent"}>
