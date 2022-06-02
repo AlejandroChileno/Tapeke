@@ -31,7 +31,7 @@ class BarraFiltros extends Component {
                     })
                 }} center>
 
-                <SText border={'transparent'} fontSize={14} color={obj.active ? STheme.color.primary : '#999999'} font={"LondonMM"} bold >{obj.title}</SText>
+                <SText border={'transparent'} fontSize={14} color={obj.active ? STheme.color.primary : '#999999'} font={"Roboto"} >{obj.title}</SText>
                 {/* </SView> */}
             </SView>
             <SView width={14} />
@@ -45,6 +45,32 @@ class BarraFiltros extends Component {
             return this.getCategoria(obj, key);
         })
     }
+    getExtras() {
+        var data = Parent.Actions.getCustom(this.props);
+        if (!data) return null
+        return Object.keys(data).map((key) => {
+            var obj = data[key];
+            if (!obj) return null;
+            if(!obj.active) return null;
+            var txt = obj.label;
+            txt = txt.replace(/\s/g, '');
+            var width = (txt.length * 8);
+            width += 16;
+            return <SView key={`itemCatEx-${"asd"}`} row >
+                <SView height={28} width={width} border={'transparent'} center
+                    style={{ backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }}
+                    onPress={() => {
+                        data[key] = null;
+                        Parent.Actions.setCustom(data, this.props);
+                    }} >
+                    <SText border={'transparent'} fontSize={14} color={STheme.color.primary} font={"Roboto"} >{obj?.label}</SText>
+                </SView>
+                <SView width={14} />
+            </SView>
+        })
+
+
+    }
     getBtn() {
         return (< SView height={28} flex border={'transparent'} style={{ paddingLeft: 10, paddingRight: 10, backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }
         } center onPress={() => {
@@ -55,7 +81,7 @@ class BarraFiltros extends Component {
                     <SIcon name={"IconFilter"} height={20} width={20} fill={STheme.color.primary} />
                 </SView>
                 <SView center height={28}  >
-                    <SText border={'transparent'} fontSize={14} color={STheme.color.primary} font={"LondonMM"} bold >{"Filtros"}</SText>
+                    <SText border={'transparent'} fontSize={14} color={STheme.color.primary} font={"Roboto"} >{"Filtros"}</SText>
                 </SView>
             </SView>
         </SView >)
@@ -69,6 +95,7 @@ class BarraFiltros extends Component {
                         <SView width={8} />
                         {this.getBtn()}
                         <SView width={14} />
+                        {this.getExtras()}
                         {this.getCategoriasList()}
                         <SView width={8} />
                     </SView>

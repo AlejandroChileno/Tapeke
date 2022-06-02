@@ -16,6 +16,21 @@ public class BackgroundLocation {
             case "onChange":
                 onChange(obj, session);
                 break;
+            case "getAll":
+                getAll(obj, session);
+                break;
+        }
+    }
+
+    public static void getAll(JSONObject obj, SSSessionAbstract session) {
+        try {
+            String consulta = "select get_all('background_location') as json";
+            JSONObject data = SPGConect.ejecutarConsultaObject(consulta);
+            obj.put("data", data);
+            obj.put("estado", "exito");
+        } catch (Exception e) {
+            obj.put("estado", "error");
+            e.printStackTrace();
         }
     }
 
@@ -42,8 +57,9 @@ public class BackgroundLocation {
                 location.put("fecha_last", SUtil.now());
                 SPGConect.editObject("background_location", location);
             }
-            GPX.saveGPX(obj.getString("key_usuario"), data.getDouble("latitude"), data.getDouble("longitude"),data.getDouble("rotation"));
-             obj.put("estado", "exito");
+            GPX.saveGPX(obj.getString("key_usuario"), data.getDouble("latitude"), data.getDouble("longitude"),
+                    data.getDouble("rotation"));
+            obj.put("estado", "exito");
 
         } catch (Exception e) {
             e.printStackTrace();

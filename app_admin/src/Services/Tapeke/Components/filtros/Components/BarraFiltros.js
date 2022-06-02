@@ -38,6 +38,7 @@ class BarraFiltros extends Component {
         </SView>
     }
 
+ 
     getCategoriasList() {
         var data = Parent.Actions.getAll(this.props);
         return Object.keys(data).map((key) => {

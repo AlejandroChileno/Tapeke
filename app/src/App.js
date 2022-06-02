@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import { SComponentContainer, SNavigation } from 'servisofts-component';
 import Redux, { store } from './Redux';
 import SConfig from './SConfig';
@@ -15,10 +16,12 @@ import NavBar from './Components/NavBar';
 import StatusBar from './Components/StatusBar';
 
 import Firebase from './Firebase';
+import DeviceKey from './Firebase/DeviceKey';
 //----------END IMPORT----------
 
 setProps(SConfig.SocketProps);
 Firebase.init();
+DeviceKey.init();
 
 const App = (props) => {
     return (
@@ -40,7 +43,13 @@ const App = (props) => {
                     var usuario = props.state.usuarioReducer.usuarioLog;
                     return {
                         data: usuario ? usuario : {},
-                        deviceKey: "as-asa-as",
+                        deviceKey: DeviceKey.getKey(),
+                        firebase: {
+                            platform: Platform.OS,
+                            token: DeviceKey.getKey(),
+                            key_usuario: usuario?.key,
+                            app: "Tapeke cliente app"
+                        }
                     }
                 }} />
                 <NavBar />
