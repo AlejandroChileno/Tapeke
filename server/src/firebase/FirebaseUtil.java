@@ -14,7 +14,8 @@ public class FirebaseUtil {
         Thread t = new Thread() {
             @Override
             public void run() {
-                final Notification notFinal = notification;
+                 Notification notFinal = new Notification(notification.title, notification.body);
+                notFinal.setToken(notification.token);
                 send(notFinal, apiKey);
             }
         };

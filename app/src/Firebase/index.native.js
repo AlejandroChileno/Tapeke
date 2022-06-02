@@ -4,6 +4,7 @@
 import { Alert } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import { Notifications } from 'react-native-notifications';
+import DeviceKey from './DeviceKey';
 
 const sleep = ms => {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -43,7 +44,7 @@ class Firebase {
             const unsubscribe = messaging().onMessage(async remoteMessage => {
                 console.log('Message received. ', remoteMessage);
                 Notifications.postLocalNotification({
-                    title: 'Tapeke',
+                    title: remoteMessage.notification.title,
                     body: remoteMessage.notification.body,
                 });
                 // Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));

@@ -8,14 +8,15 @@ import org.json.JSONObject;
 import Server.SSSAbstract.SSServerAbstract;
 import Servisofts.SPGConect;
 import Servisofts.SUtil;
+import firebase.Firebase;
 import model.pedido.StateFactory.states;
 import model.pedido.exception.StateException;
 
 public class Pedido implements IPedidoActions {
 
-    private String key;
-    private State state;
-    private JSONObject data;
+    String key;
+    State state;
+    JSONObject data;
     // private boolean delivery;
 
     public Pedido(String key) throws StateException {
@@ -51,6 +52,7 @@ public class Pedido implements IPedidoActions {
             pedido.put("key", this.key);
             pedido.put("state", this.state.code);
             SPGConect.editObject("pedido", pedido);
+            new PedidoNotification(this).notifyByTransition();
             this.notifyOnChange();
         } catch (SQLException e) {
             e.printStackTrace();

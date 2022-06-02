@@ -5,6 +5,7 @@ import DeviceKey from "./DeviceKey";
 class Firebase {
     static async init() {
         try {
+
             const firebaseConfig = {
                 apiKey: "AIzaSyAcR4QG15DCTi5072tSPn81gFFAEPxVv4o",
                 authDomain: "tapeke-20bb6.firebaseapp.com",
@@ -24,7 +25,9 @@ class Firebase {
                     // ...
                     onMessage(messaging, (payload) => {
                         console.log('Message received. ', payload);
-
+                        Notification.requestPermission().then(function (result) {
+                            var notification = new Notification( payload.notification.title,{body: payload.notification.body});
+                        });
                         // ...
                     });
                 } else {
