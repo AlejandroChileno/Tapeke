@@ -5,10 +5,10 @@ export default class Actions {
     static _getReducer = (props) => {
         return props.state[Parent.component + "Reducer"];
     }
-    static getAll = (props) => {
+    static getAll = (props , force) => {
         var reducer = Actions._getReducer(props);
         var data = reducer.data;
-        if (!data) {
+        if (!data || force) {
             if (reducer.estado == "cargando") return null;
             SSocket.send({
                 component: Parent.component,
@@ -17,9 +17,10 @@ export default class Actions {
                 estado: "cargando",
                 key_usuario: props.state.usuarioReducer.usuarioLog.key,
             })
+             console.log("getAll");
+
             return null;
         }
-        console.log("getAll");
         return data;
     }
 
@@ -28,6 +29,14 @@ export default class Actions {
         if (!data) return null;
         return data[key];
     }
+    static getByKeyUsuario = (keyUsuario, props, force) => {
+        var data = Actions.getAll(props, force);
+        if (!data) return null;
+        var arr = Object.values(data).filter(dta => dta.key_usuario == keyUsuario);
+        return arr;
+    }
+
+ 
 
     static registro = (data, props) => {
         SSocket.send({

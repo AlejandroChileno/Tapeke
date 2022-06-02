@@ -203,7 +203,6 @@ class Inicio extends Component {
           <SwitchRastreo width={130} height={40}
             callback={(resp) => {
               // this.setState({ active: resp.ConductorOnline });
- 
               if (!SBLocation.isStarted()) {
                 SBLocation.start({
                   minTime: 3000,
@@ -215,10 +214,8 @@ class Inicio extends Component {
                 SBLocation.addListener((data) => {
                   // this.setState({ ...this.state })
                 })
-              }}}
-
-
-          />
+              }
+            }}/>
         </BarraSuperiorTapeke>
 
         <SPage title={""} hidden disableScroll center>
@@ -228,9 +225,6 @@ class Inicio extends Component {
           {this.showMensajeBucandoPedido()}
 
           {this.showinfo()}
-
-
-
 
         </SPage>
       </>
