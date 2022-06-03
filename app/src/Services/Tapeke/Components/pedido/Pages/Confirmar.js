@@ -137,7 +137,7 @@ class Confirmar extends React.Component {
 
     getViewTipoPago() {
         return <>
-            <SView col={"xs-11 sm-10 md-8 lg-6 xl-4"} center style={{ backgroundColor: STheme.color.white }}>
+            <SView col={"xs-12 sm-10 md-8 lg-6 xl-4"} center style={{ backgroundColor: STheme.color.white }}>
                 <TipoPago
                     defaultPhone={this.props.state.usuarioReducer?.usuarioLog?.Telefono}
                     ref={ref => this._tipoPago = ref}

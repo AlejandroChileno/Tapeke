@@ -71,6 +71,9 @@ public class Manejador {
             case firebase_token.COMPONENT:
                 firebase_token.onMessage(obj, session);
                 break;
+            case general.COMPONENT:
+                general.onMessage(obj, session);
+                break;
         }
     }
 }

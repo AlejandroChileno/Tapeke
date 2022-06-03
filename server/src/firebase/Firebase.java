@@ -20,8 +20,9 @@ public class Firebase {
     public static void sendUserAsync(Notification notification, String key_usuario) {
         FirebaseDb.getAllByKeyUsuario(key_usuario).iterator().forEachRemaining(obj -> {
             JSONObject o = (JSONObject) obj;
-            notification.setToken(o.getString("token"));
-            FirebaseUtil.sendAsync(notification, apiKeyServer);
+            Notification notFinal = new Notification(notification.title, notification.body);
+            notFinal.setToken(o.getString("token"));
+            FirebaseUtil.sendAsync(notFinal, apiKeyServer);
         });
     }
 

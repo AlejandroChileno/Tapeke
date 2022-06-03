@@ -76,11 +76,11 @@ class RegistroTelefono extends Component {
                     })
                 }).catch(err => {
                     if (err?.data?.Correo == err?.error?.Correo) {
-                        alert("Error e el correo")
+                        SPopup.alert("El correo ya está registrado")
                         return;
                     }
                     if (err?.data?.Telefono == err?.error?.Telefono) {
-                        alert("Error e el telefono")
+                        SPopup.alert("El número de teléfono ya está registrado")
                         return;
                     }
                 })
