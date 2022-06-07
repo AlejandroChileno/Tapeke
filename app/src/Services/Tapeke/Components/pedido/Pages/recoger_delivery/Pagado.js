@@ -161,9 +161,9 @@ class Pagado extends React.Component {
                         }} />
                     <SHr height={5} />
 
-                    <SView col={"xs-12"} border={'transparent'} row center >
+                    {/* <SView col={"xs-12"} border={'transparent'} row center >
                         <SText color={STheme.color.darkGray} style={{ fontSize: 12 }} bold>Llegada estimada</SText>
-                    </SView>
+                    </SView> */}
                     <SView col={"xs-12"} border={'transparent'} row center >
                         <SText color={STheme.color.darkGray} style={{ fontSize: 38 }} bold>{this.auxPedido.horario.hora_inicio} - {this.auxPedido.horario.hora_fin}</SText>
                     </SView>
