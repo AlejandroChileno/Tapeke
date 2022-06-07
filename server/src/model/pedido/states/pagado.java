@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import Servisofts.SPGConect;
 import Servisofts.SUtil;
 import model.pedido.Pedido;
+import model.pedido.PedidoNotification;
 import model.pedido.State;
 import model.pedido.StateFactory.states;
 import model.pedido.exception.StateException;
@@ -68,6 +69,7 @@ public class pagado extends State {
         try {
             SPGConect.editObject("pedido", objEdit);
             this.pedido.notifyOnChangeUser();
+            new PedidoNotification(this.pedido).notifyRecordatorioAntesHoraInicio();
             System.out.println("notificar q se acerca el pedido");
         } catch (SQLException e) {
             // TODO Auto-generated catch block

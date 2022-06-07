@@ -74,6 +74,9 @@ public class Manejador {
             case general.COMPONENT:
                 general.onMessage(obj, session);
                 break;
+            case base_notification.COMPONENT:
+                base_notification.onMessage(obj, session);
+                break;
         }
     }
 }
