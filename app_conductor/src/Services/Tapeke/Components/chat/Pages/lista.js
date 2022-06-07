@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SHr, SIcon, SImage, SLoad, SNavigation, SPage, SScrollView2, SText, STheme, SView } from 'servisofts-component';
+import { SLoad, SScrollView2, SText, SView } from 'servisofts-component';
 import chat from "..";
-import restaurante from "..";
 import usuario from "../../../../Usuario/Components/usuario";
-import SSocket from 'servisofts-socket';
-import ListaMensajes from "../Pages/ListaMensajes";
 import FooterChats from "../Pages/FooterChats";
+import ListaMensajes from "../Pages/ListaMensajes";
 import HeaderChat from "./HeaderChat";
+import { ScrollView } from 'react-native';
+
+
+
 
 class ListadosR extends Component {
 	constructor(props) {
@@ -42,19 +44,20 @@ class ListadosR extends Component {
 		console.log(emisor);
 		return (
 			<>
-				
-				<SScrollView2 disableHorizontal  >
-
-					<SView flex border={"transparent"} center >
-						<ListaMensajes emisor={this.keyUserEmisor} />
-						{/* {this.getRestaurantes()} */}
-
-					</SView>
-				</SScrollView2   >
+				<SView col={"xs-12"} height backgroundColor={"transparent"}>
+					<SScrollView2 disableHorizontal  >
+						{/* <SScrollView2 disableHorizontal  > */}
+						{/* INFO SE DEJA PARA EL NOMBRE USUARIO {this.getRestaurantes()} */}
+						<SView height={60} />
+						<SView flex border={"transparent"} center >
+							<ListaMensajes emisor={this.keyUserEmisor} />
+						</SView>
+						{/* INFO SE DEJA PARA EL IMPUT EL FOOTER */}
+						<SView height={70} />
+					</SScrollView2   >
+				</SView>
 				<HeaderChat emisor={this.keyUserEmisor} />
-
 				<FooterChats emisor={this.keyUserEmisor} />
-
 			</>
 		);
 	}

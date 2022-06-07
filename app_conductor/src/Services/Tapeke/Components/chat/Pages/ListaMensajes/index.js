@@ -13,7 +13,8 @@ class ListaMensajes extends Component {
 
     }
 
-    msjLeft(texto) {
+    msjLeft() {
+    // msjLeft(texto) {
         var timeMSJ = "10: 21 pm";
 
         var data = chat.Actions.getAll(this.props);
@@ -84,9 +85,12 @@ class ListaMensajes extends Component {
             <SView col={"xs-12 md-9 lg-8"} height backgroundColor={"transparent"} border={"transparent"}  >
                 <SScrollView2 disableHorizontal  >
                     <SHr height={20} />
+                    
                     <SView col={"xs-12"} row center>
                         <SView col={"xs-11"} height border={"transparent"}   >
-                            {this.msjLeft("Hola Ing. Alvaro Siles ok")}
+
+                            {this.msjLeft()}
+                            {/* {this.msjLeft("Hola Ing. Alvaro Siles ok")} */}
                             {/* {this.msjRight("Hola Estudiante, que se le ofrece?")}
                             {this.msjLeft("Can you believe this amazing chat bubbles?It's all CSS. Can you believe this amazing chat bubbles? It's al CSS.Can you believe this amazing chat bubbles?It's all CSS. 😍")}
                             {this.msjRight("Can you believe this amazing chat bubbles?It's all CSS. Can you believe this amazing chat bubbles? It's al CSS.Can you believe this amazing chat bubbles?It's all CSS. 😍")}
@@ -94,7 +98,7 @@ class ListaMensajes extends Component {
                             {this.msjLeft("Chau 😍")}
                             {this.msjLeft("Chau 😍")}
                             {this.msjRight("Chau 😍")} */}
-                            {this.msjRight("Chau 😍")}
+                            {/* {this.msjRight("Chau 😍")} */}
                         </SView>
                     </SView>
                 </SScrollView2 >
