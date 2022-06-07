@@ -7,12 +7,12 @@ import Carga from './Carga';
 import Inicio from './Inicio';
 
 const Pages: SPageListProps = {
-    // "/": Inicio,
+    "/": Inicio,
     // "/": lista001,
 
     // "/": Borrador,
     // "/": NotFoundPedido,
-    "/": lista002,
+    // "/": lista002,
     "inicio": Inicio,
     "carga": Carga,
     "camara": CameraComponent,
