@@ -20,7 +20,7 @@ class registro extends Component {
         new SThread(200, "esperaalgo", false).start(() => {
             var arr = Object.values(data).filter(x => x.key_usuario == this.props.state.usuarioReducer.usuarioLog.key && x.estado == 1);
             if (data.length <= 1) {
-                SNavigation.replace("inicio", { key_restaurante: arr[0].key_restaurante });
+                // SNavigation.replace("inicio", { key_restaurante: arr[0].key_restaurante });
             }
         });
         return <>
@@ -68,7 +68,7 @@ class registro extends Component {
     }
 
     render() {
-        if (!usuario.Actions.validateSession(this.props, true)) {
+        if (!usuario.Actions.validateSession(this.props)) {
             return <SLoad />;
         }
         return (
