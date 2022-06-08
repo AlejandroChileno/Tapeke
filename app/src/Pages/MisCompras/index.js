@@ -83,57 +83,56 @@ class index extends Component {
 		if (dataPedido.length == 0) return this.sinCompras();
 
 		return <>
-			<SPage title={'Mis Compras'}>
-				<SView col={"xs-12"} row center >
-					<SView col={"xs-11 sm-6 md-6 lg-4 xl-4"} >
-						<SList
-							data={dataPedido}
-							space={16}
-							order={[{ key: "fecha", order: "desc", peso: 1 }]}
-							filter={(item) => item.estado == '1' && item.key_usuario == key_usuario && item.state != "pendiente_pago" && item.state != "timeout_pago"}
-							render={(obj, key) => {
-								// console.log("resta ", obj.state);
-								return <SView col={"xs-12 "} height={120} row center border={STheme.color.card} style={{ borderRadius: 8, }}
-									onPress={() => {
-										if (obj.state == "pagado") {
-											// SNavigation.navigate("pedido/confirmacion", { key_pedido: obj.key });
-											if (obj.delivery == 0) {
-												SNavigation.navigate("pedido/usuario/pagado", { key_pedido: obj.key })
-											}
-											if (obj.delivery != 0) {
-												SNavigation.navigate("pedido/delivery/pagado", { key_pedido: obj.key })
-											}
+
+			<SView col={"xs-12"} row center >
+				<SView col={"xs-11 sm-6 md-6 lg-4 xl-4"} >
+					<SList
+						data={dataPedido}
+						space={16}
+						order={[{ key: "fecha", order: "desc", peso: 1 }]}
+						filter={(item) => item.estado == '1' && item.key_usuario == key_usuario && item.state != "pendiente_pago" && item.state != "timeout_pago"}
+						render={(obj, key) => {
+							// console.log("resta ", obj.state);
+							return <SView col={"xs-12 "} height={120} row center border={STheme.color.card} style={{ borderRadius: 8, }}
+								onPress={() => {
+									if (obj.state == "pagado") {
+										// SNavigation.navigate("pedido/confirmacion", { key_pedido: obj.key });
+										if (obj.delivery == 0) {
+											SNavigation.navigate("pedido/usuario/pagado", { key_pedido: obj.key })
 										}
-										if (obj.state == "no_recogido") {
-											SNavigation.navigate("pedido/noRecogido", { key_pedido: obj.key });
+										if (obj.delivery != 0) {
+											SNavigation.navigate("pedido/delivery/pagado", { key_pedido: obj.key })
 										}
-									}} >
-									<SView col={"xs-12"} row center border={"transparent"}  >
-										<SView col={"xs-2"} center border={"transparent"}  >
-											<SView height={40} width={40} style={{ backgroundColor: '#E9EAEE', borderRadius: 50, }} center   >
-												<SImage src={`${SSocket.api.root}restaurante/${obj?.restaurante?.key}`} style={{ borderRadius: 8, resizeMode: 'cover' }} />
-											</SView>
-										</SView>
-										<SView col={"xs-8"} border={"transparent"} style={{}} >
-											<SText fontSize={16} font={"Roboto"} color={STheme.color.text} >{obj?.restaurante?.nombre}</SText>
-											<SText fontSize={12} font={"Roboto"} color={STheme.color.text} >{new SDate(obj.fecha, "yyyy-MM-dd").toString("dd de MONTH")}  {obj.horario.hora_inicio} - {obj.horario.hora_fin}</SText>
-											<SView height={8} />
-											<SText fontSize={12} font={"Roboto"} color={STheme.color.primary} bold >{pedido.Actions.getDetalleEstado(obj)}</SText>
-										</SView>
-										<SView col={"xs-2"} height={40} row center style={{ alignContent: 'center', }}>
-											<SText fontSize={18} font={"Roboto"} color={STheme.color.gray} >x {obj?.cantidad}</SText>
+									}
+									if (obj.state == "no_recogido") {
+										SNavigation.navigate("pedido/noRecogido", { key_pedido: obj.key });
+									}
+								}} >
+								<SView col={"xs-12"} row center border={"transparent"}  >
+									<SView col={"xs-2"} center border={"transparent"}  >
+										<SView height={40} width={40} style={{ backgroundColor: '#E9EAEE', borderRadius: 50, }} center   >
+											<SImage src={`${SSocket.api.root}restaurante/${obj?.restaurante?.key}`} style={{ borderRadius: 8, resizeMode: 'cover' }} />
 										</SView>
 									</SView>
-									<SView col={"xs-12"} center>
-										<SView col={"xs-11"} row center border={"transparent"}>
-											{this.getBotones(obj)}
-										</SView>
+									<SView col={"xs-8"} border={"transparent"} style={{}} >
+										<SText fontSize={16} font={"Roboto"} color={STheme.color.text} >{obj?.restaurante?.nombre}</SText>
+										<SText fontSize={12} font={"Roboto"} color={STheme.color.text} >{new SDate(obj.fecha, "yyyy-MM-dd").toString("dd de MONTH")}  {obj.horario.hora_inicio} - {obj.horario.hora_fin}</SText>
+										<SView height={8} />
+										<SText fontSize={12} font={"Roboto"} color={STheme.color.primary} bold >{pedido.Actions.getDetalleEstado(obj)}</SText>
+									</SView>
+									<SView col={"xs-2"} height={40} row center style={{ alignContent: 'center', }}>
+										<SText fontSize={18} font={"Roboto"} color={STheme.color.gray} >x {obj?.cantidad}</SText>
 									</SView>
 								</SView>
-							}} />
-					</SView>
+								<SView col={"xs-12"} center>
+									<SView col={"xs-11"} row center border={"transparent"}>
+										{this.getBotones(obj)}
+									</SView>
+								</SView>
+							</SView>
+						}} />
 				</SView>
-			</SPage>
+			</SView>
 		</>
 	}
 
@@ -142,8 +141,12 @@ class index extends Component {
 			// <SPage title={'Mis Compras'}>
 			// 	<SView col={"xs-12"} row center >
 			// 		<SView col={"xs-11 sm-6 md-6 lg-4 xl-4"} >
-			this.getCompras()
-			// 		</SView>
+			<SPage title={'Mis Compras'} onRefresh={() => {
+				console.log("refrescando");
+				pedido.Actions.refresh(this.props);
+			}}>
+				{this.getCompras()}
+			</SPage>
 			// 	</SView>
 			// </SPage>
 		);

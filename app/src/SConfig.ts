@@ -29,12 +29,12 @@ const SThemeProps: SThemeThemes = {
 
 const SocketProps = {
     name: 'tapeke',
-    debug:false,
+    debug:true,
 
-    host: 'tapekeapp.com',
-    ssl: true,
-    // host: '192.168.3.2',
-    // ssl: false,
+    // host: 'tapekeapp.com',
+    // ssl: true,
+    host: '192.168.3.2',
+    ssl: false,
 
     port: {
         native: 10031,

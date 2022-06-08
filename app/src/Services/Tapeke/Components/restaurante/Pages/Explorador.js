@@ -58,7 +58,7 @@ class Explorador extends React.Component {
 
     showLista() {
         return <>
-            <SScrollView2 disableHorizontal={true} border={'transparent'}>
+            <SScrollView2 disableHorizontal={true} border={'transparent'} >
                 <SView col={"xs-12 "} center border={'transparent'} >
                     {this.getRestaurante()}
                 </SView >
@@ -69,23 +69,30 @@ class Explorador extends React.Component {
 
 
 
-
-    render() {
+    getContent() {
         var generalTime = general.Actions.getAllComponents(this.props);
         if (!generalTime) return <SLoad />
+        return <SView flex center col={"xs-12"}>
+            <BarraFiltros />
+            {this.getBotonos()}
+            <SView height={20} />
+            {this.showLista()}
+        </SView>
+    }
+    render() {
+
         return (
-            <SPage title={''} hidden disableScroll center >
+            <>
                 <BarraSuperiorTapeke>
                     <Direccion />
                 </BarraSuperiorTapeke>
-                <SView flex center col={"xs-12"}>
-                    <BarraFiltros />
-                    {this.getBotonos()}
-                    <SView height={20} />
-                    {this.showLista()}
-                </SView>
+                <SPage title={''} hidden center onRefresh={() => {
+                    general.Actions.getAllComponents(this.props, true);
+                }} >
+                    {this.getContent()}
+                </SPage>
                 <PBarraFooter url={"explorar"} />
-            </SPage>
+            </>
         );
     }
 }

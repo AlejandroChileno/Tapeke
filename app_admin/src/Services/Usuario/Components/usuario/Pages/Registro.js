@@ -4,6 +4,8 @@ import { SButtom, SForm, SHr, SPage, SText, SNavigation, SLoad, SView, SIcon, SP
 import SSocket from 'servisofts-socket';
 import Parent from '../index'
 import PButtom from '../../../../../Components/PButtom';
+import CryptoJS from 'crypto-js';
+
 class Registro extends Component {
     constructor(props) {
         super(props);
@@ -80,7 +82,19 @@ class Registro extends Component {
                 } : {})
             }}
             onSubmit={(values) => {
+                if (values["Password"]) {
+                    if (values["Password"] != values["RepPassword"]) {
+                        SPopup.alert("contrasenas diferentes");
+                        return;
+                    }
+                    if (values["Password"] != this.usr["Password"]) {
+                        values["Password"] = CryptoJS.MD5(values["Password"]).toString();
+
+                    }
+                    delete values["RepPassword"];
+                }
                 if (this.key) {
+
                     Parent.Actions.editar({
                         ...this.usr,
                         ...values

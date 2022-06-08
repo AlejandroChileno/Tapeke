@@ -1,6 +1,4 @@
 import Parent from './index'
-import { SStorage } from 'servisofts-component'
-import Validations from '../../../../Validations';
 
 type DataProps = {
     component: any,
@@ -12,20 +10,14 @@ type DataProps = {
 }
 
 const initialState = () => {
-    var initialState: any = {
+    return {
         component: Parent.component,
         version: Parent.version,
-        dataDetalle: {},
-    }
-
-    return initialState;
+    };
 }
-
-
 export default (state: any, action: DataProps) => {
     if (!state) return initialState();
     if (action.component != Parent.component) return state;
-    if (action.type == "refresh") return initialState();
     // if (action.version != Parent.version) return state;
     TypesSwitch(state, action)
     state.type = action.type;
@@ -39,31 +31,15 @@ export default (state: any, action: DataProps) => {
 const TypesSwitch = (state: any, action: DataProps) => {
     switch (action.type) {
         case "getAll": return getAll(state, action);
-        case "getAllActivos": return getAllActivos(state, action);
         case "registro": return registro(state, action);
         case "editar": return editar(state, action);
         case "getById": return getById(state, action);
-        case "getDetalle": return getDetalle(state, action);
     }
 }
 
 const getAll = (state: any, action: DataProps) => {
-
     if (action.estado != "exito") return;
     state.data = action.data;
-
-    // SStorage.setItem("miInformation_log", JSON.stringify(action.data));
-
-}
-const getAllActivos = (state: any, action: DataProps) => {
-    if (action.estado != "exito") return;
-    state.data_activos = action.data;
-
-}
-const getDetalle = (state: any, action: DataProps) => {
-    if (action.estado != "exito") return;
-    state.dataDetalle[action.data.key] = action.data;
-    // Validations.set_pedido_en_curso(action.data);
 }
 const registro = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
@@ -73,13 +49,8 @@ const registro = (state: any, action: DataProps) => {
 }
 const editar = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;
-    if (state.data) {
-        state.data[action.data.key] = action.data;
-    }
-    if (state.data_activos) {
-        state.data_activos[action.data.key] = action.data;
-    }
-    
+    if (!state.data) return;
+    state.data[action.data.key] = action.data;
 }
 const getById = (state: any, action: DataProps) => {
     if (action.estado != "exito") return;

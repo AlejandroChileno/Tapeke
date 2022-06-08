@@ -194,7 +194,10 @@ class Inicio extends Component {
         <BarraSuperiorTapeke>
           {this.getDireccion()}
         </BarraSuperiorTapeke>
-        <SPage title={"as"} hidden>
+        <SPage title={"as"} hidden onRefresh={() => {
+          general.Actions.getAllComponents(this.props, true);
+
+        }}>
           {this.subRender()}
         </SPage>
         <PBarraFooter url={"/"} />

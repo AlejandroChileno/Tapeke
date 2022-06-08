@@ -51,7 +51,7 @@ class BarraFiltros extends Component {
         return Object.keys(data).map((key) => {
             var obj = data[key];
             if (!obj) return null;
-            if(!obj.active) return null;
+            if (!obj.active) return null;
             var txt = obj.label;
             txt = txt.replace(/\s/g, '');
             var width = (txt.length * 8);
@@ -72,7 +72,7 @@ class BarraFiltros extends Component {
 
     }
     getBtn() {
-        return (< SView height={28} flex border={'transparent'} style={{ paddingLeft: 10, paddingRight: 10, backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }
+        return (< SView height={28} width={100} border={'transparent'} style={{ paddingLeft: 10, paddingRight: 10, backgroundColor: STheme.color.card, borderRadius: 5, overflow: 'hidden' }
         } center onPress={() => {
             SNavigation.navigate('explorar/filtros');
         }}>
