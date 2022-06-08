@@ -41,7 +41,7 @@ const App = (props) => {
                     title: "App Tapeke",
  
                 }} />
-                <SSocket identificarse={(props) => {
+                <SSocket store={store}  identificarse={(props) => {
                     // var usuario = props.state.usuarioReducer.usuarioLog;
                     var usuario = {}
                     return {
