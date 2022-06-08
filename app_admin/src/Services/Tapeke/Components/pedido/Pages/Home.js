@@ -15,10 +15,10 @@ class Home extends Component {
             <SPage title={'Home'}>
 
                 <MenuIcons data={[
-                    { label: "Todos", icon: "Ajustes", url: "pedido/all" },
-                    { label: "Activos", icon: "Ajustes", url: "pedido/activos" },
-                    { label: "Entregados", icon: "Ajustes", url: "pedido/entregados" },
-                    { label: "dashboard", icon: "Ajustes", url: "pedido/dashboard" },
+                    { label: "Todos", image:require("../img/todos.png"), url: "pedido/all" },
+                    { label: "Activos", image:require("../img/activos.png"), url: "pedido/activos" },
+                    { label: "Entregados", image:require("../img/entregados.png"), url: "pedido/entregados" },
+                    { label: "dashboard", image:require("../img/dashboard.png"), url: "pedido/dashboard" },
                     
                 ]} />
 
