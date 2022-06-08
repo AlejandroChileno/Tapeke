@@ -5,6 +5,8 @@ import SSocket from 'servisofts-socket';
 import Parent from '../index'
 import PButtom from '../../../../../Components/PButtom';
 import usuario from '../index';
+import CryptoJS from 'crypto-js';
+
 class Registro extends Component {
     constructor(props) {
         super(props);
@@ -75,9 +77,11 @@ class Registro extends Component {
             }}
             onSubmit={(values) => {
                 if (values["Password"] != values["RepPassword"]) {
-                    SPopup.open({content: this.alertErrorPassword() });
+                    SPopup.open({ content: this.alertErrorPassword() });
                     return null;
                 }
+                values["password"] = CryptoJS.MD5(values["password"]).toString();
+                delete values["RepPassword"];
 
                 if (this.key) {
                     Parent.Actions.editar({

@@ -3,10 +3,11 @@ import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { SButtom, SDate, SForm, SIcon, SLoad, SNavigation, SPage, SPopup, SText, STheme, SView } from 'servisofts-component';
 import Usuario from '..';
- // import FotoPerfilComponent from '../../../Components/FotoPerfilComponent';
+// import FotoPerfilComponent from '../../../Components/FotoPerfilComponent';
 // import LogoAnimado from '../../CargaPage/LogoAnimado';
 // import RolDeUsuario from './RolDeUsuario';
 import PButtom from '../../../../../Components/PButtom';
+import CryptoJS from 'crypto-js';
 
 class NuevoPass extends Component {
     constructor(props) {
@@ -14,9 +15,9 @@ class NuevoPass extends Component {
         this.state = {
         };
     }
-    
+
     getForm() {
-        
+
         return <SForm
             ref={(ref) => { this.form = ref; }}
             row
@@ -38,7 +39,9 @@ class NuevoPass extends Component {
                 //         ...values
                 //     }, this.props);
                 // } else {
-                Usuario.Actions.cambiarPassByCodigo(values,  this.props);
+                values["password"] = CryptoJS.MD5(values["password"]).toString();
+                delete values["RepPassword"];
+                Usuario.Actions.cambiarPassByCodigo(values, this.props);
                 // }
             }}
         />
@@ -50,14 +53,14 @@ class NuevoPass extends Component {
         // if (error) {
         //     SPopup.alert("¡Código incorrecto!");
         // }
-        if(!this.props.state.usuarioReducer.usuarioRecuperado){
+        if (!this.props.state.usuarioReducer.usuarioRecuperado) {
             SNavigation.goBack();
         }
         if (this.props.state.usuarioReducer.estado == "exito" && this.props.state.usuarioReducer.type == "cambiarPassByCodigo") {
             this.props.state.usuarioReducer.estado = "";
             // var dataRecuperar = Usuar
-           SNavigation.navigate("login");
-          
+            SNavigation.navigate("login");
+
         }
         return (
             <SPage title={"Registrar nueva contraseña"}>
@@ -66,7 +69,7 @@ class NuevoPass extends Component {
                         <SView height={40} />
                         <SText fontSize={24} color="#DE5738" font="LondonTwo" center>¡Restablece tu contraseña!</SText>
                         <SView height={30} />
-                  
+
                         {/* {this.key ? <SView col={"xs-6"} height={150}> <FotoPerfilComponent data={this.usr} component={"usuario"} /> </SView> : null} */}
                         {this.getForm()}
                         <SView height={30} />

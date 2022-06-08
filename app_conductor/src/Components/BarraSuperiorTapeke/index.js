@@ -28,11 +28,11 @@ class BarraSuperiorTapeke extends Component {
                 borderBottomLeftRadius: 8, borderBottomRightRadius: 8,
             }} >
 
-                 <SView col={"xs-12"} height row center flex style={{ paddingLeft: 16, paddingRight: 16 }}>
+                <SView col={"xs-12"} height row center flex style={{ paddingLeft: 16, paddingRight: 16 }}>
 
 
                     <SView height width={35} center backgroundColor={'transparent'} onPress={() => { NavBar.open(); }} >
-                        <SIcon name={"Menu2"} width={28} height={28} fill={STheme.color.secondary} style={{ paddingLeft: 6, paddingTop:12 , }} />
+                        <SIcon name={"Menu2"} width={28} height={28} fill={STheme.color.secondary} style={{ paddingLeft: 6, paddingTop: 12, }} />
                     </SView>
 
                     <SView flex center >
