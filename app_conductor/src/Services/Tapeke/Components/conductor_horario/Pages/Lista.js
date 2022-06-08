@@ -27,7 +27,6 @@ class Lista extends Component {
 
 		// var data_user = pack.Actions.getAll(this.props);
 
-
 		if (!data) return <SLoad />;
 		if (!data_horario) return <SLoad />;
 		if (!data_restaurante) return <SLoad />;
@@ -62,6 +61,12 @@ class Lista extends Component {
 
 		var arr = Object.values(dataFinal).slice(0, 6);
 
+
+
+		// const found = arr.find(element => element > 2);
+		console.log("tamaño " + arr[0].horario['hora_inicio']);
+		console.log("tamaño " + JSON.stringify(arr[0]));
+
 		// INFO Aqui ordeno por fecha mas cercas
 
 
@@ -73,7 +78,6 @@ class Lista extends Component {
 			render={(obj) => {
 
 				console.log(obj['fecha'] + " " + obj.horario['hora_inicio']);
-
 
 				return <>
 					{/* <SView col={"xs-12"} border={'green'} >

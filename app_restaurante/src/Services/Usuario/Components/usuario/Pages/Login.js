@@ -46,7 +46,10 @@ class Login extends Component {
             }}
             onSubmit={(data) => {
                 if (data) {
+                    
                     data["password"] = CryptoJS.MD5(data["password"]).toString();
+
+                    // console.log("sssssssssssssssssssssssssss ",data);
                     Parent.Actions.login(data, this.props);
                 }
             }}

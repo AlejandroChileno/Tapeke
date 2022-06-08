@@ -46,7 +46,9 @@
     "servisofts-component": "2.7.9",
     "servisofts-socket": "2.5.3",
     "typescript": "^4.4.3",
-    "xlsx-color": "^0.14.30"
+    "xlsx-color": "^0.14.30",
+    "crypto-js": "^4.1.1"
+
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

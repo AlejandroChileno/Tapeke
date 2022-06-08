@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { SHr, SGradient, SDate, SInfo, SOrdenador, SComponentContainer, SGrid, SIcon, SNavBar, SNavigation, SPage, SSCrollView, SScrollView2, SScrollView3, SText, STheme, SThread, SUuid, SImage, SList, SBuscador, SView, SLoad, SStorage, SPopup, SPopupOpen, SPopupClose, STable, STable2, SInput, SForm, SButtom, SMapView, SMath, SMarker, Font } from 'servisofts-component';
 
-class Test extends Component {
+class Test2 extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -38,7 +38,18 @@ class Test extends Component {
         );
     }
 
- 
+
+    //     <SView col={"xs-11"} row height backgroundColor={"transparent"} center>
+    //     <SView col={"xs-10"} center height backgroundColor={"transparent"} >
+    //         <SInput center height={48} placeholder={"Message"}
+    //             ref={r => this.input_message = r} style={{ borderRadius: 100, backgroundColor: STheme.color.card, fontSize: 16, }} />
+
+    //      </SView>
+    //     <SView col={"xs-2"} center height backgroundColor={"transparent"}  >
+    //         {this.boton_send()}
+    //     </SView>
+    // </SView>
+
 
     getList() {
         return (
@@ -80,29 +91,8 @@ class Test extends Component {
             </SView>
         );
     }
-
-
     render() {
         return (<>
-             <BarraSuperiorTapeke>
-          <SwitchRastreo width={130} height={40}
-            callback={(resp) => {
-              // this.setState({ active: resp.ConductorOnline });
-              if (!SBLocation.isStarted()) {
-                SBLocation.start({
-                  minTime: 3000,
-                  minDistance: 1
-                });
-              } if (SBLocation.isStarted()) {
-                SBLocation.stop();
-              } else {
-                SBLocation.addListener((data) => {
-                  // this.setState({ ...this.state })
-                })
-              }
-            }}/>
-        </BarraSuperiorTapeke>
-        
 
             <SView col={"xs-12"} center height={70} row backgroundColor={'green'}
                 style={{
@@ -144,4 +134,4 @@ class Test extends Component {
 const initStates = (state) => {
     return { state }
 };
-export default connect(initStates)(Test);
+export default connect(initStates)(Test2);
