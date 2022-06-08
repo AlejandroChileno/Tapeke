@@ -170,7 +170,7 @@ class Inicio extends Component {
 
 
     return <>
-      <SView col={"xs-12 md-6 lg-4"} height={320} backgroundColor={STheme.color.secondary} style={{ position: 'absolute', bottom: 0 }} center  >
+      <SView col={"xs-12 md-6 lg-4"} height={350} backgroundColor={STheme.color.secondary} style={{ position: 'absolute', bottom: 0 }} center  >
         <SView col={"xs-12"} height={20} />
 
 
@@ -180,16 +180,32 @@ class Inicio extends Component {
 
 
 
-        <SView col={"xs-11 md-11 lg-10 xl-8"} height={50} center row backgroundColor={"transparent"} >
-          <SView width={41} height={41} center border={'transparent'}>
+        <SView col={"xs-12"} height={60} center row backgroundColor={"transparent"} >
+        <SView col={"xs-11 md-11 lg-10 xl-8"} height={25} center row backgroundColor={"transparent"} >
+          <SView width={41} height  center border={'transparent'}>
             <SIcon name="Reloj" fill={STheme.color.primary} width={20} ></SIcon>
           </SView>
           <SView flex height center border={'transparent'}    >
             <SView col={"xs-12"} height={4} />
             <SView col={"xs-12"} border={'transparent'}   >
-              <SText style={{ fontSize: 14 }} bold >{dataFirst['fecha']} {dataFirst.horario['hora_inicio']} - {dataFirst.horario['hora_fin']}- Delivery </SText>
+              <SText style={{ fontSize: 14 }} bold >Hoy {dataFirst['fecha']} </SText>
             </SView>
           </SView>
+        </SView>
+
+        <SView col={"xs-11 md-11 lg-10 xl-8"} height={30} center row backgroundColor={"transparent"} >
+          <SView width={41} height center border={'transparent'}>
+            <SIcon name="Reloj" fill={STheme.color.primary} width={20} ></SIcon>
+          </SView>
+          <SView flex height center border={'transparent'}    >
+            <SView col={"xs-12"} height={4} />
+            <SView col={"xs-12"} border={'transparent'}   >
+              <SText style={{ fontSize: 14 }} bold > {dataFirst.horario['hora_inicio']} am - Delivery </SText>
+            </SView>
+          </SView>
+          </SView>
+
+          
         </SView>
 
         <SView col={"xs-12"} center>
@@ -264,13 +280,19 @@ class Inicio extends Component {
 
 
         <SView col={"xs-12"} height={80} row center   >
+  
+          <SView flex center   >
+            <SButtom style={{ backgroundColor: STheme.color.primary, width: 150, height: 44, fontSize: 180, borderRadius: 25, }} onPress={() => { alert("confirmado") }} fontSize={50} >Ir al restaurante</SButtom>
+          </SView>
+        </SView>
+        {/* <SView col={"xs-12"} height={80} row center   >
           <SView flex center   >
             <SButtom style={{ backgroundColor: "#FF5E5C", width: 150, height: 44, fontSize: 24, borderRadius: 25, }} onPress={() => { alert("cancelado") }} >Rechazar</SButtom>
           </SView>
           <SView flex center   >
             <SButtom style={{ backgroundColor: "#2BC25F", width: 150, height: 44, fontSize: 180, borderRadius: 25, }} onPress={() => { alert("confirmado") }} fontSize={50} >Aceptar</SButtom>
           </SView>
-        </SView>
+        </SView> */}
 
       </SView>
     </>
