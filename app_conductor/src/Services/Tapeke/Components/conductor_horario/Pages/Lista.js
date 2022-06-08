@@ -69,7 +69,7 @@ class Lista extends Component {
 							</SView>
 							<SHr height={10} />
 							<SView col={"xs-12"} height={30} row border={"transparent"}  >
-								<SView col={"xs-6"} height center onPress={() => { alert("hola") }}   >
+								<SView col={"xs-6"} height center onPress={() => { SNavigation.navigate("restaurante/comollegar", { key: obj.restaurante["key"] }); }}   >
 									<SText width={120} height={25} style={{ backgroundColor: '#EEEEEE', borderRadius: 4, fontSize: 14, alignItems: 'center', }} center >Ubicacion</SText>
 								</SView>
 								<SView col={"xs-6"} height center onPress={() => { alert("chau") }}>

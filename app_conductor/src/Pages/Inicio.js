@@ -196,9 +196,11 @@ class Inicio extends Component {
         </SView>
         <SView col={"xs-12"} height={80} row center   >
           <SView flex center   >
-            <SButtom style={{ backgroundColor: STheme.color.primary, width: 150, height: 44, fontSize: 180, borderRadius: 25, }} onPress={() => { alert("confirmado") }} fontSize={50} >Ir al restaurante</SButtom>
+            <SButtom style={{ backgroundColor: STheme.color.primary, width: 150, height: 44, fontSize: 180, borderRadius: 25, }} onPress={() => { SNavigation.navigate("restaurante/comollegar", { key: dataFirst.restaurante["key"]}) }} fontSize={50} >Ir al restaurante</SButtom>
           </SView>
         </SView>
+
+         
         {/* <SView col={"xs-12"} height={80} row center   >
           <SView flex center   >
             <SButtom style={{ backgroundColor: "#FF5E5C", width: 150, height: 44, fontSize: 24, borderRadius: 25, }} onPress={() => { alert("cancelado") }} >Rechazar</SButtom>
