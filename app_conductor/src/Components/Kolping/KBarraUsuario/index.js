@@ -60,7 +60,7 @@ class KBarraUsuario extends Component {
                         <SView height width={40} center onPress={() => {
                             NavBar.open();
                         }}>
-                            <SIcon name={"Menu2"} width={28} />
+                            <SIcon name={"Girl"} width={28} />
                         </SView>
                     </SView>
                 </SView>

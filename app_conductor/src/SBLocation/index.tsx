@@ -89,18 +89,19 @@ class SBLocation {
         try {
             SStorage.getItem("usr_log", (resp: any) => {
                 var usr = JSON.parse(resp);
-                this.notifyAll({ type: "locationChange", data: Data.lastLocation, key_usuario: usr.key });
-                SSocket.sendHttp(SSocket.api.root + "api", {
+                SSocket.sendHttpAsync(SSocket.api.root + "api", {
                     component: "backgroundLocation",
                     type: "onChange",
                     estado: "cargando",
                     key_usuario: usr.key,
                     data: Data.lastLocation,
-                });
+                })
+                this.notifyAll({ type: "locationChange", data: Data.lastLocation, key_usuario: usr.key });
+
             })
 
         } catch (e) {
-
+            
         }
 
 

@@ -21,7 +21,7 @@ export default class Actions {
                 estado: "cargando",
                 key_usuario: props.state.usuarioReducer.usuarioLog.key,
             })
-            console.log("getAll");
+            // console.log("getAll");
 
             return null;
         }
@@ -130,9 +130,14 @@ export default class Actions {
             var horario = data_horario[obj_ch.key_horario]
             var restaurante = data_restaurante[horario.key_restaurante]
             var sd = new SDate();
+
+            // console.log("mira ",horario);
+
+
+
             if (!horario) return null;
             if (horario?.dia == sd.getDayOfWeek()) {
-                //igual no hace nada
+                //igual no hace nadar
             } else if (horario?.dia > sd.getDayOfWeek()) {
                 sd.addDay((- sd.getDayOfWeek()) + horario?.dia);
             } else if (horario?.dia < sd.getDayOfWeek()) {
@@ -144,6 +149,27 @@ export default class Actions {
                 fecha = sd.addDay(7).toString("dd-MM-yyyy");
             }
 
+            // primero obtengo todos los pedidos de hoy o cercano
+            // segundo obtengo comparo la hora
+
+            // var dia = new SDate(dow.fecha + " " + dow.hora_fin, "yyyy-MM-dd hh:mm");
+            // if (dia.getTime() < new SDate().getTime()) {
+            //     dow.fecha = date.addDay(7).toString("yyyy-MM-dd");
+            //     text = "Proximo " + SDate.getDayOfWeek(dow.dia).text?.toLowerCase();
+            //     dia = new SDate(dow.fecha + " " + dow.hora_fin, "yyyy-MM-dd hh:mm");
+            // }
+
+
+            // var dia = new SDate(horario.fecha + " " + horario.hora_fin, "yyyy-MM-dd hh:mm");
+            // if (dia.getTime() < new SDate().getTime()) {
+            //     horario.fecha = date.addDay(7).toString("yyyy-MM-dd");
+            //     text = "Proximo " + SDate.getDayOfWeek(horario.dia).text?.toLowerCase();
+            //     dia = new SDate(horario.fecha + " " + horario.hora_fin, "yyyy-MM-dd hh:mm");
+            // }
+
+            // console.log("miralo ",sd);
+
+
             dataFinal[obj_ch.key] = {
                 ...obj_ch,
                 horario,
@@ -153,7 +179,7 @@ export default class Actions {
             };
         })
         var arr = Object.values(dataFinal);
-        arr.sort((a, b) => { return a.sdate.getTime() > b.sdate.getTime() ? 1 : -1 });
+        arr.sort((a, b) => { return a.sdate.getTime() < b.sdate.getTime() ? 1 : -1 });
 
         return arr[0];
 

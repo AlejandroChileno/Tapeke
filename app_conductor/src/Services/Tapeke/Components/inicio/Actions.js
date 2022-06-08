@@ -19,7 +19,7 @@ export default class Actions {
             })
             return null;
         }
-       // console.log("getAll");
+        //console.log("getAll");
         return data;
     }
 
@@ -39,25 +39,21 @@ export default class Actions {
             data: data
         })
     }
-
-    static getDistance(lat1, lon1, lat2, lon2) {
-        var rad = function (x) { return x * Math.PI / 180; }
-        var R = 6378.137; //Radio de la tierra en km 
-        var dLat = rad(lat2 - lat1);
-        var dLong = rad(lon2 - lon1);
-        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(rad(lat1)) *
-            Math.cos(rad(lat2)) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        //aquí obtienes la distancia en metros por la conversion 1Km =1000m
-        var d = R * c * 1000;
-        return d;
+    static send = (data, props) => {
+        SSocket.send({
+            component: Parent.component,
+            version: Parent.version,
+            type: "registro",
+            estado: "cargando",
+            key_usuario: props.state.usuarioReducer.usuarioLog.key,
+            data: data
+        })
     }
-
     static editar = (data, props) => {
         SSocket.send({
             component: Parent.component,
             version: Parent.version,
-            type: "editar",
+            type: "send",
             estado: "cargando",
             key_usuario: props.state.usuarioReducer.usuarioLog.key,
             data: data

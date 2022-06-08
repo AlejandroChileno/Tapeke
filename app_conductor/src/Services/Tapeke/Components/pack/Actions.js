@@ -19,7 +19,7 @@ export default class Actions {
             })
             return null;
         }
-        console.log("getAll");
+       // console.log("getAll");
         return data;
     }
 
