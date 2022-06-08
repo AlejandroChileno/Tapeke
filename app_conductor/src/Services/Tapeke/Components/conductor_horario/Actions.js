@@ -110,10 +110,14 @@ export default class Actions {
                 ...obj_ch,
                 horario,
                 restaurante,
-                fecha: fecha
+                fecha: fecha,
+                sdate: sd
+
             };
         })
         var arr = Object.values(dataFinal);
+        arr.sort((a, b) => { return a.sdate.getTime() > b.sdate.getTime() ? 1 : -1 });
+
         return arr;
     }
     static getPedidoProximoByKey = (keyuser, props) => {
@@ -143,7 +147,7 @@ export default class Actions {
             } else if (horario?.dia < sd.getDayOfWeek()) {
                 sd.addDay((7 - sd.getDayOfWeek()) + horario?.dia);
             }
-            var fecha = sd.toString("dd-MM-yyyy");
+            var fecha = sd.toString("yyyy-MM-dd");
             var dia = new SDate(fecha + " " + horario?.hora_fin, "yyyy-MM-dd hh:mm");
             if (dia.getTime() < new SDate().getTime()) {
                 fecha = sd.addDay(7).toString("dd-MM-yyyy");
@@ -175,11 +179,11 @@ export default class Actions {
                 horario,
                 restaurante,
                 fecha: fecha,
-                sdate:sd
+                sdate: sd
             };
         })
         var arr = Object.values(dataFinal);
-        arr.sort((a, b) => { return a.sdate.getTime() < b.sdate.getTime() ? 1 : -1 });
+        arr.sort((a, b) => { return a.sdate.getTime() > b.sdate.getTime() ? 1 : -1 });
 
         return arr[0];
 

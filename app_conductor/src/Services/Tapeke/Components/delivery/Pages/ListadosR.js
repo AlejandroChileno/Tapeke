@@ -13,31 +13,16 @@ class ListadosR extends Component {
 
 
 	getAllDate() {
-		var data = delivery.Actions.getAll(this.props);
-		var dataconductor = conductor_horario.Actions.getAllPedidoProximoByKey(this.props.state.usuarioReducer.usuarioLog.key,this.props);
-
+		var data = delivery.Actions.getActivo(this.props);
+		
 		if (!data) return <SLoad />;
-		if (!dataconductor) return <SLoad />;
+		var listaKeys = Object.keys(data);
 
-		// TODO Step 3.- check if empty
-		if (dataconductor.length <= 0) {
-			return <>
-				<SView col={"xs-12"} height center border={"transparent"}>
-					<SText font={"Roboto"} fontSize={20} color={STheme.color.primary}>No hay pedidos asignados</SText>
-				</SView>
-			</>
-		}
-
-		// TODO Step 4.- check array list and format JSON in template
-		// console.log("tamaño " + JSON.stringify(dataconductor));
-
-		var listaKeys = Object.keys(dataconductor);
- 
 		return listaKeys.map((key, index) => {
-			var obj = dataconductor[key];
- 			return <SView col={"xs-12"} border={'transparent'} >
+			var obj = data[key];
+			return <SView col={"xs-12"} border={'transparent'} >
 				<SText > {JSON.stringify(obj, "\n", "\t")} </SText>
- 				{/* <SText > {JSON.stringify(obj["key"])} </SText> */}
+				{/* <SText > {JSON.stringify(obj["key"])} </SText> */}
 			</SView>
 		})
 	}

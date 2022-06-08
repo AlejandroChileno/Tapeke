@@ -44,7 +44,7 @@ class ShowMapa extends Component {
                     </SMarker>
 
                     <SMarker lat={dataConductor?.data?.latitude ?? 0} lng={dataConductor?.data?.longitude ?? 0}  >
-                        <SIcon name="Girl" width={40} height={40} />
+                        <SIcon name="LocationConductor" width={40} height={40} />
                     </SMarker>
 
                 </SMapView>

@@ -64,7 +64,7 @@ class Lista extends Component {
 									<SText fontSize={12} font={"Roboto"} color={STheme.color.gray} >{obj['fecha']} {obj.horario['hora_inicio']} - {obj.horario['hora_fin']}</SText>
 								</SView>
 								<SView col={"xs-3"} height style={{ justifyContent: 'center', }} border={"transparent"}>
-									<SText fontSize={22} font={"Roboto"} color={STheme.color.gray} >x 13</SText>
+									<SText fontSize={18} font={"Roboto"} color={STheme.color.gray} >x 1</SText>
 								</SView>
 							</SView>
 							<SHr height={10} />
@@ -72,9 +72,9 @@ class Lista extends Component {
 								<SView col={"xs-6"} height center onPress={() => { SNavigation.navigate("restaurante/comollegar", { key: obj.restaurante["key"] }); }}   >
 									<SText width={120} height={25} style={{ backgroundColor: '#EEEEEE', borderRadius: 4, fontSize: 14, alignItems: 'center', }} center >Ubicacion</SText>
 								</SView>
-								<SView col={"xs-6"} height center onPress={() => { alert("chau") }}>
+								{/* <SView col={"xs-6"} height center onPress={() => { alert("chau") }}>
 									<SText width={120} height={25} style={{ backgroundColor: '#EEEEEE', borderRadius: 4, fontSize: 14, alignItems: 'center', }} center>Cliente </SText>
-								</SView>
+								</SView> */}
 							</SView>
 						</SView>
 						{/* <SHr height={10} /> */}

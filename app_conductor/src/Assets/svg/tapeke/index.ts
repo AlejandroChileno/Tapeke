@@ -65,6 +65,7 @@ import Medalla1, { ReactComponent as Medalla1W } from './medalla1.svg';
 import Medalla2, { ReactComponent as Medalla2W } from './medalla2.svg';
 import Medalla3, { ReactComponent as Medalla3W } from './medalla3.svg';
 import Calendario, { ReactComponent as CalendarioW } from './calendario.svg';
+import LocationConductor, { ReactComponent as LocationConductorW } from './locationConductor.svg';
 
 const Assets = {
 	// alvaro
@@ -133,6 +134,7 @@ const Assets = {
 	"Medalla2": { Native: Medalla2, Web: Medalla2W },
 	"Medalla3": { Native: Medalla3, Web: Medalla3W },
 	"Calendario": { Native: Calendario, Web: CalendarioW },
+	"LocationConductor": { Native: LocationConductor, Web: LocationConductorW },
 
 }
 

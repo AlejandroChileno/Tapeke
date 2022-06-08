@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { SButtom, SHr, SIcon, SImage, SLoad, SNavigation, SText, STheme, SView } from "servisofts-component";
+import { SButtom, SDate, SHr, SIcon, SImage, SLoad, SNavigation, SText, STheme, SView } from "servisofts-component";
 import SSocket from 'servisofts-socket';
 import BarraCargando from '../../../../../../Components/BarraCargando';
 import SBLocation from '../../../../../../SBLocation';
@@ -49,11 +49,15 @@ class ShowInfo extends Component {
             dataFirst?.restaurante["latitude"], dataFirst?.restaurante["longitude"],
             dataConductor?.data?.latitude ?? 0, dataConductor?.data?.longitude ?? 0);
 
+        console.log("impreso ", printer + " mtrs");
 
         var parseado = parseFloat(printer / 1000).toFixed(1);
         console.log("impreso ", parseado + " km");
-        console.log("impreso ", JSON.stringify(dataFirst) + " km");
-
+        // console.log("impreso ", JSON.stringify(dataFirst) + " km");
+    	
+        // var form=new SDate().toString("yyyy-MM-dd hh:mm:ss") ;
+        // var dia = new SDate(fecha + " " + horario?.hora_fin, "yyyy-MM-dd hh:mm");
+        // console.log("telefono ", form + " tiempo");
 
 
 
@@ -86,7 +90,7 @@ class ShowInfo extends Component {
             return <>
                 <SView col={"xs-12 md-6 lg-4"} height={350} backgroundColor={STheme.color.secondary} style={{ position: 'absolute', bottom: 0 }} center  >
                     <SView col={"xs-12"} height={20} />
-                    <SView col={"xs-11"} height={60} border={"transparent"}   center >
+                    <SView col={"xs-11"} height={60} border={"transparent"} center >
 
 
                         <SView col={"xs-12"} height={30} center row backgroundColor={"transparent"} >

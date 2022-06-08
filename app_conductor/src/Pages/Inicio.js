@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SLoad, SPage } from "servisofts-component";
+import { SIcon, SLoad, SNavigation, SPage, SPopup, STheme } from "servisofts-component";
 import BarraSuperiorTapeke from "../Components/BarraSuperiorTapeke";
 import SwitchRastreo from "../Components/SwitchRastreo";
 import SBLocation from "../SBLocation";
@@ -22,6 +22,9 @@ class Inicio extends Component {
       console.log(data);
     })
   }
+
+
+
 
   render() {
     if (!usuario.Actions.validateSession(this.props)) {

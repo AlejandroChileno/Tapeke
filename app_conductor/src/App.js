@@ -15,6 +15,7 @@ import NavBar from './Components/NavBar';
 
 import SConfig from './SConfig';
 import SBLocation from './SBLocation';
+import NavBar2 from './Components/NavBar2';
 
 setProps(SConfig.SocketProps);
 
@@ -50,7 +51,8 @@ const App = (props) => {
                     }
                 }} />
                 <NavBar />
-
+                <NavBar2 />
+ 
             </SComponentContainer>
         </Provider >
     )
