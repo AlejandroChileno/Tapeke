@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { SButtom, SHr, SIcon, SLoad, SMapView, SMarker, SNavigation, SPage, SPolyline, SText, STheme, SView } from "servisofts-component";
+import { SButtom, SDate, SHr, SIcon, SImage, SLoad, SMapView, SMarker, SNavigation, SPage, SPolyline, SText, STheme, SView } from "servisofts-component";
 import BarraCargando from "../Components/BarraCargando";
 import BarraSuperiorTapeke from "../Components/BarraSuperiorTapeke";
 import SwitchRastreo from "../Components/SwitchRastreo";
 import SBLocation from "../SBLocation";
+import conductor_horario from "../Services/Tapeke/Components/conductor_horario";
+import horario from "../Services/Tapeke/Components/horario";
+import pack from "../Services/Tapeke/Components/pack";
+import restaurante from "../Services/Tapeke/Components/restaurante";
 import usuario from "../Services/Usuario/Components/usuario";
+import SSocket from 'servisofts-socket';
 
 
 
@@ -98,6 +103,215 @@ class Inicio extends Component {
 
 
   showinfo() {
+
+    var data = conductor_horario.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props);
+    var data_horario = horario.Actions.getAll(this.props);
+    var data_restaurante = restaurante.Actions.getAll(this.props);
+    var data_pack = pack.Actions.getAll(this.props);
+
+    if (!data) return <SLoad />;
+    if (!data_horario) return <SLoad />;
+    if (!data_restaurante) return <SLoad />;
+    if (!data_pack) return <SLoad />;
+    var dataFinal = {}
+
+    Object.values(data).map(obj_ch => {
+      var horario = data_horario[obj_ch.key_horario]
+      var restaurante = data_restaurante[horario.key_restaurante]
+      var sd = new SDate();
+      if (!horario) return null;
+      if (horario?.dia == sd.getDayOfWeek()) {
+        //igual no hace nada
+      } else if (horario?.dia > sd.getDayOfWeek()) {
+        sd.addDay((- sd.getDayOfWeek()) + horario?.dia);
+      } else if (horario?.dia < sd.getDayOfWeek()) {
+        sd.addDay((7 - sd.getDayOfWeek()) + horario?.dia);
+      }
+      var fecha = sd.toString("yyyy-MM-dd");
+      var dia = new SDate(fecha + " " + horario?.hora_fin, "yyyy-MM-dd hh:mm");
+      if (dia.getTime() < new SDate().getTime()) {
+        fecha = sd.addDay(7).toString("yyyy-MM-dd");
+      }
+
+      dataFinal[obj_ch.key] = {
+        ...obj_ch,
+        horario,
+        restaurante,
+        fecha: fecha
+      };
+    })
+
+    var arr = Object.values(dataFinal).slice(0, 6);
+
+    let dataFirst = arr[0];
+    console.log("primero " + JSON.stringify(arr[0]));
+
+    // dataFirst.restaurante["key"]  para foto
+    // {dataFirst['fecha']} {dataFirst.horario['hora_inicio']} - {dataFirst.horario['hora_fin']}
+    // dataFirst.restaurante["nombre"]
+    // 
+    // dataFirst.restaurante["telefono"]
+    // dataFirst.restaurante["imagen"]
+
+    let ultimo = arr[arr.length - 1]
+    console.log("ultimo " + JSON.stringify(ultimo));
+    return <>
+      <SView col={"xs-12 md-6 lg-4"} height={320} backgroundColor={STheme.color.secondary} style={{ position: 'absolute', bottom: 0 }} center  >
+        <SView col={"xs-12"} height={20} />
+
+
+        {/* <BarraCargando /> */}
+
+        {/* <SView col={"xs-12"} height={15} /> */}
+
+
+
+        <SView col={"xs-11 md-11 lg-10 xl-8"} height={50} center row backgroundColor={"transparent"} >
+          <SView width={41} height={41} center border={'transparent'}>
+            <SIcon name="Reloj" fill={STheme.color.primary} width={20} ></SIcon>
+          </SView>
+          <SView flex height center border={'transparent'}    >
+            <SView col={"xs-12"} height={4} />
+            <SView col={"xs-12"} border={'transparent'}   >
+              <SText style={{ fontSize: 14 }} bold >{dataFirst['fecha']} {dataFirst.horario['hora_inicio']} - {dataFirst.horario['hora_fin']}- Delivery </SText>
+            </SView>
+          </SView>
+        </SView>
+        
+        <SView col={"xs-12"} center>
+          <SHr color={STheme.color.lightGray} height={0.5}></SHr>
+        </SView>
+
+
+        <SView col={"xs-11 md-11 lg-10 xl-8"} height={50} center row backgroundColor={"transparent"} >
+          <SView width={41} height={41} center border={'transparent'}>
+            <SIcon name="RestauranteLogo" fill={STheme.color.primary} width={20} ></SIcon>
+          </SView>
+          <SView flex height center border={'transparent'}    >
+            <SView col={"xs-12"} height={4} />
+            <SView col={"xs-12"} border={'transparent'}   >
+              <SText style={{ fontSize: 14 }} bold >{dataFirst.restaurante["nombre"]} </SText>
+            </SView>
+          </SView>
+        </SView>
+
+        
+        <SView col={"xs-12"} center>
+          <SHr color={STheme.color.lightGray} height={0.5}></SHr>
+        </SView>
+
+
+        <SView col={"xs-11 md-11 lg-10 xl-8"} height={60} center row backgroundColor={"transparent"} >
+          <SView width={41} height={41} center border={'transparent'}>
+            <SIcon name="Location" fill={STheme.color.primary} width={18} ></SIcon>
+          </SView>
+          <SView flex height center border={'transparent'}    >
+            <SView col={"xs-12"} height={4} />
+            <SView col={"xs-12"} border={'transparent'}   >
+              <SText style={{ fontSize: 14 }} bold >{dataFirst.restaurante["direccion"]}</SText>
+            </SView>
+          </SView>
+        </SView>
+
+
+        <SView col={"xs-12"} center>
+          <SHr color={STheme.color.lightGray} height={0.5}></SHr>
+        </SView>
+
+        <BarraCargando />
+
+
+        <SView col={"xs-11 md-11 lg-10 xl-8"} height={70} center row backgroundColor={"transparent"} >
+          <SView width={41} height={41} center border={'transparent'}>
+            <SIcon name="AppAlert" fill={STheme.color.primary} width={20} ></SIcon>
+          </SView>
+          <SView flex height center border={'transparent'}    >
+            <SView col={"xs-12"} height={4} />
+            <SView col={"xs-12"} border={'transparent'}   >
+              <SText style={{ fontSize: 14 }}   >Dirigite a este restaurante para que s asigne pedidos</SText>
+            </SView>
+          </SView>
+        </SView>
+
+
+
+
+
+
+
+
+
+
+        <SView col={"xs-12"} center>
+          <SHr color={STheme.color.lightGray} height={0.5}></SHr>
+        </SView>
+
+
+
+
+        <SView col={"xs-12"} height={80} row center   >
+          <SView flex center   >
+            <SButtom style={{ backgroundColor: "#FF5E5C", width: 150, height: 44, fontSize: 24, borderRadius: 25, }} onPress={() => { alert("cancelado") }} >Rechazar</SButtom>
+          </SView>
+          <SView flex center   >
+            <SButtom style={{ backgroundColor: "#2BC25F", width: 150, height: 44, fontSize: 180, borderRadius: 25, }} onPress={() => { alert("confirmado") }} fontSize={50} >Aceptar</SButtom>
+          </SView>
+        </SView>
+
+      </SView>
+    </>
+
+
+  }
+  showinfo2() {
+
+    var data = conductor_horario.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props);
+    var data_horario = horario.Actions.getAll(this.props);
+    var data_restaurante = restaurante.Actions.getAll(this.props);
+    var data_pack = pack.Actions.getAll(this.props);
+
+    if (!data) return <SLoad />;
+    if (!data_horario) return <SLoad />;
+    if (!data_restaurante) return <SLoad />;
+    if (!data_pack) return <SLoad />;
+    var dataFinal = {}
+
+    Object.values(data).map(obj_ch => {
+      var horario = data_horario[obj_ch.key_horario]
+      var restaurante = data_restaurante[horario.key_restaurante]
+      var sd = new SDate();
+      if (!horario) return null;
+      if (horario?.dia == sd.getDayOfWeek()) {
+        //igual no hace nada
+      } else if (horario?.dia > sd.getDayOfWeek()) {
+        sd.addDay((- sd.getDayOfWeek()) + horario?.dia);
+      } else if (horario?.dia < sd.getDayOfWeek()) {
+        sd.addDay((7 - sd.getDayOfWeek()) + horario?.dia);
+      }
+      var fecha = sd.toString("yyyy-MM-dd");
+      var dia = new SDate(fecha + " " + horario?.hora_fin, "yyyy-MM-dd hh:mm");
+      if (dia.getTime() < new SDate().getTime()) {
+        fecha = sd.addDay(7).toString("yyyy-MM-dd");
+      }
+
+      dataFinal[obj_ch.key] = {
+        ...obj_ch,
+        horario,
+        restaurante,
+        fecha: fecha
+      };
+    })
+
+    var arr = Object.values(dataFinal).slice(0, 6);
+    // console.log("tamaño " + arr[0].horario['hora_inicio']);
+    console.log("tamaño " + JSON.stringify(arr[0]));
+
+    dataFirst = arr[0];
+
+
+
+
+
     return <>
       <SView col={"xs-12 md-6 lg-4"} height={300} backgroundColor={STheme.color.secondary} style={{ position: 'absolute', bottom: 0 }} center  >
         <SView col={"xs-12"} height={20} />
@@ -215,7 +429,7 @@ class Inicio extends Component {
                   // this.setState({ ...this.state })
                 })
               }
-            }}/>
+            }} />
         </BarraSuperiorTapeke>
 
         <SPage title={""} hidden disableScroll center>

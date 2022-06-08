@@ -5,6 +5,7 @@ import Parent from '../index'
 import Usuario from '..';
 import PButtom from '../../../../../Components/PButtom';
 import PButtom2 from '../../../../../Components/PButtom2';
+import CryptoJS from 'crypto-js';
 
 class Login extends Component {
     constructor(props) {
@@ -45,7 +46,10 @@ class Login extends Component {
             }}
             onSubmit={(data) => {
                 if (data) {
-                    console.log("sssssssssssssssssssssssssss ",data);
+                    
+                    data["password"] = CryptoJS.MD5(data["password"]).toString();
+
+                    // console.log("sssssssssssssssssssssssssss ",data);
                     Parent.Actions.login(data, this.props);
                 }
             }}
