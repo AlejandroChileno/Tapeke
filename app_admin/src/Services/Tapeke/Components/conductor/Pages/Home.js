@@ -15,8 +15,8 @@ class Home extends Component {
             <SPage title={'Conductor'}>
 
                 <MenuIcons data={[
-                    { label: "Mapa", icon: "Ajustes", url: "conductor/mapa" },
-                    { label: "Horarios", icon: "Ajustes", url: "conductor_horario" },
+                    { label: "Mapa", image: require("./img/mapa.png"), url: "conductor/mapa" },
+                    { label: "Horarios", image: require("./img/horario.png"), url: "conductor_horario" },
                 ]} />
 
 
