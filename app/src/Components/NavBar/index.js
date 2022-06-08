@@ -31,7 +31,7 @@ class NavBar extends React.Component {
 		Animated.timing(this.animSize, {
 			toValue: 1,
 			duration: this.state.timeAnim,
-			// useNativeDriver: true
+			useNativeDriver: true
 		}).start();
 	}
 
@@ -39,27 +39,34 @@ class NavBar extends React.Component {
 
 		Animated.timing(this.animSize, {
 			toValue: 0,
-			duration: this.state.timeAnim,
-			// useNativeDriver: true
+			duration: 0,
+			useNativeDriver: true
 		}).start(() => {
 			this.setState({ isOpen: false });
 		});
 	}
 
 	getNav() {
+		if (!this.state.width) return null;
 		var usuario = this.props.state.usuarioReducer.usuarioLog;
 		if (!usuario) {
 			SNavigation.navigate('login');
 			return <SView />
 		}
 		var destacado = require("../../Assets/svg/perfil.jpg");
-		return <SView col={"xs-9 md-6 xl-4"} height backgroundColor={STheme.color.background}
+		return <SView col={"xs-9 md-6 xl-4"} height animated backgroundColor={STheme.color.background}
 			style={{
 				position: "absolute",
-				left: this.animSize.interpolate({
-					inputRange: [0, 1],
-					outputRange: ["-70%", "0%"],
-				}),
+				// left: this.animSize.interpolate({
+				// 	inputRange: [0, 1],
+				// 	outputRange: ["-70%", "0%"],
+				// }),
+				transform: [{
+					translateX: this.animSize.interpolate({
+						inputRange: [0, 1],
+						outputRange: [this.state.width * -0.7, 0],
+					})
+				}],
 			}}
 		>
 			<SView col={"xs-12"} backgroundColor={STheme.color.primary} width="100%" height={105} center
@@ -99,7 +106,7 @@ class NavBar extends React.Component {
 					</SView>
 				</SView>
 			</SView>
-			<SView height={20} border={'transparent'}/>
+			<SView height={20} border={'transparent'} />
 
 			<SScrollView2 disableHorizontal >
 
@@ -135,7 +142,7 @@ class NavBar extends React.Component {
 						</SView>
 					</SView>
 
-				 
+
 					{/* <SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("pedido/confirmar"); this.fadeOut(); }}  > */}
 					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("compras"); this.fadeOut(); }}  >
 						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
@@ -157,7 +164,7 @@ class NavBar extends React.Component {
 						</SView>
 					</SView>
 
-					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => {SNavigation.navigate("novedades"); this.fadeOut();  }}  >
+					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("novedades"); this.fadeOut(); }}  >
 						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
 							<SIcon fill="#666666" name={"KNotify"} width={28} height={27} />
 							<SText font={"Roboto"} style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Novedades</SText>
@@ -178,7 +185,7 @@ class NavBar extends React.Component {
 						</SView>
 					</SView> */}
 
-					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("consulta/contacto"),this.fadeOut();}}  >
+					<SView col={"xs-11"} height={60} border={'transparent'} row onPress={() => { SNavigation.navigate("consulta/contacto"), this.fadeOut(); }}  >
 						<SView col={"xs-10"} height style={{ justifyContent: 'flex-start', }} row center>
 							<SIcon fill="#666666" name={"Contacto"} width={28} height={27} />
 							<SText font={"Roboto"} style={{ paddingLeft: 5, color: "#666666", fontSize: 18 }} >Contacto</SText>
@@ -230,7 +237,7 @@ class NavBar extends React.Component {
 						<SText style={{ paddingLeft: 5, paddingTop: 2, color: "#666666", fontSize: 18 }} font={"LondonMM"}>Version 1.0.6</SText>
 					</SView>
 
-					<SView height={20} border={'transparent'}/>
+					<SView height={20} border={'transparent'} />
 
 				</SView>
 			</SScrollView2>
@@ -248,6 +255,11 @@ class NavBar extends React.Component {
 				//backgroundColor: "#66000066",
 				backgroundColor: STheme.color.card,
 			}}
+				onLayout={(event) => {
+					this.setState({
+						width: event.nativeEvent.layout.width
+					});
+				}}
 				activeOpacity={1}
 				onPress={() => {
 					if (this.state.isOpen) {

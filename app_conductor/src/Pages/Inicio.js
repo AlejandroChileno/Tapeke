@@ -431,6 +431,7 @@ class Inicio extends Component {
           <SwitchRastreo width={130} height={40}
             callback={(resp) => {
               // this.setState({ active: resp.ConductorOnline });
+              if(!SBLocation.isStarted) return;
               if (!SBLocation.isStarted()) {
                 SBLocation.start({
                   minTime: 3000,
