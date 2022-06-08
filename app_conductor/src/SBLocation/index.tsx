@@ -25,6 +25,9 @@ class SBLocation {
     static addListener(callback) {
         this.Listeners.push(callback);
     }
+    static notifyAll(obj) {
+        this.Listeners.forEach(listener => listener(obj));
+    }
     static removeListener(callback) {
         this.Listeners = this.Listeners.filter(listener => listener !== callback);
 
@@ -38,6 +41,7 @@ class SBLocation {
             ...props
         })).then(resp => {
             this.connected = true;
+            this.notifyAll({ type: "start" });
             SStorage.setItem("SBLocation", JSON.stringify(props));
             if (Data.lastLocation) {
                 this.Listener({ data: Data.lastLocation });
@@ -48,14 +52,21 @@ class SBLocation {
     static stop() {
         SSBackgroundLocation.stop().then(resp => {
             this.connected = false;
+            this.notifyAll({ type: "stop" });
             SStorage.removeItem("SBLocation");
             console.log("stop", resp);
         });
     }
-
+    static isRegister = false;
     static initEmitter() {
         if (Platform.OS == "android") {
-            AppRegistry.registerHeadlessTask('SSBackgroundLocation', () => this.Listener);
+            if (SBLocation.isRegister) return;
+            try {
+                SBLocation.isRegister = true;
+                AppRegistry.registerHeadlessTask('SSBackgroundLocation', () => this.Listener);
+            } catch (e) {
+                console.log("tast existente");
+            }
         } else if (Platform.OS == "ios") {
             var em = new NativeEventEmitter(SSBackgroundLocation);
 
@@ -77,16 +88,17 @@ class SBLocation {
         Data.onLocationChange(props.data);
         try {
             SStorage.getItem("usr_log", (resp: any) => {
-                var usr =JSON.parse(resp);
+                var usr = JSON.parse(resp);
+                this.notifyAll({ type: "locationChange", data: Data.lastLocation, key_usuario: usr.key });
                 SSocket.sendHttp(SSocket.api.root + "api", {
                     component: "backgroundLocation",
                     type: "onChange",
                     estado: "cargando",
-                    key_usuario:usr.key,
+                    key_usuario: usr.key,
                     data: Data.lastLocation,
                 });
             })
-            
+
         } catch (e) {
 
         }

@@ -22,7 +22,7 @@ export default class SwitchRastreo extends Component<_SwitchRastreoProps> {
     constructor(props: any) {
         super(props);
         this.state = {
-            active:SBLocation.isStarted() ,
+            active: SBLocation.isStarted(),
             colors: {
                 active: this.props.colors?.active ?? "#2FC25F",
                 inactive: this.props.colors?.inactive ?? "#B7B7B7",
@@ -33,19 +33,22 @@ export default class SwitchRastreo extends Component<_SwitchRastreoProps> {
     }
     componentDidMount() {
         SBLocation.addListener((data) => {
-            if(!this.state.active){
+            // this.state.active = SBLocation.isStarted();
+            // console.log(this.state.active);
+            if (this.state.active != SBLocation.isStarted()) {
                 this.fadeIn();
             }
-           })
+        })
     }
     fadeIn() {
+        this.state.active = SBLocation.isStarted();
         this.animValue.stopAnimation();
         Animated.timing(this.animValue, {
-            toValue: this.state.active ? 0 : 1,
+            toValue: !SBLocation.isStarted() ? 0 : 1,
             duration: 250,
             useNativeDriver: false
         }).start(() => {
-            this.state.active = !this.state.active;
+            this.state.active = SBLocation.isStarted();
             this.setState({
                 active: this.state.active
             });
