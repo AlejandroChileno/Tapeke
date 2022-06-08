@@ -49,7 +49,7 @@ export default class Actions {
         if (!data) return null;
         if (!horarios_restaurantes) return null;
         if (!packs) return null;
-        var data_pedidos = pedido.Actions.getAll(props);
+        var data_pedidos = pedido.Actions.getAllActivos(props);
         // if (!data_pedidos) return null;
 
         var filtrosCustom = filtros.Actions.getCustom(props);
@@ -128,7 +128,7 @@ export default class Actions {
         var data = Actions.getAll(props);
         var horarios_restaurantes = horario.Actions.getAll(props);
         var data_pack = pack.Actions.getAll(props);
-        var data_pedidos = pedido.Actions.getAll(props);
+        var data_pedidos = pedido.Actions.getAllActivos(props);
         if (!data) return null;
         if (!data_pack) return null;
         if (!horarios_restaurantes) return null;

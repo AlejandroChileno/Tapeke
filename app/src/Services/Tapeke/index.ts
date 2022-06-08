@@ -19,6 +19,7 @@ import calificacion from './Components/calificacion';
 
 // import recoger_usuario from './Components/recoger_usuario';
 // import chatPage from './Components/chatPage';
+import general from './Components/general';
 
 const ServiceName = "tapeke";
 
@@ -38,9 +39,10 @@ const Pages: SPageListProps = {
     ...pago_tarjeta.Pages,
     ...usuario_restaurante.Pages,
     ...calificacion.Pages,
+    ...general.Pages,
     // ...recoger_usuario.Pages,
     // ...chatPage.Pages,
-    
+
 
 }
 
@@ -59,6 +61,7 @@ const Reducers = {
     ...PedidoEnCurso.Reducers,
     ...usuario_restaurante.Reducers,
     ...calificacion.Reducers,
+    ...general.Reducers,
     // ...recoger_usuario.Reducers,
     // ...chatPage.Reducers,
 }

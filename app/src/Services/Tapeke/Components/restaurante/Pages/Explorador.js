@@ -9,6 +9,7 @@ import Parent from '../index'
 import favorito from '../../favorito';
 import BarraFiltros from '../../filtros/Components/BarraFiltros';
 import filtros from '../../filtros';
+import general from '../../general';
 class Explorador extends React.Component {
     constructor(props) {
         super(props);
@@ -70,6 +71,8 @@ class Explorador extends React.Component {
 
 
     render() {
+        var generalTime = general.Actions.getAllComponents(this.props);
+        if (!generalTime) return <SLoad />
         return (
             <SPage title={''} hidden disableScroll center >
                 <BarraSuperiorTapeke>

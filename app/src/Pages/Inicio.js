@@ -6,6 +6,7 @@ import BarraSuperiorTapeke from "../Components/BarraSuperiorTapeke";
 import Direccion from "../Components/BarraSuperiorTapeke/Direccion";
 import PBarraFooter from "../Components/PBarraFooter";
 import favorito from "../Services/Tapeke/Components/favorito";
+import general from "../Services/Tapeke/Components/general";
 import novedades from "../Services/Tapeke/Components/novedades";
 import PedidosEnCurso from "../Services/Tapeke/Components/pedido/Components/PedidosEnCurso";
 import restaurante from "../Services/Tapeke/Components/restaurante";
@@ -178,17 +179,23 @@ class Inicio extends Component {
     return <Direccion />
   }
 
+  subRender() {
+    var generalTime = general.Actions.getAllComponents(this.props);
+    if (!generalTime) return <SLoad />
+    return <SView col={"xs-12"} center>
+      {this.getContent()}
+    </SView>
+  }
   render() {
-    usuario.Actions.validateSession(this.props)
+    if (!usuario.Actions.validateSession(this.props)) return null;
+
     return (
       <>
         <BarraSuperiorTapeke>
           {this.getDireccion()}
         </BarraSuperiorTapeke>
         <SPage title={"as"} hidden>
-          <SView col={"xs-12"} center>
-            {this.getContent()}
-          </SView>
+          {this.subRender()}
         </SPage>
         <PBarraFooter url={"/"} />
       </>

@@ -13,15 +13,32 @@ class index extends Component {
 		this.state = {};
 	}
 
-	getBotones(auxKey) {
-		return (<SView col={"xs-12"} row   >
-
-			<SView col={"xs-6"} center onPress={() => { SNavigation.navigate('calificacion', { key_pedido: auxKey }) }}   >
-				<SText width={120} height={20} style={{ backgroundColor: '#EEEEEE', borderRadius: 4, fontSize: 14, alignItems: 'center', }} center >Opinar</SText>
+	getBotones(obj) {
+		var OPINAR = (
+			<SView col={"xs-6"} center onPress={() => { SNavigation.navigate('calificacion', { key_pedido: obj.key }) }}   >
+				<SView width={120} height={24} style={{ backgroundColor: '#EEEEEE', borderRadius: 4 }} center>
+					<SText font={"Roboto"} fontSize={12} color={"#666"}>Opinar</SText>
+				</SView>
 			</SView>
+		)
+		var REPETIR = (
 			<SView col={"xs-6"} center>
-				<SText width={120} height={20} style={{ backgroundColor: '#EEEEEE', borderRadius: 4, fontSize: 14, alignItems: 'center', }} center>Repetir </SText>
+				<SView width={120} height={24} style={{ backgroundColor: '#EEEEEE', borderRadius: 4 }} center onPress={() => {
+					SNavigation.navigate('restaurante/perfil', { key: obj?.restaurante?.key })
+				}}>
+					<SText font={"Roboto"} fontSize={12} color={"#666"}>Repetir</SText>
+				</SView>
 			</SView>
+		)
+
+		if (obj.state == "pagado") return <BarraCargando />
+		if (obj.state == "no_recogido") {
+			OPINAR = <SView col={"xs-6"} />
+		}
+
+		return (<SView col={"xs-12"} row   >
+			{OPINAR}
+			{REPETIR}
 		</SView>);
 	}
 
@@ -72,10 +89,11 @@ class index extends Component {
 						<SList
 							data={dataPedido}
 							space={16}
+							order={[{ key: "fecha", order: "desc", peso: 1 }]}
 							filter={(item) => item.estado == '1' && item.key_usuario == key_usuario && item.state != "pendiente_pago" && item.state != "timeout_pago"}
 							render={(obj, key) => {
 								// console.log("resta ", obj.state);
-								return <SView col={"xs-12 "} height={100} row border={STheme.color.card} style={{ borderRadius: 8, }}
+								return <SView col={"xs-12 "} height={120} row center border={STheme.color.card} style={{ borderRadius: 8, }}
 									onPress={() => {
 										if (obj.state == "pagado") {
 											// SNavigation.navigate("pedido/confirmacion", { key_pedido: obj.key });
@@ -96,18 +114,20 @@ class index extends Component {
 												<SImage src={`${SSocket.api.root}restaurante/${obj?.restaurante?.key}`} style={{ borderRadius: 8, resizeMode: 'cover' }} />
 											</SView>
 										</SView>
-										<SView col={"xs-8"} height={40} row border={"transparent"} style={{}} >
+										<SView col={"xs-8"} border={"transparent"} style={{}} >
 											<SText fontSize={16} font={"Roboto"} color={STheme.color.text} >{obj?.restaurante?.nombre}</SText>
 											<SText fontSize={12} font={"Roboto"} color={STheme.color.text} >{new SDate(obj.fecha, "yyyy-MM-dd").toString("dd de MONTH")}  {obj.horario.hora_inicio} - {obj.horario.hora_fin}</SText>
-											<SView width={8} />
+											<SView height={8} />
 											<SText fontSize={12} font={"Roboto"} color={STheme.color.primary} bold >{pedido.Actions.getDetalleEstado(obj)}</SText>
 										</SView>
 										<SView col={"xs-2"} height={40} row center style={{ alignContent: 'center', }}>
 											<SText fontSize={18} font={"Roboto"} color={STheme.color.gray} >x {obj?.cantidad}</SText>
 										</SView>
 									</SView>
-									<SView col={"xs-12"} row center border={"transparent"}>
-										{(obj.state == "pagado") ? <BarraCargando /> : this.getBotones(obj?.key)}
+									<SView col={"xs-12"} center>
+										<SView col={"xs-11"} row center border={"transparent"}>
+											{this.getBotones(obj)}
+										</SView>
 									</SView>
 								</SView>
 							}} />

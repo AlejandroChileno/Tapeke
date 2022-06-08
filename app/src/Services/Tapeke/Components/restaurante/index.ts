@@ -46,8 +46,6 @@ export default {
         ["admin/" + component + "/registro"]: registro,
         // ["admin/" + component + "/horario/lista"]: listaHorario,
 
-
-
         [component + "/mapaTest"]: MapaTest,
         // [component + "/alvaro"]: alvaro,
     },
