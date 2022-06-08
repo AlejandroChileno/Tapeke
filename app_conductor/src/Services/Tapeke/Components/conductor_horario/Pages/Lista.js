@@ -19,64 +19,26 @@ class Lista extends Component {
 
 
 	getPedidos() {
-		var data = conductor_horario.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props);
-		// var data = conductor_horario.Actions.getAll(this.props);
-		var data_horario = horario.Actions.getAll(this.props);
-		var data_restaurante = restaurante.Actions.getAll(this.props);
-		var data_pack = pack.Actions.getAll(this.props);
+		// TODO Step 1.- Get list array
+		var arr = conductor_horario.Actions.getAllPedidoProximoByKey(this.props.state.usuarioReducer.usuarioLog.key, this.props);
 
-		// var data_user = pack.Actions.getAll(this.props);
+		// TODO Step 2.- check if null
+		if (!arr) return <SLoad />;
 
-		if (!data) return <SLoad />;
-		if (!data_horario) return <SLoad />;
-		if (!data_restaurante) return <SLoad />;
-		if (!data_pack) return <SLoad />;
-		var dataFinal = {}
-
-		Object.values(data).map(obj_ch => {
-			var horario = data_horario[obj_ch.key_horario]
-			var restaurante = data_restaurante[horario.key_restaurante]
-			var sd = new SDate();
-			if (!horario) return null;
-			if (horario?.dia == sd.getDayOfWeek()) {
-				//igual no hace nada
-			} else if (horario?.dia > sd.getDayOfWeek()) {
-				sd.addDay((- sd.getDayOfWeek()) + horario?.dia);
-			} else if (horario?.dia < sd.getDayOfWeek()) {
-				sd.addDay((7 - sd.getDayOfWeek()) + horario?.dia);
-			}
-			var fecha = sd.toString("yyyy-MM-dd");
-			var dia = new SDate(fecha + " " + horario?.hora_fin, "yyyy-MM-dd hh:mm");
-			if (dia.getTime() < new SDate().getTime()) {
-				fecha = sd.addDay(7).toString("yyyy-MM-dd");
-			}
-
-			dataFinal[obj_ch.key] = {
-				...obj_ch,
-				horario,
-				restaurante,
-				fecha: fecha
-			};
-		})
-
-		var arr = Object.values(dataFinal).slice(0, 6);
-
-
-
-		// const found = arr.find(element => element > 2);
-		// console.log("tamaño " + arr[0].horario??['hora_inicio']);
-		// console.log("tamaño " + JSON.stringify(arr[0]));
-
-		// INFO Aqui ordeno por fecha mas cercas
-
-		if (arr.length == 0) {
-			return <SView col={"xs-12"} height center border={"transparent"}>
-				<SText font={"Roboto"} fontSize={20} color={STheme.color.primary}>No hay pedidos asignados</SText>
-			</SView>
+		// TODO Step 3.- check if empty
+		if (arr.length <= 0) {
+			return <>
+				<SView col={"xs-12"} height center border={"transparent"}>
+					<SText font={"Roboto"} fontSize={20} color={STheme.color.primary}>No hay pedidos asignados</SText>
+				</SView>
+			</>
 		}
 
+		// TODO Step 4.- check array list and format JSON in template
+		console.log("tamaño " + JSON.stringify(arr));
+		console.log("primero " + JSON.stringify(arr[0].horario['hora_inicio']));
 
-
+		// TODO Step 5.- I loop through the array list
 		return <SList
 			data={arr}
 			space={16}
@@ -87,19 +49,9 @@ class Lista extends Component {
 				console.log(obj['fecha'] + " " + obj.horario['hora_inicio']);
 
 				return <>
-					{/* <SView col={"xs-12"} border={'green'} >
-					<SText > {JSON.stringify(obj["fecha"], "\n", "\t")} </SText>
-					<SText > {JSON.stringify(obj.horario["hora_inicio"], "\n", "\t")} </SText>
-					<SText > {JSON.stringify(obj.horario["hora_fin"], "\n", "\t")} </SText>
-					<SText > {JSON.stringify(obj.restaurante["nombre"], "\n", "\t")} </SText>
-					<SText > {JSON.stringify(obj["key"], "\n", "\t")} </SText>
-					<SText > {JSON.stringify(obj, "\n", "\t")} </SText>
-				</SView> */}
 					<SSection key={"m_compra" + obj["key"]} center>
-
 						<SView col={"xs-12 "} height={120} row border={STheme.color.card} style={{ borderRadius: 8, }} center   >
 							<SHr height={10} />
-
 							<SView col={"xs-2.5"} height={60} center border={"transparent"} >
 								<SView height={45} width={45} style={{ backgroundColor: '#E9EAEE', borderRadius: 50, }} center   >
 									<SImage src={`${SSocket.api.root}restaurante/${obj.restaurante["key"]}`} style={{ borderRadius: 8, resizeMode: 'cover' }} />
@@ -116,7 +68,6 @@ class Lista extends Component {
 								</SView>
 							</SView>
 							<SHr height={10} />
-
 							<SView col={"xs-12"} height={30} row border={"transparent"}  >
 								<SView col={"xs-6"} height center onPress={() => { alert("hola") }}   >
 									<SText width={120} height={25} style={{ backgroundColor: '#EEEEEE', borderRadius: 4, fontSize: 14, alignItems: 'center', }} center >Ubicacion</SText>
@@ -132,7 +83,7 @@ class Lista extends Component {
 
 				</>
 			}} />
-		// })
+
 
 	}
 

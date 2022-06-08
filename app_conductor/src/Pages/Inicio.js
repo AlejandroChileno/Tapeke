@@ -52,29 +52,29 @@ class Inicio extends Component {
   }
 
   showMapa() {
-
+    var data = conductor_horario.Actions.getPedidoProximoByKey(this.props.state.usuarioReducer.usuarioLog.key, this.props);
+    if (!data) return <SLoad />;
+    // console.log(data.restaurante["latitude"]);
     return <>
       <SView col={"xs-12"} flex>
         <SMapView
           initialRegion={{
-            latitude: this.state.regionAlvaro?.latitude,
-            longitude: this.state.regionAlvaro?.longitude,
+            latitude: data?.restaurante["latitude"],
+            longitude: data.restaurante["longitude"],
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
           preventCenter={true}
         // showUserLocation={true}
         >
-          <SMarker lat={this.state.regionAlvaro?.latitude} lng={this.state.regionAlvaro?.longitude}  >
+          <SMarker lat={data?.restaurante["latitude"]} lng={data?.restaurante["longitude"]}  >
             <SIcon name="MarcadorMapa" width={40} height={40} />
           </SMarker>
         </SMapView>
       </SView>
-
-
     </>
   }
-
+  
   showMensajeBucandoPedido() {
 
     if (!SBLocation.isStarted()) {
@@ -104,59 +104,10 @@ class Inicio extends Component {
 
   showinfo() {
 
-    var data = conductor_horario.Actions.getByKeyUsuario(this.props.state.usuarioReducer.usuarioLog.key, this.props);
-    var data_horario = horario.Actions.getAll(this.props);
-    var data_restaurante = restaurante.Actions.getAll(this.props);
-    var data_pack = pack.Actions.getAll(this.props);
+    var dataFirst = conductor_horario.Actions.getPedidoProximoByKey(this.props.state.usuarioReducer.usuarioLog.key, this.props);
+    if (!dataFirst) return <SLoad />;
 
-    if (!data) return <SLoad />;
-    if (!data_horario) return <SLoad />;
-    if (!data_restaurante) return <SLoad />;
-    if (!data_pack) return <SLoad />;
-    var dataFinal = {}
-
-    Object.values(data).map(obj_ch => {
-      var horario = data_horario[obj_ch.key_horario]
-      var restaurante = data_restaurante[horario.key_restaurante]
-      var sd = new SDate();
-      if (!horario) return null;
-      if (horario?.dia == sd.getDayOfWeek()) {
-        //igual no hace nada
-      } else if (horario?.dia > sd.getDayOfWeek()) {
-        sd.addDay((- sd.getDayOfWeek()) + horario?.dia);
-      } else if (horario?.dia < sd.getDayOfWeek()) {
-        sd.addDay((7 - sd.getDayOfWeek()) + horario?.dia);
-      }
-      var fecha = sd.toString("yyyy-MM-dd");
-      var dia = new SDate(fecha + " " + horario?.hora_fin, "yyyy-MM-dd hh:mm");
-      if (dia.getTime() < new SDate().getTime()) {
-        fecha = sd.addDay(7).toString("yyyy-MM-dd");
-      }
-
-      dataFinal[obj_ch.key] = {
-        ...obj_ch,
-        horario,
-        restaurante,
-        fecha: fecha
-      };
-    })
-
-    var arr = Object.values(dataFinal).slice(0, 6);
-
-    var dataFirst = arr[0];
-    console.log("primero " + JSON.stringify(arr[0]));
-
-    // dataFirst.restaurante["key"]  para foto
-    // {dataFirst['fecha']} {dataFirst.horario['hora_inicio']} - {dataFirst.horario['hora_fin']}
-    // dataFirst.restaurante["nombre"]
-    // 
-    // dataFirst.restaurante["telefono"]
-    // dataFirst.restaurante["imagen"]
-
-    // let ultimo = arr[arr.length - 1]
-    // console.log("ultimo " + JSON.stringify(ultimo));
-
-    if (arr.length == 0) {
+    if (dataFirst.length <= 0) {
       return <>
         <SView col={"xs-12 md-6 lg-4"} height={320} backgroundColor={STheme.color.secondary} style={{ position: 'absolute', bottom: 0 }} center  >
           <SView col={"xs-12"} height={20} />
@@ -167,52 +118,39 @@ class Inicio extends Component {
       </>
     }
 
-
+    console.log("primero ", dataFirst);
+ 
 
     return <>
       <SView col={"xs-12 md-6 lg-4"} height={350} backgroundColor={STheme.color.secondary} style={{ position: 'absolute', bottom: 0 }} center  >
         <SView col={"xs-12"} height={20} />
-
-
-        {/* <BarraCargando /> */}
-
-        {/* <SView col={"xs-12"} height={15} /> */}
-
-
-
         <SView col={"xs-12"} height={60} center row backgroundColor={"transparent"} >
-        <SView col={"xs-11 md-11 lg-10 xl-8"} height={25} center row backgroundColor={"transparent"} >
-          <SView width={41} height  center border={'transparent'}>
-            <SIcon name="Reloj" fill={STheme.color.primary} width={20} ></SIcon>
+          <SView col={"xs-11 md-11 lg-10 xl-8"} height={25} center row backgroundColor={"transparent"} >
+            <SView width={41} height center border={'transparent'}>
+              <SIcon name="Reloj" fill={STheme.color.primary} width={20} ></SIcon>
+            </SView>
+            <SView flex height center border={'transparent'}    >
+              <SView col={"xs-12"} height={4} />
+              <SView col={"xs-12"} border={'transparent'}   >
+                <SText style={{ fontSize: 14 }} bold >Hoy {dataFirst['fecha']} </SText>
+              </SView>
+            </SView>
           </SView>
-          <SView flex height center border={'transparent'}    >
-            <SView col={"xs-12"} height={4} />
-            <SView col={"xs-12"} border={'transparent'}   >
-              <SText style={{ fontSize: 14 }} bold >Hoy {dataFirst['fecha']} </SText>
+          <SView col={"xs-11 md-11 lg-10 xl-8"} height={30} center row backgroundColor={"transparent"} >
+            <SView width={41} height center border={'transparent'}>
+              <SIcon name="Reloj" fill={STheme.color.primary} width={20} ></SIcon>
+            </SView>
+            <SView flex height center border={'transparent'}    >
+              <SView col={"xs-12"} height={4} />
+              <SView col={"xs-12"} border={'transparent'}   >
+                <SText style={{ fontSize: 14 }} bold > {dataFirst.horario['hora_inicio']} am - Delivery </SText>
+              </SView>
             </SView>
           </SView>
         </SView>
-
-        <SView col={"xs-11 md-11 lg-10 xl-8"} height={30} center row backgroundColor={"transparent"} >
-          <SView width={41} height center border={'transparent'}>
-            <SIcon name="Reloj" fill={STheme.color.primary} width={20} ></SIcon>
-          </SView>
-          <SView flex height center border={'transparent'}    >
-            <SView col={"xs-12"} height={4} />
-            <SView col={"xs-12"} border={'transparent'}   >
-              <SText style={{ fontSize: 14 }} bold > {dataFirst.horario['hora_inicio']} am - Delivery </SText>
-            </SView>
-          </SView>
-          </SView>
-
-          
-        </SView>
-
         <SView col={"xs-12"} center>
           <SHr color={STheme.color.lightGray} height={0.5}></SHr>
         </SView>
-
-
         <SView col={"xs-11 md-11 lg-10 xl-8"} height={50} center row backgroundColor={"transparent"} >
           <SView width={41} height={41} center border={'transparent'}>
             <SIcon name="RestauranteLogo" fill={STheme.color.primary} width={20} ></SIcon>
@@ -224,13 +162,9 @@ class Inicio extends Component {
             </SView>
           </SView>
         </SView>
-
-
         <SView col={"xs-12"} center>
           <SHr color={STheme.color.lightGray} height={0.5}></SHr>
         </SView>
-
-
         <SView col={"xs-11 md-11 lg-10 xl-8"} height={60} center row backgroundColor={"transparent"} >
           <SView width={41} height={41} center border={'transparent'}>
             <SIcon name="Location" fill={STheme.color.primary} width={18} ></SIcon>
@@ -242,15 +176,10 @@ class Inicio extends Component {
             </SView>
           </SView>
         </SView>
-
-
         <SView col={"xs-12"} center>
           <SHr color={STheme.color.lightGray} height={0.5}></SHr>
         </SView>
-
         <BarraCargando />
-
-
         <SView col={"xs-11 md-11 lg-10 xl-8"} height={70} center row backgroundColor={"transparent"} >
           <SView width={41} height={41} center border={'transparent'}>
             <SIcon name="AppAlert" fill={STheme.color.primary} width={20} ></SIcon>
@@ -262,25 +191,10 @@ class Inicio extends Component {
             </SView>
           </SView>
         </SView>
-
-
-
-
-
-
-
-
-
-
         <SView col={"xs-12"} center>
           <SHr color={STheme.color.lightGray} height={0.5}></SHr>
         </SView>
-
-
-
-
         <SView col={"xs-12"} height={80} row center   >
-  
           <SView flex center   >
             <SButtom style={{ backgroundColor: STheme.color.primary, width: 150, height: 44, fontSize: 180, borderRadius: 25, }} onPress={() => { alert("confirmado") }} fontSize={50} >Ir al restaurante</SButtom>
           </SView>
@@ -293,11 +207,8 @@ class Inicio extends Component {
             <SButtom style={{ backgroundColor: "#2BC25F", width: 150, height: 44, fontSize: 180, borderRadius: 25, }} onPress={() => { alert("confirmado") }} fontSize={50} >Aceptar</SButtom>
           </SView>
         </SView> */}
-
       </SView>
     </>
-
-
   }
   showinfo2() {
 
