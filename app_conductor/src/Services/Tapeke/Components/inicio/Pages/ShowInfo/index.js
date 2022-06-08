@@ -52,39 +52,46 @@ class ShowInfo extends Component {
 
         var parseado = parseFloat(printer / 1000).toFixed(1);
         console.log("impreso ", parseado + " km");
+        console.log("impreso ", JSON.stringify(dataFirst) + " km");
 
 
 
 
         if (!SBLocation.isStarted()) {
             return <SView col={"xs-12 md-6 lg-4"} height={250} backgroundColor={STheme.color.secondary} style={{ position: 'absolute', bottom: 0 }} center  >
+
                 <SView col={"xs-2.5"} height={80} center border={"transparent"} >
                     <SIcon name="AppAlert" fill={STheme.color.primary} width={80} ></SIcon>
                 </SView>
+
                 <SHr height={10} />
-                <SView col={"xs-11 md-11 lg-10 xl-8"} height={70} center row backgroundColor={"transparent"} >
-                    <SView width={41} height={41} center border={'transparent'}>
+
+
+                <SView col={"xs-10 md-11 lg-10 xl-8"} height={70} center row backgroundColor={"transparent"} >
+                    {/* <SView width={41} height={41} center border={'transparent'}>
                         <SIcon name="AppAlert" fill={STheme.color.primary} width={20} ></SIcon>
-                    </SView>
+                    </SView> */}
                     <SView flex height center border={'transparent'}    >
                         <SView col={"xs-12"} height={4} />
                         <SView col={"xs-12"} border={'transparent'}   >
-                            <SText style={{ fontSize: 14 }}   >Conéctate para que descubras los pedidos asignados</SText>
+                            <SText style={{ fontSize: 14 }} center >Conéctate para que descubras los pedidos asignados</SText>
                         </SView>
                     </SView>
                 </SView>
 
             </SView>
         }
-        if (parseado <= 1) {
-
+        // if (parseado <= 1) {
+        else {
             return <>
                 <SView col={"xs-12 md-6 lg-4"} height={350} backgroundColor={STheme.color.secondary} style={{ position: 'absolute', bottom: 0 }} center  >
                     <SView col={"xs-12"} height={20} />
-                    <SView col={"xs-12"} height={60} center row backgroundColor={"transparent"} >
-                        <SView col={"xs-11 md-11 lg-10 xl-8"} height={25} center row backgroundColor={"transparent"} >
+                    <SView col={"xs-11"} height={60} border={"transparent"}   center >
+
+
+                        <SView col={"xs-12"} height={30} center row backgroundColor={"transparent"} >
                             <SView width={41} height center border={'transparent'}>
-                                <SIcon name="Reloj" fill={STheme.color.primary} width={20} ></SIcon>
+                                <SIcon name="Calendario" fill={STheme.color.primary} width={20} ></SIcon>
                             </SView>
                             <SView flex height center border={'transparent'}    >
                                 <SView col={"xs-12"} height={4} />
@@ -93,7 +100,8 @@ class ShowInfo extends Component {
                                 </SView>
                             </SView>
                         </SView>
-                        <SView col={"xs-11 md-11 lg-10 xl-8"} height={30} center row backgroundColor={"transparent"} >
+
+                        <SView col={"xs-12"} height={30} center row backgroundColor={"transparent"} >
                             <SView width={41} height center border={'transparent'}>
                                 <SIcon name="Reloj" fill={STheme.color.primary} width={20} ></SIcon>
                             </SView>
@@ -105,6 +113,9 @@ class ShowInfo extends Component {
                             </SView>
                         </SView>
                     </SView>
+
+
+
                     <SView col={"xs-12"} center>
                         <SHr color={STheme.color.lightGray} height={0.5}></SHr>
                     </SView>
@@ -172,32 +183,33 @@ class ShowInfo extends Component {
                 </SView> */}
                 </SView>
             </>
-        } else {
-            return <>
-                <SView col={"xs-12 md-6 lg-4"} height={320} backgroundColor={STheme.color.secondary} style={{ position: 'absolute', bottom: 0 }} center  >
-
-
-                    <SView col={"xs-12"} height={200} center backgroundColor={"transparent"}  >
-                        <SIcon name="LogoFalse" fill={STheme.color.gray} height={150} ></SIcon>
-                    </SView>
-          
-
-
-                    <SView col={"xs-12"} height={60} row backgroundColor={"transparent"} >
-                        <SView width={41} height center border={'transparent'}>
-                            <SIcon name="AppAlert" fill={STheme.color.primary} width={20} ></SIcon>
-                        </SView>
-                        <SView flex height center border={'transparent'}    >
-                            <SView col={"xs-12"} height={4} />
-                            <SView col={"xs-12"} border={'transparent'}   >
-                                <SText style={{ fontSize: 14 }}    >Se encuentra lejos del restaurante, debe estar dentro de 1km </SText>
-                            </SView>
-                        </SView>
-                    </SView>
-
-                </SView>
-            </>
         }
+        // else {
+        //     return <>
+        //         <SView col={"xs-12 md-6 lg-4"} height={320} backgroundColor={STheme.color.secondary} style={{ position: 'absolute', bottom: 0 }} center  >
+
+
+        //             <SView col={"xs-12"} height={200} center backgroundColor={"transparent"}  >
+        //                 <SIcon name="LogoFalse" fill={STheme.color.gray} height={150} ></SIcon>
+        //             </SView>
+
+
+
+        //             <SView col={"xs-12"} height={60} row backgroundColor={"transparent"} >
+        //                 <SView width={41} height center border={'transparent'}>
+        //                     <SIcon name="AppAlert" fill={STheme.color.primary} width={20} ></SIcon>
+        //                 </SView>
+        //                 <SView flex height center border={'transparent'}    >
+        //                     <SView col={"xs-12"} height={4} />
+        //                     <SView col={"xs-12"} border={'transparent'}   >
+        //                         <SText style={{ fontSize: 14, color: STheme.color.gray }}  >Se encuentra lejos del restaurante, debe estar dentro de 1km </SText>
+        //                     </SView>
+        //                 </SView>
+        //             </SView>
+
+        //         </SView>
+        //     </>
+        // }
     }
 }
 const initStates = (state) => {
