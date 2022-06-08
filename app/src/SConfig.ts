@@ -29,7 +29,7 @@ const SThemeProps: SThemeThemes = {
 
 const SocketProps = {
     name: 'tapeke',
-    debug:true,
+    debug:false,
 
     host: 'tapekeapp.com',
     ssl: true,

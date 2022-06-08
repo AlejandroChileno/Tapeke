@@ -14,9 +14,7 @@ class Billetera extends Component {
         this.state = {};
     }
 
-    getHeaderBilletera() {
-        var data = Parent.Actions.getByKeyCliente(this.props.state.usuarioReducer.usuarioLog.key, this.props);
-        if (!data) return <SLoad />;
+    getHeaderBilletera(data) {
         var montoTotal = 0;
         data.map((obj) => { montoTotal += obj.monto; })
         return <>
@@ -77,10 +75,9 @@ class Billetera extends Component {
         return obj.tipo_pago
     }
 
-    getLista() {
+    getLista(data) {
 
-        var data = Parent.Actions.getByKeyCliente(this.props.state.usuarioReducer.usuarioLog.key, this.props);
-        if (!data) return <SLoad />;
+
         // var usuarios = usuario.Actions.getAll(this.props);
         // if (!usuarios) return <SLoad />;
 
@@ -94,14 +91,23 @@ class Billetera extends Component {
 
     }
 
+    getContent() {
+        var data = Parent.Actions.getByKeyCliente(this.props.state.usuarioReducer.usuarioLog.key, this.props);
+        if (!data) return <SLoad />
+        return <>
+            {this.getHeaderBilletera(data)}
+            {this.getLista(data)}
+        </>
+    }
     render() {
 
         return (
             <>
-                <SPage title={'Billetera'}>
+                <SPage title={'Billetera'} onRefresh={() => {
+                    Parent.Actions.refresh(this.props);
+                }}>
                     <SView col={"xs-12"} center>
-                        {this.getHeaderBilletera()}
-                        {this.getLista()}
+                        {this.getContent()}
                     </SView>
                 </SPage>
             </>
