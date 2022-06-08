@@ -126,8 +126,8 @@ class Test3 extends Component {
     if (!emisor) return <SLoad />;
     console.log(emisor);
 
-    llave = emisor.key;
-    nombre = emisor.Nombres;
+    var llave = emisor.key;
+    var nombre = emisor.Nombres;
     return (
       <>
         <BarraSuperiorTapeke2>

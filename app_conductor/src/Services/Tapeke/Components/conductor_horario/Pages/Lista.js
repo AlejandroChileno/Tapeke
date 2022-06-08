@@ -64,10 +64,17 @@ class Lista extends Component {
 
 
 		// const found = arr.find(element => element > 2);
-		console.log("tamaño " + arr[0].horario['hora_inicio']);
-		console.log("tamaño " + JSON.stringify(arr[0]));
+		// console.log("tamaño " + arr[0].horario??['hora_inicio']);
+		// console.log("tamaño " + JSON.stringify(arr[0]));
 
 		// INFO Aqui ordeno por fecha mas cercas
+
+		if (arr.length == 0) {
+			return <SView col={"xs-12"} height center border={"transparent"}>
+				<SText font={"Roboto"} fontSize={20} color={STheme.color.primary}>No hay pedidos asignados</SText>
+			</SView>
+		}
+
 
 
 		return <SList
@@ -190,6 +197,9 @@ class Lista extends Component {
 
 
 	render() {
+
+
+
 		return (
 			<>
 				<SPage title={""} hidden disableScroll     >

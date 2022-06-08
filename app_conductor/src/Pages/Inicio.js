@@ -143,7 +143,7 @@ class Inicio extends Component {
 
     var arr = Object.values(dataFinal).slice(0, 6);
 
-    let dataFirst = arr[0];
+    var dataFirst = arr[0];
     console.log("primero " + JSON.stringify(arr[0]));
 
     // dataFirst.restaurante["key"]  para foto
@@ -153,8 +153,22 @@ class Inicio extends Component {
     // dataFirst.restaurante["telefono"]
     // dataFirst.restaurante["imagen"]
 
-    let ultimo = arr[arr.length - 1]
-    console.log("ultimo " + JSON.stringify(ultimo));
+    // let ultimo = arr[arr.length - 1]
+    // console.log("ultimo " + JSON.stringify(ultimo));
+
+    if (arr.length == 0) {
+      return <>
+        <SView col={"xs-12 md-6 lg-4"} height={320} backgroundColor={STheme.color.secondary} style={{ position: 'absolute', bottom: 0 }} center  >
+          <SView col={"xs-12"} height={20} />
+          <SView col={"xs-12"} height center border={"transparent"}>
+            <SText font={"Roboto"} fontSize={20} color={STheme.color.primary}>No hay horarios asignados</SText>
+          </SView>
+        </SView>
+      </>
+    }
+
+
+
     return <>
       <SView col={"xs-12 md-6 lg-4"} height={320} backgroundColor={STheme.color.secondary} style={{ position: 'absolute', bottom: 0 }} center  >
         <SView col={"xs-12"} height={20} />
@@ -177,7 +191,7 @@ class Inicio extends Component {
             </SView>
           </SView>
         </SView>
-        
+
         <SView col={"xs-12"} center>
           <SHr color={STheme.color.lightGray} height={0.5}></SHr>
         </SView>
@@ -190,12 +204,12 @@ class Inicio extends Component {
           <SView flex height center border={'transparent'}    >
             <SView col={"xs-12"} height={4} />
             <SView col={"xs-12"} border={'transparent'}   >
-              <SText style={{ fontSize: 14 }} bold >{dataFirst.restaurante["nombre"]} </SText>
+              <SText style={{ fontSize: 14 }} bold >{dataFirst?.restaurante["nombre"]} </SText>
             </SView>
           </SView>
         </SView>
 
-        
+
         <SView col={"xs-12"} center>
           <SHr color={STheme.color.lightGray} height={0.5}></SHr>
         </SView>
@@ -306,7 +320,7 @@ class Inicio extends Component {
     // console.log("tamaño " + arr[0].horario['hora_inicio']);
     console.log("tamaño " + JSON.stringify(arr[0]));
 
-    dataFirst = arr[0];
+    var dataFirst = arr[0];
 
 
 
