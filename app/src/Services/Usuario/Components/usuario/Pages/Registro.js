@@ -148,8 +148,6 @@ class Registro extends Component {
         var error = usuario.Actions.getError("registro", this.props);
 
         if (error) {
-            console.log("alvaro1 ", error);
-            console.log("alvaro2 ", this.state.aux);
 
             if (error.Telefono == this.state.aux.Telefono) {
                 SPopup.open({ key: "errorRegistro", content: this.alertError(error, "UserAlert", "Número") });

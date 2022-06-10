@@ -99,7 +99,7 @@ class Filtros extends Component {
 				// categoria: { label: "Categoría", placeholder: "Todas", defaultValue: this.data?.categoria?.value },
 				// preferencias: { label: "Preferencias alimenticias", placeholder: "Ninguna", defaultValue: this.data?.preferencias?.value },
 				horario: { label: "Horario de recogida", type: "number", placeholder: "HH24 ( 17 )", defaultValue: this.data?.horario?.value?? "", type: "select", options: this.getHoraOptions() },
-				pack: { label: "Ocultar sin packs", placeholder: "No", defaultValue: this.data?.pack?.value ?? "", type: "select", options: [{ key: "", content: "NO" }, { key: "true", content: "SI" }] },
+				// pack: { label: "Ocultar sin packs", placeholder: "No", defaultValue: this.data?.pack?.value ?? "", type: "select", options: [{ key: "", content: "NO" }, { key: "true", content: "SI" }] },
 			}}
 			// onSubmitName={"APLICAR"}
 			onSubmit={(values) => {

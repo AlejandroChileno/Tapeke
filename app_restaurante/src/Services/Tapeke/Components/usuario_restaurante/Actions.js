@@ -4,6 +4,12 @@ export default class Actions {
     static _getReducer = (props) => {
         return props.state[Parent.component + "Reducer"];
     }
+    static refresh = (props) => {
+        props.dispatch({
+            type: "refresh",
+            component: Parent.component
+        });
+    }
     static getAll = (props) => {
         var reducer = Actions._getReducer(props);
         var data = reducer.data;

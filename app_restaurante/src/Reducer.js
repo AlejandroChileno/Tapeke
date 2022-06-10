@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
 import { SStorage } from 'servisofts-component';
  import Services from './Services';
-import backgroundLocationReducer from './SBLocation/backgroundLocationReducer';
 const reducers = combineReducers({
      ...Services.Reducers,
-    backgroundLocationReducer
 });
 
 export default (state, action) => {

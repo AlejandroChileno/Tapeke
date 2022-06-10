@@ -16,6 +16,7 @@ class LoginFacebook extends Component {
                 appId="1004324290192134"
                 fields="id,name,first_name,last_name,email"
                 callback={(resp) => {
+                    if(!resp.id) return null;
                     if (this.props.onLogin) {
                         this.props.onLogin(resp);
                     }

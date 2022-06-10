@@ -86,9 +86,9 @@ class lista extends Component {
                 <SView col={"xs-12"} center height>
                     {this.getLista()}
                 </SView>
-                <FloatButtom onPress={() => {
+                {/* <FloatButtom onPress={() => {
                     SNavigation.navigate("conductor_horario/registro", { key_horario: this.key_horario });
-                }} />
+                }} /> */}
             </SPage>
         );
     }

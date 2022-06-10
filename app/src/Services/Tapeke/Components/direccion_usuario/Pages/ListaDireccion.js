@@ -101,7 +101,7 @@ class Direccion extends React.Component {
 						</SScrollView2>
 					</SView>
 					<SHr height={10} />
-					<SView col={"xs-12"} row center height={40} border={'transparent'} onPress={() => { alert('alvaro') }}>
+					{/* <SView col={"xs-12"} row center height={40} border={'transparent'} onPress={() => { alert('alvaro') }}>
 						<SView width={40} center>
 							<SIcon name={'LocationTapeke'} height={14} width={14} fill={STheme.color.primary} />
 						</SView>
@@ -124,7 +124,7 @@ class Direccion extends React.Component {
 						}}>
 							<SText fontSize={14} font={"Roboto"} color={STheme.color.primary} bold>Utilizar mi ubicación actual</SText>
 						</SView>
-					</SView>
+					</SView> */}
 				</SView >
 			</ SPage >
 			<FloatButtomTap onPress={() => {

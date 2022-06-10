@@ -284,7 +284,7 @@ class Detalle extends React.Component {
                                     } else {
                                         Parent.Actions.entregar(this.pedidoId, this.props);
                                     }
-                                }} > ENTREGADO </SButtom>
+                                }} > ENTREGAR </SButtom>
                         }
 
                         <SHr height={40} />

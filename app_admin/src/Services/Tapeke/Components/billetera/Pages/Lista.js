@@ -48,9 +48,9 @@ class Lista extends Component {
             <SPage title={'Lista'} disableScroll center>
 
                 {this.getLista()}
-                <FloatButtom onPress={() => {
+                {/* <FloatButtom onPress={() => {
                     SNavigation.navigate("admin/" + Parent.component + "/registro");
-                }} />
+                }} /> */}
             </SPage>
         );
     }

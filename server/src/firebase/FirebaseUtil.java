@@ -14,7 +14,7 @@ public class FirebaseUtil {
         Thread t = new Thread() {
             @Override
             public void run() {
-                 Notification notFinal = new Notification(notification.title, notification.body);
+                Notification notFinal = new Notification(notification.title, notification.body);
                 notFinal.setToken(notification.token);
                 send(notFinal, apiKey);
             }
@@ -42,7 +42,7 @@ public class FirebaseUtil {
             out.writeBytes(message.toString());
             out.close();
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-16"));
             String inputLine;
             StringBuffer content = new StringBuffer();
             while ((inputLine = in.readLine()) != null) {

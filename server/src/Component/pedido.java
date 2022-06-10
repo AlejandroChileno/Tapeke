@@ -34,6 +34,9 @@ public class pedido {
                 case "editar":
                     editar(obj, session);
                     break;
+                case "asignarConductor":
+                    asignarConductor(obj, session);
+                    break;
                 // States
                 case "getDetalle":
                     getDetalle(obj, session);
@@ -83,6 +86,7 @@ public class pedido {
         obj.put("data", data);
         obj.put("estado", "exito");
     }
+
     public static void getAllMapa(JSONObject obj, SSSessionAbstract session) throws SQLException {
         String consulta = "select pedido_get_all_mapa() as json";
         JSONObject data = SPGConect.ejecutarConsultaObject(consulta);
@@ -118,6 +122,15 @@ public class pedido {
         obj.put("data", pedidoDetalle.toJson());
         obj.put("estado", "exito");
     }
+
+    public static void asignarConductor(JSONObject obj, SSSessionAbstract session) throws SQLException, JSONException, StateException {
+        String key_pedido = obj.getString("key_pedido");
+        model.pedido.Pedido pedidoDetalle = new model.pedido.Pedido(obj.getString("key_pedido"));
+        pedidoDetalle.asignarConductor(obj);
+        obj.put("data", pedidoDetalle.toJson());
+        obj.put("estado", "exito");
+    }
+
 
     public static void pagar(JSONObject obj, SSSessionAbstract session) throws StateException {
         model.pedido.Pedido pedido = new model.pedido.Pedido(obj.getString("key_pedido"));
