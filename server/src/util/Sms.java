@@ -1,22 +1,31 @@
 package util;
 
-import com.twilio.Twilio;
-import com.twilio.rest.api.v2010.account.Message;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.math.BigInteger;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import Servisofts.SConfig;
 
 public class Sms {
-    public static final String ACCOUNT_SID = "AC336a1f63d1eb3e0a157847d9e1621ef9";
-    public static final String AUTH_TOKEN = "0b8d297573750b5ca3a8dbd20874e727";
-    public static final String T_PHONE = "+13254408275";
 
     public static String sendCode(String phone) throws Exception {
-
+        JSONArray recipients = new JSONArray();
+        recipients.put(phone);
+        JSONObject sms = new JSONObject();
+        sms.put("type", "sms");
+        sms.put("originator", "Tapeke");
+        sms.put("datacoding", "plain");
+        sms.put("mclass", 1);
+        sms.put("recipients", recipients);
         String code = getCode();
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-        Message message = Message.creator(
-                new com.twilio.type.PhoneNumber(phone),
-                new com.twilio.type.PhoneNumber(T_PHONE),
-                "Tapeke App verification code " + code)
-                .create();
+        sms.put("body", "Tapeke App verification code " + code);
+        send(sms);
         return code;
     }
 
@@ -29,9 +38,44 @@ public class Sms {
         return code;
     }
 
+    public static boolean send(JSONObject message) {
+
+        System.out.println("[SendMsn] ");
+        try {
+
+            String accesKey = SConfig.getJSON("sms").getString("api_key");
+            URL url = new URL("https://rest.messagebird.com/messages");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("POST");
+            con.setRequestProperty("Content-Length", Integer.toString(message.toString().getBytes().length));
+            con.setRequestProperty("Content-Type", "application/json");
+            con.setRequestProperty("Authorization", "AccessKey " + accesKey);
+
+            con.setUseCaches(false);
+            con.setDoOutput(true);
+
+            DataOutputStream out = new DataOutputStream(con.getOutputStream());
+            out.writeBytes(message.toString());
+            out.close();
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-16"));
+            String inputLine;
+            StringBuffer content = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+            in.close();
+            con.disconnect();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
+            return false;
+        }
+    }
+
     public static void main(String[] args) throws Exception {
         System.out.println(getCode());
-        // sendCode("+59175395848");
+        sendCode("59175395848");
     }
 
 }
