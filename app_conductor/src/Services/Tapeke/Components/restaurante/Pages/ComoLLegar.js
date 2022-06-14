@@ -71,34 +71,40 @@ class ComoLLegar extends React.Component {
         var dataHorario = horario.Actions.getByKeyRestauranteProximo(this.key_restaurante, this.props)
         if (!dataHorario) return <SLoad />
 
-        // console.log("alvaro ",   dataHorario.text)
-        // console.log(auxRestaurante)
 
         return <SView col={"xs-11 sm-8 lg-5"} style={{ position: 'absolute', borderRadius: 20, bottom: 20 }} backgroundColor={'#EEEEEE'} row center>
             <SView width={15} />
-            <SView col={"xs-3"} style={{
-                maxWidth: 100,
-            }} colSquare>
+
+            <SView col={"xs-3"} style={{ maxWidth: 100, }} colSquare  >
                 <SImage src={`${SSocket.api.root}restaurante/${auxRestaurante.key}`} style={{ width: "100%", position: "relative", resizeMode: "cover", borderRadius: 10 }} />
             </SView>
+
             <SView width={10} />
             <SView flex height >
                 <SHr height={10} />
                 <SText color={STheme.color.text} fontSize={16} style={{ fontWeight: "bold" }}  >{auxRestaurante.nombre} </SText>
-                <SHr height={6} />
+                <SHr height={2} />
                 <SView col={"xs-12"} height={20} row center style={{ justifyContent: 'flex-start', }}>
                     <SIcon name={'Reloj'} width={13} colSquare center />
                     <SView width={8} />
                     <SText fontSize={12} font={"Roboto"} >{dataHorario.text} </SText>
                 </SView>
-                <SHr height={6} />
-                <SView row>
-                    <SIcon name={"Marker"} width={11} fill={"#000"} />
-                    <SView width={10} />
-                    <SText color={STheme.color.text} fontSize={12} >{auxRestaurante.direccion} </SText>
+                <SHr height={2} />
 
+                <SView col={"xs-12"} height={40} row style={{ justifyContent: 'flex-start', }} backgroundColor={"transparent"}>
+                    <SView width={20} height={20} backgroundColor={'transparent'}  >
+                        <SView col={"xs-12"} height border={'transparent'}>
+                            <SIcon name={'Marker'} width={13} colSquare />
+                        </SView>
+                    </SView>
+                    <SView flex height backgroundColor={'transparent'} row >
+                        <SText col={"xs-12"} fontSize={12} font={"Roboto"} >{auxRestaurante.direccion}</SText>
+                    </SView>
                 </SView>
-                <SHr height={10} />
+
+
+
+                <SHr height={4} />
                 <SView col={"xs-12"} center>
 
                     <SView center backgroundColor={STheme.color.primary} width={100} height={30} style={{

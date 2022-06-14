@@ -22,6 +22,23 @@ export default class Actions {
        // console.log("getAll");
         return data;
     }
+    static getActivo = (props) => {
+        var reducer = Actions._getReducer(props);
+        var data = reducer.dataActivo;
+        if (!data) {
+            if (reducer.estado == "cargando") return null;
+            SSocket.send({
+                component: Parent.component,
+                version: Parent.version,
+                type: "getActivo",
+                estado: "cargando",
+                key_usuario: props.state.usuarioReducer.usuarioLog.key,
+            })
+            return null;
+        }
+       // console.log("getAll");
+        return data;
+    }
 
     static getByKey = (key, props) => {
         var data = Actions.getAll(props);

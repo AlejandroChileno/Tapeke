@@ -3,6 +3,7 @@ import { Animated } from 'react-native';
 import { connect } from 'react-redux';
 import { SHr, SIcon, STheme, SView } from 'servisofts-component';
 import NavBar from '../NavBar';
+import NavBar2 from '../NavBar2';
 
 
 class BarraSuperiorTapeke extends Component {
@@ -39,7 +40,7 @@ class BarraSuperiorTapeke extends Component {
                         {this.props.children}
                     </SView>
 
-                    <SView height width={35} center backgroundColor={'transparent'}>
+                    <SView height width={35} center backgroundColor={'transparent'} onPress={() => { NavBar2.open(); }}>
                         <SIcon name={"AppAlert"} width={24} height={24} fill={STheme.color.secondary} />
                     </SView>
                 </SView>
