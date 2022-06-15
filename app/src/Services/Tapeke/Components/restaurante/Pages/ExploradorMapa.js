@@ -89,7 +89,7 @@ class exploradorMapa extends React.Component {
                 <SView col={"xs-12"} flex >
                     {this.showMapa()}
                 </SView>
-                <PBarraFooter />
+                <PBarraFooter  url={"explorar"} />
             </ SPage >
         );
     }
