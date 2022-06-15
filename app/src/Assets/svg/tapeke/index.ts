@@ -82,6 +82,9 @@ import SinFavorito, { ReactComponent as SinFavoritoW } from './favorito.svg';
 import noCompras, { ReactComponent as noComprasW } from './noCompras.svg';
 import noRecogido, { ReactComponent as noRecogidoW } from './noRecogido.svg';
 
+import apple, { ReactComponent as appleW } from './apple.svg';
+
+
 
 
 
@@ -167,6 +170,9 @@ const Assets = {
 	"SinFavorito": { Native: SinFavorito, Web: SinFavoritoW },
 	"NoCompras": { Native: noCompras, Web: noComprasW },
 	"NoRecogido": { Native: noRecogido, Web: noRecogidoW },
+
+	"Apple": { Native: apple, Web: appleW },
+
 
 }
 

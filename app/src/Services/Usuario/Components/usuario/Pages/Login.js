@@ -164,6 +164,20 @@ class Login extends Component {
                                         </SView>
                                     </LoginFacebook>
                                 </SView>
+                                <SView flex center height={60} >
+                                    <LoginGoogle onLogin={(usr) => {
+                                        console.log(usr);
+                                        Usuario.Actions.loginGoogle({
+                                            ...usr
+                                        }, this.props);
+                                    }}>
+                                        <SView height={50} colSquare center style={{
+                                            backgroundColor: 'white', borderRadius: 8, borderColor: STheme.color.lightGray, borderWidth: 2, padding: 8
+                                        }}>
+                                            <SIcon name={"Apple"} />
+                                        </SView>
+                                    </LoginGoogle>
+                                </SView>
                                 <SView col={"xs-2"} height center>
                                 </SView>
                             </SView>
