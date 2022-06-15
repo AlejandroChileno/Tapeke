@@ -222,7 +222,7 @@ class Confirmar extends React.Component {
                 var client = {
                     "name": usuario["Nombres"],
                     "last_name": usuario["Apellidos"],
-                    "ci": values["nit"] ?? " ",
+                    "ci": values["nit"] ?? "6392496",
                     "phone": phone,
                     "email": usuario["Correo"],
                     "bussiness_name": values["business_name"],

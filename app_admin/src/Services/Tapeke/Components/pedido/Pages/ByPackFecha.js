@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SLoad, SNavigation, SPage, STable2, SText } from 'servisofts-component';
+import { SIcon, SLoad, SNavigation, SPage, STable2, SText, SView } from 'servisofts-component';
 import pedido from '..';
 import pack from '../../pack';
 import horario from '../../horario';
@@ -29,6 +29,7 @@ class ByPackFecha extends Component {
         return <STable2
             header={[
                 { key: "index", label: "#", width: 50 },
+                { key: "key", label: "#key", width: 150 },
                 {
                     key: "key_pack-restaurante", label: "Restaurante", width: 150, render: (item) => {
                         var p = data_pack[item];
@@ -55,6 +56,13 @@ class ByPackFecha extends Component {
                         return data_usuario[item]?.Nombres + " " + data_usuario[item]?.Apellidos
                     }
                 },
+                // {
+                //     key: "key_conductor", label: "Conductor", width: 150, render: (item) => {
+                //         if (!item) return "";
+                //         return data_usuario[item]?.Nombres + " " + data_usuario[item]?.Apellidos
+                //     },
+                // },
+             
 
             ]}
 

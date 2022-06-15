@@ -98,7 +98,7 @@ class Registro extends Component {
 
                 }).catch(err => {
                     if (err?.data?.Correo == err?.error?.Correo) {
-                        alert("Error e el correo")
+                        SPopup.alert("El correo ya esta registrado");
                         return;
                     }
                 })

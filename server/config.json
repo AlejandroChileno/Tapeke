@@ -41,5 +41,8 @@
         "port": 465,
         "email": "tapekeapp@gmail.com",
         "password": "Tapeke123."
+    },
+    "sms":{
+        "api_key": "live_j9U3Nk0F2uTfjkj9GrPLPMMaW"
     }
 }

@@ -1,8 +1,10 @@
 package model.pedido;
 
 import java.sql.SQLException;
+import java.util.UUID;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import Server.SSSAbstract.SSServerAbstract;
@@ -159,4 +161,64 @@ public class Pedido implements IPedidoActions {
         this.state.sync_recordatorio(obj);
     }
 
+    public void asignarConductor(JSONObject obj) throws StateException {
+        JSONObject restaurante = this.data.getJSONObject("restaurante");
+        JSONObject horario = this.data.getJSONObject("horario");
+        int tiempo = 2000;
+        int radio = 200;
+        try {
+            String consulta = String.join("\n",
+                    "select array_to_json(array_agg(sq1.* )) as json",
+                    "FROM(",
+                    "SELECT *",
+                    "from conductor_horario",
+                    "where conductor_horario.key_horario = '" + horario.getString("key") + "'",
+                    ") sq1");
+            JSONArray conductores_asignados = SPGConect.ejecutarConsultaArray(consulta);
+
+            JSONArray conductores_en_restaurante = SPGConect
+                    .ejecutarConsultaArray("select getconductoresactivos(" + restaurante.getDouble("latitude") + ","
+                            + restaurante.getDouble("longitude") + "," + tiempo + "," + radio + ") as json");
+
+            conductores_asignados.iterator().forEachRemaining(itm -> {
+                JSONObject conductor_asignado = (JSONObject) itm;
+                conductores_en_restaurante.iterator().forEachRemaining(itm2 -> {
+                    JSONObject conductor_en_restaurante = (JSONObject) itm2;
+                    if (conductor_asignado.getString("key_usuario")
+                            .equals(conductor_en_restaurante.getString("key_usuario"))) {
+                        String key_usuario_para_asignar = conductor_en_restaurante.getString("key_usuario");
+                        System.out.println("Conducto para asignar " + key_usuario_para_asignar);
+                        JSONObject delivery = new JSONObject();
+                        delivery.put("key", SUtil.uuid());
+                        delivery.put("fecha_on", SUtil.now());
+                        delivery.put("estado", 1);
+                        delivery.put("key_conductor", key_usuario_para_asignar);
+                        delivery.put("state", "pedido");
+
+                        JSONObject delivery_pedido = new JSONObject();
+                        delivery_pedido.put("key", SUtil.uuid());
+                        delivery_pedido.put("fecha_on", SUtil.now());
+                        delivery_pedido.put("estado", 1);
+                        delivery_pedido.put("key_pedido", this.key);
+                        delivery_pedido.put("key_delivery", delivery.getString("key"));
+                        delivery_pedido.put("cantidad", this.data.getInt("cantidad"));
+
+                        try {
+                            SPGConect.insertObject("delivery", delivery);
+                            SPGConect.insertObject("delivery_pedido", delivery_pedido);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                        
+                    }
+                });
+
+            });
+        } catch (JSONException | SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("asignarConductor");
+
+        // throw new StateException("No implementado");
+    }
 }

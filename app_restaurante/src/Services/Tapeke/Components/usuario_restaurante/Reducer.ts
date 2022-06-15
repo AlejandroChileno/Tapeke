@@ -18,6 +18,8 @@ const initialState = () => {
 export default (state: any, action: DataProps) => {
     if (!state) return initialState();
     if (action.component != Parent.component) return state;
+    if (action.type == "refresh") return initialState();
+
     // if (action.version != Parent.version) return state;
     TypesSwitch(state, action)
     state.type = action.type;

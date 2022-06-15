@@ -44,35 +44,35 @@ class index extends Component {
 
 	sinCompras() {
 		return <>
-			<SPage title={'Mis Compras'} disableScroll center>
-				<SView col={"xs-12"} row center >
-					<SView col={"xs-11 sm-6 md-6 lg-4 xl-4"} >
-						<SView col={"xs-12"} center row  >
-							<SView col={"xs-12"} row center   >
-								<SView col={"xs-11"} border={'transparent'}  >
-									<SHr height={20} />
-									<SText fontSize={24} color={STheme.color.primary} font={"Roboto"} bold center>Usted no realizó compras</SText>
-									<SHr height={20} />
-									<SText fontSize={18} color={STheme.color.text} bold center font={"Roboto"} >No tiene compras realizadas en este momento.</SText>
-								</SView>
+			{/* <SPage title={'Mis Compras'} disableScroll center> */}
+			<SView col={"xs-12"} row center >
+				<SView col={"xs-11 sm-6 md-6 lg-4 xl-4"} >
+					<SView col={"xs-12"} center row  >
+						<SView col={"xs-12"} row center   >
+							<SView col={"xs-11"} border={'transparent'}  >
+								<SHr height={20} />
+								<SText fontSize={24} color={STheme.color.primary} font={"Roboto"} bold center>Usted no realizó compras</SText>
+								<SHr height={20} />
+								<SText fontSize={18} color={STheme.color.text} bold center font={"Roboto"} >No tiene compras realizadas en este momento.</SText>
 							</SView>
-							<SView col={"xs-11"} center  >
-								<SHr height={30} />
-								<SView center col={"xs-12"}   >
-									<SIcon name="NoCompras" height={320}></SIcon >
-								</SView>
-							</SView>
-							<SHr height={50} />
-							<SView col={"xs-12"} row center>
-								<PButtom fontSize={20} onPress={() => {
-									SNavigation.navigate("/");
-								}}>COMPRAR</PButtom>
-							</SView>
-							<SHr height={30} />
 						</SView>
+						<SView col={"xs-11"} center  >
+							<SHr height={30} />
+							<SView center col={"xs-12"}   >
+								<SIcon name="NoCompras" height={320}></SIcon >
+							</SView>
+						</SView>
+						<SHr height={50} />
+						<SView col={"xs-12"} row center>
+							<PButtom fontSize={20} onPress={() => {
+								SNavigation.navigate("/");
+							}}>COMPRAR</PButtom>
+						</SView>
+						<SHr height={30} />
 					</SView>
 				</SView>
-			</SPage>
+			</SView>
+			{/* </SPage> */}
 		</>
 	}
 
@@ -80,17 +80,16 @@ class index extends Component {
 		const key_usuario = this.props.state.usuarioReducer.usuarioLog.key;
 		var dataPedido = pedido.Actions.getPedidoByKeyUsuarioDetalle(this.props.state.usuarioReducer.usuarioLog.key, this.props)
 		if (!dataPedido) return <SLoad />
-		if (dataPedido.length == 0) return this.sinCompras();
-
+		var arr = dataPedido.filter((item) => item.estado == '1' && item.key_usuario == key_usuario && item.state != "pendiente_pago" && item.state != "timeout_pago")
+		if (arr.length == 0) return this.sinCompras();
 		return <>
 
 			<SView col={"xs-12"} row center >
 				<SView col={"xs-11 sm-6 md-6 lg-4 xl-4"} >
 					<SList
-						data={dataPedido}
+						data={arr}
 						space={16}
 						order={[{ key: "fecha", order: "desc", peso: 1 }]}
-						filter={(item) => item.estado == '1' && item.key_usuario == key_usuario && item.state != "pendiente_pago" && item.state != "timeout_pago"}
 						render={(obj, key) => {
 							// console.log("resta ", obj.state);
 							return <SView col={"xs-12 "} height={120} row center border={STheme.color.card} style={{ borderRadius: 8, }}

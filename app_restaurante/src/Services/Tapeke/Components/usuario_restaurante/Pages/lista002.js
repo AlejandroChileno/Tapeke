@@ -44,12 +44,14 @@ class registro extends Component {
                                 borderWidth: 2, borderColor: STheme.color.lightGray,
                                 borderRadius: 8, overflow: 'hidden'
                             }} center onPress={() => {
-                                SPopup.confirm({
-                                    title: "¿Está seguro que desea ir a este restaurante?", message: `${obj.nombre}`,
-                                    onPress: () => {
-                                        SNavigation.navigate("inicio", { key_restaurante: `${obj.key}` });
-                                    }
-                                })
+                                        SNavigation.replace("inicio", { key_restaurante: `${obj.key}` });
+
+                                // SPopup.confirm({
+                                //     title: "¿Está seguro que desea ir a este restaurante?", message: `${obj.nombre}`,
+                                //     onPress: () => {
+                                //         SNavigation.navigate("inicio", { key_restaurante: `${obj.key}` });
+                                //     }
+                                // })
                             }}>
                             <SView col={"xs-3"} center row>
                                 <SHr height={10} />
@@ -73,7 +75,7 @@ class registro extends Component {
                     <SHr height={20} />
                     <PButtom fontSize={20} onPress={() => {
                         this.props.dispatch({ type: "USUARIO_LOGOUT" }); SNavigation.replace("login"); this.fadeOut();
-                    }}> <SIcon fill="#FFFFFF" name={"Exit"} width={28} height={27} /> SALIR</PButtom>
+                    }}> <SIcon fill="#FFFFFF" name={"Exit"} width={28} height={27} />SALIR</PButtom>
                 </SView>
             }
 
@@ -85,7 +87,9 @@ class registro extends Component {
             return <SLoad />;
         }
         return (
-            <SPage title={'Tapeke Restaurante'} >
+            <SPage title={'Tapeke Restaurante'} onRefresh={()=>{
+                Parent.Actions.refresh(this.props);
+            }}>
                 <SView col={"xs-12"} center>
                     <SView col={"xs-11 sm-11 md-10 lg-8 xl-6"} center >
                         {this.getUsuarios()}
