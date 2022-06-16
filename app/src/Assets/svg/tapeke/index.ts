@@ -83,6 +83,7 @@ import noCompras, { ReactComponent as noComprasW } from './noCompras.svg';
 import noRecogido, { ReactComponent as noRecogidoW } from './noRecogido.svg';
 
 import apple, { ReactComponent as appleW } from './apple.svg';
+import noDisponible, { ReactComponent as noDisponibleW } from './noDisponible.svg';
 
 
 
@@ -172,6 +173,7 @@ const Assets = {
 	"NoRecogido": { Native: noRecogido, Web: noRecogidoW },
 
 	"Apple": { Native: apple, Web: appleW },
+	"NoDisponible": { Native: noDisponible, Web: noDisponibleW },
 
 
 }
